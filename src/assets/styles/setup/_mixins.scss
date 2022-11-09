@@ -42,7 +42,6 @@
 }
 
 //Aspect ratio mixin
-
 @mixin aspect-ratio($width: 1, $height: 1) {
     position: relative;
     overflow: hidden;

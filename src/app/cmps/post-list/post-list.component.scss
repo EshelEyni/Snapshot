@@ -1,0 +1,7 @@
+@import '../../../assets/styles/setup/functions';
+
+.post-list{
+    display: flex;
+    flex-direction: column;
+    gap: rem(15px);
+}

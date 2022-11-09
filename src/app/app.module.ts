@@ -12,6 +12,11 @@ import { PostPreviewComponent } from './cmps/post-preview/post-preview.component
 import { SideBarComponent } from './cmps/side-bar/side-bar.component';
 import { CommentComponent } from './cmps/comment/comment.component';
 import { CommentListComponent } from './cmps/comment-list/comment-list.component';
+import { ShortTxtPipe } from './pipes/short-txt.pipe';
+import { FormattedDatePipe } from './pipes/formatted-date.pipe';
+import { FormsModule } from '@angular/forms';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { EmojiPickerComponent } from './cmps/emoji-picker/emoji-picker.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +27,18 @@ import { CommentListComponent } from './cmps/comment-list/comment-list.component
     PostPreviewComponent,
     SideBarComponent,
     CommentComponent,
-    CommentListComponent
+    CommentListComponent,
+    ShortTxtPipe,
+    FormattedDatePipe,
+    EmojiPickerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
+    FormsModule,
+    PickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
