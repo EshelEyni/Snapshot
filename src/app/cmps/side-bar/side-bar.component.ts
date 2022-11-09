@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'side-bar',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class SideBarComponent implements OnInit {
 
   constructor() { }
+  faHome = faHome;
 
   ngOnInit(): void {
   }
