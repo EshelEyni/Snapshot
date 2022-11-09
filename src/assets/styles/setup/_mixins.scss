@@ -1,6 +1,6 @@
 @import '../../../assets/styles/setup/vars';
 
-/* Media queries Breakpoint mixins */
+// Media queries Breakpoint mixins
 
 @mixin for-mobile-layout {
     @media (max-width: $break-narrow) {
@@ -31,9 +31,18 @@
         minmax($layoutPadding, 1fr) minmax(auto, $max) minmax($layoutPadding, 1fr);
 }
 
-/* Media  Mixins */
+// Page mixin 
 
-//aspect ratio mixin
+@mixin page($width: 1, $height: 1) {
+    display: flex;
+    height: 100vh;
+    margin-inline-start: rem(244px);
+    width: calc(100vw - rem(244px));
+    background-color: var(--secondary-bg);
+}
+
+//Aspect ratio mixin
+
 @mixin aspect-ratio($width: 1, $height: 1) {
     position: relative;
     overflow: hidden;

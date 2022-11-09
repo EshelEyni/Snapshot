@@ -1,0 +1,54 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+
+.side-bar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: rem(244px);
+    padding: rem(8px) rem(12px) rem(20px);
+    background-color: var(--primary-bg);
+    border-right: 1px solid var(--border-color);
+
+    header {
+        display: flex;
+        align-items: center;
+        height: rem(73px);
+        padding: rem(25px) rem(12px) rem(16px);
+        margin-bottom: rem(19px);
+
+        .logo {
+            font-size: rem(35px);
+            cursor: pointer;
+        }
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+
+        >* {
+            display: flex;
+            align-items: center;
+            height: rem(24px);
+            width: fit-content;
+            padding: rem(12px);
+            margin: rem(8px) 0;
+            cursor: pointer;
+
+            &.active {
+                font-weight: 600;
+            }
+
+            >span {
+                padding-left: rem(16px);
+                font-size: rem(16px);
+                line-height: rem(24px);
+                margin: rem(-6px) 0 rem(-6px);
+            }
+        }
+    }
+}

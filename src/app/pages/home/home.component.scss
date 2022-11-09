@@ -1,0 +1,6 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/mixins';
+
+.home {
+    @include page;
+}
