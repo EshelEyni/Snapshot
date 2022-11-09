@@ -1,0 +1,66 @@
+// Flex 
+.flex {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.inline-flex {
+    display: inline-flex;
+}
+
+// Grid
+.grid {
+    display: grid;
+}
+
+// List 
+.clean-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+// Input
+.clean-input {
+    &:focus-visible {
+        outline: none;
+    }
+
+    border: 0;
+}
+
+// Aspect ratios
+.ratio-16-9 {
+    @include aspect-ratio(100, 56);
+}
+
+.ratio-square {
+    @include aspect-ratio(100, 100);
+}
+
+.ratio-card {
+    @include aspect-ratio(100, 80);
+}
+
+.ratio-poster {
+    @include aspect-ratio(100, 150);
+}
