@@ -1,0 +1,22 @@
+<section class="side-bar">
+    <header>
+        <a class="logo" routerLink="/" routerLinkActive="active">Snapshot</a>
+    </header>
+    <main>
+        <a class="home" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <span class="home-title">Home</span>
+        </a>
+        <div class="search">
+            <span class="search-title">Search</span>
+        </div>
+        <a class="messages" routerLink="/inbox" routerLinkActive="active">
+            <span class="messages-title">Messages</span>
+        </a>
+        <button class="btn-create clean-btn">
+            <span>Create</span>
+        </button>
+        <a class="profile" routerLink="/user" routerLinkActive="active">
+            <span class="profile-title">Profile</span>
+        </a>
+    </main>
+</section>
