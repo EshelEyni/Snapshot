@@ -34,14 +34,18 @@ img {
     object-fit: cover;
 }
 
+li {
+    list-style: none;
+}
+
+fa-icon {
+    cursor: pointer;
+}
+
 @include for-normal-layout {
     html {
         font-size: 14px;
     }
-}
-
-li{
-    list-style: none;
 }
 
 @include for-wide-layout {
