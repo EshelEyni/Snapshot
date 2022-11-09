@@ -1,0 +1,13 @@
+.comment {
+    display: flex;
+    align-items: center;
+
+    span {
+        font-weight: 900;
+        margin-inline-end: 5px;
+    }
+
+    p {
+        margin: 0;
+    }
+}

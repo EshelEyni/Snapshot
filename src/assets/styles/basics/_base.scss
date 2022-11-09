@@ -40,6 +40,10 @@ img {
     }
 }
 
+li{
+    list-style: none;
+}
+
 @include for-wide-layout {
     html {
         font-size: 16px;

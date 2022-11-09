@@ -1,1 +1,5 @@
-<p>post-list works!</p>
+<ul>
+    <li *ngFor="let post of posts">
+        <post-preview [post]="post"></post-preview>
+    </li>
+</ul>
