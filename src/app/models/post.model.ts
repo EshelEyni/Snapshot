@@ -1,4 +1,4 @@
-import { miniUser } from './user';
+import { miniUser } from './user.model';
 
 export interface Post {
     _id: string;
