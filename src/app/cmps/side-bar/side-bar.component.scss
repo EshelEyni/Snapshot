@@ -22,6 +22,7 @@
 
         .logo {
             font-size: rem(35px);
+            font-family: var(--secondary-font);
             cursor: pointer;
         }
     }
@@ -29,6 +30,7 @@
     main {
         display: flex;
         flex-direction: column;
+        flex-grow: 1;
 
         >* {
             display: flex;
@@ -45,10 +47,15 @@
 
             >span {
                 padding-left: rem(16px);
-                font-size: rem(16px);
+                font-size: rem(20px);
+                letter-spacing: rem(1px);
                 line-height: rem(24px);
-                margin: rem(-6px) 0 rem(-6px);
             }
+        }
+
+        .btn-create {
+            color: var(--primary-color);
+            font-family: var(--primary-font);
         }
     }
 }
