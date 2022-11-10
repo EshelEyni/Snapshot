@@ -39,6 +39,10 @@
     outline: 0;
 }
 
+.btn-on {
+    background-color: var(--primary-button);
+}
+
 // List 
 .clean-list {
     list-style-type: none;
@@ -55,12 +59,12 @@
     border: 0;
 }
 
-// Hide lines
-.hide-lines {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+.dark-mode {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.z-index-20 {
+    z-index: 20;
 }
 
 // Aspect ratios

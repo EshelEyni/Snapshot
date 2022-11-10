@@ -1,5 +1,6 @@
 @import '../../../assets/styles/setup/functions';
 @import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
 
 .post-preview {
     height: fit-content;
@@ -8,6 +9,10 @@
     border-radius: 10px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     padding: 0 rem(20px) rem(20px) rem(20px);
+
+    // .main-screen {
+    //     @include main-screen(rgba(0, 0, 0, 0.5));
+    // }
 
     .post-creator {
         display: flex;
@@ -87,6 +92,9 @@
             display: flex;
             gap: 10px;
 
+            .solid-heart {
+                @include solid-heart;
+            }
         }
     }
 

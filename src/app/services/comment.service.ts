@@ -1,4 +1,4 @@
-import { Comment } from './../models/post.model';
+import { Comment } from './../models/comment.model';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class CommentService {
     
   }
 
-  addComment(commentTxt: string, comments: Comment[]) {
+  addComment(commentTxt: string, commentsIds: string[]) {
     const commentToAdd = {
       _id: 'asdaasd',
       by: { _id: 'asdasd', fullname: 'user', imgUrl: 'https://picsum.photos/200/300' },
@@ -22,7 +22,7 @@ export class CommentService {
       likedBy: []
     }
     commentToAdd.txt = commentTxt;
-    comments.push(commentToAdd);
+    commentsIds.push(commentToAdd._id);
   }
 
   removeComment(commentId: string) { }

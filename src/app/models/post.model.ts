@@ -7,7 +7,7 @@ export interface Post {
     by: miniUser;
     location: Location;
     likedBy: miniUser[];
-    comments: Comment[];
+    commentsIds: string[];
     createdAt: Date;
     tags: string[];
 }
@@ -16,12 +16,4 @@ export interface Location {
     lat: number;
     lng: number;
     name: string;
-}
-
-export interface Comment {
-    _id: string;
-    by: miniUser;
-    txt: string;
-    at: Date;
-    likedBy: miniUser[];
 }

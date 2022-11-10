@@ -1,7 +1,7 @@
 import { Post } from './../../models/post.model';
 import { Emoji } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { Component, Input, OnInit, ElementRef, ViewChild, inject } from '@angular/core';
-import { Comment } from 'src/app/models/post.model';
+import { Comment } from 'src/app/models/comment.model';
 import { faHeart, faComment, faPaperPlane, faBookmark, faFaceSmile } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartSolid, faCircle, faBookmark as faBookmarkSolid } from '@fortawesome/free-solid-svg-icons';
 import { CommentService } from 'src/app/services/comment.service';
@@ -33,7 +33,7 @@ export class PostPreviewComponent implements OnInit {
   isEmojiPickerShown: boolean = false;
   isPostDetailsShown: boolean = false;
   isShareModalShown: boolean = false;
-  isShadowScreen = { isShown: false, isDark: false };
+  isMainScreen = { isShown: false, isDark: false };
   isExpandTxt: boolean = false;
   commentTxt: string = '';
   isLiked: boolean = false;
@@ -64,36 +64,36 @@ export class PostPreviewComponent implements OnInit {
     this.isSaved = !this.isSaved;
   }
 
-  onToggleElement(el: string) {
+  onToggleModal(el: string) {
     switch (el) {
       case 'txt':
         this.isExpandTxt = true;
         break;
       case 'share':
         this.isShareModalShown = !this.isShareModalShown;
-        this.isShadowScreen = { isShown: true, isDark: true };
-        if (this.isShadowScreen.isShown)
-          this.isShadowScreen = { isShown: false, isDark: false };
+        if (this.isMainScreen.isShown)
+          this.isMainScreen = { isShown: false, isDark: false };
+        this.isMainScreen = { isShown: true, isDark: true };
         break;
       case 'emoji':
         this.isEmojiPickerShown = !this.isEmojiPickerShown;
-        this.isShadowScreen = { isShown: true, isDark: false };
+        this.isMainScreen = { isShown: true, isDark: false };
         break;
       case 'details':
         this.isPostDetailsShown = !this.isPostDetailsShown;
-        this.isShadowScreen = { isShown: true, isDark: true };
+        this.isMainScreen = { isShown: true, isDark: true };
         break;
-      case 'shadow-screen':
+      case 'main-screen':
         this.isEmojiPickerShown = false;
         this.isShareModalShown = false;
         this.isPostDetailsShown = false;
-        this.isShadowScreen = { isShown: false, isDark: false };
+        this.isMainScreen = { isShown: false, isDark: false };
         break;
     }
   }
 
   onAddComment() {
-    this.commentService.addComment(this.commentTxt, this.post.comments);
+    this.commentService.addComment(this.commentTxt, this.post.commentsIds);
     this.commentTxt = '';
   }
 

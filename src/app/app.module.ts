@@ -20,6 +20,7 @@ import { EmojiPickerComponent } from './cmps/emoji-picker/emoji-picker.component
 import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { ShareModalComponent } from './cmps/share-modal/share-modal.component';
 import { UserListComponent } from './cmps/user-list/user-list.component';
+import { CommentsToDisplayPipe } from './pipes/comments-to-display.pipe';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { UserListComponent } from './cmps/user-list/user-list.component';
     EmojiPickerComponent,
     ShareModalComponent,
     UserListComponent,
+    CommentsToDisplayPipe,
   ],
   imports: [
     BrowserModule,
