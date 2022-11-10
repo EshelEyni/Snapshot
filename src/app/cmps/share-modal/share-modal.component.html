@@ -1,0 +1,18 @@
+<section class="share-modal">
+    <header>
+        <h1>share</h1>
+        <fa-icon (click)="onCloseModal()" [icon]="faX"></fa-icon>
+    </header>
+    <main class="main-container">
+        <hr>
+        <section class="input-container">
+            <label for="friend-name">to:</label>
+            <input type="text" placeholder="search..." id="friend-name">
+        </section>
+        <user-list></user-list>
+        <hr>
+    </main>
+    <section class="btn-container">
+        <button class="clean-btn" [class.btn-on]="usersToSend.length">send</button>
+    </section>
+</section>

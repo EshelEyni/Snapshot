@@ -28,6 +28,10 @@ a {
     color: inherit;
 }
 
+button {
+    cursor: pointer;
+}
+
 img {
     height: 100%;
     width: 100%;
@@ -40,6 +44,49 @@ li {
 
 fa-icon {
     cursor: pointer;
+}
+
+.btn-on {
+    background-color: var(--primary-button);
+}
+
+.shadow-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 10;
+    cursor: pointer;
+}
+
+.dark-mode {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.z-index-20 {
+    z-index: 20;
+}
+
+.solid-heart {
+    color: var(--like-btn-red);
+    animation: pulse 0.25s;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(.5, 0.05, 1, .5);
+    animation-iteration-count: 0.5s;
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            opacity: 0;
+        }
+
+        100% {
+            transform: scale(1.3);
+            opacity: 1;
+        }
+    }
 }
 
 @include for-normal-layout {

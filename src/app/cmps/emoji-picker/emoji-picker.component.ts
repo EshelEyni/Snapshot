@@ -7,13 +7,13 @@ import { Emoji } from '@ctrl/ngx-emoji-mart/ngx-emoji';
   styleUrls: ['./emoji-picker.component.scss']
 })
 export class EmojiPickerComponent implements OnInit {
+  constructor() { }
 
   @Output() emojiClick = new EventEmitter<Emoji>()
   
   addEmoji(emoji: Emoji) {
     this.emojiClick.emit(emoji);
   }
-  constructor() { }
 
   ngOnInit(): void { }
 }

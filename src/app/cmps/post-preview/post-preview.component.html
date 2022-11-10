@@ -1,4 +1,6 @@
-<section class="post-preview">
+<article class="post-preview">
+    <div class="shadow-screen" [class.dark-mode]="isShadowScreen.isDark" *ngIf="isShadowScreen.isShown"
+        (click)="onToggleElement('shadow-screen')"></div>
     <section class="post-creator">
         <section class="creator-preview">
             <section class="img-container">
@@ -21,16 +23,21 @@
     </section>
     <section class="actions">
         <div class="main-btn-container">
-            <fa-icon [icon]="faHeart"></fa-icon>
+            <fa-icon [icon]="faHeart" (click)="onToggleLike()" *ngIf="!isLiked else solidHeart"></fa-icon>
+            <ng-template #solidHeart>
+                <fa-icon class="solid-heart" (click)="onToggleLike()" [icon]="faHeartSolid"></fa-icon>
+            </ng-template>
             <fa-icon [icon]="faComment"></fa-icon>
-            <fa-icon [icon]="faPaperPlane"></fa-icon>
+            <fa-icon [icon]="faPaperPlane" (click)="onToggleElement('share')">
+            </fa-icon>
+            <share-modal *ngIf="isShareModalShown" (close)="onToggleElement('share')"></share-modal>
         </div>
         <fa-icon [icon]="faBookmark"></fa-icon>
     </section>
     <p class="likes">{{post.likedBy.length}} likes</p>
     <section class="txt-container">
         <p class="txt" *ngIf="!isExpandTxt; else longTxt">
-            <span>{{post.by.fullname}}</span> {{post.txt | shortTxt}} <span (click)="expandTxt()">more</span>
+            <span>{{post.by.fullname}}</span> {{post.txt | shortTxt}} <span (click)="onToggleElement('txt')">more</span>
         </p>
         <ng-template class="txt-container" #longTxt>
             <p>
@@ -44,11 +51,13 @@
     <p class="date-added">{{post.createdAt|formattedDate}}</p>
     <hr>
     <form class="comment-form" (submit)="onAddComment()">
-        <section class="input-container">
-            <fa-icon (click)="toggleEmojiPicker()" [icon]="faFaceSmile">Post</fa-icon>
-            <emoji-mart *ngIf="isEmojiPickerOpen" (emojiClick)="onAddEmoji($event)"></emoji-mart>
-            <input type="text" placeholder="Add a comment..." [(ngModel)]="commentTxt" name="commentTxt">
+        <fa-icon (click)="onToggleElement('emoji')" [icon]="faFaceSmile">Post</fa-icon>
+        <section class="emoji-picker-container">
+            <emoji-mart [style]="{position:'relative'}" *ngIf="isEmojiPickerShown" (emojiClick)="onAddEmoji($event)">
+            </emoji-mart>
         </section>
-        <button class="clean-btn" [class.txt-in-input]="commentTxt" type="submit">post</button>
+        <input class="txt-input" type="text" placeholder="Add a comment..." [(ngModel)]="commentTxt" name="commentTxt">
+        <button class="clean-btn" [class.txt-in-input]="commentTxt" [class.z-index-20]="isEmojiPickerShown"
+            type="submit" (click)="onToggleElement('emoji')">post</button>
     </form>
-</section>
+</article>
