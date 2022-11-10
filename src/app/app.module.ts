@@ -18,6 +18,8 @@ import { FormsModule } from '@angular/forms';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { EmojiPickerComponent } from './cmps/emoji-picker/emoji-picker.component';
 import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { ShareModalComponent } from './cmps/share-modal/share-modal.component';
+import { UserListComponent } from './cmps/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
     ShortTxtPipe,
     FormattedDatePipe,
     EmojiPickerComponent,
+    ShareModalComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,

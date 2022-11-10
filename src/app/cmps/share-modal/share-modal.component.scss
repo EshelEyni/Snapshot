@@ -1,0 +1,72 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+
+.share-modal {
+    position: absolute;
+    display: grid;
+    grid-template-rows: rem(50px) 1fr rem(82px);
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: rem(550px);
+    height: 100%;
+    max-height: 65vh;
+    background-color: var(--secondary-bg);
+    z-index: 20;
+    border-radius: 10px;
+
+    header {
+        grid-row: 1/2;
+        display: grid;
+        grid-template-columns: 1fr 5%;
+        grid-template-rows: 1fr;
+        align-items: center;
+        height: rem(40px);
+
+        h1 {
+            grid-column: 1/2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary-color);
+            font-size: rem(16px);
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        fa-icon {
+            grid-column: 2/3;
+            font-size: rem(24px);
+            cursor: pointer;
+        }
+    }
+
+    .user-list {
+        grid-row: 2/3;
+
+        hr {
+            border: rem(0.5px) solid var(--border-color);
+            background-color: var(--border-color);
+            margin: 0;
+        }
+    }
+
+    .btn-container {
+        grid-row: 3/4;
+        padding: rem(16px);
+
+        button {
+            width: 100%;
+            height: rem(45px);
+            border: none;
+            border-radius: rem(5px);
+            background-color: var(--secondary-button);
+            color: var(--secondary-bg);
+            font-size: rem(16px);
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+    }
+}
