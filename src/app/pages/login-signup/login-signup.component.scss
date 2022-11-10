@@ -9,23 +9,27 @@
     height: 100vh;
 
     .img-bg {
-        display: flex;
-        position: relative;
-        background-image: url('https://static.cdninstagram.com/rsrc.php/v3/y4/r/ItTndlZM2n2.png');
-        background-repeat: no-repeat;
-        height: rem(700px);
-        width: rem(480px);
-        margin: rem(44px) rem(20px) rem(32px) 0;
+        display: none;
 
-        .animation-img {
-            position: absolute;
-            top: 5%;
-            left: 37.2%;
-            height: 538.84px;
-            width: 250px;
-            border: 0;
-            padding: 0;
-            margin: 0;
+        @include for-wide-layout {
+            display: flex;
+            position: relative;
+            background-image: url('https://static.cdninstagram.com/rsrc.php/v3/y4/r/ItTndlZM2n2.png');
+            background-repeat: no-repeat;
+            height: rem(700px);
+            width: rem(480px);
+            margin: rem(44px) rem(20px) rem(32px) 0;
+
+            .animation-img {
+                position: absolute;
+                top: 4%;
+                left: 32.7%;
+                height: 538.84px;
+                width: 250px;
+                border: 0;
+                padding: 0;
+                margin: 0;
+            }
         }
     }
 
