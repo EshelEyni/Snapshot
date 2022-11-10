@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app-root/app.component';
@@ -13,6 +12,11 @@ import { SideBarComponent } from './cmps/side-bar/side-bar.component';
 import { CommentComponent } from './cmps/comment/comment.component';
 import { CommentListComponent } from './cmps/comment-list/comment-list.component';
 import { LoginSignupComponent } from './pages/login-signup/login-signup.component';
+import { ShortTxtPipe } from './pipes/short-txt.pipe';
+import { FormattedDatePipe } from './pipes/formatted-date.pipe';
+import { FormsModule } from '@angular/forms';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { EmojiPickerComponent } from './cmps/emoji-picker/emoji-picker.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +28,18 @@ import { LoginSignupComponent } from './pages/login-signup/login-signup.componen
     SideBarComponent,
     CommentComponent,
     CommentListComponent,
-    LoginSignupComponent
+    LoginSignupComponent,
+    ShortTxtPipe,
+    FormattedDatePipe,
+    EmojiPickerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
+    FormsModule,
+    PickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

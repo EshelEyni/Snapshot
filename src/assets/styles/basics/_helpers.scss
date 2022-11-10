@@ -55,6 +55,14 @@
     border: 0;
 }
 
+// Hide lines
+.hide-lines {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
 // Aspect ratios
 .ratio-16-9 {
     @include aspect-ratio(100, 56);

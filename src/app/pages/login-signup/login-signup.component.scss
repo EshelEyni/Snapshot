@@ -2,12 +2,23 @@
 @import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
+
 .login-signup-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    height: 100vh;
 
-    >* {
+    .img-bg {
+        display: flex;
+        background-image: url('https://static.cdninstagram.com/rsrc.php/v3/y4/r/ItTndlZM2n2.png');
+        background-repeat: no-repeat;
+        height: rem(700px);
+        width: rem(480px);
+        margin: rem(44px) rem(12px) rem(32px) 0;
+    }
+
+    .login-signup,
+    .login-signup-link {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -19,7 +30,7 @@
 
     .login-signup {
         padding: rem(10px) 0 rem(42px);
-        margin: rem(44px) auto rem(10px);
+        margin: rem(120px) 0 rem(10px);
 
         .logo {
             @include logo;
@@ -66,7 +77,7 @@
         }
     }
 
-    .signup-link {
+    .login-signup-link {
         padding: rem(12px) 0;
         margin: 0 0 rem(10px);
 

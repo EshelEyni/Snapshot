@@ -5,7 +5,7 @@ import { Post } from '../models/post.model';
 const POSTS = [
   {
     _id: '1asdasd',
-    txt: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. ',
+    txt: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. ',
     imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666643317/v67tpfibtyacwmhnujyz.jpg',
     by: { _id: '132', fullname: 'User 1', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' },
     location: { lat: 32.0749831, lng: 34.9120554, name: 'Tel Aviv' },
@@ -19,7 +19,7 @@ const POSTS = [
           imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg'
         },
         txt: 'Comment 1',
-        at: new Date(),
+        at: new Date(	2014,	2,	1,	13,	0,	59,	0),
         likedBy: []
       },
       {
@@ -33,7 +33,7 @@ const POSTS = [
         at: new Date(),
         likedBy: []
       }],
-    createdAt: new Date(),
+    createdAt: new Date(	2022,	10,9,	22,22,	59,	0),
     tags: ['tag1', 'tag2']
   },
   {

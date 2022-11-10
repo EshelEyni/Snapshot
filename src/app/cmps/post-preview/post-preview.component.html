@@ -1,9 +1,14 @@
 <section class="post-preview">
     <section class="post-creator">
-        <div class="creator-preview">
-            <img src={{post.by.imgUrl}} alt="">
-            <h3>{{post.by.fullname}}</h3>
-        </div>
+        <section class="creator-preview">
+            <section class="img-container">
+                <img src={{post.by.imgUrl}} alt="">
+            </section>
+            <section class="info">
+                <h3>{{post.by.fullname}}</h3>
+                <p class="location" *ngIf="post.location.name">{{post.location.name}}</p>
+            </section>
+        </section>
 
         <fa-icon [icon]="faEllipsis"></fa-icon>
     </section>
@@ -18,12 +23,27 @@
         </div>
         <fa-icon [icon]="faBookmark"></fa-icon>
     </section>
-    <p class="liked-by">{{post.likedBy.length}} likes</p>
-    <p class="txt">
-        <span>{{post.by.fullname}}</span>
-        {{post.txt}}
-    </p>
-    <p class="location">{{post.location.name}}</p>
-    <comment-list [comments]="post.comments"></comment-list>
-    <p>{{post.createdAt|date: 'dd/MM/yyyy'}}</p>
+    <p class="likes">{{post.likedBy.length}} likes</p>
+    <section class="txt-container">
+        <p class="txt" *ngIf="!isExpandTxt; else longTxt">
+            <span>{{post.by.fullname}}</span> {{post.txt | shortTxt}} <span (click)="expandTxt()">more</span>
+        </p>
+        <ng-template class="txt-container" #longTxt>
+            <p>
+                <span>{{post.by.fullname}}</span>
+                {{post.txt}}
+            </p>
+        </ng-template>
+    </section>
+    <a class="view-all-link">View all {{post.comments.length}} comments</a> <!--  TODO: add link to post details -->
+    <!-- <comment-list [comments]="post.comments"></comment-list> TODO: show only following comments -->
+    <p class="date-added">{{post.createdAt|formattedDate}}</p>
+    <hr>
+    <form class="comment-form" (submit)="onAddComment()">
+        <section class="input-container">
+            <fa-icon [icon]="faFaceSmile">Post</fa-icon>
+            <input type="text" placeholder="Add a comment..." [(ngModel)]="commentTxt" name="commentTxt">
+        </section>
+        <button class="clean-btn" [class.txt-in-input]="commentTxt" type="submit">post</button>
+    </form>
 </section>

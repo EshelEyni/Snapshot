@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'side-bar',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
 export class SideBarComponent implements OnInit {
 
   constructor(private router: Router) { }
+  faHome = faHome;
 
   ngOnInit(): void {
   }
