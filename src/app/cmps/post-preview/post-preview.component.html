@@ -1,11 +1,11 @@
 <article class="post-preview">
-    <div class="shadow-screen" [class.dark-mode]="isShadowScreen.isDark" *ngIf="isShadowScreen.isShown"
-        (click)="onToggleElement('shadow-screen')"></div>
+    <div class="main-screen" [class.dark-mode]="isMainScreen.isDark" *ngIf="isMainScreen.isShown"
+        (click)="onToggleModal('main-screen')"></div>
     <section class="post-creator">
         <section class="creator-preview">
-            <section class="img-container">
+            <div class="img-container">
                 <img src={{post.by.imgUrl}} alt="">
-            </section>
+            </div>
             <section class="info">
                 <h3>{{post.by.fullname}}</h3>
                 <p class="location" *ngIf="post.location.name">{{post.location.name}}</p>
@@ -18,9 +18,9 @@
             <fa-icon [icon]="faCircle"></fa-icon>
         </div>
     </section>
-    <section class="img-container">
+    <div class="img-container">
         <img src={{post.imgUrl}} alt="Avatar">
-    </section>
+    </div>
     <section class="actions">
         <div class="main-btn-container">
             <fa-icon [icon]="faHeart" (click)="onToggleLike()" *ngIf="!isLiked else solidHeart"></fa-icon>
@@ -28,16 +28,21 @@
                 <fa-icon class="solid-heart" (click)="onToggleLike()" [icon]="faHeartSolid"></fa-icon>
             </ng-template>
             <fa-icon [icon]="faComment"></fa-icon>
-            <fa-icon [icon]="faPaperPlane" (click)="onToggleElement('share')">
+            <fa-icon [icon]="faPaperPlane" (click)="onToggleModal('share')">
             </fa-icon>
-            <share-modal *ngIf="isShareModalShown" (close)="onToggleElement('share')"></share-modal>
+            <share-modal *ngIf="isShareModalShown" (close)="onToggleModal('share')"></share-modal>
         </div>
-        <fa-icon [icon]="faBookmark"></fa-icon>
+        <div class="btn-save-container">
+            <fa-icon (click)="onToggleSave()" [icon]="faBookmark" *ngIf="!isSaved else solidBookmark"></fa-icon>
+            <ng-template #solidBookmark>
+                <fa-icon (click)="onToggleSave()" [icon]="faBookmarkSolid"></fa-icon>
+            </ng-template>
+        </div>
     </section>
     <p class="likes">{{post.likedBy.length}} likes</p>
-    <section class="txt-container">
+    <div class="txt-container">
         <p class="txt" *ngIf="!isExpandTxt; else longTxt">
-            <span>{{post.by.fullname}}</span> {{post.txt | shortTxt}} <span (click)="onToggleElement('txt')">more</span>
+            <span>{{post.by.fullname}}</span> {{post.txt | shortTxt}} <span (click)="onToggleModal('txt')">more</span>
         </p>
         <ng-template class="txt-container" #longTxt>
             <p>
@@ -45,19 +50,19 @@
                 {{post.txt}}
             </p>
         </ng-template>
-    </section>
-    <a class="view-all-link">View all {{post.comments.length}} comments</a> <!--  TODO: add link to post details -->
+    </div>
+    <a class="view-all-link">View all {{post.commentsIds.length}} comments</a> <!--  TODO: add link to post details -->
     <!-- <comment-list [comments]="post.comments"></comment-list> TODO: show only following comments -->
     <p class="date-added">{{post.createdAt|formattedDate}}</p>
     <hr>
     <form class="comment-form" (submit)="onAddComment()">
-        <fa-icon (click)="onToggleElement('emoji')" [icon]="faFaceSmile">Post</fa-icon>
-        <section class="emoji-picker-container">
+        <fa-icon (click)="onToggleModal('emoji')" [icon]="faFaceSmile">Post</fa-icon>
+        <div class="emoji-picker-container">
             <emoji-mart [style]="{position:'relative'}" *ngIf="isEmojiPickerShown" (emojiClick)="onAddEmoji($event)">
             </emoji-mart>
-        </section>
+        </div>
         <input class="txt-input" type="text" placeholder="Add a comment..." [(ngModel)]="commentTxt" name="commentTxt">
         <button class="clean-btn" [class.txt-in-input]="commentTxt" [class.z-index-20]="isEmojiPickerShown"
-            type="submit" (click)="onToggleElement('emoji')">post</button>
+            type="submit" (click)="onToggleModal('emoji')">post</button>
     </form>
 </article>

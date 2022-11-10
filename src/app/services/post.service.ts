@@ -10,29 +10,7 @@ const POSTS = [
     by: { _id: '132', fullname: 'User 1', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' },
     location: { lat: 32.0749831, lng: 34.9120554, name: 'Tel Aviv' },
     likedBy: [{ _id: '132', fullname: 'User 1', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' }],
-    comments: [
-      {
-        _id: '1',
-        by: {
-          _id: '132',
-          fullname: 'User 1',
-          imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg'
-        },
-        txt: 'Comment 1',
-        at: new Date(	2014,	2,	1,	13,	0,	59,	0),
-        likedBy: []
-      },
-      {
-        _id: '2',
-        by: {
-          _id: '132',
-          fullname: 'User 1',
-          imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg'
-        },
-        txt: 'Comment 2',
-        at: new Date(),
-        likedBy: []
-      }],
+    commentsIds: ['1asdasd', '2asdasd', '3asdasd'],
     createdAt: new Date(	2022,	10,9,	22,22,	59,	0),
     tags: ['tag1', 'tag2']
   },
@@ -43,29 +21,7 @@ const POSTS = [
     by: { _id: '132', fullname: 'User 1', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' },
     location: { lat: 32.0749831, lng: 34.9120554, name: 'Tel Aviv' },
     likedBy: [{ _id: '132', fullname: 'User 1', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' }],
-    comments: [
-      {
-        _id: '1asdasd',
-        by: {
-          _id: '132',
-          fullname: 'User 1',
-          imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg'
-        },
-        txt: 'Comment 1',
-        at: new Date(),
-        likedBy: []
-      },
-      {
-        _id: '2',
-        by: {
-          _id: '132',
-          fullname: 'User 1',
-          imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg'
-        },
-        txt: 'Comment 2',
-        at: new Date(),
-        likedBy: []
-      }],
+    commentsIds: ['123', '456'],
     createdAt: new Date(),
     tags: ['tag1', 'tag2']
   }
