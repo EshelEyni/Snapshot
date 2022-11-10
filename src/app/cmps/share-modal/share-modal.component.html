@@ -5,14 +5,14 @@
     </header>
     <main class="main-container">
         <hr>
-        <section class="input-container">
+        <div class="input-container">
             <label for="friend-name">to:</label>
             <input type="text" placeholder="search..." id="friend-name">
-        </section>
+        </div>
         <user-list></user-list>
         <hr>
     </main>
-    <section class="btn-container">
+    <div class="btn-container">
         <button class="clean-btn" [class.btn-on]="usersToSend.length">send</button>
-    </section>
+    </div>
 </section>

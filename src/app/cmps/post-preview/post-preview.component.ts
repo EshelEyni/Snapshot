@@ -1,8 +1,9 @@
+import { Post } from './../../models/post.model';
 import { Emoji } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { Component, Input, OnInit, ElementRef, ViewChild, inject } from '@angular/core';
-import { Post, Comment } from 'src/app/models/post.model';
+import { Comment } from 'src/app/models/post.model';
 import { faHeart, faComment, faPaperPlane, faBookmark, faFaceSmile } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as faHeartSolid, faCircle } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartSolid, faCircle, faBookmark as faBookmarkSolid } from '@fortawesome/free-solid-svg-icons';
 import { CommentService } from 'src/app/services/comment.service';
 
 @Component({
@@ -25,25 +26,24 @@ export class PostPreviewComponent implements OnInit {
   faComment = faComment;
   faPaperPlane = faPaperPlane;
   faBookmark = faBookmark;
+  faBookmarkSolid = faBookmarkSolid;
   faFaceSmile = faFaceSmile;
   faCircle = faCircle;
 
   isEmojiPickerShown: boolean = false;
   isPostDetailsShown: boolean = false;
-  // isShareModalShown: boolean = false;
-  isShareModalShown: boolean = true;
-  isShadowScreen = { isShown: true, isDark: true };
+  isShareModalShown: boolean = false;
+  isShadowScreen = { isShown: false, isDark: false };
   isExpandTxt: boolean = false;
   commentTxt: string = '';
   isLiked: boolean = false;
+  isSaved: boolean = false;
 
-  user = { _id: "user101", fullname: "Yael Cohen", imgUrl: "https://randomuser.me" }
+  user = { _id: "user101", fullname: "Yael Cohen", imgUrl: "https://randomuser.me", savedPostsIds: [''] }
 
   ngOnInit(): void {
     this.isLiked = this.post.likedBy.some(user => user._id === this.user._id)
-    console.log('this.isShareModalShown', this.isShareModalShown);
-    console.log('this.isPostDetailsShown', this.isPostDetailsShown);
-
+    this.isSaved = this.user.savedPostsIds.some(postId => postId === this.post._id)
   }
 
   onToggleLike() {
@@ -53,6 +53,15 @@ export class PostPreviewComponent implements OnInit {
       this.post.likedBy.push(this.user);
     }
     this.isLiked = !this.isLiked;
+  }
+
+  onToggleSave() {
+    if (this.isSaved) {
+      this.user.savedPostsIds = this.user.savedPostsIds.filter(postId => postId !== this.post._id);
+    } else {
+      this.user.savedPostsIds.push(this.post._id);
+    }
+    this.isSaved = !this.isSaved;
   }
 
   onToggleElement(el: string) {
