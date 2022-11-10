@@ -12,8 +12,8 @@ export class LoginSignupComponent implements OnInit {
 
   intervalId!: number
   routerUrl: string = this.router.url.slice(1)
-  imgCounter: number = 1
-  selectedAnimationImg: string = ''
+  imgCounter: number = 2
+  selectedAnimationImg: string = `../../../assets/imgs/animation-img-1.png`
 
 
   ngOnInit(): void {

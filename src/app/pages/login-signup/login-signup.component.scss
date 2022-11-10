@@ -6,6 +6,7 @@
 .login-signup-container {
     display: flex;
     justify-content: center;
+    align-items: center;
     height: 100vh;
 
     .img-bg {
@@ -16,9 +17,9 @@
             position: relative;
             background-image: url('https://static.cdninstagram.com/rsrc.php/v3/y4/r/ItTndlZM2n2.png');
             background-repeat: no-repeat;
-            height: rem(700px);
+            height: rem(588px);
             width: rem(480px);
-            margin: rem(44px) rem(20px) rem(32px) 0;
+            margin: 0 rem(20px) rem(32px) 0;
 
             .animation-img {
                 position: absolute;
@@ -45,8 +46,8 @@
     }
 
     .login-signup {
-        padding: rem(10px) 0 rem(35px);
-        margin: rem(60px) 0 rem(20px);
+        padding-block-end: rem(35px);
+        margin-block-end: rem(12px);
 
         .logo {
             @include logo;
@@ -94,7 +95,7 @@
     }
 
     .login-signup-link {
-        padding: rem(20px) 0;
+        padding: rem(15px) 0;
         margin: 0 0 rem(10px);
 
         span {
