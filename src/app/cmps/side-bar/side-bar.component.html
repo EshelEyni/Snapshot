@@ -1,6 +1,6 @@
-<section class="side-bar">
+<section class="side-bar" *ngIf="isLoginSignupPath">
     <header>
-        <a class="logo" routerLink="/" routerLinkActive="active">Snapshot</a>
+        <a class="logo" routerLink="/">Snapshot</a>
     </header>
     <main>
         <a class="home" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">

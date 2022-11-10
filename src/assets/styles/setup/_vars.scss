@@ -1,10 +1,21 @@
 :root {
 
     // COLORS
-    --primary-bg: white;
-    --secondary-bg: rgb(250, 250, 250);
+
+    //bg
+    --primary-bg: rgb(250, 250, 250);
+    --secondary-bg: white;
+
+    //color
     --primary-color: rgb(38, 38, 38);
+    --secondary-color: rgb(142, 142, 142);
+
+    //border
     --border-color: rgb(219, 219, 219);
+
+    //button
+    --primary-button: rgb(0, 149, 246);
+    
 
     // FONTS
     --primary-font: roboto;
@@ -12,7 +23,7 @@
 }
 
 // LAYOUT
-$layoutPadding: 20px;
+$layoutPadding: 130px;
 
 // LAYOUT BREAKPOINTS
 $break-narrow: 530px;

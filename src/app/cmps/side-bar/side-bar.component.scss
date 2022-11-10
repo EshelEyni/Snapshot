@@ -1,5 +1,6 @@
 @import '../../../assets/styles/setup/functions';
 @import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
 
 .side-bar {
     display: flex;
@@ -10,7 +11,7 @@
     height: 100vh;
     width: rem(244px);
     padding: rem(8px) rem(12px) rem(20px);
-    background-color: var(--primary-bg);
+    background-color: var(--secondary-bg);
     border-right: 1px solid var(--border-color);
 
     header {
@@ -21,8 +22,7 @@
         margin-bottom: rem(19px);
 
         .logo {
-            font-size: rem(35px);
-            font-family: var(--secondary-font);
+            @include logo;
             cursor: pointer;
         }
     }

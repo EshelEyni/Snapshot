@@ -12,6 +12,7 @@ import { PostPreviewComponent } from './cmps/post-preview/post-preview.component
 import { SideBarComponent } from './cmps/side-bar/side-bar.component';
 import { CommentComponent } from './cmps/comment/comment.component';
 import { CommentListComponent } from './cmps/comment-list/comment-list.component';
+import { LoginSignupComponent } from './pages/login-signup/login-signup.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CommentListComponent } from './cmps/comment-list/comment-list.component
     PostPreviewComponent,
     SideBarComponent,
     CommentComponent,
-    CommentListComponent
+    CommentListComponent,
+    LoginSignupComponent
   ],
   imports: [
     BrowserModule,
