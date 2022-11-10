@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Emoji } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 
 @Component({
   selector: 'emoji-picker',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmojiPickerComponent implements OnInit {
 
+  @Output() emojiClick = new EventEmitter<Emoji>()
+  
+  addEmoji(emoji: Emoji) {
+    this.emojiClick.emit(emoji);
+  }
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void { }
 }

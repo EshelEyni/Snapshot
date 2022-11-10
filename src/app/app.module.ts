@@ -17,6 +17,7 @@ import { FormattedDatePipe } from './pipes/formatted-date.pipe';
 import { FormsModule } from '@angular/forms';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { EmojiPickerComponent } from './cmps/emoji-picker/emoji-picker.component';
+import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { EmojiPickerComponent } from './cmps/emoji-picker/emoji-picker.component
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
-    PickerModule
+    PickerModule,
+    EmojiModule
   ],
   providers: [],
   bootstrap: [AppComponent]

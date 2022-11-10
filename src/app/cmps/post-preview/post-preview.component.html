@@ -10,7 +10,11 @@
             </section>
         </section>
 
-        <fa-icon [icon]="faEllipsis"></fa-icon>
+        <div class="ellipsis">
+            <fa-icon [icon]="faCircle"></fa-icon>
+            <fa-icon [icon]="faCircle"></fa-icon>
+            <fa-icon [icon]="faCircle"></fa-icon>
+        </div>
     </section>
     <section class="img-container">
         <img src={{post.imgUrl}} alt="Avatar">
@@ -41,7 +45,8 @@
     <hr>
     <form class="comment-form" (submit)="onAddComment()">
         <section class="input-container">
-            <fa-icon [icon]="faFaceSmile">Post</fa-icon>
+            <fa-icon (click)="toggleEmojiPicker()" [icon]="faFaceSmile">Post</fa-icon>
+            <emoji-mart *ngIf="isEmojiPickerOpen" (emojiClick)="onAddEmoji($event)"></emoji-mart>
             <input type="text" placeholder="Add a comment..." [(ngModel)]="commentTxt" name="commentTxt">
         </section>
         <button class="clean-btn" [class.txt-in-input]="commentTxt" type="submit">post</button>

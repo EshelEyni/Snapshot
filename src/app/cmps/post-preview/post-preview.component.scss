@@ -52,6 +52,16 @@
                 }
             }
         }
+
+        .ellipsis {
+            display: flex;
+            gap:rem(3px);
+            align-items: center;
+
+             fa-icon {
+                font-size: rem(5px);
+            }
+        }
     }
 
     .img-container {
