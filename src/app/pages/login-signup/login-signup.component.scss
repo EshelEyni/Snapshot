@@ -9,12 +9,28 @@
     height: 100vh;
 
     .img-bg {
-        display: flex;
-        background-image: url('https://static.cdninstagram.com/rsrc.php/v3/y4/r/ItTndlZM2n2.png');
-        background-repeat: no-repeat;
-        height: rem(700px);
-        width: rem(480px);
-        margin: rem(44px) rem(12px) rem(32px) 0;
+        display: none;
+
+        @include for-wide-layout {
+            display: flex;
+            position: relative;
+            background-image: url('https://static.cdninstagram.com/rsrc.php/v3/y4/r/ItTndlZM2n2.png');
+            background-repeat: no-repeat;
+            height: rem(700px);
+            width: rem(480px);
+            margin: rem(44px) rem(20px) rem(32px) 0;
+
+            .animation-img {
+                position: absolute;
+                top: 4%;
+                left: 32.7%;
+                height: 538.84px;
+                width: 250px;
+                border: 0;
+                padding: 0;
+                margin: 0;
+            }
+        }
     }
 
     .login-signup,
@@ -29,8 +45,8 @@
     }
 
     .login-signup {
-        padding: rem(10px) 0 rem(42px);
-        margin: rem(120px) 0 rem(10px);
+        padding: rem(10px) 0 rem(35px);
+        margin: rem(60px) 0 rem(20px);
 
         .logo {
             @include logo;
@@ -78,7 +94,7 @@
     }
 
     .login-signup-link {
-        padding: rem(12px) 0;
+        padding: rem(20px) 0;
         margin: 0 0 rem(10px);
 
         span {

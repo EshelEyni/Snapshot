@@ -8,11 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginSignupComponent implements OnInit {
 
-  constructor(private roter: Router) { }
+  constructor(private router: Router) { }
 
-  routerUrl: string = this.roter.url.slice(1)
+  intervalId!: number
+  routerUrl: string = this.router.url.slice(1)
+  imgCounter: number = 1
+  selectedAnimationImg: string = ''
+
 
   ngOnInit(): void {
+    this.intervalId = window.setInterval(() => {
+      this.selectedAnimationImg = `../../../assets/imgs/animation-img-${this.imgCounter}.png`
+      if (this.imgCounter === 4) this.imgCounter = 1
+      else this.imgCounter++
+    }, 2000)
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervalId!)
   }
 
 }
