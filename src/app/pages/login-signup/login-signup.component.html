@@ -1,0 +1,23 @@
+<section class="login-signup-container">
+    <div class="img-bg"></div>
+    <section>
+        <section class="login-signup">
+            <h1 class="logo">Snapshot</h1>
+            <form class="form">
+                <input *ngIf="routerUrl === 'signup'" class="email-input" type="email" placeholder="Email">
+                <input *ngIf="routerUrl === 'signup'" class="fullname-input" type="text" placeholder="Fullname">
+                <input class="username-input" type="text" placeholder="Username">
+                <input class="password-input" type="password" placeholder="Password">
+                <button disabled class="btn-login">Login</button>
+            </form>
+        </section>
+        <section class="login-signup-link">
+            <span *ngIf="routerUrl === 'login'">Don't have an account?
+                <a routerLink="/signup">Sign Up</a>
+            </span>
+            <span *ngIf="routerUrl === 'signup'">Already have an account?
+                <a routerLink="/login">Login</a>
+            </span>
+        </section>
+    </section>
+</section>

@@ -102,14 +102,14 @@
 
     .view-all-link {
         font-size: rem(16px);
-        color: var(--txt-grey);
+        color: var(--secondary-color);
     }
 
     .date-added {
         font-size: rem(12px);
         text-transform: uppercase;
         letter-spacing: rem(1px);
-        color: var(--txt-grey);
+        color: var(--secondary-color);
     }
 
     .comment-form {
@@ -136,7 +136,7 @@
 
             ::placeholder {
                 font-size: rem(16px);
-                color: var(--txt-grey);
+                color: var(--secondary-color);
             }
         }
 
@@ -147,7 +147,7 @@
             cursor: pointer;
 
             &.txt-in-input {
-                color: var(--btn-blue);
+                color: var(--primary-button);
             }
         }
     }

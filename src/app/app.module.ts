@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app-root/app.component';
@@ -12,6 +11,7 @@ import { PostPreviewComponent } from './cmps/post-preview/post-preview.component
 import { SideBarComponent } from './cmps/side-bar/side-bar.component';
 import { CommentComponent } from './cmps/comment/comment.component';
 import { CommentListComponent } from './cmps/comment-list/comment-list.component';
+import { LoginSignupComponent } from './pages/login-signup/login-signup.component';
 import { ShortTxtPipe } from './pipes/short-txt.pipe';
 import { FormattedDatePipe } from './pipes/formatted-date.pipe';
 import { FormsModule } from '@angular/forms';
@@ -29,6 +29,7 @@ import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
     SideBarComponent,
     CommentComponent,
     CommentListComponent,
+    LoginSignupComponent,
     ShortTxtPipe,
     FormattedDatePipe,
     EmojiPickerComponent,

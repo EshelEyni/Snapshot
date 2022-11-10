@@ -1,0 +1,94 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
+
+
+.login-signup-container {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+
+    .img-bg {
+        display: flex;
+        background-image: url('https://static.cdninstagram.com/rsrc.php/v3/y4/r/ItTndlZM2n2.png');
+        background-repeat: no-repeat;
+        height: rem(700px);
+        width: rem(480px);
+        margin: rem(44px) rem(12px) rem(32px) 0;
+    }
+
+    .login-signup,
+    .login-signup-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: var(--secondary-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 1px;
+        width: rem(350px);
+    }
+
+    .login-signup {
+        padding: rem(10px) 0 rem(42px);
+        margin: rem(120px) 0 rem(10px);
+
+        .logo {
+            @include logo;
+            margin: rem(36px) 0 rem(12px);
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            margin: rem(24px) 0 rem(10px);
+            width: 100%;
+
+            >input {
+                font-size: rem(14px);
+                font-family: var(--primary-font);
+                line-height: rem(36px);
+                color: var(--secondary-color);
+                background-color: var(--primary-bg);
+                border: 1px solid var(--border-color);
+                outline: none;
+                padding: rem(9px) 0 rem(7px) rem(8px);
+                margin: 0 rem(40px) rem(10px);
+            }
+
+            .btn-login {
+                font-size: rem(15px);
+                font-family: var(--primary-font);
+                font-weight: 500;
+                text-align: center;
+                line-height: rem(18px);
+                color: var(--secondary-bg);
+                background-color: var(--primary-button);
+                border: 1px solid transparent;
+                border-radius: rem(4px);
+                padding: rem(7px) rem(9px);
+                margin: rem(8px) rem(40px);
+                opacity: 1;
+                cursor: pointer;
+
+                &:disabled {
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+
+    .login-signup-link {
+        padding: rem(12px) 0;
+        margin: 0 0 rem(10px);
+
+        span {
+            font-size: rem(15px);
+            line-height: rem(18px);
+
+            a {
+                color: var(--primary-button);
+                cursor: pointer;
+            }
+        }
+    }
+}

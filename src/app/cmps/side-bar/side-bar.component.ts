@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -8,10 +9,14 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 })
 export class SideBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
   faHome = faHome;
 
   ngOnInit(): void {
+  }
+
+  get isLoginSignupPath() {
+    return !(this.router.url === '/login' || this.router.url === '/signup')
   }
 
 }
