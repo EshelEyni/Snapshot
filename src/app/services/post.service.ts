@@ -75,11 +75,11 @@ export class PostService {
     this.storageService.saveToStorage('post', posts)
   }
 
-  // private _add(post: Post) {
+  private _add(post: Post) {
   //   let posts = this.storageService.loadFromStorage('post')
   //   const newPost = 
   //   posts.unshift(newPost)
   //   this._posts$.next([...posts])
   //   this.storageService.saveToStorage('posts', posts)
-  // }
+  }
 }
