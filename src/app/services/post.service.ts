@@ -47,6 +47,7 @@ export class PostService {
       posts = this._postsDb;
       this.storageService.saveToStorage('post', posts)
     }
+    console.log(posts)
     this._posts$.next(posts);
   }
 }
