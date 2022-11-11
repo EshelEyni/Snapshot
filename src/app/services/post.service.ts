@@ -1,3 +1,5 @@
+import { User } from './../models/user.model';
+import { StorageService } from './storage.service';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, of, throwError } from 'rxjs';
 import { Post } from '../models/post.model';
@@ -38,11 +40,50 @@ const POSTS = [
 export class PostService {
 
   private _postsDb: Post[] = POSTS;
+
   private _posts$ = new BehaviorSubject<Post[]>([]);
   public posts$ = this._posts$.asObservable();
-  constructor() { }
+
+  constructor(private storageService: StorageService) { }
 
   public loadPosts(): void {
-    this._posts$.next(this._postsDb);
+    let posts = this.storageService.loadFromStorage('post') || null
+    if (!posts) {
+      posts = this._postsDb;
+      this.storageService.saveToStorage('post', posts)
+    }
+    this._posts$.next(posts);
+  }
+
+  public getById(postId: string): Observable<Post> {
+    let posts = this.storageService.loadFromStorage('post')
+    const post = posts.find((post: Post) => post._id === postId)
+    return post ? of(post) : throwError(() => `Post id ${postId} not found!`)
+  }
+
+  public remove(postId: string) {
+    let posts = this.storageService.loadFromStorage('post')
+    posts = posts.filter((post: Post) => post._id !== postId)
+    this._posts$.next([...posts])
+    this.storageService.saveToStorage('post', posts)
+  }
+
+  public save(post: Post) {
+    return post._id ? this._update(post) : this._add(post)
+  }
+
+  private _update(post: Post) {
+    let posts = this.storageService.loadFromStorage('post')
+    posts = posts.map((p: Post) => post._id === p._id ? post : p)
+    this._posts$.next([...posts])
+    this.storageService.saveToStorage('post', posts)
+  }
+
+  private _add(post: Post) {
+  //   let posts = this.storageService.loadFromStorage('post')
+  //   const newPost = 
+  //   posts.unshift(newPost)
+  //   this._posts$.next([...posts])
+  //   this.storageService.saveToStorage('posts', posts)
   }
 }
