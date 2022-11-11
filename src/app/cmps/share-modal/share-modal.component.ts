@@ -8,9 +8,9 @@ import { User } from 'src/app/models/user.model';
   styleUrls: ['./share-modal.component.scss']
 })
 export class ShareModalComponent implements OnInit {
-  faX = faX;
-
   constructor() { }
+
+  faX = faX;
 
   usersToSend: User[] = [];
   @Output() close = new EventEmitter();

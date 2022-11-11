@@ -46,6 +46,12 @@ fa-icon {
     cursor: pointer;
 }
 
+hr {
+    border: rem(0.5px) solid var(--border-color);
+    background-color: var(--border-color);
+    margin: 0;
+}
+
 
 .main-screen {
     position: fixed;

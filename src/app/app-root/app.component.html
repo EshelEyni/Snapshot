@@ -1,4 +1,5 @@
 <section class="app">
-  <side-bar></side-bar>
+  <side-bar (togglePostEdit)="onTogglePostEdit($event)"></side-bar>
+  <post-edit *ngIf="isPostEdit"></post-edit>
   <router-outlet></router-outlet>
 </section>

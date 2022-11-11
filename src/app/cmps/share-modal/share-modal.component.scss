@@ -45,12 +45,6 @@
 
     .user-list {
         grid-row: 2/3;
-
-        hr {
-            border: rem(0.5px) solid var(--border-color);
-            background-color: var(--border-color);
-            margin: 0;
-        }
     }
 
     .btn-container {

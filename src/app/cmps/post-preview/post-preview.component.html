@@ -4,7 +4,7 @@
     <section class="post-creator">
         <section class="creator-preview">
             <div class="img-container">
-                <img src={{post.by.imgUrl}} alt="">
+                <img src={{post.by.imgUrl}} alt="user-img">
             </div>
             <section class="info">
                 <h3>{{post.by.fullname}}</h3>
@@ -77,6 +77,6 @@
         </div>
         <input class="txt-input" type="text" placeholder="Add a comment..." [(ngModel)]="commentTxt" name="commentTxt">
         <button class="clean-btn" [class.txt-in-input]="commentTxt" [class.z-index-20]="isEmojiPickerShown"
-            type="submit" (click)="onToggleModal('emoji')">post</button>
+            type="submit">post</button>
     </form>
 </article>

@@ -21,6 +21,9 @@ import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { ShareModalComponent } from './cmps/share-modal/share-modal.component';
 import { UserListComponent } from './cmps/user-list/user-list.component';
 import { CommentsToDisplayPipe } from './pipes/comments-to-display.pipe';
+import { PostEditComponent } from './cmps/post-edit/post-edit.component';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+
 
 @NgModule({
   declarations: [
@@ -39,6 +42,7 @@ import { CommentsToDisplayPipe } from './pipes/comments-to-display.pipe';
     ShareModalComponent,
     UserListComponent,
     CommentsToDisplayPipe,
+    PostEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,8 @@ import { CommentsToDisplayPipe } from './pipes/comments-to-display.pipe';
     HttpClientModule,
     FormsModule,
     PickerModule,
-    EmojiModule
+    EmojiModule,
+    AngularSvgIconModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

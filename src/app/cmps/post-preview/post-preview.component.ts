@@ -108,12 +108,13 @@ export class PostPreviewComponent implements OnInit {
         this.isPostDetailsShown = false;
         this.isMainScreen = { isShown: false, isDark: false };
         break;
+      }
     }
-  }
-
-  onAddComment() {
-    this.commentService.addComment(this.commentTxt, this.post.commentsIds);
-    this.commentTxt = '';
+    
+    onAddComment() {
+      this.commentService.addComment(this.commentTxt, this.post.commentsIds);
+      this.commentTxt = '';
+      this.isEmojiPickerShown = false;
   }
 
   onAddEmoji(emoji: Emoji) {

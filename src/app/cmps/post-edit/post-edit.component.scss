@@ -1,0 +1,57 @@
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/functions';
+
+.post-edit {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    cursor: default;
+    z-index: 30;
+
+    & .main-screen {
+        display: flex;
+        align-items: flex-end;
+        background-color: red;
+    }
+
+    .main-container {
+        position: fixed;
+        background-color: var(--secondary-bg);
+        width: 60vw;
+        max-width: rem(550px);
+        height: 100%;
+        max-height: 65vh;
+        border-radius: 10px;
+
+        header {
+            height: rem(40px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            h1 {
+                padding-top: 5px;
+                text-transform: capitalize;
+                font-size: rem(20px);
+                font-weight: 900;
+                color: var(--primary-color);
+            }
+        }
+
+        .edit-form {
+            input {
+                display: none;
+            }
+        }
+
+        .imgs {
+            img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+    }
+
+}
