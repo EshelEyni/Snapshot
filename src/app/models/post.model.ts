@@ -3,7 +3,7 @@ import { miniUser } from './user.model';
 export interface Post {
     _id: string;
     txt: string;
-    imgUrl: string;
+    imgUrls: string[];
     by: miniUser;
     location: Location;
     likedBy: miniUser[];

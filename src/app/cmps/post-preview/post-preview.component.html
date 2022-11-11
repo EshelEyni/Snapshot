@@ -19,7 +19,21 @@
         </div>
     </section>
     <div class="img-container">
-        <img src={{post.imgUrl}} alt="Avatar">
+        <img src={{currImgUrl}} alt="Avatar">
+        <div class="pagination-btns">
+            <div>
+                <fa-icon (click)="onSwitchImg(-1)" [icon]="faCircleChevronLeft" *ngIf="isPaginationBtnShown.left">
+                </fa-icon>
+            </div>
+            <div>
+                <fa-icon (click)="onSwitchImg(1)" [icon]="faCircleChevronRight" *ngIf="isPaginationBtnShown.right">
+                </fa-icon>
+            </div>
+        </div>
+        <div class="dots-container" *ngIf="post.imgUrls.length>1">
+            <fa-icon class="dot" *ngFor="let img of post.imgUrls" [class.active]="img === currImgUrl" [icon]="faCircle">
+            </fa-icon>
+        </div>
     </div>
     <section class="actions">
         <div class="main-btn-container">
