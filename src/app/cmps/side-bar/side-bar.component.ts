@@ -1,6 +1,7 @@
+import { UserService } from './../../services/user.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'side-bar',
@@ -10,11 +11,14 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 export class SideBarComponent implements OnInit {
   @Output() togglePostEdit = new EventEmitter<boolean>()
 
-  constructor(private router: Router) { }
-  faHome = faHome;
+  constructor(private router: Router,
+    private userService: UserService) { }
 
+  username: string = ''
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    const loggedinUser = await lastValueFrom(this.userService.getLoggedinUser())
+    if(loggedinUser) this.username = loggedinUser.username
   }
 
   get isLoginSignupPath() {

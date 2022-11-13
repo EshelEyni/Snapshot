@@ -1,12 +1,12 @@
-import { miniUser } from './user.model';
+import { MiniUser } from './user.model';
 
 export interface Post {
     _id: string;
     txt: string;
     imgUrls: string[];
-    by: miniUser;
+    by: MiniUser;
     location: Location;
-    likedBy: miniUser[];
+    likedBy: MiniUser[];
     commentsIds: string[];
     createdAt: Date;
     tags: string[];

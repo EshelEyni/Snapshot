@@ -38,7 +38,7 @@ export class PostPreviewComponent implements OnInit {
   isLiked: boolean = false;
   isSaved: boolean = false;
 
-  user = { _id: "user101", fullname: "Yael Cohen", imgUrl: "https://randomuser.me", savedPostsIds: [''] }
+  user = { _id: "user101", fullname: "Yael Cohen", username:'yael_c', imgUrl: "https://randomuser.me", savedPostsIds: [''] }
 
   ngOnInit(): void {
     this.isLiked = this.post.likedBy.some(user => user._id === this.user._id)
