@@ -1,6 +1,7 @@
 <article class="post-preview">
     <div class="main-screen" [class.dark-mode]="isMainScreen.isDark" *ngIf="isMainScreen.isShown"
-        (click)="onToggleModal('main-screen')"></div>
+        (click)="onToggleModal('main-screen')">
+    </div>
     <section class="post-creator">
         <section class="creator-preview">
             <div class="creator-img-container">
@@ -18,9 +19,9 @@
             <fa-icon [icon]="faCircle"></fa-icon>
         </div>
     </section>
-    
+
     <img-container [imgUrls]="post.imgUrls"></img-container>
-   
+
     <section class="actions">
         <div class="main-btn-container">
             <fa-icon [icon]="faHeart" (click)="onToggleLike()" *ngIf="!isLiked else solidHeart"></fa-icon>

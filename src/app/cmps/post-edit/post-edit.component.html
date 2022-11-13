@@ -6,7 +6,7 @@
     <main class="main-container">
         <header>
             <div class="title-container">
-                <fa-icon *ngIf="isUserUploadImg" [icon]="faArrowLeft" (click)="onTogglePostEdit()"></fa-icon>
+                <fa-icon *ngIf="isUserUploadImg" [icon]="faArrowLeft" (click)="onGoBack()"></fa-icon>
                 <h1 class="title">{{currTitle}}</h1>
                 <h1 class="next-btn" *ngIf="isUserUploadImg">{{btnTxt}}</h1>
             </div>
@@ -24,7 +24,9 @@
         </div>
 
         <ng-template #imgContainer>
-               <img-container [imgUrls]="imgUrls"></img-container>
+            <div class="edit-img-container">
+                <img-container [imgUrls]="imgUrls" [onGoBack]="onGoBack" [onFileChange]="onFileChange" [saveFiles]="saveFiles"></img-container>
+            </div>
         </ng-template>
     </main>
 </section>

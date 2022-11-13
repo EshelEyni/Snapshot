@@ -3,7 +3,7 @@
 
 .img-container {
     position: relative;
-    
+
     img {
         width: 100%;
         height: 100%;
@@ -23,7 +23,7 @@
 
         fa-icon {
             font-size: rem(30px);
-            color: var(--secondary-pagination-button);
+            // color: var(--primary-pagination-button);
         }
     }
 
@@ -40,8 +40,74 @@
         color: var(--primary-dot);
         transition: 0.5s;
 
-        .active {
-            color: var(--secondary-bg);
+        // .active {
+        //     color: var(--secondary-bg);
+        // }
+    }
+
+    .img-select {
+        display: flex;
+        justify-content: flex-end;
+        gap: rem(15px);
+        position: absolute;
+        top: 44%;
+        right: 2%;
+        max-width: 90%;
+        height: 40%;
+        background-color: var(--primary-color);
+        border-radius: rem(10px);
+        padding: rem(8px);
+
+        ul {
+            position: relative;
+            display: flex;
+            gap: rem(10px);
+            padding: 0;
+            margin: 0;
+            width: 80%;
+            overflow: hidden;
+            overflow-x: hidden;
+
+           li {
+               position: relative;
+                height: auto;
+                width: 50%;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                    border-radius: rem(30px);
+                }
+
+                svg-icon{
+                    position: absolute;
+                    top: 0;
+                    background-color: black;
+                    right: 0;
+                    border-radius: rem(30px);
+                    padding: 2px;
+                }
+            }
+        }
+
+        .plus-btn-container {
+            align-self: flex-start;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(var(--primary-color), var(--primary-color)) padding-box,
+                white border-box;
+            border-radius: 50%;
+            border: 1px solid transparent;
+            padding: rem(2px);
+            height: rem(60px);
+            width: rem(60px);
+
+            svg {
+                height: rem(28px);
+                width: rem(28px);
+            }
         }
     }
 }

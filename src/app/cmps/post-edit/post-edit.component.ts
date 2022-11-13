@@ -20,8 +20,8 @@ export class PostEditComponent implements OnInit {
 
   // isUserUploadImg: boolean = false;
   isUserUploadImg: boolean = true;
-  // currTitle: string = 'create new post';
-  currTitle: string = 'crop';
+  currTitle: string = 'create new post';
+  // currTitle: string = 'crop';
   btnTxt: string = 'next';
   // imgUrls: string[] = [];
   imgUrls: string[] = [
@@ -85,10 +85,20 @@ export class PostEditComponent implements OnInit {
   }
 
   onTogglePostEdit() {
-    // if (this.isUserUploadImg) {
-    // confirm discard changes
-    // }
+    if (this.isUserUploadImg) {
+      // confirm discard changes
+    }
     this.togglePostEdit.emit(false)
+  }
+
+  onGoBack() {
+    console.log('go back');
+    this.isUserUploadImg = false;
+    this.currTitle = 'create new post'
+    this.imgUrls = []
+    console.log('this.imgUrls', this.imgUrls);
+    console.log('this.isUserUploadImg', this.isUserUploadImg);
+    console.log('this.currTitle', this.currTitle);
   }
 
 }

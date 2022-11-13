@@ -2,7 +2,7 @@
 @import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
-.post-preview {
+::ng-deep .post-preview {
     height: fit-content;
     width: 60%;
     background-color: #fff;
@@ -65,6 +65,20 @@
 
             fa-icon {
                 font-size: rem(5px);
+            }
+        }
+    }
+
+    .img-container {
+        .pagination-btns {
+            fa-icon {
+                color: var(--primary-pagination-button);
+            }
+        }
+
+        .dots-container {
+            .active {
+                color: var(--secondary-bg);
             }
         }
     }

@@ -86,9 +86,38 @@
             }
         }
 
-    }
+        .edit-img-container {
 
-    .img-container {
-        background-color: red;
+            .img-container {
+                .pagination-btns {
+                    fa-icon {
+                        font-size: rem(30px);
+                        color: var(--primary-color);
+                    }
+                }
+
+                .dots-container {
+                    .active {
+                        color: var(--primary-button);
+                    }
+                }
+
+            }
+
+            .files-svg-container{
+                position: absolute;
+                top: 85%;
+                right: 2%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: rem(32px);
+                width: rem(32px);
+                background-color: var(--primary-color);
+                border-radius: 50%;
+            }
+
+        }
+
     }
 }

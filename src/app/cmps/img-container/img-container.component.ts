@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { faCircle, faCircleChevronLeft, faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { UploadImgService } from 'src/app/services/upload-img.service';
 
 @Component({
   selector: 'img-container',
@@ -9,7 +10,12 @@ import { faCircle, faCircleChevronLeft, faCircleChevronRight } from '@fortawesom
 export class ImgContainerComponent implements OnInit {
 
   constructor() { }
+  uploadImgService = inject(UploadImgService)
+
   @Input() imgUrls: string[] = []
+  @Input() onGoBack!: Function;
+  @Input() onFileChange!: Function;
+  @Input() saveFiles!: Function;
 
   // Icons
   faCircle = faCircle;
@@ -18,13 +24,13 @@ export class ImgContainerComponent implements OnInit {
 
   currImgUrl: string = '';
   isPaginationBtnShown = { left: false, right: false };
+  isImgSelect: boolean = false;
+  // isImgSelect: boolean = true;
 
   ngOnInit(): void {
     this.currImgUrl = this.imgUrls[0];
     this.setPaginationBtns();
   }
-
-
 
   setPaginationBtns() {
     const currIdx = this.imgUrls.indexOf(this.currImgUrl);
@@ -38,6 +44,23 @@ export class ImgContainerComponent implements OnInit {
     const currIdx = this.imgUrls.indexOf(this.currImgUrl);
     if (num === 1) this.currImgUrl = this.imgUrls[currIdx + 1];
     else if (num === -1) this.currImgUrl = this.imgUrls[currIdx - 1];
+    this.setPaginationBtns();
+  }
+
+  onToggleImgSelect() {
+    this.isImgSelect = !this.isImgSelect;
+  }
+
+  onRemoveImg(img: string) {
+    const idx = this.imgUrls.indexOf(img);
+    this.imgUrls.splice(idx, 1);
+    if (!this.imgUrls.length) {
+      this.isImgSelect = false;
+      this.currImgUrl = '';
+      this.onGoBack();
+      return
+    }
+    this.currImgUrl = this.imgUrls[idx - 1];
     this.setPaginationBtns();
   }
 }
