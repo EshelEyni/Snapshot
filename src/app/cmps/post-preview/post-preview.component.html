@@ -3,7 +3,7 @@
         (click)="onToggleModal('main-screen')"></div>
     <section class="post-creator">
         <section class="creator-preview">
-            <div class="img-container">
+            <div class="creator-img-container">
                 <img src={{post.by.imgUrl}} alt="user-img">
             </div>
             <section class="info">
@@ -18,23 +18,9 @@
             <fa-icon [icon]="faCircle"></fa-icon>
         </div>
     </section>
-    <div class="img-container">
-        <img src={{currImgUrl}} alt="Avatar">
-        <div class="pagination-btns">
-            <div>
-                <fa-icon (click)="onSwitchImg(-1)" [icon]="faCircleChevronLeft" *ngIf="isPaginationBtnShown.left">
-                </fa-icon>
-            </div>
-            <div>
-                <fa-icon (click)="onSwitchImg(1)" [icon]="faCircleChevronRight" *ngIf="isPaginationBtnShown.right">
-                </fa-icon>
-            </div>
-        </div>
-        <div class="dots-container" *ngIf="post.imgUrls.length>1">
-            <fa-icon class="dot" *ngFor="let img of post.imgUrls" [class.active]="img === currImgUrl" [icon]="faCircle">
-            </fa-icon>
-        </div>
-    </div>
+    
+    <img-container [imgUrls]="post.imgUrls"></img-container>
+   
     <section class="actions">
         <div class="main-btn-container">
             <fa-icon [icon]="faHeart" (click)="onToggleLike()" *ngIf="!isLiked else solidHeart"></fa-icon>

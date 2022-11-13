@@ -1,6 +1,6 @@
 import { Post } from './../../models/post.model';
 import { Emoji } from '@ctrl/ngx-emoji-mart/ngx-emoji';
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject, ViewChild, ElementRef } from '@angular/core';
 import { Comment } from 'src/app/models/comment.model';
 import { faHeart, faComment, faPaperPlane, faBookmark, faFaceSmile } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartSolid, faCircle, faBookmark as faBookmarkSolid, faCircleChevronLeft, faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -12,6 +12,7 @@ import { CommentService } from 'src/app/services/comment.service';
 })
 
 export class PostPreviewComponent implements OnInit {
+  height: { [klass: string]: any; } | null | undefined;
 
   constructor() { }
 
@@ -27,9 +28,7 @@ export class PostPreviewComponent implements OnInit {
   faBookmarkSolid = faBookmarkSolid;
   faFaceSmile = faFaceSmile;
   faCircle = faCircle;
-  faCircleChevronLeft = faCircleChevronLeft;
-  faCircleChevronRight = faCircleChevronRight;
-
+  
   isEmojiPickerShown: boolean = false;
   isPostDetailsShown: boolean = false;
   isShareModalShown: boolean = false;
@@ -38,31 +37,12 @@ export class PostPreviewComponent implements OnInit {
   commentTxt: string = '';
   isLiked: boolean = false;
   isSaved: boolean = false;
-  currImgUrl: string = '';
-  isPaginationBtnShown = { left: false, right: false };
 
   user = { _id: "user101", fullname: "Yael Cohen", imgUrl: "https://randomuser.me", savedPostsIds: [''] }
 
   ngOnInit(): void {
     this.isLiked = this.post.likedBy.some(user => user._id === this.user._id)
     this.isSaved = this.user.savedPostsIds.some(postId => postId === this.post._id)
-    this.currImgUrl = this.post.imgUrls[0];
-    this.setPaginationBtns();
-  }
-
-  setPaginationBtns() {
-    const currIdx = this.post.imgUrls.indexOf(this.currImgUrl);
-    if (currIdx === 0) this.isPaginationBtnShown.left = false;
-    else this.isPaginationBtnShown.left = true;
-    if (currIdx === this.post.imgUrls.length - 1) this.isPaginationBtnShown.right = false;
-    else this.isPaginationBtnShown.right = true;
-  }
-
-  onSwitchImg(num: number) {
-    const currIdx = this.post.imgUrls.indexOf(this.currImgUrl);
-    if (num === 1) this.currImgUrl = this.post.imgUrls[currIdx + 1];
-    else if (num === -1) this.currImgUrl = this.post.imgUrls[currIdx - 1];
-    this.setPaginationBtns();
   }
 
   onToggleLike() {
@@ -108,13 +88,13 @@ export class PostPreviewComponent implements OnInit {
         this.isPostDetailsShown = false;
         this.isMainScreen = { isShown: false, isDark: false };
         break;
-      }
     }
-    
-    onAddComment() {
-      this.commentService.addComment(this.commentTxt, this.post.commentsIds);
-      this.commentTxt = '';
-      this.isEmojiPickerShown = false;
+  }
+
+  onAddComment() {
+    this.commentService.addComment(this.commentTxt, this.post.commentsIds);
+    this.commentTxt = '';
+    this.isEmojiPickerShown = false;
   }
 
   onAddEmoji(emoji: Emoji) {

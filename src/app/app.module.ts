@@ -23,6 +23,7 @@ import { UserListComponent } from './cmps/user-list/user-list.component';
 import { CommentsToDisplayPipe } from './pipes/comments-to-display.pipe';
 import { PostEditComponent } from './cmps/post-edit/post-edit.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { ImgContainerComponent } from './cmps/img-container/img-container.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
     UserListComponent,
     CommentsToDisplayPipe,
     PostEditComponent,
+    ImgContainerComponent,
   ],
   imports: [
     BrowserModule,

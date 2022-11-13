@@ -1,32 +1,30 @@
-<div class="post-edit main-screen">
+<div class="main-screen" (click)="onTogglePostEdit()">
     <fa-icon [icon]="faX"></fa-icon>
 </div>
 
 <section class="post-edit">
     <main class="main-container">
         <header>
-            <h1 class="title">create new post</h1>
+            <div class="title-container">
+                <fa-icon *ngIf="isUserUploadImg" [icon]="faArrowLeft" (click)="onTogglePostEdit()"></fa-icon>
+                <h1 class="title">{{currTitle}}</h1>
+                <h1 class="next-btn" *ngIf="isUserUploadImg">{{btnTxt}}</h1>
+            </div>
             <hr>
         </header>
 
 
-        <div draggable="true" ngClass="{{dragAreaClass}}">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <svg-icon src="../../../assets/svgs/add-icon.svg" [svgStyle]="{ 'width.px':300 }"></svg-icon>
-                    <p>drag photos and videos here</p>
-                    <a href="javascript:void(0)" (click)="file.click()">
-                        send
-                    </a>
-                    <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
-                </div>
-            </div>
+        <div draggable="true" class="img-input" ngClass="{{dragAreaClass}}" *ngIf="!isUserUploadImg else imgContainer">
+            <svg-icon src="../../../assets/svgs/add-icon.svg" [svgStyle]="{ 'width.px':300 }"></svg-icon>
+            <p>drag photos and videos here</p>
+            <a href="javascript:void(0)" (click)="file.click()">
+                select from computer
+            </a>
+            <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
         </div>
 
-        <div class="imgs">
-            <div class="img" *ngFor="let img of imgUrls">
-                <img [src]="img" alt="">
-            </div>
-        </div>
+        <ng-template #imgContainer>
+               <img-container [imgUrls]="imgUrls"></img-container>
+        </ng-template>
     </main>
 </section>
