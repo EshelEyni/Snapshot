@@ -3,8 +3,8 @@
         (click)="onToggleModal('main-screen')"></div>
     <section class="post-creator">
         <section class="creator-preview">
-            <div class="img-container">
-                <img src={{post.by.imgUrl}} alt="">
+            <div class="creator-img-container">
+                <img src={{post.by.imgUrl}} alt="user-img">
             </div>
             <section class="info">
                 <h3>{{post.by.fullname}}</h3>
@@ -18,9 +18,9 @@
             <fa-icon [icon]="faCircle"></fa-icon>
         </div>
     </section>
-    <div class="img-container">
-        <img src={{post.imgUrl}} alt="Avatar">
-    </div>
+    
+    <img-container [imgUrls]="post.imgUrls"></img-container>
+   
     <section class="actions">
         <div class="main-btn-container">
             <fa-icon [icon]="faHeart" (click)="onToggleLike()" *ngIf="!isLiked else solidHeart"></fa-icon>
@@ -63,6 +63,6 @@
         </div>
         <input class="txt-input" type="text" placeholder="Add a comment..." [(ngModel)]="commentTxt" name="commentTxt">
         <button class="clean-btn" [class.txt-in-input]="commentTxt" [class.z-index-20]="isEmojiPickerShown"
-            type="submit" (click)="onToggleModal('emoji')">post</button>
+            type="submit">post</button>
     </form>
 </article>

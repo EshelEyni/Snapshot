@@ -1,11 +1,10 @@
 import { Post } from './../../models/post.model';
 import { Emoji } from '@ctrl/ngx-emoji-mart/ngx-emoji';
-import { Component, Input, OnInit, ElementRef, ViewChild, inject } from '@angular/core';
+import { Component, Input, OnInit, inject, ViewChild, ElementRef } from '@angular/core';
 import { Comment } from 'src/app/models/comment.model';
 import { faHeart, faComment, faPaperPlane, faBookmark, faFaceSmile } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as faHeartSolid, faCircle, faBookmark as faBookmarkSolid } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartSolid, faCircle, faBookmark as faBookmarkSolid, faCircleChevronLeft, faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { CommentService } from 'src/app/services/comment.service';
-
 @Component({
   selector: 'post-preview',
   templateUrl: './post-preview.component.html',
@@ -13,12 +12,12 @@ import { CommentService } from 'src/app/services/comment.service';
 })
 
 export class PostPreviewComponent implements OnInit {
+  height: { [klass: string]: any; } | null | undefined;
 
   constructor() { }
 
   commentService = inject(CommentService);
   @Input() post!: Post;
-  @ViewChild('postTxt') postElement!: ElementRef;
 
   // Icons
   faHeart = faHeart;
@@ -29,7 +28,7 @@ export class PostPreviewComponent implements OnInit {
   faBookmarkSolid = faBookmarkSolid;
   faFaceSmile = faFaceSmile;
   faCircle = faCircle;
-
+  
   isEmojiPickerShown: boolean = false;
   isPostDetailsShown: boolean = false;
   isShareModalShown: boolean = false;
@@ -95,6 +94,7 @@ export class PostPreviewComponent implements OnInit {
   onAddComment() {
     this.commentService.addComment(this.commentTxt, this.post.commentsIds);
     this.commentTxt = '';
+    this.isEmojiPickerShown = false;
   }
 
   onAddEmoji(emoji: Emoji) {

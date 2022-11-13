@@ -1,0 +1,94 @@
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/functions';
+
+.main-screen {
+    background-color: black;
+    opacity: 0.1;
+
+    fa-icon {
+        position: fixed;
+        top: 0;
+        right: 0;
+        font-size: rem(18px);
+        color: var(--secondary-bg);
+        padding: rem(15px);
+    }
+}
+
+::ng-deep .post-edit {
+    position: absolute;
+    margin: 15vh 22.5vw;
+    z-index: 20;
+
+    .main-container {
+        position: fixed;
+        background-color: var(--secondary-bg);
+        width: 55vw;
+        height: 70vh;
+        border-radius: 10px;
+
+        header {
+            height: rem(40px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .title-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-top: 5px;
+                text-transform: capitalize;
+
+                fa-icon {
+                    color: var(--primary-color);
+                    position: absolute;
+                    left: rem(20px);
+                    font-size: rem(24px);
+                }
+
+                .title {
+                    color: var(--primary-color);
+                    font-size: rem(16px);
+                    font-weight: 900;
+                    transform: translateY(20%);
+                }
+
+                .next-btn {
+                    color: var(--primary-button);
+                    position: absolute;
+                    right: rem(20px);
+                    font-size: rem(16px);
+                    font-weight: 900;
+                }
+            }
+        }
+
+        .img-input {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-transform: capitalize;
+            height: 100%;
+            width: 100%;
+
+            p {
+                font-size: rem(22px);
+            }
+
+            a {
+                background-color: var(--primary-button);
+                color: var(--primary-bg);
+                font-size: rem(14px);
+                padding: rem(5px) rem(10px);
+                border-radius: 5px;
+            }
+        }
+
+    }
+
+    .img-container {
+        background-color: red;
+    }
+}

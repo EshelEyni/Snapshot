@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,9 +8,11 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./side-bar.component.scss']
 })
 export class SideBarComponent implements OnInit {
+  @Output() togglePostEdit = new EventEmitter<boolean>()
 
   constructor(private router: Router) { }
   faHome = faHome;
+
 
   ngOnInit(): void {
   }
@@ -19,4 +21,7 @@ export class SideBarComponent implements OnInit {
     return !(this.router.url === '/login' || this.router.url === '/signup')
   }
 
+  onTogglePostEdit() {
+    this.togglePostEdit.emit(true)
+  }
 }
