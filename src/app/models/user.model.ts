@@ -5,15 +5,16 @@ export interface User {
     email: string
     password: string
     imgUrl: string
-    followers: miniUser[]
-    following: miniUser[]
+    followers: MiniUser[]
+    following: MiniUser[]
     savedPostsIds: string[]
     savedStoriesIds: string[]
 }
 
-export interface miniUser {
+export interface MiniUser {
     _id: string
-    fullname: string
+    fullname: string,
+    username: string,
     imgUrl: string
 }
 

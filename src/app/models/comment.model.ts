@@ -1,9 +1,9 @@
-import { miniUser } from './user.model';
+import { MiniUser } from './user.model';
 
 export interface Comment {
     _id: string;
-    by: miniUser;
+    by: MiniUser;
     txt: string;
     at: Date;
-    likedBy: miniUser[];
+    likedBy: MiniUser[];
 }

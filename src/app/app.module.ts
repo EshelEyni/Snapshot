@@ -24,6 +24,7 @@ import { CommentsToDisplayPipe } from './pipes/comments-to-display.pipe';
 import { PostEditComponent } from './cmps/post-edit/post-edit.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ImgContainerComponent } from './cmps/img-container/img-container.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { ImgContainerComponent } from './cmps/img-container/img-container.compon
     CommentsToDisplayPipe,
     PostEditComponent,
     ImgContainerComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
