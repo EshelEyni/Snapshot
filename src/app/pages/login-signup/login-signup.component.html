@@ -5,12 +5,14 @@
     <section>
         <section class="login-signup">
             <h1 class="logo">Snapshot</h1>
-            <form class="form">
-                <input *ngIf="routerUrl === 'signup'" class="email-input" type="email" placeholder="Email">
-                <input *ngIf="routerUrl === 'signup'" class="fullname-input" type="text" placeholder="Fullname">
-                <input class="username-input" type="text" placeholder="Username">
-                <input class="password-input" type="password" placeholder="Password">
-                <button disabled class="btn-login">Login</button>
+            <form class="form" [formGroup]="form">
+                <input *ngIf="routerUrl === 'signup'" formControlName="email" class="email-input" type="email"
+                    placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                <input *ngIf="routerUrl === 'signup'" formControlName="fullname" class="fullname-input" type="text"
+                    placeholder="Fullname">
+                <input formControlName="username" class="username-input" type="text" placeholder="Username">
+                <input formControlName="password" class="password-input" type="password" placeholder="Password">
+                <button class="btn-login" [disabled]="form.untouched" (click)="onLogin()">Login</button>
             </form>
         </section>
         <section class="login-signup-link">

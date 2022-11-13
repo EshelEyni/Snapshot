@@ -14,7 +14,7 @@ import { CommentListComponent } from './cmps/comment-list/comment-list.component
 import { LoginSignupComponent } from './pages/login-signup/login-signup.component';
 import { ShortTxtPipe } from './pipes/short-txt.pipe';
 import { FormattedDatePipe } from './pipes/formatted-date.pipe';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { EmojiPickerComponent } from './cmps/emoji-picker/emoji-picker.component';
 import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
@@ -46,6 +46,7 @@ import { CommentsToDisplayPipe } from './pipes/comments-to-display.pipe';
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     PickerModule,
     EmojiModule
   ],
