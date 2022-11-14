@@ -17,18 +17,11 @@ export class PostEditComponent implements OnInit {
   faX = faX;
   faArrowLeft = faArrowLeft;
 
-
-  // isUserUploadImg: boolean = false;
-  isUserUploadImg: boolean = true;
   currTitle: string = 'create new post';
-  // currTitle: string = 'crop';
   btnTxt: string = 'next';
-  // imgUrls: string[] = [];
-  imgUrls: string[] = [
-    'https://res.cloudinary.com/dng9sfzqt/image/upload/v1668095950/cbtrkoffzcqreo533m1a.jpg',
-    'https://res.cloudinary.com/dng9sfzqt/image/upload/v1668186619/raorpp20hpm5lusjo3wd.jpg',
-    'https://res.cloudinary.com/dng9sfzqt/image/upload/v1668299771/jkjpphesdturz1ctllrl.jpg'
-  ];
+  imgUrls: string[] = [];
+  isEditMode: boolean = false;
+  currEditModeSettings: string = 'filters';
   currImg: string = this.imgUrls[0];
   dragAreaClass!: string;
 
@@ -73,7 +66,6 @@ export class PostEditComponent implements OnInit {
       try {
         const url = await this.uploadImgService.uploadImg(files[i])
         this.imgUrls.push(url)
-        this.isUserUploadImg = true;
         this.currTitle = 'crop'
 
       }
@@ -85,20 +77,30 @@ export class PostEditComponent implements OnInit {
   }
 
   onTogglePostEdit() {
-    if (this.isUserUploadImg) {
-      // confirm discard changes
-    }
     this.togglePostEdit.emit(false)
   }
 
   onGoBack() {
     console.log('go back');
-    this.isUserUploadImg = false;
     this.currTitle = 'create new post'
     this.imgUrls = []
     console.log('this.imgUrls', this.imgUrls);
-    console.log('this.isUserUploadImg', this.isUserUploadImg);
     console.log('this.currTitle', this.currTitle);
   }
 
+  onGoNext() {
+    if(this.currTitle === 'crop') {
+      this.currTitle = 'edit'
+      this.isEditMode = true
+    } else if(this.currTitle === 'edit') {
+      this.currTitle = 'create new post'
+      this.btnTxt = 'share'
+    } else if(this.currTitle === 'create new post') {
+      this.onTogglePostEdit()
+    }
+  }
+
+  onToggleEditSettings(currSetting: string) {
+      this.currEditModeSettings = currSetting
+  }
 }

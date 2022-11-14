@@ -21,9 +21,12 @@
         left: 50%;
         transform: translate(-50%, -50%);
 
-        fa-icon {
-            font-size: rem(30px);
-            // color: var(--primary-pagination-button);
+        svg-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: rem(10px);
+            border-radius: 50%;
         }
     }
 
@@ -50,10 +53,10 @@
         justify-content: flex-end;
         gap: rem(15px);
         position: absolute;
-        top: 44%;
+        top: 55%;
         right: 2%;
         max-width: 90%;
-        height: 40%;
+        height: rem(120px);
         background-color: var(--primary-color);
         border-radius: rem(10px);
         padding: rem(8px);
@@ -64,29 +67,29 @@
             gap: rem(10px);
             padding: 0;
             margin: 0;
+            // height: fit-content;
             width: 80%;
             overflow: hidden;
             overflow-x: hidden;
 
-           li {
-               position: relative;
+            li {
+                position: relative;
                 height: auto;
                 width: 50%;
 
                 img {
-                    height: 100%;
-                    width: 100%;
+                    height: rem(100px);
+                    width: rem(100px);
                     object-fit: cover;
-                    border-radius: rem(30px);
                 }
 
-                svg-icon{
+                .remove-btn-container {
                     position: absolute;
                     top: 0;
-                    background-color: black;
                     right: 0;
-                    border-radius: rem(30px);
-                    padding: 2px;
+                    border-radius: 50%;
+                    background-color: var(--primary-color);
+                    padding: rem(5px);
                 }
             }
         }
@@ -101,8 +104,8 @@
             border-radius: 50%;
             border: 1px solid transparent;
             padding: rem(2px);
-            height: rem(60px);
-            width: rem(60px);
+            height: rem(50px);
+            width: rem(50px);
 
             svg {
                 height: rem(28px);

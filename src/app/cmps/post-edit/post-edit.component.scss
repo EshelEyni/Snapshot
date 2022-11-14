@@ -18,7 +18,7 @@
 ::ng-deep .post-edit {
     position: absolute;
     margin: 15vh 22.5vw;
-    z-index: 20;
+    z-index: 30;
 
     .main-container {
         position: fixed;
@@ -60,64 +60,134 @@
                     right: rem(20px);
                     font-size: rem(16px);
                     font-weight: 900;
+                    cursor: pointer;
                 }
             }
         }
 
-        .img-input {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-transform: capitalize;
-            height: 100%;
-            width: 100%;
+        .content-container {
 
-            p {
-                font-size: rem(22px);
-            }
-
-            a {
-                background-color: var(--primary-button);
-                color: var(--primary-bg);
-                font-size: rem(14px);
-                padding: rem(5px) rem(10px);
-                border-radius: 5px;
-            }
-        }
-
-        .edit-img-container {
-
-            .img-container {
-                .pagination-btns {
-                    fa-icon {
-                        font-size: rem(30px);
-                        color: var(--primary-color);
-                    }
-                }
-
-                .dots-container {
-                    .active {
-                        color: var(--primary-button);
-                    }
-                }
-
-            }
-
-            .files-svg-container{
-                position: absolute;
-                top: 85%;
-                right: 2%;
+            .img-input {
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                height: rem(32px);
-                width: rem(32px);
-                background-color: var(--primary-color);
-                border-radius: 50%;
+                text-transform: capitalize;
+                height: 100%;
+                width: 100%;
+
+                p {
+                    font-size: rem(22px);
+                }
+
+                a {
+                    background-color: var(--primary-button);
+                    color: var(--primary-bg);
+                    font-size: rem(14px);
+                    padding: rem(5px) rem(10px);
+                    border-radius: 5px;
+                }
+            }
+
+            .edit-img-container {
+
+                .img-container {
+                    .pagination-btns {
+
+                        svg-icon {
+                            background-color: var(--primary-color);
+                        }
+                    }
+
+                    .dots-container {
+                        .active {
+                            color: var(--primary-button);
+                        }
+                    }
+
+                }
+
+                .files-svg-container {
+                    position: absolute;
+                    top: 85%;
+                    right: 2%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: rem(32px);
+                    width: rem(32px);
+                    background-color: var(--primary-color);
+                    border-radius: 50%;
+                }
+
             }
 
         }
+    }
+}
 
+
+.edit-mode {
+    margin: 15vh 5vw;
+
+    .main-container {
+        width: 90vw;
+
+        .content-container {
+            display: flex;
+
+            .edit-img-container {
+                flex: 7;
+            }
+
+            .edit-mode-container {
+                flex: 3;
+            }
+
+            .edit-mode-container {
+                .header-container {
+                    display: flex;
+                    justify-content: space-around;
+                    padding: rem(10px);
+
+                    &>* {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100%;
+                        width: 50%;
+                        padding: rem(5px);
+                        cursor: pointer;
+                        border-bottom: 1px solid var(--secondary-color);
+
+                        h3 {
+                            font-size: rem(14px);
+                            font-weight: 100;
+                            text-transform: capitalize;
+                            color: var(--secondary-color);
+                        }
+
+                    }
+
+                    .active {
+                        border-color: var(--primary-color);
+
+                        h3 {
+                            color: var(--primary-color);
+                        }
+                    }
+
+                    :hover {
+                        text-decoration: underline;
+                        border-color: var(--primary-color);
+
+                        h3 {
+                            color: var(--primary-color);
+                        }
+                    }
+
+                }
+            }
+        }
     }
 }

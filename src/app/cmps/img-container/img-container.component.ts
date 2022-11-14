@@ -25,7 +25,6 @@ export class ImgContainerComponent implements OnInit {
   currImgUrl: string = '';
   isPaginationBtnShown = { left: false, right: false };
   isImgSelect: boolean = false;
-  // isImgSelect: boolean = true;
 
   ngOnInit(): void {
     this.currImgUrl = this.imgUrls[0];

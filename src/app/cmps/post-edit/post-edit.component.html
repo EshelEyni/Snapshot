@@ -2,31 +2,56 @@
     <fa-icon [icon]="faX"></fa-icon>
 </div>
 
-<section class="post-edit">
+<section class="post-edit" [class.edit-mode]="isEditMode">
     <main class="main-container">
         <header>
             <div class="title-container">
-                <fa-icon *ngIf="isUserUploadImg" [icon]="faArrowLeft" (click)="onGoBack()"></fa-icon>
+                <fa-icon *ngIf="imgUrls.length" [icon]="faArrowLeft" (click)="onGoBack()"></fa-icon>
                 <h1 class="title">{{currTitle}}</h1>
-                <h1 class="next-btn" *ngIf="isUserUploadImg">{{btnTxt}}</h1>
+                <h1 class="next-btn" *ngIf="imgUrls.length" (click)="onGoNext()">{{btnTxt}}</h1>
             </div>
             <hr>
         </header>
 
-
-        <div draggable="true" class="img-input" ngClass="{{dragAreaClass}}" *ngIf="!isUserUploadImg else imgContainer">
-            <svg-icon src="../../../assets/svgs/add-icon.svg" [svgStyle]="{ 'width.px':300 }"></svg-icon>
-            <p>drag photos and videos here</p>
-            <a href="javascript:void(0)" (click)="file.click()">
-                select from computer
-            </a>
-            <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
-        </div>
-
-        <ng-template #imgContainer>
-            <div class="edit-img-container">
-                <img-container [imgUrls]="imgUrls" [onGoBack]="onGoBack" [onFileChange]="onFileChange" [saveFiles]="saveFiles"></img-container>
+        <div class="content-container">
+            <div draggable="true" class="img-input" ngClass="{{dragAreaClass}}"
+                *ngIf="!imgUrls.length else imgContainer">
+                <svg-icon src="../../../assets/svgs/add-icon.svg" [svgStyle]="{ 'width.px':300 }"></svg-icon>
+                <p>drag photos and videos here</p>
+                <a href="javascript:void(0)" (click)="file.click()">
+                    select from computer
+                </a>
+                <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
             </div>
-        </ng-template>
+            <ng-template #imgContainer>
+                <div class="edit-img-container">
+                    <img-container [imgUrls]="imgUrls" [onGoBack]="onGoBack" [onFileChange]="onFileChange"
+                        [saveFiles]="saveFiles"></img-container>
+                </div>
+            </ng-template>
+
+            <div class="edit-mode-container" *ngIf="isEditMode">
+                <div *ngIf="currTitle==='edit'">
+                    <div class="header-container">
+                        <div [class.active]="currEditModeSettings === 'filters'">
+                            <h3 (click)="onToggleEditSettings('filters')">filters</h3>
+                        </div>
+                        <div [class.active]="currEditModeSettings === 'adjustments'">
+                            <h3 (click)="onToggleEditSettings('adjustments')">adjustments</h3>
+                        </div>
+                    </div>
+
+                    <section class="filter" *ngIf="currEditModeSettings === 'filters'">
+                        <p>filters working</p>
+                    </section>
+                    <section class="adjustments" *ngIf="currEditModeSettings === 'adjustments'">
+                        <p>adjustments working</p>
+                    </section>
+                </div>
+                <div class="pre-share-mode-container" *ngIf="currTitle==='create new post'">
+                    <p>pre share mode container</p>
+                </div>
+            </div>
+        </div>
     </main>
 </section>

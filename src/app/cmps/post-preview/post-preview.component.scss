@@ -73,8 +73,10 @@
 
     .img-container {
         .pagination-btns {
-            fa-icon {
-                color: var(--primary-pagination-button);
+
+            svg-icon {
+                background-color: var(--primary-pagination-button);
+                color: rgba(0, 0, 0, 0.5);
             }
         }
 
