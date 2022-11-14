@@ -1,6 +1,11 @@
+import { UtilService } from './../../services/util.service';
+import { PostService } from 'src/app/services/post.service';
 import { UploadImgService } from './../../services/upload-img.service';
 import { Component, OnInit, inject, HostListener, Output, EventEmitter } from '@angular/core';
 import { faX, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { UserService } from 'src/app/services/user.service';
+import { Location, Post } from 'src/app/models/post.model';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'post-edit',
@@ -12,14 +17,26 @@ export class PostEditComponent implements OnInit {
 
   constructor() { }
   uploadImgService = inject(UploadImgService)
-
+  userService = inject(UserService)
+  postService = inject(PostService)
+  UtilService = inject(UtilService)
   // Icons
   faX = faX;
   faArrowLeft = faArrowLeft;
 
-  currTitle: string = 'create new post';
+  // currTitle: string = 'create new post';
+  currTitle: string = 'crop';
   btnTxt: string = 'next';
-  imgUrls: string[] = [];
+  // imgUrls: string[] = [];
+  imgUrls: string[] = [
+    'https://res.cloudinary.com/dng9sfzqt/image/upload/v1668373395/bermtmgxafj2hzcbjpvo.jpg'
+  ];
+  txt: string = '';
+  location: Location = {
+    lat: 0,
+    lng: 0,
+    name: ''
+  }
   isEditMode: boolean = false;
   currEditModeSettings: string = 'filters';
   currImg: string = this.imgUrls[0];
@@ -89,18 +106,37 @@ export class PostEditComponent implements OnInit {
   }
 
   onGoNext() {
-    if(this.currTitle === 'crop') {
+    if (this.currTitle === 'crop') {
       this.currTitle = 'edit'
       this.isEditMode = true
-    } else if(this.currTitle === 'edit') {
+    } else if (this.currTitle === 'edit') {
       this.currTitle = 'create new post'
       this.btnTxt = 'share'
-    } else if(this.currTitle === 'create new post') {
-      this.onTogglePostEdit()
+    } else if (this.currTitle === 'create new post' && this.btnTxt === 'share') {
+      this.savePost()
     }
   }
 
+  async savePost() {
+    console.log('save post');
+    const postToSave = {
+      _id: '',
+      txt: this.txt,
+      imgUrls: this.imgUrls,
+      by: { _id: '132', fullname: 'User 1', username: 'user_1', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' },
+      location: this.location,
+      likedBy: [],
+      commentsIds: [],
+      createdAt: new Date(),
+      tags: []
+    } as Post
+
+    this.postService.save(postToSave)
+
+    this.onTogglePostEdit()
+  }
+
   onToggleEditSettings(currSetting: string) {
-      this.currEditModeSettings = currSetting
+    this.currEditModeSettings = currSetting
   }
 }

@@ -1,6 +1,7 @@
+import { UserService } from './user.service';
 import { StorageService } from './storage.service';
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, of, throwError } from 'rxjs';
+import { Observable, BehaviorSubject, of, throwError, lastValueFrom } from 'rxjs';
 import { Post } from '../models/post.model';
 
 const POSTS = [
@@ -78,11 +79,15 @@ export class PostService {
     this.storageService.saveToStorage('post', posts)
   }
 
-  private _add(post: Post) {
-  //   let posts = this.storageService.loadFromStorage('post')
-  //   const newPost = 
-  //   posts.unshift(newPost)
-  //   this._posts$.next([...posts])
-  //   this.storageService.saveToStorage('posts', posts)
+  private async _add(post: Post) {
+    let posts = this.storageService.loadFromStorage('post')
+    const newPost = post
+    posts.unshift(newPost)
+    this._posts$.next([...posts])
+    this.storageService.saveToStorage('post', posts)
+    // const loggedinUser = await lastValueFrom(UserService.getLoggedinUser())
+    // const userToSave = await lastValueFrom(UserService.getUserById(loggedinUser._id))
+    // userToSave.savedPostsIds.push(newPost._id)
+    // this.userService.updateUser(userToSave)
   }
 }

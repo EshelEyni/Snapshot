@@ -107,5 +107,19 @@ export class UserService {
     this.storageService.saveToStorage('loggedinUser', null)
     this._loggedinUser$.next(null)
   }
+
+  public getUserById(userId: string): Observable<User> {
+    const users = this.storageService.loadFromStorage('user') || []
+    const user = users.find((user: User) => user._id === userId)
+    return of(user)
+  }
+
+  public updateUser(user: User) {
+    const users = this.storageService.loadFromStorage('user') || []
+    const userIdx = users.findIndex((currUser: User) => currUser._id === user._id)
+    users.splice(userIdx, 1, user)
+    this.storageService.saveToStorage('user', users)
+    this._users$.next(users)
+  }
 }
 
