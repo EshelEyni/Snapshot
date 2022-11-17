@@ -21,6 +21,8 @@
     z-index: 30;
 
     .main-container {
+        display: flex;
+        flex-direction: column;
         position: fixed;
         background-color: var(--secondary-bg);
         width: 55vw;
@@ -66,6 +68,7 @@
         }
 
         .content-container {
+            height: 100%;
 
             .img-input {
                 display: flex;
@@ -90,8 +93,11 @@
             }
 
             .edit-img-container {
+                height: 100%;
 
                 .img-container {
+                    height: 100%;
+
                     .pagination-btns {
 
                         svg-icon {
@@ -104,7 +110,6 @@
                             color: var(--primary-button);
                         }
                     }
-
                 }
 
                 .files-svg-container {

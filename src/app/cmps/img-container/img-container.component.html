@@ -2,25 +2,25 @@
     <img src={{currImgUrl}} alt="Avatar">
     <div class="pagination-btns">
         <div>
-            <!-- <fa-icon (click)="onSwitchImg(-1)" [icon]="faCircleChevronLeft" *ngIf="isPaginationBtnShown.left">
-            </fa-icon> -->
+            <fa-icon (click)="onSwitchImg(-1)" [icon]="faCircleChevronLeft" *ngIf="isPaginationBtnShown.left && !isEditPost">
+            </fa-icon>
 
             <svg-icon (click)="onSwitchImg(-1)" src="../../../assets/svgs/chevron-left.svg"
-                *ngIf="isPaginationBtnShown.left"></svg-icon>
+                *ngIf="isPaginationBtnShown.left && isEditPost"></svg-icon>
         </div>
         <div>
-            <!-- <fa-icon (click)="onSwitchImg(1)" [icon]="faCircleChevronRight" *ngIf="isPaginationBtnShown.right">
-            </fa-icon> -->
+            <fa-icon (click)="onSwitchImg(1)" [icon]="faCircleChevronRight" *ngIf="isPaginationBtnShown.right && !isEditPost">
+            </fa-icon>
 
             <svg-icon (click)="onSwitchImg(1)" src="../../../assets/svgs/chveron-right.svg"
-                *ngIf="isPaginationBtnShown.right"> </svg-icon>
+                *ngIf="isPaginationBtnShown.right && isEditPost"> </svg-icon>
         </div>
     </div>
     <div class="dots-container" *ngIf="imgUrls.length>1">
         <fa-icon class="dot" *ngFor="let img of imgUrls" [class.active]="img === currImgUrl" [icon]="faCircle">
         </fa-icon>
     </div>
-    <div class="files-svg-container" (click)="onToggleImgSelect()">
+    <div class="files-svg-container" (click)="onToggleImgSelect()" *ngIf="isEditPost">
         <svg-icon src="../../../assets/svgs/files.svg" [svgStyle]="{ 'display':'flex' }"></svg-icon>
     </div>
     <div class="img-select" *ngIf="isImgSelect">
@@ -39,4 +39,5 @@
             <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
         </div>
     </div>
+  
 </div>

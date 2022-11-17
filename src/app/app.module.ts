@@ -57,7 +57,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
     ReactiveFormsModule,
     PickerModule,
     EmojiModule,
-    AngularSvgIconModule.forRoot()
+    AngularSvgIconModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

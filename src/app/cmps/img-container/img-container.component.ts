@@ -16,6 +16,7 @@ export class ImgContainerComponent implements OnInit {
   @Input() onGoBack!: Function;
   @Input() onFileChange!: Function;
   @Input() saveFiles!: Function;
+  @Input() isEditPost!: boolean;
 
   // Icons
   faCircle = faCircle;
@@ -62,4 +63,5 @@ export class ImgContainerComponent implements OnInit {
     this.currImgUrl = this.imgUrls[idx - 1];
     this.setPaginationBtns();
   }
+
 }

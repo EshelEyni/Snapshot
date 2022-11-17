@@ -5,7 +5,6 @@ import { Component, OnInit, inject, HostListener, Output, EventEmitter } from '@
 import { faX, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from 'src/app/services/user.service';
 import { Location, Post } from 'src/app/models/post.model';
-import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'post-edit',
@@ -20,16 +19,16 @@ export class PostEditComponent implements OnInit {
   userService = inject(UserService)
   postService = inject(PostService)
   UtilService = inject(UtilService)
+
   // Icons
   faX = faX;
   faArrowLeft = faArrowLeft;
 
-  // currTitle: string = 'create new post';
-  currTitle: string = 'crop';
-  btnTxt: string = 'next';
+  currTitle: string = 'create new post';
   // imgUrls: string[] = [];
   imgUrls: string[] = [
-    'https://res.cloudinary.com/dng9sfzqt/image/upload/v1668373395/bermtmgxafj2hzcbjpvo.jpg'
+    'https://res.cloudinary.com/dng9sfzqt/image/upload/v1668095950/cbtrkoffzcqreo533m1a.jpg',
+    'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667043202/o2o9bcdqroy1asyrk09a.jpg'
   ];
   txt: string = '';
   location: Location = {
@@ -37,7 +36,7 @@ export class PostEditComponent implements OnInit {
     lng: 0,
     name: ''
   }
-  isEditMode: boolean = false;
+  isEditMode: boolean = true;
   currEditModeSettings: string = 'filters';
   currImg: string = this.imgUrls[0];
   dragAreaClass!: string;
@@ -83,8 +82,7 @@ export class PostEditComponent implements OnInit {
       try {
         const url = await this.uploadImgService.uploadImg(files[i])
         this.imgUrls.push(url)
-        this.currTitle = 'crop'
-
+        this.isEditMode = true;
       }
       catch (err) {
         console.log('ERROR!', err)
@@ -98,23 +96,12 @@ export class PostEditComponent implements OnInit {
   }
 
   onGoBack() {
-    console.log('go back');
-    this.currTitle = 'create new post'
+    this.isEditMode = false;
     this.imgUrls = []
-    console.log('this.imgUrls', this.imgUrls);
-    console.log('this.currTitle', this.currTitle);
   }
 
-  onGoNext() {
-    if (this.currTitle === 'crop') {
-      this.currTitle = 'edit'
-      this.isEditMode = true
-    } else if (this.currTitle === 'edit') {
-      this.currTitle = 'create new post'
-      this.btnTxt = 'share'
-    } else if (this.currTitle === 'create new post' && this.btnTxt === 'share') {
-      this.savePost()
-    }
+  onShare() {
+    this.savePost()
   }
 
   async savePost() {

@@ -8,7 +8,7 @@
             <div class="title-container">
                 <fa-icon *ngIf="imgUrls.length" [icon]="faArrowLeft" (click)="onGoBack()"></fa-icon>
                 <h1 class="title">{{currTitle}}</h1>
-                <h1 class="next-btn" *ngIf="imgUrls.length" (click)="onGoNext()">{{btnTxt}}</h1>
+                <h1 class="next-btn" *ngIf="imgUrls.length" (click)="onShare()">share</h1>
             </div>
             <hr>
         </header>
@@ -25,30 +25,13 @@
             </div>
             <ng-template #imgContainer>
                 <div class="edit-img-container">
-                    <img-container [imgUrls]="imgUrls" [onGoBack]="onGoBack" [onFileChange]="onFileChange"
+                    <img-container [imgUrls]="imgUrls" [isEditPost]="true" [onGoBack]="onGoBack" [onFileChange]="onFileChange"
                         [saveFiles]="saveFiles"></img-container>
                 </div>
             </ng-template>
 
             <div class="edit-mode-container" *ngIf="isEditMode">
-                <div *ngIf="currTitle==='edit'">
-                    <div class="header-container">
-                        <div [class.active]="currEditModeSettings === 'filters'">
-                            <h3 (click)="onToggleEditSettings('filters')">filters</h3>
-                        </div>
-                        <div [class.active]="currEditModeSettings === 'adjustments'">
-                            <h3 (click)="onToggleEditSettings('adjustments')">adjustments</h3>
-                        </div>
-                    </div>
-
-                    <section class="filter" *ngIf="currEditModeSettings === 'filters'">
-                        <p>filters working</p>
-                    </section>
-                    <section class="adjustments" *ngIf="currEditModeSettings === 'adjustments'">
-                        <p>adjustments working</p>
-                    </section>
-                </div>
-                <div class="pre-share-mode-container" *ngIf="currTitle==='create new post'">
+                <div class="tag-loc-container">
                     <p>pre share mode container</p>
                 </div>
             </div>
