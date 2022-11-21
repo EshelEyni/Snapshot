@@ -25,15 +25,13 @@
             </div>
             <ng-template #imgContainer>
                 <div class="edit-img-container">
-                    <img-container [imgUrls]="imgUrls" [isEditPost]="true" [onGoBack]="onGoBack" [onFileChange]="onFileChange"
-                        [saveFiles]="saveFiles"></img-container>
+                    <img-container [imgUrls]="imgUrls" [isEditPost]="true" [onGoBack]="onGoBack"
+                        [onFileChange]="onFileChange" [saveFiles]="saveFiles"></img-container>
                 </div>
             </ng-template>
 
             <div class="edit-mode-container" *ngIf="isEditMode">
-                <div class="tag-loc-container">
-                    <p>pre share mode container</p>
-                </div>
+                <post-edit-form [txt]="txt" [location]="location" (postChanged)="onChangePost($event)"></post-edit-form>
             </div>
         </div>
     </main>

@@ -4,18 +4,35 @@
     </header>
     <main>
         <a class="home" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-            <svg-icon  src="../../../assets/svgs/home-solid.svg" [svgStyle]="{ 'display':'flex' }">
-            </svg-icon>
+            <svg-icon src="../../../assets/svgs/home-solid.svg" class="icon-active"> </svg-icon>
+            <svg-icon src="../../../assets/svgs/home-outline.svg" class="icon-unactive"> </svg-icon>
             <span class="home-title">Home</span>
         </a>
-        <div class="search">
+        <button class="btn-search clean-btn" (click)="onToggleSearch()">
+            <svg-icon src="../../../assets/svgs/search-solid.svg" *ngIf="isBtnClicked.search  else outlineSearchIcon">
+            </svg-icon>
+            <ng-template #outlineSearchIcon>
+                <svg-icon src="../../../assets/svgs/search-outline.svg"> </svg-icon>
+            </ng-template>
             <span class="search-title">Search</span>
-        </div>
+        </button>
+        <a class="messages" routerLink="/explore" routerLinkActive="active">
+            <svg-icon src="../../../assets/svgs/compass-solid.svg" class="icon-active"> </svg-icon>
+            <svg-icon src="../../../assets/svgs/compass-outline.svg" class="icon-unactive"> </svg-icon>
+            <span class="messages-title">Explore</span>
+        </a>
         <a class="messages" routerLink="/inbox" routerLinkActive="active">
+            <svg-icon src="../../../assets/svgs/inbox-solid.svg" class="icon-active"> </svg-icon>
+            <svg-icon src="../../../assets/svgs/inbox-outline.svg" class="icon-unactive"> </svg-icon>
             <span class="messages-title">Messages</span>
         </a>
-        <button class="btn-create clean-btn">
-            <span (click)="onTogglePostEdit()">Create</span>
+        <button class="btn-create clean-btn" (click)="onTogglePostEdit()">
+            <svg-icon src="../../../assets/svgs/plus-solid.svg" *ngIf="isBtnClicked.create else outlineCreateIcon">
+            </svg-icon>
+            <ng-template #outlineCreateIcon>
+                <svg-icon src="../../../assets/svgs/plus-outline.svg"> </svg-icon>
+            </ng-template>
+            <span>Create</span>
         </button>
         <a class="profile" [routerLink]="username" routerLinkActive="active">
             <span class="profile-title">Profile</span>

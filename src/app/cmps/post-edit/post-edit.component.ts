@@ -126,4 +126,9 @@ export class PostEditComponent implements OnInit {
   onToggleEditSettings(currSetting: string) {
     this.currEditModeSettings = currSetting
   }
+
+  onChangePost(ev: { txt: string, location: string }) {
+    this.txt = ev.txt
+    this.location.name = ev.location
+  }
 }

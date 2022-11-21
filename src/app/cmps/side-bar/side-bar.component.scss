@@ -42,8 +42,26 @@
             margin: rem(8px) 0;
             cursor: pointer;
 
+            .icon-active {
+                display: none;
+            }
+
+            .icon-unactive {
+                display: flex;
+            }
+
+
             &.active {
                 font-weight: 600;
+
+                .icon-active {
+                    display: flex;
+                }
+
+                .icon-unactive {
+                    display: none;
+                }
+
             }
 
             >span {

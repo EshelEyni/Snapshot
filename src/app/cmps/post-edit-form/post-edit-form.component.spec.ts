@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EmojiPickerComponent } from './emoji-picker.component';
+import { PostEditFormComponent } from './post-edit-form.component';
 
-describe('EmojiPickerComponent', () => {
-  let component: EmojiPickerComponent;
-  let fixture: ComponentFixture<EmojiPickerComponent>;
+describe('PostEditFormComponent', () => {
+  let component: PostEditFormComponent;
+  let fixture: ComponentFixture<PostEditFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EmojiPickerComponent ]
+      declarations: [ PostEditFormComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EmojiPickerComponent);
+    fixture = TestBed.createComponent(PostEditFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

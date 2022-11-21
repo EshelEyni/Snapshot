@@ -1,0 +1,22 @@
+<div class="post-edit-form-container">
+    <div class="user-preview-container">
+        <section class="user-preview">
+            <div class="user-img-container">
+                <img src={{user.imgUrl}} alt="user-img">
+            </div>
+            <section class="info">
+                <h3>{{user.fullname}}</h3>
+            </section>
+        </section>
+    </div>
+
+    <div class="post-edit-form">
+        <form>
+            <div class="input-container">
+                <textarea class="txt-input" [(ngModel)]="txt" (ngModelChange)="onChange()" name="txt" placeholder="What's on your mind?"></textarea>
+            </div>
+            <div class="input-container">
+                <input class="location-input" [(ngModel)]="location.name" name="location" (ngModelChange)="onChange()" placeholder="Where are you?">
+            </div>
+        </form>
+    </div>

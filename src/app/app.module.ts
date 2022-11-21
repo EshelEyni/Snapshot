@@ -16,7 +16,6 @@ import { ShortTxtPipe } from './pipes/short-txt.pipe';
 import { FormattedDatePipe } from './pipes/formatted-date.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
-import { EmojiPickerComponent } from './cmps/emoji-picker/emoji-picker.component';
 import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { ShareModalComponent } from './cmps/share-modal/share-modal.component';
 import { UserListComponent } from './cmps/user-list/user-list.component';
@@ -25,6 +24,7 @@ import { PostEditComponent } from './cmps/post-edit/post-edit.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ImgContainerComponent } from './cmps/img-container/img-container.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { PostEditFormComponent } from './cmps/post-edit-form/post-edit-form.component';
 
 
 @NgModule({
@@ -40,13 +40,13 @@ import { ProfileComponent } from './pages/profile/profile.component';
     LoginSignupComponent,
     ShortTxtPipe,
     FormattedDatePipe,
-    EmojiPickerComponent,
     ShareModalComponent,
     UserListComponent,
     CommentsToDisplayPipe,
     PostEditComponent,
     ImgContainerComponent,
     ProfileComponent,
+    PostEditFormComponent,
   ],
   imports: [
     BrowserModule,

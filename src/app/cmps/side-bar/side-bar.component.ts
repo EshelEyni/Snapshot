@@ -10,15 +10,18 @@ import { lastValueFrom } from 'rxjs';
 })
 export class SideBarComponent implements OnInit {
   @Output() togglePostEdit = new EventEmitter<boolean>()
+  @Input() isPostEdit!: boolean
 
   constructor(private router: Router,
     private userService: UserService) { }
 
   username: string = ''
+  isBtnClicked = { search: false, create: false }
 
   async ngOnInit(): Promise<void> {
+    this.isBtnClicked.create = this.isPostEdit
     const loggedinUser = await lastValueFrom(this.userService.getLoggedinUser())
-    if(loggedinUser) this.username = loggedinUser.username
+    if (loggedinUser) this.username = loggedinUser.username
   }
 
   get isLoginSignupPath() {
@@ -26,6 +29,11 @@ export class SideBarComponent implements OnInit {
   }
 
   onTogglePostEdit() {
+    this.isBtnClicked.create = true
     this.togglePostEdit.emit(true)
+  }
+
+  onToggleSearch() {
+    this.isBtnClicked.search = !this.isBtnClicked.search
   }
 }

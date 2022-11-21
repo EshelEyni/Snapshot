@@ -7,8 +7,7 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  // isPostEdit: boolean = false;
-  isPostEdit: boolean = true;
+  isPostEdit: boolean = false;
  
   onTogglePostEdit(isPostEdit: boolean) {
     this.isPostEdit = isPostEdit;
