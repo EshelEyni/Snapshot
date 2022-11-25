@@ -1,5 +1,5 @@
 export interface User {
-    _id: string
+    id: string
     username: string
     fullname: string
     email: string
@@ -12,7 +12,7 @@ export interface User {
 }
 
 export interface MiniUser {
-    _id: string
+    id: string
     fullname: string,
     username: string,
     imgUrl: string

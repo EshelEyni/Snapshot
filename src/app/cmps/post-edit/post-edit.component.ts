@@ -107,10 +107,10 @@ export class PostEditComponent implements OnInit {
   async savePost() {
     console.log('save post');
     const postToSave = {
-      _id: '',
+      id: '',
       txt: this.txt,
       imgUrls: this.imgUrls,
-      by: { _id: '132', fullname: 'User 1', username: 'user_1', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' },
+      by: { id: '132', fullname: 'User 1', username: 'user_1', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' },
       location: this.location,
       likedBy: [],
       commentsIds: [],

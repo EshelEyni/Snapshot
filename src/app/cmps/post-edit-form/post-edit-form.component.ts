@@ -18,7 +18,7 @@ export class PostEditFormComponent implements OnInit {
   @Output() postChanged = new EventEmitter<{ txt: string, location: string }>()
 
   user = {
-    _id: "user101",
+    id: "user101",
     fullname: "Yael Cohen",
     username: 'yael_c',
     imgUrl: "https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg",

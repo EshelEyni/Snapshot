@@ -34,7 +34,10 @@
             </ng-template>
             <span>Create</span>
         </button>
-        <a class="profile" [routerLink]="username" routerLinkActive="active">
+        <a class="profile" [routerLink]="profileUrl" routerLinkActive="active">
+            <div class="user-img-container">
+                <img [src]="userImgUrl" alt="userImg">
+            </div>
             <span class="profile-title">Profile</span>
         </a>
     </main>

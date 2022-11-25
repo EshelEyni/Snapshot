@@ -38,16 +38,16 @@ export class PostPreviewComponent implements OnInit {
   isLiked: boolean = false;
   isSaved: boolean = false;
 
-  user = { _id: "user101", fullname: "Yael Cohen", username:'yael_c', imgUrl: "https://randomuser.me", savedPostsIds: [''] }
+  user = { id: "user101", fullname: "Yael Cohen", username:'yael_c', imgUrl: "https://randomuser.me", savedPostsIds: [''] }
 
   ngOnInit(): void {
-    this.isLiked = this.post.likedBy.some(user => user._id === this.user._id)
-    this.isSaved = this.user.savedPostsIds.some(postId => postId === this.post._id)
+    this.isLiked = this.post.likedBy.some(user => user.id === this.user.id)
+    this.isSaved = this.user.savedPostsIds.some(postId => postId === this.post.id)
   }
 
   onToggleLike() {
     if (this.isLiked) {
-      this.post.likedBy = this.post.likedBy.filter(user => user._id !== this.user._id);
+      this.post.likedBy = this.post.likedBy.filter(user => user.id !== this.user.id);
     } else {
       this.post.likedBy.push(this.user);
     }
@@ -56,9 +56,9 @@ export class PostPreviewComponent implements OnInit {
 
   onToggleSave() {
     if (this.isSaved) {
-      this.user.savedPostsIds = this.user.savedPostsIds.filter(postId => postId !== this.post._id);
+      this.user.savedPostsIds = this.user.savedPostsIds.filter(postId => postId !== this.post.id);
     } else {
-      this.user.savedPostsIds.push(this.post._id);
+      this.user.savedPostsIds.push(this.post.id);
     }
     this.isSaved = !this.isSaved;
   }

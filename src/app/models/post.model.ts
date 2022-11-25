@@ -1,7 +1,7 @@
 import { MiniUser } from './user.model';
 
 export interface Post {
-    _id: string;
+    id: string;
     txt: string;
     imgUrls: string[];
     by: MiniUser;

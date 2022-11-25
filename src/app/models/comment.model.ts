@@ -1,7 +1,7 @@
 import { MiniUser } from './user.model';
 
 export interface Comment {
-    _id: string;
+    id: string;
     by: MiniUser;
     txt: string;
     at: Date;

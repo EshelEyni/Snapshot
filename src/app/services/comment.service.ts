@@ -15,14 +15,14 @@ export class CommentService {
 
   addComment(commentTxt: string, commentsIds: string[]) {
     const commentToAdd = {
-      _id: 'asdaasd',
-      by: { _id: 'asdasd', fullname: 'user', imgUrl: 'https://picsum.photos/200/300' },
+      id: 'asdaasd',
+      by: { id: 'asdasd', fullname: 'user', imgUrl: 'https://picsum.photos/200/300' },
       txt: '',
       at: new Date(),
       likedBy: []
     }
     commentToAdd.txt = commentTxt;
-    commentsIds.push(commentToAdd._id);
+    commentsIds.push(commentToAdd.id);
   }
 
   removeComment(commentId: string) { }

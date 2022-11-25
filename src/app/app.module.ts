@@ -1,8 +1,21 @@
+// Modules
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AppEffects } from './store/app.effects';
+import { environment } from '../environments/environment';
+import { reducers, metaReducers } from './store/store';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+
+// Components
 import { AppComponent } from './app-root/app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PostAppComponent } from './cmps/post-app/post-app.component';
@@ -12,20 +25,19 @@ import { SideBarComponent } from './cmps/side-bar/side-bar.component';
 import { CommentComponent } from './cmps/comment/comment.component';
 import { CommentListComponent } from './cmps/comment-list/comment-list.component';
 import { LoginSignupComponent } from './pages/login-signup/login-signup.component';
-import { ShortTxtPipe } from './pipes/short-txt.pipe';
-import { FormattedDatePipe } from './pipes/formatted-date.pipe';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PickerModule } from '@ctrl/ngx-emoji-mart';
-import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { ShareModalComponent } from './cmps/share-modal/share-modal.component';
 import { UserListComponent } from './cmps/user-list/user-list.component';
-import { CommentsToDisplayPipe } from './pipes/comments-to-display.pipe';
 import { PostEditComponent } from './cmps/post-edit/post-edit.component';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ImgContainerComponent } from './cmps/img-container/img-container.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { PostEditFormComponent } from './cmps/post-edit-form/post-edit-form.component';
 
+// Pipes
+import { CommentsToDisplayPipe } from './pipes/comments-to-display.pipe';
+import { FormattedDatePipe } from './pipes/formatted-date.pipe';
+import { ShortTxtPipe } from './pipes/short-txt.pipe';
+import { ExploreComponent } from './pages/explore/explore.component';
+import { MessagesComponent } from './pages/messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +59,8 @@ import { PostEditFormComponent } from './cmps/post-edit-form/post-edit-form.comp
     ImgContainerComponent,
     ProfileComponent,
     PostEditFormComponent,
+    ExploreComponent,
+    MessagesComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +72,18 @@ import { PostEditFormComponent } from './cmps/post-edit-form/post-edit-form.comp
     PickerModule,
     EmojiModule,
     AngularSvgIconModule.forRoot(),
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      },
+    }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
+    EffectsModule.forRoot([AppEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
