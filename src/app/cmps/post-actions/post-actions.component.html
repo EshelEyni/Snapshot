@@ -1,0 +1,17 @@
+<section class="actions">
+    <div class="main-btn-container">
+        <fa-icon [icon]="faHeart" (click)="onToggleLike()" *ngIf="!isLiked else solidHeart"></fa-icon>
+        <ng-template #solidHeart>
+            <fa-icon class="solid-heart" (click)="onToggleLike()" [icon]="faHeartSolid"></fa-icon>
+        </ng-template>
+        <fa-icon [icon]="faComment"></fa-icon>  <!-- TODO: add link to post details -->
+        <fa-icon [icon]="faPaperPlane" (click)="onToggleModal()"></fa-icon>
+        <share-modal *ngIf="isShareModalShown" (close)="onToggleModal()"></share-modal>
+    </div>
+    <div class="btn-save-container">
+        <fa-icon (click)="onToggleSave()" [icon]="faBookmark" *ngIf="!isSaved else solidBookmark"></fa-icon>
+        <ng-template #solidBookmark>
+            <fa-icon (click)="onToggleSave()" [icon]="faBookmarkSolid"></fa-icon>
+        </ng-template>
+    </div>
+</section>

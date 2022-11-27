@@ -7,6 +7,7 @@ export interface User {
     imgUrl: string
     followers: MiniUser[]
     following: MiniUser[]
+    createdPostsIds: string[]
     savedPostsIds: string[]
     savedStoriesIds: string[]
 }

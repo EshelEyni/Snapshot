@@ -31,6 +31,7 @@
     main {
         display: flex;
         flex-direction: column;
+        gap: rem(12px);
         flex-grow: 1;
 
         >* {
@@ -80,6 +81,7 @@
                 font-size: rem(20px);
                 letter-spacing: rem(1px);
                 line-height: rem(24px);
+                text-transform: capitalize;
             }
         }
 

@@ -25,11 +25,11 @@ export class PostEditComponent implements OnInit {
   faArrowLeft = faArrowLeft;
 
   currTitle: string = 'create new post';
-  // imgUrls: string[] = [];
-  imgUrls: string[] = [
-    'https://res.cloudinary.com/dng9sfzqt/image/upload/v1668095950/cbtrkoffzcqreo533m1a.jpg',
-    'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667043202/o2o9bcdqroy1asyrk09a.jpg'
-  ];
+  imgUrls: string[] = [];
+  // imgUrls: string[] = [
+  //   'https://res.cloudinary.com/dng9sfzqt/image/upload/v1668095950/cbtrkoffzcqreo533m1a.jpg',
+  //   'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667043202/o2o9bcdqroy1asyrk09a.jpg'
+  // ];
   txt: string = '';
   location: Location = {
     lat: 0,
@@ -105,12 +105,14 @@ export class PostEditComponent implements OnInit {
   }
 
   async savePost() {
-    console.log('save post');
+    const loggedinUser = this.userService.getLoggedinUser()
+    if (!loggedinUser) return
+    const { id, username, fullname, imgUrl } = loggedinUser
     const postToSave = {
       id: '',
       txt: this.txt,
       imgUrls: this.imgUrls,
-      by: { id: '132', fullname: 'User 1', username: 'user_1', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' },
+      by: { id, fullname, username, imgUrl },
       location: this.location,
       likedBy: [],
       commentsIds: [],
@@ -118,7 +120,7 @@ export class PostEditComponent implements OnInit {
       tags: []
     } as Post
 
-    this.postService.save(postToSave)
+    this.postService.save(postToSave, id)
 
     this.onTogglePostEdit()
   }

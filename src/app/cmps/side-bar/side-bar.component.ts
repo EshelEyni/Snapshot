@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { State } from 'src/app/store/store';
 import { Store } from '@ngrx/store';
 import { User } from 'src/app/models/user.model';
-import { Observable, lastValueFrom } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -28,9 +28,11 @@ export class SideBarComponent implements OnInit {
   @Output() togglePostEdit = new EventEmitter<boolean>()
   @Input() isPostEdit!: boolean
   loggedinUser$: Observable<User | null>
-  userImgUrl: string = ''
+  loggedinUser!: User
+  userImgUrl: string = this.userService.getDefaultUserImgUrl()
   profileUrl: string = ''
-  isBtnClicked = { search: false, create: false }
+  isBtnClicked = { search: false, create: false, notifications: false }
+  sub: Subscription | null = null;
 
 
   async ngOnInit(): Promise<void> {
@@ -44,15 +46,14 @@ export class SideBarComponent implements OnInit {
   }
 
   getUserUrls() {
-    this.userImgUrl = this.userService.getBlankUserImgUrl()
-    if (this.loggedinUser$) {
-      this.loggedinUser$.subscribe(user => {
-        if (user) {
-          this.userImgUrl = user.imgUrl || this.userService.getBlankUserImgUrl()
-          this.profileUrl = '/profile/' + user.id
-        }
-      })
-    }
+    this.sub = this.loggedinUser$.subscribe(user => {
+      if (user) {
+        this.loggedinUser = JSON.parse(JSON.stringify(user))
+        this.userImgUrl = this.loggedinUser.imgUrl || this.userService.getDefaultUserImgUrl()
+        this.profileUrl = '/profile/' + this.loggedinUser.id
+      }
+    })
+
   }
 
   get isLoginSignupPath() {
@@ -66,5 +67,13 @@ export class SideBarComponent implements OnInit {
 
   onToggleSearch() {
     this.isBtnClicked.search = !this.isBtnClicked.search
+  }
+
+  onToggleNotifications() {
+    this.isBtnClicked.notifications = !this.isBtnClicked.notifications
+  }
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe()
   }
 }

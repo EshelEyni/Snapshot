@@ -15,10 +15,11 @@ const USERS = [
     fullname: 'Tal Hemo',
     email: 'tal@gmail.com',
     password: 'tale123',
-    imgUrl: '',
+    imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg',
     followers: [],
     following: [],
-    savedPostsIds: [],
+    createdPostsIds: [],
+    savedPostsIds: ['1', '2'],
     savedStoriesIds: []
   },
   {
@@ -30,6 +31,7 @@ const USERS = [
     imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669304308/lci872dhvwd0jeuzh3h8.png',
     followers: [],
     following: [],
+    createdPostsIds: [],
     savedPostsIds: [],
     savedStoriesIds: []
   }
@@ -101,6 +103,7 @@ export class UserService {
       imgUrl: '',
       followers: [],
       following: [],
+      createdPostsIds: [],
       savedPostsIds: [],
       savedStoriesIds: [],
     }
@@ -114,7 +117,24 @@ export class UserService {
     this.storageService.saveToStorage('loggedinUser', null)
   }
 
-  public getBlankUserImgUrl(): string {
+  public async savePostToUser(userId: string, postId: string) {
+    const user = await asyncStorageService.get(ENTITY, userId) as User
+    if (user) {
+      user.createdPostsIds.push(postId)
+      asyncStorageService.put(ENTITY, user)
+    }
+
+
+
+    // const users = this.storageService.loadFromStorage(ENTITY) || []
+    // const userIdx = users.findIndex((user: User) => user.id === userId)
+    // if (userIdx !== -1) {
+    //   users[userIdx].savedPostsIds.push(postId)
+    //   this.storageService.saveToStorage(ENTITY, users)
+    // }
+  }
+
+  public getDefaultUserImgUrl(): string {
     return 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg'
   }
 }

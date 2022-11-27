@@ -29,15 +29,19 @@ import { ShareModalComponent } from './cmps/share-modal/share-modal.component';
 import { UserListComponent } from './cmps/user-list/user-list.component';
 import { PostEditComponent } from './cmps/post-edit/post-edit.component';
 import { ImgContainerComponent } from './cmps/img-container/img-container.component';
-import { ProfileComponent } from './pages/profile/profile.component';
 import { PostEditFormComponent } from './cmps/post-edit-form/post-edit-form.component';
+import { ExploreComponent } from './pages/explore/explore.component';
+import { MessagesComponent } from './pages/messages/messages.component';
+import { PostDetailsComponent } from './pages/post-details/post-details.component';
 
 // Pipes
 import { CommentsToDisplayPipe } from './pipes/comments-to-display.pipe';
 import { FormattedDatePipe } from './pipes/formatted-date.pipe';
 import { ShortTxtPipe } from './pipes/short-txt.pipe';
-import { ExploreComponent } from './pages/explore/explore.component';
-import { MessagesComponent } from './pages/messages/messages.component';
+import { ProfileDetailsComponent } from './pages/profile-details/profile-details.component';
+import { UserPreviewComponent } from './cmps/user-preview/user-preview.component';
+import { EllipsisComponent } from './cmps/ellipsis/ellipsis.component';
+import { PostActionsComponent } from './cmps/post-actions/post-actions.component';
 
 @NgModule({
   declarations: [
@@ -57,10 +61,14 @@ import { MessagesComponent } from './pages/messages/messages.component';
     CommentsToDisplayPipe,
     PostEditComponent,
     ImgContainerComponent,
-    ProfileComponent,
     PostEditFormComponent,
     ExploreComponent,
     MessagesComponent,
+    PostDetailsComponent,
+    ProfileDetailsComponent,
+    UserPreviewComponent,
+    EllipsisComponent,
+    PostActionsComponent,
   ],
   imports: [
     BrowserModule,

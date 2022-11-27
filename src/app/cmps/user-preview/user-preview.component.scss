@@ -1,0 +1,44 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
+
+
+.creator-preview {
+    display: flex;
+    align-items: center;
+    gap: rem(5px);
+
+    .creator-img-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        // *************** user img circle  ***************
+        background: linear-gradient(white, white) padding-box,
+            linear-gradient(to bottom left, var(--primary-icon-color), var(--secondary-icon-color)) border-box;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        padding: rem(2px);
+
+        img {
+            height: rem(32px);
+            width: rem(32px);
+            border-radius: 50%;
+        }
+    }
+
+    .info {
+
+        h3 {
+            text-transform: lowercase;
+            font-size: rem(14px);
+            margin: 0;
+        }
+
+        p {
+            font-size: rem(12px);
+            margin: 0;
+        }
+    }
+}

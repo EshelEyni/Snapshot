@@ -3,7 +3,7 @@ import { Emoji } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { Component, Input, OnInit, inject, ViewChild, ElementRef } from '@angular/core';
 import { Comment } from 'src/app/models/comment.model';
 import { faHeart, faComment, faPaperPlane, faBookmark, faFaceSmile } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as faHeartSolid, faCircle, faBookmark as faBookmarkSolid, faCircleChevronLeft, faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartSolid, faBookmark as faBookmarkSolid } from '@fortawesome/free-solid-svg-icons';
 import { CommentService } from 'src/app/services/comment.service';
 @Component({
   selector: 'post-preview',
@@ -27,52 +27,22 @@ export class PostPreviewComponent implements OnInit {
   faBookmark = faBookmark;
   faBookmarkSolid = faBookmarkSolid;
   faFaceSmile = faFaceSmile;
-  faCircle = faCircle;
-  
+
   isEmojiPickerShown: boolean = false;
   isPostDetailsShown: boolean = false;
   isShareModalShown: boolean = false;
   isMainScreen = { isShown: false, isDark: false };
   isExpandTxt: boolean = false;
   commentTxt: string = '';
-  isLiked: boolean = false;
-  isSaved: boolean = false;
 
-  user = { id: "user101", fullname: "Yael Cohen", username:'yael_c', imgUrl: "https://randomuser.me", savedPostsIds: [''] }
+  user = { id: "user101", fullname: "Yael Cohen", username: 'yael_c', imgUrl: "https://randomuser.me", savedPostsIds: [''] }
 
-  ngOnInit(): void {
-    this.isLiked = this.post.likedBy.some(user => user.id === this.user.id)
-    this.isSaved = this.user.savedPostsIds.some(postId => postId === this.post.id)
-  }
-
-  onToggleLike() {
-    if (this.isLiked) {
-      this.post.likedBy = this.post.likedBy.filter(user => user.id !== this.user.id);
-    } else {
-      this.post.likedBy.push(this.user);
-    }
-    this.isLiked = !this.isLiked;
-  }
-
-  onToggleSave() {
-    if (this.isSaved) {
-      this.user.savedPostsIds = this.user.savedPostsIds.filter(postId => postId !== this.post.id);
-    } else {
-      this.user.savedPostsIds.push(this.post.id);
-    }
-    this.isSaved = !this.isSaved;
-  }
+  ngOnInit(): void { }
 
   onToggleModal(el: string) {
     switch (el) {
       case 'txt':
         this.isExpandTxt = true;
-        break;
-      case 'share':
-        this.isShareModalShown = !this.isShareModalShown;
-        if (this.isMainScreen.isShown)
-          this.isMainScreen = { isShown: false, isDark: false };
-        this.isMainScreen = { isShown: true, isDark: true };
         break;
       case 'emoji':
         this.isEmojiPickerShown = !this.isEmojiPickerShown;

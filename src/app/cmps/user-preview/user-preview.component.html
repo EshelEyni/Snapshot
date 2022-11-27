@@ -1,0 +1,9 @@
+<section class="creator-preview">
+    <div class="creator-img-container">
+        <img src={{user.imgUrl}} alt="user-img">
+    </div>
+    <section class="info">
+        <h3>{{user.fullname}}</h3>
+        <p class="location" *ngIf="location.name">{{location.name}}</p>
+    </section>
+</section>

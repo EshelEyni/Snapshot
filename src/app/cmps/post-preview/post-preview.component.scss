@@ -18,57 +18,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: rem(60px);
-
-        .creator-preview {
-            display: flex;
-            align-items: center;
-            gap: rem(5px);
-
-            .creator-img-container {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-
-                // *************** user img circle  ***************
-                background: linear-gradient(white, white) padding-box,
-                    linear-gradient(to bottom left, var(--primary-icon-color), var(--secondary-icon-color)) border-box;
-                border-radius: 50%;
-                border: 2px solid transparent;
-                padding: rem(2px);
-
-                img {
-                    height: rem(32px);
-                    width: auto;
-                    border-radius: 50%;
-                }
-            }
-
-            .info {
-
-                h3 {
-                    text-transform: lowercase;
-                    font-size: rem(14px);
-                    margin: 0;
-                }
-
-                p {
-                    font-size: rem(12px);
-                    margin: 0;
-                }
-            }
-        }
-
-        .ellipsis {
-            display: flex;
-            gap: rem(3px);
-            align-items: center;
-
-            fa-icon {
-                font-size: rem(5px);
-            }
-        }
+        height: rem(60px);      
     }
 
     .img-container {
@@ -82,26 +32,6 @@
         .dots-container {
             .active {
                 color: var(--secondary-bg);
-            }
-        }
-    }
-
-    .actions {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 rem(10px);
-
-        fa-icon {
-            font-size: rem(24px);
-        }
-
-        .main-btn-container {
-            display: flex;
-            gap: 10px;
-
-            .solid-heart {
-                @include solid-heart;
             }
         }
     }
@@ -127,6 +57,7 @@
         text-transform: uppercase;
         letter-spacing: rem(1px);
         color: var(--secondary-color);
+        cursor: pointer;
     }
 
     .comment-form {
