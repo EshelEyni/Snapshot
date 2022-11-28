@@ -1,5 +1,5 @@
 <article class="post-preview" *ngIf="loggedinUser">
-    <div class="main-screen" [class.dark-mode]="isMainScreen.isDark" *ngIf="isMainScreen.isShown"
+    <div class="main-screen dark-mode" *ngIf="isMainScreen"
         (click)="onToggleModal('main-screen')">
     </div>
     <section class="post-creator">
@@ -16,20 +16,12 @@
 
     <a class="view-all-link" *ngIf="post.commentsIds.length">View all {{post.commentsIds.length}} comments</a>
     <!--  TODO: add link to post details -->
-    <comment-list *ngIf="post.commentsIds.length" [commentsIds]="post.commentsIds" [isPostPreview]="true" [loggedinUser]="loggedinUser"></comment-list>
+    <comment-list *ngIf="post.commentsIds.length" [commentsIds]="post.commentsIds" [isPostPreview]="true"
+        [loggedinUser]="loggedinUser"></comment-list>
 
     <p class="date-added" [routerLink]="['/post', post.id]">{{post.createdAt|formattedDate}}</p>
     <hr>
 
-    <form class="comment-form" (submit)="onAddComment()">
-        <fa-icon (click)="onToggleModal('emoji')" [icon]="faFaceSmile">Post</fa-icon>
-        <div class="emoji-picker-container">
-            <emoji-mart [style]="{position:'relative'}" *ngIf="isEmojiPickerShown" (emojiClick)="onAddEmoji($event)">
-            </emoji-mart>
-        </div>
-        <input class="txt-input" type="text" placeholder="Add a comment..." [(ngModel)]="commentTxt" name="commentTxt">
-        <button class="clean-btn" [class.txt-in-input]="commentTxt" [class.z-index-20]="isEmojiPickerShown"
-            type="submit">post</button>
-    </form>
+    <comment-edit [post]="post"></comment-edit>
 
 </article>

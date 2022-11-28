@@ -1,1 +1,13 @@
-<p>comment-edit works!</p>
+<div class="main-screen"  *ngIf="isMainScreen"
+(click)="onToggleEmojiPicker()">
+</div>
+<form class="comment-form" (submit)="onAddComment()">
+    <fa-icon (click)="onToggleEmojiPicker()" [icon]="faFaceSmile">Post</fa-icon>
+    <div class="emoji-picker-container">
+        <emoji-mart [style]="{position:'relative'}" *ngIf="isEmojiPickerShown" (emojiClick)="onAddEmoji($event)">
+        </emoji-mart>
+    </div>
+    <input class="txt-input" type="text" placeholder="Add a comment..." [(ngModel)]="commentTxt" name="commentTxt">
+    <button class="clean-btn" [class.txt-in-input]="commentTxt" [class.z-index-20]="isEmojiPickerShown"
+        type="submit">post</button>
+</form>

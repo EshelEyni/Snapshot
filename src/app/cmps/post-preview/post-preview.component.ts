@@ -4,11 +4,9 @@ import { Store } from '@ngrx/store';
 import { User } from 'src/app/models/user.model';
 import { Observable, Subscription, map } from 'rxjs';
 import { Post } from './../../models/post.model';
-import { Emoji } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { Component, Input, OnInit, inject, ViewChild, ElementRef } from '@angular/core';
 import { Comment } from 'src/app/models/comment.model';
-import { faHeart, faComment, faPaperPlane, faBookmark, faFaceSmile } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as faHeartSolid, faBookmark as faBookmarkSolid } from '@fortawesome/free-solid-svg-icons';
+import { faFaceSmile } from '@fortawesome/free-regular-svg-icons';
 import { CommentService } from 'src/app/services/comment.service';
 @Component({
   selector: 'post-preview',
@@ -35,10 +33,9 @@ export class PostPreviewComponent implements OnInit {
   loggedinUser!: User
   sub: Subscription | null = null;
 
-  isEmojiPickerShown: boolean = false;
   isPostDetailsShown: boolean = false;
   isShareModalShown: boolean = false;
-  isMainScreen = { isShown: false, isDark: false };
+  isMainScreen: boolean = false;
   commentTxt: string = '';
 
   ngOnInit(): void {
@@ -51,40 +48,17 @@ export class PostPreviewComponent implements OnInit {
     switch (el) {
       case 'share':
         this.isShareModalShown = !this.isShareModalShown;
-        this.isMainScreen = { isShown: true, isDark: true };
-        break;
-      case 'emoji':
-        this.isEmojiPickerShown = !this.isEmojiPickerShown;
-        this.isMainScreen = { isShown: true, isDark: false };
+        this.isMainScreen = true;
         break;
       case 'details':
         this.isPostDetailsShown = !this.isPostDetailsShown;
-        this.isMainScreen = { isShown: true, isDark: true };
+        this.isMainScreen = true;
         break;
       case 'main-screen':
-        this.isEmojiPickerShown = false;
         this.isShareModalShown = false;
         this.isPostDetailsShown = false;
-        this.isMainScreen = { isShown: false, isDark: false };
+        this.isMainScreen = false;
         break;
-    }
-  }
-
-  onAddComment() {
-    const user = this.userService.getMiniUser(this.loggedinUser);
-    const commentToAdd = this.commentService.getEmptyComment();
-    commentToAdd.txt = this.commentTxt;
-    commentToAdd.by = user;
-    this.commentService.save(commentToAdd);
-    this.commentTxt = '';
-    this.isEmojiPickerShown = false;
-  }
-
-  onAddEmoji(emoji: Emoji) {
-    if (typeof emoji.emoji !== 'string') {
-      this.commentTxt += emoji.emoji.native;
-    } else {
-      this.commentTxt += emoji.emoji;
     }
   }
 

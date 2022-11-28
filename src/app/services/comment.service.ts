@@ -14,7 +14,7 @@ const COMMENTS = [
     id: '1',
     txt: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. ',
     createdAt: new Date(2022, 10, 9, 22, 22, 59, 0),
-    by: { id: 'a12tgeko907', fullname: 'Shlomi Alini', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1610000000/cbtrkoffzcqreo533m1a.jpg', username: 'shlomi' },
+    by: { id: 'u101', fullname: 'Shlomi Alini', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1610000000/cbtrkoffzcqreo533m1a.jpg', username: 'shlomi' },
     likedBy: [],
   },
   {
@@ -88,6 +88,7 @@ export class CommentService {
     const addedComment = await asyncStorageService.post(ENTITY, comment) as Comment
     this.postService.saveCommentToPost(postId, addedComment.id)
     this.loadComments()
+    return addedComment.id
   }
 
   public getEmptyComment(): Comment {
@@ -107,8 +108,6 @@ export class CommentService {
       const comment = await lastValueFrom(this.getById(commentId))
       if (comment.by.id === user.id || followingIds.includes(comment.by.id)) comments.push(comment)
     })
-    console.log('comments', comments);
-    console.log('followingIds', followingIds);
     return of(comments)
   }
 
