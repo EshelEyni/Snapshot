@@ -1,3 +1,8 @@
+import { UserService } from 'src/app/services/user.service';
+import { State } from 'src/app/store/store';
+import { Store } from '@ngrx/store';
+import { User } from 'src/app/models/user.model';
+import { Observable, Subscription, map } from 'rxjs';
 import { Post } from './../../models/post.model';
 import { Emoji } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { Component, Input, OnInit, inject, ViewChild, ElementRef } from '@angular/core';
@@ -14,35 +19,39 @@ import { CommentService } from 'src/app/services/comment.service';
 export class PostPreviewComponent implements OnInit {
   height: { [klass: string]: any; } | null | undefined;
 
-  constructor() { }
+  constructor(
+    private store: Store<State>
+  ) {
+    this.loggedinUser$ = this.store.select('userState').pipe(map((x => x.loggedinUser)));
+  }
 
   commentService = inject(CommentService);
+  userService = inject(UserService);
   @Input() post!: Post;
 
-  // Icons
-  faHeart = faHeart;
-  faHeartSolid = faHeartSolid;
-  faComment = faComment;
-  faPaperPlane = faPaperPlane;
-  faBookmark = faBookmark;
-  faBookmarkSolid = faBookmarkSolid;
   faFaceSmile = faFaceSmile;
+
+  loggedinUser$: Observable<User | null>
+  loggedinUser!: User
+  sub: Subscription | null = null;
 
   isEmojiPickerShown: boolean = false;
   isPostDetailsShown: boolean = false;
   isShareModalShown: boolean = false;
   isMainScreen = { isShown: false, isDark: false };
-  isExpandTxt: boolean = false;
   commentTxt: string = '';
 
-  user = { id: "user101", fullname: "Yael Cohen", username: 'yael_c', imgUrl: "https://randomuser.me", savedPostsIds: [''] }
-
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.sub = this.loggedinUser$.subscribe(user => {
+      if (user) this.loggedinUser = JSON.parse(JSON.stringify(user));
+    })
+  }
 
   onToggleModal(el: string) {
     switch (el) {
-      case 'txt':
-        this.isExpandTxt = true;
+      case 'share':
+        this.isShareModalShown = !this.isShareModalShown;
+        this.isMainScreen = { isShown: true, isDark: true };
         break;
       case 'emoji':
         this.isEmojiPickerShown = !this.isEmojiPickerShown;
@@ -62,7 +71,11 @@ export class PostPreviewComponent implements OnInit {
   }
 
   onAddComment() {
-    this.commentService.addComment(this.commentTxt, this.post.commentsIds);
+    const user = this.userService.getMiniUser(this.loggedinUser);
+    const commentToAdd = this.commentService.getEmptyComment();
+    commentToAdd.txt = this.commentTxt;
+    commentToAdd.by = user;
+    this.commentService.save(commentToAdd);
     this.commentTxt = '';
     this.isEmojiPickerShown = false;
   }
@@ -73,6 +86,10 @@ export class PostPreviewComponent implements OnInit {
     } else {
       this.commentTxt += emoji.emoji;
     }
+  }
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe()
   }
 
 }

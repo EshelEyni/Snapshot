@@ -123,15 +123,15 @@ export class UserService {
       user.createdPostsIds.push(postId)
       asyncStorageService.put(ENTITY, user)
     }
+  }
 
+  public getMiniUser(user: User): MiniUser {
+    const { id, fullname, username, imgUrl } = user
+    return { id, fullname, username, imgUrl }
+  }
 
-
-    // const users = this.storageService.loadFromStorage(ENTITY) || []
-    // const userIdx = users.findIndex((user: User) => user.id === userId)
-    // if (userIdx !== -1) {
-    //   users[userIdx].savedPostsIds.push(postId)
-    //   this.storageService.saveToStorage(ENTITY, users)
-    // }
+  public getEmptyMiniUser(): MiniUser {
+    return { id: '', fullname: '', username: '', imgUrl: '' }
   }
 
   public getDefaultUserImgUrl(): string {

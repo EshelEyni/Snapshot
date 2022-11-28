@@ -11,8 +11,15 @@ export class CommentComponent implements OnInit {
   @Input() comment!: Comment;
 
   constructor() { }
+  isExpandTxt: boolean = false;
+  isLongTxt!: boolean;
 
   ngOnInit(): void {
+    this.isLongTxt = this.comment.txt.length > 100;
+  }
+
+  onExpandTxt() {
+    this.isLongTxt = true;
   }
 
 }

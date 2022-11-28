@@ -4,6 +4,6 @@ export interface Comment {
     id: string;
     by: MiniUser;
     txt: string;
-    at: Date;
+    createdAt: Date;
     likedBy: MiniUser[];
 }

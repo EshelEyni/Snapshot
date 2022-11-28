@@ -1,6 +1,6 @@
 import { PostService } from 'src/app/services/post.service';
 import { LoadLoggedInUser, SaveUser } from './../../store/actions/user.actions';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, EventEmitter } from '@angular/core';
 import { faHeart, faComment, faPaperPlane, faBookmark } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartSolid, faBookmark as faBookmarkSolid } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
@@ -15,22 +15,22 @@ import { State } from 'src/app/store/store';
   templateUrl: './post-actions.component.html',
   styleUrls: ['./post-actions.component.scss'],
   // changeDetection: ChangeDetectionStrategy.OnPush,
-  inputs: ['post']
+  inputs: ['post', 'loggedinUser'],
+  outputs: ['toggleModal']
 })
 export class PostActionsComponent implements OnInit {
 
   constructor(
-    private userService: UserService,
     private postService: PostService,
     private store: Store<State>
-  ) {
-    this.loggedinUser$ = this.store.select('userState').pipe(map((x => x.loggedinUser)));
-  }
+  ) { }
 
   post!: Post;
-  loggedinUser$: Observable<User | null>
   loggedinUser!: User
   sub: Subscription | null = null;
+  isLiked: boolean = false;
+  isSaved: boolean = false;
+  toggleModal = new EventEmitter<string>();
 
   // Icons
   faHeart = faHeart;
@@ -40,19 +40,8 @@ export class PostActionsComponent implements OnInit {
   faBookmark = faBookmark;
   faBookmarkSolid = faBookmarkSolid;
 
-  isLiked: boolean = false;
-  isSaved: boolean = false;
-
-  isShareModalShown: boolean = false;
-
   ngOnInit() {
-    this.sub = this.loggedinUser$.subscribe(user => {
-      if (user) this.loggedinUser = JSON.parse(JSON.stringify(user));
-    })
-
-    setTimeout(() => {
-      this.setPostProporties();
-    }, 1000);
+    this.setPostProporties();
   }
 
   setPostProporties() {
@@ -85,7 +74,7 @@ export class PostActionsComponent implements OnInit {
   }
 
   onToggleModal() {
-    this.isShareModalShown = !this.isShareModalShown;
+    this.toggleModal.emit('share');
   }
 
   ngOnDestroy() {

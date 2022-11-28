@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user.model';
+import { CommentService } from 'src/app/services/comment.service';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { Comment } from 'src/app/models/comment.model';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'comment-list',
@@ -9,10 +12,19 @@ import { Comment } from 'src/app/models/comment.model';
 export class CommentListComponent implements OnInit {
   constructor() { }
 
-  @Input() comments!: Comment[];
+  commentService = inject(CommentService);
 
+  @Input() commentsIds!: string[];
+  @Input() isPostPreview!: boolean;
+  @Input() loggedinUser!: User;
 
-  ngOnInit(): void {
+  comments: Comment[] = [];
+
+  async ngOnInit() {
+    if (this.isPostPreview) {
+      const comments = await lastValueFrom(this.commentService.getCommentsForPostPreview(this.commentsIds,this.loggedinUser));
+      this.comments = comments;
+    }
   }
 
 }

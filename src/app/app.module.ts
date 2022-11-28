@@ -42,6 +42,7 @@ import { ProfileDetailsComponent } from './pages/profile-details/profile-details
 import { UserPreviewComponent } from './cmps/user-preview/user-preview.component';
 import { EllipsisComponent } from './cmps/ellipsis/ellipsis.component';
 import { PostActionsComponent } from './cmps/post-actions/post-actions.component';
+import { CommentEditComponent } from './cmps/comment-edit/comment-edit.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { PostActionsComponent } from './cmps/post-actions/post-actions.component
     UserPreviewComponent,
     EllipsisComponent,
     PostActionsComponent,
+    CommentEditComponent,
   ],
   imports: [
     BrowserModule,

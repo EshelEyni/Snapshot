@@ -1,3 +1,4 @@
+import { CommentService } from 'src/app/services/comment.service';
 import { UtilService } from './../../services/util.service';
 import { PostService } from 'src/app/services/post.service';
 import { UploadImgService } from './../../services/upload-img.service';
@@ -19,6 +20,7 @@ export class PostEditComponent implements OnInit {
   userService = inject(UserService)
   postService = inject(PostService)
   UtilService = inject(UtilService)
+  commentService = inject(CommentService)
 
   // Icons
   faX = faX;
@@ -107,20 +109,31 @@ export class PostEditComponent implements OnInit {
   async savePost() {
     const loggedinUser = this.userService.getLoggedinUser()
     if (!loggedinUser) return
-    const { id, username, fullname, imgUrl } = loggedinUser
-    const postToSave = {
-      id: '',
-      txt: this.txt,
-      imgUrls: this.imgUrls,
-      by: { id, fullname, username, imgUrl },
-      location: this.location,
-      likedBy: [],
-      commentsIds: [],
-      createdAt: new Date(),
-      tags: []
-    } as Post
 
-    this.postService.save(postToSave, id)
+    // const postToSave = {
+    //   id: '',
+    //   imgUrls: this.imgUrls,
+    //   by: loggedinUser,
+    //   location: this.location,
+    //   likedBy: [],
+    //   commentsIds: [],
+    //   createdAt: new Date(),
+    //   tags: []
+    // } as Post
+
+    const postToSave = this.postService.getEmptyPost()
+    postToSave.imgUrls = this.imgUrls
+    postToSave.by = loggedinUser
+    postToSave.location = this.location
+    const savedPostId = this.postService.save(postToSave, loggedinUser.id)
+    if (this.txt && typeof savedPostId === 'string') {
+      const commentToAdd = this.commentService.getEmptyComment()
+      commentToAdd.txt = this.txt
+      commentToAdd.by = loggedinUser
+      const comment = await this.commentService.save(commentToAdd, savedPostId)
+    }
+
+
 
     this.onTogglePostEdit()
   }

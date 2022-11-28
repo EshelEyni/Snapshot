@@ -1,32 +1,26 @@
-<article class="post-preview">
+<article class="post-preview" *ngIf="loggedinUser">
     <div class="main-screen" [class.dark-mode]="isMainScreen.isDark" *ngIf="isMainScreen.isShown"
         (click)="onToggleModal('main-screen')">
     </div>
     <section class="post-creator">
-        <user-preview [user]="post.by" [location]="post.location"></user-preview>     
+        <user-preview [user]="post.by" [location]="post.location"></user-preview>
         <ellipsis></ellipsis>
     </section>
 
     <img-container [imgUrls]="post.imgUrls"></img-container>
 
-    <post-actions [post]="post"></post-actions>
+    <post-actions [post]="post" [loggedinUser]="loggedinUser" (toggleModal)="onToggleModal('share')"></post-actions>
+    <share-modal *ngIf="isShareModalShown" (close)="onToggleModal('share')"></share-modal>
 
     <p class="likes">{{post.likedBy.length}} likes</p>
-    <div class="txt-container">
-        <p class="txt" *ngIf="!isExpandTxt; else longTxt">
-            <span>{{post.by.fullname}}</span> {{post.txt | shortTxt}} <span (click)="onToggleModal('txt')">more</span>
-        </p>
-        <ng-template class="txt-container" #longTxt>
-            <p>
-                <span>{{post.by.fullname}}</span>
-                {{post.txt}}
-            </p>
-        </ng-template>
-    </div>
-    <a class="view-all-link" *ngIf="post.commentsIds.length">View all {{post.commentsIds.length}} comments</a> <!--  TODO: add link to post details -->
-    <!-- <comment-list [comments]="post.comments"></comment-list> TODO: show only following comments -->
+
+    <a class="view-all-link" *ngIf="post.commentsIds.length">View all {{post.commentsIds.length}} comments</a>
+    <!--  TODO: add link to post details -->
+    <comment-list *ngIf="post.commentsIds.length" [commentsIds]="post.commentsIds" [isPostPreview]="true" [loggedinUser]="loggedinUser"></comment-list>
+
     <p class="date-added" [routerLink]="['/post', post.id]">{{post.createdAt|formattedDate}}</p>
     <hr>
+
     <form class="comment-form" (submit)="onAddComment()">
         <fa-icon (click)="onToggleModal('emoji')" [icon]="faFaceSmile">Post</fa-icon>
         <div class="emoji-picker-container">
@@ -37,4 +31,5 @@
         <button class="clean-btn" [class.txt-in-input]="commentTxt" [class.z-index-20]="isEmojiPickerShown"
             type="submit">post</button>
     </form>
+
 </article>

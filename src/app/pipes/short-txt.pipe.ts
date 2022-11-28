@@ -6,7 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ShortTxtPipe implements PipeTransform {
 
   transform(value: string): string {
-    return value.slice(0, 100) + '...';
+    if (value.length > 100) return value.slice(0, 100) + '...';
+    return value;
   }
 
 }

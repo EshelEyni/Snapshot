@@ -1,3 +1,4 @@
+import { MiniUser } from './../models/user.model';
 import { StorageService } from './storage.service';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, of, throwError, lastValueFrom } from 'rxjs';
@@ -6,8 +7,7 @@ import { asyncStorageService } from './async-storage.service';
 import { UserService } from './user.service';
 const POSTS = [
   {
-    id: '1asdasd',
-    txt: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. ',
+    id: '1',
     imgUrls: [
       'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666643317/v67tpfibtyacwmhnujyz.jpg',
       'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664328667/hzazeapkfkxc76iwfuzi.webp',
@@ -16,18 +16,17 @@ const POSTS = [
     by: { id: 'a12F34b907', fullname: 'Tal Hemo', username: 'tale', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' },
     location: { lat: 32.0749831, lng: 34.9120554, name: 'Tel Aviv' },
     likedBy: [{ id: '132', fullname: 'User 1', username: 'user_1', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' }],
-    commentsIds: ['1asdasd', '2asdasd', '3asdasd'],
+    commentsIds: ['1', '2', '3'],
     createdAt: new Date(2022, 10, 9, 22, 22, 59, 0),
     tags: ['tag1', 'tag2']
   },
   {
     id: '2',
-    txt: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. ',
     imgUrls: ['https://www.gardeningknowhow.com/wp-content/uploads/2017/07/hardwood-tree.jpg'],
     by: { id: 'a12F34b907', fullname: 'Tal Hemo', username: 'tale', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' },
     location: { lat: 32.0749831, lng: 34.9120554, name: 'Tel Aviv' },
     likedBy: [{ id: '132', fullname: 'User 1', username: 'user_1', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' }],
-    commentsIds: ['123', '456'],
+    commentsIds: ['1', '2', '3'],
     createdAt: new Date(),
     tags: ['tag1', 'tag2']
   }
@@ -48,7 +47,8 @@ export class PostService {
 
   constructor(
     private storageService: StorageService,
-    private userService: UserService) { }
+    private userService: UserService
+  ) { }
 
   public loadPosts(): void {
     let posts = this.storageService.loadFromStorage(ENTITY) || null
@@ -77,13 +77,36 @@ export class PostService {
   }
 
   private async _update(post: Post) {
-   await asyncStorageService.put(ENTITY, post) as Post
-   this.loadPosts()
+    await asyncStorageService.put(ENTITY, post) as Post
+    this.loadPosts()
   }
 
   private async _add(post: Post, userId: string) {
     const addedPost = await asyncStorageService.post(ENTITY, post) as Post
     this.userService.savePostToUser(userId, addedPost.id)
     this.loadPosts()
+    return addedPost.id
   }
+
+  public async saveCommentToPost(postId: string, commentId: string) {
+    const post = await asyncStorageService.get(ENTITY, postId) as Post
+    if (post) {
+      post.commentsIds.push(commentId)
+      asyncStorageService.put(ENTITY, post)
+    }
+  }
+
+  public getEmptyPost(): Post {
+    return {
+      id: '',
+      imgUrls: [],
+      by: this.userService.getEmptyMiniUser(),
+      location: { lat: 0, lng: 0, name: '' },
+      likedBy: [],
+      commentsIds: [],
+      createdAt: new Date(),
+      tags: []
+    }
+  }
+
 }
