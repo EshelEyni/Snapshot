@@ -1,4 +1,40 @@
-<section class="post-details main-layout">
-<p>post-details working</p>
-<p>{{post.id}}</p>
-</section>
+<main class="post-details" *ngIf="loggedinUser">
+    <div class="main-container">
+        <article class="post">
+            <img-container [imgUrls]="post.imgUrls"></img-container>
+
+            <div class="comment-action-container">
+                <section class="post-creator">
+                    <user-preview [user]="post.by" [location]="post.location"></user-preview>
+                    <ellipsis></ellipsis>
+                </section>
+
+                <div class="comment-list-container">
+                    <comment-list *ngIf="post.commentsIds.length" [commentsIds]="post.commentsIds"
+                        [loggedinUser]="loggedinUser"></comment-list>
+                </div>
+
+                <div class="action-details-container">
+                    <post-actions [post]="post" [loggedinUser]="loggedinUser" (toggleModal)="onToggleShareModal()">
+                    </post-actions>
+                    <div class="likes-container">
+                        <p class="likes" *ngIf="post.likedBy.length>0; else firstLike">{{post.likedBy.length}} likes</p>
+                        <ng-template #firstLike>
+                            <p class="first-like"> Be the first to <span (click)="onFirstLike()">like this</span></p>
+                        </ng-template>
+                    </div>
+                    <p class="date-added">{{post.createdAt|formattedDate}}</p>
+                </div>
+
+                <share-modal *ngIf="isShareModalShown" (close)="onToggleShareModal()"></share-modal>
+
+                <div class="comment-edit-container">
+                    <comment-edit [post]="post" (addedComment)="addCommentToPost($event)"></comment-edit>
+                </div>
+            </div>
+        </article>
+
+        <hr>
+        <post-list [posts]="userPosts"></post-list>
+    </div>
+</main>

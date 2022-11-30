@@ -110,31 +110,21 @@ export class PostEditComponent implements OnInit {
     const loggedinUser = this.userService.getLoggedinUser()
     if (!loggedinUser) return
 
-    // const postToSave = {
-    //   id: '',
-    //   imgUrls: this.imgUrls,
-    //   by: loggedinUser,
-    //   location: this.location,
-    //   likedBy: [],
-    //   commentsIds: [],
-    //   createdAt: new Date(),
-    //   tags: []
-    // } as Post
-
     const postToSave = this.postService.getEmptyPost()
     postToSave.imgUrls = this.imgUrls
     postToSave.by = loggedinUser
     postToSave.location = this.location
-    const savedPostId = this.postService.save(postToSave, loggedinUser.id)
-    if (this.txt && typeof savedPostId === 'string') {
+
+
+    if (this.txt) {
       const commentToAdd = this.commentService.getEmptyComment()
       commentToAdd.txt = this.txt
       commentToAdd.by = loggedinUser
-      const comment = await this.commentService.save(commentToAdd, savedPostId)
+      const commentId = await this.commentService.save(commentToAdd)
+      if (commentId) postToSave.commentsIds.push(commentId)
     }
 
-
-
+    await this.postService.save(postToSave, loggedinUser.id)
     this.onTogglePostEdit()
   }
 

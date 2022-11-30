@@ -15,7 +15,6 @@ import { CommentService } from 'src/app/services/comment.service';
 })
 
 export class PostPreviewComponent implements OnInit {
-  height: { [klass: string]: any; } | null | undefined;
 
   constructor(
     private store: Store<State>
@@ -26,6 +25,7 @@ export class PostPreviewComponent implements OnInit {
   commentService = inject(CommentService);
   userService = inject(UserService);
   @Input() post!: Post;
+  @Input() isPostDetails!: boolean;
 
   faFaceSmile = faFaceSmile;
 
@@ -33,7 +33,7 @@ export class PostPreviewComponent implements OnInit {
   loggedinUser!: User
   sub: Subscription | null = null;
 
-  isPostDetailsShown: boolean = false;
+  // isPostDetailsShown: boolean = false;
   isShareModalShown: boolean = false;
   isMainScreen: boolean = false;
   commentTxt: string = '';
@@ -50,16 +50,20 @@ export class PostPreviewComponent implements OnInit {
         this.isShareModalShown = !this.isShareModalShown;
         this.isMainScreen = true;
         break;
-      case 'details':
-        this.isPostDetailsShown = !this.isPostDetailsShown;
-        this.isMainScreen = true;
-        break;
+      // case 'details':
+      // this.isPostDetailsShown = !this.isPostDetailsShown;
+      // this.isMainScreen = true;
+      // break;
       case 'main-screen':
         this.isShareModalShown = false;
-        this.isPostDetailsShown = false;
+        // this.isPostDetailsShown = false;
         this.isMainScreen = false;
         break;
     }
+  }
+
+  addCommentToPost(commentIds: string[]) {
+    this.post.commentsIds = [...commentIds];
   }
 
   ngOnDestroy() {

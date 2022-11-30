@@ -63,6 +63,12 @@
                     display: none;
                 }
 
+                .user-img-container {
+                    box-sizing: unset;
+                    background: linear-gradient(white, white) padding-box, black border-box;
+                    border-radius: 50%;
+                    border: 1.5px solid transparent;
+                }
             }
 
             .user-img-container {
@@ -74,6 +80,7 @@
                     width: 100%;
                     border-radius: 50%;
                 }
+
             }
 
             >span {

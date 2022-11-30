@@ -1,6 +1,80 @@
 @import '../../../assets/styles/setup/functions';
 @import '../../../assets/styles/setup/mixins';
+@import '../../../assets/styles/setup/vars';
 
-.post-details {
+::ng-deep .post-details {
     @include page;
+
+    .main-container {
+        padding: calc(4vh) 20px 0;
+        margin: 0 auto;
+
+
+        .post {
+            display: flex;
+            justify-content: center;
+            max-width: rem(815px);
+            height: rem(600px);
+            border: var(--border-color) solid 1px;
+
+            .comment-action-container {
+                display: grid;
+                grid-template-rows: rem(60px) 5fr 1fr 1fr;
+                width: 70%;
+                // flex: 2;
+
+                .post-creator {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    height: rem(60px);
+                    padding: rem(20px);
+                }
+
+                .comment-list-container {
+                    min-height: rem(300px);
+                }
+
+                .action-details-container {
+                    padding: rem(16px) 0;
+
+                    .likes-container {
+                        .likes {
+                            font-weight: 600;
+                        }
+
+                        .first-like {
+                            span {
+                                font-weight: 600;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+
+                .comment-edit-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    .comment-form {
+                        width: 100%;
+                        gap: 10px;
+
+                        .txt-input {
+                            background-color: var(--primary-bg);
+                        }
+                    }
+                }
+
+                >* {
+                    border-bottom: var(--border-color) solid 1px;
+                }
+            }
+        }
+
+        hr {
+            margin: rem(50px) 0 rem(85px) 0;
+        }
+    }
 }

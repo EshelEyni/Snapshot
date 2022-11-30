@@ -11,7 +11,8 @@ import { faFaceSmile } from '@fortawesome/free-regular-svg-icons';
   selector: 'comment-edit',
   templateUrl: './comment-edit.component.html',
   styleUrls: ['./comment-edit.component.scss'],
-  inputs: ['post']
+  inputs: ['post'],
+  outputs: ['addedComment']
 })
 
 export class CommentEditComponent implements OnInit {
@@ -27,6 +28,7 @@ export class CommentEditComponent implements OnInit {
   isMainScreen: boolean = false;
   commentTxt: string = '';
   post!: Post;
+  addedComment = new EventEmitter<string[]>();
 
   ngOnInit(): void {
   }
@@ -46,9 +48,10 @@ export class CommentEditComponent implements OnInit {
     commentToAdd.txt = this.commentTxt;
     this.commentTxt = '';
     if (user) commentToAdd.by = user;
-    const commentId = await this.commentService.save(commentToAdd, this.post.id);
+    const commentId = await this.commentService.save(commentToAdd);
     if (commentId) this.post.commentsIds.push(commentId);
-    this.postService.loadPosts();
+    await this.postService.save(this.post);
+    this.addedComment.emit(this.post.commentsIds);
   }
 
   onToggleEmojiPicker() {

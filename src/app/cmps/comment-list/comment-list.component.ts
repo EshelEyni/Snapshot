@@ -1,6 +1,6 @@
 import { User } from 'src/app/models/user.model';
 import { CommentService } from 'src/app/services/comment.service';
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject, OnChanges, SimpleChanges } from '@angular/core';
 import { Comment } from 'src/app/models/comment.model';
 import { lastValueFrom } from 'rxjs';
 
@@ -21,8 +21,12 @@ export class CommentListComponent implements OnInit {
   comments: Comment[] = [];
 
   async ngOnInit() {
+    console.log('this.commentsIds', this.commentsIds);
     if (this.isPostPreview) {
-      const comments = await lastValueFrom(this.commentService.getCommentsForPostPreview(this.commentsIds,this.loggedinUser));
+      const comments = await lastValueFrom(this.commentService.getCommentsForPostPreview(this.commentsIds, this.loggedinUser));
+      this.comments = comments;
+    } else {
+      const comments = await lastValueFrom(this.commentService.getCommentsForPost(this.commentsIds));
       this.comments = comments;
     }
   }

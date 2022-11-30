@@ -43,6 +43,9 @@ import { UserPreviewComponent } from './cmps/user-preview/user-preview.component
 import { EllipsisComponent } from './cmps/ellipsis/ellipsis.component';
 import { PostActionsComponent } from './cmps/post-actions/post-actions.component';
 import { CommentEditComponent } from './cmps/comment-edit/comment-edit.component';
+import { SideBarIconDirective } from './directives/side-bar-icon.directive';
+import { SearchModalComponent } from './cmps/search-modal/search-modal.component';
+import { NotificationsModalComponent } from './cmps/notifications-modal/notifications-modal.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +74,9 @@ import { CommentEditComponent } from './cmps/comment-edit/comment-edit.component
     EllipsisComponent,
     PostActionsComponent,
     CommentEditComponent,
+    SideBarIconDirective,
+    SearchModalComponent,
+    NotificationsModalComponent,
   ],
   imports: [
     BrowserModule,

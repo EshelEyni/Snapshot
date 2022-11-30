@@ -1,6 +1,5 @@
 <article class="post-preview" *ngIf="loggedinUser">
-    <div class="main-screen dark-mode" *ngIf="isMainScreen"
-        (click)="onToggleModal('main-screen')">
+    <div class="main-screen dark-mode" *ngIf="isMainScreen" (click)="onToggleModal('main-screen')">
     </div>
     <section class="post-creator">
         <user-preview [user]="post.by" [location]="post.location"></user-preview>
@@ -14,14 +13,15 @@
 
     <p class="likes">{{post.likedBy.length}} likes</p>
 
-    <a class="view-all-link" *ngIf="post.commentsIds.length">View all {{post.commentsIds.length}} comments</a>
-    <!--  TODO: add link to post details -->
+    <a class="view-all-link" [routerLink]="['/post/', post.id]" *ngIf="post.commentsIds.length">View all
+        {{post.commentsIds.length}} comments</a>
+
     <comment-list *ngIf="post.commentsIds.length" [commentsIds]="post.commentsIds" [isPostPreview]="true"
         [loggedinUser]="loggedinUser"></comment-list>
 
-    <p class="date-added" [routerLink]="['/post', post.id]">{{post.createdAt|formattedDate}}</p>
+    <p class="date-added" [routerLink]="['/post/', post.id]">{{post.createdAt|formattedDate}}</p>
     <hr>
 
-    <comment-edit [post]="post"></comment-edit>
+    <comment-edit [post]="post" (addedComment)="addCommentToPost($event)"></comment-edit>
 
 </article>

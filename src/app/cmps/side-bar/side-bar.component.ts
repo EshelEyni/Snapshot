@@ -1,7 +1,6 @@
-import { UserState } from './../../store/reducers/user.reducer';
 import { LoadLoggedInUser } from './../../store/actions/user.actions';
 import { UserService } from './../../services/user.service';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChildren, ElementRef, QueryList, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { State } from 'src/app/store/store';
 import { Store } from '@ngrx/store';
@@ -15,7 +14,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./side-bar.component.scss']
 })
 
-export class SideBarComponent implements OnInit {
+export class SideBarComponent implements OnInit, OnChanges {
 
   constructor(
     private router: Router,
@@ -25,6 +24,7 @@ export class SideBarComponent implements OnInit {
     this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
   }
 
+  @ViewChildren('link') links!: QueryList<ElementRef>;
   @Output() togglePostEdit = new EventEmitter<boolean>()
   @Input() isPostEdit!: boolean
   loggedinUser$: Observable<User | null>
@@ -32,6 +32,7 @@ export class SideBarComponent implements OnInit {
   userImgUrl: string = this.userService.getDefaultUserImgUrl()
   profileUrl: string = ''
   isBtnClicked = { search: false, create: false, notifications: false }
+  isMainScreen: boolean = false;
   sub: Subscription | null = null;
 
 
@@ -43,6 +44,10 @@ export class SideBarComponent implements OnInit {
       this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
     }
     this.getUserUrls()
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.isBtnClicked.create = this.isPostEdit
   }
 
   getUserUrls() {
@@ -60,6 +65,26 @@ export class SideBarComponent implements OnInit {
     return !(this.router.url === '/login' || this.router.url === '/signup')
   }
 
+  onToggleModal() {
+    switch (this.router.url) {
+      case '/':
+        this.links.get(0)?.nativeElement.classList.add('active')
+        break;
+      case '/explore':
+        this.links.get(1)?.nativeElement.classList.add('active')
+        break;
+      case '/inbox':
+        this.links.get(2)?.nativeElement.classList.add('active')
+        break;
+      case this.profileUrl:
+        this.links.get(3)?.nativeElement.classList.add('active')
+        break;
+    }
+    this.isBtnClicked = { search: false, create: false, notifications: false }
+    this.isMainScreen = false;
+
+  }
+
   onTogglePostEdit() {
     this.isBtnClicked.create = true
     this.togglePostEdit.emit(true)
@@ -67,10 +92,18 @@ export class SideBarComponent implements OnInit {
 
   onToggleSearch() {
     this.isBtnClicked.search = !this.isBtnClicked.search
+    this.isMainScreen = !this.isMainScreen;
+    this.links.forEach(link => {
+      link.nativeElement.classList.remove('active')
+    })
   }
 
   onToggleNotifications() {
     this.isBtnClicked.notifications = !this.isBtnClicked.notifications
+    this.isMainScreen = !this.isMainScreen;
+    this.links.forEach(link => {
+      link.nativeElement.classList.remove('active')
+    })
   }
 
   ngOnDestroy() {

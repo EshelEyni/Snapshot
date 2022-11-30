@@ -75,8 +75,8 @@ export class CommentService {
     this.storageService.saveToStorage(ENTITY, comments)
   }
 
-  public save(comment: Comment, postId?: string,) {
-    return comment.id ? this._update(comment) : this._add(comment, postId || '')
+  public save(comment: Comment) {
+    return comment.id ? this._update(comment) : this._add(comment)
   }
 
   private async _update(comment: Comment) {
@@ -84,9 +84,8 @@ export class CommentService {
     this.loadComments()
   }
 
-  private async _add(comment: Comment, postId: string) {
+  private async _add(comment: Comment) {
     const addedComment = await asyncStorageService.post(ENTITY, comment) as Comment
-    this.postService.saveCommentToPost(postId, addedComment.id)
     this.loadComments()
     return addedComment.id
   }
@@ -107,6 +106,15 @@ export class CommentService {
     commentsIds.forEach(async (commentId: string) => {
       const comment = await lastValueFrom(this.getById(commentId))
       if (comment.by.id === user.id || followingIds.includes(comment.by.id)) comments.push(comment)
+    })
+    return of(comments)
+  }
+
+  public getCommentsForPost(commentsIds: string[]): Observable<Comment[]> {
+    const comments: Comment[] = []
+    commentsIds.forEach(async (commentId: string) => {
+      const comment = await lastValueFrom(this.getById(commentId))
+      comments.push(comment)
     })
     return of(comments)
   }

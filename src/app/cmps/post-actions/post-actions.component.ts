@@ -1,6 +1,6 @@
 import { PostService } from 'src/app/services/post.service';
 import { LoadLoggedInUser, SaveUser } from './../../store/actions/user.actions';
-import { ChangeDetectionStrategy, Component, inject, OnInit, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { faHeart, faComment, faPaperPlane, faBookmark } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartSolid, faBookmark as faBookmarkSolid } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
@@ -18,10 +18,11 @@ import { State } from 'src/app/store/store';
   inputs: ['post', 'loggedinUser'],
   outputs: ['toggleModal']
 })
-export class PostActionsComponent implements OnInit {
+export class PostActionsComponent implements OnInit, OnChanges {
 
   constructor(
     private postService: PostService,
+    private userService: UserService,
     private store: Store<State>
   ) { }
 
@@ -44,6 +45,10 @@ export class PostActionsComponent implements OnInit {
     this.setPostProporties();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    this.isLiked = this.post.likedBy.some(user => user.id === this.loggedinUser.id)
+  }
+
   setPostProporties() {
     this.isLiked = this.post.likedBy.some(user => user.id === this.loggedinUser.id)
     this.isSaved = this.loggedinUser.savedPostsIds.some(postId => postId === this.post.id)
@@ -54,8 +59,7 @@ export class PostActionsComponent implements OnInit {
     if (this.isLiked) {
       this.post.likedBy = this.post.likedBy.filter(user => user.id !== this.loggedinUser.id);
     } else {
-      const { id, username, fullname, imgUrl } = this.loggedinUser;
-      this.post.likedBy.push({ id, username, fullname, imgUrl });
+      this.post.likedBy.push(this.userService.getMiniUser(this.loggedinUser));
     }
 
     this.postService.save(this.post);
