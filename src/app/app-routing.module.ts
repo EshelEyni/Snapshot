@@ -1,3 +1,4 @@
+import { UserResolver } from './resolvers/user.resolver';
 import { PostDetailsComponent } from './pages/post-details/post-details.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { ExploreComponent } from './pages/explore/explore.component';
@@ -12,7 +13,7 @@ import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
   { path: 'login', component: LoginSignupComponent },
   { path: 'signup', component: LoginSignupComponent },
-  { path: 'profile/:id', component: ProfileDetailsComponent },
+  { path: 'profile/:id', component: ProfileDetailsComponent, resolve: { user: UserResolver } },
   { path: 'post/:id', component: PostDetailsComponent, resolve: { post: PostResolver } },
   { path: 'explore', component: ExploreComponent },
   { path: 'inbox', component: MessagesComponent },

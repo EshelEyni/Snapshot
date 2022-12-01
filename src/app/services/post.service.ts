@@ -1,7 +1,7 @@
 import { MiniUser } from './../models/user.model';
 import { StorageService } from './storage.service';
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, of, throwError, lastValueFrom } from 'rxjs';
+import { Observable, BehaviorSubject, of, throwError, lastValueFrom, filter } from 'rxjs';
 import { Post } from '../models/post.model';
 import { asyncStorageService } from './async-storage.service';
 import { UserService } from './user.service';
@@ -50,10 +50,10 @@ export class PostService {
     private userService: UserService
   ) { }
 
-  public loadPosts(): void {
+  public loadPosts(filterBy?: { userId: string }): void {
     let posts = this.storageService.loadFromStorage(ENTITY) || null
     if (!posts) {
-      posts = this._postsDb;
+      posts = filterBy ? this._postsDb.filter(post => post.by.id === filterBy.userId) : this._postsDb;
       this.storageService.saveToStorage(ENTITY, posts)
     }
     this._posts$.next(posts.reverse());

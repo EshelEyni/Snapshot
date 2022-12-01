@@ -1,3 +1,45 @@
-<section class="profile-details main-layout">
-    <p>profile-details works!</p>
+<section class="profile-details main-layout" *ngIf="user">
+    <main class="main-container">
+
+        <div class="user-details">
+            <div class="img-container">
+                <img [src]="user.imgUrl" alt="Avatar">
+            </div>
+
+            <div class="user-details-main-container">
+                <div class="user-name-container">
+                    <h2>{{user.username}}</h2>
+                    <button class="edit-btn clean-btn">Edit profile</button>
+                </div>
+                <div class="info">
+                    <p><span>{{user.createdPostsIds.length}} </span> posts</p>
+                    <p><span>{{user.followers.length}} </span> followers</p>
+                    <p><span>{{user.following.length}} </span> following</p>
+                </div>
+
+                <h1>{{user.fullname}}</h1>
+            </div>
+
+        </div>
+
+        <div class="post-filter">
+            <div class="btns-cotnainer">
+                <div>
+                    <svg-icon src="../../../assets/svgs/posts-rect.svg" [svgStyle]="{ 'display':'flex' }"></svg-icon>
+                    <button class="clean-btn">posts</button>
+                </div>
+                <div>
+                    <svg-icon src="../../../assets/svgs/bookmark-outline.svg" [svgStyle]="{ 'display':'flex' }">
+                    </svg-icon>
+                    <button class="clean-btn">saved</button>
+                </div>
+                <div>
+                    <svg-icon src="../../../assets/svgs/rect-user-tag.svg" [svgStyle]="{ 'display':'flex' }"></svg-icon>
+                    <button class="clean-btn">tagged</button>
+                </div>
+            </div>
+        </div>
+
+        <post-list [posts]="(posts$|async)!" [isMiniPreview]="true"></post-list>
+    </main>
 </section>

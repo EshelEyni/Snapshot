@@ -24,17 +24,17 @@ export class PostDetailsComponent implements OnInit {
     this.loggedinUser$ = this.store.select('userState').pipe(map((x => x.loggedinUser)));
   }
 
-  post!: Post
-  paramsSubscription!: Subscription
+  post!: Post;
+  paramsSubscription!: Subscription;
 
-  loggedinUser$: Observable<User | null>
-  loggedinUser!: User
+  loggedinUser$: Observable<User | null>;
+  loggedinUser!: User;
   sub: Subscription | null = null;
   isShareModalShown: boolean = false;
   isMainScreen: boolean = false;
   userPosts: Post[] = []
 
-  async ngOnInit() {
+  ngOnInit() {
     this.paramsSubscription = this.route.data.subscribe(data => {
       const post = data['post']
       if (post) this.post = post
@@ -73,6 +73,7 @@ export class PostDetailsComponent implements OnInit {
 
   ngOnDestroy() {
     this.sub?.unsubscribe()
+    this.paramsSubscription.unsubscribe()
   }
 
 }
