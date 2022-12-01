@@ -1,27 +1,53 @@
 <article class="post-preview" *ngIf="loggedinUser">
-    <div class="main-screen dark-mode" *ngIf="isMainScreen" (click)="onToggleModal('main-screen')">
+    <div class="main-screen dark-mode" *ngIf="isMainScreen" (click)="onToggleModal('main-screen')"></div>
+    <div class="post-preview-container" *ngIf="!isMiniPreview else miniPreview">
+        <section class="post-creator">
+            <user-preview [user]="post.by" [location]="post.location"></user-preview>
+            <ellipsis></ellipsis>
+        </section>
+
+        <img-container [imgUrls]="post.imgUrls"></img-container>
+
+        <post-actions [post]="post" [loggedinUser]="loggedinUser" (toggleModal)="onToggleModal('share')"></post-actions>
+        <share-modal *ngIf="isShareModalShown" (close)="onToggleModal('share')"></share-modal>
+
+        <p class="likes">{{post.likedBy.length}} likes</p>
+
+        <a class="view-all-link" [routerLink]="['/post/', post.id]" *ngIf="post.commentsIds.length">View all
+            {{post.commentsIds.length}} comments</a>
+
+        <comment-list *ngIf="post.commentsIds.length" [commentsIds]="post.commentsIds" [isPostPreview]="true"
+            [loggedinUser]="loggedinUser"></comment-list>
+
+        <p class="date-added" [routerLink]="['/post/', post.id]">{{post.createdAt|formattedDate}}</p>
+        <hr>
+
+        <comment-edit [post]="post" (addedComment)="addCommentToPost($event)"></comment-edit>
     </div>
-    <section class="post-creator">
-        <user-preview [user]="post.by" [location]="post.location"></user-preview>
-        <ellipsis></ellipsis>
-    </section>
 
-    <img-container [imgUrls]="post.imgUrls"></img-container>
-
-    <post-actions [post]="post" [loggedinUser]="loggedinUser" (toggleModal)="onToggleModal('share')"></post-actions>
-    <share-modal *ngIf="isShareModalShown" (close)="onToggleModal('share')"></share-modal>
-
-    <p class="likes">{{post.likedBy.length}} likes</p>
-
-    <a class="view-all-link" [routerLink]="['/post/', post.id]" *ngIf="post.commentsIds.length">View all
-        {{post.commentsIds.length}} comments</a>
-
-    <comment-list *ngIf="post.commentsIds.length" [commentsIds]="post.commentsIds" [isPostPreview]="true"
-        [loggedinUser]="loggedinUser"></comment-list>
-
-    <p class="date-added" [routerLink]="['/post/', post.id]">{{post.createdAt|formattedDate}}</p>
-    <hr>
-
-    <comment-edit [post]="post" (addedComment)="addCommentToPost($event)"></comment-edit>
+    <ng-template #miniPreview>
+        <div class="mini-preview-container" [routerLink]="['/post/',post.id]">
+            <div class="multiple-img-icon-container">
+                <svg-icon *ngIf="post.imgUrls.length > 1" src="../../../assets/svgs/files-solid.svg"
+                    [svgStyle]="{ 'display':'flex' }"></svg-icon>
+            </div>
+            <img-container [imgUrls]="post.imgUrls" [isMiniPreview]="true"></img-container>
+            <div class="details-container">
+                <div>
+                    <div>
+                        <fa-icon class="comments-icon" [icon]="faComments"></fa-icon>
+                    </div>
+                    <span>{{post.commentsIds.length}}</span>
+                </div>
+                <div *ngIf="post.likedBy.length">
+                    <div>
+                        <svg-icon src="../../../assets/svgs/heart-icon-solid.svg"
+                            [svgStyle]="{ 'display':'flex','fill':'white' }"></svg-icon>
+                    </div>
+                    <span>{{post.likedBy.length}}</span>
+                </div>
+            </div>
+        </div>
+    </ng-template>
 
 </article>

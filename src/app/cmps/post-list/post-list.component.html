@@ -1,5 +1,5 @@
-<ul class="post-list">
+<ul class="post-list" [class.for-mini-preview]="isMiniPreview">
     <li *ngFor="let post of posts">
-        <post-preview [post]="post"></post-preview>
+        <post-preview [post]="post" [isMiniPreview]="isMiniPreview"></post-preview>
     </li>
 </ul>

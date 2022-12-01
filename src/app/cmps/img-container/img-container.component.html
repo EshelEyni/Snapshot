@@ -1,43 +1,49 @@
 <div class="img-container">
-    <img src={{currImgUrl}} alt="Avatar">
-    <div class="pagination-btns">
-        <div>
-            <fa-icon (click)="onSwitchImg(-1)" [icon]="faCircleChevronLeft" *ngIf="isPaginationBtnShown.left && !isEditPost">
-            </fa-icon>
+    <div *ngIf="!isMiniPreview else miniPreview">
+        <img src={{currImgUrl}} alt="Avatar">
+        <div class="pagination-btns">
+            <div>
+                <fa-icon (click)="onSwitchImg(-1)" [icon]="faCircleChevronLeft"
+                    *ngIf="isPaginationBtnShown.left && !isEditPost">
+                </fa-icon>
 
-            <svg-icon (click)="onSwitchImg(-1)" src="../../../assets/svgs/chevron-left.svg"
-                *ngIf="isPaginationBtnShown.left && isEditPost"></svg-icon>
-        </div>
-        <div>
-            <fa-icon (click)="onSwitchImg(1)" [icon]="faCircleChevronRight" *ngIf="isPaginationBtnShown.right && !isEditPost">
-            </fa-icon>
+                <svg-icon (click)="onSwitchImg(-1)" src="../../../assets/svgs/chevron-left.svg"
+                    *ngIf="isPaginationBtnShown.left && isEditPost"></svg-icon>
+            </div>
+            <div>
+                <fa-icon (click)="onSwitchImg(1)" [icon]="faCircleChevronRight"
+                    *ngIf="isPaginationBtnShown.right && !isEditPost">
+                </fa-icon>
 
-            <svg-icon (click)="onSwitchImg(1)" src="../../../assets/svgs/chveron-right.svg"
-                *ngIf="isPaginationBtnShown.right && isEditPost"> </svg-icon>
+                <svg-icon (click)="onSwitchImg(1)" src="../../../assets/svgs/chveron-right.svg"
+                    *ngIf="isPaginationBtnShown.right && isEditPost"> </svg-icon>
+            </div>
+        </div>
+        <div class="dots-container" *ngIf="imgUrls.length>1">
+            <fa-icon class="dot" *ngFor="let img of imgUrls" [class.active]="img === currImgUrl" [icon]="faCircle">
+            </fa-icon>
+        </div>
+        <div class="files-svg-container" (click)="onToggleImgSelect()" *ngIf="isEditPost">
+            <svg-icon src="../../../assets/svgs/files-outline.svg" [svgStyle]="{ 'display':'flex' }"></svg-icon>
+        </div>
+        <div class="img-select" *ngIf="isImgSelect">
+            <ul>
+                <li *ngFor="let img of imgUrls">
+                    <img src={{img}} alt="Avatar">
+                    <div class="remove-btn-container" (click)="onRemoveImg(img)">
+                        <svg-icon src="../../../assets/svgs/x.svg" [svgStyle]="{ 'display':'flex' }"></svg-icon>
+                    </div>
+                </li>
+            </ul>
+            <div class="plus-btn-container">
+                <a href="javascript:void(0)" (click)="file.click()">
+                    <svg-icon src="../../../assets/svgs/plus.svg" [svgStyle]="{ 'display':'flex'}"></svg-icon>
+                </a>
+                <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
+            </div>
         </div>
     </div>
-    <div class="dots-container" *ngIf="imgUrls.length>1">
-        <fa-icon class="dot" *ngFor="let img of imgUrls" [class.active]="img === currImgUrl" [icon]="faCircle">
-        </fa-icon>
-    </div>
-    <div class="files-svg-container" (click)="onToggleImgSelect()" *ngIf="isEditPost">
-        <svg-icon src="../../../assets/svgs/files.svg" [svgStyle]="{ 'display':'flex' }"></svg-icon>
-    </div>
-    <div class="img-select" *ngIf="isImgSelect">
-        <ul>
-            <li *ngFor="let img of imgUrls">
-                <img src={{img}} alt="Avatar">
-                <div class="remove-btn-container" (click)="onRemoveImg(img)">
-                    <svg-icon src="../../../assets/svgs/x.svg" [svgStyle]="{ 'display':'flex' }"></svg-icon>
-                </div>
-            </li>
-        </ul>
-        <div class="plus-btn-container">
-            <a href="javascript:void(0)" (click)="file.click()">
-                <svg-icon src="../../../assets/svgs/plus.svg" [svgStyle]="{ 'display':'flex'}"></svg-icon>
-            </a>
-            <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
-        </div>
-    </div>
-  
+    <ng-template #miniPreview>
+        <img src={{currImgUrl}} alt="Avatar">
+    </ng-template>
 </div>

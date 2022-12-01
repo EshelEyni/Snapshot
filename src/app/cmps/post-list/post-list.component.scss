@@ -1,7 +1,12 @@
 @import '../../../assets/styles/setup/functions';
 
-.post-list{
+.post-list {
     display: flex;
     flex-direction: column;
     gap: rem(15px);
+
+    &.for-mini-preview {
+        display: grid;
+        grid-template-columns: repeat(3, rem(300px));
+    }
 }

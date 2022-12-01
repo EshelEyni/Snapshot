@@ -3,55 +3,111 @@
 @import '../../../assets/styles/setup/mixins';
 
 ::ng-deep .post-preview {
-    height: fit-content;
-    width: 60%;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-    padding: 0 rem(20px) rem(20px) rem(20px);
 
-    // .main-screen {
-    //     @include main-screen(rgba(0, 0, 0, 0.5));
-    // }
+    .post-preview-container {
 
-    .post-creator {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: rem(60px);      
-    }
+        height: fit-content;
+        width: 60%;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        padding: 0 rem(20px) rem(20px) rem(20px);
 
-    .img-container {
-        .pagination-btns {
-            fa-icon {
-                color: var(--primary-pagination-button);
-                font-size: rem(30px);
+        // .main-screen {
+        //     @include main-screen(rgba(0, 0, 0, 0.5));
+        // }
+
+        .post-creator {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: rem(60px);
+        }
+
+        .img-container {
+            .pagination-btns {
+                fa-icon {
+                    color: var(--primary-pagination-button);
+                    font-size: rem(30px);
+                }
+            }
+
+            .dots-container {
+                .active {
+                    color: var(--secondary-bg);
+                }
             }
         }
 
-        .dots-container {
-            .active {
-                color: var(--secondary-bg);
+        .likes {
+            font-weight: 600;
+        }
+
+        .view-all-link {
+            font-size: rem(16px);
+            color: var(--secondary-color);
+        }
+
+        .date-added {
+            font-size: rem(12px);
+            text-transform: uppercase;
+            letter-spacing: rem(1px);
+            color: var(--secondary-color);
+            cursor: pointer;
+        }
+
+    }
+
+    .mini-preview-container {
+        position: relative;
+
+
+        .multiple-img-icon-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: rem(7.5px);
+            z-index: 10;
+        }
+
+        .details-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(128, 128, 128, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            justify-content: center;
+            gap: rem(25px);
+            color: white;
+            align-items: center;
+            padding: rem(7.5px);
+
+            .comments-icon {
+                font-size: rem(20px);
+            }
+
+            >* {
+                display: flex;
+                align-items: center;
+                gap: rem(5px);
             }
         }
-    }
 
-    .likes {
-        font-weight: 600;
-    }
+        &:hover {
 
-    .view-all-link {
-        font-size: rem(16px);
-        color: var(--secondary-color);
-    }
+            .details-container {
+                visibility: visible;
+            }
+        }
 
-    .date-added {
-        font-size: rem(12px);
-        text-transform: uppercase;
-        letter-spacing: rem(1px);
-        color: var(--secondary-color);
-        cursor: pointer;
-    }
 
-    
+    }
 }

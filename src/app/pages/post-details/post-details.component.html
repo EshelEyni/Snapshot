@@ -35,6 +35,8 @@
         </article>
 
         <hr>
-        <post-list [posts]="userPosts"></post-list>
+
+        <p>More posts from <span [routerLink]="['/profile/',loggedinUser.id]">{{loggedinUser.username}}</span></p>
+        <post-list [posts]="userPosts" [isMiniPreview]="true"></post-list>
     </div>
 </main>

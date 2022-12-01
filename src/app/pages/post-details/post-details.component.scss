@@ -9,6 +9,10 @@
         padding: calc(4vh) 20px 0;
         margin: 0 auto;
 
+        span {
+            font-weight: 600;
+            cursor: pointer;
+        }
 
         .post {
             display: flex;
@@ -44,10 +48,7 @@
                         }
 
                         .first-like {
-                            span {
-                                font-weight: 600;
-                                cursor: pointer;
-                            }
+                           
                         }
                     }
                 }

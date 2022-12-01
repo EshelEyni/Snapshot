@@ -21,7 +21,6 @@ export class CommentListComponent implements OnInit {
   comments: Comment[] = [];
 
   async ngOnInit() {
-    console.log('this.commentsIds', this.commentsIds);
     if (this.isPostPreview) {
       const comments = await lastValueFrom(this.commentService.getCommentsForPostPreview(this.commentsIds, this.loggedinUser));
       this.comments = comments;

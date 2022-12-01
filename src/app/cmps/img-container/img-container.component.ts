@@ -1,5 +1,5 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
-import { faCircle, faCircleChevronLeft, faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faCircle, faCircleChevronLeft, faCircleChevronRight, faComments } from '@fortawesome/free-solid-svg-icons';
 import { UploadImgService } from 'src/app/services/upload-img.service';
 
 @Component({
@@ -17,12 +17,13 @@ export class ImgContainerComponent implements OnInit {
   @Input() onFileChange!: Function;
   @Input() saveFiles!: Function;
   @Input() isEditPost!: boolean;
+  @Input() isMiniPreview!: boolean;
 
   // Icons
   faCircle = faCircle;
   faCircleChevronLeft = faCircleChevronLeft;
   faCircleChevronRight = faCircleChevronRight;
-
+  
   currImgUrl: string = '';
   isPaginationBtnShown = { left: false, right: false };
   isImgSelect: boolean = false;

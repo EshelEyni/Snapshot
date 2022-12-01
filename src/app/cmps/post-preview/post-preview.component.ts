@@ -7,6 +7,7 @@ import { Post } from './../../models/post.model';
 import { Component, Input, OnInit, inject, ViewChild, ElementRef } from '@angular/core';
 import { Comment } from 'src/app/models/comment.model';
 import { faFaceSmile } from '@fortawesome/free-regular-svg-icons';
+import { faComments } from '@fortawesome/free-solid-svg-icons';
 import { CommentService } from 'src/app/services/comment.service';
 @Component({
   selector: 'post-preview',
@@ -25,9 +26,11 @@ export class PostPreviewComponent implements OnInit {
   commentService = inject(CommentService);
   userService = inject(UserService);
   @Input() post!: Post;
-  @Input() isPostDetails!: boolean;
+  @Input() isMiniPreview!: boolean;
 
   faFaceSmile = faFaceSmile;
+  faComments = faComments;
+
 
   loggedinUser$: Observable<User | null>
   loggedinUser!: User

@@ -9,6 +9,8 @@ import { Post } from 'src/app/models/post.model';
 export class PostListComponent implements OnInit {
 
   @Input() posts!: Post[]
+  @Input() isMiniPreview!: boolean;
+  
   constructor() { }
 
   ngOnInit(): void {
