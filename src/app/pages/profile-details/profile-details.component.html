@@ -24,18 +24,23 @@
 
         <div class="post-filter">
             <div class="btns-cotnainer">
-                <div>
-                    <svg-icon src="../../../assets/svgs/posts-rect.svg" [svgStyle]="{ 'display':'flex' }"></svg-icon>
-                    <button class="clean-btn">posts</button>
-                </div>
-                <div>
-                    <svg-icon src="../../../assets/svgs/bookmark-outline.svg" [svgStyle]="{ 'display':'flex' }">
+                <div [class.active]="filterBy.createdPosts">
+                    <svg-icon src="../../../assets/svgs/posts-rect.svg"
+                        [svgStyle]="{ 'display':'flex','color': filterBy.createdPosts ? '#262626' : '#8e8e8e'}">
                     </svg-icon>
-                    <button class="clean-btn">saved</button>
+                    <button class="clean-btn" (click)="onSetFilter('createdPosts')">posts</button>
                 </div>
-                <div>
-                    <svg-icon src="../../../assets/svgs/rect-user-tag.svg" [svgStyle]="{ 'display':'flex' }"></svg-icon>
-                    <button class="clean-btn">tagged</button>
+                <div [class.active]="filterBy.savedPosts">
+                    <svg-icon src="../../../assets/svgs/bookmark-outline.svg"
+                        [svgStyle]="{ 'display':'flex' ,'color': filterBy.savedPosts ? '#262626' : '#8e8e8e'}">
+                    </svg-icon>
+                    <button class="clean-btn" (click)="onSetFilter('savedPosts')">saved</button>
+                </div>
+                <div [class.active]="filterBy.taggedPosts">
+                    <svg-icon src="../../../assets/svgs/rect-user-tag.svg"
+                        [svgStyle]="{ 'display':'flex' ,'color': filterBy.taggedPosts ? '#262626' : '#8e8e8e'}">
+                    </svg-icon>
+                    <button class="clean-btn" (click)="onSetFilter('taggedPosts')">tagged</button>
                 </div>
             </div>
         </div>

@@ -64,7 +64,15 @@
                 padding: rem(10px) 0;
 
                 >* {
+                    
+                    &.active {
+                        button {
+                            color: var(--primary-color);
+                        }
+                    }
+
                     button {
+                        color: var(--secondary-color);
                         text-transform: uppercase;
                     }
                 }

@@ -115,7 +115,6 @@ export class PostEditComponent implements OnInit {
     postToSave.by = loggedinUser
     postToSave.location = this.location
 
-
     if (this.txt) {
       const commentToAdd = this.commentService.getEmptyComment()
       commentToAdd.txt = this.txt

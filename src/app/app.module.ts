@@ -46,6 +46,7 @@ import { CommentEditComponent } from './cmps/comment-edit/comment-edit.component
 import { SideBarIconDirective } from './directives/side-bar-icon.directive';
 import { SearchModalComponent } from './cmps/search-modal/search-modal.component';
 import { NotificationsModalComponent } from './cmps/notifications-modal/notifications-modal.component';
+import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { NotificationsModalComponent } from './cmps/notifications-modal/notifica
     SideBarIconDirective,
     SearchModalComponent,
     NotificationsModalComponent,
+    ProfileEditComponent,
   ],
   imports: [
     BrowserModule,

@@ -50,13 +50,40 @@ export class PostService {
     private userService: UserService
   ) { }
 
-  public loadPosts(filterBy?: { userId: string }): void {
+  public async loadPosts(filterBy?: { userId: string, type: string }) {
     let posts = this.storageService.loadFromStorage(ENTITY) || null
     if (!posts) {
-      posts = filterBy ? this._postsDb.filter(post => post.by.id === filterBy.userId) : this._postsDb;
+      posts = this._postsDb;
       this.storageService.saveToStorage(ENTITY, posts)
     }
+    if (filterBy) posts = await this._getFilteredPosts(posts, filterBy)
     this._posts$.next(posts.reverse());
+  }
+
+  private async _getFilteredPosts(posts: Post[], filterBy: { userId: string, type: string }): Promise<Post[]> {
+
+    if (filterBy.type === 'createdPosts') {
+      return posts.filter(post => post.by.id === filterBy.userId)
+    } else {
+      const user = await lastValueFrom(this.userService.getById(filterBy.userId))
+      const _posts: Post[] = []
+      if (filterBy.type === 'savedPosts') {
+        user.savedPostsIds.forEach(async postId => {
+          const post = await asyncStorageService.get(ENTITY, postId) as Post
+          _posts.push(post)
+        })
+        return _posts
+      }
+      if (filterBy.type === 'taggedPosts') {
+        const userName = user.username
+        posts.forEach(post => {
+          if (post.tags.includes('#' + userName)) _posts.push(post)
+        })
+        return _posts
+      }
+    }
+
+    return []
   }
 
   public getById(postId: string): Observable<Post> {
