@@ -75,7 +75,7 @@
 
 // Solid Heart mixin
 @mixin solid-heart {
-    color: var(--primary-like-button);
+    color: var(--red-button);
     animation: pulse 0.25s;
     animation-direction: alternate;
     animation-timing-function: cubic-bezier(.5, 0.05, 1, .5);

@@ -1,3 +1,8 @@
+import { LoadLoggedInUser } from './../../store/actions/user.actions';
+import { User } from 'src/app/models/user.model';
+import { Observable, Subscription, map } from 'rxjs';
+import { State } from './../../store/store';
+import { Store } from '@ngrx/store';
 import { CommentService } from 'src/app/services/comment.service';
 import { UtilService } from './../../services/util.service';
 import { PostService } from 'src/app/services/post.service';
@@ -15,7 +20,12 @@ import { Location, Post } from 'src/app/models/post.model';
 export class PostEditComponent implements OnInit {
   @Output() togglePostEdit = new EventEmitter<boolean>()
 
-  constructor() { }
+  constructor(
+    private store: Store<State>
+
+  ) {
+    this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
+  }
   uploadImgService = inject(UploadImgService)
   userService = inject(UserService)
   postService = inject(PostService)
@@ -26,12 +36,12 @@ export class PostEditComponent implements OnInit {
   faX = faX;
   faArrowLeft = faArrowLeft;
 
+
+  sub: Subscription | null = null;
+  loggedinUser$: Observable<User | null>
+  loggedinUser!: User
   currTitle: string = 'create new post';
   imgUrls: string[] = [];
-  // imgUrls: string[] = [
-  //   'https://res.cloudinary.com/dng9sfzqt/image/upload/v1668095950/cbtrkoffzcqreo533m1a.jpg',
-  //   'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667043202/o2o9bcdqroy1asyrk09a.jpg'
-  // ];
   txt: string = '';
   location: Location = {
     lat: 0,
@@ -45,6 +55,11 @@ export class PostEditComponent implements OnInit {
 
   ngOnInit() {
     this.dragAreaClass = "dragarea";
+    this.sub = this.loggedinUser$.subscribe(user => {
+      if (user) {
+        this.loggedinUser = JSON.parse(JSON.stringify(user))
+      }
+    })
   }
 
   @HostListener("dragover", ["$event"]) onDragOver(event: any) {
@@ -107,23 +122,21 @@ export class PostEditComponent implements OnInit {
   }
 
   async savePost() {
-    const loggedinUser = this.userService.getLoggedinUser()
-    if (!loggedinUser) return
 
     const postToSave = this.postService.getEmptyPost()
     postToSave.imgUrls = this.imgUrls
-    postToSave.by = loggedinUser
+    postToSave.by = this.userService.getMiniUser(this.loggedinUser)
     postToSave.location = this.location
 
     if (this.txt) {
       const commentToAdd = this.commentService.getEmptyComment()
       commentToAdd.txt = this.txt
-      commentToAdd.by = loggedinUser
+      commentToAdd.by = this.userService.getMiniUser(this.loggedinUser)
       const commentId = await this.commentService.save(commentToAdd)
       if (commentId) postToSave.commentsIds.push(commentId)
     }
 
-    await this.postService.save(postToSave, loggedinUser.id)
+    await this.postService.save(postToSave, this.loggedinUser.id)
     this.onTogglePostEdit()
   }
 
@@ -134,5 +147,10 @@ export class PostEditComponent implements OnInit {
   onChangePost(ev: { txt: string, location: string }) {
     this.txt = ev.txt
     this.location.name = ev.location
+  }
+
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe()
   }
 }

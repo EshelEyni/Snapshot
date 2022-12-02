@@ -9,7 +9,7 @@
             <div class="user-details-main-container">
                 <div class="user-name-container">
                     <h2>{{user.username}}</h2>
-                    <button class="edit-btn clean-btn">Edit profile</button>
+                    <a class="edit-link" [routerLink]="['/profile-edit/',user.id]">Edit profile</a>
                 </div>
                 <div class="info">
                     <p><span>{{user.createdPostsIds.length}} </span> posts</p>

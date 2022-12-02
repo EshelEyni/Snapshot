@@ -35,8 +35,17 @@
 
                 .user-name-container {
                     display: flex;
+                    justify-content: space-between;
                     align-items: center;
-                    gap: rem(10px);
+
+                    .edit-link {
+                        font-weight: 500;
+                        padding: 5px 7.5px;
+                        font-size: rem(14px);
+                        font-weight: bold;
+                        border: 1px solid var(--border-color);
+                        border-radius: 5px;
+                    }
                 }
 
                 .info {
@@ -64,7 +73,7 @@
                 padding: rem(10px) 0;
 
                 >* {
-                    
+
                     &.active {
                         button {
                             color: var(--primary-color);

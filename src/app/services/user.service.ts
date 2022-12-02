@@ -8,13 +8,17 @@ import { UserState } from '../store/reducers/user.reducer';
 import { LoadingUsers } from '../store/actions/user.actions';
 import { asyncStorageService } from './async-storage.service';
 
-const USERS = [
+const USERS:User[] = [
   {
     id: 'a12F34b907',
     username: 'tale',
     fullname: 'Tal Hemo',
+    gender:'female',
     email: 'tal@gmail.com',
+    phone: '054-1234567',
     password: 'tale123',
+    bio: 'I am a full stack developer',
+    website: 'https://talehemo.com',
     imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg',
     followers: [],
     following: [],
@@ -26,8 +30,12 @@ const USERS = [
     id: 'a12tgeko907',
     username: 'eshel',
     fullname: 'Eshel Eyni',
+    gender:'male',
     email: 'eshel@gmail.com',
+    phone: '054-1234567',
     password: 'eshel123',
+    bio: 'I am a full stack developer',
+    website: 'https://eshel.com',
     imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669304308/lci872dhvwd0jeuzh3h8.png',
     followers: [],
     following: [],
@@ -100,6 +108,10 @@ export class UserService {
       fullname: userCred.fullname,
       username: userCred.username,
       password: userCred.password,
+      gender: '',
+      phone: '',
+      website: '',
+      bio:'',
       imgUrl: '',
       followers: [],
       following: [],

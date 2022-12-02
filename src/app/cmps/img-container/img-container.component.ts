@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit, OnChanges } from '@angular/core';
 import { faCircle, faCircleChevronLeft, faCircleChevronRight, faComments } from '@fortawesome/free-solid-svg-icons';
 import { UploadImgService } from 'src/app/services/upload-img.service';
 
@@ -7,7 +7,7 @@ import { UploadImgService } from 'src/app/services/upload-img.service';
   templateUrl: './img-container.component.html',
   styleUrls: ['./img-container.component.scss']
 })
-export class ImgContainerComponent implements OnInit {
+export class ImgContainerComponent implements OnInit, OnChanges {
 
   constructor() { }
   uploadImgService = inject(UploadImgService)
@@ -23,12 +23,17 @@ export class ImgContainerComponent implements OnInit {
   faCircle = faCircle;
   faCircleChevronLeft = faCircleChevronLeft;
   faCircleChevronRight = faCircleChevronRight;
-  
+
   currImgUrl: string = '';
   isPaginationBtnShown = { left: false, right: false };
   isImgSelect: boolean = false;
 
   ngOnInit(): void {
+    this.currImgUrl = this.imgUrls[0];
+    this.setPaginationBtns();
+  }
+
+  ngOnChanges() {
     this.currImgUrl = this.imgUrls[0];
     this.setPaginationBtns();
   }

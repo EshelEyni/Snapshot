@@ -52,6 +52,9 @@ hr {
     margin: 0;
 }
 
+p {
+    margin: 0;
+}
 
 .main-screen {
     position: fixed;
@@ -60,8 +63,13 @@ hr {
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0);
-    z-index: 10;
     cursor: pointer;
+    z-index: 10;
+
+
+    &.dark-mode {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
 }
 
 @include for-normal-layout {

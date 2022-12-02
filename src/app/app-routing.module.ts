@@ -1,3 +1,4 @@
+import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
 import { UserResolver } from './resolvers/user.resolver';
 import { PostDetailsComponent } from './pages/post-details/post-details.component';
 import { MessagesComponent } from './pages/messages/messages.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'login', component: LoginSignupComponent },
   { path: 'signup', component: LoginSignupComponent },
   { path: 'profile/:id', component: ProfileDetailsComponent, resolve: { user: UserResolver } },
+  { path: 'profile-edit/:id', component: ProfileEditComponent, resolve: { user: UserResolver } },
   { path: 'post/:id', component: PostDetailsComponent, resolve: { post: PostResolver } },
   { path: 'explore', component: ExploreComponent },
   { path: 'inbox', component: MessagesComponent },

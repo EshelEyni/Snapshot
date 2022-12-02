@@ -2,8 +2,12 @@ export interface User {
     id: string
     username: string
     fullname: string
+    gender: string
     email: string
+    phone: string
     password: string
+    bio: string
+    website: string
     imgUrl: string
     followers: MiniUser[]
     following: MiniUser[]

@@ -1,1 +1,80 @@
-<p>profile-edit works!</p>
+<div class="main-screen dark-mode" *ngIf="isImgSettingModalOpen" (click)="onToggleModal()"></div>
+<section class="profile-edit main-layout">
+    <form class="form" [formGroup]="form">
+        <div class="user-name">
+            <div class="img-container">
+                <img class="img" [src]="userImgUrl">
+            </div>
+            <div class="name-container">
+                <h1>{{user.username}}</h1>
+                <div class="link-container">
+                    <div *ngIf="!user.imgUrl; else imgModalSelect">
+                        <label for="img-input">
+                            <input type="file" class="img-input" id="img-input" (change)="onImgChange($event)">
+                            Change profile photo
+                        </label>
+                    </div>
+                    <ng-template #imgModalSelect>
+                        <div (click)="onToggleModal()">
+                            <p>Change profile photo</p>
+                        </div>
+                    </ng-template>
+                    <div class="img-setting-modal" *ngIf="isImgSettingModalOpen">
+                        <h1>Change Profile Photo</h1>
+                        <div class="btn-cotnainer">
+                            <button class="btn-upload clean-btn" (click)="file.click()">Upload Photo</button>
+                            <input type="file" class="img-input" #file id="img-input" (change)="onImgChange($event)" style="display:none">
+                            <button class="btn-remove clean-btn" (click)="onRemoveImg()">Remove Current Photo</button>
+                            <button class="btn-cancel clean-btn" (click)="onToggleModal()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="input-container">
+            <label for="fullname"> Name </label>
+            <input formControlName="fullname" id="fullname" type="text" placeholder="Fullname">
+            <p>Help people discover your account by using the name you're known by: either your full name, nickname, or
+                business name.
+                You can only change your name twice within 14 days.</p>
+        </div>
+        <div class="input-container">
+            <label for="username"> Username </label>
+            <input formControlName="username" id="username" type="text" placeholder="Username">
+            <p>In most cases, you'll be able to change your username back to {{user.username}} for another 14 days.</p>
+        </div>
+
+        <div class="input-container">
+            <label for="bio"> Bio </label>
+            <textarea formControlName="bio" id="bio" type="text" placeholder="Bio" maxlength="150"></textarea>
+            <p>{{form.value.bio.length}}/150</p>
+            <p>
+                <span>Personal information</span>
+                Provide your personal information, even if the account is used for a business, a pet or something else.
+                This won't be a part of your public profile.
+            </p>
+        </div>
+
+        <div class="input-container">
+            <label for="email"> Email </label>
+            <input formControlName="email" id="email" type="email" placeholder="Email">
+        </div>
+
+        <div class="input-container">
+            <label for="phone"> Phone Number </label>
+            <input formControlName="phone" id="phone" type="text" placeholder="Phone Number">
+        </div>
+
+        <div class="input-container">
+            <label for="gender"> Gender </label>
+            <input formControlName="gender" id="gender" type="text" placeholder="Phone Number">
+        </div>
+
+        <button class="btn-submit" (click)="onSubmit()">Submit</button>
+    </form>
+    <div class="user-msg" *ngIf="userMsg">
+        <p>{{userMsg}}</p>
+    </div>
+</section>
