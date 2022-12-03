@@ -1,0 +1,10 @@
+<section class="search-bar">
+    <input  [(ngModel)]="searchTerm" class="clean-input" type="text" placeholder="Search" (ngModelChange)="onChange()">
+    <div class="btn-container">
+        <fa-icon [icon]="faCircleXmark" (click)="onClearSearch()" *ngIf="!isLoading; else loader"></fa-icon>
+        <ng-template #loader>
+            <svg-icon src="../../../assets/svgs/loader.svg"
+             [svgStyle]="{'height':'35px','width':'35px','background':'transparent','position':'relative','left':'-10px'}"></svg-icon>
+        </ng-template>
+    </div>
+</section>

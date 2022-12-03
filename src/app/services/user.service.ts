@@ -1,6 +1,6 @@
 import { UtilService } from './util.service';
 import { StorageService } from './storage.service';
-import { User, MiniUser, UserFilter } from './../models/user.model';
+import { User, MiniUser } from './../models/user.model';
 import { BehaviorSubject, Observable, of, from } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -8,12 +8,12 @@ import { UserState } from '../store/reducers/user.reducer';
 import { LoadingUsers } from '../store/actions/user.actions';
 import { asyncStorageService } from './async-storage.service';
 
-const USERS:User[] = [
+const USERS: User[] = [
   {
     id: 'a12F34b907',
     username: 'tale',
     fullname: 'Tal Hemo',
-    gender:'female',
+    gender: 'female',
     email: 'tal@gmail.com',
     phone: '054-1234567',
     password: 'tale123',
@@ -30,7 +30,7 @@ const USERS:User[] = [
     id: 'a12tgeko907',
     username: 'eshel',
     fullname: 'Eshel Eyni',
-    gender:'male',
+    gender: 'male',
     email: 'eshel@gmail.com',
     phone: '054-1234567',
     password: 'eshel123',
@@ -69,8 +69,25 @@ export class UserService {
 
   public loadUsers(filterBy = ''): Observable<User[]> {
     this.store.dispatch(new LoadingUsers());
-    console.log('ItemService: Return Items ===> effect');
-    return from(asyncStorageService.query(ENTITY) as Promise<User[]>)
+    console.log('UserService: Return Users ===> effect');
+    return from(this._getUsers(filterBy) as Promise<User[]>)
+  }
+
+  private async _getUsers(filterBy: string): Promise<User[]> {
+    const users = await asyncStorageService.query(ENTITY) as User[]
+    if (!filterBy) return users
+    else {
+      const term = filterBy.toLowerCase()
+      let filteredUsers = users.filter(user => {
+        return (
+          user.username.toLowerCase().includes(term) ||
+          user.bio.toLocaleLowerCase().includes(term)
+        )
+      })
+      console.log('filteredUsers', filteredUsers);
+      return filteredUsers
+    }
+
   }
 
   public getById(userId: string): Observable<User> {
@@ -111,7 +128,7 @@ export class UserService {
       gender: '',
       phone: '',
       website: '',
-      bio:'',
+      bio: '',
       imgUrl: '',
       followers: [],
       following: [],

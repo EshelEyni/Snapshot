@@ -9,6 +9,9 @@ export class SearchModalComponent implements OnInit {
 
   constructor() { }
 
+  searchResults: any[] = []
+  recentSearches: any[] = []
+
   ngOnInit(): void {
   }
 

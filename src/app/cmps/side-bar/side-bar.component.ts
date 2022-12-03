@@ -31,18 +31,13 @@ export class SideBarComponent implements OnInit, OnChanges {
   loggedinUser!: User
   userImgUrl: string = this.userService.getDefaultUserImgUrl()
   profileUrl: string = ''
-  isBtnClicked = { search: false, create: false, notifications: false }
+  isBtnClicked = { search: true, create: false, notifications: false }
   isMainScreen: boolean = false;
   sub: Subscription | null = null;
 
 
   async ngOnInit(): Promise<void> {
     this.isBtnClicked.create = this.isPostEdit
-    const loggedinUser = this.userService.getLoggedinUser()
-
-    if (loggedinUser) {
-      this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
-    }
     this.getUserUrls()
   }
 

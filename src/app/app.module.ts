@@ -44,9 +44,10 @@ import { EllipsisComponent } from './cmps/ellipsis/ellipsis.component';
 import { PostActionsComponent } from './cmps/post-actions/post-actions.component';
 import { CommentEditComponent } from './cmps/comment-edit/comment-edit.component';
 import { SideBarIconDirective } from './directives/side-bar-icon.directive';
-import { SearchModalComponent } from './cmps/search-modal/search-modal.component';
 import { NotificationsModalComponent } from './cmps/notifications-modal/notifications-modal.component';
 import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
+import { SearchBarComponent } from './cmps/search-bar/search-bar.component';
+import { SearchModalComponent } from './cmps/search-modal/search-modal.component';
 
 @NgModule({
   declarations: [
@@ -76,9 +77,10 @@ import { ProfileEditComponent } from './pages/profile-edit/profile-edit.componen
     PostActionsComponent,
     CommentEditComponent,
     SideBarIconDirective,
-    SearchModalComponent,
     NotificationsModalComponent,
     ProfileEditComponent,
+    SearchBarComponent,
+    SearchModalComponent,
   ],
   imports: [
     BrowserModule,

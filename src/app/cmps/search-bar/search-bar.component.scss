@@ -1,0 +1,28 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
+
+.search-bar {
+    display: flex;
+    align-items: center;
+
+    input {
+        width: rem(365px);
+        height: rem(40px);
+        padding: rem(3px) rem(16px);
+        background-color: var(--input-bg-color);
+        border-radius: rem(8px);
+        color: var(--input-placeholder-color);
+    }
+
+    .btn-container {
+        position: relative;
+        left: -25px;
+        color: var(--input-placeholder-color);
+
+        svg-icon{
+            width: rem(20px);
+            height: rem(20px);
+        }
+    }
+}
