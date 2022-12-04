@@ -54,27 +54,27 @@ const ENTITY = 'user'
 })
 
 export class UserService {
-  
+
   constructor(
     private store: Store<UserState>,
     private storageService: StorageService,
     private utilService: UtilService
-    ) {
-      const users = this.storageService.loadFromStorage(ENTITY) || null;
+  ) {
+    const users = this.storageService.loadFromStorage(ENTITY) || null;
     if (!users || users.length === 0) this.storageService.saveToStorage(ENTITY, USERS)
   }
-  
+
   public getLoggedinUser(): MiniUser | null {
     const loggedinUser = this.storageService.loadFromStorage('loggedinUser') || null
     return loggedinUser
   }
-  
+
   public loadUsers(filterBy = ''): Observable<User[]> {
     this.store.dispatch(new LoadingUsers());
     console.log('UserService: Return Users ===> effect');
     return from(this._getUsers(filterBy) as Promise<User[]>)
   }
-  
+
   private async _getUsers(filterBy: string): Promise<User[]> {
     const users = await asyncStorageService.query(ENTITY) as User[]
     if (!filterBy) return users
@@ -84,43 +84,43 @@ export class UserService {
         return (
           user.username.toLowerCase().includes(term) ||
           user.bio.toLocaleLowerCase().includes(term)
-          )
-        })
-        console.log('filteredUsers', filteredUsers);
-        return filteredUsers
-      }
-      
+        )
+      })
+      console.log('filteredUsers', filteredUsers);
+      return filteredUsers
     }
-    
-    public getById(userId: string): Observable<User> {
-      return from(asyncStorageService.get(ENTITY, userId) as Promise<User>)
-      // return from(axios.get(URL + itemId) as Promise<Item>)
-    }
-    
-    public remove(userId: string): Observable<boolean> {
-      return from(asyncStorageService.remove(ENTITY, userId))
-    }
+
+  }
+
+  public getById(userId: string): Observable<User> {
+    return from(asyncStorageService.get(ENTITY, userId) as Promise<User>)
+    // return from(axios.get(URL + itemId) as Promise<Item>)
+  }
+
+  public remove(userId: string): Observable<boolean> {
+    return from(asyncStorageService.remove(ENTITY, userId))
+  }
 
   public save(user: User): Observable<User> {
     const method = (user.id) ? 'put' : 'post'
-    const prmSavedItem = asyncStorageService[method](ENTITY, user)
-    return from(prmSavedItem) as Observable<User>
+    const prmSavedUser = asyncStorageService[method](ENTITY, user)
+    return from(prmSavedUser) as Observable<User>
   }
-  
+
   public login(userCred: { username: string, password: string }) {
     const users = this.storageService.loadFromStorage(ENTITY) || []
     const userIdx = users.findIndex((user: User) => user.username === userCred.username)
-    
+
     if (userIdx !== -1 && users[userIdx].password === userCred.password) {
       const { id, fullname, username, imgUrl } = users[userIdx]
       const user = { id, fullname, username, imgUrl }
       this.storageService.saveToStorage('loggedinUser', user)
     }
   }
-  
+
   public signup(userCred: { email: string, fullname: string, username: string, password: string }) {
     const users = this.storageService.loadFromStorage('user') || []
-    
+
     const user: User = {
       id: this.utilService.makeId(),
       email: userCred.email,

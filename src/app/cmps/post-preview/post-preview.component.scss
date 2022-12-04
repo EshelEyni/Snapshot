@@ -7,7 +7,7 @@
     .post-preview-container {
 
         height: fit-content;
-        width: 60%;
+        max-width: rem(470px);
         background-color: #fff;
         border-radius: 10px;
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
@@ -22,6 +22,13 @@
             align-items: center;
             justify-content: space-between;
             height: rem(60px);
+
+            .user-preview{
+                .img-container {
+                    height: rem(42px);
+                    width: rem(42px);
+                }
+            }
         }
 
         .img-container {

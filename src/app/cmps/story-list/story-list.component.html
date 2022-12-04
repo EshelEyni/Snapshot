@@ -1,0 +1,5 @@
+<ul class="story-list">
+    <li *ngFor="let story of stories$ | async">
+        <story-preview [story]="story" [isHighlight]="isHighlight"></story-preview>
+    </li>
+</ul>

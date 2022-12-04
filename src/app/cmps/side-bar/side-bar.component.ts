@@ -31,7 +31,7 @@ export class SideBarComponent implements OnInit, OnChanges {
   loggedinUser!: User
   userImgUrl: string = this.userService.getDefaultUserImgUrl()
   profileUrl: string = ''
-  isBtnClicked = { search: false, create: false, notification: true }
+  isBtnClicked = { search: false, create: false, notification: false }
   isMainScreen: boolean = false;
   sub: Subscription | null = null;
 

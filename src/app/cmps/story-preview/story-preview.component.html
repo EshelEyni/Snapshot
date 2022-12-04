@@ -1,0 +1,12 @@
+<article class="story">
+    <user-preview *ngIf="!isHighlight; else forHighlight" [user]="story.by"></user-preview>
+
+    <ng-template #forHighlight>
+        <div class="img-container">
+            <img [src]="story.imgUrls[0]" alt="story-img">
+        </div>
+        <div class="username-container">
+            <p>{{story.by.username}}</p>
+        </div>
+    </ng-template>
+</article>

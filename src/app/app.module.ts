@@ -52,6 +52,10 @@ import { TagDetailsComponent } from './pages/tag-details/tag-details.component';
 import { NotificationModalComponent } from './cmps/notification-modal/notification-modal.component';
 import { NotificationComponent } from './cmps/notification/notification.component';
 import { NotificationListComponent } from './cmps/notification-list/notification-list.component';
+import { StoryListComponent } from './cmps/story-list/story-list.component';
+import { StoryPreviewComponent } from './cmps/story-preview/story-preview.component';
+import { StoryDetailsComponent } from './cmps/story-details/story-details.component';
+import { StoryEditComponent } from './cmps/story-edit/story-edit.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +93,10 @@ import { NotificationListComponent } from './cmps/notification-list/notification
     NotificationModalComponent,
     NotificationComponent,
     NotificationListComponent,
+    StoryListComponent,
+    StoryPreviewComponent,
+    StoryDetailsComponent,
+    StoryEditComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,15 +3,16 @@
 @import '../../../assets/styles/setup/mixins';
 
 
-.creator-preview {
+.user-preview {
     display: flex;
     align-items: center;
     gap: rem(5px);
 
-    .creator-img-container {
+    .img-container {
         display: flex;
         justify-content: center;
         align-items: center;
+       
 
 
         // *************** user img circle  ***************
@@ -22,8 +23,6 @@
         padding: rem(2px);
 
         img {
-            height: rem(32px);
-            width: rem(32px);
             border-radius: 50%;
         }
     }

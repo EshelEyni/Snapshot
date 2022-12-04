@@ -1,0 +1,23 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+
+::ng-deep .story-list {
+    display: flex;
+    gap: rem(15px);
+    width: rem(470px);
+    background-color: var(--secondary-bg);
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    padding: rem(15px);
+    margin-top: rem(30px);
+
+    .user-preview {
+        flex-direction: column;
+
+        .img-container {
+            height: rem(55px);
+            width: rem(55px);
+        }
+    }
+    
+}
