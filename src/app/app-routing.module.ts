@@ -1,3 +1,5 @@
+import { TagResolver } from './resolvers/tag.resolver';
+import { TagDetailsComponent } from './pages/tag-details/tag-details.component';
 import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
 import { UserResolver } from './resolvers/user.resolver';
 import { PostDetailsComponent } from './pages/post-details/post-details.component';
@@ -17,6 +19,7 @@ const routes: Routes = [
   { path: 'profile/:id', component: ProfileDetailsComponent, resolve: { user: UserResolver } },
   { path: 'profile-edit/:id', component: ProfileEditComponent, resolve: { user: UserResolver } },
   { path: 'post/:id', component: PostDetailsComponent, resolve: { post: PostResolver } },
+  { path: 'tag/:id', component: TagDetailsComponent, resolve: { tag: TagResolver } },
   { path: 'explore', component: ExploreComponent },
   { path: 'inbox', component: MessagesComponent },
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },

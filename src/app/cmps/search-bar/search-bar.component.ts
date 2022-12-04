@@ -1,77 +1,54 @@
-import { TagService } from './../../services/tag.service';
 import { Tag } from './../../models/tag';
-import { Observable, map, Subscription } from 'rxjs';
 import { User } from 'src/app/models/user.model';
-import { State } from './../../store/store';
-import { Store } from '@ngrx/store';
+import { TagService } from './../../services/tag.service';
 import { SearchService } from './../../services/search.service';
 import { UtilService } from './../../services/util.service';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, EventEmitter } from '@angular/core';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
-  outputs: ['searchResults', 'recentSearches']
+  outputs: ['searchFinished', 'recentSearches']
 })
 export class SearchBarComponent implements OnInit {
-
+  
   constructor() {
-    this.users$ = this.store.select('userState').pipe(map(x => x.users));
-    this.tags$ = this.tagService.tags$;
   }
-
+  
   utilService = inject(UtilService)
   searchService = inject(SearchService)
   tagService = inject(TagService)
-  store = inject(Store<State>)
-
-  users$: Observable<User[] | null>;
-  users: User[] = []
-  tags$!: Observable<Tag[]>;
-  tags!: Tag[];
-  subUsers: Subscription | null = null;
-  subTags: Subscription | null = null
-
+  
+  searchFinished = new EventEmitter<{ users: User[], tags: Tag[]}>();
   faCircleXmark = faCircleXmark;
   searchTerm: string = ''
   isLoading: boolean = false;
-  searchResults: any[] = []
+  searchResults: { users: User[], tags: Tag[] } = { users: [], tags: [] }
 
   ngOnInit(): void {
 
-    this.subUsers = this.users$.subscribe(users => {
-      if (users) {
-        this.users = JSON.parse(JSON.stringify(users))
-      }
-    })
 
-    this.subTags = this.tags$.subscribe(tags => {
-      if (tags) {
-        this.tags = JSON.parse(JSON.stringify(tags))
-      }
-    })
   }
 
   onClearSearch() {
     this.searchTerm = ''
-    this.searchResults = []
+    this.searchResults = { users: [], tags: [] }
   }
 
-  async onChange() {
+  onChange() {
+    this.handleSearch()
+  }
+
+  async handleSearch() {
     this.isLoading = true
-    this.searchService.search(this.searchTerm)
+    const res = await this.searchService.search(this.searchTerm)
+    this.searchResults = res
+    this.searchFinished.emit(this.searchResults)
 
-    console.log('this.users', this.users)
-    console.log('this.searchResults', this.searchResults)
     this.isLoading = false
-  }
 
-
-  ngOnDestroy() {
-    this.subUsers?.unsubscribe()
-    this.subTags?.unsubscribe()
   }
 
 }

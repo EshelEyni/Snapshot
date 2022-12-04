@@ -1,0 +1,22 @@
+ @import '../../../assets/styles/setup/functions';
+ @import '../../../assets/styles/setup/vars';
+ @import '../../../assets/styles/setup/mixins';
+
+ .tag-preview {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    .tag-img-container{
+        width: rem(32px);
+        height: rem(32px);
+        position: relative;
+        border-radius: 50%;
+        border: 1px solid var(--border-color);
+        background-color: var(--secondary-bg);
+        display: flex;
+        padding: 5px;
+        justify-content: center;
+        align-items: center;
+        
+    }
+ }

@@ -31,7 +31,7 @@ export class SideBarComponent implements OnInit, OnChanges {
   loggedinUser!: User
   userImgUrl: string = this.userService.getDefaultUserImgUrl()
   profileUrl: string = ''
-  isBtnClicked = { search: true, create: false, notifications: false }
+  isBtnClicked = { search: false, create: false, notifications: false }
   isMainScreen: boolean = false;
   sub: Subscription | null = null;
 
@@ -81,6 +81,7 @@ export class SideBarComponent implements OnInit, OnChanges {
   }
 
   onTogglePostEdit() {
+    console.log('onTogglePostEdit');
     this.isBtnClicked.create = true
     this.togglePostEdit.emit(true)
   }

@@ -4,17 +4,34 @@
     </header>
 
     <div class="search-bar-container">
-        <search-bar></search-bar>
+        <search-bar (searchFinished)="onSearchFinished($event)"></search-bar>
     </div>
     <div class="search-results-container" *ngIf="searchResults.length; else recentSearchesRes">
-
+        <ul *ngFor="let res of searchResults">
+            <div *ngIf="res.username">
+                <user-preview [user]="res" [routerLink]="['/profile/',res.id]" (click)="onSaveSearch(res)">
+                </user-preview>
+            </div>
+            <div *ngIf="res.name">
+                <tag-preview [tag]="res" [routerLink]="['/tag/',res.name]" (click)="onSaveSearch(res)"></tag-preview>
+            </div>
+        </ul>
     </div>
+
     <ng-template #recentSearchesRes>
         <div class="recent-search-container">
             <h2>recent</h2>
             <div class="recent-searches" *ngIf="recentSearches.length; else noRecentRes">
-                <div class="recent-search" *ngFor="let recentSearch of recentSearches">
-                </div>
+                <ul class="recent-search" *ngFor="let recentSearch of recentSearches">
+                    <div *ngIf="recentSearch.username">
+                        <user-preview [user]="recentSearch" [routerLink]="['/profile/',recentSearch.id]"
+                            (click)="onCloseModal()"></user-preview>
+                    </div>
+                    <div *ngIf="recentSearch.name">
+                        <tag-preview [tag]="recentSearch" [routerLink]="['/tag/',recentSearch.id]"
+                            (click)="onCloseModal()"></tag-preview>
+                    </div>
+                </ul>
             </div>
 
             <ng-template #noRecentRes>

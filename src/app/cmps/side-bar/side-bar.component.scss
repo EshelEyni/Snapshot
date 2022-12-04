@@ -13,6 +13,7 @@
     padding: rem(8px) rem(12px) rem(20px);
     background-color: var(--secondary-bg);
     border-right: 1px solid var(--border-color);
+    transition: 0.5s;
     z-index: 5;
 
 
@@ -117,13 +118,14 @@
         }
     }
 
-    .modal-container{
+    .modal-container {
         position: absolute;
         top: 0;
         left: -150%;
         width: 100%;
         height: 100%;
         z-index: 20;
+        transition: 0.5s;
     }
 
     &.modal-state {
@@ -132,16 +134,16 @@
         width: rem(70px);
         z-index: 20;
         transition: 0.5s;
-        
+
         header img {
             display: flex;
         }
-        
+
         span {
             display: none;
         }
-        
-        .modal-container{
+
+        .modal-container {
             left: rem(70px);
             transition: 0.5s;
         }

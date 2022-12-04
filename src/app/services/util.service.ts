@@ -17,6 +17,7 @@ export class UtilService {
   }
 
   public debounce(func: any, wait: number) {
+    console.log('debounce');
     let timeout: string | number | NodeJS.Timeout | undefined;
     return function executedFunction(...args: any[]) {
       const later = () => {

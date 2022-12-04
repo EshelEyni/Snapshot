@@ -20,6 +20,12 @@
         }
     }
 
+    ul {
+        >* {
+            cursor: pointer;
+        }
+    }
+
     .recent-search-container {
         display: flex;
         flex-direction: column;

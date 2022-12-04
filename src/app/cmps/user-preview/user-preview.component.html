@@ -4,6 +4,8 @@
     </div>
     <section class="info">
         <h3>{{user.fullname}}</h3>
-        <p class="location" *ngIf="location.name">{{location.name}}</p>
+        <div *ngIf="location">
+            <p class="location" *ngIf="location.name">{{location.name}}</p>
+        </div>
     </section>
 </section>

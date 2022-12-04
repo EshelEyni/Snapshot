@@ -48,6 +48,8 @@ import { NotificationsModalComponent } from './cmps/notifications-modal/notifica
 import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
 import { SearchBarComponent } from './cmps/search-bar/search-bar.component';
 import { SearchModalComponent } from './cmps/search-modal/search-modal.component';
+import { TagPreviewComponent } from './cmps/tag-preview/tag-preview.component';
+import { TagDetailsComponent } from './pages/tag-details/tag-details.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +83,8 @@ import { SearchModalComponent } from './cmps/search-modal/search-modal.component
     ProfileEditComponent,
     SearchBarComponent,
     SearchModalComponent,
+    TagPreviewComponent,
+    TagDetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,7 +5,7 @@
 
     <header>
         <a class="logo" routerLink="/">
-            <img src="../../../assets/imgs/logo.png" alt="logo">
+            <img src="../../../assets/imgs/logo.png" alt="logo" (click)="onToggleModal()">
             <span>Snapshot</span>
         </a>
     </header>
@@ -52,6 +52,6 @@
     </main>
 
     <div class="modal-container">
-        <search-modal *ngIf="isBtnClicked.search"></search-modal>
+        <search-modal *ngIf="isBtnClicked.search" (onClose)="onToggleModal()"></search-modal>
     </div>
 </section>
