@@ -1,4 +1,4 @@
-import { SET_LOADING, LOADED_USERS,LOADED_LOGGEDIN_USER, REMOVED_USER, ADDED_USER, UPDATED_USER, LOADED_USER, SET_ERROR } from '../actions/user.actions';
+import { SET_LOADING, LOADED_USERS, LOADED_LOGGEDIN_USER, REMOVED_USER, ADDED_USER, UPDATED_USER, LOADED_USER, SET_ERROR } from '../actions/user.actions';
 import { User } from 'src/app/models/user.model';
 
 export interface UserState {
@@ -62,7 +62,8 @@ export function reducer(state: UserState = initialState, action: any): UserState
       const { user } = action;
       console.log('Reducer: Updating user:', user);
       const users = state.users.map(currUser => (currUser.id === user.id) ? user : currUser)
-      return { ...state, users, user: null, error: '' };
+      const loggedinUser = (state.loggedinUser && state.loggedinUser.id === user.id) ? user : state.loggedinUser;
+      return { ...state, users, user: null, loggedinUser, error: '' };
     }
     default:
       return state;

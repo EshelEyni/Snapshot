@@ -2,7 +2,7 @@ import { SaveUser } from './../../store/actions/user.actions';
 import { Observable, Subscription, map } from 'rxjs';
 import { State } from './../../store/store';
 import { Store } from '@ngrx/store';
-import { Tag } from './../../models/tag';
+import { Tag } from '../../models/tag.model';
 import { User } from './../../models/user.model';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 

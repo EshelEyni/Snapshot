@@ -1,0 +1,9 @@
+<section class="notification-modal">
+    <header>
+        <h1>notifications</h1>
+    </header>
+
+    <div class="notification-container">
+        <notification-list [notifications]="(notifications$|async)!" (onClose)="onCloseModal()"></notification-list>
+    </div>
+</section>

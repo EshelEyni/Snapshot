@@ -1,4 +1,4 @@
-import { Tag } from './../models/tag';
+import { Tag } from '../models/tag.model';
 import { TagService } from './../services/tag.service';
 import { Injectable, inject } from '@angular/core';
 import {

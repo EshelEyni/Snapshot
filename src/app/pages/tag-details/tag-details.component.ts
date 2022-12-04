@@ -2,7 +2,7 @@ import { Post } from './../../models/post.model';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, lastValueFrom } from 'rxjs';
 import { PostService } from './../../services/post.service';
-import { Tag } from './../../models/tag';
+import { Tag } from '../../models/tag.model';
 import { Component, OnInit, inject } from '@angular/core';
 
 @Component({

@@ -44,12 +44,14 @@ import { EllipsisComponent } from './cmps/ellipsis/ellipsis.component';
 import { PostActionsComponent } from './cmps/post-actions/post-actions.component';
 import { CommentEditComponent } from './cmps/comment-edit/comment-edit.component';
 import { SideBarIconDirective } from './directives/side-bar-icon.directive';
-import { NotificationsModalComponent } from './cmps/notifications-modal/notifications-modal.component';
 import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
 import { SearchBarComponent } from './cmps/search-bar/search-bar.component';
 import { SearchModalComponent } from './cmps/search-modal/search-modal.component';
 import { TagPreviewComponent } from './cmps/tag-preview/tag-preview.component';
 import { TagDetailsComponent } from './pages/tag-details/tag-details.component';
+import { NotificationModalComponent } from './cmps/notification-modal/notification-modal.component';
+import { NotificationComponent } from './cmps/notification/notification.component';
+import { NotificationListComponent } from './cmps/notification-list/notification-list.component';
 
 @NgModule({
   declarations: [
@@ -79,12 +81,14 @@ import { TagDetailsComponent } from './pages/tag-details/tag-details.component';
     PostActionsComponent,
     CommentEditComponent,
     SideBarIconDirective,
-    NotificationsModalComponent,
     ProfileEditComponent,
     SearchBarComponent,
     SearchModalComponent,
     TagPreviewComponent,
     TagDetailsComponent,
+    NotificationModalComponent,
+    NotificationComponent,
+    NotificationListComponent,
   ],
   imports: [
     BrowserModule,

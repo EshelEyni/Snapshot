@@ -105,8 +105,9 @@
             box-sizing: unset;
             background: linear-gradient(white, white) padding-box, var(--border-color) border-box;
             padding: rem(10px);
-            border-radius: 50%;
+            transition: 0.5s;
             border: 1.5px solid transparent;
+            border-radius: 50%;
             margin: -rem(10px) 0;
 
         }

@@ -1,0 +1,7 @@
+<ul class="notification-list">
+    <li *ngFor="let notification of notifications">
+        <notification [notification]="notification" (onClose)="onCloseModal()"></notification>
+
+    </li>
+
+</ul>

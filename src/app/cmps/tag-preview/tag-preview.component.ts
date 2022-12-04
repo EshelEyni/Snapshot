@@ -1,4 +1,4 @@
-import { Tag } from './../../models/tag';
+import { Tag } from '../../models/tag.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

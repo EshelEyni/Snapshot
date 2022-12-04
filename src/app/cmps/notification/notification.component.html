@@ -1,0 +1,25 @@
+<article class="notification" [routerLink]="['/profile/',notification.by.id]" (click)="onCloseModal()">
+    <div class="main-container">
+        <div class="img-container">
+            <img [src]="notification.by.imgUrl" alt="Avatar">
+        </div>
+        <div class="txt-container">
+            <p class="username">{{notification.by.username}}</p>
+            <p>{{txt}}</p>
+            <p class="date">{{notification.createdAt|formattedDate}}</p>
+        </div>
+    </div>
+
+    <div class="secondary-container">
+        <div class="img-container" *ngIf="notification.postImg">
+            <img [src]="notification.postImg" alt="postImg">
+        </div>
+        <div class="btn-container" *ngIf="notification.type === 'follow'">
+            <button class="btn-follow clean-btn" *ngIf="!isFollowed; else unfollowBtn" (click)="onToggleFollow($event,notification.by)">Follow</button>
+            <ng-template #unfollowBtn>
+                <button class="btn-unfollow clean-btn" (click)="onToggleFollow($event,notification.by)">Following</button>
+            </ng-template>
+
+        </div>
+    </div>
+</article>

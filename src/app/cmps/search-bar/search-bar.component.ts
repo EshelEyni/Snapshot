@@ -1,4 +1,4 @@
-import { Tag } from './../../models/tag';
+import { Tag } from '../../models/tag.model';
 import { User } from 'src/app/models/user.model';
 import { TagService } from './../../services/tag.service';
 import { SearchService } from './../../services/search.service';

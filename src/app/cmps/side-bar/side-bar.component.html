@@ -1,7 +1,7 @@
 <div class="main-screen" *ngIf="isMainScreen" (click)="onToggleModal()"></div>
 
 <section class="side-bar" *ngIf="isLoginSignupPath"
-    [class.modal-state]="isBtnClicked.search || isBtnClicked.notifications">
+    [class.modal-state]="isBtnClicked.search || isBtnClicked.notification">
 
     <header>
         <a class="logo" routerLink="/">
@@ -33,7 +33,7 @@
             <span class="messages-title">messages</span>
         </a>
         <button class="btn-notifications clean-btn" (click)="onToggleNotifications()"
-            [class.active]="isBtnClicked.notifications">
+            [class.active]="isBtnClicked.notification">
             <svg-icon src="../../../assets/svgs/heart-icon-solid.svg" class="icon-active"> </svg-icon>
             <svg-icon src="../../../assets/svgs/heart-icon-outline.svg" class="icon-unactive"> </svg-icon>
             <span>notifications</span>
@@ -53,5 +53,6 @@
 
     <div class="modal-container">
         <search-modal *ngIf="isBtnClicked.search" (onClose)="onToggleModal()"></search-modal>
+        <notification-modal *ngIf="isBtnClicked.notification" (onClose)="onToggleModal()"></notification-modal>
     </div>
 </section>

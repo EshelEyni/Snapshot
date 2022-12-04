@@ -1,0 +1,30 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
+
+.notification-modal {
+    width: rem(400px);
+    height: 100vh;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 0 15px 15px 0;
+    background-color: var(--secondary-bg);
+    padding: rem(5px);
+
+    header {
+        margin: rem(8px) 0;
+        padding: rem(12px) rem(24px) rem(36px) rem(14px);
+
+        h1 {
+            text-transform: capitalize;
+            font-size: rem(22px);
+        }
+    }
+
+    ul {
+        >* {
+            cursor: pointer;
+        }
+    }
+
+
+}

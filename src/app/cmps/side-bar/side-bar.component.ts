@@ -31,7 +31,7 @@ export class SideBarComponent implements OnInit, OnChanges {
   loggedinUser!: User
   userImgUrl: string = this.userService.getDefaultUserImgUrl()
   profileUrl: string = ''
-  isBtnClicked = { search: false, create: false, notifications: false }
+  isBtnClicked = { search: false, create: false, notification: true }
   isMainScreen: boolean = false;
   sub: Subscription | null = null;
 
@@ -75,7 +75,7 @@ export class SideBarComponent implements OnInit, OnChanges {
         this.links.get(3)?.nativeElement.classList.add('active')
         break;
     }
-    this.isBtnClicked = { search: false, create: false, notifications: false }
+    this.isBtnClicked = { search: false, create: false, notification: false }
     this.isMainScreen = false;
 
   }
@@ -88,6 +88,7 @@ export class SideBarComponent implements OnInit, OnChanges {
 
   onToggleSearch() {
     this.isBtnClicked.search = !this.isBtnClicked.search
+    this.isBtnClicked.notification = false
     this.isMainScreen = !this.isMainScreen;
     this.links.forEach(link => {
       link.nativeElement.classList.remove('active')
@@ -95,7 +96,8 @@ export class SideBarComponent implements OnInit, OnChanges {
   }
 
   onToggleNotifications() {
-    this.isBtnClicked.notifications = !this.isBtnClicked.notifications
+    this.isBtnClicked.notification = !this.isBtnClicked.notification
+    this.isBtnClicked.search = false
     this.isMainScreen = !this.isMainScreen;
     this.links.forEach(link => {
       link.nativeElement.classList.remove('active')
