@@ -11,7 +11,8 @@ const STORIES: Story[] = [
       'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044396/uasgrj8qkl0r4lis1vg0.jpg',
       'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666728248/ihkoy8cj2zvaexpe4ocp.webp'
     ],
-    by: { id: 'a12tgeko907', fullname: 'User 1', username: 'eshel', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669304308/lci872dhvwd0jeuzh3h8.png' }
+    by: { id: 'a12tgeko907', fullname: 'User 1', username: 'eshel', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669304308/lci872dhvwd0jeuzh3h8.png' },
+    watchedBy: [],
   },
   {
     id: '2134',
@@ -19,7 +20,8 @@ const STORIES: Story[] = [
       'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666728248/ihkoy8cj2zvaexpe4ocp.webp',
       'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044396/uasgrj8qkl0r4lis1vg0.jpg'
     ],
-    by: { id: 'a12F34b907', fullname: 'User 2', username: 'tale', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' }
+    by: { id: 'a12F34b907', fullname: 'User 2', username: 'tale', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' },
+    watchedBy: [],
   },
 ]
 
@@ -46,7 +48,6 @@ export class StoryService {
     }
     stories = stories.filter((story: Story) => userIds.includes(story.by.id));
     this._stories$.next(stories);
-
   }
 
   public getById(storyId: string): Observable<Story> {

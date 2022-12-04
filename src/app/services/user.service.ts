@@ -26,6 +26,7 @@ const USERS: User[] = [
     savedPostsIds: ['1', '2'],
     savedStoriesIds: [],
     recentSearches: [],
+    currStoryId: '2133'
   },
   {
     id: 'a12tgeko907',
@@ -44,6 +45,7 @@ const USERS: User[] = [
     savedPostsIds: [],
     savedStoriesIds: [],
     recentSearches: [],
+    currStoryId: '2134'
   }
 ]
 
@@ -138,6 +140,7 @@ export class UserService {
       savedPostsIds: [],
       savedStoriesIds: [],
       recentSearches: [],
+      currStoryId: ''
     }
 
     users.push(user)

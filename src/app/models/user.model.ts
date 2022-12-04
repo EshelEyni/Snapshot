@@ -17,6 +17,7 @@ export interface User {
     savedPostsIds: string[]
     savedStoriesIds: string[]
     recentSearches: any[]
+    currStoryId: string
 }
 
 export interface MiniUser {
