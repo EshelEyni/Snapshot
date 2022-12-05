@@ -1,44 +1,108 @@
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { MiniUser } from './../../models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { StoryService } from './../../services/story.service';
-import { Observable, Subscription, map } from 'rxjs';
+import { Observable, Subscription, map, lastValueFrom } from 'rxjs';
 import { Story } from './../../models/story.model';
 import { State } from 'src/app/store/store';
 import { Store } from '@ngrx/store';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'story-list',
   templateUrl: './story-list.component.html',
   styleUrls: ['./story-list.component.scss'],
-  inputs: ['isHighlight']
+  inputs: ['isHighlight', 'currStory']
 })
-export class StoryListComponent implements OnInit {
+export class StoryListComponent implements OnInit, OnChanges {
 
   constructor() {
     this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
 
   }
 
-  loggedinUser$: Observable<User | null>;
-  loggedinUser!: User
-  sub: Subscription | null = null;
-  isHighlight!: boolean;
   store = inject(Store<State>);
   userService = inject(UserService);
   storyService = inject(StoryService);
-  stories$!: Observable<Story[]>;
+  route = inject(Router);
+
+  loggedinUser$: Observable<User | null>;
+  loggedinUser!: User
+  loggedinUserSub: Subscription | null = null;
+  storySub: Subscription | null = null;
+  idx: number = 0;
+
+  isHighlight!: boolean;
+  currStory!: Story;
+  preCurrStoryList: Story[] = [];
+  postCurrStoryList: Story[] = [];
+  stories!: Story[];
+  isPaginationBtnShown = { left: false, right: false };
+  listPosition: string = '0';
 
   ngOnInit(): void {
-    this.sub = this.loggedinUser$.subscribe(user => {
+    console.log('story-list ngOnInit');
+    this.loggedinUserSub = this.loggedinUser$.subscribe(user => {
       this.loggedinUser = JSON.parse(JSON.stringify(user));
       if (user) {
         const usersIds = [user.id, ...this.loggedinUser.following.map((user: MiniUser) => user.id)];
         this.storyService.loadStories(usersIds);
-        this.stories$ = this.storyService.stories$;
       }
     });
+
+    this.storySub = this.storyService.stories$.subscribe(stories => {
+      this.stories = stories;
+      if (this.currStory) {
+        this.preCurrStoryList = stories.slice(0, stories.findIndex(story => story.id === this.currStory.id));
+        this.postCurrStoryList = stories.slice(stories.findIndex(story => story.id === this.currStory.id) + 1);
+        this.idx = this.preCurrStoryList.length;
+      }
+      this.setPaginationBtns(stories);
+    });
+
+  }
+
+  ngOnChanges() {
+    console.log('story-list ngOnChanges');
+    if (this.currStory && this.stories && this.preCurrStoryList) {
+      this.preCurrStoryList = this.stories.slice(0, this.stories.findIndex(story => story.id === this.currStory.id));
+      this.postCurrStoryList = this.stories.slice(this.stories.findIndex(story => story.id === this.currStory.id) + 1);
+      this.idx = this.preCurrStoryList.length;
+      this.setPaginationBtns(this.stories);
+    }
+  }
+
+
+  setPaginationBtns(stories: Story[]) {
+    if (this.idx === 0) this.isPaginationBtnShown.left = false;
+    else this.isPaginationBtnShown.left = true;
+    if (this.currStory) {
+      if (this.idx === stories.length - 1) this.isPaginationBtnShown.right = false;
+      else this.isPaginationBtnShown.right = true;
+    }
+    else {
+      if (this.idx === stories.length - 4) this.isPaginationBtnShown.right = false;
+      else this.isPaginationBtnShown.right = true;
+    }
+  }
+
+  onScrollStory(num: number) {
+    console.log('onScrollStory', num);
+    this.idx += num;
+    if (this.idx < 0) this.idx = 0;
+    if (this.idx > this.stories.length - 1) this.idx = this.stories.length - 1;
+    this.listPosition = `${-this.idx * 10}%`;
+    this.setPaginationBtns(this.stories);
+  }
+
+  onSetCurrStory(num: number) {
+    this.route.navigate(['/story/', this.stories[this.idx + num].id]);
+  }
+
+  ngDestroy() {
+    this.loggedinUserSub?.unsubscribe();
+    this.storySub?.unsubscribe();
   }
 
 }

@@ -33,6 +33,14 @@
                     justify-content: space-between;
                     height: rem(60px);
                     padding: rem(20px);
+
+                    .user-preview {
+
+                        .img-container {
+                            height: rem(40px);
+                            width: rem(40px);
+                        }
+                    }
                 }
 
                 .comment-list-container {

@@ -17,4 +17,22 @@
             border-radius: 50%;
         }
     }
+
+    .for-details-container {
+
+        .img-container {
+            @include story-preview-img(350px);
+            
+            img {
+                border-radius: 5px;
+            }
+        }
+    }
+    
+    .curr-story {
+        .img-container {
+            @include story-preview-img(700px);
+
+        }
+    }
 }

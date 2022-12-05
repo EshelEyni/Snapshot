@@ -1,0 +1,9 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
+
+.timer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+
+}

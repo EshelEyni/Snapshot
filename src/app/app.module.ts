@@ -1,5 +1,5 @@
 // Modules
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
@@ -33,6 +33,8 @@ import { PostEditFormComponent } from './cmps/post-edit-form/post-edit-form.comp
 import { ExploreComponent } from './pages/explore/explore.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { PostDetailsComponent } from './pages/post-details/post-details.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 // Pipes
 import { CommentsToDisplayPipe } from './pipes/comments-to-display.pipe';
@@ -56,6 +58,8 @@ import { StoryListComponent } from './cmps/story-list/story-list.component';
 import { StoryPreviewComponent } from './cmps/story-preview/story-preview.component';
 import { StoryDetailsComponent } from './cmps/story-details/story-details.component';
 import { StoryEditComponent } from './cmps/story-edit/story-edit.component';
+import { PaginationBtnsComponent } from './cmps/pagination-btns/pagination-btns.component';
+import { StoryTimerComponent } from './cmps/story-timer/story-timer.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +101,8 @@ import { StoryEditComponent } from './cmps/story-edit/story-edit.component';
     StoryPreviewComponent,
     StoryDetailsComponent,
     StoryEditComponent,
+    PaginationBtnsComponent,
+    StoryTimerComponent,
   ],
   imports: [
     BrowserModule,
@@ -119,9 +125,10 @@ import { StoryEditComponent } from './cmps/story-edit/story-edit.component';
       maxAge: 25,
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([AppEffects])
+    EffectsModule.forRoot([AppEffects]),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

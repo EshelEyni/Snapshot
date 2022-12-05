@@ -1,7 +1,7 @@
 @import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/functions';
 
-.img-container {
+::ng-deep .img-container {
     position: relative;
 
     img {
@@ -11,24 +11,6 @@
         transition: 0.5s;
     }
 
-    .pagination-btns {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 90%;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-
-        svg-icon {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: rem(10px);
-            border-radius: 50%;
-        }
-    }
 
     .dots-container {
         display: flex;

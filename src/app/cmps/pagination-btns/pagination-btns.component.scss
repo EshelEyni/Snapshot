@@ -1,0 +1,25 @@
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/functions';
+
+.btn-pagination {
+    position: absolute;
+}
+
+.prev{
+    left: 10%;
+    transform: translate(-50%);
+}
+
+.next {
+    left: 90%;
+    transform: translate(-50%);
+}
+
+svg-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: rem(10px);
+    border-radius: 50%;
+    background-color: var(--primary-color);
+}

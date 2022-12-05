@@ -1,4 +1,5 @@
 @import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/functions';
 
 // Media queries Breakpoint mixins
 
@@ -45,6 +46,12 @@
     height: 100vh;
     margin-inline-start: rem(244px);
     width: calc(100vw - rem(244px));
+}
+
+// story preview mixin
+@mixin story-preview-img($height) {
+    height:#{$height};
+    width: calc(#{$height}/1.75);
 }
 
 //Aspect ratio mixin

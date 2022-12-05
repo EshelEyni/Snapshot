@@ -7,12 +7,14 @@
     display: flex;
     align-items: center;
     gap: rem(5px);
-
+    cursor: pointer;
+    
     .img-container {
         display: flex;
         justify-content: center;
         align-items: center;
-       
+        cursor: pointer;
+
 
 
         // *************** user img circle  ***************
@@ -38,6 +40,13 @@
         p {
             font-size: rem(12px);
             margin: 0;
+        }
+    }
+
+    &.is-watched {
+        .img-container {
+            background: linear-gradient(white, white) padding-box,
+                linear-gradient(to bottom left, var(--border-color), var(--border-color)) border-box;
         }
     }
 }

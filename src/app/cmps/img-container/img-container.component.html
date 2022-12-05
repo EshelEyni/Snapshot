@@ -1,24 +1,8 @@
 <div class="img-container">
     <div *ngIf="!isMiniPreview else miniPreview">
         <img src={{currImgUrl}} alt="Avatar">
-        <div class="pagination-btns">
-            <div>
-                <fa-icon (click)="onSwitchImg(-1)" [icon]="faCircleChevronLeft"
-                    *ngIf="isPaginationBtnShown.left && !isEditPost">
-                </fa-icon>
-
-                <svg-icon (click)="onSwitchImg(-1)" src="../../../assets/svgs/chevron-left.svg"
-                    *ngIf="isPaginationBtnShown.left && isEditPost"></svg-icon>
-            </div>
-            <div>
-                <fa-icon (click)="onSwitchImg(1)" [icon]="faCircleChevronRight"
-                    *ngIf="isPaginationBtnShown.right && !isEditPost">
-                </fa-icon>
-
-                <svg-icon (click)="onSwitchImg(1)" src="../../../assets/svgs/chveron-right.svg"
-                    *ngIf="isPaginationBtnShown.right && isEditPost"> </svg-icon>
-            </div>
-        </div>
+        <pagination-btns (prevItem)="onSwitchImg($event)" (nextItem)="onSwitchImg($event)" [isPaginationBtnShown]="isPaginationBtnShown"
+            [isEditPost]="isEditPost"></pagination-btns>
         <div class="dots-container" *ngIf="imgUrls.length>1">
             <fa-icon class="dot" *ngFor="let img of imgUrls" [class.active]="img === currImgUrl" [icon]="faCircle">
             </fa-icon>

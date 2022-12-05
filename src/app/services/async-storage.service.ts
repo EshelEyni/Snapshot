@@ -36,6 +36,7 @@ async function post(entityType: string, newEntity: Entity): Promise<Entity> {
 }
 
 async function put(entityType: string, updatedEntity : Entity): Promise<Entity> {
+    console.log('put', updatedEntity);
     const entities = await query(entityType)
     const idx = entities.findIndex(entity => entity.id === updatedEntity.id)
     entities[idx] = updatedEntity

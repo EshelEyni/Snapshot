@@ -5,4 +5,5 @@ export interface Story {
     imgUrls: string[];
     by: MiniUser;
     watchedBy: MiniUser[];
+    createdAt: Date;
 }

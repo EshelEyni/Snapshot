@@ -1,5 +1,5 @@
 import { Component, inject, Input, OnInit, OnChanges } from '@angular/core';
-import { faCircle, faCircleChevronLeft, faCircleChevronRight, faComments } from '@fortawesome/free-solid-svg-icons';
+import { faCircle, faCircleChevronLeft, faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { UploadImgService } from 'src/app/services/upload-img.service';
 
 @Component({

@@ -42,6 +42,11 @@ export class PostEditComponent implements OnInit {
   loggedinUser!: User
   currTitle: string = 'create new post';
   imgUrls: string[] = [];
+  // imgUrls: string[] = [
+  //   'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669305397/p7o8v7gvoy3bgdcymu0d.jpg',
+  //   'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044177/ukfallhy757gdlswvfuj.jpg',
+  //   'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044038/pxbi0wi3po7fiadwdcke.jpg',
+  // ];
   txt: string = '';
   location: Location = {
     lat: 0,

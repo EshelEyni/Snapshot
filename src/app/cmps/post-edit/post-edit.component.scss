@@ -101,11 +101,9 @@
                 .img-container {
                     height: 100%;
 
-                    .pagination-btns {
-
-                        svg-icon {
-                            background-color: var(--primary-color);
-                        }
+                    .btn-pagination {
+                        top: 50%;
+                        transform: translate(-50%);
                     }
 
                     .dots-container {
@@ -153,7 +151,7 @@
             .edit-mode-container {
                 flex: 3;
             }
-          
+
         }
     }
 }

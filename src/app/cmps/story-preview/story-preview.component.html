@@ -1,12 +1,23 @@
 <article class="story">
-    <user-preview *ngIf="!isHighlight; else forHighlight" [user]="story.by"></user-preview>
+    <user-preview *ngIf="!isHighlight && !isStoryDetails" [user]="story.by" [story]="story"></user-preview>
 
-    <ng-template #forHighlight>
+    <div class="highlight-container" *ngIf="isHighlight">
         <div class="img-container">
             <img [src]="story.imgUrls[0]" alt="story-img">
         </div>
         <div class="username-container">
             <p>{{story.by.username}}</p>
         </div>
-    </ng-template>
+    </div>
+
+    <div class="for-details-container" *ngIf="isStoryDetails" [class.curr-story]="isCurrStory">
+        <div class="timer-container">
+            <story-timer [imgUrls]="story.imgUrls"></story-timer>
+        </div>
+        <div class="img-container">
+            <img [src]="story.imgUrls[0]" alt="story-img">
+        </div>
+        <!-- <user-preview [user]="story.by"></user-preview> -->
+
+    </div>
 </article>

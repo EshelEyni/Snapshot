@@ -13,15 +13,87 @@ const STORIES: Story[] = [
     ],
     by: { id: 'a12tgeko907', fullname: 'User 1', username: 'eshel', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669304308/lci872dhvwd0jeuzh3h8.png' },
     watchedBy: [],
+    createdAt: new Date()
   },
   {
     id: '2134',
     imgUrls: [
-      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666728248/ihkoy8cj2zvaexpe4ocp.webp',
+      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664328667/hzazeapkfkxc76iwfuzi.webp',
       'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044396/uasgrj8qkl0r4lis1vg0.jpg'
     ],
     by: { id: 'a12F34b907', fullname: 'User 2', username: 'tale', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' },
     watchedBy: [],
+    createdAt: new Date()
+  },
+  {
+    id: '2135',
+    imgUrls: [
+      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664739963/lwecphhaszjclgjtgfhc.png',
+      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044396/uasgrj8qkl0r4lis1vg0.jpg'
+    ],
+    by: { id: 'a12F34b907', fullname: 'User 2', username: 'tale', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' },
+    watchedBy: [],
+    createdAt: new Date()
+  },
+  {
+    id: '21345',
+    imgUrls: [
+      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664736208/ggppvq6yeozkc9dorcxc.jpg',
+      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044396/uasgrj8qkl0r4lis1vg0.jpg'
+    ],
+    by: { id: 'a12F34b907', fullname: 'User 2', username: 'tale', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' },
+    watchedBy: [],
+    createdAt: new Date()
+  },
+  {
+    id: '21344',
+    imgUrls: [
+      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1665011934/ir3ylouirefcvnkqfdi6.jpg',
+      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044396/uasgrj8qkl0r4lis1vg0.jpg'
+    ],
+    by: { id: 'a12F34b907', fullname: 'User 2', username: 'tale', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' },
+    watchedBy: [],
+    createdAt: new Date()
+  },
+  {
+    id: '21341',
+    imgUrls: [
+      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666590625/trgnb0aijyl5bylkncpz.jpg',
+      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044396/uasgrj8qkl0r4lis1vg0.jpg'
+    ],
+    by: { id: 'a12F34b907', fullname: 'User 2', username: 'tale', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' },
+    watchedBy: [],
+    createdAt: new Date()
+  },
+  {
+    id: '21342',
+    imgUrls: [
+      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666643327/bj0eko7qjbct1hlmcmbu.jpg',
+      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044396/uasgrj8qkl0r4lis1vg0.jpg'
+    ],
+    by: { id: 'a12F34b907', fullname: 'User 2', username: 'tale', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' },
+    watchedBy: [],
+    createdAt: new Date()
+  },
+  {
+    id: '2134234',
+    imgUrls: [
+      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666804398/uxtcgoqzgb3avrhasr7n.jpg',
+      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044396/uasgrj8qkl0r4lis1vg0.jpg'
+    ],
+    by: { id: 'a12F34b907', fullname: 'User 2', username: 'tale', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' },
+    watchedBy: [],
+    createdAt: new Date()
+  },
+  {
+    id: '2134rew',
+    imgUrls: [
+      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666809112/lieljpzwvsa6kmz2jgpm.jpg',
+      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044396/uasgrj8qkl0r4lis1vg0.jpg'
+    ],
+    by: { id: 'a12F34b907', fullname: 'User 2', username: 'tale', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' },
+    watchedBy: [],
+    createdAt: new Date()
   },
 ]
 
@@ -40,13 +112,13 @@ export class StoryService {
   constructor() { }
   storageService = inject(StorageService);
 
-  public async loadStories(userIds: string[]) {
+  public async loadStories(userIds?: string[]) {
     let stories = await this.storageService.loadFromStorage(ENTITY) || null;
     if (!stories) {
       stories = this._storiesDb;
       this.storageService.saveToStorage(ENTITY, stories);
     }
-    stories = stories.filter((story: Story) => userIds.includes(story.by.id));
+    if (userIds) stories = stories.filter((story: Story) => userIds.includes(story.by.id));
     this._stories$.next(stories);
   }
 
@@ -61,6 +133,7 @@ export class StoryService {
   public save(story: Story): Observable<Story> {
     const method = story.id ? 'put' : 'post';
     const prmSavedItem = asyncStorageService[method](ENTITY, story);
+    this.loadStories();
     return from(prmSavedItem) as Observable<Story>;
   }
 
