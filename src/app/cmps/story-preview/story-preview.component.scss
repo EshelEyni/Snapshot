@@ -3,7 +3,7 @@
 @import '../../../assets/styles/setup/mixins';
 
 
-.story {
+::ng-deep .story {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,6 +12,7 @@
     .img-container {
         height: rem(55px);
         width: rem(55px);
+        margin: 0 auto;
 
         img {
             border-radius: 50%;
@@ -19,20 +20,81 @@
     }
 
     .for-details-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
 
         .img-container {
             @include story-preview-img(350px);
-            
+
             img {
                 border-radius: 5px;
             }
         }
-    }
-    
-    .curr-story {
-        .img-container {
-            @include story-preview-img(700px);
 
+        .info {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+
+            .user-preview {
+                flex-direction: column;
+                align-items: center;
+
+                .img-container {
+                    height: rem(75px);
+                    width: rem(75px);
+                }
+
+            }
+        }
+    }
+
+    .curr-story-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 650px;
+
+        // height: 100%;
+        .curr-story {
+            position: relative;
+
+            .timer-container {
+                position: absolute;
+                width: 100%;
+                padding: rem(25px) rem(15px);
+            }
+
+            .img-container {
+                @include story-preview-img(700px);
+
+                img {
+                    border-radius: 5px;
+                }
+
+            }
+
+            .reply-container {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+            }
+
+        }
+
+        .btn-pagination {
+            top: 50%;
+
+            fa-icon {
+                color: var(--primary-pagination-button);
+                font-size: rem(30px);
+            }
         }
     }
 }

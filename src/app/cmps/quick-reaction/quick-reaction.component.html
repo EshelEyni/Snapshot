@@ -1,0 +1,8 @@
+<section class="quick-reaction">
+    <h1>quick reactions</h1>
+    <ul class="reaction-list">
+        <li class="reaction" *ngFor="let reaction of reactions">
+            <div (click)="onSubmit(reaction)">{{reaction}}</div>
+        </li>
+    </ul>
+</section>

@@ -1,0 +1,30 @@
+<div class="msg-edit-main-container">
+    <section class="msg-edit" *ngIf="!isStoryReply; else storyReply"></section>
+
+    <ng-template #storyReply>
+        <div class="main-screen" (click)="onToggleQuickReaction()" *ngIf="isQuickReactionShown && msg.invalid"></div>
+        <share-modal *ngIf="isShareModalShown" (close)="onToggleModal()"></share-modal>
+
+        <section class="story-reply">
+
+            <div class="quick-reactions-container" *ngIf="isQuickReactionShown && msg.invalid">
+                <quick-reaction (reactionSubmit)="onSendMsg($event)"></quick-reaction>
+            </div>
+
+            <div class="reply-actions">
+                <form class="msg-form" #form="ngForm" (submit)="onSubmit(form)">
+                    <input class="clean-input" required ngModel name="msg" autocomplete="off"
+                        [placeholder]="placeHolderStr" #msg="ngModel" (click)="onToggleQuickReaction()">
+                    <button class="btn-send clean-btn" type="submit" *ngIf="msg.valid">Send</button>
+                    <!-- <button class="btn-send clean-btn" type="submit">Send</button> -->
+                </form>
+                <div class="btn-container" *ngIf="!isQuickReactionShown && msg.invalid">
+                    <like-icon [isLiked]="isLiked" (click)="onToggleLike()"></like-icon>
+                    <fa-icon [icon]="faPaperPlane" (click)="onToggleModal()"></fa-icon>
+
+                </div>
+            </div>
+        </section>
+    </ng-template>
+
+</div>

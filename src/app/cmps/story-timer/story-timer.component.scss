@@ -2,8 +2,43 @@
 @import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
-.timer {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
 
+::ng-deep .main-container {
+
+    position: relative;
+    // width: 100%;
+    // top: 10%;
+    z-index: 10;
+
+    .timer {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(4px, 1fr));
+        gap: 2px;
+    }
+
+    mat-progress-bar {
+        border-radius: 5px;
+    }
+
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+
+        button {
+            padding: 7.5px;
+        }
+
+        .user-preview {
+            .user-info {
+                color: white;
+            }
+
+            .img-container {
+                // flex: 1;
+                height: rem(40px);
+                width: rem(40px);
+            }
+        }
+    }
 }

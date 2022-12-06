@@ -1,8 +1,8 @@
 import { PostService } from 'src/app/services/post.service';
-import { LoadLoggedInUser, SaveUser } from './../../store/actions/user.actions';
-import { ChangeDetectionStrategy, Component, inject, OnInit, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { faHeart, faComment, faPaperPlane, faBookmark } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as faHeartSolid, faBookmark as faBookmarkSolid } from '@fortawesome/free-solid-svg-icons';
+import { SaveUser } from './../../store/actions/user.actions';
+import { Component, OnInit, EventEmitter, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
+import { faComment, faPaperPlane, faBookmark } from '@fortawesome/free-regular-svg-icons';
+import { faBookmark as faBookmarkSolid } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { map, Observable, Subscription } from 'rxjs';
 import { Post } from 'src/app/models/post.model';
@@ -18,7 +18,7 @@ import { State } from 'src/app/store/store';
   inputs: ['post', 'loggedinUser'],
   outputs: ['toggleModal']
 })
-export class PostActionsComponent implements OnInit, OnChanges {
+export class PostActionsComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor(
     private postService: PostService,
@@ -34,8 +34,6 @@ export class PostActionsComponent implements OnInit, OnChanges {
   toggleModal = new EventEmitter<string>();
 
   // Icons
-  faHeart = faHeart;
-  faHeartSolid = faHeartSolid;
   faComment = faComment;
   faPaperPlane = faPaperPlane;
   faBookmark = faBookmark;

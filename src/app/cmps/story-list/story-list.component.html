@@ -16,12 +16,11 @@
                     <story-preview [story]="story" [isStoryDetails]="true"></story-preview>
                 </li>
             </ul>
-            <div class="story-preview-container">
-                <story-preview [story]="currStory" [isStoryDetails]="true" [isCurrStory]="true"></story-preview>
 
-                <pagination-btns [isPaginationBtnShown]="isPaginationBtnShown" (prevItem)="onSetCurrStory($event)"
-                    (nextItem)="onSetCurrStory($event)"></pagination-btns>
-            </div>
+            <story-preview [story]="currStory" [nextStory]="postCurrStoryList[0]" [isCurrStory]="true"
+                [isPaginationBtnShown]="isPaginationBtnShown" (setPrevStory)="onSetCurrStory($event)"
+                (setNextStory)="onSetCurrStory($event)"></story-preview>
+
             <ul class="post-story-list">
                 <li *ngFor="let story of postCurrStoryList">
                     <story-preview [story]="story" [isStoryDetails]="true"></story-preview>

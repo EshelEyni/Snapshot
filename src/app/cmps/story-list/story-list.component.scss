@@ -41,9 +41,9 @@
 
 ::ng-deep .details-story-list {
     display: grid;
-    grid-template-columns: 300px 1fr 300px;
+    grid-template-columns: 400px 1fr 400px;
     gap: rem(15px);
-    width: 90%;
+    width: 100%;
 
     .img-container {
         height: rem(60px);
@@ -51,38 +51,19 @@
         margin-right: rem(10px);
     }
 
-    .story-preview-container {
-        position: relative;
-        width: 650px;
-        height: 100%;
-        
+    ul {
         display: flex;
-        justify-content: center;
         align-items: center;
-
-        .btn-pagination {
-            top: 50%;
-
-            fa-icon {
-                color: var(--primary-pagination-button);
-                font-size: rem(30px);
-            }
-        }
-
-
+        overflow-x: hidden;
+        gap: rem(85px);
     }
 
     .pre-story-list {
-        display: flex;
         justify-content: flex-end;
-        align-items: center;
-        overflow-x: hidden;
+
     }
 
     .post-story-list {
-        display: flex;
         justify-content: flex-start;
-        align-items: center;
-        overflow-x: hidden;
     }
 }

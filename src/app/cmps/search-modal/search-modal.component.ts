@@ -4,7 +4,7 @@ import { State } from './../../store/store';
 import { Store } from '@ngrx/store';
 import { Tag } from '../../models/tag.model';
 import { User } from './../../models/user.model';
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'search-modal',
@@ -12,7 +12,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
   styleUrls: ['./search-modal.component.scss'],
   outputs: ['onClose']
 })
-export class SearchModalComponent implements OnInit {
+export class SearchModalComponent implements OnInit ,OnDestroy{
 
   constructor(
     private store: Store<State>
@@ -53,7 +53,7 @@ export class SearchModalComponent implements OnInit {
     this.onClose.emit()
   }
 
-  ngDestroy() {
+  ngOnDestroy() {
     this.sub?.unsubscribe()
   }
 }

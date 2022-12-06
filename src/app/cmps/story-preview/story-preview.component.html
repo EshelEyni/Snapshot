@@ -1,5 +1,6 @@
 <article class="story">
-    <user-preview *ngIf="!isHighlight && !isStoryDetails" [user]="story.by" [story]="story"></user-preview>
+    <user-preview *ngIf="!isHighlight && !isStoryDetails && !isCurrStory" [user]="story.by" [story]="story">
+    </user-preview>
 
     <div class="highlight-container" *ngIf="isHighlight">
         <div class="img-container">
@@ -10,14 +11,38 @@
         </div>
     </div>
 
-    <div class="for-details-container" *ngIf="isStoryDetails" [class.curr-story]="isCurrStory">
-        <div class="timer-container">
-            <story-timer [imgUrls]="story.imgUrls"></story-timer>
-        </div>
+    <div class="for-details-container" *ngIf="isStoryDetails" [routerLink]="['/story/',story.id]">
         <div class="img-container">
             <img [src]="story.imgUrls[0]" alt="story-img">
         </div>
-        <!-- <user-preview [user]="story.by"></user-preview> -->
+        <div class="info">
+            <user-preview [user]="story.by"> </user-preview>
+            <p>{{story.createdAt | formattedDate}}</p>
+        </div>
+    </div>
 
+    <div class="curr-story-container" *ngIf="isCurrStory">
+
+        <div class="curr-story">
+            <div class="timer-container">
+                <story-timer [currStory]="story" [nextStory]="nextStory" (onSetImgUrl)="onSetCurrImgUrl($event)"
+                    [currImgIdx]="currImgIdx">
+                </story-timer>
+            </div>
+
+            <div class="img-container">
+                <img [src]="currImgUrl" alt="story-img">
+            </div>
+
+            <div class="reply-container">
+                <div *ngIf="isUserStory; else msgEdit">userstory</div>
+                <ng-template #msgEdit>
+                    <msg-edit [isStoryReply]="true" [story]="story"> </msg-edit>
+                </ng-template>
+            </div>
+        </div>
+
+        <pagination-btns *ngIf="isPaginationBtnShown" [isPaginationBtnShown]="isPaginationBtnShown"
+            (prevItem)="onSetCurrImgUrl($event)" (nextItem)="onSetCurrImgUrl($event)"></pagination-btns>
     </div>
 </article>

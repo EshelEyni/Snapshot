@@ -7,7 +7,7 @@ import { CommentService } from 'src/app/services/comment.service';
 import { UtilService } from './../../services/util.service';
 import { PostService } from 'src/app/services/post.service';
 import { UploadImgService } from './../../services/upload-img.service';
-import { Component, OnInit, inject, HostListener, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, inject, HostListener, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { faX, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from 'src/app/services/user.service';
 import { Location, Post } from 'src/app/models/post.model';
@@ -17,7 +17,7 @@ import { Location, Post } from 'src/app/models/post.model';
   templateUrl: './post-edit.component.html',
   styleUrls: ['./post-edit.component.scss']
 })
-export class PostEditComponent implements OnInit {
+export class PostEditComponent implements OnInit,OnDestroy {
   @Output() togglePostEdit = new EventEmitter<boolean>()
 
   constructor(

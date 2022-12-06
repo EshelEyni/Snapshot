@@ -1,9 +1,6 @@
 <section class="actions">
     <div class="main-btn-container">
-        <fa-icon [icon]="faHeart" (click)="onToggleLike()" *ngIf="!isLiked else solidHeart"></fa-icon>
-        <ng-template #solidHeart>
-            <fa-icon class="solid-heart" (click)="onToggleLike()" [icon]="faHeartSolid"></fa-icon>
-        </ng-template>
+        <like-icon [isLiked]="isLiked" (click)="onToggleLike()"></like-icon>
         <fa-icon [icon]="faComment"></fa-icon> <!-- TODO: add link to post details -->
         <fa-icon [icon]="faPaperPlane" (click)="onToggleModal()"></fa-icon>
     </div>

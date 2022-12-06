@@ -6,14 +6,14 @@ import { State } from './../../store/store';
 import { User } from './../../models/user.model';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, Observable, map } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'profile-details',
   templateUrl: './profile-details.component.html',
   styleUrls: ['./profile-details.component.scss']
 })
-export class ProfileDetailsComponent implements OnInit {
+export class ProfileDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
@@ -37,7 +37,7 @@ export class ProfileDetailsComponent implements OnInit {
       const user = data['user']
       if (user) {
         this.user = user
-        this.postService.loadPosts({ userId: this.user.id , type: 'createdPosts' });
+        this.postService.loadPosts({ userId: this.user.id, type: 'createdPosts' });
         this.posts$ = this.postService.posts$;
       }
     })

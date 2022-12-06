@@ -1,6 +1,6 @@
 import { LoadLoggedInUser } from './../../store/actions/user.actions';
 import { UserService } from './../../services/user.service';
-import { Component, EventEmitter, Input, OnInit, Output, ViewChildren, ElementRef, QueryList, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChildren, ElementRef, QueryList, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { State } from 'src/app/store/store';
 import { Store } from '@ngrx/store';
@@ -14,7 +14,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./side-bar.component.scss']
 })
 
-export class SideBarComponent implements OnInit, OnChanges {
+export class SideBarComponent implements OnInit, OnChanges,OnDestroy {
 
   constructor(
     private router: Router,

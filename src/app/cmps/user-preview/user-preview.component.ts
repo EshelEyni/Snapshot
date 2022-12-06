@@ -10,7 +10,7 @@ import { lastValueFrom } from 'rxjs';
   selector: 'user-preview',
   templateUrl: './user-preview.component.html',
   styleUrls: ['./user-preview.component.scss'],
-  inputs: ['user', 'location', 'story']
+  inputs: ['user', 'location', 'story', 'isLinkToUser']
 })
 export class UserPreviewComponent implements OnInit {
 
@@ -21,13 +21,14 @@ export class UserPreviewComponent implements OnInit {
   location!: Location;
   story!: Story;
   isWatched: boolean = false;
-  url: string =  '';
+  isLinkToUser: boolean = false;
+  url: string = '';
 
   async ngOnInit() {
 
     if (this.user && this.story) {
       this.isWatched = this.story.watchedBy.some(watchedUser => watchedUser.id === this.user.id);
-      this.url = `/story/${this.story.id}`;
+      this.url = this.isLinkToUser ? `/profile/${this.user.id}` : `/story/${this.story.id}`;
     }
 
     // const user = await lastValueFrom(this.userService.getById(this.user.id));
@@ -39,7 +40,7 @@ export class UserPreviewComponent implements OnInit {
   }
 
   setWatchedStory() {
-    if(this.isWatched) return;
+    if (this.isWatched) return;
     this.story.watchedBy.push(this.user);
     this.storyService.save(this.story);
     this.isWatched = true;

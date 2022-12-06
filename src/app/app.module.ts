@@ -14,6 +14,7 @@ import { AppEffects } from './store/app.effects';
 import { environment } from '../environments/environment';
 import { reducers, metaReducers } from './store/store';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 // Components
 import { AppComponent } from './app-root/app.component';
@@ -33,7 +34,6 @@ import { PostEditFormComponent } from './cmps/post-edit-form/post-edit-form.comp
 import { ExploreComponent } from './pages/explore/explore.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { PostDetailsComponent } from './pages/post-details/post-details.component';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 // Pipes
@@ -60,6 +60,9 @@ import { StoryDetailsComponent } from './cmps/story-details/story-details.compon
 import { StoryEditComponent } from './cmps/story-edit/story-edit.component';
 import { PaginationBtnsComponent } from './cmps/pagination-btns/pagination-btns.component';
 import { StoryTimerComponent } from './cmps/story-timer/story-timer.component';
+import { LikeIconComponent } from './cmps/like-icon/like-icon.component';
+import { MsgEditComponent } from './cmps/msg-edit/msg-edit.component';
+import { QuickReactionComponent } from './cmps/quick-reaction/quick-reaction.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +106,9 @@ import { StoryTimerComponent } from './cmps/story-timer/story-timer.component';
     StoryEditComponent,
     PaginationBtnsComponent,
     StoryTimerComponent,
+    LikeIconComponent,
+    MsgEditComponent,
+    QuickReactionComponent,
   ],
   imports: [
     BrowserModule,
@@ -126,6 +132,8 @@ import { StoryTimerComponent } from './cmps/story-timer/story-timer.component';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([AppEffects]),
+    MatProgressBarModule
+
   ],
   providers: [],
   bootstrap: [AppComponent],

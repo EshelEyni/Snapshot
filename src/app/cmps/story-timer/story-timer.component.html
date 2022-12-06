@@ -1,4 +1,16 @@
-<ul class="timer">
-    <li *ngFor="let imgUrl of imgUrls" class="timer">
-    </li>
-</ul>
+<div class="main-container">
+    <ul class="timer">
+        <li *ngFor="let imgUrl of imgUrls; index as idx">
+            <mat-progress-bar mode="determinate" [value]="values[idx]" [color]="'red'"></mat-progress-bar>
+        </li>
+    </ul>
+    <div class="btn-container">
+        <user-preview [user]="currStory.by" [story]="currStory" [isLinkToUser]="true"></user-preview>
+        <button class="clean-btn" (click)="onTogglePlayStory()">
+            <svg-icon src="../../../assets/svgs/pause-icon.svg" *ngIf="isPlaying; else playIcon"></svg-icon>
+            <ng-template #playIcon>
+                <svg-icon src="../../../assets/svgs/play-icon.svg"></svg-icon>
+            </ng-template>
+        </button>
+    </div>
+</div>

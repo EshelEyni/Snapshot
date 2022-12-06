@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from './../../services/user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UploadImgService } from './../../services/upload-img.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { UploadImgService } from './../../services/upload-img.service';
   templateUrl: './profile-edit.component.html',
   styleUrls: ['./profile-edit.component.scss']
 })
-export class ProfileEditComponent implements OnInit {
+export class ProfileEditComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,

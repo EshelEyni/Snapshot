@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { User } from 'src/app/models/user.model';
 import { Observable, Subscription, map } from 'rxjs';
 import { Post } from './../../models/post.model';
-import { Component, Input, OnInit, inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, OnInit, inject, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Comment } from 'src/app/models/comment.model';
 import { faFaceSmile } from '@fortawesome/free-regular-svg-icons';
 import { faComments } from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +15,7 @@ import { CommentService } from 'src/app/services/comment.service';
   styleUrls: ['./post-preview.component.scss']
 })
 
-export class PostPreviewComponent implements OnInit {
+export class PostPreviewComponent implements OnInit,OnDestroy {
 
   constructor(
     private store: Store<State>

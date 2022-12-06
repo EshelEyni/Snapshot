@@ -1,0 +1,70 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
+
+.msg-edit-main-container {
+    position: relative;
+    // z-index: 20;
+    width: 100%;
+
+    .story-reply {
+        position: relative;
+        // z-index: 20;
+        
+        .quick-reactions-container {
+            position: relative;
+            z-index: 20;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .reply-actions {
+            display: flex;
+            color: var(--border-color);
+            margin: rem(20px);
+            gap: rem(20px);
+
+            .msg-form {
+                display: flex;
+                align-items: center;
+                position: relative;
+                color: var(--border-color);
+                flex: 4;
+
+                input {
+                    height: rem(60px);
+                    width: 100%;
+                    font-size: rem(16px);
+                    color: var(--border-color);
+                    background: transparent;
+                    border: 1px solid var(--border-color);
+                    border-radius: 50px;
+                    padding: rem(10px) 25px;
+
+                    &::placeholder {
+                        font-size: rem(16px);
+                        color: var(--border-color);
+                    }
+                }
+
+                .btn-send {
+                    position: absolute;
+                    right: 15px;
+                    font-size: rem(16px);
+                    font-weight: 600;
+                    color: var(--border-color);
+
+                }
+            }
+
+            .btn-container {
+                flex: 1;
+
+                fa-icon {
+                    font-size: rem(24px);
+                }
+
+            }
+        }
+    }
+}

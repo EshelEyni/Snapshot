@@ -4,7 +4,7 @@ import { User } from 'src/app/models/user.model';
 import { Observable, map, Subscription } from 'rxjs';
 import { State } from 'src/app/store/store';
 import { Store } from '@ngrx/store';
-import { Component, OnInit, EventEmitter, OnChanges } from '@angular/core';
+import { Component, OnInit, EventEmitter, OnChanges, OnDestroy } from '@angular/core';
 import { Notification } from 'src/app/models/notification.model';
 
 @Component({
@@ -15,7 +15,7 @@ import { Notification } from 'src/app/models/notification.model';
   outputs: ['onClose']
 
 })
-export class NotificationComponent implements OnInit {
+export class NotificationComponent implements OnInit,OnDestroy {
 
   constructor(
     private store: Store<State>
@@ -63,7 +63,7 @@ export class NotificationComponent implements OnInit {
     this.onClose.emit()
   }
 
-  ngDestroy() {
+  ngOnDestroy() {
     if (this.sub) this.sub.unsubscribe()
   }
 

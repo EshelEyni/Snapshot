@@ -1,6 +1,6 @@
 import { UserService } from './../../services/user.service';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: './login-signup.component.html',
   styleUrls: ['./login-signup.component.scss']
 })
-export class LoginSignupComponent implements OnInit {
+export class LoginSignupComponent implements OnInit, OnDestroy {
 
   intervalId!: number
   routerUrl: string = this.router.url.slice(1)
@@ -35,10 +35,6 @@ export class LoginSignupComponent implements OnInit {
     }, 2000)
   }
 
-  ngOnDestroy(): void {
-    clearInterval(this.intervalId!)
-  }
-
   onLogin() {
     const userCred = this.form.value
     if (this.routerUrl === 'login') this.userService.login({ username: userCred.username, password: userCred.password })
@@ -46,6 +42,10 @@ export class LoginSignupComponent implements OnInit {
     console.log(userCred)
     this.form.reset()
     this.router.navigate(['/'])
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervalId!)
   }
 
 }

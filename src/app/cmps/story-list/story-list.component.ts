@@ -7,7 +7,7 @@ import { Observable, Subscription, map, lastValueFrom } from 'rxjs';
 import { Story } from './../../models/story.model';
 import { State } from 'src/app/store/store';
 import { Store } from '@ngrx/store';
-import { Component, OnInit, inject, OnChanges } from '@angular/core';
+import { Component, OnInit, inject, OnChanges, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'story-list',
@@ -15,7 +15,7 @@ import { Component, OnInit, inject, OnChanges } from '@angular/core';
   styleUrls: ['./story-list.component.scss'],
   inputs: ['isHighlight', 'currStory']
 })
-export class StoryListComponent implements OnInit, OnChanges {
+export class StoryListComponent implements OnInit, OnChanges,OnDestroy {
 
   constructor() {
     this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
@@ -42,7 +42,6 @@ export class StoryListComponent implements OnInit, OnChanges {
   listPosition: string = '0';
 
   ngOnInit(): void {
-    console.log('story-list ngOnInit');
     this.loggedinUserSub = this.loggedinUser$.subscribe(user => {
       this.loggedinUser = JSON.parse(JSON.stringify(user));
       if (user) {
@@ -64,7 +63,6 @@ export class StoryListComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log('story-list ngOnChanges');
     if (this.currStory && this.stories && this.preCurrStoryList) {
       this.preCurrStoryList = this.stories.slice(0, this.stories.findIndex(story => story.id === this.currStory.id));
       this.postCurrStoryList = this.stories.slice(this.stories.findIndex(story => story.id === this.currStory.id) + 1);
@@ -88,7 +86,6 @@ export class StoryListComponent implements OnInit, OnChanges {
   }
 
   onScrollStory(num: number) {
-    console.log('onScrollStory', num);
     this.idx += num;
     if (this.idx < 0) this.idx = 0;
     if (this.idx > this.stories.length - 1) this.idx = this.stories.length - 1;
@@ -100,7 +97,7 @@ export class StoryListComponent implements OnInit, OnChanges {
     this.route.navigate(['/story/', this.stories[this.idx + num].id]);
   }
 
-  ngDestroy() {
+  ngOnDestroy() {
     this.loggedinUserSub?.unsubscribe();
     this.storySub?.unsubscribe();
   }

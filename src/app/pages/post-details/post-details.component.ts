@@ -3,7 +3,7 @@ import { PostService } from './../../services/post.service';
 import { State } from './../../store/store';
 import { Store } from '@ngrx/store';
 import { User } from './../../models/user.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, Observable, map, lastValueFrom } from 'rxjs';
 import { Post } from 'src/app/models/post.model';
@@ -13,7 +13,7 @@ import { Post } from 'src/app/models/post.model';
   templateUrl: './post-details.component.html',
   styleUrls: ['./post-details.component.scss']
 })
-export class PostDetailsComponent implements OnInit {
+export class PostDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
