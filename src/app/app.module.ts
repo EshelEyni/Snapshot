@@ -15,6 +15,7 @@ import { environment } from '../environments/environment';
 import { reducers, metaReducers } from './store/store';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatSliderModule} from '@angular/material/slider';
 
 // Components
 import { AppComponent } from './app-root/app.component';
@@ -63,6 +64,9 @@ import { StoryTimerComponent } from './cmps/story-timer/story-timer.component';
 import { LikeIconComponent } from './cmps/like-icon/like-icon.component';
 import { MsgEditComponent } from './cmps/msg-edit/msg-edit.component';
 import { QuickReactionComponent } from './cmps/quick-reaction/quick-reaction.component';
+import { FileInputComponent } from './cmps/file-input/file-input.component';
+import { CanvasEditComponent } from './cmps/canvas-edit/canvas-edit.component';
+import { TxtInputComponent } from './cmps/txt-input/txt-input.component';
 
 @NgModule({
   declarations: [
@@ -109,6 +113,9 @@ import { QuickReactionComponent } from './cmps/quick-reaction/quick-reaction.com
     LikeIconComponent,
     MsgEditComponent,
     QuickReactionComponent,
+    FileInputComponent,
+    CanvasEditComponent,
+    TxtInputComponent,
   ],
   imports: [
     BrowserModule,
@@ -132,7 +139,8 @@ import { QuickReactionComponent } from './cmps/quick-reaction/quick-reaction.com
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([AppEffects]),
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSliderModule
 
   ],
   providers: [],

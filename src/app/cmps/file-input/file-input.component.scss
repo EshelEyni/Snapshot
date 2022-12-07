@@ -1,0 +1,43 @@
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/functions';
+
+.img-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // text-transform: capitalize;
+    height: 100%;
+    width: 100%;
+
+    p {
+        font-size: rem(22px);
+    }
+
+    a {
+        background-color: var(--primary-button);
+        color: var(--primary-bg);
+        font-size: rem(14px);
+        padding: rem(5px) rem(10px);
+        border-radius: 5px;
+    }
+}
+
+.btn-plus {
+    align-self: flex-start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(var(--primary-color), var(--primary-color)) padding-box,
+        white border-box;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    padding: rem(2px);
+    height: rem(50px);
+    width: rem(50px);
+
+    svg {
+        height: rem(28px);
+        width: rem(28px);
+    }
+}

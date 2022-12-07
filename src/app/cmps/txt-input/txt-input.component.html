@@ -1,0 +1,33 @@
+<div class="txt-edit-container btn-cancel">
+    <div class="btn-container">
+        <button class="clean-btn">cancel</button>
+    </div>
+    <div class="btn-container btn-save">
+        <button class="clean-btn">done</button>
+    </div>
+    <input class="input-txt clean-input" type="text" [(ngModel)]="txt.str" (keyup.enter)="onAddTxt()"
+        [ngStyle]="txt.style" autofocus>
+
+    <div class="input-txt-size-container">
+        <mat-slider [min]="1" [max]="100" [step]="1" [value]="16" [vertical]="true" [tickInterval]="100">
+            <input matSliderThumb>
+        </mat-slider>
+    </div>
+
+    <div class="color-picker">
+        <div>red</div>
+        <div>red</div>
+        <div>red</div>
+        <div>red</div>
+        <div>red</div>
+    </div>
+    <div class="font-picker">
+        <div>arial</div>
+        <div>arial</div>
+        <div>arial</div>
+        <div>arial</div>
+        <div>arial</div>
+        <div>arial</div>
+        <div>arial</div>
+    </div>
+</div>

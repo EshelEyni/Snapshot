@@ -1,0 +1,39 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
+
+::ng-deep .canvas {
+
+    .canvas-container {
+        position: relative;
+        width: 515px;
+        height: 900px;
+
+        .icons-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            gap: rem(10px);
+            padding: rem(10px);
+
+            fa-icon {
+                font-size: rem(30px);
+                color: white;
+            }
+        }
+
+        canvas {
+            border-radius: 5px;
+        }
+    }
+
+    .btn-pagination {
+        top: 50%;
+
+        fa-icon {
+            color: var(--primary-pagination-button);
+            font-size: rem(30px);
+        }
+    }
+}

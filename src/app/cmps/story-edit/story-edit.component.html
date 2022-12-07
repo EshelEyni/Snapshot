@@ -1,1 +1,12 @@
-<p>story-edit works!</p>
+<main class="story-edit" [class.edit-mode]="isEditMode">
+    <div class="input-file-container" *ngIf="!imgUrls.length else canvasContainer">
+        <file-input (uploadedImgUrls)="onSaveFiles($event)" [type]="'draggable'">
+        </file-input>
+    </div>
+
+    <ng-template #canvasContainer>
+        <div class="canvas-container">
+            <canvas-edit [imgUrls]="imgUrls"></canvas-edit>
+        </div>
+    </ng-template>
+</main>

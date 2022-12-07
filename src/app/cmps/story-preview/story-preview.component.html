@@ -1,6 +1,9 @@
 <article class="story">
-    <user-preview *ngIf="!isHighlight && !isStoryDetails && !isCurrStory" [user]="story.by" [story]="story">
-    </user-preview>
+    <div class="for-home-page">
+        <user-preview *ngIf="!isHighlight && !isStoryDetails && !isCurrStory" [user]="story.by" [story]="story"
+        [type]="'home-page-list'">
+        </user-preview>
+    </div>
 
     <div class="highlight-container" *ngIf="isHighlight">
         <div class="img-container">

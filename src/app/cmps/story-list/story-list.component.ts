@@ -13,9 +13,9 @@ import { Component, OnInit, inject, OnChanges, OnDestroy } from '@angular/core';
   selector: 'story-list',
   templateUrl: './story-list.component.html',
   styleUrls: ['./story-list.component.scss'],
-  inputs: ['isHighlight', 'currStory']
+  inputs: ['isHighlight', 'currStory', 'type']
 })
-export class StoryListComponent implements OnInit, OnChanges,OnDestroy {
+export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor() {
     this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
@@ -41,6 +41,8 @@ export class StoryListComponent implements OnInit, OnChanges,OnDestroy {
   isPaginationBtnShown = { left: false, right: false };
   listPosition: string = '0';
 
+  type!: string;
+
   ngOnInit(): void {
     this.loggedinUserSub = this.loggedinUser$.subscribe(user => {
       this.loggedinUser = JSON.parse(JSON.stringify(user));
@@ -52,7 +54,8 @@ export class StoryListComponent implements OnInit, OnChanges,OnDestroy {
 
     this.storySub = this.storyService.stories$.subscribe(stories => {
       this.stories = stories;
-      if (this.currStory) {
+      if (this.type === 'story-details') {
+        stories = stories.filter(story => story.id);
         this.preCurrStoryList = stories.slice(0, stories.findIndex(story => story.id === this.currStory.id));
         this.postCurrStoryList = stories.slice(stories.findIndex(story => story.id === this.currStory.id) + 1);
         this.idx = this.preCurrStoryList.length;

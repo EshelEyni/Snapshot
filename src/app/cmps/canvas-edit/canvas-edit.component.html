@@ -1,0 +1,18 @@
+<div class="canvas">
+    <div class="canvas-container">
+        <div class="icons-container">
+            <fa-icon [icon]="faNoteSticky"></fa-icon>
+            <fa-icon [icon]="faPaintbrush"></fa-icon>
+            <fa-icon [icon]="faT" (click)="onToggleTxtEdit()"></fa-icon>
+        </div>
+
+        <txt-input *ngIf="isTxtEditMode"></txt-input>
+
+
+        <canvas #canvas height="900" width="515"></canvas>
+
+    </div>
+    <pagination-btns *ngIf="isPaginationBtnShown" [isPaginationBtnShown]="isPaginationBtnShown"
+        (prevItem)="onSetCurrImgUrl($event)" (nextItem)="onSetCurrImgUrl($event)"></pagination-btns>
+
+</div>

@@ -1,11 +1,12 @@
-import { Component, inject, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, inject, Input, OnInit, OnChanges, EventEmitter } from '@angular/core';
 import { faCircle, faCircleChevronLeft, faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { UploadImgService } from 'src/app/services/upload-img.service';
 
 @Component({
   selector: 'img-container',
   templateUrl: './img-container.component.html',
-  styleUrls: ['./img-container.component.scss']
+  styleUrls: ['./img-container.component.scss'],
+  outputs: ['uploadedImgUrls']
 })
 export class ImgContainerComponent implements OnInit, OnChanges {
 
@@ -14,10 +15,12 @@ export class ImgContainerComponent implements OnInit, OnChanges {
 
   @Input() imgUrls: string[] = []
   @Input() onGoBack!: Function;
-  @Input() onFileChange!: Function;
-  @Input() saveFiles!: Function;
+  // @Input() onFileChange!: Function;
+  // @Input() saveFiles!: Function;
   @Input() isEditPost!: boolean;
   @Input() isMiniPreview!: boolean;
+
+  uploadedImgUrls = new EventEmitter<string[]>();
 
   // Icons
   faCircle = faCircle;
@@ -55,6 +58,11 @@ export class ImgContainerComponent implements OnInit, OnChanges {
 
   onToggleImgSelect() {
     this.isImgSelect = !this.isImgSelect;
+  }
+
+  onSaveFiles(imgUrls: string[]) {
+    this.imgUrls = [...this.imgUrls, ...imgUrls];
+    this.uploadedImgUrls.emit(this.imgUrls);
   }
 
   onRemoveImg(img: string) {

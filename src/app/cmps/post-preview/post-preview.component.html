@@ -2,7 +2,7 @@
     <div class="main-screen dark-mode" *ngIf="isMainScreen" (click)="onToggleModal('main-screen')"></div>
     <div class="post-preview-container" *ngIf="!isMiniPreview else miniPreview">
         <section class="post-creator">
-            <user-preview [user]="post.by" [location]="post.location"></user-preview>
+            <user-preview [user]="post.by" [location]="post.location" [type]="'post-preview'"></user-preview>
             <ellipsis></ellipsis>
         </section>
 

@@ -14,22 +14,22 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        
+
         // *************** user img circle  ***************
         background: linear-gradient(white, white) padding-box,
-        linear-gradient(to bottom left, var(--primary-icon-color), var(--secondary-icon-color)) border-box;
+            linear-gradient(to bottom left, var(--primary-icon-color), var(--secondary-icon-color)) border-box;
         border-radius: 50%;
         border: 2px solid transparent;
         padding: rem(2px);
-        
+
         img {
             border-radius: 50%;
         }
     }
-    
+
     .user-info {
         h3 {
-            text-transform: lowercase;
+            // text-transform: lowercase;
             font-size: rem(14px);
             margin: 0;
         }
@@ -52,6 +52,26 @@
             border: none;
             background: none;
             padding: 0;
+        }
+    }
+
+    &.user-story {
+        .img-container {
+            height: rem(50px);
+            width: rem(50px);
+
+            background: linear-gradient(white, white) padding-box,
+                linear-gradient(to bottom left, var(--border-color), var(--border-color)) border-box;
+            border: 1px solid transparent;
+            padding: rem(7.5px);
+
+            .plus-circle-container{
+                position: absolute;
+                bottom: -20%;
+                right: 0;
+                width: fit-content;
+                height: fit-content;
+            }
         }
     }
 }

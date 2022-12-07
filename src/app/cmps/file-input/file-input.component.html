@@ -1,0 +1,15 @@
+<div draggable="true" class="img-input" ngClass="{{dragAreaClass}}" *ngIf="type==='draggable'">
+    <svg-icon src="../../../assets/svgs/add-icon.svg" [svgStyle]="{ 'width.px':300 }"></svg-icon>
+    <p>Drag photos and videos here</p>
+    <a href="javascript:void(0)" (click)="file.click()">
+        select from computer
+    </a>
+    <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
+</div>
+
+<div class="btn-plus" *ngIf="type==='btn-plus'">
+    <a href="javascript:void(0)" (click)="file.click()">
+        <svg-icon src="../../../assets/svgs/plus.svg" [svgStyle]="{ 'display':'flex'}"></svg-icon>
+    </a>
+    <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
+</div>

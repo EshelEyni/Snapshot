@@ -1,3 +1,4 @@
+import { NavigationService } from './../../services/navigation.service';
 import { Store } from '@ngrx/store';
 import { State } from './../../store/store';
 import { UserService } from './../../services/user.service';
@@ -20,7 +21,8 @@ export class StoryDetailsComponent implements OnInit {
     private $location: Location,
     private route: ActivatedRoute,
     private userService: UserService,
-    private store: Store<State>
+    private store: Store<State>,
+    private navigation: NavigationService
   ) { }
 
 
@@ -38,6 +40,7 @@ export class StoryDetailsComponent implements OnInit {
   }
 
   onGoBack() {
-    this.$location.back();
+    // this.$location.back();
+    this.navigation.storyDetailsGoBack()
   }
 }

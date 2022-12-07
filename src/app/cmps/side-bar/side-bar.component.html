@@ -39,8 +39,8 @@
             <span>notifications</span>
         </button>
         <button class="btn-create clean-btn" (click)="onTogglePostEdit()" [class.active]="isBtnClicked.create">
-            <svg-icon src="../../../assets/svgs/plus-solid.svg" class="icon-active"> </svg-icon>
-            <svg-icon src="../../../assets/svgs/plus-outline.svg" class="icon-unactive"> </svg-icon>
+            <svg-icon src="../../../assets/svgs/plus-rect-solid.svg" class="icon-active"> </svg-icon>
+            <svg-icon src="../../../assets/svgs/plus-rect-outline.svg" class="icon-unactive"> </svg-icon>
             <span>create</span>
         </button>
         <a class="profile" [routerLink]="profileUrl" routerLinkActive="active" #link (click)="onToggleModal()">

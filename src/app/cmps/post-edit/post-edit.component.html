@@ -14,19 +14,15 @@
         </header>
 
         <div class="content-container">
-            <div draggable="true" class="img-input" ngClass="{{dragAreaClass}}"
-                *ngIf="!imgUrls.length else imgContainer">
-                <svg-icon src="../../../assets/svgs/add-icon.svg" [svgStyle]="{ 'width.px':300 }"></svg-icon>
-                <p>drag photos and videos here</p>
-                <a href="javascript:void(0)" (click)="file.click()">
-                    select from computer
-                </a>
-                <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
+            <div class="input-file-container">
+                <file-input *ngIf="!imgUrls.length else imgContainer" (uploadedImgUrls)="onSaveFiles($event)"
+                [type]="'draggable'">
+                </file-input>
             </div>
+
             <ng-template #imgContainer>
                 <div class="edit-img-container">
-                    <img-container [imgUrls]="imgUrls" [isEditPost]="true" [onGoBack]="onGoBack"
-                        [onFileChange]="onFileChange" [saveFiles]="saveFiles"></img-container>
+                    <img-container [imgUrls]="imgUrls" [isEditPost]="true" [onGoBack]="onGoBack"></img-container>
                 </div>
             </ng-template>
 

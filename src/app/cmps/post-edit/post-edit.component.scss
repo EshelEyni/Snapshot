@@ -73,26 +73,9 @@
         .content-container {
             height: calc(100% - rem(40px));
 
-            .img-input {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                text-transform: capitalize;
+            .input-file-container {
                 height: 100%;
                 width: 100%;
-
-                p {
-                    font-size: rem(22px);
-                }
-
-                a {
-                    background-color: var(--primary-button);
-                    color: var(--primary-bg);
-                    font-size: rem(14px);
-                    padding: rem(5px) rem(10px);
-                    border-radius: 5px;
-                }
             }
 
             .edit-img-container {

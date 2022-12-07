@@ -10,7 +10,7 @@ import { lastValueFrom } from 'rxjs';
   selector: 'user-preview',
   templateUrl: './user-preview.component.html',
   styleUrls: ['./user-preview.component.scss'],
-  inputs: ['user', 'location', 'story', 'isLinkToUser']
+  inputs: ['user', 'location', 'type']
 })
 export class UserPreviewComponent implements OnInit {
 
@@ -21,22 +21,54 @@ export class UserPreviewComponent implements OnInit {
   location!: Location;
   story!: Story;
   isWatched: boolean = false;
-  isLinkToUser: boolean = false;
-  url: string = '';
+  type!: string;
+  urlForImg: string = '';
+  urlForTitle: string = '';
+  urlForLocation: string = '';
+  title = '';
+  isStoryEdit = false;
 
   async ngOnInit() {
 
-    if (this.user && this.story) {
-      this.isWatched = this.story.watchedBy.some(watchedUser => watchedUser.id === this.user.id);
-      this.url = this.isLinkToUser ? `/profile/${this.user.id}` : `/story/${this.story.id}`;
-    }
+    const user = await lastValueFrom(this.userService.getById(this.user.id));
+    const story = await lastValueFrom(this.storyService.getById(user.currStoryId));
+    this.isWatched = story.watchedBy.some(watchedUser => watchedUser.id === this.user.id);
+    this.story = story;
+    this.title = this.setTitle();
+    this.setUrls();
+    this.isStoryEdit = this.type === 'home-page-list' && !this.story.id;
+  }
 
-    // const user = await lastValueFrom(this.userService.getById(this.user.id));
-    // const story = await lastValueFrom(this.storyService.getById(user.currStoryId));
-    // this.isWatched = this.story.watchedBy.some(watchedUser => watchedUser.id === this.user.id);
-    // this.url = `/story/${story.id}`;
-    // console.log('this.url', this.url);
-    // this.story = story;
+  setTitle() {
+    const loggedinUser = this.userService.getLoggedinUser();
+    if (loggedinUser && loggedinUser.id === this.user.id && this.type === 'home-page-list') return 'Your story';
+    else return this.user.username;
+  }
+
+  setUrls() {
+    switch (this.type) {
+      case 'home-page-list':
+        if (!this.story.id) this.urlForImg = `/story-edit/`;
+        else {
+          this.urlForImg = `/story/${this.story.id}`;
+          this.urlForTitle = `/story/${this.story.id}`;
+        }
+        break;
+      case 'post-preview':
+        this.urlForImg = `/story/${this.story.id}`;
+        this.urlForTitle = `/profile/${this.user.id}`;
+        this.urlForLocation = `/profile/${this.user.id}`;
+        break;
+      case 'curr-story':
+        this.urlForImg = `/profile/${this.user.id}`;
+        this.urlForTitle = `/profile/${this.user.id}`;
+        break;
+      default:
+        this.urlForImg = `/`;
+        this.urlForTitle = `/`;
+        this.urlForLocation = `/`;
+        break;
+    }
   }
 
   setWatchedStory() {
