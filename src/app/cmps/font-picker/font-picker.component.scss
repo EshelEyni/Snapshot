@@ -1,0 +1,36 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
+
+.font-picker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: rem(10px);
+
+    .font {
+        font-size: rem(16px);
+        cursor: pointer;
+        text-transform: capitalize;
+        background-color: rgb(38, 38, 38, 0.5);
+        color: white;
+        // padding: rem(5px);
+        height: rem(35px);
+        width: rem(35px);
+        border-radius: 50%;
+        transition: all 0.3s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        span {
+            text-align: center;
+
+        }
+
+        &.selected {
+            background-color: white;
+            color: rgb(229, 26, 26);
+        }
+    }
+}

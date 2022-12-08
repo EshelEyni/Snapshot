@@ -5,12 +5,37 @@
 }
 
 @font-face {
-    font-family: roboto-bold;
-    src: url(../../fonts/roboto/roboto-bold.ttf);
+  font-family: roboto-bold;
+  src: url(../../fonts/roboto/roboto-bold.ttf);
 }
 
 // pacifico
 @font-face {
   font-family: pacifico;
   src: url(../../fonts/pacifico/Pacifico-Regular.ttf);
+}
+
+@font-face {
+  font-family: cabin;
+  src: url(../../fonts/Cabin/static/Cabin/Cabin-Italic.ttf);
+}
+
+@font-face {
+  font-family: libre-barcode;
+  src: url(../../fonts/Libre_Barcode_39_Text/LibreBarcode39Text-Regular.ttf);
+}
+
+@font-face {
+  font-family: monoton;
+  src: url(../../fonts/Monoton/Monoton-Regular.ttf);
+}
+
+@font-face {
+  font-family: special-elite;
+  src: url(../../fonts/Special_Elite/SpecialElite-Regular.ttf);
+}
+
+@font-face {
+  font-family: titan-one;
+  src: url(../../fonts/Titan_One/TitanOne-Regular.ttf);
 }

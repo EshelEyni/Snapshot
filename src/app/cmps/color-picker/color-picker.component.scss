@@ -1,0 +1,56 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
+@import '../../../assets/styles/themes/custome-theme';
+
+
+.color-picker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(10px);
+
+    .color-container {
+        border-radius: 50%;
+        background: linear-gradient(white, white) padding-box,
+            linear-gradient(to bottom left, white, white) border-box;
+        border: 2px solid transparent;
+        cursor: pointer;
+
+        &.is-selected {
+            &.black-border {
+                .inner-border-container {
+                    background: linear-gradient(white, white) padding-box,
+                        linear-gradient(to bottom left, black, black) border-box;
+                    border: 2px solid transparent;
+                    border-radius: 50%;
+                }
+            }
+
+            &.white-border {
+                background: linear-gradient(black, black) padding-box,
+                    linear-gradient(to bottom left, black, black) border-box;
+
+                .inner-border-container {
+                    background: linear-gradient(white, white) padding-box,
+                        linear-gradient(to bottom left, white, white) border-box;
+                    border: 2px solid transparent;
+                    border-radius: 50%;
+                }
+            }
+
+            .color {
+                height: rem(20px);
+                width: rem(20px);
+
+            }
+        }
+
+        .color {
+            border-radius: 50%;
+            height: rem(25px);
+            width: rem(25px);
+        }
+
+    }
+}

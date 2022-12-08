@@ -56,7 +56,7 @@ export class StoryPreviewComponent implements OnInit, OnChanges, OnDestroy {
     // console.log('story preview ngOnChanges');
     if (this.loggedinUser) this.isUserStory = this.loggedinUser.id === this.story.by.id
     this.currImgIdx = 0;
-    this.currImgUrl = this.story.imgUrls[this.currImgIdx];
+    this.currImgUrl = this.story.imgUrls[this.currImgIdx].url;
   }
 
   onSetCurrImgUrl(num: number) {
@@ -69,7 +69,7 @@ export class StoryPreviewComponent implements OnInit, OnChanges, OnDestroy {
       this.setNextStory.emit(1);
       return;
     }
-    this.currImgUrl = this.story.imgUrls[this.currImgIdx];
+    this.currImgUrl = this.story.imgUrls[this.currImgIdx].url;
 
   }
 

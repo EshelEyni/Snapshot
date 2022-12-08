@@ -1,6 +1,10 @@
 // Modules
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HammerModule } from "../../node_modules/@angular/platform-browser";
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSliderModule } from '@angular/material/slider';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,8 +18,7 @@ import { AppEffects } from './store/app.effects';
 import { environment } from '../environments/environment';
 import { reducers, metaReducers } from './store/store';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import {MatSliderModule} from '@angular/material/slider';
+import { AngularDraggableModule } from 'angular2-draggable';
 
 // Components
 import { AppComponent } from './app-root/app.component';
@@ -67,6 +70,8 @@ import { QuickReactionComponent } from './cmps/quick-reaction/quick-reaction.com
 import { FileInputComponent } from './cmps/file-input/file-input.component';
 import { CanvasEditComponent } from './cmps/canvas-edit/canvas-edit.component';
 import { TxtInputComponent } from './cmps/txt-input/txt-input.component';
+import { ColorPickerComponent } from './cmps/color-picker/color-picker.component';
+import { FontPickerComponent } from './cmps/font-picker/font-picker.component';
 
 @NgModule({
   declarations: [
@@ -116,8 +121,14 @@ import { TxtInputComponent } from './cmps/txt-input/txt-input.component';
     FileInputComponent,
     CanvasEditComponent,
     TxtInputComponent,
+    ColorPickerComponent,
+    FontPickerComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
+    HammerModule,
+    MatProgressBarModule,
+    MatSliderModule,
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
@@ -126,6 +137,7 @@ import { TxtInputComponent } from './cmps/txt-input/txt-input.component';
     ReactiveFormsModule,
     PickerModule,
     EmojiModule,
+    AngularDraggableModule,
     AngularSvgIconModule.forRoot(),
     StoreModule.forRoot(reducers, {
       metaReducers,
@@ -139,12 +151,9 @@ import { TxtInputComponent } from './cmps/txt-input/txt-input.component';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([AppEffects]),
-    MatProgressBarModule,
-    MatSliderModule
-
   ],
   providers: [],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: []
 })
 export class AppModule { }

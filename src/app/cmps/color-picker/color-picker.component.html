@@ -1,0 +1,12 @@
+<ul class="color-picker">
+    <li class="color-container" *ngFor="let color of colors; index as idx" (click)="onSetColor(color.color)"
+        [class]="color.borderType + '-border'" [class.is-selected]="color.isSelected">
+        <div class="inner-border-container" *ngIf="colors[idx].isSelected; else unselectedColor">
+            <div class="color" [ngStyle]="{'background-color':color.color}"></div>
+        </div>
+
+        <ng-template #unselectedColor>
+            <div class="color" [ngStyle]="{'background-color':color.color}"></div>
+        </ng-template>
+    </li>
+</ul>

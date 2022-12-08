@@ -1,7 +1,6 @@
 @import '../../../assets/styles/setup/functions';
 @import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
-@import '../../../assets/styles/themes/custome-theme';
 
 .txt-edit-container {
     background-color: rgba(0, 0, 0, 0.5);
@@ -47,7 +46,6 @@
         grid-column: 2;
         grid-row: 2;
         font-size: rem(30px);
-        font-weight: bold;
         text-align: center;
         background-color: transparent;
     }
@@ -64,16 +62,15 @@
         }
     }
 
-    .color-picker{
+    .color-picker-container {
         grid-column: 3;
         grid-row: 2;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
     }
 
-    .font-picker{
+    .font-picker-container {
         grid-column: 2;
         grid-row: 3;
         display: flex;

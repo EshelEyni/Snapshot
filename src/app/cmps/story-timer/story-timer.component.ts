@@ -1,4 +1,4 @@
-import { Story } from './../../models/story.model';
+import { Story, StoryImg } from './../../models/story.model';
 import { Router } from '@angular/router';
 import { Component, OnInit, inject, OnChanges, OnDestroy, EventEmitter } from '@angular/core';
 
@@ -15,7 +15,7 @@ export class StoryTimerComponent implements OnInit, OnDestroy, OnChanges {
   constructor() { }
   route = inject(Router);
   onSetImgUrl = new EventEmitter<number>();
-  imgUrls!: string[];
+  imgUrls!: StoryImg[];
   values!: number[];
   intervalId!: any;
   currImgIdx!: number;

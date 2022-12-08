@@ -1,33 +1,24 @@
 <div class="txt-edit-container btn-cancel">
     <div class="btn-container">
-        <button class="clean-btn">cancel</button>
+        <button class="clean-btn" (click)="onClose()">cancel</button>
     </div>
     <div class="btn-container btn-save">
-        <button class="clean-btn">done</button>
+        <button class="clean-btn"(click)="onAddTxt()">done</button>
     </div>
     <input class="input-txt clean-input" type="text" [(ngModel)]="txt.str" (keyup.enter)="onAddTxt()"
-        [ngStyle]="txt.style" autofocus>
+        [ngStyle]="txt.style" autofocus #txtInput>
 
     <div class="input-txt-size-container">
-        <mat-slider [min]="1" [max]="100" [step]="1" [value]="16" [vertical]="true" [tickInterval]="100">
+        <mat-slider [min]="12" [max]="75" [step]="1" [(ngModel)]="fontSize" [vertical]="true" (valueChange)="onChangeFontSize($event)">
             <input matSliderThumb>
         </mat-slider>
     </div>
 
-    <div class="color-picker">
-        <div>red</div>
-        <div>red</div>
-        <div>red</div>
-        <div>red</div>
-        <div>red</div>
+    <div class="color-picker-container">
+        <color-picker (colorChange)="onColorChange($event)"></color-picker>
     </div>
-    <div class="font-picker">
-        <div>arial</div>
-        <div>arial</div>
-        <div>arial</div>
-        <div>arial</div>
-        <div>arial</div>
-        <div>arial</div>
-        <div>arial</div>
+
+    <div class="font-picker-container">
+     <font-picker (fontChange)="onFontChange($event)"></font-picker>
     </div>
 </div>

@@ -5,8 +5,6 @@
     </div>
 
     <ng-template #canvasContainer>
-        <div class="canvas-container">
-            <canvas-edit [imgUrls]="imgUrls"></canvas-edit>
-        </div>
+        <canvas-edit [imgUrls]="imgUrls" (cancel)="onGoBack()"></canvas-edit>
     </ng-template>
 </main>
