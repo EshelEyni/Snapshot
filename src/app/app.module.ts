@@ -72,6 +72,7 @@ import { CanvasEditComponent } from './cmps/canvas-edit/canvas-edit.component';
 import { TxtInputComponent } from './cmps/txt-input/txt-input.component';
 import { ColorPickerComponent } from './cmps/color-picker/color-picker.component';
 import { FontPickerComponent } from './cmps/font-picker/font-picker.component';
+import { PainterSettingsComponent } from './cmps/painter-settings/painter-settings.component';
 
 @NgModule({
   declarations: [
@@ -123,6 +124,7 @@ import { FontPickerComponent } from './cmps/font-picker/font-picker.component';
     TxtInputComponent,
     ColorPickerComponent,
     FontPickerComponent,
+    PainterSettingsComponent,
   ],
   imports: [
     BrowserAnimationsModule,

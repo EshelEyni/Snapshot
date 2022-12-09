@@ -4,13 +4,17 @@
         <div class="canvas-container">
             <div class="icons-container" *ngIf="isDefaultMode">
                 <fa-icon [icon]="faNoteSticky"></fa-icon>
-                <fa-icon [icon]="faPaintbrush" (click)="onToggleEdit('brush')"></fa-icon>
+                <fa-icon [icon]="faPaintbrush" (click)="onToggleEdit('painter')"></fa-icon>
                 <fa-icon [icon]="faT" (click)="onToggleEdit('txt')"></fa-icon>
             </div>
 
-            <txt-input *ngIf="this.isEditMode.txt" (close)="onToggleEdit($event)" (addTxt)="onAddTxt($event)" [txtToEdit]="currTxt">
+            <txt-input *ngIf="this.isEditMode.txt" (close)="onToggleEdit($event)" (addTxt)="onAddTxt($event)"
+                [txtToEdit]="currTxt">
             </txt-input>
 
+            <painter-settings *ngIf="this.isEditMode.painter" (close)="onToggleEdit($event)" (undo)="onUndoStroke()"
+            (strokeChange)="onStrokeChange($event)" 
+                [isPainterActive]="isPainterActive"></painter-settings>
 
             <canvas #canvas height="900" width="515"></canvas>
 

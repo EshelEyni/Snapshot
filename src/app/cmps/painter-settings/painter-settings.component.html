@@ -1,0 +1,18 @@
+<section class="painter-settings" [class.painter-active]="isPainterActive">
+    <div class="btn-container">
+        <button class="clean-btn btn-undo" (click)="onUndo()">undo</button>
+    </div>
+    <div class="btn-container btn-save">
+        <button class="clean-btn"(click)="onClose()">done</button>
+    </div>
+  
+    <div class="stroke-size-container">
+        <mat-slider [min]="0" [max]="30" [step]="1" [(ngModel)]="stroke.size" [vertical]="true" (valueChange)="onChangeStrokeSize($event)">
+            <input matSliderThumb>
+        </mat-slider>
+    </div>
+
+    <div class="color-picker-container">
+        <color-picker (colorChange)="onColorChange($event)"></color-picker>
+    </div>
+</section>

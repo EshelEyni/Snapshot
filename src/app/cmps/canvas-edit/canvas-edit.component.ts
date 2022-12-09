@@ -1,4 +1,4 @@
-import { CanvasTxt } from './../../models/canvas.model';
+import { CanvasStroke, CanvasTxt } from './../../models/canvas.model';
 import { StoryImg } from './../../models/story.model';
 import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { faNoteSticky, } from '@fortawesome/free-regular-svg-icons';
@@ -24,61 +24,64 @@ export class CanvasEditComponent implements OnInit {
   imgUrls: StoryImg[] = [];
   img = new Image();
   currImgIdx = 0;
-  isEditMode = { txt: false, sticker: false, brush: false };
+  isEditMode = { txt: false, sticker: false, painter: false };
   isDefaultMode = true;
   isDeleteAreaShown = false;
   mousePos = { x: 0, y: 0 };
   isPaginationBtnShown = { left: false, right: false };
   currTxt !: CanvasTxt;
+  isPainterActive = false;
+  stroke = { size: 2, color: 'red' }
+  painterHistory: any[] = [];
+  painterHistoryIdx = 0;
 
   ngOnInit(): void {
     this.setCanvas();
     this.setPaginationBtns();
   }
 
-
-
   @HostListener('mousemove', ['$event']) onMouseMove(event: MouseEvent) {
+    event.preventDefault();
     if (this.isDefaultMode) {
       this.mousePos = { x: event.offsetX, y: event.offsetY };
       this.imgUrls[this.currImgIdx].items.forEach(item => {
-        if (item.type === 'txt') {
-          if (this.mousePos.x > item.rect.x && this.mousePos.x < item.rect.x + item.rect.width &&
-            this.mousePos.y > item.rect.y - item.rect.height && this.mousePos.y < item.rect.y) {
-            if (item.isDragging) {
-              this.setCanvas();
-              item.rect.x = this.mousePos.x - item.rect.width / 2;
-              item.rect.y = this.mousePos.y + item.rect.height / 2;
-              if (item.rect.x < 0) item.rect.x = 0;
-              if (item.rect.x > this.canvas.nativeElement.width - item.rect.width) item.rect.x = this.canvas.nativeElement.width - item.rect.width;
-              if (item.rect.y < item.rect.height) item.rect.y = item.rect.height;
-              if (item.rect.y > this.canvas.nativeElement.height) item.rect.y = this.canvas.nativeElement.height;
-              if (this.isDeleteAreaShown && this.mousePos.y > 885) {
-                this.onRemoveItem(item);
-              }
+        if (this.mousePos.x > item.rect.x && this.mousePos.x < item.rect.x + item.rect.width &&
+          this.mousePos.y > item.rect.y - item.rect.height && this.mousePos.y < item.rect.y) {
+          if (item.isDragging) {
+            this.setCanvas();
+            item.rect.x = this.mousePos.x - item.rect.width / 2;
+            item.rect.y = this.mousePos.y + item.rect.height / 2;
+            if (item.rect.x < 0) item.rect.x = 0;
+            if (item.rect.x > this.canvas.nativeElement.width - item.rect.width) item.rect.x = this.canvas.nativeElement.width - item.rect.width;
+            if (item.rect.y < item.rect.height) item.rect.y = item.rect.height;
+            if (item.rect.y > this.canvas.nativeElement.height) item.rect.y = this.canvas.nativeElement.height;
+            if (this.isDeleteAreaShown && this.mousePos.y > 885) {
+              this.onRemoveItem(item);
+            }
 
-              this.canvas.nativeElement.style.cursor = 'grabbing';
-            }
-            else {
-              this.canvas.nativeElement.style.cursor = 'grab';
-            }
+            this.canvas.nativeElement.style.cursor = 'grabbing';
           }
-          else this.canvas.nativeElement.style.cursor = 'default';
+          else {
+            this.canvas.nativeElement.style.cursor = 'grab';
+          }
         }
+        else this.canvas.nativeElement.style.cursor = 'default';
       });
 
     }
 
-    if (this.isEditMode.brush) {
+    if (this.isEditMode.painter && this.isPainterActive) {
       const canvas = this.canvas.nativeElement;
       if (canvas.getContext) {
         let ctx = canvas.getContext('2d');
         ctx!.beginPath();
-        ctx!.lineWidth = 5;
-        ctx!.lineCap = 'round';
-        ctx!.strokeStyle = 'red';
-        ctx!.moveTo(event.offsetX, event.offsetY);
-        ctx!.lineTo(event.offsetX, event.offsetY);
+        ctx!.arc(event.offsetX, event.offsetY, this.stroke.size, 0, 2 * Math.PI);
+        ctx!.shadowBlur = 1000;
+        ctx!.fillStyle = this.stroke.color;
+        ctx!.fill();
+        ctx!.lineWidth = this.stroke.size;
+        ctx!.strokeStyle = this.stroke.color;
+
         ctx!.stroke();
       }
     }
@@ -86,22 +89,26 @@ export class CanvasEditComponent implements OnInit {
   }
 
   @HostListener('mousedown', ['$event']) onMouseDown(event: MouseEvent) {
+    event.preventDefault();
     if (this.isDefaultMode) {
       this.mousePos = { x: event.offsetX, y: event.offsetY };
       this.imgUrls[this.currImgIdx].items.forEach(item => {
-        if (item.type === 'txt') {
-          if (this.mousePos.x > item.rect.x && this.mousePos.x < item.rect.x + item.rect.width &&
-            this.mousePos.y > item.rect.y - item.rect.height && this.mousePos.y < item.rect.y) {
-            this.canvas.nativeElement.style.cursor = 'grabbing';
-            item.isDragging = true;
-            this.isDeleteAreaShown = true;
-          }
+        if (this.mousePos.x > item.rect.x && this.mousePos.x < item.rect.x + item.rect.width &&
+          this.mousePos.y > item.rect.y - item.rect.height && this.mousePos.y < item.rect.y) {
+          this.canvas.nativeElement.style.cursor = 'grabbing';
+          item.isDragging = true;
+          this.isDeleteAreaShown = true;
         }
       });
+    }
+    if (this.isEditMode.painter) {
+      this.mousePos = { x: event.offsetX, y: event.offsetY };
+      if (this.mousePos.y > 50 && this.mousePos.x > 50 && this.mousePos.x < 475) this.isPainterActive = true;
     }
   }
 
   @HostListener('mouseup', ['$event']) onMouseUp(event: MouseEvent) {
+    event.preventDefault();
     if (this.isDefaultMode) {
       this.mousePos = { x: event.offsetX, y: event.offsetY };
       const item = this.imgUrls[this.currImgIdx].items.find(item => item.isDragging);
@@ -121,21 +128,52 @@ export class CanvasEditComponent implements OnInit {
       this.canvas.nativeElement.style.cursor = 'default';
       this.setCanvas();
     }
+    if (this.isEditMode.painter) {
+      const canvas = this.canvas.nativeElement;
+      if (canvas.getContext) {
+        console.log('mouseup');
+        let ctx = canvas.getContext('2d');
+        ctx!.stroke();
+        ctx!.closePath();
+        this.painterHistory.push(ctx!.getImageData(0, 0, canvas.width, canvas.height));
+        console.log(this.painterHistory);
+        this.painterHistoryIdx++;
+        console.log(this.painterHistoryIdx);
+      }
+      this.isPainterActive = false;
+    }
   }
 
   @HostListener('dblclick', ['$event']) onMouseLeave(event: MouseEvent) {
+    event.preventDefault();
     this.mousePos = { x: event.offsetX, y: event.offsetY };
 
     this.imgUrls[this.currImgIdx].items.forEach(item => {
-      if (item.type === 'txt') {
-        if (this.mousePos.x > item.rect.x && this.mousePos.x < item.rect.x + item.rect.width &&
-          this.mousePos.y > item.rect.y - item.rect.height && this.mousePos.y < item.rect.y) {
-          this.onToggleEdit('txt');
-          this.onRemoveItem(item);
-          this.currTxt = item;
-        }
+      if (this.mousePos.x > item.rect.x && this.mousePos.x < item.rect.x + item.rect.width &&
+        this.mousePos.y > item.rect.y - item.rect.height && this.mousePos.y < item.rect.y) {
+        this.onToggleEdit(item.type);
+        this.onRemoveItem(item);
+        this.currTxt = item;
       }
     });
+  }
+
+  onUndoStroke() {
+    const canvas = this.canvas.nativeElement;
+    if (canvas.getContext) {
+      console.log('undo stroke');
+      let ctx = canvas.getContext('2d');
+      ctx!.clearRect(0, 0, canvas.width, canvas.height);
+      this.painterHistory.pop();
+      this.painterHistoryIdx--;
+      if (this.painterHistory.length > 0) {
+        ctx!.putImageData(this.painterHistory[this.painterHistoryIdx], 0, 0);
+      }
+    }
+  }
+
+  onStrokeChange(stroke: CanvasStroke) {
+    this.stroke = stroke;
   }
 
   onRemoveItem(item: any) {
@@ -149,17 +187,17 @@ export class CanvasEditComponent implements OnInit {
       case 'txt':
         this.isEditMode.txt = !this.isEditMode.txt;
         this.isEditMode.sticker = false;
-        this.isEditMode.brush = false;
+        this.isEditMode.painter = false;
         break;
       case 'sticker':
         this.isEditMode.txt = false;
         this.isEditMode.sticker = !this.isEditMode.sticker;
-        this.isEditMode.brush = false;
+        this.isEditMode.painter = false;
         break;
-      case 'brush':
+      case 'painter':
         this.isEditMode.txt = false;
         this.isEditMode.sticker = false;
-        this.isEditMode.brush = !this.isEditMode.brush;
+        this.isEditMode.painter = !this.isEditMode.painter;
         break;
       default:
         break;
@@ -197,6 +235,8 @@ export class CanvasEditComponent implements OnInit {
     if (canvas.getContext) {
       let ctx = canvas.getContext('2d');
       this.img.src = this.imgUrls[this.currImgIdx].url;
+      this.img.crossOrigin = "Anonymous";
+
       this.img.onload = () => {
 
         ctx?.drawImage(this.img, 0, 0, canvas.width, canvas.height);

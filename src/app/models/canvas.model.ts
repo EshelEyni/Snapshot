@@ -9,9 +9,14 @@ export interface CanvasTxt {
         x: number;
         y: number;
         height: number;
-        width: number ;
+        width: number;
     };
     type: string;
     isDragging: boolean;
 
+}
+
+export interface CanvasStroke {
+    color: string;
+    size: number;
 }
