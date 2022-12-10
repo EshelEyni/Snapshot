@@ -1,0 +1,33 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
+
+.stroke-type-picker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: rem(5px);
+    gap: rem(5px);
+
+    .stroke-type {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: rem(35px);
+        height: rem(35px);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        border: 2px solid white;
+        color: white;
+
+        fa-icon {
+            font-size: rem(20px);
+        }
+
+        &.selected {
+            background-color: white;
+            color: black;
+        }
+    }
+}

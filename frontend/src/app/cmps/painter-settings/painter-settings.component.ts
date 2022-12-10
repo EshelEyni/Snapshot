@@ -1,11 +1,11 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { CanvasStroke } from 'src/app/models/canvas.model';
+import { CanvasStroke, StrokeType } from 'src/app/models/canvas.model';
 
 @Component({
   selector: 'painter-settings',
   templateUrl: './painter-settings.component.html',
   styleUrls: ['./painter-settings.component.scss'],
-  inputs: ['isPainterActive'],
+  inputs: ['isDrawing'],
   outputs: ['close', 'undo', 'strokeChange']
 })
 export class PainterSettingsComponent implements OnInit {
@@ -14,16 +14,20 @@ export class PainterSettingsComponent implements OnInit {
 
   close = new EventEmitter<string>();
   undo = new EventEmitter();
-  strokeChange = new EventEmitter<CanvasStroke>();
+  strokeChange = new EventEmitter<{ key: string, value: string | number }>();
 
-  stroke = { size: 1, color: 'red' }
-  isPainterActive!: boolean;
+  strokeSize = 1;
+  isDrawing!: boolean;
+  color = 'rgb(255, 255, 255)';
+  strokeType = 'pen';
+  shadowBlur = 0;
+  inputMax = 30;
+  inputMin = 1;
 
   ngOnInit(): void {
   }
 
   onUndo() {
-    console.log('Undo');
     this.undo.emit();
   }
 
@@ -33,12 +37,51 @@ export class PainterSettingsComponent implements OnInit {
 
   onChangeStrokeSize(ev: number | null) {
     if (!ev) return;
-    this.stroke.size += ev;
-    this.strokeChange.emit(this.stroke);
+    this.strokeSize += ev;
+    this.strokeChange.emit({ key: 'size', value: this.strokeSize });
   }
 
   onColorChange(color: string) {
-    this.stroke.color = color;
-    this.strokeChange.emit(this.stroke);
+    this.color = color;
+    if (this.strokeType === 'highlighter') this.onChangeColorOpacity();
+    this.strokeChange.emit({ key: 'color', value: this.color });
+  }
+
+  onTypeChange(type: string) {
+    this.strokeType = type;
+    if (type === 'arrow') {
+      this.inputMax = 5;
+      if (this.strokeSize > 5) {
+        this.strokeSize = 5;
+        this.strokeChange.emit({ key: 'size', value: this.strokeSize });
+      }
+    }
+    else { this.inputMax = 30; }
+
+    this.onChangeColorOpacity();
+    this.onChangeShadowBlur();
+    this.strokeChange.emit({ key: 'strokeType', value: type });
+  }
+
+  onChangeColorOpacity() {
+    if (this.strokeType === 'highlighter') {
+      const opacity = 0.5;
+      const color = this.color.split(',');
+      const newColor = `rgba(${color[0].split('(')[1]},${color[1]},${color[2].split(')')[0]},${opacity})`;
+      this.color = newColor;
+      console.log('color', this.color);
+      this.strokeChange.emit({ key: 'color', value: this.color });
+    } else {
+      const color = this.color.split(',');
+      const newColor = `rgb(${color[0].split('(')[1]},${color[1]},${color[2].split(')')[0]})`;
+      this.color = newColor;
+      console.log('color', this.color);
+      this.strokeChange.emit({ key: 'color', value: this.color });
+    }
+  }
+
+  onChangeShadowBlur() {
+    this.shadowBlur = this.strokeType === 'magic-wand' ? 30 : 0;
+    this.strokeChange.emit({ key: 'shadowBlur', value: this.shadowBlur });
   }
 }

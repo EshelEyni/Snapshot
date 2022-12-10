@@ -1,0 +1,10 @@
+<section class="sticker-picker">
+    <div class="btn-container">
+        <fa-icon [icon]="faX" (click)="onClose()"></fa-icon>
+    </div>
+    <div class="sticker-container" *ngIf="stickersForDisplay.length===12">
+        <div class="sticker" *ngFor="let sticker of stickersForDisplay" (click)="onAddSticker(sticker)">
+            <img [src]="sticker.url" alt="Sticker">
+        </div>
+    </div>
+</section>

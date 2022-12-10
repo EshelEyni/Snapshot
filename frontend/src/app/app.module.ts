@@ -73,6 +73,8 @@ import { TxtInputComponent } from './cmps/txt-input/txt-input.component';
 import { ColorPickerComponent } from './cmps/color-picker/color-picker.component';
 import { FontPickerComponent } from './cmps/font-picker/font-picker.component';
 import { PainterSettingsComponent } from './cmps/painter-settings/painter-settings.component';
+import { StrokeTypePickerComponent } from './cmps/stroke-type-picker/stroke-type-picker.component';
+import { StickerPickerComponent } from './cmps/sticker-picker/sticker-picker.component';
 
 @NgModule({
   declarations: [
@@ -125,6 +127,8 @@ import { PainterSettingsComponent } from './cmps/painter-settings/painter-settin
     ColorPickerComponent,
     FontPickerComponent,
     PainterSettingsComponent,
+    StrokeTypePickerComponent,
+    StickerPickerComponent,
   ],
   imports: [
     BrowserAnimationsModule,

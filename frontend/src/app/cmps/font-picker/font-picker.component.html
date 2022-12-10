@@ -1,6 +1,6 @@
 <ul class="font-picker">
     <li class="font" *ngFor="let font of fonts; index as idx" [ngStyle]="{'font-family': font.value}"
-        (click)="onFontChange(font.value)" [class.selected]="fonts[idx].isSelected">
+        (click)="onFontChange(font)" [class.selected]="fonts[idx].isSelected">
         <span>aa</span>
     </li>
 </ul>

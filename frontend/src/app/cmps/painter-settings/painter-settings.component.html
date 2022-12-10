@@ -1,18 +1,22 @@
-<section class="painter-settings" [class.painter-active]="isPainterActive">
+<section class="painter-settings" [class.painter-active]="isDrawing">
     <div class="btn-container">
         <button class="clean-btn btn-undo" (click)="onUndo()">undo</button>
     </div>
-    <div class="btn-container btn-save">
-        <button class="clean-btn"(click)="onClose()">done</button>
+    <div class="stroke-type-picker-container">
+        <stroke-type-picker (strokeTypeChange)="onTypeChange($event)"></stroke-type-picker>
     </div>
-  
+    <div class="btn-container btn-save">
+        <button class="clean-btn" (click)="onClose()">done</button>
+    </div>
+
     <div class="stroke-size-container">
-        <mat-slider [min]="0" [max]="30" [step]="1" [(ngModel)]="stroke.size" [vertical]="true" (valueChange)="onChangeStrokeSize($event)">
+        <mat-slider [min]="1" [max]="inputMax" [step]="inputMin" [(ngModel)]="strokeSize" [vertical]="true"
+            (valueChange)="onChangeStrokeSize($event)">
             <input matSliderThumb>
         </mat-slider>
     </div>
 
-    <div class="color-picker-container">
+    <div class="color-picker-container" *ngIf="strokeType !== 'eraser'">
         <color-picker (colorChange)="onColorChange($event)"></color-picker>
     </div>
 </section>

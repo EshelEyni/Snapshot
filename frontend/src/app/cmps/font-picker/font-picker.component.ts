@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
+import { FontType } from 'src/app/models/canvas.model';
 
 @Component({
   selector: 'font-picker',
@@ -26,10 +27,9 @@ export class FontPickerComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onFontChange(font: string) {
+  onFontChange(font: FontType) {
     this.fonts.forEach(font => font.isSelected = false);
-    const fontIdx = this.fonts.findIndex(f => f.value === font);
-    this.fonts[fontIdx].isSelected = true;
-    this.fontChange.emit(font);
+    font.isSelected = true;
+    this.fontChange.emit(font.value);
   }
 }

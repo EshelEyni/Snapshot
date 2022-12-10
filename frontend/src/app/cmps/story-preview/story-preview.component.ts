@@ -41,22 +41,18 @@ export class StoryPreviewComponent implements OnInit, OnChanges, OnDestroy {
   isUserStory!: boolean;
 
   ngOnInit(): void {
-    // console.log('story preview ngOnInit');
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) {
         this.loggedinUser = JSON.parse(JSON.stringify(user))
         this.isUserStory = this.loggedinUser.id === this.story.by.id
-        // console.log('this.isUserStory', this.isUserStory);
       }
     })
   }
 
   ngOnChanges() {
-    // console.log('currImgUrl', this.currImgUrl);
-    // console.log('story preview ngOnChanges');
     if (this.loggedinUser) this.isUserStory = this.loggedinUser.id === this.story.by.id
     this.currImgIdx = 0;
-    this.currImgUrl = this.story.imgUrls[this.currImgIdx].url;
+    this.currImgUrl = this.story.imgUrls.length ? this.story.imgUrls[this.currImgIdx].url : '';
   }
 
   onSetCurrImgUrl(num: number) {

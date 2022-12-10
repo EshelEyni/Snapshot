@@ -1,0 +1,6 @@
+<ul class="stroke-type-picker">
+    <li class="stroke-type" *ngFor="let strokeType of strokeTypes; index as idx"
+        (click)="onStrokeTypeChange(strokeType)" [class.selected]="strokeTypes[idx].isSelected">
+        <fa-icon [icon]="strokeType.icon"></fa-icon>
+    </li>
+</ul>

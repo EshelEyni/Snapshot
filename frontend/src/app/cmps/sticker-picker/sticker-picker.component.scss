@@ -1,0 +1,49 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
+
+.sticker-picker {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    .btn-container {
+        width: 100%;
+        height: 5%;
+        display: flex;
+        justify-content: flex-end;
+        color: white;
+        padding: rem(10px);
+        font-size: rem(18px);
+
+        cursor: pointer;
+    }
+
+    .sticker-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 33.33%);
+        position: relative;
+        width: 100%;
+        height: 95%;
+
+        .sticker {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+            img {
+                position: relative;
+                width: 80%;
+                height: 80%;
+                object-fit: contain;
+            }
+        }
+    }
+}

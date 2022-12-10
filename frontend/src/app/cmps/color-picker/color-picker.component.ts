@@ -15,14 +15,14 @@ export class ColorPickerComponent implements OnInit {
   }
 
   colors = [
-    { color: '#FDCB5C', isSelected: false, borderType: 'black' },
-    { color: '#FD8D32', isSelected: false, borderType: 'black' },
-    { color: '#D10869', isSelected: false, borderType: 'black' },
-    { color: '#A307BA', isSelected: false, borderType: 'black' },
-    { color: '#0095F6', isSelected: false, borderType: 'black' },
-    { color: '#58C322', isSelected: false, borderType: 'black' },
-    { color: '#000000', isSelected: false, borderType: 'white' },
-    { color: '#FFFFFF', isSelected: true, borderType: 'black' },
+    { color: 'rgb(253, 203, 92)', isSelected: false, borderType: 'black' },
+    { color: 'rgb(253, 141, 50)', isSelected: false, borderType: 'black' },
+    { color: 'rgb(209, 8, 105)', isSelected: false, borderType: 'black' },
+    { color: 'rgb(163, 7, 186)', isSelected: false, borderType: 'black' },
+    { color: 'rgb(0, 149, 246)', isSelected: false, borderType: 'black' },
+    { color: 'rgb(88, 195, 34)', isSelected: false, borderType: 'black' },
+    { color: 'rgb(0, 0, 0)', isSelected: false, borderType: 'white' },
+    { color: 'rgb(255, 255, 255)', isSelected: true, borderType: 'black' },
   ]
 
   onSetColor(color: string) {
