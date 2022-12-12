@@ -45,6 +45,38 @@
                 font-size: rem(30px);
             }
         }
+
+        .btns-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: rem(10px);
+            
+            .btn-share {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: var(--primary-color);
+                color: white;
+                padding: rem(5px) rem(10px);
+                width: rem(200px);
+                border-radius: 35px;
+                
+                .user-preview {
+                    position: relative;
+                    .img-container {
+                        position: relative;
+                        width: rem(30px);
+                        height: rem(30px);
+                    }
+                }
+            }
+        }
     }
 
     .delete-drag-area {

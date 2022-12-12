@@ -7,7 +7,6 @@ export class UploadImgService {
 
   constructor() { }
 
-
   uploadImg = async (file: any) => {
     const CLOUD_NAME = 'dng9sfzqt'
     const UPLOAD_PRESET = 'hoav12li'
@@ -28,4 +27,5 @@ export class UploadImgService {
       console.error('ERROR!', err)
     }
   }
+
 }

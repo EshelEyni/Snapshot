@@ -1,6 +1,9 @@
 <div>
     <div class="story-list-container" *ngIf="!currStory; else forStoryDetails">
         <ul class="story-list" [style.left]="listPosition">
+            <li *ngIf="isLinkToStoryEdit">
+                <story-preview [isLinkToStoryEdit]="true"></story-preview>
+            </li>
             <li *ngFor="let story of stories">
                 <story-preview [story]="story" [isHighlight]="isHighlight"></story-preview>
             </li>

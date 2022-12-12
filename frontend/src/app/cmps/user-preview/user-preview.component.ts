@@ -10,7 +10,7 @@ import { lastValueFrom } from 'rxjs';
   selector: 'user-preview',
   templateUrl: './user-preview.component.html',
   styleUrls: ['./user-preview.component.scss'],
-  inputs: ['user', 'location', 'type']
+  inputs: ['user', 'location', 'type', 'isLinkToStoryEdit']
 })
 export class UserPreviewComponent implements OnInit {
 
@@ -26,42 +26,50 @@ export class UserPreviewComponent implements OnInit {
   urlForTitle: string = '';
   urlForLocation: string = '';
   title = '';
-  isStoryEdit = false;
+  isLinkToStoryEdit!: boolean;
 
   async ngOnInit() {
-
-    const user = await lastValueFrom(this.userService.getById(this.user.id));
-    const story = await lastValueFrom(this.storyService.getById(user.currStoryId));
-    this.isWatched = story.watchedBy.some(watchedUser => watchedUser.id === this.user.id);
-    this.story = story;
+    if (this.type !== 'story-edit') {
+      const user = await lastValueFrom(this.userService.getById(this.user.id));
+      if (user.currStoryId) {
+        const story = await lastValueFrom(this.storyService.getById(user.currStoryId));
+        this.isWatched = story.watchedBy.some(watchedUser => watchedUser.id === this.user.id);
+        this.story = story;
+      }
+    }
     this.title = this.setTitle();
     this.setUrls();
-    this.isStoryEdit = this.type === 'home-page-list' && !this.story.id;
   }
 
   setTitle() {
     const loggedinUser = this.userService.getLoggedinUser();
-    if (loggedinUser && loggedinUser.id === this.user.id && this.type === 'home-page-list') return 'Your story';
+    if (loggedinUser && loggedinUser.id === this.user.id && this.type === 'home-page-list'
+      || this.type === 'story-edit-page'  || this.type === 'link-to-story-edit') return 'Your story';
     else return this.user.username;
   }
 
   setUrls() {
     switch (this.type) {
       case 'home-page-list':
-        if (!this.story.id) this.urlForImg = `/story-edit/`;
-        else {
-          this.urlForImg = `/story/${this.story.id}`;
-          this.urlForTitle = `/story/${this.story.id}`;
-        }
+        this.urlForImg = `/story/${this.story.id}`;
+        this.urlForTitle = `/story/${this.story.id}`;
         break;
       case 'post-preview':
-        this.urlForImg = `/story/${this.story.id}`;
+        this.urlForImg = this.story ? `/story/${this.story.id}` : `/profile/${this.user.id}`;
         this.urlForTitle = `/profile/${this.user.id}`;
         this.urlForLocation = `/profile/${this.user.id}`;
         break;
       case 'curr-story':
         this.urlForImg = `/profile/${this.user.id}`;
         this.urlForTitle = `/profile/${this.user.id}`;
+        break;
+      case 'link-to-story-edit':
+        this.urlForImg = `/story-edit/`;
+        this.urlForTitle = `/story-edit/`;
+        this.isLinkToStoryEdit = true;
+        break;
+      case 'story-edit-page':
+        this.isLinkToStoryEdit = true;
         break;
       default:
         this.urlForImg = `/`;
@@ -72,7 +80,7 @@ export class UserPreviewComponent implements OnInit {
   }
 
   setWatchedStory() {
-    if (this.isWatched) return;
+    if (this.isWatched || !this.story) return;
     this.story.watchedBy.push(this.user);
     this.storyService.save(this.story);
     this.isWatched = true;

@@ -19,12 +19,6 @@
                     </div>
                 </li>
             </ul>
-            <!-- <div class="plus-btn-container">
-                <a href="javascript:void(0)" (click)="file.click()">
-                    <svg-icon src="../../../assets/svgs/plus.svg" [svgStyle]="{ 'display':'flex'}"></svg-icon>
-                </a>
-                <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
-            </div> -->
             <file-input (uploadedImgUrls)="onSaveFiles($event)" [type]="'btn-plus'"></file-input>
         </div>
     </div>

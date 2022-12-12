@@ -10,7 +10,7 @@ import { Component, EventEmitter, OnInit, OnChanges, inject, OnDestroy } from '@
   selector: 'story-preview',
   templateUrl: './story-preview.component.html',
   styleUrls: ['./story-preview.component.scss'],
-  inputs: ['story', 'isHighlight', 'isStoryDetails', 'isCurrStory', 'nextStory', 'isPaginationBtnShown'],
+  inputs: ['story', 'isHighlight', 'isStoryDetails', 'isCurrStory', 'nextStory', 'isPaginationBtnShown', 'isLinkToStoryEdit'],
   outputs: ['setPrevStory', 'setNextStory']
 })
 export class StoryPreviewComponent implements OnInit, OnChanges, OnDestroy {
@@ -33,6 +33,7 @@ export class StoryPreviewComponent implements OnInit, OnChanges, OnDestroy {
   story!: Story;
   isHighlight!: boolean;
   isStoryDetails!: boolean;
+  isLinkToStoryEdit!: boolean;
   isCurrStory!: boolean;
   nextStory!: Story;
   isPaginationBtnShown!: { left: boolean, right: boolean };
@@ -44,15 +45,17 @@ export class StoryPreviewComponent implements OnInit, OnChanges, OnDestroy {
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) {
         this.loggedinUser = JSON.parse(JSON.stringify(user))
-        this.isUserStory = this.loggedinUser.id === this.story.by.id
+        if (this.story) this.isUserStory = this.loggedinUser.id === this.story.by.id
       }
     })
   }
 
   ngOnChanges() {
-    if (this.loggedinUser) this.isUserStory = this.loggedinUser.id === this.story.by.id
-    this.currImgIdx = 0;
-    this.currImgUrl = this.story.imgUrls.length ? this.story.imgUrls[this.currImgIdx].url : '';
+    if (this.story) {
+      if (this.loggedinUser) this.isUserStory = this.loggedinUser.id === this.story.by.id
+      this.currImgIdx = 0;
+      this.currImgUrl = this.story.imgUrls.length ? this.story.imgUrls[this.currImgIdx].url : '';
+    }
   }
 
   onSetCurrImgUrl(num: number) {

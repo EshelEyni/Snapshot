@@ -118,9 +118,6 @@ export class StoryService {
     let stories = await this.storageService.loadFromStorage(ENTITY) || null;
     if (!stories) {
       stories = this._storiesDb;
-      const loggedinUser = this.userService.getLoggedinUser();
-      if (loggedinUser && !stories.map((s: Story) => s.by.id).includes(loggedinUser.id))
-        stories = [this.getEmptyStory(), ...stories]
       this.storageService.saveToStorage(ENTITY, stories);
     }
     if (userIds) stories = stories.filter((story: Story) => userIds.includes(story.by.id));
@@ -138,6 +135,7 @@ export class StoryService {
 
   public save(story: Story): Observable<Story> {
     const method = story.id ? 'put' : 'post';
+    console.log('method', method);
     const prmSavedItem = asyncStorageService[method](ENTITY, story);
     this.loadStories();
     return from(prmSavedItem) as Observable<Story>;

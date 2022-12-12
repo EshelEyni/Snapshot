@@ -32,6 +32,7 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
   loggedinUserSub: Subscription | null = null;
   storySub: Subscription | null = null;
   idx: number = 0;
+  isLinkToStoryEdit = false;
 
   isHighlight!: boolean;
   currStory!: Story;
@@ -47,7 +48,9 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
     this.loggedinUserSub = this.loggedinUser$.subscribe(user => {
       this.loggedinUser = JSON.parse(JSON.stringify(user));
       if (user) {
-        const usersIds = [user.id, ...this.loggedinUser.following.map((user: MiniUser) => user.id)];
+        const usersIds = [...this.loggedinUser.following.map((user: MiniUser) => user.id)];
+        if (user.currStoryId) usersIds.unshift(user.id);
+        else this.isLinkToStoryEdit = true;
         this.storyService.loadStories(usersIds);
       }
     });

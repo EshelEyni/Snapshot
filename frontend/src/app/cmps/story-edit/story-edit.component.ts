@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { LoadLoggedInUser } from './../../store/actions/user.actions';
+import { UserService } from './../../services/user.service';
+import { User } from './../../models/user.model';
+import { Observable, map, Subscription } from 'rxjs';
+import { State } from './../../store/store';
+import { Component, OnInit, inject, OnDestroy } from '@angular/core';
 import { StoryImg } from 'src/app/models/story.model';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'story-edit',
@@ -8,9 +14,13 @@ import { StoryImg } from 'src/app/models/story.model';
 })
 export class StoryEditComponent implements OnInit {
 
-  constructor() { }
+  constructor() {  }
 
-  // imgUrls: string[] = [];
+
+  store = inject(Store<State>);
+  userService = inject(UserService);
+
+  // imgUrls: { url: string, items: [] }[] = [];
   imgUrls: StoryImg[] = [
     {
       url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044177/ukfallhy757gdlswvfuj.jpg',
@@ -29,9 +39,12 @@ export class StoryEditComponent implements OnInit {
   isEditMode: boolean = true;
 
   ngOnInit(): void {
+    const loggedinUser = this.userService.getLoggedinUser()
+    if (loggedinUser) this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
+
   }
 
-  onSaveFiles(imgUrls: string[]) {
+  onSetFiles(imgUrls: string[]) {
     this.imgUrls = imgUrls.map(imgUrl => ({ url: imgUrl, items: [] }));
     this.isEditMode = true;
   }
@@ -40,4 +53,6 @@ export class StoryEditComponent implements OnInit {
     this.isEditMode = false;
     this.imgUrls = [];
   }
+
+
 }

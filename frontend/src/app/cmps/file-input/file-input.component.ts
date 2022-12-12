@@ -61,7 +61,6 @@ export class FileInputComponent implements OnInit {
       try {
         const url = await this.uploadImgService.uploadImg(files[i])
         this.imgUrls.push(url)
-        // this.isEditMode = true;
       }
       catch (err) {
         console.log('ERROR!', err)

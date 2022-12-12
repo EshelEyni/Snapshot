@@ -27,6 +27,13 @@
         }
     }
 
+    >* {
+        &.disabled {
+            pointer-events: none;
+            cursor: default;
+        }
+    }
+
     .user-info {
         h3 {
             // text-transform: lowercase;
@@ -37,6 +44,13 @@
         p {
             font-size: rem(12px);
             margin: 0;
+        }
+
+        >* {
+            &.disabled {
+                pointer-events: none;
+                cursor: default;
+            }
         }
     }
 
@@ -65,7 +79,7 @@
             border: 1px solid transparent;
             padding: rem(7.5px);
 
-            .plus-circle-container{
+            .plus-circle-container {
                 position: absolute;
                 bottom: -20%;
                 right: 0;

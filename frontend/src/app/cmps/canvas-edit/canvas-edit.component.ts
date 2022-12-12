@@ -1,6 +1,15 @@
+import { LoadLoggedInUser } from './../../store/actions/user.actions';
+import { State } from './../../store/store';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription, map, lastValueFrom } from 'rxjs';
+import { StoryService } from './../../services/story.service';
+import { Router } from '@angular/router';
+import { UploadImgService } from './../../services/upload-img.service';
+import { UserService } from './../../services/user.service';
+import { User, MiniUser } from './../../models/user.model';
 import { CanvasSticker, CanvasStroke, CanvasTxt, Position } from './../../models/canvas.model';
-import { StoryImg } from './../../models/story.model';
-import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Story, StoryImg } from './../../models/story.model';
+import { Component, OnInit, HostListener, ViewChild, ElementRef, inject, OnDestroy } from '@angular/core';
 import { faNoteSticky, } from '@fortawesome/free-regular-svg-icons';
 import { faL, faPaintbrush, faT, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,9 +19,12 @@ import { faL, faPaintbrush, faT, faTrashCan } from '@fortawesome/free-solid-svg-
   styleUrls: ['./canvas-edit.component.scss'],
   inputs: ['imgUrls']
 })
-export class CanvasEditComponent implements OnInit {
+export class CanvasEditComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  constructor() {
+    this.loggedinUser$ = this.store.select('userState').pipe(map((x => x.loggedinUser)));
+
+  }
 
   // Icons
   faNoteSticky = faNoteSticky;
@@ -20,23 +32,40 @@ export class CanvasEditComponent implements OnInit {
   faT = faT;
   faTrashCan = faTrashCan;
 
+  store = inject(Store<State>);
+  loggedinUser$: Observable<User | null>
+  loggedinUser!: User
+  sub: Subscription | null = null;
+
+  userService = inject(UserService);
+  uploadImgService = inject(UploadImgService);
+  router = inject(Router);
+  storyService = inject(StoryService);
+
   @ViewChild('canvas', { static: true }) canvas!: ElementRef<HTMLCanvasElement>;
+
   ctx!: CanvasRenderingContext2D;
   imgUrls: StoryImg[] = [];
   img = new Image();
   currImgIdx = 0;
-  isEditMode = { txt: false, sticker: true, painter: false };
-  isDefaultMode = false;
-  isDeleteAreaShown = false;
-  mousePos = { x: 0, y: 0 };
   isPaginationBtnShown = { left: false, right: false };
+  isEditMode = { txt: false, sticker: false, painter: false };
+  isDefaultMode = true;
+  isDeleteAreaShown = false;
+
+  mousePos = { x: 0, y: 0 };
+
   currTxt !: CanvasTxt;
+
   isDrawing = false;
   stroke: CanvasStroke = { size: 2, color: 'rgb(255, 255, 255)', shadowBlur: 0, pos: [], type: 'stroke', strokeType: 'pen' }
   painterHistory: any[] = [];
   painterHistoryIdx = 0;
 
   ngOnInit(): void {
+    this.sub = this.loggedinUser$.subscribe(user => {
+      if (user) this.loggedinUser = JSON.parse(JSON.stringify(user));
+    })
     const canvas = this.canvas.nativeElement;
     if (canvas.getContext) this.ctx = canvas.getContext('2d')!;
     this.setCanvas();
@@ -53,84 +82,68 @@ export class CanvasEditComponent implements OnInit {
       this.ctx.drawImage(this.img, 0, 0, canvas.width, canvas.height);
 
       this.imgUrls[this.currImgIdx].items.forEach(item => {
-        if (item.type === 'txt') {
-          this.ctx.fillStyle = item.style.color;
-          this.ctx.strokeStyle = item.style.color;
-          this.ctx.font = `${item.style['font-size']} ${item.style['font-family']}`;
-          if (!item.isDragging) {
-            this.ctx.fillText(item.str, item.rect.x, item.rect.y, canvas.width);
-          } else {
-            this.ctx.fillText(item.str, this.mousePos.x - item.rect.width / 2, this.mousePos.y + item.rect.height / 2, canvas.width);
-          }
-        }
-
-        if (item.type === 'stroke') {
-          if (item.strokeType !== 'spray') {
-            this.ctx.beginPath();
-            this.ctx.moveTo(item.pos[0].x - canvas.offsetLeft, item.pos[0].y - canvas.offsetTop);
-            item.pos.forEach((pos: Position, idx: number) => {
-              if (idx === 0) return;
-              this.ctx.lineTo(pos.x - canvas.offsetLeft, pos.y - canvas.offsetTop);
-            });
-            this.ctx.strokeStyle = item.color;
-            this.ctx.lineWidth = item.size;
-            this.ctx.lineCap = 'round';
-            this.ctx.lineJoin = 'round';
-            this.ctx.shadowColor = item.color;
-            this.ctx.shadowBlur = item.shadowBlur;
-            this.ctx.stroke();
-            this.ctx.closePath();
-            if (item.strokeType === 'arrow') {
-              this.onDrawArrow(item.pos[item.pos.length - 5].x, item.pos[item.pos.length - 5].y, item.pos[item.pos.length - 1].x, item.pos[item.pos.length - 1].y);
-            }
-          } else {
-            item.pos.forEach((pos: Position) => {
-              this.onDrawSpray(pos.x, pos.y);
-            });
-          }
-        }
-
-        if (item.type === 'sticker') {
-          const image = new Image();
-          image.src = item.url;
-          image.crossOrigin = 'Anonymous';
-          image.onload = () => {
-            this.ctx.drawImage(image, this.mousePos.x - item.rect.width / 2, this.mousePos.y + item.rect.height / 2, item.rect.width+ item.rect.width / 2, item.rect.height+ item.rect.height / 2);
-          }
-        }
+        if (item.type === 'txt') this.setText(item);
+        if (item.type === 'stroke') this.setStroke(item);
+        if (item.type === 'sticker') this.setSticker(item);
       });
     }
   }
+
+  setText(item: CanvasTxt) {
+    this.ctx.fillStyle = item.style.color;
+    this.ctx.strokeStyle = item.style.color;
+    this.ctx.font = `${item.style['font-size']} ${item.style['font-family']}`;
+    if (!item.isDragging) this.ctx.fillText(item.str, item.rect.x, item.rect.y, this.canvas.nativeElement.width);
+    else this.ctx.fillText(item.str, this.mousePos.x - item.rect.width / 2, this.mousePos.y + item.rect.height / 2, this.canvas.nativeElement.width);
+  }
+
+  setStroke(item: CanvasStroke) {
+    if (item.strokeType !== 'spray') {
+      this.ctx.beginPath();
+      this.ctx.moveTo(item.pos[0].x, item.pos[0].y);
+      item.pos.forEach((pos: Position, idx: number) => {
+        if (idx === 0) return;
+        this.ctx.lineTo(pos.x, pos.y);
+      });
+
+      this.ctx.strokeStyle = item.color;
+      this.ctx.lineWidth = item.size;
+      this.ctx.lineCap = 'round';
+      this.ctx.lineJoin = 'round';
+      this.ctx.shadowColor = item.color;
+      this.ctx.shadowBlur = item.shadowBlur;
+      this.ctx.stroke();
+      this.ctx.closePath();
+      if (item.strokeType === 'arrow') {
+        this.onDrawArrow(item.pos[item.pos.length - 5].x, item.pos[item.pos.length - 5].y, item.pos[item.pos.length - 1].x, item.pos[item.pos.length - 1].y);
+      }
+    } else {
+      item.pos.forEach((pos: Position) => {
+        this.onDrawSpray(pos.x, pos.y);
+      });
+    }
+  }
+
+  setSticker(item: CanvasSticker) {
+    const image = new Image();
+    image.src = item.url;
+    image.crossOrigin = 'Anonymous';
+    image.onload = () => {
+      this.ctx.drawImage(image, this.mousePos.x - item.rect.width / 2, this.mousePos.y - item.rect.height / 2, item.rect.width, item.rect.height);
+    }
+  }
+
 
   @HostListener('mousemove', ['$event']) onMouseMove(event: MouseEvent) {
     event.preventDefault();
     this.mousePos = { x: event.offsetX, y: event.offsetY };
     if (this.isDefaultMode) {
-
       if (!this.imgUrls[this.currImgIdx].items.length) return;
-
       this.imgUrls[this.currImgIdx].items.forEach(item => {
         if (this.getIsItemPos(item)) {
           if (item.isDragging) {
             this.setCanvas();
-
-            if (item.type === 'txt') {
-              item.rect.x = this.mousePos.x - item.rect.width / 2;
-              item.rect.y = this.mousePos.y + item.rect.height / 2;
-              if (item.rect.x < 0) item.rect.x = 0;
-              if (item.rect.x > this.canvas.nativeElement.width - item.rect.width) item.rect.x = this.canvas.nativeElement.width - item.rect.width;
-              if (item.rect.y < item.rect.height) item.rect.y = item.rect.height;
-              if (item.rect.y > this.canvas.nativeElement.height) item.rect.y = this.canvas.nativeElement.height;
-            } else if (item.type === 'sticker') {
-              item.rect.x = this.mousePos.x - item.rect.width / 2;
-              item.rect.y = this.mousePos.y - item.rect.height / 2;
-              if (item.rect.x < 0) item.rect.x = 0;
-              // if (item.rect.x > this.canvas.nativeElement.width - item.rect.width) item.rect.x = this.canvas.nativeElement.width - item.rect.width;
-              if (item.rect.y < 0) item.rect.y = 0;
-              // if (item.rect.y > this.canvas.nativeElement.height - item.rect.height) item.rect.y = this.canvas.nativeElement.height - item.rect.height;
-            }
-
-
+            this.onDragItem(item);
             if (this.isDeleteAreaShown && this.mousePos.y > 885) {
               this.onRemoveItem(item);
               this.canvas.nativeElement.style.cursor = 'default';
@@ -142,7 +155,6 @@ export class CanvasEditComponent implements OnInit {
         }
         else this.canvas.nativeElement.style.cursor = 'default';
       });
-
     }
 
     if (this.isEditMode.painter && this.isDrawing) this.onDraw();
@@ -173,7 +185,7 @@ export class CanvasEditComponent implements OnInit {
       const item = this.imgUrls[this.currImgIdx].items.find(item => item.isDragging);
       if (!item) return;
 
-      if (item) {
+      if (item.type === 'txt') {
         item.rect.x = this.mousePos.x - item.rect.width / 2;
         item.rect.y = this.mousePos.y + item.rect.height / 2;
       }
@@ -205,6 +217,32 @@ export class CanvasEditComponent implements OnInit {
     });
   }
 
+  getIsItemPos(item: { type: string; rect: { x: number; width: any; y: number; height: number; }; }): boolean | void {
+    if (item.type === 'stroke') return false;
+    if (item.type === 'txt') return this.mousePos.x > item.rect.x && this.mousePos.x < item.rect.x + item.rect.width
+      && this.mousePos.y > item.rect.y - item.rect.height && this.mousePos.y < item.rect.y;
+    if (item.type === 'sticker') return this.mousePos.x > item.rect.x && this.mousePos.x < item.rect.x + item.rect.width
+      && this.mousePos.y > item.rect.y && this.mousePos.y < item.rect.y + item.rect.height;
+  }
+
+  onDragItem(item: CanvasSticker | CanvasTxt) {
+
+    if (item.type === 'txt') {
+      item.rect.x = this.mousePos.x - item.rect.width / 2;
+      item.rect.y = this.mousePos.y + item.rect.height / 2;
+      if (item.rect.x < 0) item.rect.x = 0;
+      if (item.rect.x > this.canvas.nativeElement.width - item.rect.width) item.rect.x = this.canvas.nativeElement.width - item.rect.width;
+      if (item.rect.y < item.rect.height) item.rect.y = item.rect.height;
+      if (item.rect.y > this.canvas.nativeElement.height) item.rect.y = this.canvas.nativeElement.height;
+    }
+    else if (item.type === 'sticker') {
+      item.rect.x = this.mousePos.x - item.rect.width / 2;
+      item.rect.y = this.mousePos.y - item.rect.height / 2;
+      if (item.rect.x < 0) item.rect.x = 0;
+      if (item.rect.y < 0) item.rect.y = 0;
+    }
+  }
+
   onStartDraw() {
     this.isDrawing = true;
     this.ctx.beginPath();
@@ -216,7 +254,6 @@ export class CanvasEditComponent implements OnInit {
     if (this.isDrawing) {
       if (this.stroke.strokeType !== 'spray') {
         this.ctx.lineTo(this.mousePos.x, this.mousePos.y);
-
         this.ctx.lineCap = 'round';
         this.ctx.lineJoin = 'round';
         this.ctx.shadowColor = this.stroke.color;
@@ -304,11 +341,10 @@ export class CanvasEditComponent implements OnInit {
   }
 
   onAddTxt(txt: any) {
-    const canvas = this.canvas.nativeElement;
     this.ctx.fillStyle = txt.style.color;
     this.ctx.strokeStyle = txt.style.color;
     this.ctx.font = `${txt.style['font-size']} ${txt.style['font-family']}`;
-    this.ctx.fillText(txt.str, txt.rect.x, txt.rect.y, canvas.width);
+    this.ctx.fillText(txt.str, txt.rect.x, txt.rect.y, this.canvas.nativeElement.width);
     txt.rect.width = this.ctx.measureText(txt.str).width + 10;
     this.imgUrls[this.currImgIdx].items = [...this.imgUrls[this.currImgIdx].items, txt];
     this.onToggleEdit('txt');
@@ -323,14 +359,6 @@ export class CanvasEditComponent implements OnInit {
     }
     this.imgUrls[this.currImgIdx].items = [...this.imgUrls[this.currImgIdx].items, sticker];
     this.onToggleEdit('sticker');
-  }
-
-  getIsItemPos(item: { type: string; rect: { x: number; width: any; y: number; height: number; }; }): boolean | void {
-    if (item.type === 'stroke') return false;
-    if (item.type === 'txt') return this.mousePos.x > item.rect.x && this.mousePos.x < item.rect.x + item.rect.width
-      && this.mousePos.y > item.rect.y - item.rect.height && this.mousePos.y < item.rect.y;
-    if (item.type === 'sticker') return this.mousePos.x > item.rect.x && this.mousePos.x < item.rect.x + item.rect.width
-      && this.mousePos.y > item.rect.y && this.mousePos.y < item.rect.y + item.rect.height;
   }
 
   setPaginationBtns() {
@@ -370,4 +398,29 @@ export class CanvasEditComponent implements OnInit {
     }
     this.isDefaultMode = !this.isDefaultMode;
   }
+
+  async onShareStory() {
+    // this.imgUrls.forEach(imgUrl => {
+    // })
+    console.log('onsharestory')
+    let imgUrl = this.canvas.nativeElement.toDataURL('image/jpeg');
+    this.imgUrls[this.currImgIdx].url = imgUrl;
+    const storyToAdd: Story = {
+      id: '',
+      imgUrls: this.imgUrls,
+      by: this.userService.getMiniUser(this.loggedinUser),
+      watchedBy: [],
+      createdAt: new Date(),
+    }
+    const addedStory = await lastValueFrom(this.storyService.save(storyToAdd));
+    console.log('addedStory', addedStory);
+    this.loggedinUser.currStoryId = addedStory.id;
+    const updatedUser = await lastValueFrom(this.userService.save(this.loggedinUser));
+    if (updatedUser) this.router.navigate(['/']);
+  }
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe()
+  }
+
 }

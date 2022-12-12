@@ -11,7 +11,7 @@
             <txt-input *ngIf="this.isEditMode.txt" (close)="onToggleEdit($event)" (addTxt)="onAddTxt($event)"
                 [txtToEdit]="currTxt">
             </txt-input>
-            
+
             <sticker-picker *ngIf="this.isEditMode.sticker" (close)="onToggleEdit($event)"
                 (addSticker)="onAddSticker($event)"> </sticker-picker>
 
@@ -19,6 +19,14 @@
                 (strokeChange)="onStrokeChange($event)" [isDrawing]="isDrawing"></painter-settings>
 
             <canvas #canvas height="900" width="515"></canvas>
+
+            <div class="btns-container">
+                <div class="btn-container">
+                    <button class="btn-share clean-btn" (click)="onShareStory()" *ngIf="loggedinUser">
+                        <user-preview [user]="userService.getMiniUser(loggedinUser)" [type]="'story-edit-page'"></user-preview>
+                    </button>
+                </div>
+            </div>
 
         </div>
         <pagination-btns *ngIf="isPaginationBtnShown" [isPaginationBtnShown]="isPaginationBtnShown"
