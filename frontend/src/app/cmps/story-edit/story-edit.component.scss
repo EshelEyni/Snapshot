@@ -11,6 +11,25 @@
     background-color: white;
     z-index: 10;
     
+    header {
+        display: flex;
+        align-items: flex-start;
+        padding: rem(15px);
+        
+        .logo {
+            @include logo;
+            font-size: rem(40px);
+            color: black;
+        }
+        
+        svg-icon {
+            font-size: rem(30px);
+            color: black;
+        }
+        
+        z-index: 10;
+    }
+    
     .input-file-container{
         display: flex;
         justify-content: center;
@@ -19,10 +38,17 @@
         width: 100%;
     }
     
-
-
+    
+    
     &.edit-mode{
         background-color: var(--story-bg);
+
+        header {
+            .logo{
+                color: white;
+
+            }
+        }
 
     }
 

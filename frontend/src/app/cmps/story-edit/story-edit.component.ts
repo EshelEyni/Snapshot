@@ -20,23 +20,23 @@ export class StoryEditComponent implements OnInit {
   store = inject(Store<State>);
   userService = inject(UserService);
 
-  // imgUrls: { url: string, items: [] }[] = [];
-  imgUrls: StoryImg[] = [
-    {
-      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044177/ukfallhy757gdlswvfuj.jpg',
-      items: []
-    },
-    {
-      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669305397/p7o8v7gvoy3bgdcymu0d.jpg',
-      items: []
-    },
-    {
-      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044038/pxbi0wi3po7fiadwdcke.jpg',
-      items: []
-    },
-  ];
+  storyImgs: { url: string, items: [] }[] = [];
+  // storyImgs: StoryImg[] = [
+  //   {
+  //     url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044177/ukfallhy757gdlswvfuj.jpg',
+  //     items: []
+  //   },
+  //   {
+  //     url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669305397/p7o8v7gvoy3bgdcymu0d.jpg',
+  //     items: []
+  //   },
+  //   {
+  //     url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044038/pxbi0wi3po7fiadwdcke.jpg',
+  //     items: []
+  //   },
+  // ];
 
-  isEditMode: boolean = true;
+  isEditMode: boolean = false;
 
   ngOnInit(): void {
     const loggedinUser = this.userService.getLoggedinUser()
@@ -45,13 +45,13 @@ export class StoryEditComponent implements OnInit {
   }
 
   onSetFiles(imgUrls: string[]) {
-    this.imgUrls = imgUrls.map(imgUrl => ({ url: imgUrl, items: [] }));
+    this.storyImgs = imgUrls.map(imgUrl => ({ url: imgUrl, items: [] }));
     this.isEditMode = true;
   }
 
   onGoBack() {
     this.isEditMode = false;
-    this.imgUrls = [];
+    this.storyImgs = [];
   }
 
 

@@ -49,7 +49,10 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
       this.loggedinUser = JSON.parse(JSON.stringify(user));
       if (user) {
         const usersIds = [...this.loggedinUser.following.map((user: MiniUser) => user.id)];
-        if (user.currStoryId) usersIds.unshift(user.id);
+        if (user.currStoryId) {
+          usersIds.unshift(user.id);
+          this.isLinkToStoryEdit = false;
+        }
         else this.isLinkToStoryEdit = true;
         this.storyService.loadStories(usersIds);
       }

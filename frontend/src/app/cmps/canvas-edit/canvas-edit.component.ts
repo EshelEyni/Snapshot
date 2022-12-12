@@ -17,7 +17,7 @@ import { faL, faPaintbrush, faT, faTrashCan } from '@fortawesome/free-solid-svg-
   selector: 'canvas-edit',
   templateUrl: './canvas-edit.component.html',
   styleUrls: ['./canvas-edit.component.scss'],
-  inputs: ['imgUrls']
+  inputs: ['storyImgs']
 })
 export class CanvasEditComponent implements OnInit, OnDestroy {
 
@@ -45,9 +45,10 @@ export class CanvasEditComponent implements OnInit, OnDestroy {
   @ViewChild('canvas', { static: true }) canvas!: ElementRef<HTMLCanvasElement>;
 
   ctx!: CanvasRenderingContext2D;
-  imgUrls: StoryImg[] = [];
-  img = new Image();
+  storyImgs: StoryImg[] = [];
   currImgIdx = 0;
+  currStoryImg!: StoryImg;
+  imgUrls: string[] = [];
   isPaginationBtnShown = { left: false, right: false };
   isEditMode = { txt: false, sticker: false, painter: false };
   isDefaultMode = true;
@@ -66,54 +67,57 @@ export class CanvasEditComponent implements OnInit, OnDestroy {
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) this.loggedinUser = JSON.parse(JSON.stringify(user));
     })
+    this.currStoryImg = this.storyImgs[this.currImgIdx];
+    this.imgUrls = this.storyImgs.map(storyImg => storyImg.url);
     const canvas = this.canvas.nativeElement;
     if (canvas.getContext) this.ctx = canvas.getContext('2d')!;
     this.setCanvas();
     this.setPaginationBtns();
   }
 
-  setCanvas() {
-    const canvas = this.canvas.nativeElement;
-    this.img.src = this.imgUrls[this.currImgIdx].url;
-    this.img.crossOrigin = "Anonymous";
-    this.img.onload = () => {
-      this.ctx.imageSmoothingQuality = "high";
-      this.ctx.imageSmoothingEnabled = true;
-      this.ctx.drawImage(this.img, 0, 0, canvas.width, canvas.height);
+  setCanvas(canvas: HTMLCanvasElement = this.canvas.nativeElement, storyImg: StoryImg = this.currStoryImg, ctx: CanvasRenderingContext2D = this.ctx) {
+    const img = new Image();
+    img.src = storyImg.url;
+    img.crossOrigin = "Anonymous";
+    img.onload = () => {
+      ctx.imageSmoothingQuality = "high";
+      ctx.imageSmoothingEnabled = true;
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      console.log('storyImg', storyImg);
 
-      this.imgUrls[this.currImgIdx].items.forEach(item => {
-        if (item.type === 'txt') this.setText(item);
-        if (item.type === 'stroke') this.setStroke(item);
-        if (item.type === 'sticker') this.setSticker(item);
+      storyImg.items.forEach(item => {
+        if (item.type === 'txt') this.setText(item, ctx);
+        if (item.type === 'stroke') this.setStroke(item, ctx);
+        if (item.type === 'sticker') this.setSticker(item, ctx);
       });
     }
   }
 
-  setText(item: CanvasTxt) {
-    this.ctx.fillStyle = item.style.color;
-    this.ctx.strokeStyle = item.style.color;
-    this.ctx.font = `${item.style['font-size']} ${item.style['font-family']}`;
-    if (!item.isDragging) this.ctx.fillText(item.str, item.rect.x, item.rect.y, this.canvas.nativeElement.width);
-    else this.ctx.fillText(item.str, this.mousePos.x - item.rect.width / 2, this.mousePos.y + item.rect.height / 2, this.canvas.nativeElement.width);
+  setText(item: CanvasTxt, ctx: CanvasRenderingContext2D) {
+    ctx.fillStyle = item.style.color;
+    ctx.strokeStyle = item.style.color;
+    ctx.font = `${item.style['font-size']} ${item.style['font-family']}`;
+    if (!item.isDragging) ctx.fillText(item.str, item.rect.x, item.rect.y, this.canvas.nativeElement.width);
+    else ctx.fillText(item.str, this.mousePos.x - item.rect.width / 2, this.mousePos.y + item.rect.height / 2, this.canvas.nativeElement.width);
   }
 
-  setStroke(item: CanvasStroke) {
+  setStroke(item: CanvasStroke, ctx: CanvasRenderingContext2D) {
     if (item.strokeType !== 'spray') {
-      this.ctx.beginPath();
-      this.ctx.moveTo(item.pos[0].x, item.pos[0].y);
+      ctx.beginPath();
+      ctx.moveTo(item.pos[0].x, item.pos[0].y);
       item.pos.forEach((pos: Position, idx: number) => {
         if (idx === 0) return;
-        this.ctx.lineTo(pos.x, pos.y);
+        ctx.lineTo(pos.x, pos.y);
       });
 
-      this.ctx.strokeStyle = item.color;
-      this.ctx.lineWidth = item.size;
-      this.ctx.lineCap = 'round';
-      this.ctx.lineJoin = 'round';
-      this.ctx.shadowColor = item.color;
-      this.ctx.shadowBlur = item.shadowBlur;
-      this.ctx.stroke();
-      this.ctx.closePath();
+      ctx.strokeStyle = item.color;
+      ctx.lineWidth = item.size;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.shadowColor = item.color;
+      ctx.shadowBlur = item.shadowBlur;
+      ctx.stroke();
+      ctx.closePath();
       if (item.strokeType === 'arrow') {
         this.onDrawArrow(item.pos[item.pos.length - 5].x, item.pos[item.pos.length - 5].y, item.pos[item.pos.length - 1].x, item.pos[item.pos.length - 1].y);
       }
@@ -124,12 +128,12 @@ export class CanvasEditComponent implements OnInit, OnDestroy {
     }
   }
 
-  setSticker(item: CanvasSticker) {
+  setSticker(item: CanvasSticker, ctx: CanvasRenderingContext2D) {
     const image = new Image();
     image.src = item.url;
     image.crossOrigin = 'Anonymous';
     image.onload = () => {
-      this.ctx.drawImage(image, this.mousePos.x - item.rect.width / 2, this.mousePos.y - item.rect.height / 2, item.rect.width, item.rect.height);
+      ctx.drawImage(image, this.mousePos.x - item.rect.width / 2, this.mousePos.y - item.rect.height / 2, item.rect.width, item.rect.height);
     }
   }
 
@@ -138,8 +142,8 @@ export class CanvasEditComponent implements OnInit, OnDestroy {
     event.preventDefault();
     this.mousePos = { x: event.offsetX, y: event.offsetY };
     if (this.isDefaultMode) {
-      if (!this.imgUrls[this.currImgIdx].items.length) return;
-      this.imgUrls[this.currImgIdx].items.forEach(item => {
+      if (!this.currStoryImg.items.length) return;
+      this.currStoryImg.items.forEach(item => {
         if (this.getIsItemPos(item)) {
           if (item.isDragging) {
             this.setCanvas();
@@ -164,7 +168,7 @@ export class CanvasEditComponent implements OnInit, OnDestroy {
     event.preventDefault();
     if (this.isDefaultMode) {
       this.mousePos = { x: event.offsetX, y: event.offsetY };
-      this.imgUrls[this.currImgIdx].items.forEach(item => {
+      this.currStoryImg.items.forEach(item => {
         if (this.getIsItemPos(item)) {
           this.canvas.nativeElement.style.cursor = 'grabbing';
           item.isDragging = true;
@@ -182,7 +186,7 @@ export class CanvasEditComponent implements OnInit, OnDestroy {
     event.preventDefault();
     if (this.isDefaultMode) {
       this.mousePos = { x: event.offsetX, y: event.offsetY };
-      const item = this.imgUrls[this.currImgIdx].items.find(item => item.isDragging);
+      const item = this.currStoryImg.items.find(item => item.isDragging);
       if (!item) return;
 
       if (item.type === 'txt') {
@@ -192,7 +196,7 @@ export class CanvasEditComponent implements OnInit, OnDestroy {
       if (this.isDeleteAreaShown && this.mousePos.y > 885) {
         this.onRemoveItem(item);
       }
-      this.imgUrls[this.currImgIdx].items.forEach(item => {
+      this.currStoryImg.items.forEach(item => {
         item.isDragging = false;
       });
       this.isDeleteAreaShown = false;
@@ -206,8 +210,8 @@ export class CanvasEditComponent implements OnInit, OnDestroy {
     event.preventDefault();
     this.mousePos = { x: event.offsetX, y: event.offsetY };
 
-    if (this.imgUrls[this.currImgIdx].items.length === 0) return;
-    this.imgUrls[this.currImgIdx].items.forEach(item => {
+    if (this.currStoryImg.items.length === 0) return;
+    this.currStoryImg.items.forEach(item => {
       if (item.type === 'stroke') return;
       if (this.getIsItemPos(item)) {
         this.onToggleEdit(item.type);
@@ -276,7 +280,7 @@ export class CanvasEditComponent implements OnInit, OnDestroy {
       this.isDrawing = false;
       this.onSaveStrokePos();
       if (this.stroke.strokeType === 'arrow') this.onDrawArrow(this.stroke.pos[this.stroke.pos.length - 5].x, this.stroke.pos[this.stroke.pos.length - 5].y, this.stroke.pos[this.stroke.pos.length - 1].x, this.stroke.pos[this.stroke.pos.length - 1].y);
-      this.imgUrls[this.currImgIdx].items = [...this.imgUrls[this.currImgIdx].items, { ...this.stroke }];
+      this.currStoryImg.items = [...this.currStoryImg.items, { ...this.stroke }];
       this.stroke.pos = [];
     }
   }
@@ -313,11 +317,11 @@ export class CanvasEditComponent implements OnInit, OnDestroy {
   }
 
   onUndoStroke() {
-    const items = [...this.imgUrls[this.currImgIdx].items];
+    const items = [...this.currStoryImg.items];
     let idx = items.reverse().findIndex(item => item.type === 'stroke');
     idx = items.length - idx - 1;
     if (idx === -1) return;
-    this.imgUrls[this.currImgIdx].items.splice(idx, 1);
+    this.currStoryImg.items.splice(idx, 1);
     this.setCanvas();
   }
 
@@ -333,8 +337,8 @@ export class CanvasEditComponent implements OnInit, OnDestroy {
   }
 
   onRemoveItem(item: any) {
-    const idx = this.imgUrls[this.currImgIdx].items.indexOf(item);
-    this.imgUrls[this.currImgIdx].items.splice(idx, 1);
+    const idx = this.currStoryImg.items.indexOf(item);
+    this.currStoryImg.items.splice(idx, 1);
     this.canvas.nativeElement.style.cursor = 'default';
     this.isDeleteAreaShown = false;
     this.setCanvas();
@@ -346,7 +350,7 @@ export class CanvasEditComponent implements OnInit, OnDestroy {
     this.ctx.font = `${txt.style['font-size']} ${txt.style['font-family']}`;
     this.ctx.fillText(txt.str, txt.rect.x, txt.rect.y, this.canvas.nativeElement.width);
     txt.rect.width = this.ctx.measureText(txt.str).width + 10;
-    this.imgUrls[this.currImgIdx].items = [...this.imgUrls[this.currImgIdx].items, txt];
+    this.currStoryImg.items = [...this.currStoryImg.items, txt];
     this.onToggleEdit('txt');
   }
 
@@ -357,24 +361,47 @@ export class CanvasEditComponent implements OnInit, OnDestroy {
     image.onload = () => {
       this.ctx.drawImage(image, sticker.rect.x, sticker.rect.y, sticker.rect.width, sticker.rect.height);
     }
-    this.imgUrls[this.currImgIdx].items = [...this.imgUrls[this.currImgIdx].items, sticker];
+    this.currStoryImg.items = [...this.currStoryImg.items, sticker];
     this.onToggleEdit('sticker');
   }
 
   setPaginationBtns() {
     if (this.currImgIdx === 0) this.isPaginationBtnShown.left = false;
     else this.isPaginationBtnShown.left = true;
-    if (this.currImgIdx === this.imgUrls.length - 1) this.isPaginationBtnShown.right = false;
+    if (this.currImgIdx === this.storyImgs.length - 1) this.isPaginationBtnShown.right = false;
     else this.isPaginationBtnShown.right = true;
   }
 
-  onSetCurrImgUrl(num: number) {
-    this.currImgIdx += num;
+  onRemoveStoryImg(idx: number) {
+    if (this.storyImgs.length === 1) this.router.navigate(['/']);
+    if (idx === this.currImgIdx) {
+      this.currImgIdx--;
+      this.onSetCurrStoryImg(this.currImgIdx);
+    }
+    this.storyImgs.splice(idx, 1);
+
+  }
+
+  onAddStoryImg(imgUrls: string[]) {
+    const storyImgs = imgUrls.map(imgUrl => ({ url: imgUrl, items: [] }));
+    this.storyImgs = [...this.storyImgs, ...storyImgs];
+    this.currImgIdx = this.storyImgs.length - 1;
+    this.ctx.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+    this.onSetCurrStoryImg(this.currImgIdx);
+  }
+
+  onSetCurrStoryImg(num: number, isFromPaginationBtn: boolean = false) {
+    if (this.canvas) this.currStoryImg.url = this.canvas.nativeElement.toDataURL("image/png");
+    if (isFromPaginationBtn) this.currImgIdx += num;
+    else this.currImgIdx = num;
     if (this.currImgIdx < 0) this.currImgIdx = 0;
-    if (this.currImgIdx > this.imgUrls.length - 1) this.currImgIdx = this.imgUrls.length - 1;
+    if (this.currImgIdx > this.storyImgs.length - 1) this.currImgIdx = this.storyImgs.length - 1;
+    this.currStoryImg = this.storyImgs[this.currImgIdx];
     this.setCanvas();
     this.setPaginationBtns();
   }
+
+
 
   onToggleEdit(inputName: string) {
     switch (inputName) {
@@ -400,20 +427,16 @@ export class CanvasEditComponent implements OnInit, OnDestroy {
   }
 
   async onShareStory() {
-    // this.imgUrls.forEach(imgUrl => {
-    // })
-    console.log('onsharestory')
-    let imgUrl = this.canvas.nativeElement.toDataURL('image/jpeg');
-    this.imgUrls[this.currImgIdx].url = imgUrl;
+    this.currStoryImg.url = this.canvas.nativeElement.toDataURL("image/png");
+
     const storyToAdd: Story = {
       id: '',
-      imgUrls: this.imgUrls,
+      imgUrls: this.storyImgs,
       by: this.userService.getMiniUser(this.loggedinUser),
       watchedBy: [],
       createdAt: new Date(),
     }
     const addedStory = await lastValueFrom(this.storyService.save(storyToAdd));
-    console.log('addedStory', addedStory);
     this.loggedinUser.currStoryId = addedStory.id;
     const updatedUser = await lastValueFrom(this.userService.save(this.loggedinUser));
     if (updatedUser) this.router.navigate(['/']);

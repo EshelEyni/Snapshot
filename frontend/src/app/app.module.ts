@@ -75,6 +75,7 @@ import { FontPickerComponent } from './cmps/font-picker/font-picker.component';
 import { PainterSettingsComponent } from './cmps/painter-settings/painter-settings.component';
 import { StrokeTypePickerComponent } from './cmps/stroke-type-picker/stroke-type-picker.component';
 import { StickerPickerComponent } from './cmps/sticker-picker/sticker-picker.component';
+import { ImgListComponent } from './cmps/img-list/img-list.component';
 
 @NgModule({
   declarations: [
@@ -129,6 +130,7 @@ import { StickerPickerComponent } from './cmps/sticker-picker/sticker-picker.com
     PainterSettingsComponent,
     StrokeTypePickerComponent,
     StickerPickerComponent,
+    ImgListComponent,
   ],
   imports: [
     BrowserAnimationsModule,

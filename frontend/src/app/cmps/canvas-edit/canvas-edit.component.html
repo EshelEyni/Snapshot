@@ -23,14 +23,17 @@
             <div class="btns-container">
                 <div class="btn-container">
                     <button class="btn-share clean-btn" (click)="onShareStory()" *ngIf="loggedinUser">
-                        <user-preview [user]="userService.getMiniUser(loggedinUser)" [type]="'story-edit-page'"></user-preview>
+                        <user-preview [user]="userService.getMiniUser(loggedinUser)"
+                            [type]="'story-edit-page'"></user-preview>
                     </button>
                 </div>
+                <img-list [imgUrls]="imgUrls" (removeImg)="onRemoveStoryImg($event)"
+                    (uploadedImgUrls)="onAddStoryImg($event)" (imgSelected)="onSetCurrStoryImg($event)"></img-list>
             </div>
 
         </div>
         <pagination-btns *ngIf="isPaginationBtnShown" [isPaginationBtnShown]="isPaginationBtnShown"
-            (prevItem)="onSetCurrImgUrl($event)" (nextItem)="onSetCurrImgUrl($event)"></pagination-btns>
+            (prevItem)="onSetCurrStoryImg($event,true)" (nextItem)="onSetCurrStoryImg($event,true)"></pagination-btns>
     </div>
     <div class="delete-drag-area" [class.is-visible]="isDeleteAreaShown">
         <fa-icon [icon]="faTrashCan"></fa-icon>

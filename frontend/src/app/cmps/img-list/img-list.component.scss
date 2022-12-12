@@ -1,0 +1,61 @@
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/functions';
+
+
+.files-svg-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    width: 2rem;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+}
+
+.img-select {
+    display: flex;
+    justify-content: flex-end;
+    gap: rem(15px);
+    position: absolute;
+    top: -200%;
+    right: 2%;
+    max-width: 90%;
+    height: rem(120px);
+    background-color: var(--primary-color);
+    border-radius: rem(10px);
+    padding: rem(8px);
+
+    ul {
+        position: relative;
+        display: flex;
+        gap: rem(10px);
+        padding: 0;
+        margin: 0;
+        // height: fit-content;
+        width: 80%;
+        overflow: hidden;
+        overflow-x: hidden;
+
+        li {
+            position: relative;
+            height: auto;
+            width: 50%;
+            cursor: pointer;
+
+            img {
+                height: rem(100px);
+                width: rem(100px);
+                object-fit: cover;
+            }
+
+            .remove-btn-container {
+                position: absolute;
+                top: 0;
+                right: 0;
+                border-radius: 50%;
+                background-color: var(--primary-color);
+                padding: rem(5px);
+            }
+        }
+    }
+}
