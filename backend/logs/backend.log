@@ -1,1 +1,47 @@
 9.12.2022, 18:01:17 - INFO - Server is running on port: 3030 
+13.12.2022, 16:46:53 - INFO - Server is running on port: 3030 
+13.12.2022, 17:01:51 - INFO - Server is running on port: 3030 
+13.12.2022, 17:03:05 - INFO - Server is running on port: 3030 
+13.12.2022, 19:08:28 - INFO - Server is running on port: 3030 
+13.12.2022, 19:19:16 - INFO - Server is running on port: 3030 
+13.12.2022, 19:19:29 - INFO - Server is running on port: 3030 
+13.12.2022, 19:19:32 - INFO - Server is running on port: 3030 
+13.12.2022, 19:20:54 - INFO - Server is running on port: 3030 
+13.12.2022, 19:26:09 - INFO - Server is running on port: 3030 
+13.12.2022, 19:29:49 - INFO - Server is running on port: 3030 
+13.12.2022, 19:31:27 - INFO - Server is running on port: 3030 
+13.12.2022, 19:33:38 - INFO - Server is running on port: 3030 
+13.12.2022, 19:34:45 - INFO - Server is running on port: 3030 
+13.12.2022, 19:38:25 - INFO - Server is running on port: 3030 
+13.12.2022, 19:38:54 - INFO - Server is running on port: 3030 
+13.12.2022, 19:40:27 - INFO - Server is running on port: 3030 
+13.12.2022, 19:41:08 - INFO - Server is running on port: 3030 
+13.12.2022, 19:43:16 - INFO - Server is running on port: 3030 
+13.12.2022, 19:44:55 - INFO - Server is running on port: 3030 
+13.12.2022, 19:47:00 - INFO - Server is running on port: 3030 
+13.12.2022, 19:48:46 - INFO - Server is running on port: 3030 
+13.12.2022, 19:48:51 - ERROR - Failed to add user | Error: SQLITE_BUSY: database is locked 
+13.12.2022, 19:49:51 - ERROR - Failed to add user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.user_name 
+13.12.2022, 19:49:52 - ERROR - Failed to add user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.user_name 
+13.12.2022, 19:51:20 - ERROR - Failed to add user | Error: SQLITE_BUSY: database is locked 
+13.12.2022, 19:51:37 - ERROR - Failed to add user | Error: SQLITE_BUSY: database is locked 
+13.12.2022, 19:51:53 - ERROR - Failed to add user | Error: SQLITE_BUSY: database is locked 
+13.12.2022, 19:52:10 - ERROR - Failed to add user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.user_name 
+13.12.2022, 19:52:52 - ERROR - Failed to add user | RangeError [ERR_HTTP_INVALID_STATUS_CODE]: Invalid status code: 2 
+13.12.2022, 19:54:55 - INFO - Server is running on port: 3030 
+13.12.2022, 19:56:39 - INFO - Server is running on port: 3030 
+13.12.2022, 19:57:15 - INFO - Server is running on port: 3030 
+13.12.2022, 19:57:17 - INFO - Server is running on port: 3030 
+13.12.2022, 19:57:19 - ERROR - Failed to add user | RangeError [ERR_HTTP_INVALID_STATUS_CODE]: Invalid status code: 4 
+13.12.2022, 19:57:52 - INFO - Server is running on port: 3030 
+13.12.2022, 19:58:15 - ERROR - Failed to add user | RangeError [ERR_HTTP_INVALID_STATUS_CODE]: Invalid status code: 5 
+13.12.2022, 19:58:53 - INFO - Server is running on port: 3030 
+13.12.2022, 20:01:19 - INFO - Server is running on port: 3030 
+13.12.2022, 20:04:42 - INFO - Server is running on port: 3030 
+13.12.2022, 20:04:46 - INFO - Server is running on port: 3030 
+13.12.2022, 20:07:14 - INFO - Server is running on port: 3030 
+13.12.2022, 20:07:41 - ERROR - cannot update user undefined | Error: SQLITE_ERROR: no such column: _id 
+13.12.2022, 20:07:41 - ERROR - Failed to update user | Error: SQLITE_ERROR: no such column: _id 
+13.12.2022, 20:07:59 - INFO - Server is running on port: 3030 
+13.12.2022, 20:10:24 - INFO - Server is running on port: 3030 
+13.12.2022, 20:10:46 - INFO - Server is running on port: 3030 

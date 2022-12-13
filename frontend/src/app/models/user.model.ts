@@ -15,7 +15,6 @@ export interface User {
     following: MiniUser[]
     createdPostsIds: string[]
     savedPostsIds: string[]
-    savedStoriesIds: string[]
     recentSearches: any[]
     currStoryId: string
 }

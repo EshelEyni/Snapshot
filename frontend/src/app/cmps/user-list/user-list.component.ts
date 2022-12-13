@@ -1,20 +1,29 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { MiniUser } from './../../models/user.model';
+import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss']
+  styleUrls: ['./user-list.component.scss'],
+  inputs: ['users', 'type']
 })
 export class UserListComponent implements OnInit {
 
   constructor() { }
 
-  @Input() users!: User[];
-  // if there aren't enough users to fill the list, add dummy users like in instagram
-  
+  users!: MiniUser[];
+  type!: string;
+  title: string = '';
+
 
   ngOnInit(): void {
+    this.setTitle();
+
   }
 
+  setTitle() {
+    if (this.type === 'suggestion-list') this.title = 'Suggestion For You';
+    else this.title = 'Users';
+  }
 }

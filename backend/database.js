@@ -1,7 +1,7 @@
 const sqlite = require('sqlite3').verbose();
 const fs = require('fs')
 
-const db = new sqlite.Database(__dirname + '/../data/snapshot.db', sqlite.OPEN_READWRITE | sqlite.OPEN_CREATE, (err) => {
+const db = new sqlite.Database(__dirname + '/data/snapshot.db', sqlite.OPEN_READWRITE | sqlite.OPEN_CREATE, (err) => {
     if (err !== null) {
         console.log("unable to open database", err);
         return;
