@@ -1,5 +1,8 @@
 <ul class="user-list">
-    <li>user1</li>
-    <li>user2</li>
-    <li>user3</li>
+    <header>
+        <h2>{{title}}</h2>
+    </header>
+   <li *ngFor="let user of users">
+        <user-preview [user]="user" ></user-preview>
+   </li>
 </ul>

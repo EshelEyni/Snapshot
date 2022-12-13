@@ -24,7 +24,6 @@ const USERS: User[] = [
     following: [],
     createdPostsIds: [],
     savedPostsIds: ['1', '2'],
-    savedStoriesIds: [],
     recentSearches: [],
     currStoryId: '2134'
   },
@@ -43,7 +42,6 @@ const USERS: User[] = [
     following: [],
     createdPostsIds: [],
     savedPostsIds: [],
-    savedStoriesIds: [],
     recentSearches: [],
     currStoryId: ''
   }
@@ -138,7 +136,6 @@ export class UserService {
       following: [],
       createdPostsIds: [],
       savedPostsIds: [],
-      savedStoriesIds: [],
       recentSearches: [],
       currStoryId: ''
     }
@@ -171,5 +168,16 @@ export class UserService {
 
   public getDefaultUserImgUrl(): string {
     return 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg'
+  }
+
+  public getSnapshotUser(): MiniUser {
+    const snapShotUser = {
+      id: 'u100',
+      username: 'SnapShot',
+      fullname: 'SnapShot',
+      imgUrl: '../../assets/imgs/logo-blue.png'
+    }
+
+    return snapShotUser
   }
 }

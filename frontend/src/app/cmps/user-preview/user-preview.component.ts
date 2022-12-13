@@ -10,7 +10,7 @@ import { lastValueFrom } from 'rxjs';
   selector: 'user-preview',
   templateUrl: './user-preview.component.html',
   styleUrls: ['./user-preview.component.scss'],
-  inputs: ['user', 'location', 'type', 'isLinkToStoryEdit']
+  inputs: ['user', 'desc', 'type', 'isLinkToStoryEdit','location']
 })
 export class UserPreviewComponent implements OnInit {
 
@@ -18,23 +18,26 @@ export class UserPreviewComponent implements OnInit {
   userService = inject(UserService);
   storyService = inject(StoryService);
   user!: MiniUser;
-  location!: Location;
+  desc!: string;
   story!: Story;
   isWatched: boolean = false;
   type!: string;
+  location!: Location;
   urlForImg: string = '';
   urlForTitle: string = '';
-  urlForLocation: string = '';
+  urlForDesc: string = '';
   title = '';
   isLinkToStoryEdit!: boolean;
 
   async ngOnInit() {
-    if (this.type !== 'story-edit') {
+    if (this.type !== 'story-edit' && this.user.id !== 'u100') {
       const user = await lastValueFrom(this.userService.getById(this.user.id));
       if (user.currStoryId) {
         const story = await lastValueFrom(this.storyService.getById(user.currStoryId));
         this.isWatched = story.watchedBy.some(watchedUser => watchedUser.id === this.user.id);
         this.story = story;
+      } else {
+        this.type = 'no-story';
       }
     }
     this.title = this.setTitle();
@@ -57,9 +60,10 @@ export class UserPreviewComponent implements OnInit {
       case 'post-preview':
         this.urlForImg = this.story ? `/story/${this.story.id}` : `/profile/${this.user.id}`;
         this.urlForTitle = `/profile/${this.user.id}`;
-        this.urlForLocation = `/profile/${this.user.id}`;
+        this.desc = this.location ? this.location.name :  '';
+        this.urlForDesc = `/location/${this.location.name}`;
         break;
-      case 'curr-story':
+      case 'no-story':
         this.urlForImg = `/profile/${this.user.id}`;
         this.urlForTitle = `/profile/${this.user.id}`;
         break;
@@ -74,7 +78,7 @@ export class UserPreviewComponent implements OnInit {
       default:
         this.urlForImg = `/`;
         this.urlForTitle = `/`;
-        this.urlForLocation = `/`;
+        this.urlForDesc = `/`;
         break;
     }
   }
