@@ -316,3 +316,71 @@
 14.12.2022, 18:33:28 - INFO - Server is running on port: 3030 
 14.12.2022, 18:38:07 - INFO - Server is running on port: 3030 
 14.12.2022, 18:38:23 - INFO - Server is running on port: 3030 
+14.12.2022, 19:04:37 - INFO - Server is running on port: 3030 
+14.12.2022, 21:30:26 - INFO - Server is running on port: 3030 
+14.12.2022, 21:44:37 - INFO - Server is running on port: 3030 
+14.12.2022, 21:44:38 - INFO - Server is running on port: 3030 
+14.12.2022, 21:46:48 - INFO - Server is running on port: 3030 
+14.12.2022, 21:46:51 - INFO - Server is running on port: 3030 
+14.12.2022, 21:47:26 - INFO - Server is running on port: 3030 
+14.12.2022, 21:48:23 - INFO - Server is running on port: 3030 
+14.12.2022, 21:48:51 - INFO - Server is running on port: 3030 
+14.12.2022, 21:49:36 - INFO - Server is running on port: 3030 
+14.12.2022, 21:52:39 - INFO - Server is running on port: 3030 
+14.12.2022, 21:52:50 - INFO - Server is running on port: 3030 
+14.12.2022, 21:52:53 - INFO - Server is running on port: 3030 
+14.12.2022, 21:53:33 - INFO - Server is running on port: 3030 
+14.12.2022, 21:53:37 - INFO - Server is running on port: 3030 
+14.12.2022, 21:53:41 - INFO - Server is running on port: 3030 
+14.12.2022, 21:54:40 - INFO - Server is running on port: 3030 
+14.12.2022, 21:55:45 - INFO - Server is running on port: 3030 
+14.12.2022, 21:55:58 - INFO - Server is running on port: 3030 
+14.12.2022, 21:56:06 - INFO - Server is running on port: 3030 
+14.12.2022, 22:00:42 - INFO - Server is running on port: 3030 
+14.12.2022, 22:02:22 - INFO - Server is running on port: 3030 
+14.12.2022, 22:05:13 - INFO - Server is running on port: 3030 
+14.12.2022, 22:05:50 - INFO - Server is running on port: 3030 
+14.12.2022, 22:09:48 - ERROR - cannot add like | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts_liked_by.post_id 
+14.12.2022, 22:12:57 - INFO - Server is running on port: 3030 
+14.12.2022, 22:13:15 - ERROR - cannot find likes | TypeError: db.all is not a function 
+14.12.2022, 22:13:35 - INFO - Server is running on port: 3030 
+14.12.2022, 22:13:47 - INFO - Server is running on port: 3030 
+14.12.2022, 22:14:01 - INFO - Server is running on port: 3030 
+14.12.2022, 22:14:49 - INFO - Server is running on port: 3030 
+14.12.2022, 22:15:36 - INFO - Server is running on port: 3030 
+14.12.2022, 22:16:21 - INFO - Server is running on port: 3030 
+14.12.2022, 22:16:58 - INFO - Server is running on port: 3030 
+14.12.2022, 22:17:27 - INFO - Server is running on port: 3030 
+14.12.2022, 22:20:16 - INFO - Server is running on port: 3030 
+14.12.2022, 22:21:23 - INFO - Server is running on port: 3030 
+14.12.2022, 22:22:17 - INFO - Server is running on port: 3030 
+14.12.2022, 22:25:45 - INFO - Server is running on port: 3030 
+14.12.2022, 22:25:52 - INFO - Server is running on port: 3030 
+14.12.2022, 22:26:47 - INFO - Server is running on port: 3030 
+14.12.2022, 22:27:57 - INFO - Server is running on port: 3030 
+14.12.2022, 22:30:37 - INFO - Server is running on port: 3030 
+14.12.2022, 22:30:43 - ERROR - cannot add like | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: posts_liked_by.user_id 
+14.12.2022, 22:32:03 - INFO - Server is running on port: 3030 
+14.12.2022, 22:32:06 - ERROR - cannot delete like | ReferenceError: res is not defined 
+14.12.2022, 22:32:20 - INFO - Server is running on port: 3030 
+14.12.2022, 22:33:10 - INFO - Server is running on port: 3030 
+14.12.2022, 22:34:11 - ERROR - cannot delete like | ReferenceError: res is not defined 
+14.12.2022, 22:35:45 - INFO - Server is running on port: 3030 
+14.12.2022, 22:35:49 - INFO - Server is running on port: 3030 
+14.12.2022, 22:36:15 - ERROR - cannot add like | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: posts_liked_by.user_id 
+14.12.2022, 22:36:41 - INFO - Server is running on port: 3030 
+14.12.2022, 22:36:45 - ERROR - cannot add like | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: posts_liked_by.user_id 
+14.12.2022, 22:36:56 - ERROR - cannot add like | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: posts_liked_by.user_id 
+14.12.2022, 22:38:04 - INFO - Server is running on port: 3030 
+14.12.2022, 22:40:53 - ERROR - cannot insert comment | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: comments.text 
+14.12.2022, 22:40:53 - ERROR - Failed to add comment | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: comments.text 
+14.12.2022, 22:42:32 - INFO - Server is running on port: 3030 
+14.12.2022, 22:43:16 - INFO - Server is running on port: 3030 
+14.12.2022, 22:44:43 - INFO - Server is running on port: 3030 
+14.12.2022, 22:44:46 - INFO - Server is running on port: 3030 
+14.12.2022, 22:44:55 - INFO - Server is running on port: 3030 
+14.12.2022, 22:45:22 - INFO - Server is running on port: 3030 
+14.12.2022, 22:46:59 - INFO - Server is running on port: 3030 
+14.12.2022, 22:47:02 - INFO - Server is running on port: 3030 
+14.12.2022, 22:47:04 - INFO - Server is running on port: 3030 
+14.12.2022, 22:48:19 - ERROR - cannot add like | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: stories_liked_by.story_id 

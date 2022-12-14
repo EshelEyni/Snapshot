@@ -27,6 +27,13 @@ CREATE TABLE IF NOT EXISTS "posts_images" (
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("post_id") references "posts"("id")
 );
 
+CREATE TABLE IF NOT EXISTS "posts_liked_by"(
+    "id" INTEGER NOT NULL UNIQUE,
+    "post_id" INTEGER NOT NULL,
+    "user_id" INTEGER NOT NULL UNIQUE,
+    PRIMARY KEY("id" AUTOINCREMENT) foreign key ("post_id") references "posts"("id") foreign key ("user_id") references "users"("id")
+);
+
 CREATE TABLE IF NOT EXISTS "comments" (
     "id" INTEGER NOT NULL UNIQUE,
     "post_id" INTEGER NOT NULL,
@@ -35,6 +42,13 @@ CREATE TABLE IF NOT EXISTS "comments" (
     "created_at" TIMESTAMP NOT NULL,
     "likes" INTEGER NOT NULL,
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("post_id") references "posts"("id") foreign key("user_id") references "users"("id")
+);
+
+CREATE TABLE IF NOT EXISTS "comments_liked_by"(
+    "id" INTEGER NOT NULL UNIQUE,
+    "comment_id" INTEGER NOT NULL,
+    "user_id" INTEGER NOT NULL UNIQUE,
+    PRIMARY KEY("id" AUTOINCREMENT) foreign key ("comment_id") references "comments"("id") foreign key ("user_id") references "users"("id")
 );
 
 CREATE TABLE IF NOT EXISTS "followers" (
@@ -120,5 +134,12 @@ CREATE TABLE IF NOT EXISTS "story_views" (
     "id" INTEGER NOT NULL UNIQUE,
     "story_id" INTEGER NOT NULL,
     "user_id" INTEGER NOT NULL,
+    PRIMARY KEY("id" AUTOINCREMENT) foreign key ("story_id") references "stories"("id") foreign key ("user_id") references "users"("id")
+);
+
+CREATE TABLE IF NOT EXISTS "stories_liked_by"(
+    "id" INTEGER NOT NULL UNIQUE,
+    "story_id" INTEGER NOT NULL,
+    "user_id" INTEGER NOT NULL UNIQUE,
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("story_id") references "stories"("id") foreign key ("user_id") references "users"("id")
 );

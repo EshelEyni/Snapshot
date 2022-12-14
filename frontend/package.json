@@ -28,6 +28,7 @@
     "@ngrx/store-devtools": "^14.3.2",
     "angular-svg-icon": "^14.0.0",
     "angular2-draggable": "^2.3.2",
+    "axios": "^1.2.1",
     "hammerjs": "^2.0.8",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
