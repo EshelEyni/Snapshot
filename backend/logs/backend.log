@@ -47,3 +47,210 @@
 13.12.2022, 20:10:46 - INFO - Server is running on port: 3030 
 13.12.2022, 20:21:37 - INFO - Server is running on port: 3030 
 13.12.2022, 20:21:51 - INFO - Server is running on port: 3030 
+13.12.2022, 20:26:34 - INFO - Server is running on port: 3030 
+13.12.2022, 20:35:39 - INFO - Server is running on port: 3030 
+13.12.2022, 20:36:54 - INFO - Server is running on port: 3030 
+13.12.2022, 20:38:43 - INFO - Server is running on port: 3030 
+13.12.2022, 20:38:46 - ERROR - Failed to get users | ReferenceError: users is not defined 
+13.12.2022, 20:38:46 - ERROR - cannot find users | ReferenceError: users is not defined 
+13.12.2022, 20:39:49 - ERROR - while finding user 8 | ReferenceError: res is not defined 
+13.12.2022, 20:39:49 - ERROR - Failed to get user | ReferenceError: res is not defined 
+13.12.2022, 20:40:06 - INFO - Server is running on port: 3030 
+13.12.2022, 20:40:32 - INFO - Server is running on port: 3030 
+13.12.2022, 20:41:30 - INFO - Server is running on port: 3030 
+14.12.2022, 0:05:07 - INFO - Server is running on port: 3030 
+14.12.2022, 0:05:24 - INFO - Server is running on port: 3030 
+14.12.2022, 0:05:31 - INFO - Server is running on port: 3030 
+14.12.2022, 0:06:57 - INFO - Server is running on port: 3030 
+14.12.2022, 0:10:33 - INFO - Server is running on port: 3030 
+14.12.2022, 0:13:16 - INFO - Server is running on port: 3030 
+14.12.2022, 0:15:13 - INFO - Server is running on port: 3030 
+14.12.2022, 0:15:22 - INFO - Server is running on port: 3030 
+14.12.2022, 0:26:25 - INFO - Server is running on port: 3030 
+14.12.2022, 0:26:27 - INFO - Server is running on port: 3030 
+14.12.2022, 0:27:42 - INFO - Server is running on port: 3030 
+14.12.2022, 0:28:33 - INFO - Server is running on port: 3030 
+14.12.2022, 0:31:09 - ERROR - cannot insert post | Error: SQLITE_ERROR: table posts has no column named post_date 
+14.12.2022, 0:31:09 - ERROR - Failed to add post | Error: SQLITE_ERROR: table posts has no column named post_date 
+14.12.2022, 0:34:01 - INFO - Server is running on port: 3030 
+14.12.2022, 0:35:00 - INFO - Server is running on port: 3030 
+14.12.2022, 0:35:15 - ERROR - cannot insert post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.user_id 
+14.12.2022, 0:35:15 - ERROR - Failed to add post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.user_id 
+14.12.2022, 0:37:38 - INFO - Server is running on port: 3030 
+14.12.2022, 0:38:11 - ERROR - cannot insert post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.user_id 
+14.12.2022, 0:38:11 - ERROR - Failed to add post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.user_id 
+14.12.2022, 0:39:13 - INFO - Server is running on port: 3030 
+14.12.2022, 0:39:16 - ERROR - cannot insert post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.user_id 
+14.12.2022, 0:39:16 - ERROR - Failed to add post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.user_id 
+14.12.2022, 0:41:28 - INFO - Server is running on port: 3030 
+14.12.2022, 0:43:10 - ERROR - Failed to add user | Error: data and salt arguments required 
+14.12.2022, 0:43:41 - ERROR - Failed to add user | Error: data and salt arguments required 
+14.12.2022, 0:44:53 - ERROR - cannot insert user | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.user_name 
+14.12.2022, 0:44:53 - ERROR - Failed to add user | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.user_name 
+14.12.2022, 0:46:01 - ERROR - Failed to add post | RangeError [ERR_HTTP_INVALID_STATUS_CODE]: Invalid status code: 1 
+14.12.2022, 0:46:55 - INFO - Server is running on port: 3030 
+14.12.2022, 0:49:20 - ERROR - while finding post 3 | ReferenceError: id is not defined 
+14.12.2022, 0:49:20 - ERROR - Failed to get post | ReferenceError: id is not defined 
+14.12.2022, 0:49:25 - ERROR - while finding post 4 | ReferenceError: id is not defined 
+14.12.2022, 0:49:25 - ERROR - Failed to get post | ReferenceError: id is not defined 
+14.12.2022, 0:50:17 - INFO - Server is running on port: 3030 
+14.12.2022, 1:14:28 - INFO - Server is running on port: 3030 
+14.12.2022, 14:32:55 - INFO - Server is running on port: 3030 
+14.12.2022, 14:34:54 - INFO - Server is running on port: 3030 
+14.12.2022, 14:37:03 - INFO - Server is running on port: 3030 
+14.12.2022, 14:37:53 - INFO - Server is running on port: 3030 
+14.12.2022, 14:38:51 - INFO - Server is running on port: 3030 
+14.12.2022, 14:39:20 - INFO - Server is running on port: 3030 
+14.12.2022, 14:40:37 - INFO - Server is running on port: 3030 
+14.12.2022, 14:41:22 - INFO - Server is running on port: 3030 
+14.12.2022, 14:42:24 - INFO - Server is running on port: 3030 
+14.12.2022, 14:44:14 - INFO - Server is running on port: 3030 
+14.12.2022, 14:53:03 - INFO - Server is running on port: 3030 
+14.12.2022, 14:53:05 - INFO - Server is running on port: 3030 
+14.12.2022, 14:54:16 - INFO - Server is running on port: 3030 
+14.12.2022, 14:55:20 - INFO - Server is running on port: 3030 
+14.12.2022, 14:55:43 - DEBUG - auth.service - signup with username: user, fullname: user 
+14.12.2022, 14:55:43 - DEBUG - auth.route - new account created: 2 
+14.12.2022, 14:55:43 - DEBUG - auth.service - login with username: user 
+14.12.2022, 14:55:43 - ERROR - Failed to signup Error: data and hash arguments required 
+14.12.2022, 14:56:24 - INFO - Server is running on port: 3030 
+14.12.2022, 14:59:11 - INFO - Server is running on port: 3030 
+14.12.2022, 14:59:37 - INFO - Server is running on port: 3030 
+14.12.2022, 14:59:52 - DEBUG - auth.service - signup with username: user, fullname: user 
+14.12.2022, 14:59:52 - DEBUG - auth.route - new account created: 3 
+14.12.2022, 14:59:52 - DEBUG - auth.service - login with username: user 
+14.12.2022, 14:59:52 - ERROR - Failed to signup Error: data and hash arguments required 
+14.12.2022, 15:02:48 - INFO - Server is running on port: 3030 
+14.12.2022, 15:03:00 - DEBUG - auth.service - signup with username: user, fullname: user 
+14.12.2022, 15:03:00 - DEBUG - auth.route - new account created: 4 
+14.12.2022, 15:03:00 - DEBUG - auth.service - login with username: user 
+14.12.2022, 15:03:00 - ERROR - Failed to signup Error: data and hash arguments required 
+14.12.2022, 15:03:39 - INFO - Server is running on port: 3030 
+14.12.2022, 15:03:49 - DEBUG - auth.service - signup with username: user, fullname: user 
+14.12.2022, 15:03:50 - DEBUG - auth.route - new account created: 5 
+14.12.2022, 15:03:50 - DEBUG - auth.service - login with username: user 
+14.12.2022, 15:03:50 - ERROR - Failed to signup Error: data and hash arguments required 
+14.12.2022, 15:04:16 - INFO - Server is running on port: 3030 
+14.12.2022, 15:04:25 - DEBUG - auth.service - signup with username: user2, fullname: user 
+14.12.2022, 15:04:25 - DEBUG - auth.route - new account created: 6 
+14.12.2022, 15:04:25 - DEBUG - auth.service - login with username: user2 
+14.12.2022, 15:04:25 - ERROR - Failed to signup Error: data and hash arguments required 
+14.12.2022, 15:07:16 - INFO - Server is running on port: 3030 
+14.12.2022, 15:07:19 - DEBUG - auth.service - signup with username: user2, fullname: user 
+14.12.2022, 15:07:19 - ERROR - cannot insert user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.user_name 
+14.12.2022, 15:07:20 - ERROR - Failed to signup Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.user_name 
+14.12.2022, 15:07:36 - INFO - Server is running on port: 3030 
+14.12.2022, 15:07:42 - DEBUG - auth.service - signup with username: user12, fullname: user 
+14.12.2022, 15:07:42 - DEBUG - auth.route - new account created: 7 
+14.12.2022, 15:07:42 - DEBUG - auth.service - login with username: user12 
+14.12.2022, 15:07:42 - ERROR - Failed to signup Error: data and hash arguments required 
+14.12.2022, 15:08:37 - INFO - Server is running on port: 3030 
+14.12.2022, 15:09:42 - INFO - Server is running on port: 3030 
+14.12.2022, 15:09:47 - DEBUG - auth.service - signup with username: user121, fullname: user 
+14.12.2022, 15:09:47 - DEBUG - auth.route - new account created: 8 
+14.12.2022, 15:09:47 - DEBUG - auth.service - login with username: user121 
+14.12.2022, 15:09:47 - ERROR - Failed to signup Error: data and hash arguments required 
+14.12.2022, 15:10:00 - INFO - Server is running on port: 3030 
+14.12.2022, 15:12:11 - DEBUG - auth.service - signup with username: user, fullname: user 
+14.12.2022, 15:12:11 - DEBUG - auth.route - new account created: 9 
+14.12.2022, 15:12:11 - DEBUG - auth.service - login with username: user 
+14.12.2022, 15:12:11 - ERROR - Failed to signup Error: data and hash arguments required 
+14.12.2022, 15:12:33 - DEBUG - auth.service - signup with username: user, fullname: undefined 
+14.12.2022, 15:12:33 - ERROR - Failed to signup fullname, username and password are required! 
+14.12.2022, 15:12:40 - DEBUG - auth.service - login with username: user 
+14.12.2022, 15:12:40 - ERROR - Failed to Login Error: data and hash arguments required 
+14.12.2022, 15:13:31 - INFO - Server is running on port: 3030 
+14.12.2022, 15:13:33 - DEBUG - auth.service - login with username: user 
+14.12.2022, 15:13:33 - ERROR - Failed to Login Error: data and hash arguments required 
+14.12.2022, 15:14:24 - INFO - Server is running on port: 3030 
+14.12.2022, 15:14:26 - DEBUG - auth.service - login with username: user 
+14.12.2022, 15:14:26 - ERROR - Failed to Login Invalid username or password 
+14.12.2022, 15:14:59 - INFO - Server is running on port: 3030 
+14.12.2022, 15:15:42 - INFO - Server is running on port: 3030 
+14.12.2022, 15:15:44 - DEBUG - auth.service - login with username: user 
+14.12.2022, 15:15:44 - ERROR - Failed to Login Error: data and hash arguments required 
+14.12.2022, 15:16:27 - INFO - Server is running on port: 3030 
+14.12.2022, 15:16:57 - INFO - Server is running on port: 3030 
+14.12.2022, 15:17:04 - INFO - Server is running on port: 3030 
+14.12.2022, 15:17:22 - DEBUG - auth.service - signup with username: user, fullname: user 
+14.12.2022, 15:17:22 - DEBUG - auth.route - new account created: 1 
+14.12.2022, 15:17:22 - DEBUG - auth.service - login with username: user 
+14.12.2022, 15:17:22 - ERROR - Failed to signup Invalid username or password 
+14.12.2022, 15:19:10 - INFO - Server is running on port: 3030 
+14.12.2022, 15:19:12 - DEBUG - auth.service - signup with username: user, fullname: user 
+14.12.2022, 15:19:12 - ERROR - cannot insert user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.user_name 
+14.12.2022, 15:19:12 - ERROR - Failed to signup Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.user_name 
+14.12.2022, 15:19:29 - DEBUG - auth.service - login with username: user 
+14.12.2022, 15:19:29 - ERROR - Failed to Login Invalid username or password2 
+14.12.2022, 15:20:28 - INFO - Server is running on port: 3030 
+14.12.2022, 15:20:31 - DEBUG - auth.service - login with username: user 
+14.12.2022, 15:20:31 - ERROR - Failed to Login Invalid username or password2 
+14.12.2022, 15:22:05 - INFO - Server is running on port: 3030 
+14.12.2022, 15:22:08 - DEBUG - auth.service - login with username: user 
+14.12.2022, 15:22:08 - ERROR - Failed to Login Invalid username or password2 
+14.12.2022, 15:23:08 - DEBUG - auth.service - signup with username: user1, fullname: user 
+14.12.2022, 15:23:09 - DEBUG - auth.route - new account created: 2 
+14.12.2022, 15:23:09 - DEBUG - auth.service - login with username: user1 
+14.12.2022, 15:23:09 - ERROR - Failed to signup Invalid username or password2 
+14.12.2022, 15:29:25 - INFO - Server is running on port: 3030 
+14.12.2022, 15:29:38 - DEBUG - auth.service - login with username: user1 
+14.12.2022, 15:29:39 - ERROR - Failed to Login Invalid username or password2 
+14.12.2022, 15:49:47 - INFO - Server is running on port: 3030 
+14.12.2022, 15:49:50 - DEBUG - auth.service - login with username: user1 
+14.12.2022, 15:49:50 - ERROR - Failed to Login Invalid username or password2 
+14.12.2022, 15:50:36 - INFO - Server is running on port: 3030 
+14.12.2022, 15:56:42 - INFO - Server is running on port: 3030 
+14.12.2022, 16:00:52 - INFO - Server is running on port: 3030 
+14.12.2022, 16:01:03 - DEBUG - auth.service - signup with username: user12, fullname: user 
+14.12.2022, 16:01:03 - DEBUG - auth.route - new account created: 3 
+14.12.2022, 16:01:03 - DEBUG - auth.service - login with username: user12 
+14.12.2022, 16:01:03 - ERROR - Failed to signup Invalid username or password2 
+14.12.2022, 16:03:03 - DEBUG - auth.service - signup with username: user12, fullname: user 
+14.12.2022, 16:03:03 - DEBUG - auth.route - new account created: 4 
+14.12.2022, 16:03:03 - DEBUG - auth.service - login with username: user12 
+14.12.2022, 16:03:03 - ERROR - Failed to signup Invalid username or password2 
+14.12.2022, 16:04:18 - INFO - Server is running on port: 3030 
+14.12.2022, 16:04:37 - DEBUG - auth.service - signup with username: user112, fullname: user 
+14.12.2022, 16:04:37 - ERROR - cannot insert user | ReferenceError: password is not defined 
+14.12.2022, 16:04:37 - ERROR - Failed to signup ReferenceError: password is not defined 
+14.12.2022, 16:04:50 - INFO - Server is running on port: 3030 
+14.12.2022, 16:04:52 - DEBUG - auth.service - signup with username: user112, fullname: user 
+14.12.2022, 16:04:52 - DEBUG - auth.route - new account created: 5 
+14.12.2022, 16:04:52 - DEBUG - auth.service - login with username: user112 
+14.12.2022, 16:04:52 - ERROR - Failed to signup Error: value must not be null or undefined 
+14.12.2022, 16:05:11 - DEBUG - auth.service - signup with username: user112, fullname: user 
+14.12.2022, 16:05:11 - DEBUG - auth.route - new account created: 6 
+14.12.2022, 16:05:11 - DEBUG - auth.service - login with username: user112 
+14.12.2022, 16:05:11 - ERROR - Failed to signup Error: value must not be null or undefined 
+14.12.2022, 16:05:49 - INFO - Server is running on port: 3030 
+14.12.2022, 16:06:40 - INFO - Server is running on port: 3030 
+14.12.2022, 16:06:45 - INFO - Server is running on port: 3030 
+14.12.2022, 16:07:50 - DEBUG - auth.service - signup with username: user1112, fullname: user 
+14.12.2022, 16:07:50 - DEBUG - auth.route - new account created: 7 
+14.12.2022, 16:07:50 - DEBUG - auth.service - login with username: user1112 
+14.12.2022, 16:07:50 - ERROR - Failed to signup Error: value must not be null or undefined 
+14.12.2022, 16:09:55 - INFO - Server is running on port: 3030 
+14.12.2022, 16:10:03 - DEBUG - auth.service - signup with username: user11112, fullname: user 
+14.12.2022, 16:10:03 - DEBUG - auth.route - new account created: 8 
+14.12.2022, 16:10:03 - DEBUG - auth.service - login with username: user11112 
+14.12.2022, 16:10:03 - ERROR - Failed to signup Error: value must not be null or undefined 
+14.12.2022, 16:11:27 - INFO - Server is running on port: 3030 
+14.12.2022, 16:11:31 - DEBUG - auth.service - signup with username: user111112, fullname: user 
+14.12.2022, 16:11:31 - DEBUG - auth.route - new account created: 9 
+14.12.2022, 16:11:31 - DEBUG - auth.service - login with username: user111112 
+14.12.2022, 16:11:31 - INFO - User login:  | user not found 
+14.12.2022, 16:14:24 - INFO - Server is running on port: 3030 
+14.12.2022, 16:14:28 - DEBUG - auth.service - signup with username: user1111112, fullname: user 
+14.12.2022, 16:14:28 - DEBUG - auth.route - new account created: 10 
+14.12.2022, 16:14:28 - DEBUG - auth.service - login with username: user1111112 
+14.12.2022, 16:14:28 - INFO - User login:  | {"id":10,"user_name":"user1111112","full_name":"a","img_url":"","bio":"","gender":"","phone":"","website":"","email":"user","password":"$2b$10$ORUwi2dE6pB8owX0h1xGCOyQx35fMSePH6AaDuAG9eUul7JyW1uB."} 
+14.12.2022, 16:16:30 - INFO - Server is running on port: 3030 
+14.12.2022, 16:16:34 - DEBUG - auth.service - signup with username: user11111112, fullname: user 
+14.12.2022, 16:16:34 - DEBUG - auth.service - login with username: user11111112 
+14.12.2022, 16:16:34 - DEBUG - auth.route - new account created: "user11111112" 
+14.12.2022, 16:16:34 - INFO - User login:  | {"id":11,"user_name":"user11111112","full_name":"a","img_url":"","bio":"","gender":"","phone":"","website":"","email":"user","password":"$2b$10$G2hLTX.bSJeeBSlf8opBEudTuUCiQkXSMwIFJDdseyiCKhWIpP8NK"} 
+14.12.2022, 16:17:05 - DEBUG - auth.service - login with username: user11111112 
+14.12.2022, 16:17:05 - INFO - User login:  | {"id":11,"user_name":"user11111112","full_name":"a","img_url":"","bio":"","gender":"","phone":"","website":"","email":"user"} | 6bd6e55ed6ad30950fca165adcc717cad7a678d36676fd4c8807874b2cb3326e41a2d17ffde61b162e665d8e0143c1353506a302bb41f64d8c0427283c36b990ef21c62d64c4216735123494f5ec938533ce7303e6e7500aa36cc9dcaafb49203e9d 
+14.12.2022, 16:41:20 - INFO - Server is running on port: 3030 
+14.12.2022, 16:41:59 - INFO - Server is running on port: 3030 
+14.12.2022, 16:42:01 - INFO - Server is running on port: 3030 

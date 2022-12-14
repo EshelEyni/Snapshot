@@ -8,6 +8,7 @@ const http = require('http').createServer(app)
 
 const userRoutes = require('./api/user/user.routes')
 const postRoutes = require('./api/post/post.routes')
+const authRoutes = require('./api/auth/auth.routes')
 
 
 // Express App Config
@@ -32,6 +33,7 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use('/api/user', userRoutes)
 app.use('/api/post', postRoutes)
+app.use('/api/auth', authRoutes)
 
 app.get('/**', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'))

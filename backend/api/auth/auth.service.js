@@ -12,29 +12,29 @@ async function login(username, password) {
 
     const user = await userService.getByUsername(username)
     if (!user) return Promise.reject('Invalid username or password')
-    // TODO: un-comment for real login
     const match = await bcrypt.compare(password, user.password)
-    if (!match) return Promise.reject('Invalid username or password')
+    if (!match) return Promise.reject('Invalid username or password2')
 
     delete user.password
     return user
 }
 
-async function signup(username, password, fullname) {
+async function signup(username, password, fullname, email) {
     const saltRounds = 10
 
     logger.debug(`auth.service - signup with username: ${username}, fullname: ${fullname}`)
-    if (!username || !password || !fullname) return Promise.reject('fullname, username and password are required!')
+    if (!username || !password || !fullname || !email) return Promise.reject('fullname, username and password are required!')
     const users = await userService.query()
     if (users.find(currUser => currUser.username === username)) {
         return Promise.reject('username already exists!')
     }
     const hash = await bcrypt.hash(password, saltRounds)
-    return userService.add({ username, password: hash, fullname })
+    const user = { username, password: hash, fullname, email }
+    return userService.add(user)
 }
 
 function getLoginToken(user) {
-    return cryptr.encrypt(JSON.stringify(user._id))
+    return cryptr.encrypt(JSON.stringify(user.id))
 }
 
 async function validateToken(loginToken) {
@@ -48,25 +48,6 @@ async function validateToken(loginToken) {
     }
     return null
 }
-
-
-// router.get('/login', async (req, res) => {
-//     const { name, password } = req.body;
-//     const users = await db.query(`select * from users where name = $name`, { $name: name });
-//     if (users.length === 0) {
-//         res.status(401).send('user not found');
-//         return;
-//     }
-//     const user = users[0];
-//     const match = await bcrypt.compare(password, user.hashed_password);
-//     if (!match) {
-//         res.status(401).send('wrong password');
-//         return;
-//     }
-//     res.send({ 'id': user.id });
-// });
-
-
 
 module.exports = {
     signup,
