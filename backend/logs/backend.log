@@ -254,3 +254,65 @@
 14.12.2022, 16:41:20 - INFO - Server is running on port: 3030 
 14.12.2022, 16:41:59 - INFO - Server is running on port: 3030 
 14.12.2022, 16:42:01 - INFO - Server is running on port: 3030 
+14.12.2022, 16:42:49 - INFO - Server is running on port: 3030 
+14.12.2022, 16:45:19 - INFO - Server is running on port: 3030 
+14.12.2022, 16:46:51 - INFO - Server is running on port: 3030 
+14.12.2022, 16:49:34 - INFO - Server is running on port: 3030 
+14.12.2022, 16:51:39 - INFO - Server is running on port: 3030 
+14.12.2022, 16:52:06 - INFO - Server is running on port: 3030 
+14.12.2022, 16:52:36 - INFO - Server is running on port: 3030 
+14.12.2022, 16:52:44 - INFO - Server is running on port: 3030 
+14.12.2022, 16:53:09 - INFO - Server is running on port: 3030 
+14.12.2022, 16:53:21 - INFO - Server is running on port: 3030 
+14.12.2022, 16:53:35 - INFO - Server is running on port: 3030 
+14.12.2022, 16:54:55 - INFO - Server is running on port: 3030 
+14.12.2022, 16:57:45 - ERROR - cannot insert post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.likes 
+14.12.2022, 16:57:45 - ERROR - Failed to add post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.likes 
+14.12.2022, 16:58:07 - ERROR - cannot insert post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.likes 
+14.12.2022, 16:58:07 - ERROR - Failed to add post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.likes 
+14.12.2022, 16:58:38 - ERROR - cannot insert post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.likes 
+14.12.2022, 16:58:38 - ERROR - Failed to add post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.likes 
+14.12.2022, 16:58:49 - ERROR - cannot insert post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.likes 
+14.12.2022, 16:58:49 - ERROR - Failed to add post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.likes 
+14.12.2022, 16:59:32 - INFO - Server is running on port: 3030 
+14.12.2022, 17:01:30 - INFO - Server is running on port: 3030 
+14.12.2022, 17:02:01 - INFO - Server is running on port: 3030 
+14.12.2022, 17:03:44 - INFO - Server is running on port: 3030 
+14.12.2022, 17:03:46 - ERROR - cannot insert comment | Error: SQLITE_ERROR: table comments has no column named comment_text 
+14.12.2022, 17:03:46 - ERROR - Failed to add comment | Error: SQLITE_ERROR: table comments has no column named comment_text 
+14.12.2022, 17:04:30 - INFO - Server is running on port: 3030 
+14.12.2022, 17:19:30 - ERROR - Failed to update comment | Error: SQLITE_ERROR: near "likes": syntax error 
+14.12.2022, 17:19:30 - ERROR - cannot update comment undefined | Error: SQLITE_ERROR: near "likes": syntax error 
+14.12.2022, 17:35:36 - INFO - Server is running on port: 3030 
+14.12.2022, 17:42:47 - INFO - Server is running on port: 3030 
+14.12.2022, 17:49:39 - INFO - Server is running on port: 3030 
+14.12.2022, 17:51:57 - INFO - Server is running on port: 3030 
+14.12.2022, 17:58:31 - INFO - Server is running on port: 3030 
+14.12.2022, 17:59:03 - INFO - Server is running on port: 3030 
+14.12.2022, 17:59:42 - ERROR - cannot insert location undefined | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: locations.lat 
+14.12.2022, 17:59:42 - ERROR - Failed to add location | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: locations.lat 
+14.12.2022, 18:00:48 - INFO - Server is running on port: 3030 
+14.12.2022, 18:01:36 - INFO - Server is running on port: 3030 
+14.12.2022, 18:02:25 - INFO - Server is running on port: 3030 
+14.12.2022, 18:02:30 - INFO - Server is running on port: 3030 
+14.12.2022, 18:02:34 - ERROR - cannot insert location undefined | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: locations.lng 
+14.12.2022, 18:02:34 - ERROR - Failed to add location | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: locations.lng 
+14.12.2022, 18:10:57 - INFO - Server is running on port: 3030 
+14.12.2022, 18:11:06 - INFO - Server is running on port: 3030 
+14.12.2022, 18:11:09 - INFO - Server is running on port: 3030 
+14.12.2022, 18:11:21 - INFO - Server is running on port: 3030 
+14.12.2022, 18:11:30 - INFO - Server is running on port: 3030 
+14.12.2022, 18:13:33 - INFO - Server is running on port: 3030 
+14.12.2022, 18:14:09 - INFO - Server is running on port: 3030 
+14.12.2022, 18:18:08 - INFO - Server is running on port: 3030 
+14.12.2022, 18:18:10 - INFO - Server is running on port: 3030 
+14.12.2022, 18:20:06 - ERROR - cannot insert notification undefined | Error: SQLITE_ERROR: table notifications has no column named userId 
+14.12.2022, 18:20:06 - ERROR - Failed to add notification | Error: SQLITE_ERROR: table notifications has no column named userId 
+14.12.2022, 18:22:55 - INFO - Server is running on port: 3030 
+14.12.2022, 18:25:35 - INFO - Server is running on port: 3030 
+14.12.2022, 18:27:40 - INFO - Server is running on port: 3030 
+14.12.2022, 18:31:12 - INFO - Server is running on port: 3030 
+14.12.2022, 18:32:38 - INFO - Server is running on port: 3030 
+14.12.2022, 18:33:28 - INFO - Server is running on port: 3030 
+14.12.2022, 18:38:07 - INFO - Server is running on port: 3030 
+14.12.2022, 18:38:23 - INFO - Server is running on port: 3030 

@@ -9,7 +9,11 @@ const http = require('http').createServer(app)
 const userRoutes = require('./api/user/user.routes')
 const postRoutes = require('./api/post/post.routes')
 const authRoutes = require('./api/auth/auth.routes')
-
+const commentRoutes = require('./api/comment/comment.routes')
+const tagRoutes = require('./api/tag/tag.routes.js')
+const loactionRoutes = require('./api/location/location.routes')
+const notificationRoutes = require('./api/notification/notification.routes.js')
+const storyRoutes = require('./api/story/story.routes')
 
 // Express App Config
 app.use(cookieParser())
@@ -34,6 +38,11 @@ if (process.env.NODE_ENV === 'production') {
 app.use('/api/user', userRoutes)
 app.use('/api/post', postRoutes)
 app.use('/api/auth', authRoutes)
+app.use('/api/comment', commentRoutes)
+app.use('/api/tag', tagRoutes)
+app.use('/api/location', loactionRoutes)
+app.use('/api/notification', notificationRoutes)
+app.use('/api/story', storyRoutes)
 
 app.get('/**', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'))

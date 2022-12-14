@@ -11,6 +11,7 @@ async function query() {
     }
 }
 
+
 async function getById(postId) {
     try {
         const posts = await db.query(`select * from posts where id = $id`, { $id: postId });
@@ -64,10 +65,11 @@ async function update(post) {
 
 async function add(post) {
     try {
-        const id = await db.exec(`insert into posts (user_id, created_at) values ($user_id, $created_at)`,
+        const id = await db.exec(`insert into posts (user_id, created_at, likes) values ($user_id, $created_at, $likes)`,
             {
                 $user_id: post.userId,
-                $created_at: post.createdAt
+                $created_at: post.createdAt,
+                $likes: post.likes
             });
 
         return id
