@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { UtilService } from './util.service';
 import { StorageService } from './storage.service';
 import { User, MiniUser } from './../models/user.model';
-import { BehaviorSubject, Observable, of,from , map } from 'rxjs';
+import { BehaviorSubject, Observable, of, map, lastValueFrom } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { UserState } from '../store/reducers/user.reducer';
@@ -70,79 +70,57 @@ export class UserService {
   public loadUsers(filterBy = ''): Observable<User[]> {
     this.store.dispatch(new LoadingUsers());
     console.log('UserService: Return Users ===> effect');
-    return from(this._getUsers(filterBy) as Promise<User[]>)
+    return this.getUsers(filterBy)
   }
 
-  private async _getUsers(filterBy: string): Promise<User[]> {
-    const users = await asyncStorageService.query(ENTITY) as User[]
-    // let users: User[] = []
-
-    if (!filterBy) return users
-    else {
-      const term = filterBy.toLowerCase()
-      let filteredUsers = users.filter(user => {
-        return (
-          user.username.toLowerCase().includes(term) ||
-          user.bio.toLocaleLowerCase().includes(term)
-        )
-      })
-      return filteredUsers
-    }
-
+  public getUsers(filterBy: string): Observable<User[]> {
+    return this.http.get(`http://localhost:3030/api/user/${filterBy}`).pipe(map(users => {
+      return users as User[]
+    }))
   }
 
   public getById(userId: string): Observable<User> {
-    return from(asyncStorageService.get(ENTITY, userId) as Promise<User>)
-    // return from(axios.get(URL + itemId) as Promise<Item>)
+    return this.http.get(`http://localhost:3030/api/user/${userId}`).pipe(map(user => {
+      return user as User
+    }))
   }
 
   public remove(userId: string): Observable<boolean> {
-    return from(asyncStorageService.remove(ENTITY, userId))
+    return this.http.delete(`http://localhost:3030/api/user/${userId}`).pipe(map(res => {
+      return true
+    }))
   }
 
   public save(user: User): Observable<User> {
-    const method = (user.id) ? 'put' : 'post'
-    const prmSavedUser = asyncStorageService[method](ENTITY, user)
-    return from(prmSavedUser) as Observable<User>
-  }
 
-  public login(userCred: { username: string, password: string }) {
-    const users = this.storageService.loadFromStorage(ENTITY) || []
-    const userIdx = users.findIndex((user: User) => user.username === userCred.username)
-
-    if (userIdx !== -1 && users[userIdx].password === userCred.password) {
-      const { id, fullname, username, imgUrl } = users[userIdx]
-      const user = { id, fullname, username, imgUrl }
-      this.storageService.saveToStorage('loggedinUser', user)
-    }
-  }
-
-  public signup(userCred: { email: string, fullname: string, username: string, password: string }) {
-    const users = this.storageService.loadFromStorage('user') || []
-
-    const user: User = {
-      id: this.utilService.makeId(),
-      email: userCred.email,
-      fullname: userCred.fullname,
-      username: userCred.username,
-      password: userCred.password,
-      gender: '',
-      phone: '',
-      website: '',
-      bio: '',
-      imgUrl: '',
-      followersSum: 0,
-      followingSum: 0,
-      postSum: 0,
-      currStoryId: ''
+    if (!user.id) {
+      return this.http.post(`http://localhost:3030/api/auth/signup`, user).pipe(map(user => {
+        return user as User
+      }))
+    } else {
+      return this.http.put(`http://localhost:3030/api/user`, user).pipe(map(user => {
+        return user as User
+      }))
     }
 
-    users.push(user)
-    this.storageService.saveToStorage('loggedinUser', { id: user.id, fullname: user.fullname, username: user.username, imgUrl: user.imgUrl })
-    this.storageService.saveToStorage('user', users)
   }
 
-  public logout() {
+  public async login(userCred: { username: string, password: string }) {
+    const user = await lastValueFrom(this.http.post(`http://localhost:3030/api/auth/login`, userCred).pipe(map(user => {
+      return user as User
+    })))
+    if (user) this.storageService.saveToStorage('loggedinUser', { id: user.id, fullname: user.fullname, username: user.username, imgUrl: user.imgUrl })
+  }
+
+  public async signup(userCred: { email: string, fullname: string, username: string, password: string }) {
+    const addedUser = await lastValueFrom(this.save(userCred as User))
+    this.storageService.saveToStorage('loggedinUser', { id: addedUser.id, fullname: addedUser.fullname, username: addedUser.username, imgUrl: this.getDefaultUserImgUrl() })
+  }
+
+  public async logout() {
+    await lastValueFrom(this.http.post(`http://localhost:3030/api/auth/logout`, {}).pipe(map(res => {
+      return res
+    })))
     this.storageService.saveToStorage('loggedinUser', null)
   }
 

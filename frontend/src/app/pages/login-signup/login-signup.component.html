@@ -12,7 +12,7 @@
                     placeholder="Fullname">
                 <input formControlName="username" class="username-input" type="text" placeholder="Username">
                 <input formControlName="password" class="password-input" type="password" placeholder="Password">
-                <button class="btn-login" [disabled]="form.untouched" (click)="onLogin()">Login</button>
+                <button class="btn-login" [disabled]="form.untouched" (click)="onLogin()">{{btnTxt}}</button>
             </form>
         </section>
         <section class="login-signup-link">

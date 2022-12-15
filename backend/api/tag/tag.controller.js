@@ -3,7 +3,7 @@ const logger = require('../../services/logger.service')
 
 async function getTags(req, res) {
     try {
-        const tags = await tagService.query()
+        const tags = await tagService.query(req.params.q)
         res.send(tags)
     } catch (err) {
         logger.error('Failed to get tags', err)

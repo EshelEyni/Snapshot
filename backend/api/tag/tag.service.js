@@ -1,10 +1,12 @@
 const logger = require('../../services/logger.service')
 const db = require('../../database');
 
-async function query() {
+async function query(q) {
     try {
-        const tags = await db.query(`select * from tags`);
-        return tags
+        // const tags = await db.query(`select * from tags`);
+        if (q) return await db.query(`select * from tags where name like '%${q}%'`);
+        else return await db.query(`select * from tags`);
+
     } catch (err) {
         logger.error('cannot find tags', err)
         throw err

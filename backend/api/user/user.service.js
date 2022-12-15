@@ -100,7 +100,7 @@ async function add(user) {
                 $fullname: user.fullname,
                 $email: user.email,
                 $password: user.password,
-                $imgUrl: '',
+                $imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg',
                 $gender: '',
                 $phone: '',
                 $bio: '',

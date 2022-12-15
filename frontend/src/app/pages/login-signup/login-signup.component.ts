@@ -12,6 +12,7 @@ export class LoginSignupComponent implements OnInit, OnDestroy {
 
   intervalId!: number
   routerUrl: string = this.router.url.slice(1)
+  btnTxt: string = this.routerUrl === 'login' ? 'Login' : 'Signup'
   imgCounter: number = 2
   selectedAnimationImg: string = `../../../assets/imgs/animation-img-1.png`
   form!: FormGroup
@@ -35,10 +36,10 @@ export class LoginSignupComponent implements OnInit, OnDestroy {
     }, 2000)
   }
 
-  onLogin() {
+  async onLogin() {
     const userCred = this.form.value
-    if (this.routerUrl === 'login') this.userService.login({ username: userCred.username, password: userCred.password })
-    else this.userService.signup(userCred)
+    if (this.routerUrl === 'login') await this.userService.login({ username: userCred.username, password: userCred.password })
+    else await this.userService.signup(userCred)
     this.form.reset()
     this.router.navigate(['/'])
   }

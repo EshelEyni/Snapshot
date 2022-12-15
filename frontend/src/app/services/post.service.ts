@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { MiniUser } from './../models/user.model';
 import { StorageService } from './storage.service';
 import { Injectable } from '@angular/core';
@@ -47,7 +48,8 @@ export class PostService {
 
   constructor(
     private storageService: StorageService,
-    private userService: UserService
+    private userService: UserService,
+    private http: HttpClient
   ) { }
 
   public async loadPosts(filterBy?: { userId: string, type: string }) {

@@ -501,3 +501,21 @@
 15.12.2022, 18:32:25 - DEBUG - auth.route - new account created: "eshel" 
 15.12.2022, 18:32:25 - DEBUG - auth.service - login with username: eshel 
 15.12.2022, 18:32:25 - INFO - User login:  | {"id":1,"username":"eshel","fullname":"Eshel Eyni","email":"eshel@gmail.com","password":"$2b$10$41mC.9r3ZUHBDBTbrMOVwO3ZJ84p5e/ue0PWDz8rhBFEr3Qw3R0V2","imgUrl":"","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} 
+15.12.2022, 18:42:29 - INFO - Server is running on port: 3030 
+15.12.2022, 18:42:47 - INFO - Server is running on port: 3030 
+15.12.2022, 18:43:37 - INFO - Server is running on port: 3030 
+15.12.2022, 19:44:49 - DEBUG - auth.service - signup with username: user12, fullname: user12 
+15.12.2022, 19:44:49 - DEBUG - auth.route - new account created: "user12" 
+15.12.2022, 19:44:49 - DEBUG - auth.service - login with username: user12 
+15.12.2022, 19:44:50 - INFO - User login:  | {"id":2,"username":"user12","fullname":"user12","email":"user12@gmail.com","password":"$2b$10$5qAUgWwprQT8HuwPR2YCJuLxC9DWnH/ZjCAy8ErssrlJBuDf6fVfS","imgUrl":"","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} 
+15.12.2022, 19:47:31 - DEBUG - auth.service - signup with username: user11, fullname: user11 
+15.12.2022, 19:47:31 - DEBUG - auth.route - new account created: "user11" 
+15.12.2022, 19:47:31 - DEBUG - auth.service - login with username: user11 
+15.12.2022, 19:47:31 - INFO - User login:  | {"id":3,"username":"user11","fullname":"user11","email":"user11@gmail.com","password":"$2b$10$pYJrtkXJPvuw93NaCzgKdeJlZMxm8eRZi1wewo1sWXXMoUPtQAXLS","imgUrl":"","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} 
+15.12.2022, 19:49:35 - INFO - Server is running on port: 3030 
+15.12.2022, 19:51:06 - DEBUG - auth.service - signup with username: user, fullname: user 
+15.12.2022, 19:51:06 - DEBUG - auth.route - new account created: "user" 
+15.12.2022, 19:51:06 - DEBUG - auth.service - login with username: user 
+15.12.2022, 19:51:06 - INFO - User login:  | {"id":4,"username":"user","fullname":"user","email":"user@gmail.com","password":"$2b$10$QCo9A55/5KXxijA0JllOw.uWuIwzgKWBbTsM0koBKvFS/XfLnb71C","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} 
+15.12.2022, 19:54:37 - DEBUG - auth.service - login with username: user 
+15.12.2022, 19:54:38 - INFO - User login:  | {"id":4,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} | 0e2f1581ad0484af0bb65d4281af3c9ce09c46c31ebee1d3b58dd7e16d2ba51c1de6ecc9ac7089143a9316c112d23581a5ba5871daae69935c09df1afce480b2b4ead9e04acd4b8b5c777b712af5aa7c0dfb7293861dd45f76b8ef3990ac87c026 

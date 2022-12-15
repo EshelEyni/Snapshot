@@ -1,8 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { PostService } from './post.service';
 import { StorageService } from './storage.service';
 import { UserService } from './user.service';
 import { UtilService } from './util.service';
-import { BehaviorSubject, Observable, throwError, of } from 'rxjs';
+import { BehaviorSubject, Observable, throwError, of, map, lastValueFrom } from 'rxjs';
 import { Tag } from '../models/tag.model';
 import { Injectable, inject } from '@angular/core';
 import { asyncStorageService } from './async-storage.service';
@@ -33,18 +34,17 @@ export class TagService {
   userSerivce = inject(UserService);
   storageService = inject(StorageService);
   postService = inject(PostService);
+  http = inject(HttpClient);
 
-  public loadTags(filterBy = ''): void {
-    let tags = this.storageService.loadFromStorage(ENTITY) || null
-    if (!tags) {
-      tags = this._tagsDb;
-      this.storageService.saveToStorage(ENTITY, tags)
-    }
-    if (filterBy) {
-      const term = filterBy.toLowerCase()
-      tags = tags.filter((tag: Tag) => tag.name.toLowerCase().includes(term))
-    }
+  public async loadTags(filterBy = '') {
+    const tags = await lastValueFrom(this.getTags(filterBy));
     this._tags$.next(tags);
+  }
+
+  public getTags(filterBy: string): Observable<Tag[]> {
+    return this.http.get(`http://localhost:3030/api/tag/${filterBy}`).pipe(map(tags => {
+      return tags as Tag[]
+    }))
   }
 
   public getById(tagId: string): Observable<Tag> {

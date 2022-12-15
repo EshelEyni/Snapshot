@@ -23,20 +23,12 @@ export class SearchService {
 
   public async search(searchTerm: string): Promise<{ users: User[], tags: Tag[] }> {
     searchTerm = searchTerm.toLowerCase();
-    let users: User[] = await lastValueFrom(this._getUsers(searchTerm));
-    let tags = await lastValueFrom(this._getTags(searchTerm));
+    let users: User[] = await lastValueFrom(this.userService.getUsers(searchTerm));
+    let tags = await lastValueFrom(this.tagService.getTags(searchTerm));
     return { users: [...users], tags: [...tags] }
   }
 
-  private _getUsers(filterBy: string): Observable<User[]> {
-    return this.http.get(`http://localhost:3030/api/user/${filterBy}`).pipe(map(users => {
-      return users as User[]
-    }))
-  }
 
-  private _getTags(filterBy: string): Observable<Tag[]> {
-    return this.http.get(`http://localhost:3030/api/tag/${filterBy}`).pipe(map(tags => {
-      return tags as Tag[]
-    }))
-  }
+
+
 }
