@@ -4,8 +4,8 @@ const db = require('../../database');
 
 async function getLikesForComment(commentId) {
     try {
-        const likes = await db.query(`select * from comments_liked_by where comment_id = $comment_id`, {
-            $comment_id: commentId
+        const likes = await db.query(`select * from commentsLikedBy where commentId = $commentId`, {
+            $commentId: commentId
         });
         console.log('likes', likes)
         return likes
@@ -18,9 +18,9 @@ async function getLikesForComment(commentId) {
 
 async function addLikeToComment({ commentId, userId }) {
     try {
-        const like = await db.exec(`insert into comments_liked_by (comment_id, user_id) values ($comment_id, $user_id)`, {
-            $comment_id: commentId,
-            $user_id: userId
+        const like = await db.exec(`insert into commentsLikedBy (commentId, userId) values ($commentId, $userId)`, {
+            $commentId: commentId,
+            $userId: userId
         });
         return like
     } catch (err) {
@@ -31,9 +31,9 @@ async function addLikeToComment({ commentId, userId }) {
 
 async function deleteLikeToComment({ commentId, userId }) {
     try {
-        await db.exec(`delete from comments_liked_by where comment_id = $comment_id and user_id = $user_id`, {
-            $comment_id: commentId,
-            $user_id: userId
+        await db.exec(`delete from commentsLikedBy where commentId = $commentId and userId = $userId`, {
+            $commentId: commentId,
+            $userId: userId
         });
     } catch (err) {
         logger.error('cannot delete like', err)

@@ -36,9 +36,9 @@ async function remove(storyId) {
 
 async function update(story) {
     try {
-        await db.exec(`update stories set user_id = $user_id, created_at = $created_at where id = $id`, {
-            $user_id: story.userId,
-            $created_at: story.createdAt,
+        await db.exec(`update stories set userId = $userId, createdAt = $createdAt where id = $id`, {
+            $userId: story.userId,
+            $createdAt: story.createdAt,
             $id: story.id
 
         })
@@ -51,9 +51,9 @@ async function update(story) {
 
 async function add(story) {
     try {
-        const result = await db.exec(`insert into stories (user_id,  created_at) values ($user_id, $created_at)`, {
-            $user_id: story.userId,
-            $created_at: story.createdAt
+        const result = await db.exec(`insert into stories (userId,  createdAt) values ($userId, $createdAt)`, {
+            $userId: story.userId,
+            $createdAt: story.createdAt
         })
         return result
     } catch (err) {

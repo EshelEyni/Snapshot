@@ -19,14 +19,14 @@ async function getById(postId) {
             return 'post not found';
         }
         const post = posts[0];
-        const images = await db.query(`select * from posts_images where post_id = $post_id`, { $post_id: postId });
-        post.images = images.map(img => img.image_url);
-        const comments = await db.query(`select * from comments where post_id = $post_id`, { $post_id: postId });
+        const images = await db.query(`select * from postsImgs where postId = $postId`, { $postId: postId });
+        post.images = images.map(img => img.imgUrl);
+        const comments = await db.query(`select * from comments where postId = $postId`, { $postId: postId });
         post.comments = comments.map(comment => {
             return {
                 id: comment.id,
-                userId: comment.user_id,
-                postId: comment.post_id,
+                userId: comment.userId,
+                postId: comment.postId,
                 commentText: comment.comment_text,
                 commentDate: comment.comment_date
             }
@@ -40,8 +40,8 @@ async function getById(postId) {
 
 async function remove(postId) {
     try {
-        await db.exec(`delete from posts_images where post_id = $id`, { $id: postId });
-        await db.exec(`delete from comments where post_id = $id`, { $id: postId });
+        await db.exec(`delete from postsImgs where postId = $id`, { $id: postId });
+        await db.exec(`delete from comments where postId = $id`, { $id: postId });
         await db.exec(`delete from posts where id = $id`, { $id: postId })
     } catch (err) {
         logger.error(`cannot remove post ${postId}`, err)
@@ -51,9 +51,9 @@ async function remove(postId) {
 
 async function update(post) {
     try {
-        await db.exec(`update posts set user_id = $user_id, created_at = $created_at where id = $id`, {
-            $user_id: post.userId,
-            $created_at: post.createdAt,
+        await db.exec(`update posts set userId = $userId, createdAt = $createdAt where id = $id`, {
+            $userId: post.userId,
+            $createdAt: post.createdAt,
             $id: post.id
         })
         return post
@@ -65,10 +65,10 @@ async function update(post) {
 
 async function add(post) {
     try {
-        const id = await db.exec(`insert into posts (user_id, created_at, likes) values ($user_id, $created_at, $likes)`,
+        const id = await db.exec(`insert into posts (userId, createdAt, likes) values ($userId, $createdAt, $likes)`,
             {
-                $user_id: post.userId,
-                $created_at: post.createdAt,
+                $userId: post.userId,
+                $createdAt: post.createdAt,
                 $likes: post.likes
             });
 

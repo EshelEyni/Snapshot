@@ -54,6 +54,7 @@ export class PostAppComponent implements OnInit, OnDestroy {
     }
   }
 
+
   ngOnDestroy(): void {
     if (this.sub) this.sub.unsubscribe();
   }

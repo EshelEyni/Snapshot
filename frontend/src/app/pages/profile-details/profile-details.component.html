@@ -12,9 +12,9 @@
                     <a class="edit-link" [routerLink]="['/profile-edit/',user.id]">Edit profile</a>
                 </div>
                 <div class="info">
-                    <p><span>{{user.createdPostsIds.length}} </span> posts</p>
-                    <p><span>{{user.followers.length}} </span> followers</p>
-                    <p><span>{{user.following.length}} </span> following</p>
+                    <p><span>{{user.postSum}} </span> posts</p>
+                    <p><span>{{user.followersSum}} </span> followers</p>
+                    <p><span>{{user.followingSum}} </span> following</p>
                 </div>
 
                 <h1>{{user.fullname}}</h1>

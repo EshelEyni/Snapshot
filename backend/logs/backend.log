@@ -21,12 +21,12 @@
 13.12.2022, 19:47:00 - INFO - Server is running on port: 3030 
 13.12.2022, 19:48:46 - INFO - Server is running on port: 3030 
 13.12.2022, 19:48:51 - ERROR - Failed to add user | Error: SQLITE_BUSY: database is locked 
-13.12.2022, 19:49:51 - ERROR - Failed to add user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.user_name 
-13.12.2022, 19:49:52 - ERROR - Failed to add user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.user_name 
+13.12.2022, 19:49:51 - ERROR - Failed to add user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
+13.12.2022, 19:49:52 - ERROR - Failed to add user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
 13.12.2022, 19:51:20 - ERROR - Failed to add user | Error: SQLITE_BUSY: database is locked 
 13.12.2022, 19:51:37 - ERROR - Failed to add user | Error: SQLITE_BUSY: database is locked 
 13.12.2022, 19:51:53 - ERROR - Failed to add user | Error: SQLITE_BUSY: database is locked 
-13.12.2022, 19:52:10 - ERROR - Failed to add user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.user_name 
+13.12.2022, 19:52:10 - ERROR - Failed to add user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
 13.12.2022, 19:52:52 - ERROR - Failed to add user | RangeError [ERR_HTTP_INVALID_STATUS_CODE]: Invalid status code: 2 
 13.12.2022, 19:54:55 - INFO - Server is running on port: 3030 
 13.12.2022, 19:56:39 - INFO - Server is running on port: 3030 
@@ -74,19 +74,19 @@
 14.12.2022, 0:31:09 - ERROR - Failed to add post | Error: SQLITE_ERROR: table posts has no column named post_date 
 14.12.2022, 0:34:01 - INFO - Server is running on port: 3030 
 14.12.2022, 0:35:00 - INFO - Server is running on port: 3030 
-14.12.2022, 0:35:15 - ERROR - cannot insert post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.user_id 
-14.12.2022, 0:35:15 - ERROR - Failed to add post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.user_id 
+14.12.2022, 0:35:15 - ERROR - cannot insert post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.userId 
+14.12.2022, 0:35:15 - ERROR - Failed to add post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.userId 
 14.12.2022, 0:37:38 - INFO - Server is running on port: 3030 
-14.12.2022, 0:38:11 - ERROR - cannot insert post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.user_id 
-14.12.2022, 0:38:11 - ERROR - Failed to add post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.user_id 
+14.12.2022, 0:38:11 - ERROR - cannot insert post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.userId 
+14.12.2022, 0:38:11 - ERROR - Failed to add post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.userId 
 14.12.2022, 0:39:13 - INFO - Server is running on port: 3030 
-14.12.2022, 0:39:16 - ERROR - cannot insert post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.user_id 
-14.12.2022, 0:39:16 - ERROR - Failed to add post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.user_id 
+14.12.2022, 0:39:16 - ERROR - cannot insert post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.userId 
+14.12.2022, 0:39:16 - ERROR - Failed to add post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.userId 
 14.12.2022, 0:41:28 - INFO - Server is running on port: 3030 
 14.12.2022, 0:43:10 - ERROR - Failed to add user | Error: data and salt arguments required 
 14.12.2022, 0:43:41 - ERROR - Failed to add user | Error: data and salt arguments required 
-14.12.2022, 0:44:53 - ERROR - cannot insert user | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.user_name 
-14.12.2022, 0:44:53 - ERROR - Failed to add user | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.user_name 
+14.12.2022, 0:44:53 - ERROR - cannot insert user | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.username 
+14.12.2022, 0:44:53 - ERROR - Failed to add user | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.username 
 14.12.2022, 0:46:01 - ERROR - Failed to add post | RangeError [ERR_HTTP_INVALID_STATUS_CODE]: Invalid status code: 1 
 14.12.2022, 0:46:55 - INFO - Server is running on port: 3030 
 14.12.2022, 0:49:20 - ERROR - while finding post 3 | ReferenceError: id is not defined 
@@ -137,8 +137,8 @@
 14.12.2022, 15:04:25 - ERROR - Failed to signup Error: data and hash arguments required 
 14.12.2022, 15:07:16 - INFO - Server is running on port: 3030 
 14.12.2022, 15:07:19 - DEBUG - auth.service - signup with username: user2, fullname: user 
-14.12.2022, 15:07:19 - ERROR - cannot insert user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.user_name 
-14.12.2022, 15:07:20 - ERROR - Failed to signup Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.user_name 
+14.12.2022, 15:07:19 - ERROR - cannot insert user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
+14.12.2022, 15:07:20 - ERROR - Failed to signup Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
 14.12.2022, 15:07:36 - INFO - Server is running on port: 3030 
 14.12.2022, 15:07:42 - DEBUG - auth.service - signup with username: user12, fullname: user 
 14.12.2022, 15:07:42 - DEBUG - auth.route - new account created: 7 
@@ -178,8 +178,8 @@
 14.12.2022, 15:17:22 - ERROR - Failed to signup Invalid username or password 
 14.12.2022, 15:19:10 - INFO - Server is running on port: 3030 
 14.12.2022, 15:19:12 - DEBUG - auth.service - signup with username: user, fullname: user 
-14.12.2022, 15:19:12 - ERROR - cannot insert user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.user_name 
-14.12.2022, 15:19:12 - ERROR - Failed to signup Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.user_name 
+14.12.2022, 15:19:12 - ERROR - cannot insert user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
+14.12.2022, 15:19:12 - ERROR - Failed to signup Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
 14.12.2022, 15:19:29 - DEBUG - auth.service - login with username: user 
 14.12.2022, 15:19:29 - ERROR - Failed to Login Invalid username or password2 
 14.12.2022, 15:20:28 - INFO - Server is running on port: 3030 
@@ -243,14 +243,14 @@
 14.12.2022, 16:14:28 - DEBUG - auth.service - signup with username: user1111112, fullname: user 
 14.12.2022, 16:14:28 - DEBUG - auth.route - new account created: 10 
 14.12.2022, 16:14:28 - DEBUG - auth.service - login with username: user1111112 
-14.12.2022, 16:14:28 - INFO - User login:  | {"id":10,"user_name":"user1111112","full_name":"a","img_url":"","bio":"","gender":"","phone":"","website":"","email":"user","password":"$2b$10$ORUwi2dE6pB8owX0h1xGCOyQx35fMSePH6AaDuAG9eUul7JyW1uB."} 
+14.12.2022, 16:14:28 - INFO - User login:  | {"id":10,"username":"user1111112","fullname":"a","imgUrl":"","bio":"","gender":"","phone":"","website":"","email":"user","password":"$2b$10$ORUwi2dE6pB8owX0h1xGCOyQx35fMSePH6AaDuAG9eUul7JyW1uB."} 
 14.12.2022, 16:16:30 - INFO - Server is running on port: 3030 
 14.12.2022, 16:16:34 - DEBUG - auth.service - signup with username: user11111112, fullname: user 
 14.12.2022, 16:16:34 - DEBUG - auth.service - login with username: user11111112 
 14.12.2022, 16:16:34 - DEBUG - auth.route - new account created: "user11111112" 
-14.12.2022, 16:16:34 - INFO - User login:  | {"id":11,"user_name":"user11111112","full_name":"a","img_url":"","bio":"","gender":"","phone":"","website":"","email":"user","password":"$2b$10$G2hLTX.bSJeeBSlf8opBEudTuUCiQkXSMwIFJDdseyiCKhWIpP8NK"} 
+14.12.2022, 16:16:34 - INFO - User login:  | {"id":11,"username":"user11111112","fullname":"a","imgUrl":"","bio":"","gender":"","phone":"","website":"","email":"user","password":"$2b$10$G2hLTX.bSJeeBSlf8opBEudTuUCiQkXSMwIFJDdseyiCKhWIpP8NK"} 
 14.12.2022, 16:17:05 - DEBUG - auth.service - login with username: user11111112 
-14.12.2022, 16:17:05 - INFO - User login:  | {"id":11,"user_name":"user11111112","full_name":"a","img_url":"","bio":"","gender":"","phone":"","website":"","email":"user"} | 6bd6e55ed6ad30950fca165adcc717cad7a678d36676fd4c8807874b2cb3326e41a2d17ffde61b162e665d8e0143c1353506a302bb41f64d8c0427283c36b990ef21c62d64c4216735123494f5ec938533ce7303e6e7500aa36cc9dcaafb49203e9d 
+14.12.2022, 16:17:05 - INFO - User login:  | {"id":11,"username":"user11111112","fullname":"a","imgUrl":"","bio":"","gender":"","phone":"","website":"","email":"user"} | 6bd6e55ed6ad30950fca165adcc717cad7a678d36676fd4c8807874b2cb3326e41a2d17ffde61b162e665d8e0143c1353506a302bb41f64d8c0427283c36b990ef21c62d64c4216735123494f5ec938533ce7303e6e7500aa36cc9dcaafb49203e9d 
 14.12.2022, 16:41:20 - INFO - Server is running on port: 3030 
 14.12.2022, 16:41:59 - INFO - Server is running on port: 3030 
 14.12.2022, 16:42:01 - INFO - Server is running on port: 3030 
@@ -340,7 +340,7 @@
 14.12.2022, 22:02:22 - INFO - Server is running on port: 3030 
 14.12.2022, 22:05:13 - INFO - Server is running on port: 3030 
 14.12.2022, 22:05:50 - INFO - Server is running on port: 3030 
-14.12.2022, 22:09:48 - ERROR - cannot add like | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts_liked_by.post_id 
+14.12.2022, 22:09:48 - ERROR - cannot add like | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: postsLikedBy.postId 
 14.12.2022, 22:12:57 - INFO - Server is running on port: 3030 
 14.12.2022, 22:13:15 - ERROR - cannot find likes | TypeError: db.all is not a function 
 14.12.2022, 22:13:35 - INFO - Server is running on port: 3030 
@@ -359,7 +359,7 @@
 14.12.2022, 22:26:47 - INFO - Server is running on port: 3030 
 14.12.2022, 22:27:57 - INFO - Server is running on port: 3030 
 14.12.2022, 22:30:37 - INFO - Server is running on port: 3030 
-14.12.2022, 22:30:43 - ERROR - cannot add like | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: posts_liked_by.user_id 
+14.12.2022, 22:30:43 - ERROR - cannot add like | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: postsLikedBy.userId 
 14.12.2022, 22:32:03 - INFO - Server is running on port: 3030 
 14.12.2022, 22:32:06 - ERROR - cannot delete like | ReferenceError: res is not defined 
 14.12.2022, 22:32:20 - INFO - Server is running on port: 3030 
@@ -367,10 +367,10 @@
 14.12.2022, 22:34:11 - ERROR - cannot delete like | ReferenceError: res is not defined 
 14.12.2022, 22:35:45 - INFO - Server is running on port: 3030 
 14.12.2022, 22:35:49 - INFO - Server is running on port: 3030 
-14.12.2022, 22:36:15 - ERROR - cannot add like | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: posts_liked_by.user_id 
+14.12.2022, 22:36:15 - ERROR - cannot add like | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: postsLikedBy.userId 
 14.12.2022, 22:36:41 - INFO - Server is running on port: 3030 
-14.12.2022, 22:36:45 - ERROR - cannot add like | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: posts_liked_by.user_id 
-14.12.2022, 22:36:56 - ERROR - cannot add like | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: posts_liked_by.user_id 
+14.12.2022, 22:36:45 - ERROR - cannot add like | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: postsLikedBy.userId 
+14.12.2022, 22:36:56 - ERROR - cannot add like | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: postsLikedBy.userId 
 14.12.2022, 22:38:04 - INFO - Server is running on port: 3030 
 14.12.2022, 22:40:53 - ERROR - cannot insert comment | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: comments.text 
 14.12.2022, 22:40:53 - ERROR - Failed to add comment | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: comments.text 
@@ -383,4 +383,121 @@
 14.12.2022, 22:46:59 - INFO - Server is running on port: 3030 
 14.12.2022, 22:47:02 - INFO - Server is running on port: 3030 
 14.12.2022, 22:47:04 - INFO - Server is running on port: 3030 
-14.12.2022, 22:48:19 - ERROR - cannot add like | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: stories_liked_by.story_id 
+14.12.2022, 22:48:19 - ERROR - cannot add like | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: storiesLikedBy.storyId 
+14.12.2022, 22:58:02 - INFO - Server is running on port: 3030 
+15.12.2022, 14:20:58 - INFO - Server is running on port: 3030 
+15.12.2022, 15:40:53 - INFO - Server is running on port: 3030 
+15.12.2022, 15:41:33 - INFO - Server is running on port: 3030 
+15.12.2022, 15:43:52 - INFO - Server is running on port: 3030 
+15.12.2022, 15:45:57 - INFO - Server is running on port: 3030 
+15.12.2022, 15:46:00 - ERROR - cannot insert user | Error: SQLITE_ERROR: table users has no column named followersSum 
+15.12.2022, 15:46:00 - ERROR - Failed to add user | Error: SQLITE_ERROR: table users has no column named followersSum 
+15.12.2022, 15:46:52 - INFO - Server is running on port: 3030 
+15.12.2022, 15:46:54 - ERROR - cannot insert user | Error: SQLITE_RANGE: column index out of range 
+15.12.2022, 15:46:54 - ERROR - Failed to add user | Error: SQLITE_RANGE: column index out of range 
+15.12.2022, 15:47:57 - INFO - Server is running on port: 3030 
+15.12.2022, 15:48:01 - ERROR - cannot insert user | Error: SQLITE_RANGE: column index out of range 
+15.12.2022, 15:48:01 - ERROR - Failed to add user | Error: SQLITE_RANGE: column index out of range 
+15.12.2022, 15:49:00 - ERROR - cannot insert user | Error: SQLITE_RANGE: column index out of range 
+15.12.2022, 15:49:00 - ERROR - Failed to add user | Error: SQLITE_RANGE: column index out of range 
+15.12.2022, 15:50:09 - INFO - Server is running on port: 3030 
+15.12.2022, 15:54:49 - INFO - Server is running on port: 3030 
+15.12.2022, 15:55:00 - ERROR - cannot update user undefined | Error: SQLITE_ERROR: near "imgUrl": syntax error 
+15.12.2022, 15:55:00 - ERROR - Failed to update user | Error: SQLITE_ERROR: near "imgUrl": syntax error 
+15.12.2022, 15:55:14 - INFO - Server is running on port: 3030 
+15.12.2022, 15:55:15 - ERROR - Failed to update user | Error: SQLITE_ERROR: near "imgUrl": syntax error 
+15.12.2022, 15:55:15 - ERROR - cannot update user undefined | Error: SQLITE_ERROR: near "imgUrl": syntax error 
+15.12.2022, 15:56:00 - INFO - Server is running on port: 3030 
+15.12.2022, 15:56:03 - ERROR - Failed to update user | Error: SQLITE_ERROR: near "imgUrl": syntax error 
+15.12.2022, 15:56:03 - ERROR - cannot update user undefined | Error: SQLITE_ERROR: near "imgUrl": syntax error 
+15.12.2022, 15:56:48 - INFO - Server is running on port: 3030 
+15.12.2022, 15:56:49 - ERROR - cannot update user undefined | Error: SQLITE_RANGE: column index out of range 
+15.12.2022, 15:56:49 - ERROR - Failed to update user | Error: SQLITE_RANGE: column index out of range 
+15.12.2022, 15:58:23 - INFO - Server is running on port: 3030 
+15.12.2022, 15:58:44 - INFO - Server is running on port: 3030 
+15.12.2022, 15:58:51 - ERROR - cannot update user undefined | Error: SQLITE_RANGE: column index out of range 
+15.12.2022, 15:58:51 - ERROR - Failed to update user | Error: SQLITE_RANGE: column index out of range 
+15.12.2022, 16:00:05 - INFO - Server is running on port: 3030 
+15.12.2022, 16:00:07 - ERROR - cannot update user undefined | Error: SQLITE_RANGE: column index out of range 
+15.12.2022, 16:00:07 - ERROR - Failed to update user | Error: SQLITE_RANGE: column index out of range 
+15.12.2022, 16:02:09 - ERROR - cannot update user undefined | Error: SQLITE_RANGE: column index out of range 
+15.12.2022, 16:02:09 - ERROR - Failed to update user | Error: SQLITE_RANGE: column index out of range 
+15.12.2022, 16:04:21 - ERROR - cannot update user undefined | Error: SQLITE_RANGE: column index out of range 
+15.12.2022, 16:04:21 - ERROR - Failed to update user | Error: SQLITE_RANGE: column index out of range 
+15.12.2022, 16:05:31 - ERROR - Failed to update user | Error: SQLITE_RANGE: column index out of range 
+15.12.2022, 16:05:31 - ERROR - cannot update user undefined | Error: SQLITE_RANGE: column index out of range 
+15.12.2022, 16:09:27 - INFO - Server is running on port: 3030 
+15.12.2022, 16:09:29 - ERROR - Failed to update user | Error: SQLITE_RANGE: column index out of range 
+15.12.2022, 16:09:29 - ERROR - cannot update user undefined | Error: SQLITE_RANGE: column index out of range 
+15.12.2022, 16:10:13 - INFO - Server is running on port: 3030 
+15.12.2022, 16:10:15 - ERROR - cannot update user undefined | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.postSum 
+15.12.2022, 16:10:15 - ERROR - Failed to update user | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.postSum 
+15.12.2022, 16:10:15 - ERROR - Failed to update user | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.postSum 
+15.12.2022, 16:10:15 - ERROR - cannot update user undefined | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.postSum 
+15.12.2022, 16:11:28 - ERROR - Failed to update user | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.postSum 
+15.12.2022, 16:11:28 - ERROR - cannot update user undefined | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.postSum 
+15.12.2022, 16:12:06 - INFO - Server is running on port: 3030 
+15.12.2022, 16:12:08 - ERROR - cannot update user undefined | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.postSum 
+15.12.2022, 16:12:08 - ERROR - Failed to update user | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.postSum 
+15.12.2022, 16:44:42 - INFO - Server is running on port: 3030 
+15.12.2022, 16:45:05 - ERROR - cannot insert user | Error: SQLITE_BUSY: database is locked 
+15.12.2022, 16:45:05 - ERROR - Failed to add user | Error: SQLITE_BUSY: database is locked 
+15.12.2022, 16:46:16 - INFO - Server is running on port: 3030 
+15.12.2022, 16:47:02 - INFO - Server is running on port: 3030 
+15.12.2022, 16:48:19 - DEBUG - auth.service - signup with username: tale, fullname: Tal Hemo 
+15.12.2022, 16:48:20 - DEBUG - auth.route - new account created: "tale" 
+15.12.2022, 16:48:20 - DEBUG - auth.service - login with username: tale 
+15.12.2022, 16:48:20 - INFO - User login:  | {"id":3,"username":"tale","fullname":"tal@gmail.com","email":"Tal Hemo","password":"$2b$10$elmHxTUZuVRW8d5YUu6pD.ghsuGgQWa4xTI8cBTemWBeNGWsKBejK","imgUrl":"","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} 
+15.12.2022, 16:49:44 - DEBUG - auth.service - signup with username: eshel, fullname: Eshel Eyni 
+15.12.2022, 16:49:44 - DEBUG - auth.route - new account created: "eshel" 
+15.12.2022, 16:49:44 - DEBUG - auth.service - login with username: eshel 
+15.12.2022, 16:49:44 - INFO - User login:  | {"id":4,"username":"eshel","fullname":"eshel@gmail.com","email":"Eshel Eyni","password":"$2b$10$tmcnPpGaAaTz3D9SeXwqIOoLtaMW/OpWBJasUJPQmILk4t2nTYJoO","imgUrl":"","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} 
+15.12.2022, 17:24:28 - INFO - Server is running on port: 3030 
+15.12.2022, 17:25:38 - INFO - Server is running on port: 3030 
+15.12.2022, 17:26:54 - INFO - Server is running on port: 3030 
+15.12.2022, 17:27:10 - INFO - Server is running on port: 3030 
+15.12.2022, 17:28:41 - INFO - Server is running on port: 3030 
+15.12.2022, 17:32:26 - INFO - Server is running on port: 3030 
+15.12.2022, 18:16:34 - ERROR - Failed to update user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
+15.12.2022, 18:16:34 - ERROR - cannot update user undefined | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
+15.12.2022, 18:18:00 - ERROR - cannot update user undefined | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
+15.12.2022, 18:18:00 - ERROR - Failed to update user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
+15.12.2022, 18:20:10 - ERROR - Failed to update user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
+15.12.2022, 18:20:10 - ERROR - cannot update user undefined | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
+15.12.2022, 18:21:32 - INFO - Server is running on port: 3030 
+15.12.2022, 18:21:46 - ERROR - cannot update user undefined | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
+15.12.2022, 18:21:46 - ERROR - Failed to update user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
+15.12.2022, 18:22:17 - ERROR - cannot update user undefined | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
+15.12.2022, 18:22:17 - ERROR - Failed to update user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
+15.12.2022, 18:22:24 - ERROR - cannot update user undefined | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
+15.12.2022, 18:22:24 - ERROR - Failed to update user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
+15.12.2022, 18:22:39 - ERROR - cannot update user undefined | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
+15.12.2022, 18:22:39 - ERROR - Failed to update user | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username 
+15.12.2022, 18:25:02 - INFO - Server is running on port: 3030 
+15.12.2022, 18:25:17 - INFO - Server is running on port: 3030 
+15.12.2022, 18:25:31 - INFO - Server is running on port: 3030 
+15.12.2022, 18:25:42 - INFO - Server is running on port: 3030 
+15.12.2022, 18:25:54 - INFO - Server is running on port: 3030 
+15.12.2022, 18:26:04 - INFO - Server is running on port: 3030 
+15.12.2022, 18:26:17 - INFO - Server is running on port: 3030 
+15.12.2022, 18:26:37 - INFO - Server is running on port: 3030 
+15.12.2022, 18:26:49 - INFO - Server is running on port: 3030 
+15.12.2022, 18:26:57 - INFO - Server is running on port: 3030 
+15.12.2022, 18:27:11 - INFO - Server is running on port: 3030 
+15.12.2022, 18:27:24 - INFO - Server is running on port: 3030 
+15.12.2022, 18:27:39 - INFO - Server is running on port: 3030 
+15.12.2022, 18:27:53 - INFO - Server is running on port: 3030 
+15.12.2022, 18:28:03 - INFO - Server is running on port: 3030 
+15.12.2022, 18:28:55 - INFO - Server is running on port: 3030 
+15.12.2022, 18:29:08 - INFO - Server is running on port: 3030 
+15.12.2022, 18:29:32 - INFO - Server is running on port: 3030 
+15.12.2022, 18:29:59 - INFO - Server is running on port: 3030 
+15.12.2022, 18:30:16 - INFO - Server is running on port: 3030 
+15.12.2022, 18:30:33 - INFO - Server is running on port: 3030 
+15.12.2022, 18:30:46 - INFO - Server is running on port: 3030 
+15.12.2022, 18:30:58 - INFO - Server is running on port: 3030 
+15.12.2022, 18:31:21 - INFO - Server is running on port: 3030 
+15.12.2022, 18:32:25 - DEBUG - auth.service - signup with username: eshel, fullname: Eshel Eyni 
+15.12.2022, 18:32:25 - DEBUG - auth.route - new account created: "eshel" 
+15.12.2022, 18:32:25 - DEBUG - auth.service - login with username: eshel 
+15.12.2022, 18:32:25 - INFO - User login:  | {"id":1,"username":"eshel","fullname":"Eshel Eyni","email":"eshel@gmail.com","password":"$2b$10$41mC.9r3ZUHBDBTbrMOVwO3ZJ84p5e/ue0PWDz8rhBFEr3Qw3R0V2","imgUrl":"","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} 

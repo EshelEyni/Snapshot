@@ -22,7 +22,6 @@ export class PostEditFormComponent implements OnInit {
     fullname: "Yael Cohen",
     username: 'yael_c',
     imgUrl: "https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg",
-    savedPostsIds: ['']
   }
 
   ngOnInit(): void {

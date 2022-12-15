@@ -35,12 +35,12 @@ async function remove(notificationId) {
 
 async function update(notification) {
     try {
-        await db.exec(`update notifications set user_id = $user_id, by_user_id = $by_user_id, type = $type, post_img = $post_img, created_at = $created_at where id = $id`, {
-            $user_id: notification.userId,
-            $by_user_id: notification.byUserId,
+        await db.exec(`update notifications set userId = $userId, byUserId = $byUserId, type = $type, postImg = $postImg, createdAt = $createdAt where id = $id`, {
+            $userId: notification.userId,
+            $byUserId: notification.byUserId,
             $type: notification.type,
-            $post_img: notification.postImg,
-            $created_at: notification.createdAt,
+            $postImg: notification.postImg,
+            $createdAt: notification.createdAt,
             $id: notification.id
 
         })
@@ -53,12 +53,12 @@ async function update(notification) {
 
 async function add(notification) {
     try {
-        const result = await db.exec(`insert into notifications (user_id, by_user_id, type, post_img, created_at) values ($user_id, $by_user_id, $type, $post_img, $created_at)`, {
-            $user_id: notification.userId,
-            $by_user_id: notification.byUserId,
+        const result = await db.exec(`insert into notifications (userId, byUserId, type, postImg, createdAt) values ($userId, $byUserId, $type, $postImg, $createdAt)`, {
+            $userId: notification.userId,
+            $byUserId: notification.byUserId,
             $type: notification.type,
-            $post_img: notification.postImg,
-            $created_at: notification.createdAt
+            $postImg: notification.postImg,
+            $createdAt: notification.createdAt
         })
         return result
     } catch (err) {

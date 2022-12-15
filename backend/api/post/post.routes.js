@@ -21,24 +21,24 @@ router.delete('/:id', deletePost)
 //         return;
 //     }
 //     const post = posts[0];
-//     const images = await db.query(`select * from posts_images where post_id = $post_id`, { $post_id: id });
-//     post.images = images.map(x => x.image_url);
+//     const images = await db.query(`select * from postsImgs where postId = $postId`, { $postId: id });
+//     post.images = images.map(x => x.imgUrl);
 //     post.topComments = await getTopComments(id);
 //     res.send({ 'post': post });
 // });
 
 // function getTopComments(postId) {
-//     return db.query(`select * from comments where post_id = $post_id order by likes desc limit 3`, { $post_id: postId });
+//     return db.query(`select * from comments where postId = $postId order by likes desc limit 3`, { $postId: postId });
 // }
 
 // router.post('/:id/comment', async (req, res) => {
 //     const postId = req.params.id;
 //     const { userId, text } = req.body;
 //     const id = await db.exec(
-//         `insert into comments (user_id, text, date, post_id, likes) 
-//          values ($user_id, $text, $date , $post,$likes)`,
+//         `insert into comments (userId, text, date, postId, likes) 
+//          values ($userId, $text, $date , $post,$likes)`,
 //         {
-//             $user_id: userId,
+//             $userId: userId,
 //             $post: postId,
 //             $text: text,
 //             $likes: 0,
@@ -60,20 +60,20 @@ router.delete('/:id', deletePost)
 //         // todo: check if user exists & auth
 //         // todo: ensure that we run in a transaction
 //         const id = await db.exec(
-//             `insert into posts (user_id, date) 
-//              values ($user_id, $date)`,
+//             `insert into posts (userId, date) 
+//              values ($userId, $date)`,
 //             {
-//                 $user_id: userId,
+//                 $userId: userId,
 //                 $date: new Date().toISOString()
 //             });
 //         for (let i = 0; i < images.length; i++) {
 //             const image = images[i];
 //             await db.exec(
-//                 `insert into posts_images (post_id, image_url) 
-//                  values ($post_id, $image_url)`,
+//                 `insert into postsImgs (postId, imgUrl) 
+//                  values ($postId, $imgUrl)`,
 //                 {
-//                     $post_id: id,
-//                     $image_url: image
+//                     $postId: id,
+//                     $imgUrl: image
 //                 });
 //         }
 //         res.send({ 'id': id });

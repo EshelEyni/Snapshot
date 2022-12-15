@@ -39,7 +39,7 @@ export class NotificationComponent implements OnInit,OnDestroy {
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) {
         this.loggedinUser = JSON.parse(JSON.stringify(user))
-        this.isFollowed = this.loggedinUser.following.some(following => following.id === this.notification.by.id)
+        // this.isFollowed = this.loggedinUser.following.some(following => following.id === this.notification.by.id)
       }
     })
 
@@ -53,8 +53,8 @@ export class NotificationComponent implements OnInit,OnDestroy {
     console.log('onToggleFollow');
     ev.stopPropagation()
     const user = { ...this.loggedinUser }
-    if (this.isFollowed) user.following = user.following.filter(following => following.id !== userToFollow.id)
-    else user.following.push(userToFollow)
+    // if (this.isFollowed) user.following = user.following.filter(following => following.id !== userToFollow.id)
+    // else user.following.push(userToFollow)
     this.isFollowed = !this.isFollowed
     this.store.dispatch(new SaveUser(user))
   }

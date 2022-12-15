@@ -35,11 +35,11 @@ async function remove(commentId) {
 
 async function update(comment) {
     try {
-        await db.exec(`update comments set user_id = $user_id, post_id = $post_id, text = $text, created_at = $created_at, likes = $likes where id = $id`, {
-            $user_id: comment.userId,
-            $post_id: comment.postId,
+        await db.exec(`update comments set userId = $userId, postId = $postId, text = $text, createdAt = $createdAt, likes = $likes where id = $id`, {
+            $userId: comment.userId,
+            $postId: comment.postId,
             $text: comment.txt,
-            $created_at: comment.createdAt,
+            $createdAt: comment.createdAt,
             $likes: comment.likes,
             $id: comment.id
         })
@@ -52,11 +52,11 @@ async function update(comment) {
 
 async function add(comment) {
     try {
-        const result = await db.exec(`insert into comments (user_id, post_id, text, created_at, likes) values ($user_id, $post_id, $text, $created_at, $likes)`, {
-            $user_id: comment.userId,
-            $post_id: comment.postId,
+        const result = await db.exec(`insert into comments (userId, postId, text, createdAt, likes) values ($userId, $postId, $text, $createdAt, $likes)`, {
+            $userId: comment.userId,
+            $postId: comment.postId,
             $text: comment.txt,
-            $created_at: comment.createdAt,
+            $createdAt: comment.createdAt,
             $likes: comment.likes
         })
         comment.id = result.lastID;

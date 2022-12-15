@@ -4,8 +4,8 @@ const db = require('../../database');
 
 async function getLikesForStory(storyId) {
     try {
-        const likes = await db.query(`select * from stories_liked_by where story_id = $story_id`, {
-            $story_id: storyId
+        const likes = await db.query(`select * from storiesLikedBy where storyId = $storyId`, {
+            $storyId: storyId
         });
         console.log('likes', likes)
         return likes
@@ -18,9 +18,9 @@ async function getLikesForStory(storyId) {
 
 async function addLikeToStory({ storyId, userId }) {
     try {
-        const like = await db.exec(`insert into stories_liked_by (story_id, user_id) values ($story_id, $user_id)`, {
-            $story_id: storyId,
-            $user_id: userId
+        const like = await db.exec(`insert into storiesLikedBy (storyId, userId) values ($storyId, $userId)`, {
+            $storyId: storyId,
+            $userId: userId
         });
         return like
     } catch (err) {
@@ -31,9 +31,9 @@ async function addLikeToStory({ storyId, userId }) {
 
 async function deleteLikeToStory({ storyId, userId }) {
     try {
-        await db.exec(`delete from stories_liked_by where story_id = $story_id and user_id = $user_id`, {
-            $story_id: storyId,
-            $user_id: userId
+        await db.exec(`delete from storiesLikedBy where storyId = $storyId and userId = $userId`, {
+            $storyId: storyId,
+            $userId: userId
         });
     } catch (err) {
         logger.error('cannot delete like', err)

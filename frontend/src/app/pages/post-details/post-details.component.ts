@@ -65,10 +65,10 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   }
 
   getUserPosts() {
-    this.loggedinUser.createdPostsIds.forEach(async postId => {
-      const post = await lastValueFrom(this.postService.getById(postId))
-      this.userPosts.push(post)
-    })
+    // this.loggedinUser.createdPostsIds.forEach(async postId => {
+    //   const post = await lastValueFrom(this.postService.getById(postId))
+    //   this.userPosts.push(post)
+    // })
   }
 
   ngOnDestroy() {

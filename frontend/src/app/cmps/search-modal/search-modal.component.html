@@ -9,8 +9,9 @@
     <div class="search-results-container" *ngIf="searchResults.length; else recentSearchesRes">
         <ul *ngFor="let res of searchResults">
             <div *ngIf="res.username">
-                <user-preview [user]="res" [routerLink]="['/profile/',res.id]" (click)="onSaveSearch(res)">
+                <user-preview [user]="userService.getMiniUser(res)" [routerLink]="['/profile/',res.id]" (click)="onSaveSearch(res)">
                 </user-preview>
+                <p>user</p>
             </div>
             <div *ngIf="res.name">
                 <tag-preview [tag]="res" [routerLink]="['/tag/',res.name]" (click)="onSaveSearch(res)"></tag-preview>

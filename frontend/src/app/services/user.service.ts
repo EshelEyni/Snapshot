@@ -1,7 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { UtilService } from './util.service';
 import { StorageService } from './storage.service';
 import { User, MiniUser } from './../models/user.model';
-import { BehaviorSubject, Observable, of, from } from 'rxjs';
+import { BehaviorSubject, Observable, of,from , map } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { UserState } from '../store/reducers/user.reducer';
@@ -20,11 +21,9 @@ const USERS: User[] = [
     bio: 'I am a full stack developer',
     website: 'https://talehemo.com',
     imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg',
-    followers: [],
-    following: [],
-    createdPostsIds: [],
-    savedPostsIds: ['1', '2'],
-    recentSearches: [],
+    followersSum: 0,
+    followingSum: 0,
+    postSum: 0,
     currStoryId: '2134'
   },
   {
@@ -38,11 +37,9 @@ const USERS: User[] = [
     bio: 'I am a full stack developer',
     website: 'https://eshel.com',
     imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669304308/lci872dhvwd0jeuzh3h8.png',
-    followers: [],
-    following: [],
-    createdPostsIds: [],
-    savedPostsIds: [],
-    recentSearches: [],
+    followersSum: 0,
+    followingSum: 0,
+    postSum: 0,
     currStoryId: ''
   }
 ]
@@ -58,7 +55,8 @@ export class UserService {
   constructor(
     private store: Store<UserState>,
     private storageService: StorageService,
-    private utilService: UtilService
+    private utilService: UtilService,
+    private http: HttpClient
   ) {
     const users = this.storageService.loadFromStorage(ENTITY) || null;
     if (!users || users.length === 0) this.storageService.saveToStorage(ENTITY, USERS)
@@ -77,6 +75,8 @@ export class UserService {
 
   private async _getUsers(filterBy: string): Promise<User[]> {
     const users = await asyncStorageService.query(ENTITY) as User[]
+    // let users: User[] = []
+
     if (!filterBy) return users
     else {
       const term = filterBy.toLowerCase()
@@ -86,7 +86,6 @@ export class UserService {
           user.bio.toLocaleLowerCase().includes(term)
         )
       })
-      console.log('filteredUsers', filteredUsers);
       return filteredUsers
     }
 
@@ -132,11 +131,9 @@ export class UserService {
       website: '',
       bio: '',
       imgUrl: '',
-      followers: [],
-      following: [],
-      createdPostsIds: [],
-      savedPostsIds: [],
-      recentSearches: [],
+      followersSum: 0,
+      followingSum: 0,
+      postSum: 0,
       currStoryId: ''
     }
 
@@ -147,14 +144,6 @@ export class UserService {
 
   public logout() {
     this.storageService.saveToStorage('loggedinUser', null)
-  }
-
-  public async savePostToUser(userId: string, postId: string) {
-    const user = await asyncStorageService.get(ENTITY, userId) as User
-    if (user) {
-      user.createdPostsIds.push(postId)
-      asyncStorageService.put(ENTITY, user)
-    }
   }
 
   public getMiniUser(user: User): MiniUser {
@@ -177,7 +166,7 @@ export class UserService {
       fullname: 'SnapShot',
       imgUrl: '../../assets/imgs/logo-blue.png'
     }
-
     return snapShotUser
   }
+
 }

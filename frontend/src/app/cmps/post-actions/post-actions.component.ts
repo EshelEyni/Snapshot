@@ -49,7 +49,7 @@ export class PostActionsComponent implements OnInit, OnChanges, OnDestroy {
 
   setPostProporties() {
     this.isLiked = this.post.likedBy.some(user => user.id === this.loggedinUser.id)
-    this.isSaved = this.loggedinUser.savedPostsIds.some(postId => postId === this.post.id)
+    // this.isSaved = this.loggedinUser.savedPostsIds.some(postId => postId === this.post.id)
   }
 
   onToggleLike() {
@@ -66,9 +66,9 @@ export class PostActionsComponent implements OnInit, OnChanges, OnDestroy {
 
   onToggleSave() {
     if (this.isSaved) {
-      this.loggedinUser.savedPostsIds = this.loggedinUser.savedPostsIds.filter(postId => postId !== this.post.id);
+      // this.loggedinUser.savedPostsIds = this.loggedinUser.savedPostsIds.filter(postId => postId !== this.post.id);
     } else {
-      this.loggedinUser.savedPostsIds.push(this.post.id);
+      // this.loggedinUser.savedPostsIds.push(this.post.id);
     }
 
     this.store.dispatch(new SaveUser(this.loggedinUser));

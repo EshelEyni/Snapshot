@@ -67,13 +67,13 @@ export class PostService {
     } else {
       const user = await lastValueFrom(this.userService.getById(filterBy.userId))
       const _posts: Post[] = []
-      if (filterBy.type === 'savedPosts') {
-        user.savedPostsIds.forEach(async postId => {
-          const post = await asyncStorageService.get(ENTITY, postId) as Post
-          _posts.push(post)
-        })
-        return _posts
-      }
+      // if (filterBy.type === 'savedPosts') {
+      //   user.savedPostsIds.forEach(async postId => {
+      //     const post = await asyncStorageService.get(ENTITY, postId) as Post
+      //     _posts.push(post)
+      //   })
+      //   return _posts
+      // }
       if (filterBy.type === 'taggedPosts') {
         const userName = user.username
         posts.forEach(post => {
@@ -110,7 +110,6 @@ export class PostService {
 
   private async _add(post: Post, userId: string) {
     const addedPost = await asyncStorageService.post(ENTITY, post) as Post
-    this.userService.savePostToUser(userId, addedPost.id)
     this.loadPosts()
     return addedPost.id
   }

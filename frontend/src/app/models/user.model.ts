@@ -1,21 +1,17 @@
-import { Notification } from "./notification.model"
-
 export interface User {
     id: string
     username: string
     fullname: string
-    gender: string
     email: string
-    phone: string
     password: string
+    imgUrl: string
+    gender: string
+    phone: string
     bio: string
     website: string
-    imgUrl: string
-    followers: MiniUser[]
-    following: MiniUser[]
-    createdPostsIds: string[]
-    savedPostsIds: string[]
-    recentSearches: any[]
+    followersSum: number
+    followingSum: number
+    postSum: number
     currStoryId: string
 }
 

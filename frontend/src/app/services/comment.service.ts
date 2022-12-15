@@ -102,7 +102,8 @@ export class CommentService {
 
   public getCommentsForPostPreview(commentsIds: string[], user: User): Observable<Comment[]> {
     const comments: Comment[] = []
-    const followingIds = user.following.map((user: MiniUser) => user.id)
+    // const followingIds = user.following.map((user: MiniUser) => user.id)
+    const followingIds = ['']
     commentsIds.forEach(async (commentId: string) => {
       const comment = await lastValueFrom(this.getById(commentId))
       if (comment.by.id === user.id || followingIds.includes(comment.by.id)) comments.push(comment)

@@ -2,7 +2,7 @@
 @import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
-.search-modal {
+::ng-deep .search-modal {
     width: rem(400px);
     height: 100vh;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
@@ -23,6 +23,15 @@
     ul {
         >* {
             cursor: pointer;
+        }
+    }
+
+    .search-results-container{
+        .user-preview{
+            .img-container{
+                width: rem(50px);
+                height: rem(50px);
+            }
         }
     }
 
