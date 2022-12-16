@@ -41,7 +41,23 @@ function exec(sql, params) {
     });
 }
 
+async function txn(callbcak) {
+    try {
+        await exec("BEGIN TRANSACTION");
+        var result = await callbcak();
+        await exec("COMMIT");
+        return result;
+    } catch (e) {
+        try {
+            await exec("ROLLBACK");
+        }
+        catch { /* nothing to do */ }
+        throw "Failed to commit transaction: " + e;
+    }
+}
+
 module.exports = {
     query,
-    exec
+    exec,
+    txn
 };

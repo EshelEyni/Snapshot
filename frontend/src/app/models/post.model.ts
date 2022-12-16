@@ -1,18 +1,19 @@
-import { MiniUser } from './user.model';
+import { MiniUser } from './user.model'
 
 export interface Post {
-    id: string;
-    imgUrls: string[];
-    by: MiniUser;
-    location: Location;
-    likedBy: MiniUser[];
-    commentsIds: string[];
-    createdAt: Date;
-    tags: string[];
+  id: string
+  imgUrls: string[]
+  by: MiniUser
+  location: Location | null
+  likeSum: number
+  commentsSum: number
+  createdAt: Date
+  tags: string[]
 }
 
 export interface Location {
-    lat: number;
-    lng: number;
-    name: string;
+  id: number
+  lat: number
+  lng: number
+  name: string
 }

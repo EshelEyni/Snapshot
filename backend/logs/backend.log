@@ -3,3 +3,104 @@
 16.12.2022, 15:32:34 - INFO - User login:  | {"id":1,"username":"eshel","fullname":"Eshel Eyni","email":"eshel@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669304308/lci872dhvwd0jeuzh3h8.png","gender":"male","phone":"054-1234567","bio":"I am a full stack developer","website":"https://eshel.com","followersSum":0,"followingSum":0,"postSum":0} | 32ad5c33610a2b1033d94479de3a9f18321619ecc96d740abeefbea5e070f36bbdedf2e39fbb5c3406c0058f0050b1dd4427a0f054582909d82ee4c1824461d000133b1572e817c520e75917b8555969a576380701d9202d549dbe62ecfd1e6955 
 16.12.2022, 15:33:37 - DEBUG - auth.service - login with username: eshel 
 16.12.2022, 15:33:37 - INFO - User login:  | {"id":1,"username":"eshel","fullname":"Eshel Eyni","email":"eshel@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669304308/lci872dhvwd0jeuzh3h8.png","gender":"male","phone":"054-1234567","bio":"I am a full stack developer","website":"https://eshel.com","followersSum":0,"followingSum":0,"postSum":0} | 74dd0fb9b8fa18914a0926e47c0f8b9a9625579890e8559b81d58a6b2d24eaebc6fd37b70ad476a83ffe354a155aabb6a30a69d1513102f078e8d0a5c275d180855a0bd37b998ab7ad60ff8b11e618aec4d25c6f7e96f8fc91d6b5aba3680c9b30 
+16.12.2022, 16:38:06 - INFO - Server is running on port: 3030 
+16.12.2022, 16:39:17 - INFO - Server is running on port: 3030 
+16.12.2022, 16:40:45 - INFO - Server is running on port: 3030 
+16.12.2022, 16:50:18 - INFO - Server is running on port: 3030 
+16.12.2022, 16:50:50 - INFO - Server is running on port: 3030 
+16.12.2022, 16:51:17 - INFO - Server is running on port: 3030 
+16.12.2022, 16:51:54 - INFO - Server is running on port: 3030 
+16.12.2022, 16:53:26 - INFO - Server is running on port: 3030 
+16.12.2022, 16:54:19 - INFO - Server is running on port: 3030 
+16.12.2022, 16:54:58 - INFO - Server is running on port: 3030 
+16.12.2022, 16:57:15 - INFO - Server is running on port: 3030 
+16.12.2022, 16:57:23 - INFO - Server is running on port: 3030 
+16.12.2022, 16:59:37 - INFO - Server is running on port: 3030 
+16.12.2022, 17:01:06 - INFO - Server is running on port: 3030 
+16.12.2022, 17:02:15 - INFO - Server is running on port: 3030 
+16.12.2022, 17:02:19 - INFO - Server is running on port: 3030 
+16.12.2022, 17:09:25 - ERROR - cannot insert post | Failed to commit transaction: Error: SQLITE_ERROR: table posts has no column named locationId 
+16.12.2022, 17:09:25 - ERROR - Failed to add post | Failed to commit transaction: Error: SQLITE_ERROR: table posts has no column named locationId 
+16.12.2022, 17:10:46 - INFO - Server is running on port: 3030 
+16.12.2022, 17:10:53 - ERROR - cannot insert post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.userId 
+16.12.2022, 17:10:53 - ERROR - Failed to add post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.userId 
+16.12.2022, 17:11:24 - DEBUG - auth.service - login with username: eshel 
+16.12.2022, 17:11:24 - ERROR - Failed to Login Error: data and hash arguments required 
+16.12.2022, 17:11:51 - DEBUG - auth.service - signup with username: user, fullname: user 
+16.12.2022, 17:11:51 - DEBUG - auth.route - new account created: "user" 
+16.12.2022, 17:11:51 - DEBUG - auth.service - login with username: user 
+16.12.2022, 17:11:51 - INFO - User login:  | {"id":1,"username":"user","fullname":"user","email":"user@gmail.com","password":"$2b$10$w/3wBZD8ECankaZ1hOAtouV7ZpBugT/.Zj5OPYFatvQMj5XDhx6FG","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} 
+16.12.2022, 17:12:10 - ERROR - cannot insert post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.userId 
+16.12.2022, 17:12:10 - ERROR - Failed to add post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.userId 
+16.12.2022, 17:12:19 - ERROR - cannot insert post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.userId 
+16.12.2022, 17:12:19 - ERROR - Failed to add post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.userId 
+16.12.2022, 17:16:09 - ERROR - cannot insert post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.userId 
+16.12.2022, 17:16:09 - ERROR - Failed to add post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.userId 
+16.12.2022, 17:17:28 - ERROR - cannot insert post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+16.12.2022, 17:17:28 - ERROR - Failed to add post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+16.12.2022, 17:23:06 - ERROR - cannot insert post | Failed to commit transaction: Error: SQLITE_ERROR: no such column: tag 
+16.12.2022, 17:23:06 - ERROR - Failed to add post | Failed to commit transaction: Error: SQLITE_ERROR: no such column: tag 
+16.12.2022, 17:24:23 - ERROR - cannot insert post | Failed to commit transaction: Error: SQLITE_ERROR: no such column: tag 
+16.12.2022, 17:24:23 - ERROR - Failed to add post | Failed to commit transaction: Error: SQLITE_ERROR: no such column: tag 
+16.12.2022, 17:24:24 - ERROR - cannot insert post | Failed to commit transaction: Error: SQLITE_ERROR: no such column: tag 
+16.12.2022, 17:24:24 - ERROR - Failed to add post | Failed to commit transaction: Error: SQLITE_ERROR: no such column: tag 
+16.12.2022, 17:24:45 - INFO - Server is running on port: 3030 
+16.12.2022, 17:24:50 - ERROR - cannot insert post | Failed to commit transaction: Error: SQLITE_ERROR: no such table: postsTags 
+16.12.2022, 17:24:50 - ERROR - Failed to add post | Failed to commit transaction: Error: SQLITE_ERROR: no such table: postsTags 
+16.12.2022, 17:25:02 - INFO - Server is running on port: 3030 
+16.12.2022, 17:26:55 - INFO - Server is running on port: 3030 
+16.12.2022, 17:33:02 - INFO - Server is running on port: 3030 
+16.12.2022, 17:33:34 - INFO - Server is running on port: 3030 
+16.12.2022, 17:36:00 - INFO - Server is running on port: 3030 
+16.12.2022, 17:41:33 - INFO - Server is running on port: 3030 
+16.12.2022, 17:42:28 - INFO - Server is running on port: 3030 
+16.12.2022, 17:43:11 - INFO - Server is running on port: 3030 
+16.12.2022, 17:44:15 - INFO - Server is running on port: 3030 
+16.12.2022, 17:44:35 - INFO - Server is running on port: 3030 
+16.12.2022, 17:44:37 - INFO - Server is running on port: 3030 
+16.12.2022, 17:44:52 - INFO - Server is running on port: 3030 
+16.12.2022, 17:48:51 - INFO - Server is running on port: 3030 
+16.12.2022, 17:49:21 - INFO - Server is running on port: 3030 
+16.12.2022, 17:49:51 - INFO - Server is running on port: 3030 
+16.12.2022, 17:50:02 - INFO - Server is running on port: 3030 
+16.12.2022, 17:50:39 - INFO - Server is running on port: 3030 
+16.12.2022, 17:52:00 - INFO - Server is running on port: 3030 
+16.12.2022, 17:52:17 - INFO - Server is running on port: 3030 
+16.12.2022, 17:53:04 - INFO - Server is running on port: 3030 
+16.12.2022, 17:53:24 - INFO - Server is running on port: 3030 
+16.12.2022, 17:53:55 - INFO - Server is running on port: 3030 
+16.12.2022, 17:54:15 - ERROR - while finding user eshele | user with name eshele was not found 
+16.12.2022, 17:54:15 - ERROR - Failed to get user | user with name eshele was not found 
+16.12.2022, 18:29:18 - INFO - Server is running on port: 3030 
+16.12.2022, 18:29:19 - INFO - Server is running on port: 3030 
+16.12.2022, 18:30:29 - INFO - Server is running on port: 3030 
+16.12.2022, 18:31:13 - INFO - Server is running on port: 3030 
+16.12.2022, 18:31:16 - INFO - Server is running on port: 3030 
+16.12.2022, 18:32:02 - INFO - Server is running on port: 3030 
+16.12.2022, 18:32:07 - INFO - Server is running on port: 3030 
+16.12.2022, 18:32:17 - INFO - Server is running on port: 3030 
+16.12.2022, 18:33:44 - INFO - Server is running on port: 3030 
+16.12.2022, 18:36:27 - INFO - Server is running on port: 3030 
+16.12.2022, 18:36:35 - INFO - Server is running on port: 3030 
+16.12.2022, 18:39:13 - INFO - Server is running on port: 3030 
+16.12.2022, 18:39:19 - INFO - Server is running on port: 3030 
+16.12.2022, 18:39:40 - INFO - Server is running on port: 3030 
+16.12.2022, 18:39:42 - INFO - Server is running on port: 3030 
+16.12.2022, 18:40:04 - INFO - Server is running on port: 3030 
+16.12.2022, 18:40:05 - INFO - Server is running on port: 3030 
+16.12.2022, 18:40:19 - INFO - Server is running on port: 3030 
+16.12.2022, 18:41:34 - DEBUG - auth.service - login with username: user 
+16.12.2022, 18:41:34 - ERROR - while finding user user | user with name user was not found 
+16.12.2022, 18:41:34 - ERROR - Failed to Login user with name user was not found 
+16.12.2022, 18:41:53 - DEBUG - auth.service - login with username: eshel 
+16.12.2022, 18:41:54 - INFO - User login:  | {"id":1,"username":"eshel","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} | 5d5ec90199b78958f673d6d598858b9fd89f8b42b271cd457e4b162429a52733559d9d0480fd650387b0de1b7a1fd22de655210b5f475d632a92ca220cf6e6a1ed789ebd8f50470bbf89da41c0a3d9bbb1e50bb6851b6d884ce9916daf3dca7878 
+16.12.2022, 18:43:04 - ERROR - while finding user a12F34b907 | user with id #a12F34b907 was not found 
+16.12.2022, 18:43:04 - ERROR - Failed to get user | user with id #a12F34b907 was not found 
+16.12.2022, 18:43:04 - ERROR - while finding user a12F34b907 | user with id #a12F34b907 was not found 
+16.12.2022, 18:43:04 - ERROR - Failed to get user | user with id #a12F34b907 was not found 
+16.12.2022, 18:43:31 - ERROR - while finding user a12F34b907 | user with id #a12F34b907 was not found 
+16.12.2022, 18:43:31 - ERROR - Failed to get user | user with id #a12F34b907 was not found 
+16.12.2022, 18:44:00 - ERROR - while finding user a12F34b907 | user with id #a12F34b907 was not found 
+16.12.2022, 18:44:00 - ERROR - Failed to get user | user with id #a12F34b907 was not found 
+16.12.2022, 18:50:27 - INFO - Server is running on port: 3030 
+16.12.2022, 18:54:12 - INFO - Server is running on port: 3030 

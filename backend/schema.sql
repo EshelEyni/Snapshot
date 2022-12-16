@@ -21,7 +21,8 @@ CREATE TABLE IF NOT EXISTS "posts" (
     "createdAt" TIMESTAMP NOT NULL,
     "likeSum" INTEGER NOT NULL,
     "commentSum" INTEGER NOT NULL,
-    PRIMARY KEY("id" AUTOINCREMENT) foreign key("userId") references "users"("id")
+    "locationId" INTEGER NULL,
+    PRIMARY KEY("id" AUTOINCREMENT) foreign key("userId") references "users"("id") foreign key("locationId") references "locations"("id")
 );
 
 CREATE TABLE IF NOT EXISTS "postsImgs" (
@@ -91,7 +92,7 @@ CREATE TABLE IF NOT EXISTS "savedPosts" (
 
 CREATE TABLE IF NOT EXISTS "tags" (
     "id" INTEGER NOT NULL UNIQUE,
-    "name" TEXT NOT NULL,
+    "name" TEXT NOT NULL UNIQUE,
     PRIMARY KEY("id" AUTOINCREMENT)
 );
 

@@ -3,11 +3,10 @@ const logger = require('../../services/logger.service')
 // const socketService = require('../../services/socket.service')
 
 
-
-async function getUsers(req, res) {
-    console.log('req.query', req.params.q)
+async function queryUsers(req, res) {
+    console.log('req.query', req.query.q)
     try {
-        const users = await userService.query(req.params.q)
+        const users = await userService.query(req.query.q)
         res.send(users)
     } catch (err) {
         logger.error('Failed to get users', err)
@@ -24,6 +23,17 @@ async function getUser(req, res) {
         res.status(500).send({ err: 'Failed to get user' })
     }
 }
+
+async function getUserByName(req, res) {
+    try {
+        const user = await userService.getByUsername(req.params.name)
+        res.send(user)
+    } catch (err) {
+        logger.error('Failed to get user', err)
+        res.status(500).send({ err: 'Failed to get user' })
+    }
+}
+
 
 async function addUser(req, res) {
     try {
@@ -61,8 +71,9 @@ async function deleteUser(req, res) {
 
 module.exports = {
     getUser,
-    getUsers,
+    queryUsers,
     addUser,
     deleteUser,
+    getUserByName,
     updateUser
 }

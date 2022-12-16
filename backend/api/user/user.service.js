@@ -2,16 +2,19 @@ const logger = require('../../services/logger.service')
 const db = require('../../database');
 const bcrypt = require('bcrypt');
 
-
-
 async function query(q) {
     try {
-        if (q) {
-            const users = await db.query(`select * from users where username like '%${q}%' or bio like '%${q}%'`);
-            return users
-        }
-        const users = await db.query(`select * from users`);
-        return users
+        if (!q)
+            return await db.query(`select * from users order by username`);
+
+
+        return await db.query(
+            `select * from users 
+             where username like $q
+                or email like $q 
+                or bio like $q
+             order by username`, { $q: q + '%' });
+
     } catch (err) {
         logger.error('cannot find users', err)
         throw err
@@ -22,7 +25,7 @@ async function getById(userId) {
     try {
         const users = await db.query(`select * from users where id = $id`, { $id: userId });
         if (users.length === 0) {
-            return 'user not found';
+            throw 'user with id #' + userId + ' was not found'
         }
         const user = users[0];
         return user
@@ -36,7 +39,7 @@ async function getByUsername(username) {
     try {
         const users = await db.query(`select * from users where username = $username`, { $username: username });
         if (users.length === 0) {
-            return 'user not found';
+            throw 'user with name ' + username + ' was not found';
         }
         const user = users[0];
         return user

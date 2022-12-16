@@ -83,15 +83,17 @@ export class UserService {
   }
 
   public getUsers(filterBy: string): Observable<User[]> {
-    return this.http.get(`http://localhost:3030/api/user/${filterBy}`).pipe(
-      map((users) => {
-        return users as User[]
-      }),
-    )
+    return this.http
+      .get(`http://localhost:3030/api/user/search?q=${filterBy}`)
+      .pipe(
+        map((users) => {
+          return users as User[]
+        }),
+      )
   }
 
   public getById(userId: string): Observable<User> {
-    return this.http.get(`http://localhost:3030/api/user/${userId}`).pipe(
+    return this.http.get(`http://localhost:3030/api/user/id/${userId}`).pipe(
       map((user) => {
         return user as User
       }),

@@ -3,7 +3,11 @@ const logger = require('../../services/logger.service')
 
 async function getPosts(req, res) {
     try {
-        const posts = await postService.query()
+        const posts = await postService.query({
+            userId: req.query.userId,
+            type: req.query.type,
+            limit: 5
+        })
         res.send(posts)
     } catch (err) {
         logger.error('Failed to get posts', err)
@@ -46,8 +50,8 @@ async function addPost(req, res) {
     try {
         const post = req.body
         console.log('post:', post)
-        const savedPost = await postService.add(post)
-        res.send({ savedPost: savedPost })
+        const id = await postService.add(post)
+        res.send({ id })
     } catch (err) {
         logger.error('Failed to add post', err)
         res.status(500).send({ err: 'Failed to add post' })
