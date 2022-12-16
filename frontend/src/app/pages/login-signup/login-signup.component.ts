@@ -1,15 +1,14 @@
-import { UserService } from './../../services/user.service';
-import { Router } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UserService } from './../../services/user.service'
+import { Router } from '@angular/router'
+import { Component, OnInit, OnDestroy } from '@angular/core'
+import { FormBuilder, FormGroup } from '@angular/forms'
 
 @Component({
   selector: 'login-signup',
   templateUrl: './login-signup.component.html',
-  styleUrls: ['./login-signup.component.scss']
+  styleUrls: ['./login-signup.component.scss'],
 })
 export class LoginSignupComponent implements OnInit, OnDestroy {
-
   intervalId!: number
   routerUrl: string = this.router.url.slice(1)
   btnTxt: string = this.routerUrl === 'login' ? 'Login' : 'Signup'
@@ -17,14 +16,16 @@ export class LoginSignupComponent implements OnInit, OnDestroy {
   selectedAnimationImg: string = `../../../assets/imgs/animation-img-1.png`
   form!: FormGroup
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private userService: UserService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+  ) {
     this.form = this.fb.group({
       email: [''],
       fullname: [''],
       username: [''],
-      password: ['']
+      password: [''],
     })
   }
 
@@ -38,8 +39,14 @@ export class LoginSignupComponent implements OnInit, OnDestroy {
 
   async onLogin() {
     const userCred = this.form.value
-    if (this.routerUrl === 'login') await this.userService.login({ username: userCred.username, password: userCred.password })
-    else await this.userService.signup(userCred)
+    if (this.routerUrl === 'login') {
+      await this.userService.login({
+        username: userCred.username,
+        password: userCred.password,
+      })
+    } else {
+      await this.userService.signup(userCred)
+    }
     this.form.reset()
     this.router.navigate(['/'])
   }
@@ -47,5 +54,4 @@ export class LoginSignupComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     clearInterval(this.intervalId!)
   }
-
 }
