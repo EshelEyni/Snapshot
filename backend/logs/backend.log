@@ -519,3 +519,8 @@
 15.12.2022, 19:51:06 - INFO - User login:  | {"id":4,"username":"user","fullname":"user","email":"user@gmail.com","password":"$2b$10$QCo9A55/5KXxijA0JllOw.uWuIwzgKWBbTsM0koBKvFS/XfLnb71C","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} 
 15.12.2022, 19:54:37 - DEBUG - auth.service - login with username: user 
 15.12.2022, 19:54:38 - INFO - User login:  | {"id":4,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} | 0e2f1581ad0484af0bb65d4281af3c9ce09c46c31ebee1d3b58dd7e16d2ba51c1de6ecc9ac7089143a9316c112d23581a5ba5871daae69935c09df1afce480b2b4ead9e04acd4b8b5c777b712af5aa7c0dfb7293861dd45f76b8ef3990ac87c026 
+15.12.2022, 21:09:00 - INFO - Server is running on port: 3030 
+15.12.2022, 21:16:42 - INFO - Server is running on port: 3030 
+15.12.2022, 21:20:53 - INFO - Server is running on port: 3030 
+15.12.2022, 21:20:55 - INFO - Server is running on port: 3030 
+15.12.2022, 21:21:11 - INFO - Server is running on port: 3030 

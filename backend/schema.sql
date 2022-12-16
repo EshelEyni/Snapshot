@@ -19,7 +19,8 @@ CREATE TABLE IF NOT EXISTS "posts" (
     "id" INTEGER NOT NULL UNIQUE,
     "userId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP NOT NULL,
-    "likes" INTEGER NOT NULL,
+    "likeSum" INTEGER NOT NULL,
+    "commentSum" INTEGER NOT NULL,
     PRIMARY KEY("id" AUTOINCREMENT) foreign key("userId") references "users"("id")
 );
 
