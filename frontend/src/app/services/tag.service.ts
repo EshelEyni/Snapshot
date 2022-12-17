@@ -36,15 +36,20 @@ export class TagService {
   postService = inject(PostService);
   http = inject(HttpClient);
 
-  public async loadTags(filterBy = '') {
+  public async loadTags(filterBy = { name: '' }) {
     const tags = await lastValueFrom(this.getTags(filterBy));
     this._tags$.next(tags);
   }
 
-  public getTags(filterBy: string): Observable<Tag[]> {
-    return this.http.get(`http://localhost:3030/api/tag/${filterBy}`).pipe(map(tags => {
-      return tags as Tag[]
-    }))
+  public getTags(filterBy = { name: '' }): Observable<Tag[]> {
+    let options = { params: {} }
+    if (filterBy) {
+      options.params = {
+        name: filterBy.name,
+      }
+    }
+
+    return this.http.get<Tag[]>('http://localhost:3030/api/tag', options);
   }
 
   public getById(tagId: string): Observable<Tag> {

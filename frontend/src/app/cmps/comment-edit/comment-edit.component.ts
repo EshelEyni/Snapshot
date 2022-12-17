@@ -24,7 +24,7 @@ export class CommentEditComponent implements OnInit {
   faFaceSmile = faFaceSmile
   isEmojiPickerShown: boolean = false
   isMainScreen: boolean = false
-  commentTxt: string = ''
+  commentText: string = ''
   post!: Post
   addedComment = new EventEmitter<string[]>()
 
@@ -32,9 +32,9 @@ export class CommentEditComponent implements OnInit {
 
   onAddEmoji(emoji: Emoji) {
     if (typeof emoji.emoji !== 'string') {
-      this.commentTxt += emoji.emoji.native
+      this.commentText += emoji.emoji.native
     } else {
-      this.commentTxt += emoji.emoji
+      this.commentText += emoji.emoji
     }
   }
 
@@ -42,13 +42,13 @@ export class CommentEditComponent implements OnInit {
     this.isEmojiPickerShown = false
     const user = this.userService.getLoggedinUser()
     const commentToAdd = this.commentService.getEmptyComment()
-    commentToAdd.txt = this.commentTxt
-    this.commentTxt = ''
+    commentToAdd.text = this.commentText
+    this.commentText = ''
     if (user) commentToAdd.by = user
-    const commentId = await this.commentService.save(commentToAdd)
-    // if (commentId) this.post.commentsIds.push(commentId);
+    commentToAdd.postId = this.post.id
+    await this.commentService.save(commentToAdd)
+    this.post.commentSum++
     await this.postService.save(this.post)
-    // this.addedComment.emit(this.post.commentsIds);
   }
 
   onToggleEmojiPicker() {

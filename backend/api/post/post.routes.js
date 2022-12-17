@@ -6,7 +6,7 @@ const { getPosts, getPost, updatePost,addPost, deletePost } = require('./post.co
 
 
 router.get('/', getPosts)
-router.get('/:id', getPost)
+router.get('/:id', getPost) 
 router.put('/:id',  updatePost)
 router.post('/',  addPost)
 router.delete('/:id', deletePost)

@@ -23,12 +23,27 @@ async function query(q) {
 
 async function getById(userId) {
     try {
-        const users = await db.query(`select * from users where id = $id`, { $id: userId });
-        if (users.length === 0) {
-            throw 'user with id #' + userId + ' was not found'
-        }
-        const user = users[0];
-        return user
+        return await db.txn(async () => {
+            const users = await db.query(`select * from users where id = $id`, { $id: userId });
+            if (users.length === 0) {
+                throw 'user with id #' + userId + ' was not found'
+            }
+            const user = users[0];
+
+            const currStoryId = await db.query(
+                `select * from stories 
+                    where userId = $id 
+                    order by createdAt asc
+                    limit 1 `, { $id: userId })
+            if (currStoryId.length > 0) {
+                user.currStoryId = currStoryId[0].id;
+            }
+            else{
+                user.currStoryId = null;
+            }
+            return user
+        });
+
     } catch (err) {
         logger.error(`while finding user ${userId}`, err)
         throw err

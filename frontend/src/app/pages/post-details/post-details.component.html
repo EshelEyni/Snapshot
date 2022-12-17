@@ -5,24 +5,16 @@
 
       <div class="comment-action-container">
         <section class="post-creator">
-          <user-preview
-            [user]="post.by"
-            [location]="post.location"
-          ></user-preview>
+          <user-preview [user]="post.by" [location]="post.location"></user-preview>
           <ellipsis></ellipsis>
         </section>
 
         <div class="comment-list-container">
-          <!-- <comment-list *ngIf="post.commentsIds.length" [commentsIds]="post.commentsIds"
-                        [loggedinUser]="loggedinUser"></comment-list> -->
+          <comment-list *ngIf="post.commentSum" [postId]="post.id" [loggedinUser]="loggedinUser"></comment-list>
         </div>
 
         <div class="action-details-container">
-          <post-actions
-            [post]="post"
-            [loggedinUser]="loggedinUser"
-            (toggleModal)="onToggleShareModal()"
-          ></post-actions>
+          <post-actions [post]="post" [loggedinUser]="loggedinUser" (toggleModal)="onToggleShareModal()"></post-actions>
           <div class="likes-container">
             <p class="likes" *ngIf="post.likeSum > 0; else firstLike">
               {{ post.likeSum }} likes
@@ -37,16 +29,10 @@
           <p class="date-added">{{ post.createdAt | formattedDate }}</p>
         </div>
 
-        <share-modal
-          *ngIf="isShareModalShown"
-          (close)="onToggleShareModal()"
-        ></share-modal>
+        <share-modal *ngIf="isShareModalShown" (close)="onToggleShareModal()"></share-modal>
 
         <div class="comment-edit-container">
-          <comment-edit
-            [post]="post"
-            (addedComment)="addCommentToPost($event)"
-          ></comment-edit>
+          <comment-edit [post]="post" (addedComment)="addCommentToPost($event)"></comment-edit>
         </div>
       </div>
     </article>

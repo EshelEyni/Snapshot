@@ -22,7 +22,6 @@ export class PostAppComponent implements OnInit, OnDestroy {
   }
 
   postService = inject(PostService)
-  commentService = inject(CommentService);
   userService = inject(UserService);
   tagService = inject(TagService);
   store = inject(Store<State>);
@@ -45,7 +44,6 @@ export class PostAppComponent implements OnInit, OnDestroy {
     this.store.dispatch(new LoadUsers());
     this.postService.loadPosts();
     this.posts$ = this.postService.posts$;
-    this.commentService.loadComments();
     this.tagService.loadTags();
 
     for (let i = 0; i < 5; i++) {

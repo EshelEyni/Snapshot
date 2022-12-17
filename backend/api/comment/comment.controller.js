@@ -3,7 +3,13 @@ const logger = require('../../services/logger.service')
 
 async function getComments(req, res) {
     try {
-        const comments = await commentService.query()
+        const comments = await commentService.query(
+            {
+                postId: req.query.postId,
+                userId: req.query.userId,
+                type: req.query.type
+            }
+        )
         res.send(comments)
     } catch (err) {
         logger.error('Failed to get comments', err)

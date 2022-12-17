@@ -104,3 +104,237 @@
 16.12.2022, 18:44:00 - ERROR - Failed to get user | user with id #a12F34b907 was not found 
 16.12.2022, 18:50:27 - INFO - Server is running on port: 3030 
 16.12.2022, 18:54:12 - INFO - Server is running on port: 3030 
+17.12.2022, 14:38:47 - INFO - Server is running on port: 3030 
+17.12.2022, 14:41:52 - ERROR - while finding user 4 | user with id #4 was not found 
+17.12.2022, 14:41:52 - ERROR - Failed to get user | user with id #4 was not found 
+17.12.2022, 14:41:52 - ERROR - while finding user a12F34b907 | user with id #a12F34b907 was not found 
+17.12.2022, 14:41:52 - ERROR - Failed to get user | user with id #a12F34b907 was not found 
+17.12.2022, 14:42:34 - ERROR - while finding user 4 | user with id #4 was not found 
+17.12.2022, 14:42:34 - ERROR - Failed to get user | user with id #4 was not found 
+17.12.2022, 14:42:34 - ERROR - while finding user a12F34b907 | user with id #a12F34b907 was not found 
+17.12.2022, 14:42:34 - ERROR - Failed to get user | user with id #a12F34b907 was not found 
+17.12.2022, 14:44:21 - INFO - Server is running on port: 3030 
+17.12.2022, 14:44:46 - DEBUG - auth.service - signup with username: eshel, fullname: eshel 
+17.12.2022, 14:44:46 - DEBUG - auth.route - new account created: "eshel" 
+17.12.2022, 14:44:46 - DEBUG - auth.service - login with username: eshel 
+17.12.2022, 14:44:46 - INFO - User login:  | {"id":1,"username":"eshel","fullname":"eshel","email":"esheleyni@gmail.co","password":"$2b$10$Q/4ofJQIUNcbbjWqjOsFEeQxgRkj6mEf4Wel2IpwmIgoqjGPq0qJG","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} 
+17.12.2022, 14:44:46 - ERROR - while finding user a12F34b907 | user with id #a12F34b907 was not found 
+17.12.2022, 14:44:46 - ERROR - Failed to get user | user with id #a12F34b907 was not found 
+17.12.2022, 14:46:32 - ERROR - while finding user a12F34b907 | user with id #a12F34b907 was not found 
+17.12.2022, 14:46:32 - ERROR - Failed to get user | user with id #a12F34b907 was not found 
+17.12.2022, 14:47:29 - ERROR - while finding user a12F34b907 | user with id #a12F34b907 was not found 
+17.12.2022, 14:47:29 - ERROR - Failed to get user | user with id #a12F34b907 was not found 
+17.12.2022, 14:58:25 - INFO - Server is running on port: 3030 
+17.12.2022, 14:59:33 - INFO - Server is running on port: 3030 
+17.12.2022, 15:00:07 - INFO - Server is running on port: 3030 
+17.12.2022, 15:00:21 - INFO - Server is running on port: 3030 
+17.12.2022, 15:00:23 - ERROR - cannot find tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:00:23 - ERROR - Failed to get tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:00:23 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:00:23 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:00:56 - INFO - Server is running on port: 3030 
+17.12.2022, 15:01:30 - INFO - Server is running on port: 3030 
+17.12.2022, 15:01:33 - ERROR - cannot find tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:01:33 - ERROR - Failed to get tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:01:33 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:01:33 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:02:51 - ERROR - Failed to get tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:02:51 - ERROR - cannot find tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:02:51 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:02:51 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:03:36 - ERROR - cannot find tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:03:37 - ERROR - Failed to get tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:03:42 - ERROR - cannot find tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:03:42 - ERROR - Failed to get tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:03:42 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:03:42 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:04:02 - ERROR - cannot find tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:04:02 - ERROR - Failed to get tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:04:02 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:04:02 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:04:20 - ERROR - cannot find tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:04:20 - ERROR - Failed to get tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:10:52 - INFO - Server is running on port: 3030 
+17.12.2022, 15:11:05 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:11:05 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:11:05 - ERROR - cannot find tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:11:05 - ERROR - Failed to get tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:12:45 - ERROR - cannot find tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:12:45 - ERROR - Failed to get tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:12:45 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:12:45 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:14:04 - INFO - Server is running on port: 3030 
+17.12.2022, 15:14:09 - ERROR - Failed to get tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:14:09 - ERROR - cannot find tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:14:09 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:14:09 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:15:30 - INFO - Server is running on port: 3030 
+17.12.2022, 15:15:33 - ERROR - cannot find tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:15:33 - ERROR - Failed to get tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:15:33 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:15:33 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:16:21 - ERROR - Failed to get tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:16:21 - ERROR - cannot find tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:16:21 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:16:21 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:17:02 - ERROR - cannot find tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:17:02 - ERROR - Failed to get tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:18:41 - INFO - Server is running on port: 3030 
+17.12.2022, 15:18:44 - ERROR - cannot find tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:18:44 - ERROR - Failed to get tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:18:44 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:18:44 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:19:27 - INFO - Server is running on port: 3030 
+17.12.2022, 15:19:32 - ERROR - cannot find tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:19:32 - ERROR - Failed to get tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:19:32 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:19:32 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:21:08 - INFO - Server is running on port: 3030 
+17.12.2022, 15:21:13 - ERROR - cannot find tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:21:13 - ERROR - Failed to get tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:21:13 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:21:13 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:21:44 - ERROR - cannot find tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:21:44 - ERROR - Failed to get tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:21:44 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:21:44 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:22:06 - ERROR - Failed to get tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:22:06 - ERROR - cannot find tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:22:06 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:22:06 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:23:33 - INFO - Server is running on port: 3030 
+17.12.2022, 15:23:37 - ERROR - cannot find tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:23:37 - ERROR - Failed to get tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:23:37 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:23:37 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:23:49 - INFO - Server is running on port: 3030 
+17.12.2022, 15:24:19 - ERROR - cannot find tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:24:19 - ERROR - Failed to get tags | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 15:24:19 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:24:19 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 15:25:29 - INFO - Server is running on port: 3030 
+17.12.2022, 15:31:36 - INFO - Server is running on port: 3030 
+17.12.2022, 15:41:05 - ERROR - cannot insert post | Failed to commit transaction: Error: SQLITE_ERROR: table postsImgs has no column named imgOrder 
+17.12.2022, 15:41:05 - ERROR - Failed to add post | Failed to commit transaction: Error: SQLITE_ERROR: table postsImgs has no column named imgOrder 
+17.12.2022, 15:41:44 - INFO - Server is running on port: 3030 
+17.12.2022, 15:41:48 - ERROR - cannot insert post | Failed to commit transaction: Error: SQLITE_ERROR: table postsImgs has no column named imgOrder 
+17.12.2022, 15:41:48 - ERROR - Failed to add post | Failed to commit transaction: Error: SQLITE_ERROR: table postsImgs has no column named imgOrder 
+17.12.2022, 15:43:55 - INFO - Server is running on port: 3030 
+17.12.2022, 16:16:52 - INFO - Server is running on port: 3030 
+17.12.2022, 16:17:01 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 16:17:01 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 16:17:01 - ERROR - while finding user 1 | Failed to commit transaction: Error: SQLITE_ERROR: no such column: created_at 
+17.12.2022, 16:17:01 - ERROR - Failed to get user | Failed to commit transaction: Error: SQLITE_ERROR: no such column: created_at 
+17.12.2022, 16:17:17 - ERROR - while finding user 1 | Failed to commit transaction: Error: SQLITE_ERROR: no such column: created_at 
+17.12.2022, 16:17:17 - ERROR - Failed to get user | Failed to commit transaction: Error: SQLITE_ERROR: no such column: created_at 
+17.12.2022, 16:17:35 - INFO - Server is running on port: 3030 
+17.12.2022, 16:17:37 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 16:17:37 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 16:17:37 - ERROR - Failed to get user | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+17.12.2022, 16:17:37 - ERROR - while finding user 1 | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+17.12.2022, 16:18:32 - INFO - Server is running on port: 3030 
+17.12.2022, 16:18:36 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 16:18:36 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 16:19:31 - INFO - Server is running on port: 3030 
+17.12.2022, 16:42:27 - INFO - Server is running on port: 3030 
+17.12.2022, 16:42:30 - INFO - Server is running on port: 3030 
+17.12.2022, 16:43:29 - INFO - Server is running on port: 3030 
+17.12.2022, 16:44:27 - INFO - Server is running on port: 3030 
+17.12.2022, 16:44:36 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 16:44:36 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 16:44:36 - ERROR - Failed to get user | Failed to commit transaction: Error: SQLITE_ERROR: near "selct": syntax error 
+17.12.2022, 16:44:36 - ERROR - while finding user 1 | Failed to commit transaction: Error: SQLITE_ERROR: near "selct": syntax error 
+17.12.2022, 16:44:51 - INFO - Server is running on port: 3030 
+17.12.2022, 16:44:54 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 16:44:54 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 16:44:54 - ERROR - Failed to get user | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+17.12.2022, 16:44:54 - ERROR - while finding user 1 | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+17.12.2022, 16:48:00 - INFO - Server is running on port: 3030 
+17.12.2022, 16:50:40 - INFO - Server is running on port: 3030 
+17.12.2022, 16:52:00 - INFO - Server is running on port: 3030 
+17.12.2022, 16:52:38 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 16:52:38 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 16:52:38 - ERROR - while finding user 1 | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 16:52:38 - ERROR - Failed to get user | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 16:52:38 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 16:52:38 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 16:52:38 - ERROR - while finding user 1 | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 16:52:38 - ERROR - Failed to get user | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 16:54:02 - ERROR - while finding user 1 | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 16:54:02 - ERROR - Failed to get user | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 16:57:14 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 16:57:21 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 17:00:38 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 17:00:43 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 17:02:03 - INFO - Server is running on port: 3030 
+17.12.2022, 17:02:13 - ERROR - while finding user 1 | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+17.12.2022, 17:02:13 - ERROR - Failed to get user | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+17.12.2022, 17:02:19 - ERROR - while finding user 1 | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+17.12.2022, 17:02:19 - ERROR - Failed to get user | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+17.12.2022, 17:02:21 - ERROR - while finding user 1 | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+17.12.2022, 17:02:21 - ERROR - Failed to get user | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+17.12.2022, 17:02:23 - ERROR - while finding user 1 | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+17.12.2022, 17:02:23 - ERROR - Failed to get user | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+17.12.2022, 17:03:12 - INFO - Server is running on port: 3030 
+17.12.2022, 17:03:46 - INFO - Server is running on port: 3030 
+17.12.2022, 17:03:57 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 17:03:57 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: cannot start a transaction within a transaction 
+17.12.2022, 17:03:57 - ERROR - while finding user 1 | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 17:03:57 - ERROR - Failed to get user | Failed to commit transaction: Error: SQLITE_ERROR: cannot commit - no transaction is active 
+17.12.2022, 17:07:27 - INFO - Server is running on port: 3030 
+17.12.2022, 17:08:07 - INFO - Server is running on port: 3030 
+17.12.2022, 17:19:30 - INFO - Server is running on port: 3030 
+17.12.2022, 17:20:19 - INFO - Server is running on port: 3030 
+17.12.2022, 17:23:55 - INFO - Server is running on port: 3030 
+17.12.2022, 17:58:37 - INFO - Server is running on port: 3030 
+17.12.2022, 18:00:36 - INFO - Server is running on port: 3030 
+17.12.2022, 18:15:26 - INFO - Server is running on port: 3030 
+17.12.2022, 18:18:10 - INFO - Server is running on port: 3030 
+17.12.2022, 18:19:00 - INFO - Server is running on port: 3030 
+17.12.2022, 18:19:29 - INFO - Server is running on port: 3030 
+17.12.2022, 18:22:17 - INFO - Server is running on port: 3030 
+17.12.2022, 18:22:21 - ERROR - cannot update post 2 | Failed to commit transaction: Error: SQLITE_ERROR: near "likeSum": syntax error 
+17.12.2022, 18:22:21 - ERROR - Failed to update post | Failed to commit transaction: Error: SQLITE_ERROR: near "likeSum": syntax error 
+17.12.2022, 18:22:55 - INFO - Server is running on port: 3030 
+17.12.2022, 18:32:43 - INFO - Server is running on port: 3030 
+17.12.2022, 18:37:15 - INFO - Server is running on port: 3030 
+17.12.2022, 18:37:57 - DEBUG - auth.service - signup with username: tal, fullname: tal 
+17.12.2022, 18:37:57 - DEBUG - auth.route - new account created: "tal" 
+17.12.2022, 18:37:57 - DEBUG - auth.service - login with username: tal 
+17.12.2022, 18:37:57 - INFO - User login:  | {"id":2,"username":"tal","fullname":"tal","email":"tal@gmial.com","password":"$2b$10$soo8Ic/DU5QX5hj5W3fNm.hD29sNceGN2qJfbSl5tWfZyz67zJlBq","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"currStoryId":null} 
+17.12.2022, 18:40:01 - INFO - Server is running on port: 3030 
+17.12.2022, 18:45:24 - INFO - Server is running on port: 3030 
+17.12.2022, 18:53:52 - INFO - Server is running on port: 3030 
+17.12.2022, 18:54:34 - INFO - Server is running on port: 3030 
+17.12.2022, 19:02:40 - INFO - Server is running on port: 3030 
+17.12.2022, 19:02:46 - ERROR - cannot insert following | Error: SQLITE_ERROR: no such table: followings 
+17.12.2022, 19:02:46 - ERROR - Failed to add following | Error: SQLITE_ERROR: no such table: followings 
+17.12.2022, 19:05:50 - INFO - Server is running on port: 3030 
+17.12.2022, 19:05:54 - ERROR - cannot insert following | ReferenceError: Cannot access 'following' before initialization 
+17.12.2022, 19:05:54 - ERROR - Failed to add following | ReferenceError: Cannot access 'following' before initialization 
+17.12.2022, 19:06:41 - INFO - Server is running on port: 3030 
+17.12.2022, 19:07:41 - INFO - Server is running on port: 3030 
+17.12.2022, 19:07:44 - ERROR - cannot insert following | Error: SQLITE_ERROR: table following has no column named followingId 
+17.12.2022, 19:07:44 - ERROR - Failed to add following | Error: SQLITE_ERROR: table following has no column named followingId 
+17.12.2022, 19:09:05 - INFO - Server is running on port: 3030 
+17.12.2022, 19:09:18 - ERROR - cannot insert following | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: following.userId 
+17.12.2022, 19:09:18 - ERROR - Failed to add following | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: following.userId 
+17.12.2022, 19:13:55 - INFO - Server is running on port: 3030 
+17.12.2022, 19:14:51 - INFO - Server is running on port: 3030 
+17.12.2022, 19:23:59 - INFO - Server is running on port: 3030 
+17.12.2022, 19:24:38 - INFO - Server is running on port: 3030 
+17.12.2022, 19:24:59 - INFO - Server is running on port: 3030 
+17.12.2022, 19:26:15 - INFO - Server is running on port: 3030 
+17.12.2022, 19:26:43 - INFO - Server is running on port: 3030 
+17.12.2022, 19:36:00 - INFO - Server is running on port: 3030 
+17.12.2022, 19:40:26 - INFO - Server is running on port: 3030 
+17.12.2022, 19:44:21 - INFO - Server is running on port: 3030 
+17.12.2022, 19:45:13 - INFO - Server is running on port: 3030 
+17.12.2022, 19:46:30 - INFO - Server is running on port: 3030 
+17.12.2022, 19:47:03 - INFO - Server is running on port: 3030 
+17.12.2022, 19:47:28 - INFO - Server is running on port: 3030 
+17.12.2022, 19:47:48 - INFO - Server is running on port: 3030 
+17.12.2022, 19:49:29 - INFO - Server is running on port: 3030 
+17.12.2022, 19:52:41 - INFO - Server is running on port: 3030 
+17.12.2022, 20:01:16 - INFO - Server is running on port: 3030 
+17.12.2022, 20:24:49 - INFO - Server is running on port: 3030 

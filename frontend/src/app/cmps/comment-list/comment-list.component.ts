@@ -14,7 +14,7 @@ export class CommentListComponent implements OnInit, OnChanges {
 
   commentService = inject(CommentService);
 
-  @Input() commentsIds!: string[];
+  @Input() postId!: string;
   @Input() isPostPreview!: boolean;
   @Input() loggedinUser!: User;
 
@@ -23,7 +23,7 @@ export class CommentListComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.getComments();
   }
-  
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['commentsIds']) {
       this.getComments();
@@ -32,10 +32,27 @@ export class CommentListComponent implements OnInit, OnChanges {
 
   async getComments() {
     if (this.isPostPreview) {
-      const comments = await lastValueFrom(this.commentService.getCommentsForPostPreview(this.commentsIds, this.loggedinUser));
+      const comments = await lastValueFrom(
+        this.commentService.loadComments(
+          {
+            postId: this.postId,
+            userId: this.loggedinUser.id,
+            type: 'post-preview'
+          }
+        )
+      );
       this.comments = comments;
+      console.log('comments', comments);
     } else {
-      const comments = await lastValueFrom(this.commentService.getCommentsForPost(this.commentsIds));
+      const comments = await lastValueFrom(
+        this.commentService.loadComments(
+          {
+            postId: this.postId,
+            userId: this.loggedinUser.id,
+            type: 'post-details'
+          }
+        )
+      );
       this.comments = comments;
     }
   }

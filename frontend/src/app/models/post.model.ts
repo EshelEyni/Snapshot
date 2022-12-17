@@ -6,7 +6,7 @@ export interface Post {
   by: MiniUser
   location: Location | null
   likeSum: number
-  commentsSum: number
+  commentSum: number
   createdAt: Date
   tags: string[]
 }

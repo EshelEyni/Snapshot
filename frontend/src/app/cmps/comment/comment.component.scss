@@ -1,4 +1,4 @@
-.comment {
+::ng-deep .comment {
     display: flex;
     align-items: center;
 
@@ -9,5 +9,15 @@
 
     p {
         margin: 0;
+    }
+
+    .ellipsis {
+        display: none;
+    }
+
+    &:hover {
+        .ellipsis {
+            display: flex;
+        }
     }
 }

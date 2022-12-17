@@ -14,62 +14,6 @@ import {
 import { Post } from '../models/post.model'
 import { asyncStorageService } from './async-storage.service'
 import { UserService } from './user.service'
-const POSTS = [
-  {
-    id: '1',
-    imgUrls: [
-      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666643317/v67tpfibtyacwmhnujyz.jpg',
-      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664328667/hzazeapkfkxc76iwfuzi.webp',
-      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664790207/y8kaho2wmjhlyyiwuint.jpg',
-    ],
-    by: {
-      id: 'a12F34b907',
-      fullname: 'Tal Hemo',
-      username: 'tale',
-      imgUrl:
-        'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg',
-    },
-    location: { lat: 32.0749831, lng: 34.9120554, name: 'Tel Aviv' },
-    likedBy: [
-      {
-        id: '132',
-        fullname: 'User 1',
-        username: 'user_1',
-        imgUrl:
-          'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg',
-      },
-    ],
-    commentsIds: ['1', '2', '3'],
-    createdAt: new Date(2022, 10, 9, 22, 22, 59, 0),
-    tags: ['tag1', 'tag2'],
-  },
-  {
-    id: '2',
-    imgUrls: [
-      'https://www.gardeningknowhow.com/wp-content/uploads/2017/07/hardwood-tree.jpg',
-    ],
-    by: {
-      id: 'a12F34b907',
-      fullname: 'Tal Hemo',
-      username: 'tale',
-      imgUrl:
-        'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg',
-    },
-    location: { lat: 32.0749831, lng: 34.9120554, name: 'Tel Aviv' },
-    likedBy: [
-      {
-        id: '132',
-        fullname: 'User 1',
-        username: 'user_1',
-        imgUrl:
-          'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg',
-      },
-    ],
-    commentsIds: ['1', '2', '3'],
-    createdAt: new Date(),
-    tags: ['tag1', 'tag2'],
-  },
-]
 
 const ENTITY = 'post'
 
@@ -77,8 +21,6 @@ const ENTITY = 'post'
   providedIn: 'root',
 })
 export class PostService {
-  // private _postsDb: Post[] = POSTS
-
   private _posts$ = new BehaviorSubject<Post[]>([])
   public posts$ = this._posts$.asObservable()
 
@@ -86,15 +28,9 @@ export class PostService {
     private storageService: StorageService,
     private userService: UserService,
     private http: HttpClient,
-  ) {}
+  ) { }
 
   public async loadPosts(filterBy?: { userId: string; type: string }) {
-    // let posts = this.storageService.loadFromStorage(ENTITY) || null
-    // if (!posts) {
-    //   // posts = this._postsDb
-    //   this.storageService.saveToStorage(ENTITY, posts)
-    // }
-    // if (filterBy) posts = await this._getFilteredPosts(posts, filterBy)
     let options = { params: {} }
     if (filterBy) {
       options.params = {
@@ -139,9 +75,8 @@ export class PostService {
   }
 
   public getById(postId: string): Observable<Post> {
-    let posts = this.storageService.loadFromStorage(ENTITY)
-    const post = posts.find((post: Post) => post.id === postId)
-    return post ? of(post) : throwError(() => `Post id ${postId} not found!`)
+    
+    return this.http.get<Post>(`http://localhost:3030/api/post/${postId}`)
   }
 
   public remove(postId: string) {
@@ -152,17 +87,24 @@ export class PostService {
   }
 
   public save(post: Post) {
+    console.log('post', post)
+    if (post.id) {
+      return this._update(post)
+    } else {
+      return this._add(post)
+    }
+  }
+
+  private _add(post: Post) {
     return firstValueFrom(
       this.http.post('http://localhost:3030/api/post', post),
     )
   }
 
-  public async saveCommentToPost(postId: string, commentId: string) {
-    const post = (await asyncStorageService.get(ENTITY, postId)) as Post
-    if (post) {
-      // post.commentsIds.push(commentId)
-      asyncStorageService.put(ENTITY, post)
-    }
+  private _update(post: Post) {
+    return firstValueFrom(
+      this.http.put(`http://localhost:3030/api/post/${post.id}`, post),
+    )
   }
 
   public getEmptyPost(): Post {
@@ -172,7 +114,7 @@ export class PostService {
       by: this.userService.getEmptyMiniUser(),
       location: { id: 0, lat: 0, lng: 0, name: '' },
       likeSum: 0,
-      commentsSum: 0,
+      commentSum: 0,
       createdAt: new Date(),
       tags: [],
     }

@@ -53,7 +53,7 @@ async function getById(postId) {
         }
         const post = posts[0];
         const images = await db.query(`select * from postsImgs where postId = $postId`, { $postId: postId });
-        post.images = images.map(img => img.imgUrl);
+        post.imgUrls = images.map(img => img.imgUrl);
         const comments = await db.query(`select * from comments where postId = $postId`, { $postId: postId });
         post.comments = comments.map(comment => {
             return {
@@ -64,6 +64,9 @@ async function getById(postId) {
                 commentDate: comment.comment_date
             }
         });
+        const user = await db.query(`select id, username, fullname, imgUrl from users where id = $id`, { $id: post.userId });
+        post.by = user[0];
+        delete post.userId;
         return post
     } catch (err) {
         logger.error(`while finding post ${postId}`, err)
@@ -85,11 +88,43 @@ async function remove(postId) {
 }
 
 async function update(post) {
-    // try {
-    // } catch (err) {
-    //     logger.error(`cannot update post ${post._id}`, err)
-    //     throw err
-    // }
+    console.log('post', post);
+    try {
+        await db.txn(async () => {
+            await db.exec(`update posts set locationId = $locationId, likeSum = $likeSum, commentSum = $commentSum where id = $id`, {
+                $id: post.id,
+                $locationId: post.location?.id,
+                $likeSum: post.likeSum,
+                $commentSum: post.commentSum
+            });
+            await db.exec(`delete from postsImgs where postId = $id`, { $id: post.id });
+            for (const i in post.imgUrls) {
+                await db.exec(`insert into postsImgs (postId, imgUrl, imgOrder) values ($postId, $imgUrl, $imgOrder)`, {
+                    $postId: post.id,
+                    $imgUrl: post.imgUrls[i],
+                    $imgOrder: i,
+                });
+            }
+            await db.exec(`delete from postTags where postId = $id`, { $id: post.id });
+            for (const tag of post.tags) {
+                const matches = await db.query('select id from tags where name = $tag', { $tag: tag });
+                let tagId = null;
+                if (matches.length == 0) {
+                    tagId = await db.exec('insert into tags (name) values ($tag)', { $tag: tag });
+                }
+                else {
+                    tagId = matches[0].id;
+                }
+                await db.exec(`insert into postTags (postId, tagId) values ($postId, $tagId)`, {
+                    $postId: post.id,
+                    $tagId: tagId
+                });
+            }
+        });
+    } catch (err) {
+        logger.error(`cannot update post ${post.id}`, err)
+        throw err
+    }
 }
 
 async function add(post) {

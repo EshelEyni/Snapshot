@@ -16,45 +16,6 @@ import { UserState } from '../store/reducers/user.reducer'
 import { LoadingUsers } from '../store/actions/user.actions'
 import { asyncStorageService } from './async-storage.service'
 
-const USERS: User[] = [
-  {
-    id: 'a12F34b907',
-    username: 'tale',
-    fullname: 'Tal Hemo',
-    gender: 'female',
-    email: 'tal@gmail.com',
-    phone: '054-1234567',
-    password: 'tale123',
-    bio: 'I am a full stack developer',
-    website: 'https://talehemo.com',
-    imgUrl:
-      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg',
-    followersSum: 0,
-    followingSum: 0,
-    postSum: 0,
-    currStoryId: '2134',
-  },
-  {
-    id: 'a12tgeko907',
-    username: 'eshel',
-    fullname: 'Eshel Eyni',
-    gender: 'male',
-    email: 'eshel@gmail.com',
-    phone: '054-1234567',
-    password: 'eshel123',
-    bio: 'I am a full stack developer',
-    website: 'https://eshel.com',
-    imgUrl:
-      'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669304308/lci872dhvwd0jeuzh3h8.png',
-    followersSum: 0,
-    followingSum: 0,
-    postSum: 0,
-    currStoryId: '',
-  },
-]
-
-const ENTITY = 'user'
-
 @Injectable({
   providedIn: 'root',
 })
@@ -64,11 +25,7 @@ export class UserService {
     private storageService: StorageService,
     private utilService: UtilService,
     private http: HttpClient,
-  ) {
-    const users = this.storageService.loadFromStorage(ENTITY) || null
-    if (!users || users.length === 0)
-      this.storageService.saveToStorage(ENTITY, USERS)
-  }
+  ) { }
 
   public getLoggedinUser(): MiniUser | null {
     const loggedinUser =
@@ -93,11 +50,7 @@ export class UserService {
   }
 
   public getById(userId: string): Observable<User> {
-    return this.http.get(`http://localhost:3030/api/user/id/${userId}`).pipe(
-      map((user) => {
-        return user as User
-      }),
-    )
+    return this.http.get<User>(`http://localhost:3030/api/user/id/${userId}`)
   }
 
   public remove(userId: string): Observable<boolean> {

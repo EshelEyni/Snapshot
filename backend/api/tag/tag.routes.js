@@ -4,7 +4,7 @@ const router = express.Router()
 const { getTags, getTag, updateTag,addTag, deleteTag } = require('./tag.controller')
 
 
-router.get('/:q', getTags)
+router.get('/', getTags)
 router.get('/:id', getTag)
 router.put('/:id',  updateTag)
 router.post('/',  addTag)

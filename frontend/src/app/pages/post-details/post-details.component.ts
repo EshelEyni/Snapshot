@@ -1,3 +1,4 @@
+import { LoadLoggedInUser } from './../../store/actions/user.actions';
 import { UserService } from './../../services/user.service'
 import { PostService } from './../../services/post.service'
 import { State } from './../../store/store'
@@ -36,8 +37,14 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   userPosts: Post[] = []
 
   ngOnInit() {
+    const loggedinUser = this.userService.getLoggedinUser()
+    if (loggedinUser) {
+      this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
+    }
+    
     this.paramsSubscription = this.route.data.subscribe((data) => {
       const post = data['post']
+      console.log('post', post)
       if (post) this.post = post
     })
 

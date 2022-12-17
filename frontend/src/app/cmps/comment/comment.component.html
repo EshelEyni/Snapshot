@@ -1,7 +1,8 @@
 <article class="comment">
     <span> {{comment.by.fullname}} </span>
-    <p *ngIf="!isLongTxt; else longTxt"> {{comment.txt| shortTxt}} <span (click)="onExpandTxt()">more</span></p>
+    <p *ngIf="!isLongTxt; else longTxt"> {{comment.text| shortTxt}} <span (click)="onExpandTxt()">more</span></p>
     <ng-template #longTxt>
-        <p> {{comment.txt}} </p>
+        <p> {{comment.text}} </p>
     </ng-template>
+    <ellipsis></ellipsis>
 </article>

@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS "postsImgs" (
     "id" INTEGER NOT NULL UNIQUE,
     "postId" INTEGER NOT NULL,
     "imgUrl" TEXT NOT NULL,
+    "imgOrder" INTEGER NOT NULL,
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("postId") references "posts"("id")
 );
 

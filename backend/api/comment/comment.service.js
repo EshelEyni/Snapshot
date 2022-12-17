@@ -1,10 +1,40 @@
 const logger = require('../../services/logger.service')
 const db = require('../../database');
 
-async function query() {
+async function query({ postId, userId, type }) {
     try {
-        const comments = await db.query(`select * from comments`);
-        return comments
+        if (type === 'post-preview') {
+
+            let userIds = [userId]
+            const followingIds = await db.query(`select id from following where followerId = $userId`, { $userId: userId });
+            console.log('followingIds', followingIds)
+            userIds = userIds.concat(followingIds.map(following => following.id))
+            let commentIds = []
+            for (let i = 0; i < userIds.length; i++) {
+                const currCommentIds = await db.query(
+                    `select id from comments where postId = $postId 
+                        and userId = $userId`, {
+                    $postId: postId,
+                    $userId: userIds[i]
+                }
+                );
+                commentIds = commentIds.concat(currCommentIds)
+            }
+            console.log('commentIds', commentIds)
+            let comments = commentIds.map(commentId => {
+                return getById(commentId.id)
+            })
+            comments = await Promise.all(comments)
+            return comments
+        }
+        else if (type === 'post-details') {
+            const commentIds = await db.query(`select id from comments where postId = $postId`, { $postId: postId });
+            let comments = commentIds.map(commentId => {
+                return getById(commentId.id)
+            })
+            comments = await Promise.all(comments)
+            return comments
+        }
     } catch (err) {
         logger.error('cannot find comments', err)
         throw err
@@ -17,6 +47,9 @@ async function getById(commentId) {
         if (comments.length === 0) {
             return 'comment not found';
         }
+        const user = await db.query(`select id, username, fullname, imgUrl from users where id = $id limit 1`, { $id: comments[0].userId });
+        comments[0].by = user[0];
+        delete comments[0].userId;
         return comments[0]
     } catch (err) {
         logger.error(`while finding comment ${commentId}`, err)
@@ -38,7 +71,7 @@ async function update(comment) {
         await db.exec(`update comments set userId = $userId, postId = $postId, text = $text, createdAt = $createdAt, likes = $likes where id = $id`, {
             $userId: comment.userId,
             $postId: comment.postId,
-            $text: comment.txt,
+            $text: comment.text,
             $createdAt: comment.createdAt,
             $likes: comment.likes,
             $id: comment.id
@@ -53,11 +86,11 @@ async function update(comment) {
 async function add(comment) {
     try {
         const result = await db.exec(`insert into comments (userId, postId, text, createdAt, likes) values ($userId, $postId, $text, $createdAt, $likes)`, {
-            $userId: comment.userId,
+            $userId: comment.by.id,
             $postId: comment.postId,
-            $text: comment.txt,
-            $createdAt: comment.createdAt,
-            $likes: comment.likes
+            $text: comment.text,
+            $createdAt: Date.now(),
+            $likes: 0
         })
         comment.id = result.lastID;
         return comment

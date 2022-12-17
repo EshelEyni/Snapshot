@@ -12,9 +12,11 @@ const authRoutes = require('./api/auth/auth.routes')
 const commentRoutes = require('./api/comment/comment.routes')
 const tagRoutes = require('./api/tag/tag.routes.js')
 const loactionRoutes = require('./api/location/location.routes')
-const notificationRoutes = require('./api/notification/notification.routes.js')
+const notificationRoutes = require('./api/notification/notification.routes')
 const storyRoutes = require('./api/story/story.routes')
 const likeRoutes = require('./api/like/like.routes')
+const followerRoutes = require('./api/followers/followers.routes')
+const followingRoutes = require('./api/following/following.routes')
 
 // Express App Config
 app.use(cookieParser())
@@ -45,6 +47,8 @@ app.use('/api/location', loactionRoutes)
 app.use('/api/notification', notificationRoutes)
 app.use('/api/story', storyRoutes)
 app.use('/api/like', likeRoutes)
+app.use('/api/followers', followerRoutes)
+app.use('/api/following', followingRoutes)
 
 app.get('/**', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'))

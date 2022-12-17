@@ -21,10 +21,11 @@ export class SearchService {
   tagService = inject(TagService);
   http = inject(HttpClient);
 
+
   public async search(searchTerm: string): Promise<{ users: User[], tags: Tag[] }> {
     searchTerm = searchTerm.toLowerCase();
     let users: User[] = await lastValueFrom(this.userService.getUsers(searchTerm));
-    let tags = await lastValueFrom(this.tagService.getTags(searchTerm));
+    let tags = await lastValueFrom(this.tagService.getTags({ name: searchTerm }));
     return { users: [...users], tags: [...tags] }
   }
 

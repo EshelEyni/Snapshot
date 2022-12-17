@@ -16,16 +16,16 @@ const STORIES: Story[] = [
   //   watchedBy: [],
   //   createdAt: new Date()
   // },
-  {
-    id: '2134',
-    imgUrls: [
-      { url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664328667/hzazeapkfkxc76iwfuzi.webp', items: [] },
-      { url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666849411/hhcawziwjfnxgjteqjpg.jpg', items: [] }
-    ],
-    by: { id: 'a12F34b907', fullname: 'User 2', username: 'tale', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' },
-    watchedBy: [],
-    createdAt: new Date()
-  },
+  // {
+  //   id: '2134',
+  //   imgUrls: [
+  //     { url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664328667/hzazeapkfkxc76iwfuzi.webp', items: [] },
+  //     { url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666849411/hhcawziwjfnxgjteqjpg.jpg', items: [] }
+  //   ],
+  //   by: { id: 'a12F34b907', fullname: 'User 2', username: 'tale', imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg' },
+  //   watchedBy: [],
+  //   createdAt: new Date()
+  // },
   // {
   //   id: '2135',
   //   imgUrls: [
