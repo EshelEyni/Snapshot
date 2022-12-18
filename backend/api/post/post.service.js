@@ -1,10 +1,6 @@
 const logger = require('../../services/logger.service')
 const db = require('../../database');
 
-// http://localhost:8080/api/user/id/1 - params: /user/id/:id
-// http://localhost:8080/api/user?id=1 - query string: id=1
-
-
 async function query(filter) {
     try {
         return await db.txn(async () => {
@@ -166,11 +162,10 @@ async function add(post) {
     }
 }
 
-
 module.exports = {
     query,
     getById,
     remove,
     update,
-    add
+    add,
 }

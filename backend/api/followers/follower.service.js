@@ -1,9 +1,9 @@
 const logger = require('../../services/logger.service')
 const db = require('../../database');
 
-async function query() {
+async function query(userId) {
     try {
-        return await db.query(`select * from followers`);
+        return await db.query(`select * from followers where userId = $userId`, { $userId: userId });
     } catch (err) {
         logger.error('cannot find followers', err)
         throw err

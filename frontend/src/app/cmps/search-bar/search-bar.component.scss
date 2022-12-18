@@ -3,26 +3,66 @@
 @import '../../../assets/styles/setup/mixins';
 
 .search-bar {
-    display: flex;
-    align-items: center;
 
-    input {
-        width: rem(365px);
-        height: rem(40px);
-        padding: rem(3px) rem(16px);
-        background-color: var(--input-bg-color);
-        border-radius: rem(8px);
-        color: var(--input-placeholder-color);
+    .search-all-input-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        input {
+            width: rem(365px);
+            height: rem(40px);
+            padding: rem(3px) rem(16px);
+            background-color: var(--input-bg-color);
+            border-radius: rem(8px);
+            color: var(--input-placeholder-color);
+        }
+
+        .btn-container {
+            position: relative;
+            left: -25px;
+            color: var(--input-placeholder-color);
+
+            svg-icon {
+                width: rem(20px);
+                height: rem(20px);
+            }
+        }
     }
 
-    .btn-container {
-        position: relative;
-        left: -25px;
-        color: var(--input-placeholder-color);
+    .user-search-input-container {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: rem(16px);
+        width: 100%;
+           font-family: var(--primary-font);
 
-        svg-icon{
-            width: rem(20px);
-            height: rem(20px);
+        label {
+            font-size: rem(16px);
+            font-weight: 600;
+            color: var(--primary-color);
+            text-transform: capitalize;
+            letter-spacing: 0.5px;
+        }
+
+        input {
+            width: 100%;
+            height: rem(45px);
+            border: none;
+            border-radius: rem(5px);
+            color: var(--primary-color);
+            font-size: rem(14px);
+            text-transform: capitalize;
+            letter-spacing: 0.5px;
+            padding: 0 rem(16px);
+
+            &::placeholder {
+                color: var(--input-placeholder-secondary-color);
+                font-size: rem(14px);
+                text-transform: capitalize;
+                letter-spacing: 0.5px;
+            }
         }
     }
 }

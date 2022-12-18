@@ -10,22 +10,25 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
   selector: 'search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
+  inputs: ['isUserSearch'],
   outputs: ['searchFinished', 'recentSearches']
 })
 export class SearchBarComponent implements OnInit {
-  
+
   constructor() {
   }
-  
+
   utilService = inject(UtilService)
   searchService = inject(SearchService)
   tagService = inject(TagService)
-  
-  searchFinished = new EventEmitter<{ users: User[], tags: Tag[]}>();
+
+  searchFinished = new EventEmitter<{ users: User[], tags: Tag[] }>();
   faCircleXmark = faCircleXmark;
   searchTerm: string = ''
   isLoading: boolean = false;
+  isUserSearch: boolean = false;
   searchResults: { users: User[], tags: Tag[] } = { users: [], tags: [] }
+  userSearchResults: User[] = []
 
   ngOnInit(): void {
 
@@ -42,12 +45,15 @@ export class SearchBarComponent implements OnInit {
   }
 
   async handleSearch() {
-    this.isLoading = true
-    const res = await this.searchService.search(this.searchTerm)
-    this.searchResults = res
-    this.searchFinished.emit(this.searchResults)
-
-    this.isLoading = false
+    if (!this.isUserSearch) {
+      this.isLoading = true
+      this.searchResults = await this.searchService.search(this.searchTerm)
+      this.searchFinished.emit(this.searchResults)
+      this.isLoading = false
+    } else {
+      this.userSearchResults = await this.searchService.searchForUsers(this.searchTerm)
+      this.searchFinished.emit(this.searchResults)
+    }
 
   }
 

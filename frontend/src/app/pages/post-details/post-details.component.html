@@ -1,4 +1,5 @@
-<main class="post-details" *ngIf="loggedinUser">
+<main class="post-details" *ngIf="loggedinUser" [class.is-home]="isHome">
+  <div class="main-screen dark-mode" *ngIf="isHome" routerLink="/"></div>
   <div class="main-container">
     <article class="post">
       <img-container [imgUrls]="post.imgUrls"></img-container>
@@ -37,6 +38,9 @@
       </div>
     </article>
 
+  </div>
+
+  <div class="post-list-container" *ngIf="!isHome && userPosts.length">
     <hr />
 
     <p>
@@ -46,5 +50,6 @@
       </span>
     </p>
     <post-list [posts]="userPosts" [isMiniPreview]="true"></post-list>
+
   </div>
 </main>

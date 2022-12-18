@@ -124,4 +124,25 @@ export class UserService {
     }
     return snapShotUser
   }
+
+  public getFollowers(userId: string): Observable<MiniUser[]> {
+    return this.http.get<MiniUser[]>(
+      `http://localhost:3030/api/user/followers/${userId}`,
+    )
+  }
+
+  public async getFollowings(followerId: string): Promise<MiniUser[]> {
+    const options = {
+      params: {
+        followerId,
+      }
+    }
+    return await lastValueFrom(
+      this.http.get<MiniUser[]>(
+        `http://localhost:3030/api/following`, options
+      )
+    )
+  }
+
+  
 }

@@ -1,17 +1,24 @@
 const logger = require('../../services/logger.service')
 const db = require('../../database');
 
-async function getLikesForPost(postId) {
+async function getLikesForPost({ userId, postId }) {
     try {
-        const likes = await db.query(`select * from postsLikedBy where postId = $postId`, {
-            $postId: postId
-        });
-        console.log('likes', likes)
-        return likes
+        if (userId) {
+            const likes = await db.query(`select * from postsLikedBy where postId = $postId and userId = $userId`, {
+                $postId: postId,
+                $userId: userId
+            });
+            return likes
+        } else {
+            const likes = await db.query(`select * from postsLikedBy where postId = $postId`, {
+                $postId: postId
+            });
+            return likes
+        }
     } catch (err) {
         logger.error('cannot find likes', err)
         throw err
-    } 
+    }
 }
 
 
@@ -27,7 +34,7 @@ async function addLikeToPost({ postId, userId }) {
         throw err
     }
 }
-  
+
 async function deleteLikeToPost({ postId, userId }) {
     try {
         await db.exec(`delete from postsLikedBy where postId = $postId and userId = $userId`, {

@@ -27,7 +27,11 @@ const routes: Routes = [
   { path: 'story-edit', component: StoryEditComponent, canActivate: [AuthGuard] },
   { path: 'explore', component: ExploreComponent, canActivate: [AuthGuard] },
   { path: 'inbox', component: MessagesComponent, canActivate: [AuthGuard] },
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  {
+    path: '', component: HomeComponent, canActivate: [AuthGuard], children: [
+      { path: 'h/post/:id', component: PostDetailsComponent, resolve: { post: PostResolver }, data: { isHome: true } },
+    ]
+  },
 ];
 
 @NgModule({

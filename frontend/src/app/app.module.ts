@@ -68,7 +68,6 @@ import { LikeIconComponent } from './cmps/like-icon/like-icon.component';
 import { MsgEditComponent } from './cmps/msg-edit/msg-edit.component';
 import { QuickReactionComponent } from './cmps/quick-reaction/quick-reaction.component';
 import { FileInputComponent } from './cmps/file-input/file-input.component';
-import { CanvasEditComponent } from './cmps/canvas-edit/canvas-edit.component';
 import { TxtInputComponent } from './cmps/txt-input/txt-input.component';
 import { ColorPickerComponent } from './cmps/color-picker/color-picker.component';
 import { FontPickerComponent } from './cmps/font-picker/font-picker.component';
@@ -77,6 +76,8 @@ import { StrokeTypePickerComponent } from './cmps/stroke-type-picker/stroke-type
 import { StickerPickerComponent } from './cmps/sticker-picker/sticker-picker.component';
 import { ImgListComponent } from './cmps/img-list/img-list.component';
 import { OptionModalComponent } from './cmps/option-modal/option-modal.component';
+import { StoryCanvasComponent } from './cmps/story-canvas/story-canvas.component';
+import { PostCanvasComponent } from './cmps/post-canvas/post-canvas.component';
 
 @NgModule({
   declarations: [
@@ -124,7 +125,6 @@ import { OptionModalComponent } from './cmps/option-modal/option-modal.component
     MsgEditComponent,
     QuickReactionComponent,
     FileInputComponent,
-    CanvasEditComponent,
     TxtInputComponent,
     ColorPickerComponent,
     FontPickerComponent,
@@ -133,6 +133,8 @@ import { OptionModalComponent } from './cmps/option-modal/option-modal.component
     StickerPickerComponent,
     ImgListComponent,
     OptionModalComponent,
+    StoryCanvasComponent,
+    PostCanvasComponent,
   ],
   imports: [
     BrowserAnimationsModule,

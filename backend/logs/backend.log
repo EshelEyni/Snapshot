@@ -338,3 +338,39 @@
 17.12.2022, 19:52:41 - INFO - Server is running on port: 3030 
 17.12.2022, 20:01:16 - INFO - Server is running on port: 3030 
 17.12.2022, 20:24:49 - INFO - Server is running on port: 3030 
+17.12.2022, 22:23:56 - INFO - Server is running on port: 3030 
+17.12.2022, 22:24:18 - INFO - Server is running on port: 3030 
+17.12.2022, 22:25:13 - INFO - Server is running on port: 3030 
+17.12.2022, 22:31:31 - INFO - Server is running on port: 3030 
+17.12.2022, 22:32:15 - INFO - Server is running on port: 3030 
+17.12.2022, 22:58:19 - INFO - Server is running on port: 3030 
+17.12.2022, 22:59:41 - INFO - Server is running on port: 3030 
+17.12.2022, 23:01:24 - INFO - Server is running on port: 3030 
+17.12.2022, 23:01:37 - INFO - Server is running on port: 3030 
+17.12.2022, 23:02:21 - INFO - Server is running on port: 3030 
+17.12.2022, 23:04:21 - INFO - Server is running on port: 3030 
+17.12.2022, 23:12:22 - INFO - Server is running on port: 3030 
+17.12.2022, 23:14:06 - INFO - Server is running on port: 3030 
+17.12.2022, 23:16:59 - INFO - Server is running on port: 3030 
+17.12.2022, 23:17:20 - INFO - Server is running on port: 3030 
+17.12.2022, 23:17:25 - INFO - Server is running on port: 3030 
+17.12.2022, 23:19:55 - INFO - Server is running on port: 3030 
+17.12.2022, 23:22:02 - INFO - Server is running on port: 3030 
+17.12.2022, 23:22:06 - ERROR - Failed to save post | ReferenceError: postService is not defined 
+17.12.2022, 23:22:52 - INFO - Server is running on port: 3030 
+17.12.2022, 23:22:56 - ERROR - cannot save post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: savedPosts.postId 
+17.12.2022, 23:22:56 - ERROR - Failed to save post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: savedPosts.postId 
+17.12.2022, 23:24:34 - INFO - Server is running on port: 3030 
+17.12.2022, 23:26:27 - INFO - Server is running on port: 3030 
+17.12.2022, 23:26:58 - INFO - Server is running on port: 3030 
+17.12.2022, 23:28:17 - INFO - Server is running on port: 3030 
+18.12.2022, 0:10:37 - ERROR - cannot update post 3 | Failed to commit transaction: TypeError: post.tags is not iterable 
+18.12.2022, 0:10:37 - ERROR - Failed to update post | Failed to commit transaction: TypeError: post.tags is not iterable 
+18.12.2022, 0:10:38 - ERROR - cannot update post 3 | Failed to commit transaction: TypeError: post.tags is not iterable 
+18.12.2022, 0:10:38 - ERROR - Failed to update post | Failed to commit transaction: TypeError: post.tags is not iterable 
+18.12.2022, 1:52:44 - INFO - Server is running on port: 3030 
+18.12.2022, 1:55:31 - INFO - Server is running on port: 3030 
+18.12.2022, 1:55:58 - INFO - Server is running on port: 3030 
+18.12.2022, 1:56:12 - INFO - Server is running on port: 3030 
+18.12.2022, 1:56:49 - INFO - Server is running on port: 3030 
+18.12.2022, 1:57:19 - INFO - Server is running on port: 3030 

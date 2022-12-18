@@ -6,7 +6,7 @@ const { getLikesForComment,  addLikeToComment, deleteLikeToComment } = require('
 const { getLikesForStory,  addLikeToStory, deleteLikeToStory } = require('./story.like.controller.js')
 
 
-router.get('/post/:id', getLikesForPost)
+router.get('/post', getLikesForPost)
 router.post('/post', addLikeToPost)
 router.delete('/post', deleteLikeToPost)
 

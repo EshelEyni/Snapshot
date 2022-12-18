@@ -27,6 +27,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   }
 
   post!: Post
+  isHome: boolean = false
   paramsSubscription!: Subscription
 
   loggedinUser$: Observable<User | null>
@@ -41,10 +42,11 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     if (loggedinUser) {
       this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
     }
-    
+
     this.paramsSubscription = this.route.data.subscribe((data) => {
       const post = data['post']
-      console.log('post', post)
+      const isHome = data['isHome']
+      this.isHome = isHome
       if (post) this.post = post
     })
 

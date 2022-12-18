@@ -1,5 +1,5 @@
 import { MiniUser } from './../../models/user.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 
 @Component({
@@ -8,7 +8,7 @@ import { User } from 'src/app/models/user.model';
   styleUrls: ['./user-list.component.scss'],
   inputs: ['users', 'type']
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent implements OnInit, OnChanges {
 
   constructor() { }
 
@@ -22,8 +22,31 @@ export class UserListComponent implements OnInit {
 
   }
 
+  ngOnChanges() {
+    this.users = [...this.users];
+  }
+
   setTitle() {
-    if (this.type === 'suggestion-list') this.title = 'Suggestion For You';
-    else this.title = 'Users';
+    switch (this.type) {
+      case 'suggestion-list':
+        this.title = 'Suggestion For You';
+        break;
+      case 'share-modal':
+        this.title = 'Suggested';
+        break;
+      case 'followers-list':
+        this.title = 'Followers';
+        break;
+      case 'followings-list':
+        this.title = 'Followings';
+        break;
+      case 'search-list':
+        this.title = 'Search Results';
+        break;
+      default:
+        this.title = 'Users';
+        break;
+    }
+
   }
 }

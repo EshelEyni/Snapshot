@@ -23,7 +23,8 @@
         grid-template-columns: 1fr 5%;
         grid-template-rows: 1fr;
         align-items: center;
-        height: rem(40px);
+        height: rem(50px);
+        border-bottom: 1px solid var(--border-color);
 
         h1 {
             grid-column: 1/2;
@@ -34,6 +35,7 @@
             font-size: rem(16px);
             font-weight: 600;
             text-transform: capitalize;
+            letter-spacing: 0.5px;
         }
 
         fa-icon {
@@ -41,10 +43,25 @@
             font-size: rem(24px);
             cursor: pointer;
         }
+
     }
 
-    .user-list {
+    .main-container {
         grid-row: 2/3;
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        .search-bar-container {
+            width: 100%;
+            padding: rem(10px) rem(16px);
+            border-bottom: 1px solid var(--border-color);
+
+        }
+
+        // .user-list {}
     }
 
     .btn-container {

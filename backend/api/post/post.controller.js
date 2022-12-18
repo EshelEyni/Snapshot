@@ -7,7 +7,7 @@ async function getPosts(req, res) {
             userId: req.query.userId,
             type: req.query.type,
             limit: 5
-        }) 
+        })
         res.send(posts)
     } catch (err) {
         logger.error('Failed to get posts', err)
@@ -58,10 +58,11 @@ async function addPost(req, res) {
     }
 }
 
+
 module.exports = {
     getPosts,
     getPost,
     deletePost,
     updatePost,
-    addPost
+    addPost,
 }

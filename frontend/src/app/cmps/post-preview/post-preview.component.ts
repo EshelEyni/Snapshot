@@ -41,7 +41,6 @@ export class PostPreviewComponent implements OnInit, OnDestroy {
   loggedinUser!: User
   sub: Subscription | null = null
 
-  // isPostDetailsShown: boolean = false;
   isShareModalShown: boolean = false
   isMainScreen: boolean = false
   commentTxt: string = ''
@@ -52,22 +51,9 @@ export class PostPreviewComponent implements OnInit, OnDestroy {
     })
   }
 
-  onToggleModal(el: string) {
-    switch (el) {
-      case 'share':
-        this.isShareModalShown = !this.isShareModalShown
-        this.isMainScreen = true
-        break
-      // case 'details':
-      // this.isPostDetailsShown = !this.isPostDetailsShown;
-      // this.isMainScreen = true;
-      // break;
-      case 'main-screen':
-        this.isShareModalShown = false
-        // this.isPostDetailsShown = false;
-        this.isMainScreen = false
-        break
-    }
+  onToggleModal() {
+    this.isShareModalShown = !this.isShareModalShown
+    this.isMainScreen = !this.isMainScreen
   }
 
   addCommentToPost(commentIds: string[]) {

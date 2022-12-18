@@ -1,7 +1,7 @@
 <section class="actions">
     <div class="main-btn-container">
         <like-icon [isLiked]="isLiked" (click)="onToggleLike()"></like-icon>
-        <fa-icon [icon]="faComment"></fa-icon> <!-- TODO: add link to post details -->
+        <fa-icon [icon]="faComment" [routerLink]="['h/post/', post.id]"></fa-icon>
         <fa-icon [icon]="faPaperPlane" (click)="onToggleModal()"></fa-icon>
     </div>
     <div class="btn-save-container">

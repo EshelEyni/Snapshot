@@ -11,6 +11,7 @@
     </div>
 
     <ng-template #canvasContainer>
-        <canvas-edit [storyImgs]="storyImgs" (cancel)="onGoBack()"></canvas-edit>
+        <!-- <canvas-edit [storyImgs]="storyImgs" (cancel)="onGoBack()"></canvas-edit> -->
+        <story-canvas [storyImgs]="storyImgs" (cancel)="onGoBack()"></story-canvas>
     </ng-template>
 </main>

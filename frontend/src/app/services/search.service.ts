@@ -29,7 +29,9 @@ export class SearchService {
     return { users: [...users], tags: [...tags] }
   }
 
-
-
+  public async searchForUsers(searchTerm: string): Promise<User[]> {
+    searchTerm = searchTerm.toLowerCase();
+    return await lastValueFrom(this.userService.getUsers(searchTerm));
+  }
 
 }

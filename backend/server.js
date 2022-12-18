@@ -8,6 +8,7 @@ const http = require('http').createServer(app)
 
 const userRoutes = require('./api/user/user.routes')
 const postRoutes = require('./api/post/post.routes')
+const savedPostRoutes = require('./api/savedPost/savedPost.routes.js')
 const authRoutes = require('./api/auth/auth.routes')
 const commentRoutes = require('./api/comment/comment.routes')
 const tagRoutes = require('./api/tag/tag.routes.js')
@@ -49,6 +50,7 @@ app.use('/api/story', storyRoutes)
 app.use('/api/like', likeRoutes)
 app.use('/api/followers', followerRoutes)
 app.use('/api/following', followingRoutes)
+app.use('/api/save-post', savedPostRoutes)
 
 app.get('/**', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'))

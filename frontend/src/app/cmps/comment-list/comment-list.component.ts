@@ -42,7 +42,6 @@ export class CommentListComponent implements OnInit, OnChanges {
         )
       );
       this.comments = comments;
-      console.log('comments', comments);
     } else {
       const comments = await lastValueFrom(
         this.commentService.loadComments(

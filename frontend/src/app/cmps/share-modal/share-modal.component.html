@@ -4,13 +4,10 @@
         <fa-icon (click)="onCloseModal()" [icon]="faX"></fa-icon>
     </header>
     <main class="main-container">
-        <hr>
-        <div class="input-container">
-            <label for="friend-name">to:</label>
-            <input type="text" placeholder="search..." id="friend-name">
+        <div class="search-bar-container">
+            <search-bar [isUserSearch]="true"></search-bar>
         </div>
-        <user-list></user-list>
-        <hr>
+        <user-list [users]="usersToSend" [type]="'share-modal'"></user-list>
     </main>
     <div class="btn-container">
         <button class="clean-btn" [class.btn-on]="usersToSend.length">send</button>

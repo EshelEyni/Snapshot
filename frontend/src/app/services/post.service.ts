@@ -75,7 +75,7 @@ export class PostService {
   }
 
   public getById(postId: string): Observable<Post> {
-    
+
     return this.http.get<Post>(`http://localhost:3030/api/post/${postId}`)
   }
 
@@ -119,4 +119,63 @@ export class PostService {
       tags: [],
     }
   }
+
+  public async checkIsLiked(filterBy: { userId: string, postId: string }): Promise<boolean> {
+    const options = {
+      params: {
+        userId: filterBy.userId,
+        postId: filterBy.postId,
+      }
+    }
+
+    const isLiked = await firstValueFrom(
+      this.http.get(`http://localhost:3030/api/like/post`, options),
+    ) as Array<any>
+    if (isLiked.length) return true
+    return false
+  }
+
+  public async toggleLike(filterBy: { userId: string, postId: string }) {
+    const isLiked = await this.checkIsLiked(filterBy)
+
+    if (isLiked) {
+      await firstValueFrom(
+        this.http.delete(`http://localhost:3030/api/like/post`, { body: filterBy }),
+      )
+    } else {
+      await firstValueFrom(
+        this.http.post(`http://localhost:3030/api/like/post`, filterBy),
+      )
+    }
+  }
+
+  public async checkIsSaved(filterBy: { userId: string, postId: string }): Promise<boolean> {
+    const options = {
+      params: {
+        userId: filterBy.userId,
+        postId: filterBy.postId,
+      }
+    }
+
+    const isSaved = await firstValueFrom(
+      this.http.get(`http://localhost:3030/api/save-post`, options),
+    ) as Array<any>
+    if (isSaved.length) return true
+    return false
+  }
+
+  public async toggleSave(filterBy: { userId: string, postId: string }) {
+    const isSaved = await this.checkIsSaved(filterBy)
+
+    if (isSaved) {
+      await firstValueFrom(
+        this.http.delete(`http://localhost:3030/api/save-post`, { body: filterBy }),
+      )
+    } else {
+      await firstValueFrom(
+        this.http.post(`http://localhost:3030/api/save-post`, filterBy),
+      )
+    }
+  }
+
 }

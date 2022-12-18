@@ -14,12 +14,13 @@ import { faNoteSticky, } from '@fortawesome/free-regular-svg-icons';
 import { faL, faPaintbrush, faT, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'canvas-edit',
-  templateUrl: './canvas-edit.component.html',
-  styleUrls: ['./canvas-edit.component.scss'],
+  selector: 'story-canvas',
+  templateUrl: './story-canvas.component.html',
+  styleUrls: ['./story-canvas.component.scss'],
   inputs: ['storyImgs']
 })
-export class CanvasEditComponent implements OnInit, OnDestroy {
+export class StoryCanvasComponent implements OnInit, OnDestroy {
+
 
   constructor() {
     this.loggedinUser$ = this.store.select('userState').pipe(map((x => x.loggedinUser)));

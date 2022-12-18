@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CanvasEditComponent } from './canvas-edit.component';
+import { PostCanvasComponent } from './post-canvas.component';
 
-describe('CanvasEditComponent', () => {
-  let component: CanvasEditComponent;
-  let fixture: ComponentFixture<CanvasEditComponent>;
+describe('PostCanvasComponent', () => {
+  let component: PostCanvasComponent;
+  let fixture: ComponentFixture<PostCanvasComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CanvasEditComponent ]
+      declarations: [ PostCanvasComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CanvasEditComponent);
+    fixture = TestBed.createComponent(PostCanvasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

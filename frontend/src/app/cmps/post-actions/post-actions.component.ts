@@ -34,14 +34,14 @@ export class PostActionsComponent implements OnInit, OnChanges, OnDestroy {
     private postService: PostService,
     private userService: UserService,
     private store: Store<State>,
-  ) {}
+  ) { }
 
   post!: Post
   loggedinUser!: User
   sub: Subscription | null = null
   isLiked: boolean = false
   isSaved: boolean = false
-  toggleModal = new EventEmitter<string>()
+  toggleModal = new EventEmitter()
 
   // Icons
   faComment = faComment
@@ -50,42 +50,27 @@ export class PostActionsComponent implements OnInit, OnChanges, OnDestroy {
   faBookmarkSolid = faBookmarkSolid
 
   ngOnInit() {
-    this.setPostProporties()
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    // this.isLiked = this.post.likedBy.some(user => user.id === this.loggedinUser.id)
-  }
-
-  setPostProporties() {
-    // this.isLiked = this.post.likedBy.some(user => user.id === this.loggedinUser.id)
-    // this.isSaved = this.loggedinUser.savedPostsIds.some(postId => postId === this.post.id)
+  async ngOnChanges(changes: SimpleChanges) {
+    this.isLiked = await this.postService.checkIsLiked({ postId: this.post.id, userId: this.loggedinUser.id })
+    this.isSaved = await this.postService.checkIsSaved({ postId: this.post.id, userId: this.loggedinUser.id })
   }
 
   onToggleLike() {
-    if (this.isLiked) {
-      // this.post.likedBy = this.post.likedBy.filter(user => user.id !== this.loggedinUser.id);
-    } else {
-      // this.post.likedBy.push(this.userService.getMiniUser(this.loggedinUser));
-    }
-
-    this.postService.save(this.post)
+    this.postService.toggleLike({ postId: this.post.id, userId: this.loggedinUser.id })
     this.isLiked = !this.isLiked
+    this.post.likeSum = this.isLiked ? this.post.likeSum + 1 : this.post.likeSum - 1;
+    this.postService.save(this.post)
   }
 
   onToggleSave() {
-    if (this.isSaved) {
-      // this.loggedinUser.savedPostsIds = this.loggedinUser.savedPostsIds.filter(postId => postId !== this.post.id);
-    } else {
-      // this.loggedinUser.savedPostsIds.push(this.post.id);
-    }
-
-    this.store.dispatch(new SaveUser(this.loggedinUser))
+    this.postService.toggleSave({ postId: this.post.id, userId: this.loggedinUser.id })
     this.isSaved = !this.isSaved
   }
 
   onToggleModal() {
-    this.toggleModal.emit('share')
+    this.toggleModal.emit()
   }
 
   ngOnDestroy() {

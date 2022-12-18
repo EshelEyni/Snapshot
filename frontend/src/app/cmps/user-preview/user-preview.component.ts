@@ -31,7 +31,6 @@ export class UserPreviewComponent implements OnInit {
   async ngOnInit() {
     if (this.type !== 'story-edit' && this.user.id !== 'u100') {
       const user = await lastValueFrom(this.userService.getById(this.user.id))
-      console.log('user', user)
       if (user.currStoryId) {
         const story = await lastValueFrom(
           this.storyService.getById(user.currStoryId),

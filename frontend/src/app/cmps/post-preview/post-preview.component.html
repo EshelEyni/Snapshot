@@ -1,5 +1,5 @@
 <article class="post-preview" *ngIf="loggedinUser">
-  <div class="main-screen dark-mode" *ngIf="isMainScreen" (click)="onToggleModal('main-screen')"></div>
+  <div class="main-screen dark-mode" *ngIf="isMainScreen" (click)="onToggleModal()"></div>
   <div class="post-preview-container" *ngIf="!isMiniPreview; else miniPreview">
     <section class="post-creator">
       <user-preview [user]="post.by" [location]="post.location" [type]="'post-preview'"></user-preview>
@@ -8,12 +8,12 @@
 
     <img-container [imgUrls]="post.imgUrls"></img-container>
 
-    <post-actions [post]="post" [loggedinUser]="loggedinUser" (toggleModal)="onToggleModal('share')"></post-actions>
-    <share-modal *ngIf="isShareModalShown" (close)="onToggleModal('share')"></share-modal>
+    <post-actions [post]="post" [loggedinUser]="loggedinUser" (toggleModal)="onToggleModal()"></post-actions>
+    <share-modal *ngIf="isShareModalShown" (close)="onToggleModal()" [loggedinUser]="loggedinUser"></share-modal>
 
-    <p class="likes">{{ post.likeSum }} likes</p>
+    <p class="likes" *ngIf="post.likeSum">{{ post.likeSum }} likes</p>
 
-    <a class="view-all-link" [routerLink]="['/post/', post.id]" *ngIf="post.commentSum">View all
+    <a class="view-all-link" [routerLink]="['h/post/', post.id]" *ngIf="post.commentSum">View all
       {{post.commentSum}} comments</a>
 
     <comment-list *ngIf="post.commentSum" [postId]="post.id" [isPostPreview]="true"
