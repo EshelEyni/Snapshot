@@ -1,13 +1,15 @@
 <section class="share-modal">
-    <header>
+    <header class="share-modal-header">
         <h1>share</h1>
         <fa-icon (click)="onCloseModal()" [icon]="faX"></fa-icon>
     </header>
-    <main class="main-container">
+    <main class="share-modal-main-container">
         <div class="search-bar-container">
-            <search-bar [isUserSearch]="true"></search-bar>
+            <search-bar [isUserSearch]="true" [usersToSend]="usersToSend"
+                (removeUser)="onRemoveUser($event)"></search-bar>
         </div>
-        <user-list [users]="usersToSend" [type]="'share-modal'"></user-list>
+        <user-list [users]="users" [usersToSend]="usersToSend" [type]="'share-modal'" (addUser)="onAddUser($event)"
+            (removeUser)="onRemoveUser($event)"></user-list>
     </main>
     <div class="btn-container">
         <button class="clean-btn" [class.btn-on]="usersToSend.length">send</button>

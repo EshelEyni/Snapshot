@@ -3,8 +3,8 @@
         <user-preview *ngIf="!isHighlight && !isStoryDetails && !isCurrStory && !isLinkToStoryEdit" [user]="story.by"
             [type]="'home-page-list'">
         </user-preview>
-        <user-preview *ngIf="isLinkToStoryEdit" [isLinkToStoryEdit]="true"
-            [user]="userService.getMiniUser(loggedinUser)" [type]="'link-to-story-edit'"></user-preview>
+        <user-preview *ngIf="isLinkToStoryEdit" [user]="userService.getMiniUser(loggedinUser)"
+            [type]="'link-to-story-edit'"></user-preview>
     </div>
 
     <div class="highlight-container" *ngIf="isHighlight">

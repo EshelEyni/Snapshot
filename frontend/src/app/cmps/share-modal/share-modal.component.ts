@@ -20,17 +20,29 @@ export class ShareModalComponent implements OnInit {
   faX = faX;
 
   loggedinUser!: User;
+  users: MiniUser[] = [];
   usersToSend: MiniUser[] = [];
   close = new EventEmitter();
 
   async ngOnInit() {
-    console.log('loggedinUser', this.loggedinUser);
-    this.usersToSend = await this.userService.getFollowings(this.loggedinUser.id);
-    console.log('usersToSend', this.usersToSend);
+    this.users = await this.userService.getFollowings(this.loggedinUser.id);
+  }
+
+  onAddUser(user: MiniUser) {
+    this.usersToSend.push(user);
+  }
+
+  onRemoveUser(user: MiniUser) {
+    const idx = this.usersToSend.findIndex(currUser => currUser.id === user.id);
+    this.usersToSend.splice(idx, 1);
   }
 
   onCloseModal() {
     this.close.emit();
-    console.log('onCloseModal');
   }
+
+  onSend() {
+    console.log('onSend');
+  }
+
 }

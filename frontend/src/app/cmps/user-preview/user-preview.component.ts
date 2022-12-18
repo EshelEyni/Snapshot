@@ -10,23 +10,30 @@ import { lastValueFrom } from 'rxjs'
   selector: 'user-preview',
   templateUrl: './user-preview.component.html',
   styleUrls: ['./user-preview.component.scss'],
-  inputs: ['user', 'desc', 'type', 'isLinkToStoryEdit', 'location'],
+  inputs: ['user', 'type', 'location'],
 })
 export class UserPreviewComponent implements OnInit {
-  constructor() {}
-  userService = inject(UserService)
-  storyService = inject(StoryService)
-  user!: MiniUser
-  desc!: string
-  story!: Story
-  isWatched: boolean = false
-  type!: string
-  location!: Location | null
-  urlForImg: string = ''
-  urlForTitle: string = ''
-  urlForDesc: string = ''
-  title = ''
-  isLinkToStoryEdit!: boolean
+
+  constructor() { }
+
+  userService = inject(UserService);
+  storyService = inject(StoryService);
+
+  user!: MiniUser;
+
+  story!: Story;
+  isWatched: boolean = false;
+
+  type!: string;
+
+  desc!: string;
+  title = '';
+
+  location!: Location | null;
+  urlForImg: string = '';
+  urlForTitle: string = '';
+  urlForDesc: string = '';
+  isUrlsDisabled!: boolean;
 
   async ngOnInit() {
     if (this.type !== 'story-edit' && this.user.id !== 'u100') {
@@ -40,7 +47,7 @@ export class UserPreviewComponent implements OnInit {
         )
         this.story = story
       } else {
-        this.type = 'no-story'
+        // this.type = 'no-story'
       }
     }
     this.title = this.setTitle()
@@ -79,12 +86,14 @@ export class UserPreviewComponent implements OnInit {
         this.urlForTitle = `/profile/${this.user.id}`
         break
       case 'link-to-story-edit':
-        this.urlForImg = `/story-edit/`
-        this.urlForTitle = `/story-edit/`
-        this.isLinkToStoryEdit = true
+        this.urlForImg = `/story-edit`
+        this.urlForTitle = `/story-edit`
         break
       case 'story-edit-page':
-        this.isLinkToStoryEdit = true
+        this.isUrlsDisabled = true;
+        break
+      case 'share-modal':
+        this.isUrlsDisabled = true;
         break
       default:
         this.urlForImg = `/`

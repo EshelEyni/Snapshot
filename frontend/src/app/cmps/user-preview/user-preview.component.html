@@ -1,13 +1,13 @@
 <section class="user-preview" (click)="setWatchedStory()" [class.is-watched]="isWatched"
-    [class.is-no-story]="type==='no-story'" [class.user-story]="isLinkToStoryEdit">
-    <div class="img-container" routerLink="{{urlForImg}}" [class.disabled]="type === 'story-edit-page' ? true : null">
+    [class.is-no-story]="!story" [class.user-story]="type==='link-to-story-edit'">
+    <div class="img-container" routerLink="{{urlForImg}}" [class.disabled]="isUrlsDisabled">
         <img src={{user.imgUrl}} alt="user-img">
-        <div class="plus-circle-container" *ngIf="isLinkToStoryEdit">
+        <div class="plus-circle-container" *ngIf="type==='link-to-story-edit'">
             <svg-icon src="../../../assets/svgs/plus-circle.svg"></svg-icon>
         </div>
     </div>
     <section class="user-info">
-        <h3 routerLink="{{urlForTitle}}" [class.disabled]="type === 'story-edit-page' ? true : null">{{title}}</h3>
+        <h3 routerLink="{{urlForTitle}}" [class.disabled]="isUrlsDisabled">{{title}}</h3>
         <div *ngIf="desc">
             <p class="location" routerLink="{{urlForDesc}}">{{desc}}</p>
         </div>

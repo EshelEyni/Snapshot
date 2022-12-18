@@ -49,7 +49,6 @@ import { UserPreviewComponent } from './cmps/user-preview/user-preview.component
 import { EllipsisComponent } from './cmps/ellipsis/ellipsis.component';
 import { PostActionsComponent } from './cmps/post-actions/post-actions.component';
 import { CommentEditComponent } from './cmps/comment-edit/comment-edit.component';
-import { SideBarIconDirective } from './directives/side-bar-icon.directive';
 import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
 import { SearchBarComponent } from './cmps/search-bar/search-bar.component';
 import { SearchModalComponent } from './cmps/search-modal/search-modal.component';
@@ -106,7 +105,6 @@ import { PostCanvasComponent } from './cmps/post-canvas/post-canvas.component';
     EllipsisComponent,
     PostActionsComponent,
     CommentEditComponent,
-    SideBarIconDirective,
     ProfileEditComponent,
     SearchBarComponent,
     SearchModalComponent,

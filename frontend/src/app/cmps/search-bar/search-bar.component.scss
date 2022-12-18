@@ -2,7 +2,7 @@
 @import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
-.search-bar {
+::ng-deep .search-bar {
 
     .search-all-input-container {
         position: relative;
@@ -36,7 +36,7 @@
         justify-content: start;
         gap: rem(16px);
         width: 100%;
-           font-family: var(--primary-font);
+        font-family: var(--primary-font);
 
         label {
             font-size: rem(16px);
@@ -63,6 +63,11 @@
                 text-transform: capitalize;
                 letter-spacing: 0.5px;
             }
+        }
+
+        .user-list {
+            padding: 0;
+            
         }
     }
 }
