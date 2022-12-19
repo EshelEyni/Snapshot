@@ -44,35 +44,6 @@ export class PostService {
     this._posts$.next(posts)
   }
 
-  private async _getFilteredPosts(
-    posts: Post[],
-    filterBy: { userId: string; type: string },
-  ): Promise<Post[]> {
-    if (filterBy.type === 'createdPosts') {
-      return posts.filter((post) => post.by.id === filterBy.userId)
-    } else {
-      const user = await lastValueFrom(
-        this.userService.getById(filterBy.userId),
-      )
-      const _posts: Post[] = []
-      // if (filterBy.type === 'savedPosts') {
-      //   user.savedPostsIds.forEach(async postId => {
-      //     const post = await asyncStorageService.get(ENTITY, postId) as Post
-      //     _posts.push(post)
-      //   })
-      //   return _posts
-      // }
-      if (filterBy.type === 'taggedPosts') {
-        const userName = user.username
-        posts.forEach((post) => {
-          if (post.tags.includes('#' + userName)) _posts.push(post)
-        })
-        return _posts
-      }
-    }
-
-    return []
-  }
 
   public getById(postId: string): Observable<Post> {
 
@@ -120,6 +91,20 @@ export class PostService {
     }
   }
 
+  public async getUsersWhoLiked(postId: string): Promise<MiniUser[]> {
+    const options = {
+      params: {
+        postId,
+      }
+    }
+
+    const likes = await firstValueFrom(
+      this.http.get<MiniUser[]>(`http://localhost:3030/api/like/post/`, options),
+    )
+    return likes
+  }
+
+
   public async checkIsLiked(filterBy: { userId: string, postId: string }): Promise<boolean> {
     const options = {
       params: {
@@ -135,16 +120,16 @@ export class PostService {
     return false
   }
 
-  public async toggleLike(filterBy: { userId: string, postId: string }) {
-    const isLiked = await this.checkIsLiked(filterBy)
+  public async toggleLike(details: { user: MiniUser, postId: string }) {
+    const isLiked = await this.checkIsLiked({ userId: details.user.id, postId: details.postId })
 
     if (isLiked) {
       await firstValueFrom(
-        this.http.delete(`http://localhost:3030/api/like/post`, { body: filterBy }),
+        this.http.delete(`http://localhost:3030/api/like/post`, { body: details }),
       )
     } else {
       await firstValueFrom(
-        this.http.post(`http://localhost:3030/api/like/post`, filterBy),
+        this.http.post(`http://localhost:3030/api/like/post`, details),
       )
     }
   }

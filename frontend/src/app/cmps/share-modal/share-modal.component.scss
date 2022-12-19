@@ -74,14 +74,15 @@
                 }
             }
 
-            ul {
+            .default-list {
                 display: flex;
                 width: 100%;
-                
+
                 li {
                     display: flex;
                     justify-content: space-between;
                     width: 100%;
+                    padding: rem(16px);
 
                     .user-preview {
                         flex-direction: row;
@@ -90,6 +91,10 @@
                             width: rem(50px);
                             height: rem(50px);
                         }
+                    }
+
+                    &:hover {
+                        background-color: var(--primary-bg);
                     }
                 }
             }

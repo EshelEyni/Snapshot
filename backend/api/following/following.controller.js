@@ -4,7 +4,7 @@ const logger = require('../../services/logger.service')
 
 async function getFollowings(req, res) {
     try {
-        const following = await followingService.query(followerId = req.query.followerId)
+        const following = await followingService.query(followerId = req.query.followerId, userToCheckId = req.query.userToCheckId)
         res.send(following)
     } catch (err) {
         logger.error('Failed to get following', err)
@@ -24,7 +24,7 @@ async function getFollowing(req, res) {
 
 async function deleteFollowing(req, res) {
     try {
-        await followingService.remove(req.params.id)
+        await followingService.remove(req.body.followerId, req.body.userId)
         res.send({ msg: 'Deleted successfully' })
     } catch (err) {
         logger.error('Failed to delete following', err)

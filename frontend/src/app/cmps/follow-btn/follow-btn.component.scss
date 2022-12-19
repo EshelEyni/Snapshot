@@ -1,0 +1,20 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
+
+.btn-container {
+    .btn-follow {
+        background-color: var(--primary-button);
+        color: white;
+        border-radius: 5px;
+        padding: rem(7.5px) rem(15px);
+        font-weight: 600;
+    }
+
+    .btn-unfollow {
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        padding: rem(7.5px) rem(15px);
+        font-weight: 600;
+    }
+}

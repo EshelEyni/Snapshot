@@ -41,7 +41,8 @@ export class PostPreviewComponent implements OnInit, OnDestroy {
   loggedinUser!: User
   sub: Subscription | null = null
 
-  isShareModalShown: boolean = true
+  isShareModalShown: boolean = false
+  isLikeModalShown: boolean = true
   isMainScreen: boolean = true
   commentTxt: string = ''
 
@@ -51,8 +52,19 @@ export class PostPreviewComponent implements OnInit, OnDestroy {
     })
   }
 
-  onToggleModal() {
-    this.isShareModalShown = !this.isShareModalShown
+  onToggleModal(el: string) {
+    switch (el) {
+      case 'share-modal':
+        this.isShareModalShown = !this.isShareModalShown
+        break
+      case 'like-modal':
+        this.isLikeModalShown = !this.isLikeModalShown
+        break
+      case 'main-screen':
+        if(this.isShareModalShown) this.isShareModalShown = !this.isShareModalShown
+        if(this.isLikeModalShown) this.isLikeModalShown = !this.isLikeModalShown
+        break
+    }
     this.isMainScreen = !this.isMainScreen
   }
 

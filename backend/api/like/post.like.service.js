@@ -1,7 +1,7 @@
 const logger = require('../../services/logger.service')
 const db = require('../../database');
 
-async function getLikesForPost({ userId, postId }) {
+async function getLikesForPost({ postId, userId }) {
     try {
         if (userId) {
             const likes = await db.query(`select * from postsLikedBy where postId = $postId and userId = $userId`, {
@@ -13,6 +13,11 @@ async function getLikesForPost({ userId, postId }) {
             const likes = await db.query(`select * from postsLikedBy where postId = $postId`, {
                 $postId: postId
             });
+
+            likes.forEach(like => {
+                like.id = like.userId
+                delete like.userId
+            })
             return likes
         }
     } catch (err) {
@@ -22,11 +27,16 @@ async function getLikesForPost({ userId, postId }) {
 }
 
 
-async function addLikeToPost({ postId, userId }) {
+async function addLikeToPost({ postId, user }) {
     try {
-        const like = await db.exec(`insert into postsLikedBy (postId, userId) values ($postId, $userId)`, {
+        const like = await db.exec(
+            `insert into postsLikedBy (postId, userId, username, fullname, imgUrl) 
+            values ($postId, $userId, $username, $fullname, $imgUrl)`, {
             $postId: postId,
-            $userId: userId
+            $userId: user.id,
+            $username: user.username,
+            $fullname: user.fullname,
+            $imgUrl: user.imgUrl
         });
         return like
     } catch (err) {

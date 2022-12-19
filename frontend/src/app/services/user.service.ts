@@ -125,11 +125,11 @@ export class UserService {
     return snapShotUser
   }
 
-  public getFollowers(userId: string): Observable<MiniUser[]> {
-    return this.http.get<MiniUser[]>(
-      `http://localhost:3030/api/user/followers/${userId}`,
-    )
-  }
+  // public getFollowers(userId: string): Observable<MiniUser[]> {
+  //   return this.http.get<MiniUser[]>(
+  //     `http://localhost:3030/api/user/followers/${userId}`,
+  //   )
+  // }
 
   public async getFollowings(followerId: string): Promise<MiniUser[]> {
     const options = {
@@ -144,5 +144,38 @@ export class UserService {
     )
   }
 
-  
+  public async checkIsFollowing(loggedinUserId: string, userToCheckId: string): Promise<boolean> {
+    const options = {
+      params: {
+        followerId: loggedinUserId,
+        userToCheckId
+      }
+    }
+    const isFollowing = await lastValueFrom(
+      this.http.get(`http://localhost:3030/api/following`, options)
+    ) as Array<any>
+    return isFollowing.length > 0
+  }
+
+  public async toggleFollow(isFollowing: boolean, loggedinUserId: string, user: MiniUser) {
+
+    if (isFollowing) {
+      await firstValueFrom(
+        this.http.delete(`http://localhost:3030/api/following`, { body: { followerId: loggedinUserId, userId: user.id } })
+      )
+    } else {
+      await firstValueFrom(
+        this.http.post(`http://localhost:3030/api/following`, {
+          followerId: loggedinUserId,
+          userId: user.id,
+          username: user.username,
+          fullname: user.fullname,
+          imgUrl: user.imgUrl,
+        })
+      )
+    }
+
+  }
+
+
 }

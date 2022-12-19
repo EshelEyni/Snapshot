@@ -1,5 +1,8 @@
+import { Observable, Subscription, map } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { State } from './../../store/store';
 import { MiniUser } from './../../models/user.model';
-import { Component, OnInit, OnChanges, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, EventEmitter, SimpleChanges, OnDestroy } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 
 @Component({
@@ -9,13 +12,25 @@ import { User } from 'src/app/models/user.model';
   inputs: ['users', 'usersToSend', 'type'],
   outputs: ['addUser', 'removeUser']
 })
-export class UserListComponent implements OnInit, OnChanges {
+export class UserListComponent implements OnInit, OnChanges, OnDestroy {
 
-  constructor() { }
+  constructor(
+    private store: Store<State>
+
+  ) {
+    this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
+
+  }
+
+  loggedinUser$: Observable<User | null>
+  loggedinUser!: User
+  sub: Subscription | null = null;
 
   users!: MiniUser[];
   usersToSend!: MiniUser[];
   type!: string;
+
+  isTitle: boolean = true;
   title: string = '';
 
   isSelectUser: { userId: string, idx: number, isSelected: boolean }[] = [];
@@ -24,11 +39,18 @@ export class UserListComponent implements OnInit, OnChanges {
 
 
   ngOnInit(): void {
+    this.sub = this.loggedinUser$.subscribe(user => {
+      if (user) {
+        this.loggedinUser = JSON.parse(JSON.stringify(user))
+        console.log('this.loggedinUser userlist', this.loggedinUser);
+        console.log('this.users userlist', this.users);
+      }
+    })
     this.setTitle();
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.users = this.users;
+    // this.users = this.users;
 
     if (this.type === 'share-modal') {
       this.setIsSelectUser();
@@ -70,22 +92,29 @@ export class UserListComponent implements OnInit, OnChanges {
       case 'share-modal':
         this.title = 'Suggested';
         break;
-      case 'followers-list':
-        this.title = 'Followers';
+      case 'like-modal':
+        this.isTitle = false;
         break;
-      case 'followings-list':
-        this.title = 'Followings';
-        break;
+      // case 'followers-list':
+      //   this.title = 'Followers';
+      //   break;
+      // case 'followings-list':
+      //   this.title = 'Followings';
+      //   break;
       case 'search-list':
         this.title = 'Search Results';
         break;
-      // case 'search-bar-list':
-      // this.title = 'Search Results';
-      // break;
+      case 'search-bar-list':
+        this.isTitle = false;
+        break;
       default:
         this.title = 'Users';
         break;
     }
 
+  }
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe()
   }
 }

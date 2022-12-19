@@ -77,6 +77,9 @@ import { ImgListComponent } from './cmps/img-list/img-list.component';
 import { OptionModalComponent } from './cmps/option-modal/option-modal.component';
 import { StoryCanvasComponent } from './cmps/story-canvas/story-canvas.component';
 import { PostCanvasComponent } from './cmps/post-canvas/post-canvas.component';
+import { LikeModalComponent } from './cmps/like-modal/like-modal.component';
+import { CheckboxComponent } from './cmps/checkbox/checkbox.component';
+import { FollowBtnComponent } from './cmps/follow-btn/follow-btn.component';
 
 @NgModule({
   declarations: [
@@ -133,6 +136,9 @@ import { PostCanvasComponent } from './cmps/post-canvas/post-canvas.component';
     OptionModalComponent,
     StoryCanvasComponent,
     PostCanvasComponent,
+    LikeModalComponent,
+    CheckboxComponent,
+    FollowBtnComponent,
   ],
   imports: [
     BrowserAnimationsModule,

@@ -30,7 +30,7 @@
                 }
             }
 
-            .ellipsis{
+            .ellipsis {
                 display: flex;
             }
         }
@@ -42,14 +42,14 @@
 
                 top: 50%;
                 transform: translate(-50%);
-                
+
                 fa-icon {
                     color: var(--primary-pagination-button);
                     font-size: rem(30px);
                 }
             }
 
-            .prev{
+            .prev {
                 left: 10%;
             }
 
@@ -67,6 +67,7 @@
 
         .likes {
             font-weight: 600;
+            cursor: pointer;
         }
 
         .view-all-link {

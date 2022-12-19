@@ -1,5 +1,5 @@
 <section class="user-list">
-    <header class="user-list-header" *ngIf="type !== 'search-bar-list'">
+    <header class="user-list-header" *ngIf="isTitle">
         <h2>{{title}}</h2>
     </header>
 
@@ -7,14 +7,9 @@
         <li *ngFor="let user of users; index as idx">
             <user-preview [user]="user"></user-preview>
 
-            <div class="checkbox-container" (click)="onToggleSelectUser(idx)" *ngIf="isSelectUser.length">
-                <div *ngIf="!isSelectUser[idx].isSelected; else checkboxFull">
-                    <svg-icon src="../../../assets/svgs/checkbox-empty.svg"></svg-icon>
-                </div>
-                <ng-template #checkboxFull>
-                    <svg-icon src="../../../assets/svgs/checkbox-full.svg"></svg-icon>
-                </ng-template>
-            </div>
+            <checkbox [isChecked]="isSelectUser[idx].isSelected" (click)="onToggleSelectUser(idx)"
+                *ngIf="type==='share-modal'"></checkbox>
+            <follow-btn [user]="user" *ngIf="type==='like-modal' && loggedinUser.id !== user.id"></follow-btn>
         </li>
     </ul>
 

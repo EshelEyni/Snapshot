@@ -14,7 +14,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./side-bar.component.scss']
 })
 
-export class SideBarComponent implements OnInit, OnChanges,OnDestroy {
+export class SideBarComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor(
     private router: Router,

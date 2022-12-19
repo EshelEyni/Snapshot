@@ -1,0 +1,7 @@
+<section class="btn-container">
+    <button class="btn-follow clean-btn" *ngIf="!isFollowed; else unfollowBtn"
+        (click)="onToggleFollow(user)">Follow</button>
+    <ng-template #unfollowBtn>
+        <button class="btn-unfollow clean-btn" (click)="onToggleFollow(user)">Following</button>
+    </ng-template>
+</section>

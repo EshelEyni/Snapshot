@@ -12,8 +12,8 @@ async function getLikesForPost(req, res) {
 
 async function addLikeToPost(req, res) {
     try {
-        const { postId, userId } = req.body
-        const like = await likeService.addLikeToPost({ postId, userId })
+        const { postId, user } = req.body
+        const like = await likeService.addLikeToPost({ postId, user })
         res.send({ like: like })
     } catch (err) {
         res.status(500).send({ err: 'Failed to add like' })

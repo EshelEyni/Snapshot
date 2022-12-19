@@ -1,0 +1,8 @@
+<section class="like-modal">
+    <header class="like-modal-header">
+        <h1>likes</h1>
+        <fa-icon (click)="onCloseModal()" [icon]="faX"></fa-icon>
+    </header>
+
+    <user-list [users]="users" [type]="'like-modal'" *ngIf="users"></user-list>
+</section>

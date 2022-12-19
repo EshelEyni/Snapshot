@@ -8,15 +8,8 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            padding: rem(16px);
 
-            .checkbox-container {
-                transition: all 0.5s ease-in-out;
-            }
-
-            &:hover {
-                background-color: var(--primary-bg);
-            }
+           
         }
     }
 
