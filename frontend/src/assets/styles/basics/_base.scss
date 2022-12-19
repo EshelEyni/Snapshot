@@ -13,6 +13,7 @@ body {
     color: var(--primary-color);
     background-color: var(--primary-bg);
     font-family: var(--primary-font);
+    letter-spacing: 0.1px;
 }
 
 h1,
@@ -63,8 +64,30 @@ ul {
     padding: 0;
 }
 
-svg-icon{
+svg-icon {
     cursor: pointer;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: rem(550px);
+    max-height: 65vh;
+    background-color: var(--secondary-bg);
+    z-index: 20;
+    border-radius: 10px;
+}
+
+.options-modal {
+    display: flex;
+    flex-direction: column;
+
+    >*:not(:last-child) {
+
+        border-bottom: 1px solid var(--border-color);
+    }
 }
 
 .main-screen {

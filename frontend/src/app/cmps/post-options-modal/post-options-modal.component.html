@@ -1,0 +1,9 @@
+<section class="post-options-modal modal options-modal">
+    <button class="clean-btn delete-btn" (click)="onDeletePost()">Delete</button>
+    <button class="clean-btn">Edit</button>
+    <button class="clean-btn" (click)="onToggleLikeDisplay()">{{toggleLikeDisplayBtnTxt}}</button>
+    <button class="clean-btn" (click)="onToggleCommentDisplay()">{{toggleCommentDisplayBtnTxt}}</button>
+    <button class="clean-btn" (click)="onGoToPost()">Go to post</button>
+    <button class="clean-btn" (click)="onCopyLink()">Copy link</button>
+    <button class="clean-btn" (click)="onCloseModal()">Cancel</button>
+</section>

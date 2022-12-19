@@ -12,21 +12,24 @@
         gap: rem(5px);
         align-items: center;
         width: 100%;
-
+        
         .comment-text-container {
             display: flex;
-            // align-items: center;
             justify-content: center;
+            gap: rem(2.5px);
 
             span {
                 font-weight: 900;
-                margin-inline-end: 5px;
                 cursor: pointer;
             }
 
             p {
-                // white-space: pre-wrap;
                 word-break: break-word;
+            }
+
+            .more-btn {
+                padding: 0;
+                color: var(--secondary-color);
             }
         }
     }

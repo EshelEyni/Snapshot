@@ -73,7 +73,14 @@ async function getById(postId) {
 async function remove(postId) {
     try {
         await db.txn(async () => {
+            await db.exec(`delete from postsLikedBy where postId = $id`, { $id: postId });
+            await db.exec(`delete from savedPosts where postId = $id`, { $id: postId });
+            await db.exec(`delete from postTags where postId = $id`, { $id: postId });
             await db.exec(`delete from postsImgs where postId = $id`, { $id: postId });
+            const comments = await db.query(`select id from comments where postId = $id`, { $id: postId });
+            for (const comment of comments) {
+                await db.exec(`delete from commentsLikedBy where commentId = $id`, { $id: comment.id });
+            }
             await db.exec(`delete from comments where postId = $id`, { $id: postId });
             await db.exec(`delete from posts where id = $id`, { $id: postId })
         });
@@ -87,9 +94,13 @@ async function update(post) {
     console.log('post', post);
     try {
         await db.txn(async () => {
-            await db.exec(`update posts set locationId = $locationId, likeSum = $likeSum, commentSum = $commentSum where id = $id`, {
+            await db.exec(
+                `update posts set locationId = $locationId, isLikeShown = $isLikeShown,
+                 isCommentShown = $isCommentShown, likeSum = $likeSum, commentSum = $commentSum where id = $id`, {
                 $id: post.id,
                 $locationId: post.location?.id,
+                $isLikeShown: post.isLikeShown,
+                $isCommentShown: post.isCommentShown,
                 $likeSum: post.likeSum,
                 $commentSum: post.commentSum
             });
@@ -127,8 +138,8 @@ async function add(post) {
     try {
         return await db.txn(async () => {
             const id = await db.exec(
-                `insert into posts (userId, createdAt, likeSum, commentSum, locationId) 
-                 values ($userId, $createdAt, 0, 0, $locationId)`,
+                `insert into posts (userId, createdAt, isLikeShown, isCommentShown, likeSum, commentSum, locationId) 
+                 values ($userId, $createdAt, true, true, 0, 0, $locationId)`,
                 {
                     $userId: post.by.id,
                     $createdAt: new Date().toISOString(),
@@ -155,6 +166,7 @@ async function add(post) {
                     $tagId: tagId
                 });
             }
+            return id;
         });
     } catch (err) {
         logger.error('cannot insert post', err)

@@ -80,6 +80,8 @@ import { PostCanvasComponent } from './cmps/post-canvas/post-canvas.component';
 import { LikeModalComponent } from './cmps/like-modal/like-modal.component';
 import { CheckboxComponent } from './cmps/checkbox/checkbox.component';
 import { FollowBtnComponent } from './cmps/follow-btn/follow-btn.component';
+import { PostOptionsModalComponent } from './cmps/post-options-modal/post-options-modal.component';
+import { UserMsgComponent } from './cmps/user-msg/user-msg.component';
 
 @NgModule({
   declarations: [
@@ -139,6 +141,8 @@ import { FollowBtnComponent } from './cmps/follow-btn/follow-btn.component';
     LikeModalComponent,
     CheckboxComponent,
     FollowBtnComponent,
+    PostOptionsModalComponent,
+    UserMsgComponent,
   ],
   imports: [
     BrowserAnimationsModule,

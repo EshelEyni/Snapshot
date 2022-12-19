@@ -5,6 +5,8 @@ export interface Post {
   imgUrls: string[]
   by: MiniUser
   location: Location | null
+  isLikeShown: boolean
+  isCommentShown: boolean
   likeSum: number
   commentSum: number
   createdAt: Date

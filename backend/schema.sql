@@ -19,6 +19,8 @@ CREATE TABLE IF NOT EXISTS "posts" (
     "id" INTEGER NOT NULL UNIQUE,
     "userId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP NOT NULL,
+    "isLikeShown" BOOLEAN NOT NULL,
+    "isCommentShown" BOOLEAN NOT NULL,
     "likeSum" INTEGER NOT NULL,
     "commentSum" INTEGER NOT NULL,
     "locationId" INTEGER NULL,

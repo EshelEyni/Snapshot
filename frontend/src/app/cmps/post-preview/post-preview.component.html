@@ -7,29 +7,34 @@
 
     <section class="post-creator">
       <user-preview [user]="post.by" [location]="post.location" [type]="'post-preview'"></user-preview>
-      <ellipsis></ellipsis>
+      <ellipsis (click)="onToggleModal('post-options-modal')"></ellipsis>
     </section>
 
     <img-container [imgUrls]="post.imgUrls"></img-container>
 
     <div class="post-preview-main-container">
 
-
-      <post-actions [post]="post" [loggedinUser]="loggedinUser"
-        (toggleModal)="onToggleModal('share-modal')"></post-actions>
-
       <share-modal *ngIf="isShareModalShown" (close)="onToggleModal('share-modal')"
         [loggedinUser]="loggedinUser"></share-modal>
 
       <like-modal *ngIf="isLikeModalShown" [post]="post" (close)="onToggleModal('like-modal')"></like-modal>
 
-      <p class="likes" *ngIf="post.likeSum" (click)="onToggleModal('like-modal')">{{ post.likeSum }} likes</p>
+      <post-options-modal *ngIf="isOptionsModalShown" (close)="onToggleModal('post-options-modal')" [post]="post"
+        (toggleCommentDisplay)="onToggleCommentDisplay()"
+        (toggleLikeDisplay)="onToggleLikeDisplay()"></post-options-modal>
 
-      <a class="view-all-link" [routerLink]="['h/post/', post.id]" *ngIf="post.commentSum">View all
+      <post-actions [post]="post" [loggedinUser]="loggedinUser"
+        (toggleModal)="onToggleModal('share-modal')"></post-actions>
+
+
+      <p class="likes" *ngIf="isLikeShown && post.likeSum" (click)="onToggleModal('like-modal')">{{ post.likeSum }}
+        likes</p>
+
+      <a class="view-all-link" [routerLink]="['h/post/', post.id]" *ngIf="isCommentShown && post.commentSum">View all
         {{post.commentSum}} comments</a>
 
-      <comment-list *ngIf="post.commentSum" [postId]="post.id" [type]="'post-preview'" [loggedinUser]="loggedinUser"
-        [commentSum]="post.commentSum"></comment-list>
+      <comment-list *ngIf="isCommentShown && post.commentSum" [postId]="post.id" [type]="'post-preview'"
+        [loggedinUser]="loggedinUser" [commentSum]="post.commentSum"></comment-list>
 
       <div>
         <p class="date-added" [routerLink]="['/post/', post.id]">
@@ -39,7 +44,7 @@
 
     </div>
 
-    <comment-edit [post]="post" (addedComment)="addCommentToPost($event)"></comment-edit>
+    <comment-edit *ngIf="isCommentShown" [post]="post" (addedComment)="addCommentToPost($event)"></comment-edit>
   </div>
 
   <ng-template #miniPreview>
@@ -52,9 +57,10 @@
       <div class="details-container">
         <div>
           <div>
-            <fa-icon class="comments-icon" [icon]="faComments"></fa-icon>
+            <svg-icon src="../../../assets/svgs/comment.svg"
+              [svgStyle]="{ display: 'flex',color:'white', fill: 'white' ,height: 20,width: 20}"></svg-icon>
           </div>
-          <!-- <span>{{ post.commentSum }}</span> -->
+          <span>{{ post.commentSum }}</span>
         </div>
         <div *ngIf="post.likeSum">
           <div>

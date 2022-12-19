@@ -423,3 +423,29 @@
 19.12.2022, 19:11:33 - INFO - Server is running on port: 3030 
 19.12.2022, 19:12:45 - INFO - Server is running on port: 3030 
 19.12.2022, 19:21:31 - INFO - Server is running on port: 3030 
+19.12.2022, 22:47:05 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: no such table: posts 
+19.12.2022, 22:47:05 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: no such table: posts 
+19.12.2022, 22:51:24 - INFO - Server is running on port: 3030 
+19.12.2022, 22:51:34 - ERROR - cannot insert post | Failed to commit transaction: Error: SQLITE_ERROR: table posts has no column named isCommentShwon 
+19.12.2022, 22:51:34 - ERROR - Failed to add post | Failed to commit transaction: Error: SQLITE_ERROR: table posts has no column named isCommentShwon 
+19.12.2022, 22:52:03 - INFO - Server is running on port: 3030 
+19.12.2022, 23:07:08 - ERROR - cannot update post 2 | Failed to commit transaction: Error: SQLITE_ERROR: near "likeSum": syntax error 
+19.12.2022, 23:07:08 - ERROR - Failed to update post | Failed to commit transaction: Error: SQLITE_ERROR: near "likeSum": syntax error 
+19.12.2022, 23:07:58 - INFO - Server is running on port: 3030 
+19.12.2022, 23:42:14 - ERROR - cannot remove post 2 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+19.12.2022, 23:42:14 - ERROR - Failed to delete post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+19.12.2022, 23:43:47 - INFO - Server is running on port: 3030 
+19.12.2022, 23:43:50 - ERROR - cannot remove post 2 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+19.12.2022, 23:43:50 - ERROR - Failed to delete post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+19.12.2022, 23:44:08 - INFO - Server is running on port: 3030 
+19.12.2022, 23:44:18 - ERROR - cannot remove post 2 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+19.12.2022, 23:44:18 - ERROR - Failed to delete post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+19.12.2022, 23:48:19 - INFO - Server is running on port: 3030 
+19.12.2022, 23:48:26 - ERROR - cannot remove post 2 | Failed to commit transaction: Error: SQLITE_BUSY: database is locked 
+19.12.2022, 23:48:26 - ERROR - Failed to delete post | Failed to commit transaction: Error: SQLITE_BUSY: database is locked 
+20.12.2022, 0:10:03 - INFO - Server is running on port: 3030 
+20.12.2022, 0:12:20 - INFO - Server is running on port: 3030 
+20.12.2022, 0:15:32 - INFO - Server is running on port: 3030 
+20.12.2022, 0:17:03 - INFO - Server is running on port: 3030 
+20.12.2022, 0:17:18 - INFO - Server is running on port: 3030 
+20.12.2022, 0:17:42 - INFO - Server is running on port: 3030 

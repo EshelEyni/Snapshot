@@ -39,7 +39,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
   form!: FormGroup
   paramsSubscription!: Subscription;
   user!: User;
-  userMsg: string = 'aaaaaa';
+  userMsg: string = '';
   userImgUrl: string = this.userService.getDefaultUserImgUrl()
   isImgSettingModalOpen = true
 

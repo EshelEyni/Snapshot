@@ -28,7 +28,7 @@ async function getPost(req, res) {
 async function deletePost(req, res) {
     try {
         await postService.remove(req.params.id)
-        res.send({ msg: 'Deleted successfully' })
+        res.send({ msg: 'Post deleted' })
     } catch (err) {
         logger.error('Failed to delete post', err)
         res.status(500).send({ err: 'Failed to delete post' })
@@ -49,9 +49,9 @@ async function updatePost(req, res) {
 async function addPost(req, res) {
     try {
         const post = req.body
-        // console.log('post:', post)
         const id = await postService.add(post)
-        res.send({ id })
+        console.log('id', id);
+        res.send({ msg: 'Post added', id })
     } catch (err) {
         logger.error('Failed to add post', err)
         res.status(500).send({ err: 'Failed to add post' })

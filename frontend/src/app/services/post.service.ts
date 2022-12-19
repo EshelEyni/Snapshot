@@ -1,21 +1,9 @@
 import { HttpClient } from '@angular/common/http'
 import { MiniUser } from './../models/user.model'
-import { StorageService } from './storage.service'
 import { Injectable } from '@angular/core'
-import {
-  Observable,
-  BehaviorSubject,
-  of,
-  throwError,
-  lastValueFrom,
-  filter,
-  firstValueFrom,
-} from 'rxjs'
+import { Observable, BehaviorSubject, lastValueFrom, firstValueFrom } from 'rxjs'
 import { Post } from '../models/post.model'
-import { asyncStorageService } from './async-storage.service'
 import { UserService } from './user.service'
-
-const ENTITY = 'post'
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +13,6 @@ export class PostService {
   public posts$ = this._posts$.asObservable()
 
   constructor(
-    private storageService: StorageService,
     private userService: UserService,
     private http: HttpClient,
   ) { }
@@ -50,15 +37,20 @@ export class PostService {
     return this.http.get<Post>(`http://localhost:3030/api/post/${postId}`)
   }
 
-  public remove(postId: string) {
-    let posts = this.storageService.loadFromStorage(ENTITY)
-    posts = posts.filter((post: Post) => post.id !== postId)
-    this._posts$.next([...posts])
-    this.storageService.saveToStorage(ENTITY, posts)
+  public async remove(postId: string) {
+    const res = await firstValueFrom(
+      this.http.delete(`http://localhost:3030/api/post/${postId}`),
+    ) as { msg: string }
+
+    if (res.msg === 'Post deleted') {
+      const posts = this._posts$.getValue()
+      const idx = posts.findIndex((post) => post.id === postId)
+      posts.splice(idx, 1)
+      this._posts$.next(posts)
+    }
   }
 
   public save(post: Post) {
-    console.log('post', post)
     if (post.id) {
       return this._update(post)
     } else {
@@ -66,10 +58,17 @@ export class PostService {
     }
   }
 
-  private _add(post: Post) {
-    return firstValueFrom(
+  private async _add(post: Post) {
+    const res = await firstValueFrom(
       this.http.post('http://localhost:3030/api/post', post),
-    )
+    ) as { msg: string , id: string }
+
+    if (res.msg === 'Post added') {
+      const posts = this._posts$.getValue()
+      post.id = res.id
+      posts.unshift(post)
+      this._posts$.next(posts)
+    }
   }
 
   private _update(post: Post) {
@@ -84,6 +83,8 @@ export class PostService {
       imgUrls: [],
       by: this.userService.getEmptyMiniUser(),
       location: { id: 0, lat: 0, lng: 0, name: '' },
+      isLikeShown: true,
+      isCommentShown: true,
       likeSum: 0,
       commentSum: 0,
       createdAt: new Date(),
@@ -120,12 +121,13 @@ export class PostService {
     return false
   }
 
-  public async toggleLike(details: { user: MiniUser, postId: string }) {
-    const isLiked = await this.checkIsLiked({ userId: details.user.id, postId: details.postId })
+  public async toggleLike(isLiked: boolean, details: { user: MiniUser, postId: string }) {
 
     if (isLiked) {
       await firstValueFrom(
-        this.http.delete(`http://localhost:3030/api/like/post`, { body: details }),
+        this.http.delete(`http://localhost:3030/api/like/post`, {
+          body: { postId: details.postId, userId: details.user.id }
+        }),
       )
     } else {
       await firstValueFrom(
