@@ -2,8 +2,9 @@ const logger = require('../../services/logger.service')
 const likeService = require('./comment.like.service')
 
 async function getLikesForComment(req, res) {
+    console.log('req.query', req.query)
     try {
-        const likes = await likeService.getLikesForComment(req.params.id)
+        const likes = await likeService.getLikesForComment(req.query.commentId, req.query.userId)
         res.send(likes)
     } catch (err) {
         res.status(500).send({ err: 'Failed to get likes' })
@@ -12,8 +13,8 @@ async function getLikesForComment(req, res) {
 
 async function addLikeToComment(req, res) {
     try {
-        const { commentId, userId } = req.body
-        const like = await likeService.addLikeToComment({ commentId, userId })
+        const { commentId, user } = req.body
+        const like = await likeService.addLikeToComment({ commentId, user })
         res.send({ like: like })
     } catch (err) {
         res.status(500).send({ err: 'Failed to add like' })

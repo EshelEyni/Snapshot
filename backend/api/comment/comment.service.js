@@ -7,7 +7,6 @@ async function query({ postId, userId, type }) {
 
             let userIds = [userId]
             const followingIds = await db.query(`select id from following where followerId = $userId`, { $userId: userId });
-            console.log('followingIds', followingIds)
             userIds = userIds.concat(followingIds.map(following => following.id))
             let commentIds = []
             for (let i = 0; i < userIds.length; i++) {
@@ -20,7 +19,6 @@ async function query({ postId, userId, type }) {
                 );
                 commentIds = commentIds.concat(currCommentIds)
             }
-            console.log('commentIds', commentIds)
             let comments = commentIds.map(commentId => {
                 return getById(commentId.id)
             })
@@ -50,6 +48,10 @@ async function getById(commentId) {
         const user = await db.query(`select id, username, fullname, imgUrl from users where id = $id limit 1`, { $id: comments[0].userId });
         comments[0].by = user[0];
         delete comments[0].userId;
+        const likeBy = await db.query(`select userId, username, fullname, imgUrl from commentsLikedBy where commentId = $id`, { $id: commentId });
+        comments[0].likeBy = likeBy;
+        delete comments[0].likeSum;
+        console.log('comments[0]', comments[0]);
         return comments[0]
     } catch (err) {
         logger.error(`while finding comment ${commentId}`, err)
@@ -68,12 +70,13 @@ async function remove(commentId) {
 
 async function update(comment) {
     try {
-        await db.exec(`update comments set userId = $userId, postId = $postId, text = $text, createdAt = $createdAt, likes = $likes where id = $id`, {
+        await db.exec(`update comments set userId = $userId, postId = $postId, text = $text, createdAt = $createdAt, isOriginalText = $isOriginalText likeSum = $likeSum where id = $id`, {
             $userId: comment.userId,
             $postId: comment.postId,
             $text: comment.text,
             $createdAt: comment.createdAt,
-            $likes: comment.likes,
+            $isOriginalText: comment.isOriginalText,
+            $likeSum: comment.likeBy.length,
             $id: comment.id
         })
         return comment
@@ -85,12 +88,13 @@ async function update(comment) {
 
 async function add(comment) {
     try {
-        const result = await db.exec(`insert into comments (userId, postId, text, createdAt, likes) values ($userId, $postId, $text, $createdAt, $likes)`, {
+        const result = await db.exec(`insert into comments (userId, postId, text, createdAt, isOriginalText, likeSum) values ($userId, $postId, $text, $createdAt, $isOriginalText, $likeSum)`, {
             $userId: comment.by.id,
             $postId: comment.postId,
             $text: comment.text,
             $createdAt: Date.now(),
-            $likes: 0
+            $isOriginalText: comment.isOriginalText,
+            $likeSum: 0
         })
         comment.id = result.lastID;
         return comment

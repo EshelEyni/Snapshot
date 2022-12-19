@@ -7,16 +7,18 @@ import { lastValueFrom } from 'rxjs';
 @Component({
   selector: 'comment-list',
   templateUrl: './comment-list.component.html',
-  styleUrls: ['./comment-list.component.scss']
+  styleUrls: ['./comment-list.component.scss'],
+  inputs: ['postId', 'loggedinUser', 'type', 'commentSum']
 })
 export class CommentListComponent implements OnInit, OnChanges {
   constructor() { }
 
   commentService = inject(CommentService);
 
-  @Input() postId!: string;
-  @Input() isPostPreview!: boolean;
-  @Input() loggedinUser!: User;
+  postId!: string;
+  loggedinUser!: User;
+  type!: string;
+  commentSum!: number;
 
   comments: Comment[] = [];
 
@@ -25,13 +27,13 @@ export class CommentListComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['commentsIds']) {
+    if (changes['commentSum']) {
       this.getComments();
     }
   }
 
   async getComments() {
-    if (this.isPostPreview) {
+    if (this.type === 'post-preview') {
       const comments = await lastValueFrom(
         this.commentService.loadComments(
           {

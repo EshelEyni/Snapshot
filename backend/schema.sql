@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS "postsLikedBy"(
     "id" INTEGER NOT NULL UNIQUE,
     "postId" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL UNIQUE,
-     "username" TEXT NOT NULL,
+    "username" TEXT NOT NULL,
     "fullname" TEXT NOT NULL,
     "imgUrl" TEXT NOT NULL,
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("postId") references "posts"("id") foreign key ("userId") references "users"("id")
@@ -49,7 +49,8 @@ CREATE TABLE IF NOT EXISTS "comments" (
     "userId" INTEGER NOT NULL,
     "text" TEXT NOT NULL,
     "createdAt" TIMESTAMP NOT NULL,
-    "likes" INTEGER NOT NULL,
+    "isOriginalText" BOOLEAN NOT NULL,
+    "likeSum" INTEGER NOT NULL,
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("postId") references "posts"("id") foreign key("userId") references "users"("id")
 );
 
@@ -57,7 +58,7 @@ CREATE TABLE IF NOT EXISTS "commentsLikedBy"(
     "id" INTEGER NOT NULL UNIQUE,
     "commentId" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL UNIQUE,
-     "username" TEXT NOT NULL,
+    "username" TEXT NOT NULL,
     "fullname" TEXT NOT NULL,
     "imgUrl" TEXT NOT NULL,
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("commentId") references "comments"("id") foreign key ("userId") references "users"("id")
@@ -153,7 +154,7 @@ CREATE TABLE IF NOT EXISTS "storiesLikedBy"(
     "id" INTEGER NOT NULL UNIQUE,
     "storyId" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL UNIQUE,
-     "username" TEXT NOT NULL,
+    "username" TEXT NOT NULL,
     "fullname" TEXT NOT NULL,
     "imgUrl" TEXT NOT NULL,
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("storyId") references "stories"("id") foreign key ("userId") references "users"("id")

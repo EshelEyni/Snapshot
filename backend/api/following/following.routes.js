@@ -8,5 +8,5 @@ router.get('/:id', getFollowing)
 router.put('/:id', updateFollowing)
 router.post('/', addFollowing)
 router.delete('/', deleteFollowing)
-
+ 
 module.exports = router

@@ -2,10 +2,6 @@
 @import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
-fa-icon {
-    font-size: rem(24px);
-}
-
 .solid-heart {
     @include solid-heart;
 }

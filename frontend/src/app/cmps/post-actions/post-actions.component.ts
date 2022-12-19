@@ -1,19 +1,6 @@
 import { PostService } from 'src/app/services/post.service'
 import { SaveUser } from './../../store/actions/user.actions'
-import {
-  Component,
-  OnInit,
-  EventEmitter,
-  OnChanges,
-  SimpleChanges,
-  OnDestroy,
-} from '@angular/core'
-import {
-  faComment,
-  faPaperPlane,
-  faBookmark,
-} from '@fortawesome/free-regular-svg-icons'
-import { faBookmark as faBookmarkSolid } from '@fortawesome/free-solid-svg-icons'
+import { Component, OnInit, EventEmitter, OnChanges, SimpleChanges, OnDestroy, } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { map, Observable, Subscription } from 'rxjs'
 import { Post } from 'src/app/models/post.model'
@@ -42,12 +29,6 @@ export class PostActionsComponent implements OnInit, OnChanges, OnDestroy {
   isLiked: boolean = false
   isSaved: boolean = false
   toggleModal = new EventEmitter()
-
-  // Icons
-  faComment = faComment
-  faPaperPlane = faPaperPlane
-  faBookmark = faBookmark
-  faBookmarkSolid = faBookmarkSolid
 
   ngOnInit() {
   }

@@ -3,25 +3,21 @@
 @import '../../../assets/styles/setup/mixins';
 
 .comment-form {
-    display: grid;
-    grid-template-columns: 5% 1fr 10%;
-    grid-template-rows: 1fr;
+    display: flex;
+    gap: rem(10px);
     position: relative;
     align-items: center;
     width: 100%;
+    height: rem(40px);
+    padding: 0 rem(25px);
 
     fa-icon {
-        grid-template-columns: 1/2;
         font-size: rem(24px);
-        // z-index: 20;
     }
 
     .txt-input {
-        grid-template-columns: 2/3;
         width: 100%;
         border: none;
-        padding: 0 rem(5px);
-        // font-size: rem(14px);
         outline: none;
 
     }
@@ -34,7 +30,8 @@
 
     .emoji-picker-container {
         position: absolute;
-        top: -1200%;
+        top: -1050%;
+        left: 10%;
         z-index: 20;
     }
 

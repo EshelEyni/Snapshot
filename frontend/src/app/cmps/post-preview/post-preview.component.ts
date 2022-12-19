@@ -42,8 +42,8 @@ export class PostPreviewComponent implements OnInit, OnDestroy {
   sub: Subscription | null = null
 
   isShareModalShown: boolean = false
-  isLikeModalShown: boolean = true
-  isMainScreen: boolean = true
+  isLikeModalShown: boolean = false
+  isMainScreen: boolean = false
   commentTxt: string = ''
 
   ngOnInit(): void {

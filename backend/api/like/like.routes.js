@@ -10,7 +10,7 @@ router.get('/post', getLikesForPost)
 router.post('/post', addLikeToPost)
 router.delete('/post', deleteLikeToPost)
 
-router.get('/comment/:id', getLikesForComment)
+router.get('/comment', getLikesForComment)
 router.post('/comment', addLikeToComment)
 router.delete('/comment', deleteLikeToComment)
 

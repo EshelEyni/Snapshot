@@ -409,3 +409,17 @@
 19.12.2022, 4:10:45 - INFO - Server is running on port: 3030 
 19.12.2022, 4:11:09 - INFO - Server is running on port: 3030 
 19.12.2022, 4:12:05 - INFO - Server is running on port: 3030 
+19.12.2022, 14:43:19 - INFO - Server is running on port: 3030 
+19.12.2022, 14:50:29 - ERROR - cannot insert comment | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: comments.isOriginalText 
+19.12.2022, 14:50:29 - ERROR - Failed to add comment | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: comments.isOriginalText 
+19.12.2022, 14:56:22 - INFO - Server is running on port: 3030 
+19.12.2022, 19:02:44 - INFO - Server is running on port: 3030 
+19.12.2022, 19:06:09 - INFO - Server is running on port: 3030 
+19.12.2022, 19:06:23 - INFO - Server is running on port: 3030 
+19.12.2022, 19:07:46 - INFO - Server is running on port: 3030 
+19.12.2022, 19:09:11 - INFO - Server is running on port: 3030 
+19.12.2022, 19:10:00 - INFO - Server is running on port: 3030 
+19.12.2022, 19:10:35 - INFO - Server is running on port: 3030 
+19.12.2022, 19:11:33 - INFO - Server is running on port: 3030 
+19.12.2022, 19:12:45 - INFO - Server is running on port: 3030 
+19.12.2022, 19:21:31 - INFO - Server is running on port: 3030 

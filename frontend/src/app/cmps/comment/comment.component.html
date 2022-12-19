@@ -1,8 +1,30 @@
 <article class="comment">
-    <span> {{comment.by.fullname}} </span>
-    <p *ngIf="!isLongTxt; else longTxt"> {{comment.text| shortTxt}} <span (click)="onExpandTxt()">more</span></p>
-    <ng-template #longTxt>
-        <p> {{comment.text}} </p>
+    <div class="post-preview-comment-container">
+        <div class="comment-text-container">
+            <span [routerLink]="['/profile/',comment.by.id]"> {{comment.by.username}} </span>
+            <p *ngIf="!isLongTxt; else longTxt"> {{comment.text| shortTxt}} <button class="more-btn clean-btn"
+                    *ngIf="isLongTxt" (click)="onExpandTxt()">more</button></p>
+            <ng-template #longTxt>
+                <p> {{comment.text}} </p>
+            </ng-template>
+        </div>
+
+        <div class="like-btn-container" *ngIf="!comment.isOriginalText">
+            <like-icon [isLiked]="isLiked" (click)="onToggleLike()"></like-icon>
+        </div>
+
+    </div>
+
+
+    <ng-template #forPostDetails>
+        <div class="post-details-comment-container">
+
+            <div class="comment-text-container">
+                <span [routerLink]="['/profile/',comment.by.id]"> {{comment.by.username}} </span>
+                <p> {{comment.text}} </p>
+            </div>
+
+            <ellipsis></ellipsis>
+        </div>
     </ng-template>
-    <ellipsis></ellipsis>
 </article>

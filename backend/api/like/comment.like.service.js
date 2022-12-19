@@ -2,13 +2,27 @@ const logger = require('../../services/logger.service')
 const db = require('../../database');
 
 
-async function getLikesForComment(commentId) {
+async function getLikesForComment(commentId, userId) {
     try {
-        const likes = await db.query(`select * from commentsLikedBy where commentId = $commentId`, {
-            $commentId: commentId
-        });
-        console.log('likes', likes)
-        return likes
+        if (userId) {
+            const like = await db.query(`select * from commentsLikedBy where commentId = $commentId and userId = $userId`, {
+                $commentId: commentId,
+                $userId: userId
+            });
+            return like
+        } else {
+
+            const likes = await db.query(`select * from commentsLikedBy where commentId = $commentId`, {
+                $commentId: commentId
+            });
+
+            likes.forEach(like => {
+                like.id = like.userId
+                delete like.userId
+            })
+
+            return likes
+        }
     } catch (err) {
         logger.error('cannot find likes', err)
         throw err
@@ -16,11 +30,16 @@ async function getLikesForComment(commentId) {
 }
 
 
-async function addLikeToComment({ commentId, userId }) {
+async function addLikeToComment({ commentId, user }) {
     try {
-        const like = await db.exec(`insert into commentsLikedBy (commentId, userId) values ($commentId, $userId)`, {
+        const like = await db.exec(
+            `insert into commentsLikedBy (commentId, userId, username, fullname, imgUrl ) 
+            values ($commentId, $userId, $username, $fullname, $imgUrl)`, {
             $commentId: commentId,
-            $userId: userId
+            $userId: user.id,
+            $username: user.username,
+            $fullname: user.fullname,
+            $imgUrl: user.imgUrl
         });
         return like
     } catch (err) {

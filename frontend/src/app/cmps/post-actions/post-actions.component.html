@@ -1,13 +1,20 @@
 <section class="actions">
     <div class="main-btn-container">
-        <like-icon [isLiked]="isLiked" (click)="onToggleLike()"></like-icon>
-        <fa-icon [icon]="faComment" [routerLink]="['h/post/', post.id]"></fa-icon>
-        <fa-icon [icon]="faPaperPlane" (click)="onToggleModal()"></fa-icon>
+        <div>
+            <like-icon [isLiked]="isLiked" (click)="onToggleLike()"></like-icon>
+        </div>
+        <div>
+            <svg-icon src="../../../assets/svgs/comment.svg" [routerLink]="['h/post/', post.id]"></svg-icon>
+        </div>
+        <div>
+            <svg-icon src="../../../assets/svgs/paper-airplane.svg" (click)="onToggleModal()"></svg-icon>
+        </div>
     </div>
-    <div class="btn-save-container">
-        <fa-icon (click)="onToggleSave()" [icon]="faBookmark" *ngIf="!isSaved else solidBookmark"></fa-icon>
+    <div class="btn-save-container" (click)="onToggleSave()">
+        <svg-icon src="../../../assets/svgs/bookmark-outline.svg" *ngIf="!isSaved else solidBookmark"
+            [svgStyle]="{'height':24,'width':24,'color':'black'}"></svg-icon>
         <ng-template #solidBookmark>
-            <fa-icon (click)="onToggleSave()" [icon]="faBookmarkSolid"></fa-icon>
+            <svg-icon src="../../../assets/svgs/bookmark-solid.svg"></svg-icon>
         </ng-template>
     </div>
 </section>

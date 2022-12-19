@@ -1,23 +1,51 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
+
 ::ng-deep .comment {
     display: flex;
     align-items: center;
 
-    span {
-        font-weight: 900;
-        margin-inline-end: 5px;
-    }
+    .post-preview-comment-container {
+        display: flex;
+        justify-content: space-between;
+        gap: rem(5px);
+        align-items: center;
+        width: 100%;
 
-    p {
-        margin: 0;
-    }
-
-    .ellipsis {
-        display: none;
-    }
-
-    &:hover {
-        .ellipsis {
+        .comment-text-container {
             display: flex;
+            // align-items: center;
+            justify-content: center;
+
+            span {
+                font-weight: 900;
+                margin-inline-end: 5px;
+                cursor: pointer;
+            }
+
+            p {
+                // white-space: pre-wrap;
+                word-break: break-word;
+            }
+        }
+    }
+
+
+    .post-details-comment-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        .ellipsis {
+            display: none;
+        }
+
+        &:hover {
+            .ellipsis {
+                display: flex;
+            }
         }
     }
 }

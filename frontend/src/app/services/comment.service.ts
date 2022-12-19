@@ -71,8 +71,38 @@ export class CommentService {
       by: this.userSerivce.getEmptyMiniUser(),
       text: '',
       createdAt: new Date(),
+      isOriginalText: false,
       likedBy: []
     }
   }
 
+  public async checkIsLiked(userId: string, commentId: string): Promise<boolean> {
+    const options = {
+      params: {
+        userId,
+        commentId,
+      }
+    }
+
+    const isLiked = await firstValueFrom(
+      this.http.get(`http://localhost:3030/api/like/comment`, options),
+    ) as Array<any>
+
+    return isLiked.length > 0
+  }
+
+  public async toggleLike(isLiked: boolean, details: { user: MiniUser, commentId: string }) {
+
+    if (isLiked) {
+      await firstValueFrom(
+        this.http.delete(`http://localhost:3030/api/like/comment`, {
+          body: { userId: details.user.id, commentId: details.commentId }
+        }),
+      )
+    } else {
+      await firstValueFrom(
+        this.http.post(`http://localhost:3030/api/like/comment`, details),
+      )
+    }
+  }
 }

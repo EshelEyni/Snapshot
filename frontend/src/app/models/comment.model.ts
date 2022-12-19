@@ -6,5 +6,6 @@ export interface Comment {
     by: MiniUser;
     text: string;
     createdAt: Date;
+    isOriginalText: boolean;
     likedBy: MiniUser[];
 }

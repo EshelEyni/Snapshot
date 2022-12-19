@@ -1,6 +1,10 @@
 <article class="post-preview" *ngIf="loggedinUser">
+
   <div class="main-screen dark-mode" *ngIf="isMainScreen" (click)="onToggleModal('main-screen')"></div>
+
+
   <div class="post-preview-container" *ngIf="!isMiniPreview; else miniPreview">
+
     <section class="post-creator">
       <user-preview [user]="post.by" [location]="post.location" [type]="'post-preview'"></user-preview>
       <ellipsis></ellipsis>
@@ -8,26 +12,32 @@
 
     <img-container [imgUrls]="post.imgUrls"></img-container>
 
-    <post-actions [post]="post" [loggedinUser]="loggedinUser"
-      (toggleModal)="onToggleModal('share-modal')"></post-actions>
+    <div class="post-preview-main-container">
 
-    <share-modal *ngIf="isShareModalShown" (close)="onToggleModal('share-modal')"
-      [loggedinUser]="loggedinUser"></share-modal>
 
-    <like-modal *ngIf="isLikeModalShown" [post]="post" (close)="onToggleModal('like-modal')"></like-modal>
+      <post-actions [post]="post" [loggedinUser]="loggedinUser"
+        (toggleModal)="onToggleModal('share-modal')"></post-actions>
 
-    <p class="likes" *ngIf="post.likeSum" (click)="onToggleModal('like-modal')">{{ post.likeSum }} likes</p>
+      <share-modal *ngIf="isShareModalShown" (close)="onToggleModal('share-modal')"
+        [loggedinUser]="loggedinUser"></share-modal>
 
-    <a class="view-all-link" [routerLink]="['h/post/', post.id]" *ngIf="post.commentSum">View all
-      {{post.commentSum}} comments</a>
+      <like-modal *ngIf="isLikeModalShown" [post]="post" (close)="onToggleModal('like-modal')"></like-modal>
 
-    <comment-list *ngIf="post.commentSum" [postId]="post.id" [isPostPreview]="true"
-      [loggedinUser]="loggedinUser"></comment-list>
+      <p class="likes" *ngIf="post.likeSum" (click)="onToggleModal('like-modal')">{{ post.likeSum }} likes</p>
 
-    <p class="date-added" [routerLink]="['/post/', post.id]">
-      {{ post.createdAt | formattedDate }}
-    </p>
-    <hr />
+      <a class="view-all-link" [routerLink]="['h/post/', post.id]" *ngIf="post.commentSum">View all
+        {{post.commentSum}} comments</a>
+
+      <comment-list *ngIf="post.commentSum" [postId]="post.id" [type]="'post-preview'" [loggedinUser]="loggedinUser"
+        [commentSum]="post.commentSum"></comment-list>
+
+      <div>
+        <p class="date-added" [routerLink]="['/post/', post.id]">
+          {{ post.createdAt | formattedDate }}
+        </p>
+      </div>
+
+    </div>
 
     <comment-edit [post]="post" (addedComment)="addCommentToPost($event)"></comment-edit>
   </div>

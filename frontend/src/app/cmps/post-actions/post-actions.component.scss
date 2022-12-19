@@ -6,7 +6,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: rem(6px) rem(10px) rem(8px);
 
     fa-icon {
         font-size: rem(24px);
@@ -14,7 +13,18 @@
 
     .main-btn-container {
         display: flex;
-        gap: 10px;
+        gap: 15px;
+
+        >*:first-child {
+            padding-bottom: 6px;
+            font-size: 24px;
+        }
+
+        >* {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
         .solid-heart {
             @include solid-heart;
