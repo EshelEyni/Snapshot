@@ -1,0 +1,39 @@
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/functions';
+
+.confirm-delete-msg {
+    display: flex;
+    flex-direction: column;
+    width: rem(400px);
+
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: rem(100px);
+
+        h1 {
+            font-size: rem(18px);
+            font-weight: 600;
+        }
+
+        p {
+            color: var(--secondary-color);
+        }
+    }
+
+    >*:not(:last-child) {
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    button {
+        height: rem(50px);
+        font-size: rem(16px);
+    }
+
+    .delete-btn {
+        color: var(--red-button);
+        font-weight: 700;
+    }
+}

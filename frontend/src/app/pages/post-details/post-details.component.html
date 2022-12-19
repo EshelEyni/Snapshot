@@ -33,7 +33,7 @@
         <share-modal *ngIf="isShareModalShown" (close)="onToggleShareModal()"></share-modal>
 
         <div class="comment-edit-container">
-          <comment-edit [post]="post" (addedComment)="addCommentToPost($event)"></comment-edit>
+          <comment-edit [post]="post"></comment-edit>
         </div>
       </div>
     </article>

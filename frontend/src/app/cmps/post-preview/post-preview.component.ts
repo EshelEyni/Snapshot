@@ -78,10 +78,6 @@ export class PostPreviewComponent implements OnInit, OnDestroy {
     this.isLikeShown = !this.isLikeShown
   }
 
-  addCommentToPost(commentIds: string[]) {
-    // this.post.commentsIds = [...commentIds];
-  }
-
   ngOnDestroy() {
     this.sub?.unsubscribe()
   }

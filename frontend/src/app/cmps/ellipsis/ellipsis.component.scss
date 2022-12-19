@@ -1,7 +1,11 @@
 @import '../../../assets/styles/setup/functions';
 
 .ellipsis {
-    // display: flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: rem(20px);
+    height: rem(20px);
     gap: rem(3px);
     align-items: center;
 

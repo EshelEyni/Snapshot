@@ -82,6 +82,7 @@ import { CheckboxComponent } from './cmps/checkbox/checkbox.component';
 import { FollowBtnComponent } from './cmps/follow-btn/follow-btn.component';
 import { PostOptionsModalComponent } from './cmps/post-options-modal/post-options-modal.component';
 import { UserMsgComponent } from './cmps/user-msg/user-msg.component';
+import { ConfirmDeleteMsgComponent } from './cmps/confirm-delete-msg/confirm-delete-msg.component';
 
 @NgModule({
   declarations: [
@@ -143,6 +144,7 @@ import { UserMsgComponent } from './cmps/user-msg/user-msg.component';
     FollowBtnComponent,
     PostOptionsModalComponent,
     UserMsgComponent,
+    ConfirmDeleteMsgComponent,
   ],
   imports: [
     BrowserAnimationsModule,

@@ -1,5 +1,5 @@
-<section class="post-options-modal modal options-modal">
-    <button class="clean-btn delete-btn" (click)="onDeletePost()">Delete</button>
+<section class="post-options-modal modal options-modal" *ngIf="!isConfirmDeleteMsgShown">
+    <button class="clean-btn delete-btn" (click)="onToggleConfirmDelete()">Delete</button>
     <button class="clean-btn">Edit</button>
     <button class="clean-btn" (click)="onToggleLikeDisplay()">{{toggleLikeDisplayBtnTxt}}</button>
     <button class="clean-btn" (click)="onToggleCommentDisplay()">{{toggleCommentDisplayBtnTxt}}</button>
@@ -7,3 +7,6 @@
     <button class="clean-btn" (click)="onCopyLink()">Copy link</button>
     <button class="clean-btn" (click)="onCloseModal()">Cancel</button>
 </section>
+
+<confirm-delete-msg *ngIf="isConfirmDeleteMsgShown" [entityType]="'post'" (close)="onToggleConfirmDelete()"
+    (deleteEntity)="onDeletePost()"></confirm-delete-msg>

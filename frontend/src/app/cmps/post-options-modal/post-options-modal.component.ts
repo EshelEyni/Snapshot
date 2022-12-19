@@ -24,10 +24,15 @@ export class PostOptionsModalComponent implements OnInit {
   toggleCommentDisplayBtnTxt: string = 'Turn off commenting';
   toggleLikeDisplayBtnTxt: string = 'Hide like count';
 
+  isConfirmDeleteMsgShown: boolean = false;
+  
   ngOnInit(): void {
-    console.log('post', this.post);
     this.toggleCommentDisplayBtnTxt = this.post.isCommentShown ? 'Turn off commenting' : 'Turn on commenting';
     this.toggleLikeDisplayBtnTxt = this.post.isLikeShown ? 'Hide like count' : 'Unhide like count';
+  }
+
+  onToggleConfirmDelete() {
+    this.isConfirmDeleteMsgShown = !this.isConfirmDeleteMsgShown;
   }
 
   async onDeletePost() {

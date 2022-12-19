@@ -12,8 +12,8 @@ import { faFaceSmile } from '@fortawesome/free-regular-svg-icons'
   templateUrl: './comment-edit.component.html',
   styleUrls: ['./comment-edit.component.scss'],
   inputs: ['post'],
-  outputs: ['addedComment'],
 })
+
 export class CommentEditComponent implements OnInit {
   constructor() {}
   toggleModal = new EventEmitter<string>()
@@ -26,7 +26,6 @@ export class CommentEditComponent implements OnInit {
   isMainScreen: boolean = false
   commentText: string = ''
   post!: Post
-  addedComment = new EventEmitter<string[]>()
 
   ngOnInit(): void {}
 
