@@ -1,0 +1,42 @@
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/functions';
+
+.aspect-ratio-selector {
+    position: absolute;
+    top: -300%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: rem(120px);
+    height: fit-content;
+    background-color: rgb(26, 26, 26, .8);
+    border-radius: 10px;
+    z-index: 20;
+
+    button {
+        height: rem(50px);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        gap: rem(10px);
+        font-family: var(--primary-font);
+        color: var(--secondary-color);
+
+
+        svg-icon {
+            position: static;
+        }
+
+        &.is-active {
+            color: white;
+        }
+    }
+
+    >*:not(:last-child) {
+        border-bottom: 1px solid white;
+    }
+
+}

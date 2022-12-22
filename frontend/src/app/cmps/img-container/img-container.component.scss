@@ -11,25 +11,6 @@
         transition: 0.5s;
     }
 
-
-    .dots-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: rem(5px);
-        position: absolute;
-        top: 95%;
-        left: 50%;
-        transform: translate(-50%);
-        font-size: rem(6px);
-        color: var(--primary-dot);
-        transition: 0.5s;
-
-        // .active {
-        //     color: var(--secondary-bg);
-        // }
-    }
-
     .img-select {
         display: flex;
         justify-content: flex-end;

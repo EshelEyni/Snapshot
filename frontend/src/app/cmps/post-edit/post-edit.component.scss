@@ -2,8 +2,6 @@
 @import '../../../assets/styles/setup/functions';
 
 .main-screen {
-    background-color: black;
-    opacity: 0.1;
 
     fa-icon {
         position: fixed;
@@ -17,22 +15,28 @@
 
 ::ng-deep .post-edit {
     position: absolute;
-    margin: 15vh 22.5vw;
-    height: 70vh;
-    width: 55vw;
-    z-index: 30;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
+    
     .main-container {
         display: flex;
         flex-direction: column;
         position: fixed;
         background-color: var(--secondary-bg);
-        width: 55vw;
-        height: 70vh;
-        border-radius: 10px;
+        height: rem(875px);
+        width: rem(830px);
+        border-radius: 12px;
+        z-index: 20;
 
         header {
-            height: rem(40px);
+            height: rem(45px);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -55,7 +59,6 @@
                 .title {
                     color: var(--primary-color);
                     font-size: rem(16px);
-                    font-weight: 900;
                     transform: translateY(20%);
                 }
 
@@ -64,14 +67,13 @@
                     position: absolute;
                     right: rem(20px);
                     font-size: rem(16px);
-                    font-weight: 900;
                     cursor: pointer;
                 }
             }
         }
 
         .content-container {
-            height: calc(100% - rem(40px));
+            height: calc(100% - rem(45px));
 
             .input-file-container {
                 height: 100%;
@@ -79,22 +81,8 @@
             }
 
             .edit-img-container {
-                height: 100%;
 
-                .img-container {
-                    height: 100%;
-
-                    .btn-pagination {
-                        top: 50%;
-                        transform: translate(-50%);
-                    }
-
-                    .dots-container {
-                        .active {
-                            color: var(--primary-button);
-                        }
-                    }
-                }
+             
 
                 .files-svg-container {
                     position: absolute;
@@ -111,30 +99,31 @@
 
             }
 
+
         }
     }
 }
 
 
 .edit-mode {
-    margin: 15vh 5vw;
-    height: 70vh;
-    width: 90vw;
+    // margin: 15vh 5vw;
+    // height: 70vh;
+    // width: 90vw;
 
-    .main-container {
-        width: 90vw;
+    // .main-container {
+    //     width: 90vw;
 
-        .content-container {
-            display: flex;
+    //     .content-container {
+    //         display: flex;
 
-            .edit-img-container {
-                flex: 7;
-            }
+    //         .edit-img-container {
+    //             flex: 7;
+    //         }
 
-            .edit-mode-container {
-                flex: 3;
-            }
+    //         .edit-mode-container {
+    //             flex: 3;
+    //         }
 
-        }
-    }
+    //     }
+    // }
 }

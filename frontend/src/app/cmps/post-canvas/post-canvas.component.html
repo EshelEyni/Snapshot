@@ -1,1 +1,26 @@
-<p>post-canvas works!</p>
+<main class="post-canvas">
+    <div class="main-screen" (click)="onToggleModal('main-screen')" *ngIf="isMainScreenShown"></div>
+    <div class="canvas-container">
+        <canvas #canvas height="830" width="830"></canvas>
+        <img-dots [imgUrls]="imgUrls" [currImgUrl]="currImgUrl"></img-dots>
+    </div>
+
+    <div class="actions">
+        <div class="crop-setting-container">
+            <aspect-ratio-modal *ngIf="isAspectRatioModalShown"
+                (aspectRatioSelected)="onSetAspectRatio($event)"></aspect-ratio-modal>
+            <button class="btn-aspect-ratio-select clean-btn" (click)="onToggleModal('aspect-ratio')">
+                <svg-icon src="../../../assets/svgs/aspect-ratio-icon.svg"></svg-icon>
+            </button>
+            <zoom-modal *ngIf="isZoomModalShown" (zoomSelected)="onSetZoom($event)"></zoom-modal>
+            <button class="btn-zoom-select clean-btn" (click)="onToggleModal('zoom')">
+                <svg-icon src="../../../assets/svgs/magnifying-glass.svg"></svg-icon>
+            </button>
+        </div>
+        <img-list [imgUrls]="imgUrls" (removeImg)="onRemoveImg($event)" (imgSelected)="onSetCurrImg($event)"
+            (uploadedImgUrls)="onAddImg($event)"></img-list>
+    </div>
+
+    <pagination-btns (prevItem)="onSetCurrImg($event,true)" (nextItem)="onSetCurrImg($event,true)"
+        [isPaginationBtnShown]="isPaginationBtnShown" [isEditPost]="true"></pagination-btns>
+</main>

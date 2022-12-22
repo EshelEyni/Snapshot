@@ -27,7 +27,6 @@ export class ImgListComponent implements OnInit {
 
   onRemoveImg(url: string) {
     const idx = this.imgUrls.indexOf(url);
-    this.imgUrls.splice(idx, 1);
     this.removeImg.emit(idx);
     if (!this.imgUrls.length) {
       this.isImgSelect = false;

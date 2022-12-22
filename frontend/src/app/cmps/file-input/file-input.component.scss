@@ -28,10 +28,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(var(--primary-color), var(--primary-color)) padding-box,
-        white border-box;
     border-radius: 50%;
-    border: 1px solid transparent;
+    border: 1px solid white;
     padding: rem(2px);
     height: rem(50px);
     width: rem(50px);

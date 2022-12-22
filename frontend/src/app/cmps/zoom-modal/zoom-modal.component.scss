@@ -1,0 +1,17 @@
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/functions';
+
+.zoom-modal {
+    position: absolute;
+    top: -45%;
+    left: 7%;
+    width: fit-content;
+    height: rem(40px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(26, 26, 26, .8);
+    padding: rem(16px);
+    border-radius: 10px;
+    z-index: 20;
+}

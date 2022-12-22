@@ -83,6 +83,9 @@ import { FollowBtnComponent } from './cmps/follow-btn/follow-btn.component';
 import { PostOptionsModalComponent } from './cmps/post-options-modal/post-options-modal.component';
 import { UserMsgComponent } from './cmps/user-msg/user-msg.component';
 import { ConfirmDeleteMsgComponent } from './cmps/confirm-delete-msg/confirm-delete-msg.component';
+import { ImgDotsComponent } from './cmps/img-dots/img-dots.component';
+import { AspectRatioModalComponent } from './cmps/aspect-ratio-modal/aspect-ratio-modal.component';
+import { ZoomModalComponent } from './cmps/zoom-modal/zoom-modal.component';
 
 @NgModule({
   declarations: [
@@ -145,6 +148,9 @@ import { ConfirmDeleteMsgComponent } from './cmps/confirm-delete-msg/confirm-del
     PostOptionsModalComponent,
     UserMsgComponent,
     ConfirmDeleteMsgComponent,
+    ImgDotsComponent,
+    AspectRatioModalComponent,
+    ZoomModalComponent,
   ],
   imports: [
     BrowserAnimationsModule,

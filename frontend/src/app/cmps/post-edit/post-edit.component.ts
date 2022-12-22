@@ -1,4 +1,3 @@
-import { LoadLoggedInUser } from './../../store/actions/user.actions'
 import { User } from 'src/app/models/user.model'
 import { Observable, Subscription, map } from 'rxjs'
 import { State } from './../../store/store'
@@ -7,25 +6,17 @@ import { CommentService } from 'src/app/services/comment.service'
 import { UtilService } from './../../services/util.service'
 import { PostService } from 'src/app/services/post.service'
 import { UploadImgService } from './../../services/upload-img.service'
-import {
-  Component,
-  OnInit,
-  inject,
-  HostListener,
-  Output,
-  EventEmitter,
-  OnDestroy,
-} from '@angular/core'
+import { Component, OnInit, inject, Output, EventEmitter, OnDestroy, } from '@angular/core'
 import { faX, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { UserService } from 'src/app/services/user.service'
-import { Location, Post } from 'src/app/models/post.model'
-import { ConstantPool } from '@angular/compiler'
+import { Location } from 'src/app/models/post.model'
 
 @Component({
   selector: 'post-edit',
   templateUrl: './post-edit.component.html',
   styleUrls: ['./post-edit.component.scss'],
 })
+
 export class PostEditComponent implements OnInit, OnDestroy {
   @Output() togglePostEdit = new EventEmitter<boolean>()
 
@@ -62,9 +53,10 @@ export class PostEditComponent implements OnInit, OnDestroy {
     lng: 0,
     name: '',
   }
+
   isEditMode: boolean = false
   currEditModeSettings: string = 'filters'
-  currImg: string = this.imgUrls[0]
+  // currImg: string = this.imgUrls[0]
 
   ngOnInit() {
     this.sub = this.loggedinUser$.subscribe((user) => {
@@ -89,28 +81,24 @@ export class PostEditComponent implements OnInit, OnDestroy {
   }
 
   onShare() {
-    console.log('onShare')
     this.savePost()
   }
 
   async savePost() {
     const postToSave = this.postService.getEmptyPost()
+    const author = this.userService.getMiniUser(this.loggedinUser)
     postToSave.imgUrls = this.imgUrls
-    const u = this.userService.getLoggedinUser()
-    if (u) postToSave.by = u
-    console.log('postToSave', postToSave)
-    console.log('this.loggedinUser', this.loggedinUser)
-    postToSave.location = null // this.location
+    postToSave.by = author
+    postToSave.location = this.location
 
-    // todo: add comments
 
-    // if (this.txt) {
-    //   const commentToAdd = this.commentService.getEmptyComment()
-    //   commentToAdd.txt = this.txt
-    //   commentToAdd.by = this.userService.getMiniUser(this.loggedinUser)
-    //   const commentId = await this.commentService.save(commentToAdd)
-    //   if (commentId) postToSave.commentsIds.push(commentId)
-    // }
+    if (this.txt) {
+      const commentToAdd = this.commentService.getEmptyComment()
+      commentToAdd.text = this.txt
+      commentToAdd.by = author
+      commentToAdd.isOriginalText = true
+      await this.commentService.save(commentToAdd)
+    }
 
     await this.postService.save(postToSave)
     this.onTogglePostEdit()

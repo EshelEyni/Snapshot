@@ -1,0 +1,65 @@
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/functions';
+
+::ng-deep post-canvas {
+
+    .canvas-container {
+        width: rem(830px);
+        height: rem(830px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+       
+
+        .img-dots {
+            .active {
+                color: var(--primary-button);
+            }
+        }
+    }
+
+    .actions {
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: rem(16px);
+
+        .crop-setting-container {
+            display: flex;
+
+           .btn-aspect-ratio-select,
+           .btn-zoom-select {
+                position: relative;
+                height: rem(32px);
+                width: rem(32px);
+                border-radius: 50%;
+                background-color: rgb(26, 26, 26, .8);
+                padding: rem(8px);
+                margin-inline-end: rem(10px);
+
+                svg-icon {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -45%);
+                }
+
+                &:hover {
+                    opacity: 0.7;
+                    transition: 0.5s;
+                }
+            }
+
+        }
+    }
+
+    .btn-pagination {
+        top: 50%;
+        transform: translate(-50%);
+    }
+
+}

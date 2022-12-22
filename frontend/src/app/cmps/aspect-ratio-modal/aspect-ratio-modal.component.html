@@ -1,0 +1,10 @@
+<section class="aspect-ratio-selector">
+    <button class="clean-btn" *ngFor="let btn of btns" (click)="onSetAspectRatio(btn.aspectRatio)" [class.is-active]="btn.isActive">
+        <span>{{btn.text}}</span>
+        <svg-icon [src]="btn.icon"
+            [svgStyle]="{color:btn.isActive?'white':'#8e8e8e',fill:btn.isActive?'white':'#8e8e8e'}">
+        </svg-icon>
+    </button>
+
+
+</section>

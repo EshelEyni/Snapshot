@@ -1,4 +1,4 @@
-<div class="main-screen" (click)="onTogglePostEdit()">
+<div class="main-screen dark-mode" (click)="onTogglePostEdit()">
     <fa-icon [icon]="faX"></fa-icon>
 </div>
 
@@ -14,16 +14,16 @@
         </header>
 
         <div class="content-container">
-            <div class="input-file-container">
-                <file-input *ngIf="!imgUrls.length else imgContainer" (uploadedImgUrls)="onSaveFiles($event)"
-                [type]="'draggable'">
+            <div class="input-file-container" *ngIf="!imgUrls.length else imgContainer">
+                <file-input (uploadedImgUrls)="onSaveFiles($event)" [type]="'draggable'">
                 </file-input>
             </div>
 
             <ng-template #imgContainer>
-                <div class="edit-img-container">
+                <post-canvas [imgUrls]="imgUrls"></post-canvas>
+                <!-- <div class="edit-img-container">
                     <img-container [imgUrls]="imgUrls" [isEditPost]="true" [onGoBack]="onGoBack"></img-container>
-                </div>
+                </div> -->
             </ng-template>
 
             <div class="edit-mode-container" *ngIf="isEditMode">

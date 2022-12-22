@@ -1,12 +1,9 @@
 <div class="img-container">
     <div *ngIf="!isMiniPreview else miniPreview">
         <img src={{currImgUrl}} alt="Avatar">
-        <pagination-btns (prevItem)="onSwitchImg($event)" (nextItem)="onSwitchImg($event)" [isPaginationBtnShown]="isPaginationBtnShown"
-            [isEditPost]="isEditPost"></pagination-btns>
-        <div class="dots-container" *ngIf="imgUrls.length>1">
-            <fa-icon class="dot" *ngFor="let img of imgUrls" [class.active]="img === currImgUrl" [icon]="faCircle">
-            </fa-icon>
-        </div>
+        <pagination-btns (prevItem)="onSwitchImg($event)" (nextItem)="onSwitchImg($event)"
+            [isPaginationBtnShown]="isPaginationBtnShown" [isEditPost]="isEditPost"></pagination-btns>
+        <img-dots [imgUrls]="imgUrls" [currImgUrl]="currImgUrl"></img-dots>
         <div class="files-svg-container" (click)="onToggleImgSelect()" *ngIf="isEditPost">
             <svg-icon src="../../../assets/svgs/files-outline.svg" [svgStyle]="{ 'display':'flex' }"></svg-icon>
         </div>
