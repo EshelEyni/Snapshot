@@ -5,7 +5,7 @@
 <div class="img-select" *ngIf="isImgSelect">
     <ul>
         <li *ngFor="let imgUrl of imgUrls;index as idx">
-            <img src={{imgUrl}} alt="Avatar" (click)="onImgSelected(idx)">
+            <img [src]="imgUrl" alt="Avatar" (click)="onImgSelected(idx)">
             <div class="remove-btn-container" (click)="onRemoveImg(imgUrl)">
                 <svg-icon src="../../../assets/svgs/x.svg" [svgStyle]="{ 'display':'flex' }"></svg-icon>
             </div>

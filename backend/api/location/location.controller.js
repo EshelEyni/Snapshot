@@ -3,7 +3,7 @@ const logger = require('../../services/logger.service')
 
 async function getLocations(req, res) {
     try {
-        const locations = await locationService.query()
+        const locations = await locationService.query(req.query.searchTerm)
         res.send(locations)
     } catch (err) {
         logger.error('Failed to get locations', err)

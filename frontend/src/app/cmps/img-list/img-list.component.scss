@@ -44,7 +44,6 @@
         li {
             position: relative;
             height: auto;
-            width: 50%;
             cursor: pointer;
 
             img {
@@ -55,8 +54,8 @@
 
             .remove-btn-container {
                 position: absolute;
-                top: 0;
-                right: 0;
+                top: 1.5%;
+                right: 1.5%;
                 border-radius: 50%;
                 background-color: var(--primary-color);
                 padding: rem(5px);

@@ -1,29 +1,128 @@
 @import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
 
-.user-preview-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: rem(60px);
-    margin: 0 rem(16px);
 
-    .user-preview {
+::ng-deep .post-edit-form {
+
+    .user-preview-container {
         display: flex;
         align-items: center;
+        height: rem(60px);
+        margin: 0 rem(16px);
 
-        .user-img-container {
-            width: rem(30px);
-            height: rem(30px);
-            margin-right: 10px;
+        .user-preview {
+            gap: rem(20px);
 
-            img {
-                border-radius: 50%;
+            .img-container {
+                width: rem(30px);
+                height: rem(30px);
             }
         }
 
-        .info {
-            font-size: rem(14px);
-            font-weight: 600;
+
+    }
+
+    .post-edit-form-container {
+        display: flex;
+        flex-direction: column;
+
+        form {
+            position: relative;
+
+            .input-container {
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .input-container {
+                .txt-input-container {
+                    padding: 0 rem(16px);
+
+                    .txt-input {
+                        height: rem(160px);
+                        width: 100%;
+                        border: none;
+                        outline: none;
+                        resize: none;
+                        font-family: var(--primary-font);
+
+                        &::placeholder {
+                            font-size: rem(16px);
+                            font-family: var(--primary-font);
+                            color: var(--input-placeholder-secondary-color);
+                        }
+                    }
+
+                    .toggle-emoji-txt-sum {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: rem(9px);
+
+                        fa-icon {
+                            font-size: rem(20px);
+                            color: var(--input-placeholder-secondary-color);
+                        }
+
+                        p {
+                            font-size: rem(12px);
+                            color: var(--input-placeholder-secondary-color);
+                        }
+
+                    }
+
+                    .emoji-picker-container {
+                        position: absolute;
+                        z-index: 20;
+                    }
+                }
+            }
+
+            .input-container {
+                .location-input-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    position: relative;
+                    padding: rem(10px) rem(25px);
+
+                    .location-input {
+                        font-family: var(--primary-font);
+
+                        &::placeholder {
+                            font-size: rem(16px);
+                            font-family: var(--primary-font);
+                            color: var(--input-placeholder-secondary-color);
+                        }
+                    }
+
+                    .location-search-res {
+                        height: rem(200px);
+                        width: 100%;
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        z-index: 20;
+                        background-color: var(--secondary-bg);
+                        border-radius: 5px;
+                        overflow-y: scroll;
+                        overflow-x: hidden;
+                        padding: rem(10px);
+                        box-shadow: 0 0 5px 0px var(--border-color);
+
+                        li {
+                            padding: rem(10px);
+                            cursor: pointer;
+                            border-radius: 5px;
+                            font-weight: 600;
+
+                            &:hover {
+                                background-color: var(--border-color);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

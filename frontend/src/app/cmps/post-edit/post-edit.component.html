@@ -2,13 +2,13 @@
     <fa-icon [icon]="faX"></fa-icon>
 </div>
 
-<section class="post-edit" [class.edit-mode]="isEditMode">
+<section class="post-edit" [class.edit-mode]="currEditMode && currEditMode !=='crop'">
     <main class="main-container">
         <header>
             <div class="title-container">
                 <fa-icon *ngIf="imgUrls.length" [icon]="faArrowLeft" (click)="onGoBack()"></fa-icon>
                 <h1 class="title">{{currTitle}}</h1>
-                <h1 class="next-btn" *ngIf="imgUrls.length" (click)="onShare()">share</h1>
+                <h1 class="next-btn" *ngIf="imgUrls.length" (click)="onNext()">{{btnTxt}}</h1>
             </div>
             <hr>
         </header>
@@ -20,14 +20,18 @@
             </div>
 
             <ng-template #imgContainer>
-                <post-canvas [imgUrls]="imgUrls"></post-canvas>
+                <post-canvas [imgUrls]="imgUrls" [currSettings]="currEditMode" [currFilter]="currFilter"></post-canvas>
                 <!-- <div class="edit-img-container">
                     <img-container [imgUrls]="imgUrls" [isEditPost]="true" [onGoBack]="onGoBack"></img-container>
                 </div> -->
             </ng-template>
 
-            <div class="edit-mode-container" *ngIf="isEditMode">
-                <post-edit-form [txt]="txt" [location]="location" (postChanged)="onChangePost($event)"></post-edit-form>
+            <div class="edit-mode-container" *ngIf="currEditMode !=='crop'">
+                <post-filter-picker *ngIf="currEditMode ==='filter'"
+                    (filterSelected)="onSetFilter($event)"></post-filter-picker>
+                <post-edit-form *ngIf="currEditMode ==='txt-location'" [txt]="txt" [location]="location"
+                    (postChanged)="onChangePost($event)"
+                    [loggedinUser]="userService.getMiniUser(loggedinUser)"></post-edit-form>
             </div>
         </div>
     </main>

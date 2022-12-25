@@ -1,22 +1,44 @@
-<div class="post-edit-form-container">
+<main class="post-edit-form">
     <div class="user-preview-container">
-        <section class="user-preview">
-            <div class="user-img-container">
-                <img src={{user.imgUrl}} alt="user-img">
-            </div>
-            <section class="info">
-                <h3>{{user.fullname}}</h3>
-            </section>
-        </section>
+        <user-preview [user]="loggedinUser"></user-preview>
     </div>
 
-    <div class="post-edit-form">
+    <div class="post-edit-form-container">
         <form>
+
             <div class="input-container">
-                <textarea class="txt-input" [(ngModel)]="txt" (ngModelChange)="onChange()" name="txt" placeholder="What's on your mind?"></textarea>
+                <div class="txt-input-container">
+                    <textarea class="txt-input" [(ngModel)]="txt" (ngModelChange)="onChangeTxt()" name="txt"
+                        placeholder="Write a caption..." maxlength="2200"></textarea>
+
+                    <div class="toggle-emoji-txt-sum">
+                        <fa-icon (click)="onToggleModal('emoji')" [icon]="faFaceSmile"></fa-icon>
+                        <p>{{txt.length}}/2,200</p>
+                    </div>
+
+                    <div class="emoji-picker-container" *ngIf="isEmojiPickerShown">
+                        <emoji-mart [style]="{position:'relative'}" (emojiClick)="onAddEmoji($event)">
+                        </emoji-mart>
+                    </div>
+
+                </div>
             </div>
+
             <div class="input-container">
-                <input class="location-input" [(ngModel)]="location.name" name="location" (ngModelChange)="onChange()" placeholder="Where are you?">
+                <div class="location-input-container">
+                    <input class="location-input clean-input" [(ngModel)]="location.name" name="location"
+                        (ngModelChange)="onChangeLocation()" placeholder="Add location">
+                    <svg-icon src="../../../assets/svgs/location-pin.svg"></svg-icon>
+
+                    <ul class="location-search-res" *ngIf="isLocationModalShown">
+                        <li class="location-search-res-item" *ngFor="let location of locations"
+                            (click)="onSelectLocation(location)">
+                            <p>{{location.name}}</p>
+                        </li>
+                    </ul>
+                </div>
             </div>
+            <div class="main-screen" *ngIf="isMainScreenShown" (click)="onToggleModal('main-screen')"></div>
         </form>
     </div>
+</main>

@@ -5,7 +5,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
   templateUrl: './img-list.component.html',
   styleUrls: ['./img-list.component.scss'],
   inputs: ['imgUrls'],
-  outputs: ['uploadedImgUrls', 'removeImg','imgSelected']
+  outputs: ['uploadedImgUrls', 'removeImg', 'imgSelected']
 })
 export class ImgListComponent implements OnInit {
 
@@ -39,6 +39,7 @@ export class ImgListComponent implements OnInit {
   }
 
   onSaveFiles(imgUrls: string[]) {
+    console.log('imgUrls:', imgUrls);
     this.imgUrls = [...this.imgUrls, ...imgUrls];
     this.uploadedImgUrls.emit(imgUrls);
   }

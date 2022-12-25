@@ -43,8 +43,8 @@ export class PostEditComponent implements OnInit, OnDestroy {
   // imgUrls: string[] = [];
   imgUrls: string[] = [
     'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044177/ukfallhy757gdlswvfuj.jpg',
-    'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669305397/p7o8v7gvoy3bgdcymu0d.jpg',
-    'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044038/pxbi0wi3po7fiadwdcke.jpg',
+    // 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669305397/p7o8v7gvoy3bgdcymu0d.jpg',
+    // 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044038/pxbi0wi3po7fiadwdcke.jpg',
   ]
   txt: string = ''
   location: Location = {
@@ -54,9 +54,9 @@ export class PostEditComponent implements OnInit, OnDestroy {
     name: '',
   }
 
-  isEditMode: boolean = false
-  currEditModeSettings: string = 'filters'
-  // currImg: string = this.imgUrls[0]
+  currEditMode: string = 'crop'
+  btnTxt: string = 'next'
+  currFilter!: string;
 
   ngOnInit() {
     this.sub = this.loggedinUser$.subscribe((user) => {
@@ -68,20 +68,33 @@ export class PostEditComponent implements OnInit, OnDestroy {
 
   onSaveFiles(imgUrls: string[]) {
     this.imgUrls = imgUrls
-    this.isEditMode = true
+    this.currEditMode = 'crop'
+    this.currTitle = 'crop'
   }
 
   onTogglePostEdit() {
     this.togglePostEdit.emit(false)
   }
 
+  onSetFilter(filter: string) {
+    this.currFilter = filter
+  }
+
   onGoBack() {
-    this.isEditMode = false
     this.imgUrls = []
   }
 
-  onShare() {
-    this.savePost()
+  onNext() {
+    if (this.currEditMode === 'crop') {
+      this.currEditMode = 'filter'
+      this.currTitle = 'edit'
+    }
+    else if (this.currEditMode === 'filter') {
+      this.currEditMode = 'txt-location'
+      this.btnTxt = 'share'
+      this.currTitle = 'create new post'
+    }
+    else if (this.currEditMode === 'txt-location') this.savePost()
   }
 
   async savePost() {
@@ -105,12 +118,12 @@ export class PostEditComponent implements OnInit, OnDestroy {
   }
 
   onToggleEditSettings(currSetting: string) {
-    this.currEditModeSettings = currSetting
+    this.currEditMode = currSetting
   }
 
-  onChangePost(ev: { txt: string; location: string }) {
+  onChangePost(ev: { txt: string; location: Location }) {
     this.txt = ev.txt
-    this.location.name = ev.location
+    this.location = ev.location
   }
 
   ngOnDestroy() {

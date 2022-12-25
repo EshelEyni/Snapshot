@@ -2,10 +2,10 @@
     <div class="main-screen" (click)="onToggleModal('main-screen')" *ngIf="isMainScreenShown"></div>
     <div class="canvas-container">
         <canvas #canvas height="830" width="830"></canvas>
-        <img-dots [imgUrls]="imgUrls" [currImgUrl]="currImgUrl"></img-dots>
+        <img-dots *ngIf="imgUrls.length>1" [imgUrls]="imgUrls" [currImgUrl]="currImgUrl"></img-dots>
     </div>
 
-    <div class="actions">
+    <div class="actions" *ngIf="currSettings ==='crop'">
         <div class="crop-setting-container">
             <aspect-ratio-modal *ngIf="isAspectRatioModalShown"
                 (aspectRatioSelected)="onSetAspectRatio($event)"></aspect-ratio-modal>

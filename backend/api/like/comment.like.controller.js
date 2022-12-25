@@ -2,7 +2,6 @@ const logger = require('../../services/logger.service')
 const likeService = require('./comment.like.service')
 
 async function getLikesForComment(req, res) {
-    console.log('req.query', req.query)
     try {
         const likes = await likeService.getLikesForComment(req.query.commentId, req.query.userId)
         res.send(likes)

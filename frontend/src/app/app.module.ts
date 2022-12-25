@@ -86,6 +86,7 @@ import { ConfirmDeleteMsgComponent } from './cmps/confirm-delete-msg/confirm-del
 import { ImgDotsComponent } from './cmps/img-dots/img-dots.component';
 import { AspectRatioModalComponent } from './cmps/aspect-ratio-modal/aspect-ratio-modal.component';
 import { ZoomModalComponent } from './cmps/zoom-modal/zoom-modal.component';
+import { PostFilterPickerComponent } from './cmps/post-filter-picker/post-filter-picker.component';
 
 @NgModule({
   declarations: [
@@ -151,6 +152,7 @@ import { ZoomModalComponent } from './cmps/zoom-modal/zoom-modal.component';
     ImgDotsComponent,
     AspectRatioModalComponent,
     ZoomModalComponent,
+    PostFilterPickerComponent,
   ],
   imports: [
     BrowserAnimationsModule,

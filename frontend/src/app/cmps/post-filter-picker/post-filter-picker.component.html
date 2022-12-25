@@ -1,0 +1,13 @@
+<main class="post-filter-picker">
+    <header>
+        <h1>Filters</h1>
+
+    </header>
+
+    <ul class="filter-list">
+        <li *ngFor="let filter of filters" (click)="onSelectFilter(filter)" [class.is-active]="filter.isSelected">
+            <img src="{{filter.imgUrl}}" alt="filter">
+            <span>{{filter.name}}</span>
+        </li>
+    </ul>
+</main>

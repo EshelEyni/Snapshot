@@ -1,7 +1,7 @@
 <div class="main-screen" *ngIf="isMainScreen" (click)="onToggleEmojiPicker()">
 </div>
 <form class="comment-form" (submit)="onAddComment()">
-    <fa-icon (click)="onToggleEmojiPicker()" [icon]="faFaceSmile">Post</fa-icon>
+    <fa-icon (click)="onToggleEmojiPicker()" [icon]="faFaceSmile"></fa-icon>
     <div class="emoji-picker-container" *ngIf="isEmojiPickerShown">
         <emoji-mart [style]="{position:'relative'}" (emojiClick)="onAddEmoji($event)">
         </emoji-mart>

@@ -2,6 +2,7 @@
 @import '../../../assets/styles/setup/functions';
 
 ::ng-deep post-canvas {
+    position: relative;
 
     .canvas-container {
         width: rem(830px);
@@ -10,13 +11,16 @@
         justify-content: center;
         align-items: center;
 
-       
+        canvas {
+            border-radius: 0 0 12px 12px;
+        }
 
         .img-dots {
             .active {
                 color: var(--primary-button);
             }
         }
+
     }
 
     .actions {
@@ -31,8 +35,8 @@
         .crop-setting-container {
             display: flex;
 
-           .btn-aspect-ratio-select,
-           .btn-zoom-select {
+            .btn-aspect-ratio-select,
+            .btn-zoom-select {
                 position: relative;
                 height: rem(32px);
                 width: rem(32px);

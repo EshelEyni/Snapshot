@@ -63,6 +63,13 @@ async function getById(postId) {
         const user = await db.query(`select id, username, fullname, imgUrl from users where id = $id`, { $id: post.userId });
         post.by = user[0];
         delete post.userId;
+        if (post.locationId) {
+            post.location = await db.query(`select * from locations where id = $id`, { $id: post.locationId });
+        }
+        else {
+            post.location = null;
+        }
+        delete post.locationId;
         return post
     } catch (err) {
         logger.error(`while finding post ${postId}`, err)
@@ -135,6 +142,7 @@ async function update(post) {
 }
 
 async function add(post) {
+    console.log('post', post);
     try {
         return await db.txn(async () => {
             const id = await db.exec(
@@ -143,7 +151,7 @@ async function add(post) {
                 {
                     $userId: post.by.id,
                     $createdAt: new Date().toISOString(),
-                    $locationId: post.location?.id
+                    $locationId: post.location.id === 0 ? null : post.location.id
                 });
             for (const i in post.imgUrls) {
                 await db.exec(`insert into postsImgs (postId, imgUrl, imgOrder) values ($postId, $imgUrl, $imgOrder)`, {
@@ -166,6 +174,7 @@ async function add(post) {
                     $tagId: tagId
                 });
             }
+
             return id;
         });
     } catch (err) {

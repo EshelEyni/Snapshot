@@ -1,8 +1,15 @@
 const logger = require('../../services/logger.service')
 const db = require('../../database');
 
-async function query() {
+async function query(searchTerm) {
     try {
+        if (searchTerm) {
+            const locations = await db.query(
+                `select * from locations where name like $searchTerm`,
+                { $searchTerm: searchTerm + '%' });
+            return locations
+        }
+
         const locations = await db.query(`select * from locations`);
         return locations
     } catch (err) {

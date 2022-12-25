@@ -16,7 +16,7 @@ export class ZoomModalComponent implements OnInit {
   }
 
   onSetZoom(zoom: number | null) {
-    if (!zoom) return;
+    if (zoom === null) return;
     this.zoomSelected.emit(zoom);
   }
 

@@ -1,0 +1,61 @@
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/functions';
+
+
+.post-filter-picker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+    header {
+        display: flex;
+        justify-content: center;
+        border-bottom: 1px solid rgb(0, 55, 107);
+        width: 100%;
+
+        h1 {
+            text-align: center;
+            color: rgb(0, 55, 107);
+        }
+
+    }
+
+    .filter-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: rem(5px);
+        padding: rem(10px);
+        width: 100%;
+
+        li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+
+            img {
+                width: rem(80px);
+                height: rem(90px);
+                border-radius: 5px;
+            }
+
+            span {
+                text-align: center;
+                color: rgb(142, 142, 157);
+            }
+
+            &.is-active {
+                img {
+                    border: 2px solid var(--primary-button);
+                }
+
+                span {
+                    color: var(--primary-button);
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}

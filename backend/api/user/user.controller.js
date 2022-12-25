@@ -4,7 +4,6 @@ const logger = require('../../services/logger.service')
 
 
 async function queryUsers(req, res) {
-    console.log('req.query', req.query.q)
     try {
         const users = await userService.query(req.query.q)
         res.send(users)

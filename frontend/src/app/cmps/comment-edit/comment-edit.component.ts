@@ -15,7 +15,7 @@ import { faFaceSmile } from '@fortawesome/free-regular-svg-icons'
 })
 
 export class CommentEditComponent implements OnInit {
-  constructor() {}
+  constructor() { }
   toggleModal = new EventEmitter<string>()
   userService = inject(UserService)
   commentService = inject(CommentService)
@@ -27,14 +27,12 @@ export class CommentEditComponent implements OnInit {
   commentText: string = ''
   post!: Post
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onAddEmoji(emoji: Emoji) {
-    if (typeof emoji.emoji !== 'string') {
-      this.commentText += emoji.emoji.native
-    } else {
-      this.commentText += emoji.emoji
-    }
+    if (typeof emoji.emoji !== 'string') this.commentText += emoji.emoji.native
+    else this.commentText += emoji.emoji
+
   }
 
   async onAddComment() {

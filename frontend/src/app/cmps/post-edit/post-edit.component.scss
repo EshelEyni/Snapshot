@@ -106,24 +106,21 @@
 
 
 .edit-mode {
-    // margin: 15vh 5vw;
-    // height: 70vh;
-    // width: 90vw;
 
-    // .main-container {
-    //     width: 90vw;
+    .main-container {
+        width: 1130px;
 
-    //     .content-container {
-    //         display: flex;
+        .content-container {
+            display: flex;
 
-    //         .edit-img-container {
-    //             flex: 7;
-    //         }
+            .edit-img-container {
+                flex: 6;
+            }
 
-    //         .edit-mode-container {
-    //             flex: 3;
-    //         }
+            .edit-mode-container {
+                flex: 2;
+            }
 
-    //     }
-    // }
+        }
+    }
 }
