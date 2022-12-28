@@ -54,6 +54,15 @@
             }
         }
 
-        .post-list-container {}
+        .post-list-container {
+            width: 100%;
+            margin-top: rem(25px);
+
+            .post-list {
+                display: flex;
+                flex-direction: column;
+                gap: rem(25px);
+            }
+        }
     }
 }

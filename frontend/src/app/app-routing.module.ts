@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'profile/:id', component: ProfileDetailsComponent, resolve: { user: UserResolver }, canActivate: [AuthGuard] },
   { path: 'profile-edit/:id', component: ProfileEditComponent, resolve: { user: UserResolver }, canActivate: [AuthGuard] },
   { path: 'post/:id', component: PostDetailsComponent, resolve: { post: PostResolver }, canActivate: [AuthGuard] },
-  { path: 'tag/:id', component: TagDetailsComponent, resolve: { tag: TagResolver }, canActivate: [AuthGuard] },
+  { path: 'tag/:name', component: TagDetailsComponent, resolve: { tag: TagResolver }, canActivate: [AuthGuard] },
   { path: 'story/:id', component: StoryDetailsComponent, resolve: { story: StoryResolver }, canActivate: [AuthGuard] },
   { path: 'story-edit', component: StoryEditComponent, canActivate: [AuthGuard] },
   { path: 'explore', component: ExploreComponent, canActivate: [AuthGuard] },

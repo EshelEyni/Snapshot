@@ -42,8 +42,6 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) {
         this.loggedinUser = JSON.parse(JSON.stringify(user))
-        console.log('this.loggedinUser userlist', this.loggedinUser);
-        console.log('this.users userlist', this.users);
       }
     })
     this.setTitle();

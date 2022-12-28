@@ -1,7 +1,7 @@
 import { MiniUser } from './user.model'
 
 export interface Post {
-  id: string
+  id: number
   imgUrls: string[]
   by: MiniUser
   location: Location | null
@@ -18,4 +18,15 @@ export interface Location {
   lat: number
   lng: number
   name: string
+}
+
+export interface PostCanvasImg {
+  url: string
+  x: number
+  y: number
+  width: number
+  height: number
+  aspectRatio: string
+  zoom: number
+  filter: string
 }

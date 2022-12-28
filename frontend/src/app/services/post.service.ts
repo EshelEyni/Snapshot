@@ -37,7 +37,7 @@ export class PostService {
     return this.http.get<Post>(`http://localhost:3030/api/post/${postId}`)
   }
 
-  public async remove(postId: string) {
+  public async remove(postId: number) {
     const res = await firstValueFrom(
       this.http.delete(`http://localhost:3030/api/post/${postId}`),
     ) as { msg: string }
@@ -58,16 +58,18 @@ export class PostService {
     }
   }
 
-  private async _add(post: Post) {
+  private async _add(post: Post): Promise<number | void> {
     const res = await firstValueFrom(
       this.http.post('http://localhost:3030/api/post', post),
-    ) as { msg: string , id: string }
+    ) as { msg: string, id: number }
 
     if (res.msg === 'Post added') {
       const posts = this._posts$.getValue()
       post.id = res.id
       posts.unshift(post)
       this._posts$.next(posts)
+
+      return res.id
     }
   }
 
@@ -79,7 +81,7 @@ export class PostService {
 
   public getEmptyPost(): Post {
     return {
-      id: '',
+      id: 0,
       imgUrls: [],
       by: this.userService.getEmptyMiniUser(),
       location: { id: 0, lat: 0, lng: 0, name: '' },
@@ -92,7 +94,7 @@ export class PostService {
     }
   }
 
-  public async getUsersWhoLiked(postId: string): Promise<MiniUser[]> {
+  public async getUsersWhoLiked(postId: number): Promise<MiniUser[]> {
     const options = {
       params: {
         postId,
@@ -106,7 +108,7 @@ export class PostService {
   }
 
 
-  public async checkIsLiked(filterBy: { userId: string, postId: string }): Promise<boolean> {
+  public async checkIsLiked(filterBy: { userId: string, postId: number }): Promise<boolean> {
     const options = {
       params: {
         userId: filterBy.userId,
@@ -121,7 +123,7 @@ export class PostService {
     return false
   }
 
-  public async toggleLike(isLiked: boolean, details: { user: MiniUser, postId: string }) {
+  public async toggleLike(isLiked: boolean, details: { user: MiniUser, postId: number }) {
 
     if (isLiked) {
       await firstValueFrom(
@@ -136,7 +138,7 @@ export class PostService {
     }
   }
 
-  public async checkIsSaved(filterBy: { userId: string, postId: string }): Promise<boolean> {
+  public async checkIsSaved(filterBy: { userId: string, postId: number }): Promise<boolean> {
     const options = {
       params: {
         userId: filterBy.userId,
@@ -151,8 +153,7 @@ export class PostService {
     return false
   }
 
-  public async toggleSave(filterBy: { userId: string, postId: string }) {
-    const isSaved = await this.checkIsSaved(filterBy)
+  public async toggleSave(isSaved: boolean, filterBy: { userId: string, postId: number }) {
 
     if (isSaved) {
       await firstValueFrom(
@@ -163,6 +164,12 @@ export class PostService {
         this.http.post(`http://localhost:3030/api/save-post`, filterBy),
       )
     }
+  }
+
+  public async addPostToTag(tagId: number, postId: number) {
+    await firstValueFrom(
+      this.http.post(`http://localhost:3030/api/post/tag/`, { tagId, postId }),
+    )
   }
 
 }

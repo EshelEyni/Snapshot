@@ -1,21 +1,23 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'aspect-ratio-modal',
   templateUrl: './aspect-ratio-modal.component.html',
   styleUrls: ['./aspect-ratio-modal.component.scss'],
+  inputs: ['currAspectRatio'],
   outputs: ['aspectRatioSelected']
 
 })
-export class AspectRatioModalComponent implements OnInit {
+export class AspectRatioModalComponent implements OnInit, OnChanges {
 
   constructor() { }
   aspectRatioSelected = new EventEmitter<string>();
+  currAspectRatio!: string;
 
   btns = [
     {
       aspectRatio: 'Original',
-      isActive: true,
+      isActive: false,
       text: 'Original',
       icon: '../../../assets/svgs/image.svg'
     },
@@ -38,8 +40,14 @@ export class AspectRatioModalComponent implements OnInit {
       icon: '../../../assets/svgs/aspect-ratio-16-9.svg'
     },
   ]
-  
-  ngOnInit(): void {
+
+  ngOnInit(): void { }
+
+  ngOnChanges() {
+    this.btns.forEach(btn => {
+      if (btn.aspectRatio === this.currAspectRatio) btn.isActive = true;
+      else btn.isActive = false;
+    })
   }
 
   onSetAspectRatio(aspectRatio: string) {

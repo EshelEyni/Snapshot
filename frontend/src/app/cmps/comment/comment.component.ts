@@ -24,9 +24,7 @@ export class CommentComponent implements OnInit {
   loggedinUser !: User;
 
   async ngOnInit() {
-    console.log('this.comment.text.length', this.comment.text.length)
     this.isLongTxt = this.comment.text.length > 100;
-    console.log('this.isLongTxt', this.isLongTxt)
     this.isLiked = await this.commentService.checkIsLiked(this.loggedinUser.id, this.comment.id);
   }
 

@@ -15,7 +15,7 @@ export class CommentListComponent implements OnInit, OnChanges {
 
   commentService = inject(CommentService);
 
-  postId!: string;
+  postId!: number;
   loggedinUser!: User;
   type!: string;
   commentSum!: number;

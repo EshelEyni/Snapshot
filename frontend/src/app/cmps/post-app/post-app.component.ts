@@ -23,7 +23,7 @@ export class PostAppComponent implements OnInit, OnDestroy {
 
   postService = inject(PostService)
   userService = inject(UserService);
-  tagService = inject(TagService);
+  // tagService = inject(TagService);
   store = inject(Store<State>);
 
   loggedinUser$: Observable<User | null>
@@ -44,7 +44,7 @@ export class PostAppComponent implements OnInit, OnDestroy {
     this.store.dispatch(new LoadUsers());
     this.postService.loadPosts();
     this.posts$ = this.postService.posts$;
-    this.tagService.loadTags();
+    // this.tagService.loadTags();
 
     for (let i = 0; i < 5; i++) {
       this.users.push(this.userService.getSnapshotUser())

@@ -98,7 +98,6 @@ async function remove(postId) {
 }
 
 async function update(post) {
-    console.log('post', post);
     try {
         await db.txn(async () => {
             await db.exec(
@@ -183,10 +182,23 @@ async function add(post) {
     }
 }
 
+async function addPostToTag(tagId, postId) {
+    try {
+        await db.exec(`insert into postTags (tagId, postId) values ($tagId, $postId)`, {
+            $tagId: tagId,
+            $postId: postId
+        });
+    } catch (err) {
+        logger.error(`cannot add post ${postId} to tag ${tagId}`, err)
+        throw err
+    }
+}
+
 module.exports = {
     query,
     getById,
     remove,
     update,
     add,
+    addPostToTag
 }

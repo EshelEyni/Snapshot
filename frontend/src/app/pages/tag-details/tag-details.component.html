@@ -7,12 +7,12 @@
             </div>
             <div class="info">
                 <h1>{{tag.name}}</h1>
-                <p><span>{{tag.postsIds.length}}</span> posts</p>
+                <p><span>{{tag.postIds.length}}</span> posts</p>
                 <button class="btn-follow clean-btn">follow</button>
             </div>
         </header>
         
-        <div class="post-list-container">
+        <div class="post-list-container" *ngIf="posts.length">
             <h1>Top posts</h1>
             <post-list [posts]="posts" [isMiniPreview]="true"></post-list>
         </div>

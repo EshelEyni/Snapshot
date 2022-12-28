@@ -27,7 +27,7 @@
             <div class="input-container">
                 <div class="location-input-container">
                     <input class="location-input clean-input" [(ngModel)]="location.name" name="location"
-                        (ngModelChange)="onChangeLocation()" placeholder="Add location">
+                        (ngModelChange)="onChangeLocation()" placeholder="Add location" autocomplete="off">
                     <svg-icon src="../../../assets/svgs/location-pin.svg"></svg-icon>
 
                     <ul class="location-search-res" *ngIf="isLocationModalShown">

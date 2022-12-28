@@ -31,7 +31,7 @@ export class CommentService {
   postService = inject(PostService);
   http = inject(HttpClient);
 
-  public loadComments(filterBy = { postId: '', userId: '', type: '' }): Observable<Comment[]> {
+  public loadComments(filterBy = { postId: 0, userId: '', type: '' }): Observable<Comment[]> {
     console
     let options = { params: {} }
     if (filterBy) {
@@ -66,8 +66,8 @@ export class CommentService {
 
   public getEmptyComment(): Comment {
     return {
-      id: '',
-      postId: '',
+      id: 0,
+      postId: 0,
       by: this.userSerivce.getEmptyMiniUser(),
       text: '',
       createdAt: new Date(),
@@ -76,7 +76,7 @@ export class CommentService {
     }
   }
 
-  public async checkIsLiked(userId: string, commentId: string): Promise<boolean> {
+  public async checkIsLiked(userId: string, commentId: number): Promise<boolean> {
     const options = {
       params: {
         userId,
@@ -91,7 +91,7 @@ export class CommentService {
     return isLiked.length > 0
   }
 
-  public async toggleLike(isLiked: boolean, details: { user: MiniUser, commentId: string }) {
+  public async toggleLike(isLiked: boolean, details: { user: MiniUser, commentId: number }) {
 
     if (isLiked) {
       await firstValueFrom(

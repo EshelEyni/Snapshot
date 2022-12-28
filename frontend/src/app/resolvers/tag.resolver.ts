@@ -15,7 +15,7 @@ export class TagResolver implements Resolve<Observable<void | Tag>> {
   tagService = inject(TagService)
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-    const id = route.params['id']
-    return this.tagService.getById(id)
+    const tagName = route.params['name']
+    return this.tagService.getByName(tagName)
   }
 }

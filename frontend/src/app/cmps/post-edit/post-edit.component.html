@@ -6,25 +6,28 @@
     <main class="main-container">
         <header>
             <div class="title-container">
-                <fa-icon *ngIf="imgUrls.length" [icon]="faArrowLeft" (click)="onGoBack()"></fa-icon>
+                <fa-icon *ngIf="postImgs.length" [icon]="faArrowLeft" (click)="onGoBack()"></fa-icon>
                 <h1 class="title">{{currTitle}}</h1>
-                <h1 class="next-btn" *ngIf="imgUrls.length" (click)="onNext()">{{btnTxt}}</h1>
+                <h1 class="next-btn" *ngIf="postImgs.length" (click)="onNext()">{{btnTxt}}</h1>
             </div>
             <hr>
         </header>
 
         <div class="content-container">
-            <div class="input-file-container" *ngIf="!imgUrls.length else imgContainer">
+            <div class="input-file-container" *ngIf="!postImgs.length else postImgContainer">
                 <file-input (uploadedImgUrls)="onSaveFiles($event)" [type]="'draggable'">
                 </file-input>
             </div>
 
-            <ng-template #imgContainer>
-                <post-canvas [imgUrls]="imgUrls" [currSettings]="currEditMode" [currFilter]="currFilter"></post-canvas>
-                <!-- <div class="edit-img-container">
-                    <img-container [imgUrls]="imgUrls" [isEditPost]="true" [onGoBack]="onGoBack"></img-container>
-                </div> -->
+            <ng-template #postImgContainer>
+                <post-canvas [postImgs]="postImgs" [currSettings]="currEditMode" [currFilter]="currFilter"
+                    *ngIf="currEditMode !=='edit' else imgContainer"></post-canvas>
+                <ng-template #imgContainer>
+                    <!-- <img-container [imgUrls]="imgUrls" [isEditPost]="true" [onGoBack]="onGoBack"></img-container> -->
+                </ng-template>
             </ng-template>
+
+            <canvas #offScreenCanvas width="500" height="500" [style]="{'display':'none'}"></canvas>
 
             <div class="edit-mode-container" *ngIf="currEditMode !=='crop'">
                 <post-filter-picker *ngIf="currEditMode ==='filter'"

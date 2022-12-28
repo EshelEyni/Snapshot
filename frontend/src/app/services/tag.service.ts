@@ -3,16 +3,16 @@ import { PostService } from './post.service';
 import { StorageService } from './storage.service';
 import { UserService } from './user.service';
 import { UtilService } from './util.service';
-import { BehaviorSubject, Observable, throwError, of, map, lastValueFrom } from 'rxjs';
+import { BehaviorSubject, Observable, throwError, of, map, lastValueFrom, firstValueFrom } from 'rxjs';
 import { Tag } from '../models/tag.model';
 import { Injectable, inject } from '@angular/core';
 import { asyncStorageService } from './async-storage.service';
 
 const TAGS = [
   {
-    id: '648487',
+    id: 648487,
     name: '#Angular',
-    postsIds: ['1', '2'],
+    postIds: ['1', '2'],
   }
 ]
 
@@ -52,17 +52,12 @@ export class TagService {
     return this.http.get<Tag[]>('http://localhost:3030/api/tag', options);
   }
 
-  public getById(tagId: string): Observable<Tag> {
-    let tags = this.storageService.loadFromStorage(ENTITY)
-    const tag = tags.find((tag: Tag) => tag.id === tagId)
-    return tag ? of(tag) : throwError(() => `Tag id ${tagId} not found!`)
+  public getByName(tagName: string): Observable<Tag> {
+    return this.http.get<Tag>(`http://localhost:3030/api/tag/${tagName}`);
   }
 
   public remove(tagId: string) {
-    let tags = this.storageService.loadFromStorage(ENTITY)
-    tags = tags.filter((tag: Tag) => tag.id !== tagId)
-    this._tags$.next([...tags])
-    this.storageService.saveToStorage(ENTITY, tags)
+    return this.http.delete(`http://localhost:3030/api/tag/${tagId}`);
   }
 
   public save(tag: Tag) {
@@ -70,14 +65,35 @@ export class TagService {
   }
 
   private async _update(tag: Tag) {
-    await asyncStorageService.put(ENTITY, tag) as Tag
-    this.loadTags()
+    return firstValueFrom(
+      this.http.put(`http://localhost:3030/api/tag/${tag.id}`, tag)
+    );
   }
 
-  private async _add(tag: Tag) {
-    const addedTag = await asyncStorageService.post(ENTITY, tag) as Tag
-    this.loadTags()
-    return addedTag.id
+  private async _add(tag: Tag): Promise<number | void> {
+    const res = await firstValueFrom(
+      this.http.post(`http://localhost:3030/api/tag`, tag)
+    ) as { msg: string, id: number }
+
+    if (res.msg === 'Tag added') {
+      return res.id;
+    } else {
+      return;
+    }
+  }
+
+
+  public detectTags(text: string): string[] {
+    const hashtagRegex = /#(\w+)/g;
+    const hashtags = text.match(hashtagRegex);
+    const tags: string[] = [];
+    if (hashtags) {
+      hashtags.forEach((hashtag) => {
+        const tag = hashtag.substring(1);
+        tags.push(tag);
+      });
+    }
+    return tags;
   }
 
 }

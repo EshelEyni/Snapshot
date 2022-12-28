@@ -4,7 +4,7 @@ const db = require('../../database');
 async function query(filterBy) {
     try {
         return await db.txn(async () => {
-            const tags = await db.query(`select * from tags`);
+            const tags = await db.query(`select * from tags where name like $name`, { $name: filterBy.name + '%' });
             return tags;
         });
     } catch (err) {
@@ -13,15 +13,18 @@ async function query(filterBy) {
     }
 }
 
-async function getById(tagId) {
+async function getByName(tagName) {
     try {
-        const tags = await db.query(`select * from tags where id = $id`, { $id: tagId });
+        const tags = await db.query(`select * from tags where name = $name`, { $name: tagName });
         if (tags.length === 0) {
             return 'tag not found';
         }
-        return tags[0]
+        const tag = tags[0];
+        const postIds = await db.query(`select postId from postTags where tagId = $tagId`, { $tagId: tags[0].id });
+        tag.postIds = postIds.map(postId => postId.postId);
+        return tag
     } catch (err) {
-        logger.error(`while finding tag ${tagId}`, err)
+        logger.error(`while finding tag ${tagName}`, err)
         throw err
     }
 }
@@ -50,10 +53,15 @@ async function update(tag) {
 
 async function add(tag) {
     try {
-        const result = await db.exec(`insert into tags (name) values ($name)`, {
+        const isTagExist = await db.query(`select * from tags where name = $name`, { $name: tag.name });
+        if (isTagExist.length > 0) {
+            return isTagExist[0].id;
+        }
+
+        const id = await db.exec(`insert into tags (name) values ($name)`, {
             $name: tag.name
         })
-        return result
+        return id
     } catch (err) {
         logger.error(`cannot insert tag ${tag._id}`, err)
         throw err
@@ -62,7 +70,7 @@ async function add(tag) {
 
 module.exports = {
     query,
-    getById,
+    getByName,
     remove,
     update,
     add

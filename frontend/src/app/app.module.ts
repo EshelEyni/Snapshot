@@ -38,12 +38,6 @@ import { PostEditFormComponent } from './cmps/post-edit-form/post-edit-form.comp
 import { ExploreComponent } from './pages/explore/explore.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { PostDetailsComponent } from './pages/post-details/post-details.component';
-
-
-// Pipes
-import { CommentsToDisplayPipe } from './pipes/comments-to-display.pipe';
-import { FormattedDatePipe } from './pipes/formatted-date.pipe';
-import { ShortTxtPipe } from './pipes/short-txt.pipe';
 import { ProfileDetailsComponent } from './pages/profile-details/profile-details.component';
 import { UserPreviewComponent } from './cmps/user-preview/user-preview.component';
 import { EllipsisComponent } from './cmps/ellipsis/ellipsis.component';
@@ -88,6 +82,12 @@ import { AspectRatioModalComponent } from './cmps/aspect-ratio-modal/aspect-rati
 import { ZoomModalComponent } from './cmps/zoom-modal/zoom-modal.component';
 import { PostFilterPickerComponent } from './cmps/post-filter-picker/post-filter-picker.component';
 
+
+// Pipes
+import { FormattedDatePipe } from './pipes/formatted-date.pipe';
+import { ShortTxtPipe } from './pipes/short-txt.pipe';
+import { TagPipe } from './pipes/tag.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -103,7 +103,6 @@ import { PostFilterPickerComponent } from './cmps/post-filter-picker/post-filter
     FormattedDatePipe,
     ShareModalComponent,
     UserListComponent,
-    CommentsToDisplayPipe,
     PostEditComponent,
     ImgContainerComponent,
     PostEditFormComponent,
@@ -153,6 +152,7 @@ import { PostFilterPickerComponent } from './cmps/post-filter-picker/post-filter
     AspectRatioModalComponent,
     ZoomModalComponent,
     PostFilterPickerComponent,
+    TagPipe,
   ],
   imports: [
     BrowserAnimationsModule,

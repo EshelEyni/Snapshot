@@ -5,7 +5,7 @@ const { getTags, getTag, updateTag,addTag, deleteTag } = require('./tag.controll
 
 
 router.get('/', getTags)
-router.get('/:id', getTag)
+router.get('/:name', getTag)
 router.put('/:id',  updateTag)
 router.post('/',  addTag)
 router.delete('/:id', deleteTag)

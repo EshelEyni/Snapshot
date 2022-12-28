@@ -1,3 +1,5 @@
+import { Tag } from './../../models/tag.model';
+import { TagService } from './../../services/tag.service';
 import { lastValueFrom } from 'rxjs'
 import { PostService } from './../../services/post.service'
 import { Post } from './../../models/post.model'
@@ -16,10 +18,13 @@ import { faFaceSmile } from '@fortawesome/free-regular-svg-icons'
 
 export class CommentEditComponent implements OnInit {
   constructor() { }
-  toggleModal = new EventEmitter<string>()
+
+  // toggleModal = new EventEmitter<string>()
+
   userService = inject(UserService)
   commentService = inject(CommentService)
   postService = inject(PostService)
+  tagService = inject(TagService)
 
   faFaceSmile = faFaceSmile
   isEmojiPickerShown: boolean = false
@@ -46,6 +51,13 @@ export class CommentEditComponent implements OnInit {
     await this.commentService.save(commentToAdd)
     this.post.commentSum++
     await this.postService.save(this.post)
+    const tags = this.tagService.detectTags(commentToAdd.text)
+    if (tags.length) tags.forEach(async (tageName) => {
+      const tag = { name: tageName }
+      const id = await this.tagService.save(tag as Tag)
+      if (typeof id === 'number')
+        await this.postService.addPostToTag(id, this.post.id)
+    })
   }
 
   onToggleEmojiPicker() {

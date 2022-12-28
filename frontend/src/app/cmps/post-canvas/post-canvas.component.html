@@ -2,17 +2,17 @@
     <div class="main-screen" (click)="onToggleModal('main-screen')" *ngIf="isMainScreenShown"></div>
     <div class="canvas-container">
         <canvas #canvas height="830" width="830"></canvas>
-        <img-dots *ngIf="imgUrls.length>1" [imgUrls]="imgUrls" [currImgUrl]="currImgUrl"></img-dots>
+        <img-dots *ngIf="imgUrls.length>1" [imgUrls]="imgUrls" [currImgUrl]="currPostImg.url"></img-dots>
     </div>
 
     <div class="actions" *ngIf="currSettings ==='crop'">
         <div class="crop-setting-container">
-            <aspect-ratio-modal *ngIf="isAspectRatioModalShown"
-                (aspectRatioSelected)="onSetAspectRatio($event)"></aspect-ratio-modal>
+            <aspect-ratio-modal *ngIf="isAspectRatioModalShown" (aspectRatioSelected)="onSetAspectRatio($event)"
+                [currAspectRatio]="currAspectRatio"></aspect-ratio-modal>
             <button class="btn-aspect-ratio-select clean-btn" (click)="onToggleModal('aspect-ratio')">
                 <svg-icon src="../../../assets/svgs/aspect-ratio-icon.svg"></svg-icon>
             </button>
-            <zoom-modal *ngIf="isZoomModalShown" (zoomSelected)="onSetZoom($event)"></zoom-modal>
+            <zoom-modal *ngIf="isZoomModalShown" (zoomSelected)="onSetZoom($event)" [value]="this.currPostImg.zoom"></zoom-modal>
             <button class="btn-zoom-select clean-btn" (click)="onToggleModal('zoom')">
                 <svg-icon src="../../../assets/svgs/magnifying-glass.svg"></svg-icon>
             </button>

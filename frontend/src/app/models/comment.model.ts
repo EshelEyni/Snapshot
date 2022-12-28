@@ -1,8 +1,8 @@
 import { MiniUser } from './user.model';
 
 export interface Comment {
-    id: string;
-    postId: string;
+    id: number;
+    postId: number;
     by: MiniUser;
     text: string;
     createdAt: Date;

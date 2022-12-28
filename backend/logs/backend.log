@@ -479,3 +479,39 @@
 25.12.2022, 16:27:53 - ERROR - Failed to add post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
 25.12.2022, 16:27:53 - ERROR - cannot insert post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
 25.12.2022, 16:28:39 - INFO - Server is running on port: 3030 
+26.12.2022, 21:13:42 - ERROR - cannot insert comment | Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+26.12.2022, 21:13:42 - ERROR - Failed to add comment | Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+26.12.2022, 21:13:44 - ERROR - cannot insert comment | Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+26.12.2022, 21:13:44 - ERROR - Failed to add comment | Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+26.12.2022, 21:52:27 - INFO - Server is running on port: 3030 
+26.12.2022, 22:21:13 - ERROR - cannot update post 34 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+26.12.2022, 22:21:13 - ERROR - Failed to update post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+26.12.2022, 22:25:43 - ERROR - cannot insert comment | Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+26.12.2022, 22:25:43 - ERROR - Failed to add comment | Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+26.12.2022, 22:30:15 - INFO - Server is running on port: 3030 
+26.12.2022, 23:23:19 - INFO - Server is running on port: 3030 
+26.12.2022, 23:23:42 - INFO - Server is running on port: 3030 
+26.12.2022, 23:24:31 - INFO - Server is running on port: 3030 
+26.12.2022, 23:30:56 - INFO - Server is running on port: 3030 
+26.12.2022, 23:31:07 - INFO - Server is running on port: 3030 
+26.12.2022, 23:31:54 - INFO - Server is running on port: 3030 
+26.12.2022, 23:31:56 - INFO - Server is running on port: 3030 
+26.12.2022, 23:32:41 - INFO - Server is running on port: 3030 
+26.12.2022, 23:39:19 - INFO - Server is running on port: 3030 
+28.12.2022, 13:54:57 - INFO - Server is running on port: 3030 
+28.12.2022, 13:55:05 - INFO - Server is running on port: 3030 
+28.12.2022, 14:28:32 - INFO - Server is running on port: 3030 
+28.12.2022, 18:08:50 - INFO - Server is running on port: 3030 
+28.12.2022, 18:08:51 - INFO - Server is running on port: 3030 
+28.12.2022, 18:09:09 - INFO - Server is running on port: 3030 
+28.12.2022, 18:10:09 - INFO - Server is running on port: 3030 
+28.12.2022, 18:21:09 - ERROR - cannot add post 7 to tag 43 | Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+28.12.2022, 18:21:09 - ERROR - Failed to add post to tag | Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+28.12.2022, 18:23:21 - INFO - Server is running on port: 3030 
+28.12.2022, 18:24:57 - INFO - Server is running on port: 3030 
+28.12.2022, 18:25:25 - ERROR - cannot add post 8 to tag 43 | Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+28.12.2022, 18:25:25 - ERROR - Failed to add post to tag | Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+28.12.2022, 18:26:36 - INFO - Server is running on port: 3030 
+28.12.2022, 18:26:44 - ERROR - cannot insert tag undefined | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: tags.name 
+28.12.2022, 18:26:44 - ERROR - Failed to add tag | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: tags.name 
+28.12.2022, 18:28:38 - INFO - Server is running on port: 3030 

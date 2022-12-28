@@ -50,7 +50,6 @@ async function addPost(req, res) {
     try {
         const post = req.body
         const id = await postService.add(post)
-        console.log('id', id);
         res.send({ msg: 'Post added', id })
     } catch (err) {
         logger.error('Failed to add post', err)
@@ -58,6 +57,18 @@ async function addPost(req, res) {
     }
 }
 
+async function addPostToTag(req, res) {
+    try {
+        console.log('req.body', req.body);
+        const { postId, tagId } = req.body
+
+        const post = await postService.addPostToTag(tagId, postId)
+        res.send(post)
+    } catch (err) {
+        logger.error('Failed to add post to tag', err)
+        res.status(500).send({ err: 'Failed to add post to tag' })
+    }
+}
 
 module.exports = {
     getPosts,
@@ -65,4 +76,5 @@ module.exports = {
     deletePost,
     updatePost,
     addPost,
+    addPostToTag
 }

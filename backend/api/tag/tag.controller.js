@@ -13,7 +13,7 @@ async function getTags(req, res) {
 
 async function getTag(req, res) {
     try {
-        const tag = await tagService.getById(req.params.id)
+        const tag = await tagService.getByName(req.params.name)
         res.send(tag)
     } catch (err) {
         logger.error('Failed to get tag', err)
@@ -45,8 +45,8 @@ async function updateTag(req, res) {
 async function addTag(req, res) {
     try {
         const tag = req.body
-        const savedTag = await tagService.add(tag)
-        res.send({ savedTag: savedTag })
+        const id = await tagService.add(tag)
+        res.send({ msg: 'Tag added', id })
     } catch (err) {
         logger.error('Failed to add tag', err)
         res.status(500).send({ err: 'Failed to add tag' })
