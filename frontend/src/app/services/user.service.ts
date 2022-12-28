@@ -49,11 +49,11 @@ export class UserService {
       )
   }
 
-  public getById(userId: string): Observable<User> {
+  public getById(userId: number): Observable<User> {
     return this.http.get<User>(`http://localhost:3030/api/user/id/${userId}`)
   }
 
-  public remove(userId: string): Observable<boolean> {
+  public remove(userId: number): Observable<boolean> {
     return this.http.delete(`http://localhost:3030/api/user/${userId}`).pipe(
       map((res) => {
         return true
@@ -108,7 +108,7 @@ export class UserService {
   }
 
   public getEmptyMiniUser(): MiniUser {
-    return { id: '', fullname: '', username: '', imgUrl: '' }
+    return { id: 0, fullname: '', username: '', imgUrl: '' }
   }
 
   public getDefaultUserImgUrl(): string {
@@ -117,7 +117,7 @@ export class UserService {
 
   public getSnapshotUser(): MiniUser {
     const snapShotUser = {
-      id: 'u100',
+      id: 1000,
       username: 'SnapShot',
       fullname: 'SnapShot',
       imgUrl: '../../assets/imgs/logo-blue.png',
@@ -131,7 +131,7 @@ export class UserService {
   //   )
   // }
 
-  public async getFollowings(followerId: string): Promise<MiniUser[]> {
+  public async getFollowings(followerId: number): Promise<MiniUser[]> {
     const options = {
       params: {
         followerId,
@@ -144,7 +144,7 @@ export class UserService {
     )
   }
 
-  public async checkIsFollowing(loggedinUserId: string, userToCheckId: string): Promise<boolean> {
+  public async checkIsFollowing(loggedinUserId: number, userToCheckId: number): Promise<boolean> {
     const options = {
       params: {
         followerId: loggedinUserId,
@@ -157,7 +157,7 @@ export class UserService {
     return isFollowing.length > 0
   }
 
-  public async toggleFollow(isFollowing: boolean, loggedinUserId: string, user: MiniUser) {
+  public async toggleFollow(isFollowing: boolean, loggedinUserId: number, user: MiniUser) {
 
     if (isFollowing) {
       await firstValueFrom(

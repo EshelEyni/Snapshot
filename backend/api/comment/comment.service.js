@@ -51,7 +51,6 @@ async function getById(commentId) {
         const likeBy = await db.query(`select userId, username, fullname, imgUrl from commentsLikedBy where commentId = $id`, { $id: commentId });
         comments[0].likeBy = likeBy;
         delete comments[0].likeSum;
-        console.log('comments[0]', comments[0]);
         return comments[0]
     } catch (err) {
         logger.error(`while finding comment ${commentId}`, err)

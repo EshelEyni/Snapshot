@@ -1,11 +1,11 @@
 import { MiniUser } from './user.model';
 
 export interface Story {
-    id: string;
+    id: number;
+    createdAt: Date;
     imgUrls: StoryImg[];
     by: MiniUser;
     watchedBy: MiniUser[];
-    createdAt: Date;
 }
 
 export interface StoryImg {

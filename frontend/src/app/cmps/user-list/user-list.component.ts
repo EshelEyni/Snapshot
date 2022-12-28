@@ -33,7 +33,7 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
   isTitle: boolean = true;
   title: string = '';
 
-  isSelectUser: { userId: string, idx: number, isSelected: boolean }[] = [];
+  isSelectUser: { userId: number, idx: number, isSelected: boolean }[] = [];
   addUser = new EventEmitter<MiniUser>();
   removeUser = new EventEmitter<MiniUser>();
 

@@ -141,7 +141,7 @@ async function update(post) {
 }
 
 async function add(post) {
-    console.log('post', post);
+
     try {
         return await db.txn(async () => {
             const id = await db.exec(

@@ -45,17 +45,16 @@ export class PostEditComponent implements OnInit, OnDestroy {
   loggedinUser!: User
   currTitle: string = 'create new post'
   postImgs: PostCanvasImg[] = [
-    {
-      // url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044177/ukfallhy757gdlswvfuj.jpg',
-      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669305397/p7o8v7gvoy3bgdcymu0d.jpg',
-      x: 0,
-      y: 0,
-      width: 830,
-      height: 830,
-      aspectRatio: 'Original',
-      zoom: 0,
-      filter: 'normal',
-    }
+    // {
+    //   url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044177/ukfallhy757gdlswvfuj.jpg',
+    //   x: 0,
+    //   y: 0,
+    //   width: 830,
+    //   height: 830,
+    //   aspectRatio: 'Original',
+    //   zoom: 0,
+    //   filter: 'normal',
+    // }
     // ,
     // 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669305397/p7o8v7gvoy3bgdcymu0d.jpg',
     // 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044038/pxbi0wi3po7fiadwdcke.jpg',
@@ -125,8 +124,8 @@ export class PostEditComponent implements OnInit, OnDestroy {
   async savePost() {
     const postToSave = this.postService.getEmptyPost();
     const author = this.userService.getMiniUser(this.loggedinUser);
-    // await this.convertCanvasImgsToImgUrls(this.postImgs, postToSave.imgUrls);
-    postToSave.imgUrls = this.postImgs.map(img => img.url);
+    await this.convertCanvasImgsToImgUrls(this.postImgs, postToSave.imgUrls);
+    // postToSave.imgUrls = this.postImgs.map(img => img.url);
     postToSave.by = author;
     postToSave.location = this.location;
     postToSave.tags = this.tagService.detectTags(this.txt);

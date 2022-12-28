@@ -515,3 +515,17 @@
 28.12.2022, 18:26:44 - ERROR - cannot insert tag undefined | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: tags.name 
 28.12.2022, 18:26:44 - ERROR - Failed to add tag | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: tags.name 
 28.12.2022, 18:28:38 - INFO - Server is running on port: 3030 
+28.12.2022, 19:22:22 - INFO - Server is running on port: 3030 
+28.12.2022, 19:26:41 - INFO - Server is running on port: 3030 
+28.12.2022, 19:27:45 - INFO - Server is running on port: 3030 
+28.12.2022, 19:30:16 - INFO - Server is running on port: 3030 
+28.12.2022, 19:36:05 - INFO - Server is running on port: 3030 
+28.12.2022, 19:38:16 - INFO - Server is running on port: 3030 
+28.12.2022, 19:38:18 - ERROR - cannot insert story | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: storyImg.storyId 
+28.12.2022, 19:38:18 - ERROR - Failed to add story | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: storyImg.storyId 
+28.12.2022, 19:39:13 - INFO - Server is running on port: 3030 
+28.12.2022, 19:39:15 - ERROR - cannot insert story | Failed to commit transaction: ReferenceError: result is not defined 
+28.12.2022, 19:39:15 - ERROR - Failed to add story | Failed to commit transaction: ReferenceError: result is not defined 
+28.12.2022, 19:39:28 - INFO - Server is running on port: 3030 
+28.12.2022, 19:40:37 - INFO - Server is running on port: 3030 
+28.12.2022, 19:45:03 - INFO - Server is running on port: 3030 

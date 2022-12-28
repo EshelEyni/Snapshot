@@ -31,7 +31,7 @@ export class CommentService {
   postService = inject(PostService);
   http = inject(HttpClient);
 
-  public loadComments(filterBy = { postId: 0, userId: '', type: '' }): Observable<Comment[]> {
+  public loadComments(filterBy = { postId: 0, userId: 0, type: '' }): Observable<Comment[]> {
     console
     let options = { params: {} }
     if (filterBy) {
@@ -76,7 +76,7 @@ export class CommentService {
     }
   }
 
-  public async checkIsLiked(userId: string, commentId: number): Promise<boolean> {
+  public async checkIsLiked(userId: number, commentId: number): Promise<boolean> {
     const options = {
       params: {
         userId,

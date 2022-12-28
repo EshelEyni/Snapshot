@@ -24,7 +24,6 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.loggedinUser$ = this.store.select('userState').pipe(map((x => x.loggedinUser)));
-
   }
 
   // Icons
@@ -430,15 +429,12 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
   async onShareStory() {
     this.currStoryImg.url = this.canvas.nativeElement.toDataURL("image/png");
 
-    const storyToAdd: Story = {
-      id: '',
-      imgUrls: this.storyImgs,
-      by: this.userService.getMiniUser(this.loggedinUser),
-      watchedBy: [],
-      createdAt: new Date(),
-    }
-    const addedStory = await lastValueFrom(this.storyService.save(storyToAdd));
-    this.loggedinUser.currStoryId = addedStory.id;
+    const storyToAdd = this.storyService.getEmptyStory();
+    storyToAdd.imgUrls = this.storyImgs;
+    storyToAdd.by = this.userService.getMiniUser(this.loggedinUser);
+
+    const id = await this.storyService.save(storyToAdd);
+    if (typeof id === 'number') this.loggedinUser.currStoryId = id;
     const updatedUser = await lastValueFrom(this.userService.save(this.loggedinUser));
     if (updatedUser) this.router.navigate(['/']);
   }

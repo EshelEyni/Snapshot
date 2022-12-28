@@ -1,10 +1,10 @@
 import { MiniUser } from './user.model';
 
 export interface Notification {
-    id: string;
+    id: number;
     type: string;
     by: MiniUser;
     createdAt: Date;
     postImg?: string;
-    userId: string;
+    userId: number;
 }

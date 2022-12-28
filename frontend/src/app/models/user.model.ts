@@ -1,5 +1,5 @@
 export interface User {
-    id: string
+    id: number
     username: string
     fullname: string
     email: string
@@ -12,11 +12,11 @@ export interface User {
     followersSum: number
     followingSum: number
     postSum: number
-    currStoryId: string
+    currStoryId: number
 }
 
 export interface MiniUser {
-    id: string
+    id: number
     fullname: string,
     username: string,
     imgUrl: string

@@ -72,7 +72,7 @@ async function remove(userId) {
         await db.exec(`delete from recentSearches where searcherId = $id`, { $id: userId })
         await db.exec(`delete from savedPosts where userId = $id`, { $id: userId })
         // await db.exec(`delete from postsImgs join posts where userId = $id`, { $id: userId })
-        // todo: delete posts with images and comments
+        // todo: delete posts with images and comments and likes and stories and storiesImgs and storiesLikes
         await db.exec(`delete from users where id = $id`, { $id: userId })
     } catch (err) {
         logger.error(`cannot remove user ${userId}`, err)

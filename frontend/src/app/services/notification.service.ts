@@ -5,33 +5,33 @@ import { Injectable, inject } from '@angular/core';
 import { Notification } from '../models/notification.model';
 import { asyncStorageService } from './async-storage.service';
 
-const NOTIFICATIONS = [
-  {
-    id: '12',
-    type: 'follow',
-    by: {
-      id: 'a12F34b907',
-      fullname: 'Yossi',
-      username: 'tale',
-      imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1668096213/r3tultfspxvxqrtc6bll.jpg',
-    },
-    createdAt: new Date(),
-    userId: 'a12tgeko907'
+const NOTIFICATIONS:Notification[] = [
+  // {
+  //   id: '12',
+  //   type: 'follow',
+  //   by: {
+  //     id: 'a12F34b907',
+  //     fullname: 'Yossi',
+  //     username: 'tale',
+  //     imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1668096213/r3tultfspxvxqrtc6bll.jpg',
+  //   },
+  //   createdAt: new Date(),
+  //   userId: 'a12tgeko907'
 
-  },
-  {
-    id: '13',
-    type: 'like',
-    by: {
-      id: 'a12F34b907',
-      fullname: 'Yossi',
-      username: 'tale',
-      imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1668096213/r3tultfspxvxqrtc6bll.jpg',
-    },
-    createdAt: new Date(),
-    postImg: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1668096213/r3tultfspxvxqrtc6bll.jpg',
-    userId: 'a12tgeko907'
-  },
+  // },
+  // {
+  //   id: '13',
+  //   type: 'like',
+  //   by: {
+  //     id: 'a12F34b907',
+  //     fullname: 'Yossi',
+  //     username: 'tale',
+  //     imgUrl: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1668096213/r3tultfspxvxqrtc6bll.jpg',
+  //   },
+  //   createdAt: new Date(),
+  //   postImg: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1668096213/r3tultfspxvxqrtc6bll.jpg',
+  //   userId: 'a12tgeko907'
+  // },
 ]
 
 const ENTITY = 'notification';
@@ -61,13 +61,13 @@ export class NotificationService {
     this._notifications$.next(notifications);
   }
 
-  public getById(notificationId: string): Notification {
+  public getById(notificationId: number): Notification {
     let notifications = this.storageService.loadFromStorage(ENTITY)
     const notification = notifications.find((notification: Notification) => notification.id === notificationId)
     return notification
   }
 
-  public remove(notificationId: string) {
+  public remove(notificationId: number) {
     let notifications = this.storageService.loadFromStorage(ENTITY)
     notifications = notifications.filter((notification: Notification) => notification.id !== notificationId)
     this._notifications$.next([...notifications])
@@ -80,13 +80,13 @@ export class NotificationService {
   }
 
   private async _add(notification: Notification) {
-    const addedNotification = await asyncStorageService.post(ENTITY, notification) as Notification
-    this.loadNotifications()
-    return addedNotification.id
+    // const addedNotification = await asyncStorageService.post(ENTITY, notification) as Notification
+    // this.loadNotifications()
+    // return addedNotification.id
   }
 
   private async _update(notification: Notification) {
-    await asyncStorageService.put(ENTITY, notification)
+    // await asyncStorageService.put(ENTITY, notification)
     this.loadNotifications()
   }
 

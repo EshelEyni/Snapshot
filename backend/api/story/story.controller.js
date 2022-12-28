@@ -45,8 +45,8 @@ async function updateStory(req, res) {
 async function addStory(req, res) {
     try {
         const story = req.body
-        const savedStory = await storyService.add(story)
-        res.send({ savedStory: savedStory })
+        const id = await storyService.add(story)
+        res.send({ msg: 'Story added', id })
     } catch (err) {
         logger.error('Failed to add story', err)
         res.status(500).send({ err: 'Failed to add story' })

@@ -17,7 +17,7 @@ export class PostService {
     private http: HttpClient,
   ) { }
 
-  public async loadPosts(filterBy?: { userId: string; type: string }) {
+  public async loadPosts(filterBy?: { userId: number; type: string }) {
     let options = { params: {} }
     if (filterBy) {
       options.params = {
@@ -108,7 +108,7 @@ export class PostService {
   }
 
 
-  public async checkIsLiked(filterBy: { userId: string, postId: number }): Promise<boolean> {
+  public async checkIsLiked(filterBy: { userId: number, postId: number }): Promise<boolean> {
     const options = {
       params: {
         userId: filterBy.userId,
@@ -138,7 +138,7 @@ export class PostService {
     }
   }
 
-  public async checkIsSaved(filterBy: { userId: string, postId: number }): Promise<boolean> {
+  public async checkIsSaved(filterBy: { userId: number, postId: number }): Promise<boolean> {
     const options = {
       params: {
         userId: filterBy.userId,
@@ -153,7 +153,7 @@ export class PostService {
     return false
   }
 
-  public async toggleSave(isSaved: boolean, filterBy: { userId: string, postId: number }) {
+  public async toggleSave(isSaved: boolean, filterBy: { userId: number, postId: number }) {
 
     if (isSaved) {
       await firstValueFrom(
