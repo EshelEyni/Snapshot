@@ -23,7 +23,6 @@ import { AngularDraggableModule } from 'angular2-draggable';
 // Components
 import { AppComponent } from './app-root/app.component';
 import { HomeComponent } from './pages/home/home.component';
-import { PostAppComponent } from './cmps/post-app/post-app.component';
 import { PostListComponent } from './cmps/post-list/post-list.component';
 import { PostPreviewComponent } from './cmps/post-preview/post-preview.component';
 import { SideBarComponent } from './cmps/side-bar/side-bar.component';
@@ -92,7 +91,6 @@ import { TagPipe } from './pipes/tag.pipe';
   declarations: [
     AppComponent,
     HomeComponent,
-    PostAppComponent,
     PostListComponent,
     PostPreviewComponent,
     SideBarComponent,

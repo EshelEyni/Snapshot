@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { UtilService } from './util.service'
 import { StorageService } from './storage.service'
 import { User, MiniUser } from './../models/user.model'
@@ -39,9 +39,29 @@ export class UserService {
     return this.getUsers(filterBy)
   }
 
-  public getUsers(filterBy: string): Observable<User[]> {
+  public getUsers(type: string): Observable<User[]> {
+    let options = {}
+    if (type) {
+      options = {
+        params: {
+          type,
+          userId: this.getLoggedinUser()?.id
+        }
+      }
+    }
+
     return this.http
-      .get(`http://localhost:3030/api/user/search?q=${filterBy}`)
+      .get(`http://localhost:3030/api/user`, options)
+      .pipe(
+        map((users) => {
+          return users as User[]
+        }),
+      )
+  }
+
+  public getUsersBySearchTerm(searchTerm: string): Observable<User[]> {
+    return this.http
+      .get(`http://localhost:3030/api/user/search?searchTerm=${searchTerm}`)
       .pipe(
         map((users) => {
           return users as User[]

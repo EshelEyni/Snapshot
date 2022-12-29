@@ -39,7 +39,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-app.use('/api/user', userRoutes)
+app.use('/api/user', userRoutes) 
 app.use('/api/post', postRoutes)
 app.use('/api/auth', authRoutes)
 app.use('/api/comment', commentRoutes)
@@ -57,7 +57,7 @@ app.get('/**', (req, res) => {
 })
 
 const logger = require('./services/logger.service.js');
-// const { fstat } = require('fs');
+
 const port = process.env.PORT || 3030
 http.listen(port, () => {
     logger.info('Server is running on port: ' + port)

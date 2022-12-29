@@ -2,6 +2,13 @@
 @import '../../../assets/styles/setup/vars';
 
 .user-list {
+    display: flex;
+    flex-direction: column;
+    gap: rem(15px);
+
+    .user-list-header{
+        color: var(--secondary-color);
+    }
     .default-list {
         li {
             display: flex;

@@ -1,7 +1,40 @@
 @import '../../../assets/styles/setup/functions';
 @import '../../../assets/styles/setup/mixins';
 
-.home {
+::ng-deep .homepage {
     @include page;
-    justify-content: center;
+
+
+    .post-app {
+        display: flex;
+        justify-content: center;
+        gap: rem(25px);
+        height: 100%;
+        width: 100%;
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: rem(25px);
+            // height: 100%;
+            width: 100%;
+            max-width: rem(470px);
+        }
+
+        .user-list-container {
+            display: flex;
+            flex-direction: column;
+            gap: rem(25px);
+            padding-top: rem(100px);
+
+            .user-preview {
+                gap: rem(15px);
+                .img-container {
+                    width: rem(50px);
+                    height: rem(50px);
+                }
+            }
+        }
+    }
 }

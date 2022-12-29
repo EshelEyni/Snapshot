@@ -2,9 +2,9 @@ const logger = require('../../services/logger.service')
 const db = require('../../database');
 const bcrypt = require('bcrypt');
 
-async function query(q) {
+async function query(queryParams) {
     try {
-        if (!q)
+        if (!queryParams.searchTerm)
             return await db.query(`select * from users order by username`);
 
 

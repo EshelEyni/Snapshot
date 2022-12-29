@@ -28,13 +28,10 @@ export class LikeModalComponent implements OnInit {
 
   async ngOnInit() {
     this.users = await this.postService.getUsersWhoLiked(this.post.id);
-    console.log(this.users);
   }
-
 
   onCloseModal() {
     this.close.emit();
   }
-
 
 }

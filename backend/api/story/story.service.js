@@ -6,8 +6,10 @@ async function query(userId) {
     try {
         return await db.txn(async () => {
             let userIds = [userId]
-            const followingIds = await db.query(`select userId from following where userId = $id`, { $id: userId });
+            const followingIds = await db.query(`select userId from following where followerId = $id`, { $id: userId });
+            console.log('followingIds', followingIds);
             userIds = [...userIds, ...followingIds.map(following => following.userId)];
+            console.log('userIds', userIds);
 
             const promises = userIds.map(async userId => {
                 const currStory = await db.query(
@@ -18,7 +20,6 @@ async function query(userId) {
                 const users = await db.query(`select * from users where id = $id limit 1`, { $id: currStory[0].userId });
                 if (users.length === 0) throw new Error('user not found: ' + currStory[0].userId);
                 const user = users[0];
-                console.log('user', user);
                 currStory[0].by = { id: user.id, username: user.username, fullname: user.fullname, imgUrl: user.imgUrl };
                 const userViews = await db.query(`select * from storyViews where storyId = $id`, { $id: currStory[0].id });
                 currStory[0].watchedBy = userViews;
@@ -93,7 +94,6 @@ async function update(story) {
 }
 
 async function add(story) {
-    console.log('story', story);
     try {
         return await db.txn(async () => {
 

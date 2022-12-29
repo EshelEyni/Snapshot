@@ -36,7 +36,7 @@ export class UserPreviewComponent implements OnInit {
   isUrlsDisabled!: boolean;
 
   async ngOnInit() {
-    if (this.type !== 'story-edit' && this.user.id !== 1000) {
+    if (this.type !== 'story-edit' && this.type !== 'no-story' && this.user.id !== 1000) {
       const user = await lastValueFrom(this.userService.getById(this.user.id))
       if (user.currStoryId) {
         const story = await lastValueFrom(
