@@ -25,15 +25,20 @@ export class StoryService {
   userService = inject(UserService);
   http = inject(HttpClient);
 
-  public async loadStories(userIds?: number[]) {
-    let stories = await this.storageService.loadFromStorage(ENTITY) || null;
-    if (!stories) {
-      stories = this._storiesDb;
-      this.storageService.saveToStorage(ENTITY, stories);
+  public async loadStories(userId: number) {
+    let options = { params: {} }
+    if (userId) {
+      options.params = {
+        userId
+      }
     }
-    if (userIds) stories = stories.filter((story: Story) => userIds.includes(story.by.id));
+
+    const stories = await firstValueFrom(
+      this.http.get<Story[]>('http://localhost:3030/api/story', options),
+    )
 
     this._stories$.next(stories);
+    // this._stories$.next([]);
   }
 
   public getById(storyId: number): Observable<Story> {

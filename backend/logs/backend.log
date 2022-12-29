@@ -529,3 +529,153 @@
 28.12.2022, 19:39:28 - INFO - Server is running on port: 3030 
 28.12.2022, 19:40:37 - INFO - Server is running on port: 3030 
 28.12.2022, 19:45:03 - INFO - Server is running on port: 3030 
+28.12.2022, 20:20:52 - ERROR - cannot insert story | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: stories.userId 
+28.12.2022, 20:20:52 - ERROR - Failed to add story | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: stories.userId 
+28.12.2022, 20:22:26 - INFO - Server is running on port: 3030 
+28.12.2022, 20:22:33 - ERROR - while finding story 3 | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - Failed to get story | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - while finding story 3 | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - Failed to get story | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - while finding story 3 | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - Failed to get story | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - while finding story 3 | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - Failed to get story | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - while finding story 3 | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - Failed to get story | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - Failed to get story | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - while finding story 3 | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - while finding story 3 | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - Failed to get story | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - while finding story 3 | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - Failed to get story | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - while finding story 3 | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - Failed to get story | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - while finding story 3 | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - Failed to get story | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - while finding story 3 | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - Failed to get story | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - while finding story 3 | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:22:33 - ERROR - Failed to get story | Error: SQLITE_ERROR: no such table: userViews 
+28.12.2022, 20:23:38 - INFO - Server is running on port: 3030 
+28.12.2022, 20:23:45 - ERROR - while finding user undefined | Failed to commit transaction: user with id #undefined was not found 
+28.12.2022, 20:23:45 - ERROR - Failed to get user | Failed to commit transaction: user with id #undefined was not found 
+28.12.2022, 20:32:18 - INFO - Server is running on port: 3030 
+28.12.2022, 20:41:10 - INFO - Server is running on port: 3030 
+28.12.2022, 20:41:59 - INFO - Server is running on port: 3030 
+28.12.2022, 20:43:26 - INFO - Server is running on port: 3030 
+28.12.2022, 20:44:59 - INFO - Server is running on port: 3030 
+28.12.2022, 20:45:22 - INFO - Server is running on port: 3030 
+28.12.2022, 20:45:54 - INFO - Server is running on port: 3030 
+28.12.2022, 20:52:47 - INFO - Server is running on port: 3030 
+28.12.2022, 20:52:48 - INFO - Server is running on port: 3030 
+28.12.2022, 20:53:37 - INFO - Server is running on port: 3030 
+28.12.2022, 21:01:44 - INFO - Server is running on port: 3030 
+28.12.2022, 21:01:50 - INFO - Server is running on port: 3030 
+28.12.2022, 21:11:51 - INFO - Server is running on port: 3030 
+29.12.2022, 11:22:05 - ERROR - cannot insert story | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+29.12.2022, 11:22:05 - ERROR - Failed to add story | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+29.12.2022, 11:25:23 - INFO - Server is running on port: 3030 
+29.12.2022, 11:25:42 - INFO - Server is running on port: 3030 
+29.12.2022, 11:27:45 - INFO - Server is running on port: 3030 
+29.12.2022, 11:28:48 - INFO - Server is running on port: 3030 
+29.12.2022, 11:29:14 - INFO - Server is running on port: 3030 
+29.12.2022, 11:29:42 - INFO - Server is running on port: 3030 
+29.12.2022, 11:30:01 - INFO - Server is running on port: 3030 
+29.12.2022, 11:30:09 - INFO - Server is running on port: 3030 
+29.12.2022, 11:31:01 - INFO - Server is running on port: 3030 
+29.12.2022, 11:34:50 - INFO - Server is running on port: 3030 
+29.12.2022, 11:37:10 - INFO - Server is running on port: 3030 
+29.12.2022, 11:38:32 - INFO - Server is running on port: 3030 
+29.12.2022, 11:38:35 - ERROR - cannot find stories | Error: SQLITE_ERROR: no such table: storiesImgs 
+29.12.2022, 11:38:35 - ERROR - Failed to get stories | Error: SQLITE_ERROR: no such table: storiesImgs 
+29.12.2022, 11:38:35 - ERROR - Failed to get stories | Error: SQLITE_ERROR: no such table: storiesImgs 
+29.12.2022, 11:38:35 - ERROR - cannot find stories | Error: SQLITE_ERROR: no such table: storiesImgs 
+29.12.2022, 11:38:55 - INFO - Server is running on port: 3030 
+29.12.2022, 11:39:02 - INFO - Server is running on port: 3030 
+29.12.2022, 11:39:05 - ERROR - while finding user undefined | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:39:05 - ERROR - Failed to get user | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:39:05 - ERROR - while finding user undefined | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:39:05 - ERROR - Failed to get user | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:39:59 - INFO - Server is running on port: 3030 
+29.12.2022, 11:40:02 - ERROR - while finding user undefined | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:40:02 - ERROR - Failed to get user | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:40:02 - ERROR - while finding user undefined | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:40:02 - ERROR - Failed to get user | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:40:30 - INFO - Server is running on port: 3030 
+29.12.2022, 11:40:34 - ERROR - while finding user undefined | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:40:34 - ERROR - Failed to get user | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:40:34 - ERROR - while finding user undefined | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:40:34 - ERROR - Failed to get user | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:41:24 - INFO - Server is running on port: 3030 
+29.12.2022, 11:41:54 - INFO - Server is running on port: 3030 
+29.12.2022, 11:42:26 - INFO - Server is running on port: 3030 
+29.12.2022, 11:42:57 - INFO - Server is running on port: 3030 
+29.12.2022, 11:44:22 - INFO - Server is running on port: 3030 
+29.12.2022, 11:44:31 - ERROR - cannot find stories | TypeError: userIds.map is not a function 
+29.12.2022, 11:44:31 - ERROR - Failed to get stories | TypeError: userIds.map is not a function 
+29.12.2022, 11:44:31 - ERROR - Failed to get stories | TypeError: userIds.map is not a function 
+29.12.2022, 11:44:31 - ERROR - cannot find stories | TypeError: userIds.map is not a function 
+29.12.2022, 11:44:55 - INFO - Server is running on port: 3030 
+29.12.2022, 11:45:58 - INFO - Server is running on port: 3030 
+29.12.2022, 11:46:52 - INFO - Server is running on port: 3030 
+29.12.2022, 11:47:25 - INFO - Server is running on port: 3030 
+29.12.2022, 11:47:45 - ERROR - while finding user undefined | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:47:45 - ERROR - Failed to get user | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:47:45 - ERROR - while finding user undefined | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:47:45 - ERROR - Failed to get user | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:51:49 - INFO - Server is running on port: 3030 
+29.12.2022, 11:52:05 - INFO - Server is running on port: 3030 
+29.12.2022, 11:53:50 - INFO - Server is running on port: 3030 
+29.12.2022, 11:54:05 - ERROR - cannot find stories | TypeError: userId is not iterable 
+29.12.2022, 11:54:05 - ERROR - Failed to get stories | TypeError: userId is not iterable 
+29.12.2022, 11:54:23 - INFO - Server is running on port: 3030 
+29.12.2022, 11:54:26 - ERROR - Failed to get stories | Error: SQLITE_ERROR: no such column: followingId 
+29.12.2022, 11:54:26 - ERROR - cannot find stories | Error: SQLITE_ERROR: no such column: followingId 
+29.12.2022, 11:54:26 - ERROR - cannot find stories | Error: SQLITE_ERROR: no such column: followingId 
+29.12.2022, 11:54:26 - ERROR - Failed to get stories | Error: SQLITE_ERROR: no such column: followingId 
+29.12.2022, 11:55:08 - INFO - Server is running on port: 3030 
+29.12.2022, 11:55:12 - ERROR - cannot find stories | TypeError: userId is not iterable 
+29.12.2022, 11:55:12 - ERROR - Failed to get stories | TypeError: userId is not iterable 
+29.12.2022, 11:55:12 - ERROR - cannot find stories | TypeError: userId is not iterable 
+29.12.2022, 11:55:12 - ERROR - Failed to get stories | TypeError: userId is not iterable 
+29.12.2022, 11:55:39 - INFO - Server is running on port: 3030 
+29.12.2022, 11:55:44 - INFO - Server is running on port: 3030 
+29.12.2022, 11:55:47 - ERROR - cannot find stories | Error: SQLITE_ERROR: no such column: followingId 
+29.12.2022, 11:55:47 - ERROR - Failed to get stories | Error: SQLITE_ERROR: no such column: followingId 
+29.12.2022, 11:55:47 - ERROR - cannot find stories | Error: SQLITE_ERROR: no such column: followingId 
+29.12.2022, 11:55:47 - ERROR - Failed to get stories | Error: SQLITE_ERROR: no such column: followingId 
+29.12.2022, 11:56:23 - INFO - Server is running on port: 3030 
+29.12.2022, 11:56:26 - ERROR - cannot find stories | Error: SQLITE_ERROR: no such column: followingId 
+29.12.2022, 11:56:26 - ERROR - Failed to get stories | Error: SQLITE_ERROR: no such column: followingId 
+29.12.2022, 11:56:26 - ERROR - cannot find stories | Error: SQLITE_ERROR: no such column: followingId 
+29.12.2022, 11:56:26 - ERROR - Failed to get stories | Error: SQLITE_ERROR: no such column: followingId 
+29.12.2022, 11:56:41 - INFO - Server is running on port: 3030 
+29.12.2022, 11:56:45 - ERROR - while finding user undefined | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:56:45 - ERROR - Failed to get user | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:56:45 - ERROR - Failed to get user | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:56:45 - ERROR - while finding user undefined | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:58:02 - INFO - Server is running on port: 3030 
+29.12.2022, 11:58:05 - ERROR - while finding user undefined | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:58:05 - ERROR - Failed to get user | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:58:05 - ERROR - while finding user undefined | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:58:05 - ERROR - Failed to get user | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:58:41 - INFO - Server is running on port: 3030 
+29.12.2022, 11:58:43 - ERROR - while finding user undefined | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:58:43 - ERROR - Failed to get user | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:58:43 - ERROR - while finding user undefined | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:58:43 - ERROR - Failed to get user | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 11:59:15 - INFO - Server is running on port: 3030 
+29.12.2022, 11:59:44 - INFO - Server is running on port: 3030 
+29.12.2022, 12:00:01 - ERROR - Failed to get user | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 12:00:01 - ERROR - while finding user undefined | Failed to commit transaction: user with id #undefined was not found 
+29.12.2022, 12:04:10 - INFO - Server is running on port: 3030 
+29.12.2022, 12:04:50 - ERROR - cannot remove story 3 | Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+29.12.2022, 12:04:50 - ERROR - Failed to delete story | Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+29.12.2022, 12:05:51 - INFO - Server is running on port: 3030 
+29.12.2022, 12:06:21 - INFO - Server is running on port: 3030 
+29.12.2022, 12:06:57 - INFO - Server is running on port: 3030 
+29.12.2022, 12:23:39 - ERROR - cannot insert story | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: storyImg.imgUrl 
+29.12.2022, 12:23:39 - ERROR - Failed to add story | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: storyImg.imgUrl 
+29.12.2022, 12:59:17 - INFO - Server is running on port: 3030 
+29.12.2022, 12:59:23 - ERROR - Failed to add story | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: storyImg.imgUrl 
+29.12.2022, 12:59:23 - ERROR - cannot insert story | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: storyImg.imgUrl 

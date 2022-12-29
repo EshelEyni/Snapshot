@@ -43,6 +43,7 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
   storyService = inject(StoryService);
 
   @ViewChild('canvas', { static: true }) canvas!: ElementRef<HTMLCanvasElement>;
+  @ViewChild('offScreenCanvas', { static: true }) offScreenCanvas!: ElementRef<HTMLCanvasElement>;
 
   ctx!: CanvasRenderingContext2D;
   storyImgs: StoryImg[] = [];
@@ -83,7 +84,6 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
       ctx.imageSmoothingQuality = "high";
       ctx.imageSmoothingEnabled = true;
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      console.log('storyImg', storyImg);
 
       storyImg.items.forEach(item => {
         if (item.type === 'txt') this.setText(item, ctx);
@@ -427,10 +427,8 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
   }
 
   async onShareStory() {
-    this.currStoryImg.url = this.canvas.nativeElement.toDataURL("image/png");
-
     const storyToAdd = this.storyService.getEmptyStory();
-    storyToAdd.imgUrls = this.storyImgs;
+    await this.convertCanvasImgsToImgUrls(storyToAdd.imgUrls);
     storyToAdd.by = this.userService.getMiniUser(this.loggedinUser);
 
     const id = await this.storyService.save(storyToAdd);
@@ -441,6 +439,50 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub?.unsubscribe()
+  }
+
+  async convertCanvasImgsToImgUrls(imgUrls: string[]) {
+    const canvas = this.offScreenCanvas.nativeElement;
+    const ctx = canvas.getContext('2d');
+
+    return new Promise<void>((resolve, reject) => {
+      let completed = 0;
+
+      this.storyImgs.forEach(async (storyImg, idx) => {
+        console.log('storyImg', storyImg);
+        if (!ctx) return;
+        const img = new Image();
+        img.src = storyImg.url;
+        img.crossOrigin = "Anonymous";
+
+        img.onload = async () => {
+          ctx.imageSmoothingQuality = "high";
+          ctx.imageSmoothingEnabled = true;
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+          storyImg.items.forEach(item => {
+            if (item.type === 'txt') this.setText(item, ctx);
+            if (item.type === 'stroke') this.setStroke(item, ctx);
+            if (item.type === 'sticker') {
+              const image = new Image();
+              image.src = item.url;
+              image.crossOrigin = "Anonymous";
+              image.onload = () => {
+                ctx.drawImage(image, item.rect.x, item.rect.y, item.rect.width, item.rect.height);
+              }
+            }
+          });
+
+          const imgData = canvas.toDataURL();
+          const res = await this.uploadImgService.uploadImg(imgData);
+          if (res) imgUrls[idx] = res;
+
+          completed++;
+          if (completed === this.storyImgs.length) resolve();
+        }
+      });
+
+    });
   }
 
 }

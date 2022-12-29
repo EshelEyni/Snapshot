@@ -54,7 +54,7 @@ export class StoryPreviewComponent implements OnInit, OnChanges, OnDestroy {
     if (this.story) {
       if (this.loggedinUser) this.isUserStory = this.loggedinUser.id === this.story.by.id
       this.currImgIdx = 0;
-      this.currImgUrl = this.story.imgUrls.length ? this.story.imgUrls[this.currImgIdx].url : '';
+      this.currImgUrl = this.story.imgUrls.length ? this.story.imgUrls[this.currImgIdx] : '';
     }
   }
 
@@ -68,7 +68,7 @@ export class StoryPreviewComponent implements OnInit, OnChanges, OnDestroy {
       this.setNextStory.emit(1);
       return;
     }
-    this.currImgUrl = this.story.imgUrls[this.currImgIdx].url;
+    this.currImgUrl = this.story.imgUrls[this.currImgIdx];
 
   }
 

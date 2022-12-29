@@ -15,7 +15,7 @@ export class StoryTimerComponent implements OnInit, OnDestroy, OnChanges {
   constructor() { }
   route = inject(Router);
   onSetImgUrl = new EventEmitter<number>();
-  imgUrls!: StoryImg[];
+  imgUrls!: string[];
   values!: number[];
   intervalId!: any;
   currImgIdx!: number;
@@ -53,7 +53,7 @@ export class StoryTimerComponent implements OnInit, OnDestroy, OnChanges {
   playStory() {
     this.intervalId = setInterval(() => {
       // console.log('this.values[this.idx]', this.values[this.idx]);
-      this.values[this.idx] = this.values[this.idx] + 25;
+      this.values[this.idx] = this.values[this.idx] + 2.5;
       if (this.values[this.idx] === 100) {
         this.idx = this.idx + 1;
         if (this.idx < this.values.length) this.onSetImgUrl.emit(1);
@@ -62,7 +62,7 @@ export class StoryTimerComponent implements OnInit, OnDestroy, OnChanges {
         clearInterval(this.intervalId);
         if (this.nextStory) this.route.navigate(['/story/', this.nextStory.id]);
       }
-    }, 1000);
+    }, 100);
   }
 
   ngOnDestroy(): void {

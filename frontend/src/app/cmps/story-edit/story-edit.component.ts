@@ -14,27 +14,27 @@ import { Store } from '@ngrx/store';
 })
 export class StoryEditComponent implements OnInit {
 
-  constructor() {  }
+  constructor() { }
 
 
   store = inject(Store<State>);
   userService = inject(UserService);
 
-  storyImgs: { url: string, items: [] }[] = [];
-  // storyImgs: StoryImg[] = [
-  //   {
-  //     url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044177/ukfallhy757gdlswvfuj.jpg',
-  //     items: []
-  //   },
-  //   {
-  //     url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669305397/p7o8v7gvoy3bgdcymu0d.jpg',
-  //     items: []
-  //   },
-  //   {
-  //     url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044038/pxbi0wi3po7fiadwdcke.jpg',
-  //     items: []
-  //   },
-  // ];
+  // storyImgs: { url: string, items: [] }[] = [];
+  storyImgs: StoryImg[] = [
+    {
+      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044177/ukfallhy757gdlswvfuj.jpg',
+      items: []
+    },
+    {
+      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669305397/p7o8v7gvoy3bgdcymu0d.jpg',
+      items: []
+    },
+    {
+      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044038/pxbi0wi3po7fiadwdcke.jpg',
+      items: []
+    },
+  ];
 
   isEditMode: boolean = false;
 
@@ -53,6 +53,5 @@ export class StoryEditComponent implements OnInit {
     this.isEditMode = false;
     this.storyImgs = [];
   }
-
 
 }

@@ -3,7 +3,7 @@ import { MiniUser } from './user.model';
 export interface Story {
     id: number;
     createdAt: Date;
-    imgUrls: StoryImg[];
+    imgUrls: string[];
     by: MiniUser;
     watchedBy: MiniUser[];
 }

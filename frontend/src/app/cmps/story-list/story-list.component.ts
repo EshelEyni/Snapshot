@@ -48,13 +48,9 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
     this.loggedinUserSub = this.loggedinUser$.subscribe(user => {
       this.loggedinUser = JSON.parse(JSON.stringify(user));
       if (user) {
-        const usersIds = []
-        if (user.currStoryId) {
-          usersIds.unshift(user.id);
-          this.isLinkToStoryEdit = false;
-        }
+        if (user.currStoryId) this.isLinkToStoryEdit = false;
         else this.isLinkToStoryEdit = true;
-        this.storyService.loadStories(usersIds);
+        this.storyService.loadStories(user.id);
       }
     });
 
