@@ -46,6 +46,7 @@ async function updateFollowing(req, res) {
 async function addFollowing(req, res) {
     try {
         const following = req.body
+        console.log('following', following)  
         const savedFollowing = await followingService.add(following)
         res.send({ savedFollowing: savedFollowing })
     } catch (err) {

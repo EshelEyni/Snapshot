@@ -1,4 +1,4 @@
-<section class="btn-container">
+<section class="btn-container" [class.suggestion-list]="type==='suggestion-list'">
     <button class="btn-follow clean-btn" *ngIf="!isFollowed; else unfollowBtn"
         (click)="onToggleFollow(user)">Follow</button>
     <ng-template #unfollowBtn>

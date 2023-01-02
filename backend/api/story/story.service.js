@@ -7,9 +7,7 @@ async function query(userId) {
         return await db.txn(async () => {
             let userIds = [userId]
             const followingIds = await db.query(`select userId from following where followerId = $id`, { $id: userId });
-            console.log('followingIds', followingIds);
             userIds = [...userIds, ...followingIds.map(following => following.userId)];
-            console.log('userIds', userIds);
 
             const promises = userIds.map(async userId => {
                 const currStory = await db.query(

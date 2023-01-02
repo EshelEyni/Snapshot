@@ -4,9 +4,30 @@ const bcrypt = require('bcrypt');
 
 async function query(queryParams) {
     try {
-        if (!queryParams.searchTerm)
+        if (!queryParams.searchTerm) {
+            const { type, userId } = queryParams;
+            if (type === 'suggested') {
+                return await db.txn(async () => {
+                    const following = await db.query(`select * from following where followerId = $id`, { $id: userId });
+                    const followingIds = following.map(f => f.userId);
+                    const suggestedByFollowing = await db.query(
+                        `select * from users
+                    where id in (select userId from following where followerId in (${followingIds.join(',')}))
+                    and id != $id
+                    order by username`, { $id: userId });
+                    if (suggestedByFollowing.length > 0) return suggestedByFollowing;
+                    else {
+                        const randomUsers = await db.query(
+                            `select * from users
+                        where id != $id
+                        order by random()
+                        limit 5`, { $id: userId });
+                        return randomUsers;
+                    }
+                });
+            }
             return await db.query(`select * from users order by username`);
-
+        }
 
         return await db.query(
             `select * from users 
@@ -38,7 +59,7 @@ async function getById(userId) {
             if (currStoryId.length > 0) {
                 user.currStoryId = currStoryId[0].id;
             }
-            else{
+            else {
                 user.currStoryId = null;
             }
             return user

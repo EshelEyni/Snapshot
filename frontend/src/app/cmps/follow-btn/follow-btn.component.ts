@@ -9,7 +9,7 @@ import { Component, OnInit, inject, OnDestroy } from '@angular/core';
   selector: 'follow-btn',
   templateUrl: './follow-btn.component.html',
   styleUrls: ['./follow-btn.component.scss'],
-  inputs: ['user'],
+  inputs: ['user','type'],
 })
 export class FollowBtnComponent implements OnInit, OnDestroy {
 
@@ -26,6 +26,7 @@ export class FollowBtnComponent implements OnInit, OnDestroy {
 
   isFollowed: boolean = false;
   user!: MiniUser;
+  type!: string;
 
   async ngOnInit() {
     this.sub = this.loggedinUser$.subscribe(user => {

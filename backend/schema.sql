@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS "followers" (
 CREATE TABLE IF NOT EXISTS "following" (
     "id" INTEGER NOT NULL UNIQUE,
     "followerId" INTEGER NOT NULL,
-    "userId" INTEGER NOT NULL UNIQUE,
+    "userId" INTEGER NOT NULL,
     "username" TEXT NOT NULL,
     "fullname" TEXT NOT NULL,
     "imgUrl" TEXT NOT NULL,

@@ -5,7 +5,7 @@
         </li>
     </ul>
     <div class="btn-container">
-        <user-preview [user]="currStory.by"  [type]="'no-story'"></user-preview>
+        <user-preview [user]="currStory.by" [type]="'story-timer'"></user-preview>
         <button class="clean-btn" (click)="onTogglePlayStory()">
             <svg-icon src="../../../assets/svgs/pause-icon.svg" *ngIf="isPlaying; else playIcon"></svg-icon>
             <ng-template #playIcon>

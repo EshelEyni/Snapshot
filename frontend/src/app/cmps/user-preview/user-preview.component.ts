@@ -22,6 +22,7 @@ export class UserPreviewComponent implements OnInit {
   user!: MiniUser;
 
   story!: Story;
+  isStoryDisabled: boolean = false;
   isWatched: boolean = false;
 
   type!: string;
@@ -36,7 +37,12 @@ export class UserPreviewComponent implements OnInit {
   isUrlsDisabled!: boolean;
 
   async ngOnInit() {
-    if (this.type !== 'story-edit' && this.type !== 'no-story' && this.user.id !== 1000) {
+    this.isStoryDisabled = this.type === 'story-edit-page'
+      || this.type === 'link-to-story-edit'
+      || this.type === 'story-timer'
+      || this.type === 'suggestion-list'
+
+    if (!this.isStoryDisabled) {
       const user = await lastValueFrom(this.userService.getById(this.user.id))
       if (user.currStoryId) {
         const story = await lastValueFrom(
@@ -47,10 +53,11 @@ export class UserPreviewComponent implements OnInit {
         )
         this.story = story
       } else {
-        // this.type = 'no-story'
+        this.isStoryDisabled = true
       }
     }
     this.title = this.setTitle()
+    this.setDesc()
     this.setUrls()
   }
 
@@ -81,7 +88,11 @@ export class UserPreviewComponent implements OnInit {
         this.desc = this.location ? this.location.name : ''
         this.urlForDesc = `/location/${this.location?.name}`
         break
-      case 'no-story':
+      case 'suggestion-list':
+        this.urlForImg = `/profile/${this.user.id}`
+        this.urlForTitle = `/profile/${this.user.id}`
+        break
+      case 'story-timer':
         this.urlForImg = `/profile/${this.user.id}`
         this.urlForTitle = `/profile/${this.user.id}`
         break
@@ -101,6 +112,16 @@ export class UserPreviewComponent implements OnInit {
         this.urlForDesc = `/`
         break
     }
+  }
+
+  setDesc() {
+    if (this.type === 'post-preview') {
+      if (this.location) this.desc = this.location.name
+      else this.desc = ''
+    }
+    if (this.type === 'suggestion-list') this.desc = this.user.fullname
+
+
   }
 
   setWatchedStory() {

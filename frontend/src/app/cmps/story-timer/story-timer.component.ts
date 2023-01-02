@@ -22,15 +22,9 @@ export class StoryTimerComponent implements OnInit, OnDestroy, OnChanges {
   idx = 0;
   currStory!: Story;
   nextStory!: Story;
-  isPlaying: boolean = false;
+  isPlaying: boolean = true;
 
-  ngOnInit(): void {
-    // this.imgUrls = this.currStory.imgUrls;
-    // this.values = this.imgUrls.map(imgUrl => 0);
-    // this.idx = 0;
-    // clearInterval(this.intervalId);
-    // if (this.isPlaying) this.playStory();
-  }
+  ngOnInit(): void { }
 
   ngOnChanges() {
     this.imgUrls = this.currStory.imgUrls;
@@ -52,7 +46,6 @@ export class StoryTimerComponent implements OnInit, OnDestroy, OnChanges {
 
   playStory() {
     this.intervalId = setInterval(() => {
-      // console.log('this.values[this.idx]', this.values[this.idx]);
       this.values[this.idx] = this.values[this.idx] + 2.5;
       if (this.values[this.idx] === 100) {
         this.idx = this.idx + 1;
@@ -66,7 +59,6 @@ export class StoryTimerComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnDestroy(): void {
-    console.log('ngOnDestroy');
     clearInterval(this.intervalId);
   }
 

@@ -135,16 +135,6 @@ export class UserService {
     return 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg'
   }
 
-  public getSnapshotUser(): MiniUser {
-    const snapShotUser = {
-      id: 1000,
-      username: 'SnapShot',
-      fullname: 'SnapShot',
-      imgUrl: '../../assets/imgs/logo-blue.png',
-    }
-    return snapShotUser
-  }
-
   // public getFollowers(userId: string): Observable<MiniUser[]> {
   //   return this.http.get<MiniUser[]>(
   //     `http://localhost:3030/api/user/followers/${userId}`,
@@ -178,6 +168,9 @@ export class UserService {
   }
 
   public async toggleFollow(isFollowing: boolean, loggedinUserId: number, user: MiniUser) {
+    console.log('isFollowing', isFollowing)
+    console.log('loggedinUserId', loggedinUserId)
+    console.log('user', user)
 
     if (isFollowing) {
       await firstValueFrom(

@@ -17,4 +17,17 @@
         padding: rem(7.5px) rem(15px);
         font-weight: 600;
     }
+
+    &.suggestion-list {
+        .btn-follow {
+            background: none;
+            color: var(--primary-button);
+        }
+
+        .btn-unfollow {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+        }
+    }
 }

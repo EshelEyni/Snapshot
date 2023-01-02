@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
 
   constructor() {
     this.loggedinUser$ = this.store.select('userState').pipe(map((x => x.loggedinUser)));
+    this.users$ = this.store.select('userState').pipe(map((x => x.users)));
   }
 
   postService = inject(PostService)
@@ -25,7 +26,9 @@ export class HomeComponent implements OnInit {
 
   loggedinUser$: Observable<User | null>
   loggedinUser!: User
-  sub: Subscription | null = null;
+  users$: Observable<MiniUser[]>;
+  subLoggedinUSer: Subscription | null = null;
+  subUsers: Subscription | null = null;
 
   posts$!: Observable<Post[]>;
   users: MiniUser[] = [];
@@ -35,16 +38,23 @@ export class HomeComponent implements OnInit {
     if (loggedinUser) {
       this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
     }
-    this.sub = this.loggedinUser$.subscribe(user => {
+    this.store.dispatch(new LoadUsers('suggested'));
+
+    this.subLoggedinUSer = this.loggedinUser$.subscribe(user => {
       if (user) this.loggedinUser = JSON.parse(JSON.stringify(user));
-    })
-    this.store.dispatch(new LoadUsers('suggest'));
+    });
+
+    this.subUsers = this.users$.subscribe(users => {
+      if (users) this.users = JSON.parse(JSON.stringify(users));
+    });
+
     this.postService.loadPosts();
     this.posts$ = this.postService.posts$;
   }
 
   ngOnDestroy(): void {
-    if (this.sub) this.sub.unsubscribe();
+    if (this.subLoggedinUSer) this.subLoggedinUSer.unsubscribe();
+    if (this.subUsers) this.subUsers.unsubscribe();
   }
 
 }

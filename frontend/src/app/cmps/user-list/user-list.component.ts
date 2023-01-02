@@ -32,6 +32,7 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
 
   isTitle: boolean = true;
   title: string = '';
+  isFollowBtnShow: boolean = false;
 
   isSelectUser: { userId: number, idx: number, isSelected: boolean }[] = [];
   addUser = new EventEmitter<MiniUser>();
@@ -45,6 +46,8 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
       }
     })
     this.setTitle();
+
+    this.isFollowBtnShow = this.type === 'like-modal' || this.type === 'suggestion-list'
   }
 
   ngOnChanges(changes: SimpleChanges) {
