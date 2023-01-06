@@ -4,55 +4,38 @@
 
 .side-bar {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
-    height: 100vh;
-    width: rem(244px);
-    padding: rem(8px) rem(12px) rem(20px);
+    height: rem(50px);
+    width: 100%;
     background-color: var(--secondary-bg);
-    border-right: 1px solid var(--border-color);
+    border-top: 2px solid var(--border-color);
     transition: 0.5s;
     z-index: 5;
 
-
     header {
-        display: flex;
-        align-items: center;
-        height: rem(73px);
-        padding: rem(25px) rem(12px) rem(16px);
-        margin-bottom: rem(19px);
-
-        .logo {
-            @include logo;
-            cursor: pointer;
-        }
-
-        img {
-            height: rem(24px);
-            width: rem(24px);
-            display: none;
-        }
+        display: none;
     }
 
     main {
-        position: relative;
-        width: 100%;
-        height: 100%;
-
         display: flex;
-        flex-direction: column;
-        gap: rem(12px);
-        flex-grow: 1;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+
+        .btn-notifications,
+        .btn-search {
+            display: none;
+        }
 
         >* {
             display: flex;
+            justify-content: center;
             align-items: center;
-            height: rem(50px);
             width: 100%;
-            padding: rem(12px);
-            cursor: pointer;
+            height: 100%;
 
             .icon-active {
                 display: none;
@@ -62,11 +45,7 @@
                 display: flex;
             }
 
-
             &.active {
-                font-weight: 600;
-                background-color: var(--primary-bg);
-                border-radius: 25px;
 
                 .icon-active {
                     display: flex;
@@ -77,13 +56,10 @@
                 }
 
                 .user-img-container {
-                    box-sizing: unset;
-                    background: linear-gradient(white, white) padding-box, black border-box;
                     border-radius: 50%;
-                    border: 1.5px solid transparent;
+                    border: 1.5px solid var(--primary-color);
                 }
             }
-
 
             .user-img-container {
                 height: rem(24px);
@@ -98,33 +74,160 @@
             }
 
             >span {
-                padding-left: rem(16px);
-                font-size: rem(16px);
-                line-height: rem(24px);
-                text-transform: capitalize;
+                display: none;
             }
+        }
+    }
 
-            &:hover {
-                background-color: var(--primary-bg);
-                border-radius: 25px;
+    @include for-narrow-layout {
+        flex-direction: column;
+
+        top: 0;
+        height: 100%;
+        width: rem(75px);
+        padding: rem(8px) rem(12px) rem(20px);
+        border-top: none;
+        border-right: 1px solid var(--border-color);
+
+        header {
+            display: flex;
+            align-items: center;
+            height: rem(73px);
+            padding: rem(25px) rem(12px) rem(16px);
+            margin-bottom: rem(19px);
+
+            .logo {
+                cursor: pointer;
+
+                span {
+                    display: none;
+                }
+
+                img {
+                    height: rem(24px);
+                    width: rem(24px);
+                }
             }
-
         }
 
-        .btn-search.active,
-        .btn-notifications.active {
-            width: rem(50px);
-            height: rem(50px);
+        main {
+            position: relative;
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: rem(12px);
+            flex-grow: 1;
+
+            >* {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                height: rem(50px);
+                width: 100%;
+                padding: rem(12px);
+                cursor: pointer;
+
+
+
+                &.active {
+                    font-weight: 600;
+                    background-color: var(--primary-bg);
+                    border-radius: 25px;
+                }
+
+
+                &:hover {
+                    background-color: var(--primary-bg);
+                    border-radius: 25px;
+                }
+
+            }
+
+            .btn-notifications,
+            .btn-search {
+                display: flex;
+            }
+
+            .btn-search.active,
+            .btn-notifications.active {
+                width: rem(50px);
+                height: rem(50px);
+                justify-content: center;
+                transition: 0.5s;
+                border: 1.5px solid var(--border-color);
+                border-radius: 50%;
+            }
+
+
+            .btn-create {
+                color: var(--primary-color);
+                font-family: var(--primary-font);
+            }
+        }
+
+    }
+
+    @include for-wide-layout {
+        width: rem(244px);
+
+        header {
+
+            .logo {
+                @include logo;
+
+
+                span {
+                    display: unset;
+                }
+
+                img {
+                    display: none;
+                }
+            }
+        }
+
+        main {
+            >* {
+                >span {
+                    display: unset;
+                    padding-left: rem(16px);
+                    font-size: rem(16px);
+                    line-height: rem(24px);
+                    text-transform: capitalize;
+                }
+            }
+        }
+
+        &.modal-state {
             justify-content: center;
+            align-items: center;
+            width: rem(70px);
+            z-index: 20;
             transition: 0.5s;
-            border: 1.5px solid var(--border-color);
-            border-radius: 50%;
-        }
 
+            header {
+                .logo {
 
-        .btn-create {
-            color: var(--primary-color);
-            font-family: var(--primary-font);
+                    img {
+                        display: flex;
+                    }
+
+                    span {
+                        display: none;
+                    }
+                }
+            }
+
+            main {
+                >* {
+                    >span {
+                        display: none;
+                    }
+                }
+            }
         }
     }
 
@@ -139,20 +242,6 @@
     }
 
     &.modal-state {
-        justify-content: center;
-        align-items: center;
-        width: rem(70px);
-        z-index: 20;
-        transition: 0.5s;
-
-        header img {
-            display: flex;
-        }
-
-        span {
-            display: none;
-        }
-
         .modal-container {
             left: rem(70px);
             transition: 0.5s;

@@ -1,5 +1,6 @@
 <section class="search-bar">
     <div class="search-all-input-container" *ngIf="!isUserSearch; else userSearchInput">
+        <fa-icon [icon]="faMagnifyingGlass" class="magnifying-glass-icon"></fa-icon>
         <input [(ngModel)]="searchTerm" class="clean-input" type="text" placeholder="Search"
             (ngModelChange)="onChange()">
         <div class="btn-container">

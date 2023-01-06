@@ -86,6 +86,7 @@ import { PostFilterPickerComponent } from './cmps/post-filter-picker/post-filter
 import { FormattedDatePipe } from './pipes/formatted-date.pipe';
 import { ShortTxtPipe } from './pipes/short-txt.pipe';
 import { TagPipe } from './pipes/tag.pipe';
+import { HomePageHeaderComponent } from './cmps/home-page-header/home-page-header.component';
 
 @NgModule({
   declarations: [
@@ -151,6 +152,7 @@ import { TagPipe } from './pipes/tag.pipe';
     ZoomModalComponent,
     PostFilterPickerComponent,
     TagPipe,
+    HomePageHeaderComponent,
   ],
   imports: [
     BrowserAnimationsModule,

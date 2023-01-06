@@ -10,6 +10,5 @@
 @import './assets/styles/basics/layout';
 
 // COMPONENTS
-@import '~@ctrl/ngx-emoji-mart/picker';
-// @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+@import '@ctrl/ngx-emoji-mart/picker';
 @import './assets/styles/themes/custome-theme';

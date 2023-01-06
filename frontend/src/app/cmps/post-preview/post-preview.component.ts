@@ -4,10 +4,10 @@ import { Store } from '@ngrx/store'
 import { User } from 'src/app/models/user.model'
 import { Observable, Subscription, map } from 'rxjs'
 import { Post } from './../../models/post.model'
-import { Component, Input, OnInit, inject, ViewChild, ElementRef, OnDestroy } from '@angular/core'
-
+import { Component, Input, OnInit, inject,  OnDestroy } from '@angular/core'
 import { faFaceSmile } from '@fortawesome/free-regular-svg-icons'
 import { CommentService } from 'src/app/services/comment.service'
+
 @Component({
   selector: 'post-preview',
   templateUrl: './post-preview.component.html',

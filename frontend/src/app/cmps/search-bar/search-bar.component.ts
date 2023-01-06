@@ -5,7 +5,7 @@ import { TagService } from './../../services/tag.service';
 import { SearchService } from './../../services/search.service';
 import { UtilService } from './../../services/util.service';
 import { Component, OnInit, inject, EventEmitter, OnChanges } from '@angular/core';
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark,faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'search-bar',
@@ -27,6 +27,7 @@ export class SearchBarComponent implements OnInit, OnChanges {
   removeUser = new EventEmitter<MiniUser>();
 
   faCircleXmark = faCircleXmark;
+  faMagnifyingGlass = faMagnifyingGlass;
   searchTerm: string = ''
   isLoading: boolean = false;
   isUserSearch: boolean = false;

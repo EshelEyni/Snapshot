@@ -33,3 +33,6 @@
 2.1.2023, 16:40:41 - ERROR - Failed to add following | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: following.userId 
 2.1.2023, 16:42:22 - INFO - Server is running on port: 3030 
 2.1.2023, 16:43:43 - INFO - Server is running on port: 3030 
+2.1.2023, 16:59:53 - INFO - Server is running on port: 3030 
+3.1.2023, 21:31:45 - INFO - Server is running on port: 3030 
+6.1.2023, 15:48:14 - INFO - Server is running on port: 3030 

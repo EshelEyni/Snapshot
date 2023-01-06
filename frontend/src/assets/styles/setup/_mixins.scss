@@ -27,11 +27,6 @@
     }
 }
 
-@mixin layoutGTC($max) {
-    grid-template-columns:
-        minmax($layoutPadding, 1fr) minmax(auto, $max) minmax($layoutPadding, 1fr);
-}
-
 // logo mixin
 
 @mixin logo {

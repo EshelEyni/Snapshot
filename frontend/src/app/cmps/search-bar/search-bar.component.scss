@@ -1,6 +1,7 @@
 @import '../../../assets/styles/setup/functions';
 @import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
+@import '../../../assets/styles/setup/typograghy';
 
 ::ng-deep .search-bar {
 
@@ -9,13 +10,31 @@
         display: flex;
         align-items: center;
 
+        .magnifying-glass-icon{
+            position: absolute;
+            top: 5%;
+            left: rem(10px);
+            font-size: rem(22px);
+            color: var(--input-placeholder-color);
+        }
+
         input {
             width: rem(365px);
             height: rem(40px);
-            padding: rem(3px) rem(16px);
+            padding: rem(5px) 0 rem(5px) rem(45px);
             background-color: var(--input-bg-color);
             border-radius: rem(8px);
             color: var(--input-placeholder-color);
+
+            &::placeholder {
+                color: var(--input-placeholder-color);
+                font-size: rem(22px);
+                text-transform: capitalize;
+                letter-spacing: 0.5px;
+                position: absolute;
+                top: 10%;
+                font-family: var(--primary-font);
+            }
         }
 
         .btn-container {
