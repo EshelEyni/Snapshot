@@ -20,7 +20,7 @@ import { Location } from 'src/app/models/post.model'
 })
 
 export class PostEditComponent implements OnInit, OnDestroy {
-  @Output() togglePostEdit = new EventEmitter<boolean>()
+  @Output() togglePostEdit = new EventEmitter()
   @ViewChild('offScreenCanvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
 
   constructor(private store: Store<State>) {
@@ -97,7 +97,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
   }
 
   onTogglePostEdit() {
-    this.togglePostEdit.emit(false)
+    this.togglePostEdit.emit()
   }
 
   onSetFilter(filter: string) {

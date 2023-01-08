@@ -100,9 +100,20 @@ svg-icon {
     cursor: pointer;
     z-index: 10;
 
+    
+    fa-icon {
+        position: fixed;
+        top: 0;
+        right: 0;
+        font-size: rem(18px);
+        color: var(--secondary-bg);
+        padding: rem(15px);
+    }
+
 
     &.dark-mode {
         background-color: rgba(0, 0, 0, 0.65);
+        z-index: 15;
     }
 }
 

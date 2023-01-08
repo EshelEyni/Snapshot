@@ -7,6 +7,8 @@ import { Store } from '@ngrx/store';
 import { User } from 'src/app/models/user.model';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { faX } from '@fortawesome/free-solid-svg-icons'
+
 
 @Component({
   selector: 'side-bar',
@@ -25,7 +27,6 @@ export class SideBarComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   @ViewChildren('link') links!: QueryList<ElementRef>;
-  @Output() togglePostEdit = new EventEmitter<boolean>()
   @Input() isPostEdit!: boolean
   loggedinUser$: Observable<User | null>
   loggedinUser!: User
@@ -34,6 +35,8 @@ export class SideBarComponent implements OnInit, OnChanges, OnDestroy {
   isBtnClicked = { search: false, create: false, notification: false }
   isMainScreen: boolean = false;
   sub: Subscription | null = null;
+
+  faX = faX
 
 
   async ngOnInit(): Promise<void> {
@@ -82,17 +85,28 @@ export class SideBarComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onTogglePostEdit() {
-    this.isBtnClicked.create = true
-    this.togglePostEdit.emit(true)
+    this.isBtnClicked = {
+      search: false,
+      create: !this.isBtnClicked.create,
+      notification: false
+    }
+
+    this.isMainScreen = !this.isMainScreen;
+
     this.links.forEach(link => {
       link.nativeElement.classList.remove('active')
     })
   }
 
   onToggleSearch() {
-    this.isBtnClicked.search = !this.isBtnClicked.search
-    this.isBtnClicked.notification = false
+    this.isBtnClicked = {
+      search: !this.isBtnClicked.search,
+      create: false,
+      notification: false
+    }
+
     this.isMainScreen = !this.isMainScreen;
+
     if (this.isBtnClicked.search) {
       this.links.forEach(link => {
         link.nativeElement.classList.remove('active')
@@ -103,8 +117,12 @@ export class SideBarComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onToggleNotifications() {
-    this.isBtnClicked.notification = !this.isBtnClicked.notification
-    this.isBtnClicked.search = false
+    this.isBtnClicked = {
+      search: false,
+      create: false,
+      notification: !this.isBtnClicked.notification
+    }
+
     this.isMainScreen = !this.isMainScreen;
     if (this.isBtnClicked.notification) {
       this.links.forEach(link => {

@@ -240,11 +240,16 @@
         z-index: 20;
         transition: 0.5s;
     }
-
+    
+    
     &.modal-state {
         .modal-container {
             left: rem(70px);
             transition: 0.5s;
         }
     }
+}
+
+.post-edit-container{
+    z-index: 20;
 }

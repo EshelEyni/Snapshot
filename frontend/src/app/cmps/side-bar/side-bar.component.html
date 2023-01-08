@@ -1,8 +1,11 @@
-<div class="main-screen" *ngIf="isMainScreen" (click)="onToggleModal()"></div>
+<div class="main-screen " *ngIf="isMainScreen" [class.dark-mode]="isBtnClicked.create" (click)="onToggleModal()">
+    <fa-icon [icon]="faX" *ngIf="isBtnClicked.create"></fa-icon>
+
+</div>
 
 <section class="side-bar" *ngIf="isLoginSignupPath"
     [class.modal-state]="isBtnClicked.search || isBtnClicked.notification">
-    
+
     <header>
         <a class="logo" routerLink="/">
             <img src="../../../assets/imgs/logo.png" alt="logo" (click)="onToggleModal()">
@@ -55,5 +58,8 @@
         <search-modal *ngIf="isBtnClicked.search" (onClose)="onToggleModal()"></search-modal>
         <notification-modal *ngIf="isBtnClicked.notification" (onClose)="onToggleModal()"></notification-modal>
     </div>
-    <post-edit *ngIf="isPostEdit" (togglePostEdit)="onTogglePostEdit()"></post-edit>
 </section>
+
+<div class="post-edit-container">
+    <post-edit *ngIf="isBtnClicked.create" (togglePostEdit)="onTogglePostEdit()"></post-edit>
+</div>
