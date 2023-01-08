@@ -5,7 +5,7 @@ import { TagService } from './../../services/tag.service';
 import { SearchService } from './../../services/search.service';
 import { UtilService } from './../../services/util.service';
 import { Component, OnInit, inject, EventEmitter, OnChanges } from '@angular/core';
-import { faCircleXmark,faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'search-bar',
@@ -23,7 +23,10 @@ export class SearchBarComponent implements OnInit, OnChanges {
   searchService = inject(SearchService)
   tagService = inject(TagService)
 
-  searchFinished = new EventEmitter<{ users: User[], tags: Tag[] }>();
+  searchFinished = new EventEmitter<{
+    searchResult: { users: User[], tags: Tag[] },
+    isClearSearch: boolean
+  }>();
   removeUser = new EventEmitter<MiniUser>();
 
   faCircleXmark = faCircleXmark;
@@ -31,6 +34,8 @@ export class SearchBarComponent implements OnInit, OnChanges {
   searchTerm: string = ''
   isLoading: boolean = false;
   isUserSearch: boolean = false;
+  isInputFocused: boolean = false;
+
 
   usersToSend!: MiniUser[];
   searchResults: { users: User[], tags: Tag[] } = { users: [], tags: [] }
@@ -48,6 +53,13 @@ export class SearchBarComponent implements OnInit, OnChanges {
   onClearSearch() {
     this.searchTerm = ''
     this.searchResults = { users: [], tags: [] }
+    this.isInputFocused = false
+    this.searchFinished.emit(
+      {
+        searchResult: { users: [], tags: [] },
+        isClearSearch: true
+      }
+    )
   }
 
   onChange() {
@@ -60,14 +72,37 @@ export class SearchBarComponent implements OnInit, OnChanges {
 
 
   async handleSearch() {
+    if (!this.searchTerm) {
+      this.searchResults = { users: [], tags: [] }
+      this.searchFinished.emit(
+        {
+          searchResult: { users: [], tags: [] },
+          isClearSearch: true
+        }
+      )
+      this.isLoading = false
+      return
+    }
+
     if (!this.isUserSearch) {
       this.isLoading = true
       this.searchResults = await this.searchService.search(this.searchTerm)
-      this.searchFinished.emit(this.searchResults)
+      this.searchFinished.emit(
+        {
+          searchResult: { users: this.searchResults.users, tags: this.searchResults.tags },
+          isClearSearch: false
+        }
+      )
       this.isLoading = false
+
     } else {
       this.userSearchResults = await this.searchService.searchForUsers(this.searchTerm)
-      this.searchFinished.emit(this.searchResults)
+      this.searchFinished.emit(
+        {
+          searchResult: { users: this.userSearchResults, tags: [] },
+          isClearSearch: false
+        }
+      )
     }
 
   }

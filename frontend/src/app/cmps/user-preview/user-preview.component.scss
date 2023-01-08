@@ -6,7 +6,7 @@
 .user-preview {
     display: flex;
     align-items: center;
-    gap: rem(5px);
+    gap: rem(8px);
     cursor: pointer;
 
     .img-container {
@@ -35,13 +35,12 @@
     }
 
     .user-info {
-        h3 {
-            // text-transform: lowercase;
-            font-size: rem(14px);
-            margin: 0;
+
+        .title {
+            font-weight: 600;
         }
 
-        p {
+        .desc {
             font-size: rem(12px);
             margin: 0;
         }

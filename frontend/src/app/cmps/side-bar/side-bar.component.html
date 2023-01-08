@@ -55,4 +55,5 @@
         <search-modal *ngIf="isBtnClicked.search" (onClose)="onToggleModal()"></search-modal>
         <notification-modal *ngIf="isBtnClicked.notification" (onClose)="onToggleModal()"></notification-modal>
     </div>
+    <post-edit *ngIf="isPostEdit" (togglePostEdit)="onTogglePostEdit()"></post-edit>
 </section>

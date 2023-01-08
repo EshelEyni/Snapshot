@@ -10,30 +10,35 @@
         display: flex;
         align-items: center;
 
-        .magnifying-glass-icon{
+        .magnifying-glass-icon {
             position: absolute;
-            top: 5%;
+            top: 15%;
             left: rem(10px);
-            font-size: rem(22px);
+            font-size: rem(18px);
             color: var(--input-placeholder-color);
         }
 
         input {
             width: rem(365px);
             height: rem(40px);
-            padding: rem(5px) 0 rem(5px) rem(45px);
+            padding: rem(5px) 0 rem(5px) rem(40px);
             background-color: var(--input-bg-color);
             border-radius: rem(8px);
             color: var(--input-placeholder-color);
 
             &::placeholder {
                 color: var(--input-placeholder-color);
-                font-size: rem(22px);
+                font-size: rem(20px);
                 text-transform: capitalize;
                 letter-spacing: 0.5px;
                 position: absolute;
-                top: 10%;
+                top: 15%;
                 font-family: var(--primary-font);
+                font-weight: 100;
+            }
+
+            &.focused {
+                padding: rem(5px) 0 rem(5px) rem(15px);
             }
         }
 
@@ -41,6 +46,7 @@
             position: relative;
             left: -25px;
             color: var(--input-placeholder-color);
+            z-index: 210;
 
             svg-icon {
                 width: rem(20px);
@@ -86,7 +92,7 @@
 
         .user-list {
             padding: 0;
-            
+
         }
     }
 }

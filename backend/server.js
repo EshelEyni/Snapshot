@@ -18,6 +18,7 @@ const storyRoutes = require('./api/story/story.routes')
 const likeRoutes = require('./api/like/like.routes')
 const followerRoutes = require('./api/followers/followers.routes')
 const followingRoutes = require('./api/following/following.routes')
+const searchRoutes = require('./api/search/search.routes.js')
 
 // Express App Config
 app.use(cookieParser())
@@ -51,6 +52,7 @@ app.use('/api/like', likeRoutes)
 app.use('/api/followers', followerRoutes)
 app.use('/api/following', followingRoutes)
 app.use('/api/save-post', savedPostRoutes)
+app.use('/api/search', searchRoutes)
 
 app.get('/**', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'))

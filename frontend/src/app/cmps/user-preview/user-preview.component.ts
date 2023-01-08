@@ -85,8 +85,7 @@ export class UserPreviewComponent implements OnInit {
           ? `/story/${this.story.id}`
           : `/profile/${this.user.id}`
         this.urlForTitle = `/profile/${this.user.id}`
-        this.desc = this.location ? this.location.name : ''
-        this.urlForDesc = `/location/${this.location?.name}`
+        if (this.desc) this.urlForDesc = `/location/${this.location?.name}`
         break
       case 'suggestion-list':
         this.urlForImg = `/profile/${this.user.id}`
@@ -106,6 +105,14 @@ export class UserPreviewComponent implements OnInit {
       case 'share-modal':
         this.isUrlsDisabled = true;
         break
+      case 'search-modal':
+        this.urlForImg = this.story
+          ? `/story/${this.story.id}`
+          : `/profile/${this.user.id}`
+        this.urlForTitle = `/profile/${this.user.id}`
+        this.desc = this.user.fullname
+        this.urlForDesc = `/profile/${this.user.id}`
+        break
       default:
         this.urlForImg = `/`
         this.urlForTitle = `/`
@@ -115,12 +122,17 @@ export class UserPreviewComponent implements OnInit {
   }
 
   setDesc() {
-    if (this.type === 'post-preview') {
-      if (this.location) this.desc = this.location.name
-      else this.desc = ''
+    switch (this.type) {
+      case 'post-preview':
+        this.desc = this.location ? this.location.name : ''
+        break
+      case 'suggestion-list':
+        this.desc = this.user.fullname
+        break
+      case 'search-modal':
+        this.desc = this.user.fullname
+        break
     }
-    if (this.type === 'suggestion-list') this.desc = this.user.fullname
-
 
   }
 

@@ -5,6 +5,12 @@ async function query(filterBy) {
     try {
         return await db.txn(async () => {
             const tags = await db.query(`select * from tags where name like $name`, { $name: filterBy.name + '%' });
+
+            for (const tag of tags) {
+                const postIds = await db.query(`select postId from postTags where tagId = $tagId`, { $tagId: tag.id });
+                tag.postIds = postIds.map(postId => postId.postId);
+            }
+            
             return tags;
         });
     } catch (err) {

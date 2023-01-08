@@ -31,10 +31,10 @@ async function query(queryParams) {
 
         return await db.query(
             `select * from users 
-             where username like $q
-                or email like $q 
-                or bio like $q
-             order by username`, { $q: q + '%' });
+             where username like $searchTerm
+                or email like $searchTerm 
+                or bio like $searchTerm
+             order by username`, { $searchTerm: queryParams.searchTerm + '%' });
 
     } catch (err) {
         logger.error('cannot find users', err)

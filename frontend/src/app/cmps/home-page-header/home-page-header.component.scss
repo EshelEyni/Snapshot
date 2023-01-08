@@ -14,16 +14,17 @@
     background-color: var(--secondary-bg);
     border-bottom: 2px solid var(--border-color);
     padding: 0 rem(20px);
+    z-index: 10;
 
     .logo {
         @include logo;
         padding: 15px;
     }
 
-    .main-container {
+    .home-page-header-main-container {
         display: flex;
         align-items: center;
-
+        gap: rem(20px);
     }
 
     .search-bar {
@@ -34,4 +35,9 @@
             }
         }
     }
+
+    @include for-narrow-layout {
+        display: none;
+    }
+    
 }

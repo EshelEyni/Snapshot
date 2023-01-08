@@ -4,13 +4,12 @@
 ::ng-deep .story-list-container {
 
     position: relative;
-    width: rem(470px);
+    width: clamp(rem(370px), 100%, rem(470px));
     background-color: var(--secondary-bg);
-    border-radius: 5px;
     border: 1px solid var(--border-color);
+    border-radius: 5px;
     padding: rem(15px);
     overflow-x: hidden;
-
 
     .story-list {
         position: relative;

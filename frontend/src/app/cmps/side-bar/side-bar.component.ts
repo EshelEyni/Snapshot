@@ -61,6 +61,7 @@ export class SideBarComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onToggleModal() {
+    console.log('onToggleModal', this.router.url)
     switch (this.router.url) {
       case '/':
         this.links.get(0)?.nativeElement.classList.add('active')
@@ -81,27 +82,37 @@ export class SideBarComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onTogglePostEdit() {
-    console.log('onTogglePostEdit');
     this.isBtnClicked.create = true
     this.togglePostEdit.emit(true)
+    this.links.forEach(link => {
+      link.nativeElement.classList.remove('active')
+    })
   }
 
   onToggleSearch() {
     this.isBtnClicked.search = !this.isBtnClicked.search
     this.isBtnClicked.notification = false
     this.isMainScreen = !this.isMainScreen;
-    this.links.forEach(link => {
-      link.nativeElement.classList.remove('active')
-    })
+    if (this.isBtnClicked.search) {
+      this.links.forEach(link => {
+        link.nativeElement.classList.remove('active')
+      })
+    } else {
+      this.onToggleModal()
+    }
   }
 
   onToggleNotifications() {
     this.isBtnClicked.notification = !this.isBtnClicked.notification
     this.isBtnClicked.search = false
     this.isMainScreen = !this.isMainScreen;
-    this.links.forEach(link => {
-      link.nativeElement.classList.remove('active')
-    })
+    if (this.isBtnClicked.notification) {
+      this.links.forEach(link => {
+        link.nativeElement.classList.remove('active')
+      })
+    } else {
+      this.onToggleModal()
+    }
   }
 
   ngOnDestroy() {

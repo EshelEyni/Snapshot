@@ -87,6 +87,8 @@ import { FormattedDatePipe } from './pipes/formatted-date.pipe';
 import { ShortTxtPipe } from './pipes/short-txt.pipe';
 import { TagPipe } from './pipes/tag.pipe';
 import { HomePageHeaderComponent } from './cmps/home-page-header/home-page-header.component';
+import { SearchResultsListComponent } from './cmps/search-results-list/search-results-list.component';
+import { RecentSearchListComponent } from './cmps/recent-search-list/recent-search-list.component';
 
 @NgModule({
   declarations: [
@@ -153,6 +155,8 @@ import { HomePageHeaderComponent } from './cmps/home-page-header/home-page-heade
     PostFilterPickerComponent,
     TagPipe,
     HomePageHeaderComponent,
+    SearchResultsListComponent,
+    RecentSearchListComponent,
   ],
   imports: [
     BrowserAnimationsModule,

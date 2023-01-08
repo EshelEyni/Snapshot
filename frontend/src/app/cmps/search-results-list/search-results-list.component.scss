@@ -1,0 +1,29 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
+
+::ng-deep .search-results-list {
+    display: flex;
+    flex-direction: column;
+    gap: rem(8px);
+    height: 100%;
+    padding: rem(12px) rem(24px) rem(8px);
+    overflow-y: scroll;
+
+    .user-preview {
+        .img-container {
+            width: rem(50px);
+            height: rem(50px);
+        }
+    }
+}
+
+.no-results-msg-container {
+    position: relative;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--secondary-color);
+}

@@ -1,3 +1,5 @@
+import { Tag } from './../../models/tag.model';
+import { User } from 'src/app/models/user.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomePageHeaderComponent implements OnInit {
 
   constructor() { }
+
 
   ngOnInit(): void {
   }

@@ -3,6 +3,9 @@
 .post-list {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
     gap: rem(15px);
 
     &.for-mini-preview {

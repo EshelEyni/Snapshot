@@ -89,7 +89,8 @@ CREATE TABLE IF NOT EXISTS "following" (
 CREATE TABLE IF NOT EXISTS "recentSearches" (
     "id" INTEGER NOT NULL UNIQUE,
     "searcherId" INTEGER NOT NULL,
-    "searchTerm" TEXT NOT NULL,
+    "type" TEXT NOT NULL,
+    "searchItemId" INTEGER NOT NULL,
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("searcherId") references "users"("id")
 );
 
