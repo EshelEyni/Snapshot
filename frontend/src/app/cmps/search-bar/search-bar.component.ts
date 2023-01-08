@@ -12,7 +12,7 @@ import { faCircleXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-ic
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
   inputs: ['isUserSearch', 'usersToSend'],
-  outputs: ['searchFinished', 'recentSearches', 'removeUser']
+  outputs: ['searchFinished', 'removeUser', 'inputFocused']
 })
 export class SearchBarComponent implements OnInit, OnChanges {
 
@@ -28,6 +28,8 @@ export class SearchBarComponent implements OnInit, OnChanges {
     isClearSearch: boolean
   }>();
   removeUser = new EventEmitter<MiniUser>();
+  inputFocused = new EventEmitter<boolean>();
+
 
   faCircleXmark = faCircleXmark;
   faMagnifyingGlass = faMagnifyingGlass;
@@ -48,6 +50,11 @@ export class SearchBarComponent implements OnInit, OnChanges {
   ngOnChanges() {
     // this.usersToSend = [...this.usersToSend]
     // console.log('this.usersToSend', this.usersToSend);
+  }
+
+  onFocus() {
+    this.isInputFocused = true
+    this.inputFocused.emit(true)
   }
 
   onClearSearch() {

@@ -1,3 +1,4 @@
+import { ActivityComponent } from './pages/activity/activity.component';
 import { StoryEditComponent } from './cmps/story-edit/story-edit.component';
 import { StoryDetailsComponent } from './cmps/story-details/story-details.component';
 import { TagResolver } from './resolvers/tag.resolver';
@@ -32,6 +33,7 @@ const routes: Routes = [
       { path: 'h/post/:id', component: PostDetailsComponent, resolve: { post: PostResolver }, data: { isHome: true } },
     ]
   },
+  { path: 'activity', component: ActivityComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

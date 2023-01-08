@@ -4,9 +4,21 @@
     </a>
 
     <div class="home-page-header-main-container">
-        <search-bar ></search-bar>
-        <a routerLink="/notifcations">
+        <search-bar (searchFinished)="onSearchFinished($event)" (inputFocused)="onOpenModal()"></search-bar>
+        <a routerLink="/activity">
             <svg-icon src="../../../assets/svgs/heart-icon-outline.svg"> </svg-icon>
         </a>
     </div>
+
+    <div class="search-res-container" *ngIf="isSearchModalShown"
+        [class.no-res-msg-mode]="isNoResults && !isRecentSearchShown">
+        <div class="tippy"></div>
+        <search-results-list [searchResults]="searchResults" [isRecentSearchShown]="isRecentSearchShown"
+            [isNoResults]="isNoResults" [recentSearches]="recentSearches"
+            (close)="onCloseModal()"></search-results-list>
+
+        <recent-search-list [isRecentSearchShown]="isRecentSearchShown" [isNoResults]="isNoResults"
+            [recentSearches]="recentSearches" (close)="onCloseModal()"></recent-search-list>
+    </div>
+    <div class="main-screen" *ngIf="isSearchModalShown" (click)="onCloseModal()"></div>
 </main>

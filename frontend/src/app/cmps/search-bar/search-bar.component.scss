@@ -25,6 +25,7 @@
             background-color: var(--input-bg-color);
             border-radius: rem(8px);
             color: var(--input-placeholder-color);
+            transition: all 0.3s ease-in-out;
 
             &::placeholder {
                 color: var(--input-placeholder-color);
@@ -39,6 +40,18 @@
 
             &.focused {
                 padding: rem(5px) 0 rem(5px) rem(15px);
+            }
+
+            @media (min-width: 300px) {
+                width: rem(150px);
+            }
+
+            @media (min-width: 450px) {
+                width: rem(200px);
+            }
+
+            @media (min-width: 550px) {
+                width: rem(365px);
             }
         }
 

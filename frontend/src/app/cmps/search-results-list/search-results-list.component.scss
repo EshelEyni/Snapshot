@@ -26,4 +26,9 @@
     justify-content: center;
     align-items: center;
     color: var(--secondary-color);
+
+    @include for-mobile-layout {
+        height: 100%;
+        font-weight: 600;
+    }
 }

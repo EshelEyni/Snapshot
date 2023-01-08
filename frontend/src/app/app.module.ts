@@ -89,6 +89,7 @@ import { TagPipe } from './pipes/tag.pipe';
 import { HomePageHeaderComponent } from './cmps/home-page-header/home-page-header.component';
 import { SearchResultsListComponent } from './cmps/search-results-list/search-results-list.component';
 import { RecentSearchListComponent } from './cmps/recent-search-list/recent-search-list.component';
+import { ActivityComponent } from './pages/activity/activity.component';
 
 @NgModule({
   declarations: [
@@ -157,6 +158,7 @@ import { RecentSearchListComponent } from './cmps/recent-search-list/recent-sear
     HomePageHeaderComponent,
     SearchResultsListComponent,
     RecentSearchListComponent,
+    ActivityComponent,
   ],
   imports: [
     BrowserAnimationsModule,

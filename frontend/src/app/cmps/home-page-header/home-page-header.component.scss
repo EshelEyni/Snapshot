@@ -19,25 +19,72 @@
     .logo {
         @include logo;
         padding: 15px;
+        transition: all 0.3s ease-in-out;
+
+        @media (min-width: 300px) {
+            font-size: rem(25px);
+        }
+
+        @media (min-width: 450px) {
+            font-size: rem(30px);
+        }
+      
+        @media (min-width: 550px) {
+            font-size: rem(35px);
+        }
+
+
     }
 
     .home-page-header-main-container {
         display: flex;
         align-items: center;
         gap: rem(20px);
+        z-index: 20;
+
+        .search-bar {
+
+            .search-all-input-container {
+                input {
+                    max-width: rem(270px);
+                }
+            }
+        }
     }
 
-    .search-bar {
+    .search-res-container {
+        position: absolute;
+        top: rem(74px);
+        right: 1%;
+        width:rem(370px);
+        min-height: rem(350px);
+        background-color: var(--secondary-bg);
+        z-index: 10;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        z-index: 20;
 
-        .search-all-input-container {
-            input {
-                max-width: rem(270px);
-            }
+        &.no-res-msg-mode{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tippy {
+            position: absolute;
+            height: 0;
+            width: 0;
+            border-left: 10px solid transparent;
+            border-bottom: 10px solid var(--secondary-bg);
+            left: 50%;
+            transform: translate(-50%);
+            top: -2.5%;
+            border-right: 10px solid transparent;
         }
     }
 
     @include for-narrow-layout {
         display: none;
     }
-    
+
 }
