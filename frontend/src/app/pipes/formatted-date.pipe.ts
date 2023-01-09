@@ -30,7 +30,9 @@ export class FormattedDatePipe implements PipeTransform {
       timeStr = (formattedTimeStamp / day).toFixed() + ' days ago'
     }
     if (formattedTimeStamp > week) {
-      timeStr = new Date(value).toLocaleDateString('he-IL')
+      const date = new Date(value)
+      const month = date.toLocaleString('default', { month: 'long' })
+      timeStr = `${month} ${date.getDate()}, ${date.getFullYear()}`
     }
 
     return timeStr

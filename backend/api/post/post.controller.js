@@ -2,12 +2,10 @@ const postService = require('./post.service')
 const logger = require('../../services/logger.service')
 
 async function getPosts(req, res) {
+    const filter = req.query
+    const isFilter = Object.keys(filter).length > 0
     try {
-        const posts = await postService.query({
-            userId: req.query.userId,
-            type: req.query.type,
-            limit: 5
-        })
+        const posts = await postService.query(isFilter ? filter : null)
         res.send(posts)
     } catch (err) {
         logger.error('Failed to get posts', err)

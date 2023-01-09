@@ -1,4 +1,4 @@
-<div class="img-container">
+<div class="img-container" [class.for-mini-preview]="isMiniPreview">
     <div *ngIf="!isMiniPreview else miniPreview">
         <img src={{currImgUrl}} alt="Avatar">
         <pagination-btns (prevItem)="onSwitchImg($event)" (nextItem)="onSwitchImg($event)"
@@ -20,6 +20,6 @@
         </div>
     </div>
     <ng-template #miniPreview>
-        <img src={{currImgUrl}} alt="Avatar">
+        <img class="mini-preview-img" src={{currImgUrl}} alt="Avatar">
     </ng-template>
 </div>

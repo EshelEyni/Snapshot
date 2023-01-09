@@ -45,30 +45,30 @@ export class PostEditComponent implements OnInit, OnDestroy {
   loggedinUser!: User
   currTitle: string = 'create new post'
   postImgs: PostCanvasImg[] = [
-    // {
-    //   url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044177/ukfallhy757gdlswvfuj.jpg',
-    //   x: 0,
-    //   y: 0,
-    //   width: 830,
-    //   height: 830,
-    //   aspectRatio: 'Original',
-    //   zoom: 0,
-    //   filter: 'normal',
-    // }
+    {
+      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666727746/afi91eazphvmtuopifrk.jpg',
+      x: 0,
+      y: 0,
+      width: 830,
+      height: 830,
+      aspectRatio: 'Original',
+      zoom: 0,
+      filter: 'normal',
+    }
     // ,
     // 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669305397/p7o8v7gvoy3bgdcymu0d.jpg',
     // 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044038/pxbi0wi3po7fiadwdcke.jpg',
-  ]
-  txt: string = ''
+  ];
+  txt: string = '';
   location: Location = {
     id: 0,
     lat: 0,
     lng: 0,
     name: '',
-  }
+  };
 
-  currEditMode: string = 'crop'
-  btnTxt: string = 'next'
+  currEditMode: string = 'crop';
+  btnTxt: string = 'next';
   currFilter!: string;
 
   ngOnInit() {

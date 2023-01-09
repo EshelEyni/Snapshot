@@ -1,55 +1,73 @@
-<main class="post-details" *ngIf="loggedinUser" [class.is-home]="isHome">
+<section class="post-details" *ngIf="loggedinUser" [class.is-home]="isHome">
   <div class="main-screen dark-mode" *ngIf="isHome" routerLink="/"></div>
-  <div class="main-container">
-    <article class="post">
+
+  <header>
+    <fa-icon [icon]="faChevronLeft" (click)="onGoBack()"></fa-icon>
+    <h2>photo</h2>
+  </header>
+
+  <main class="post" [class.for-wide-img]="isWideImg">
+
+    <div class="post-img-container">
       <img-container [imgUrls]="post.imgUrls"></img-container>
+    </div>
 
-      <div class="comment-action-container">
-        <section class="post-creator">
-          <user-preview [user]="post.by" [location]="post.location"></user-preview>
-          <ellipsis></ellipsis>
-        </section>
+    <section class="post-creator">
+      <user-preview [user]="post.by" [location]="post.location"></user-preview>
+      <ellipsis></ellipsis>
+    </section>
 
-        <div class="comment-list-container">
-          <comment-list *ngIf="post.commentSum" [postId]="post.id" [loggedinUser]="loggedinUser"></comment-list>
+    <div class="comment-list-container">
+      <comment-list *ngIf="post.commentSum; else noComments" [postId]="post.id"
+        [loggedinUser]="loggedinUser"></comment-list>
+      <ng-template #noComments>
+        <div class="no-comments-msg-container">
+          <h2 class="no-comments">No comments yet.</h2>
+          <p class="start-converstion">Start the conversion.</p>
         </div>
+      </ng-template>
+    </div>
 
-        <div class="action-details-container">
-          <post-actions [post]="post" [loggedinUser]="loggedinUser" (toggleModal)="onToggleShareModal()"></post-actions>
-          <div class="likes-container">
-            <p class="likes" *ngIf="post.likeSum > 0; else firstLike">
-              {{ post.likeSum }} likes
-            </p>
-            <ng-template #firstLike>
-              <p class="first-like">
-                Be the first to
-                <span (click)="onFirstLike()">like this</span>
-              </p>
-            </ng-template>
-          </div>
-          <p class="date-added">{{ post.createdAt | formattedDate }}</p>
-        </div>
+    <div class="post-details-action-container">
+      <post-actions [post]="post" [loggedinUser]="loggedinUser" (toggleModal)="onToggleShareModal()"></post-actions>
 
-        <share-modal *ngIf="isShareModalShown" (close)="onToggleShareModal()"></share-modal>
-
-        <div class="comment-edit-container">
-          <comment-edit [post]="post"></comment-edit>
-        </div>
+      <div class="likes-container">
+        <p class="likes" *ngIf="post.likeSum > 0; else firstLike">
+          {{ post.likeSum }} likes
+        </p>
+        <ng-template #firstLike>
+          <p class="first-like">
+            Be the first to
+            <span (click)="onFirstLike()">like this</span>
+          </p>
+        </ng-template>
       </div>
-    </article>
+      
+    </div>
 
-  </div>
+    <div class="date-container">
+      <p class="date-added">{{ post.createdAt | formattedDate }}</p>
+    </div>
 
-  <div class="post-list-container" *ngIf="!isHome && userPosts.length">
-    <hr />
+    <share-modal *ngIf="isShareModalShown" (close)="onToggleShareModal()"></share-modal>
 
-    <p>
+    <div class="comment-edit-container">
+      <comment-edit [post]="post"></comment-edit>
+    </div>
+  </main>
+
+
+  <hr />
+
+  <div class="post-list-container" *ngIf="!isHome && userPosts$">
+
+    <p class="more-posts-suggsetion">
       More posts from
       <span [routerLink]="['/profile/', loggedinUser.id]">
         {{ loggedinUser.username }}
       </span>
     </p>
-    <post-list [posts]="userPosts" [isMiniPreview]="true"></post-list>
+    <post-list [posts]="(userPosts$|async)!" [isMiniPreview]="true"></post-list>
 
   </div>
-</main>
+</section>

@@ -131,6 +131,7 @@ export class PostCanvasComponent implements OnInit, OnChanges {
 
   onSetAspectRatio(aspectRatio: string) {
     this.currAspectRatio = aspectRatio;
+    this.postImgs.forEach(img => img.aspectRatio = aspectRatio);
     const canvas = this.canvas.nativeElement;
     switch (aspectRatio) {
       case 'Original':

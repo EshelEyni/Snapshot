@@ -1,15 +1,41 @@
 @import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/mixins';
+@import '../../../assets/styles/setup/vars';
 
 .post-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-    gap: rem(15px);
+    position: relative;
+
+    gap: calc(1%/2);
 
     &.for-mini-preview {
         display: grid;
-        grid-template-columns: repeat(3, rem(300px));
+        grid-template-columns: repeat(3, 33%);
+        grid-template-rows: 1fr;
+        align-items: unset;
+        justify-content: unset;
+        width: 100%;
+    }
+    
+    @media (min-width: 735px) {
+        $curr-width: calc(100% - rem(20px));
+        $curr-size: calc($curr-width / 3);
+        $curr-gap: calc($curr-width / 100);
+        width: $curr-width;
+        gap: $curr-gap;
+        
+        
+        &.for-mini-preview {
+            grid-template-columns: repeat(3, $curr-size);
+        }
+    }
+
+    @include for-narrow-layout {
+        &.for-mini-preview {
+            grid-template-columns: repeat(3, rem(220px));
+        }
     }
 }

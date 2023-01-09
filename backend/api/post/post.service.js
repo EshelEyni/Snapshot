@@ -4,10 +4,22 @@ const db = require('../../database');
 async function query(filter) {
     try {
         return await db.txn(async () => {
-            const posts = await db.query(
-                `select * from posts order by createdAt desc limit $limit`, {
-                $limit: filter.limit
-            });
+            let posts
+            if (filter) {
+                posts = await db.query(
+                    `select * from posts where id != $currPostId and userId = $userId order by createdAt desc limit $limit `, {
+                    $limit: filter.limit,
+                    $currPostId: filter.currPostId,
+                    $userId: filter.userId,
+                });
+            }
+            else {
+                posts = await db.query(
+                    `select * from posts order by createdAt desc`, {
+                });
+                console.log('posts.length', posts.length)
+            }
+
             for (const post of posts) {
                 if (post.locationId) {
                     post.location = await db.query(`select * from locations where id = $id`, { $id: post.locationId });

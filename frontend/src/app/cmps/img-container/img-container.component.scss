@@ -1,13 +1,14 @@
 @import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/mixins';
 
 ::ng-deep .img-container {
     position: relative;
 
     img {
+        position: relative;
         width: 100%;
         height: 100%;
-        object-fit: cover;
         transition: 0.5s;
     }
 
@@ -55,6 +56,31 @@
                     padding: rem(5px);
                 }
             }
+        }
+    }
+
+    &.for-mini-preview {
+        position: relative;
+        height: 33vw;
+        width: 33vw;
+    }
+
+    @media (min-width: 735px) {
+        $curr-width: calc(100vw - rem(50px));
+        $curr-size: calc($curr-width / 3);
+        
+        &.for-mini-preview {
+            height: $curr-size;
+            width: $curr-size;
+        }
+  
+    }
+    
+
+    @include for-narrow-layout {
+        &.for-mini-preview {
+            max-height: rem(220px);
+            max-width: rem(220px);
         }
     }
 }

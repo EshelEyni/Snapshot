@@ -37,7 +37,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
       const user = data['user']
       if (user) {
         this.user = user
-        this.postService.loadPosts({ userId: this.user.id, type: 'createdPosts' });
+        // this.postService.loadPosts({ userId: this.user.id, type: 'createdPosts' });
         this.posts$ = this.postService.posts$;
       }
     })
@@ -46,21 +46,21 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
 
   onSetFilter(filterBy: string) {
     switch (filterBy) {
-      case 'createdPosts':
-        this.filterBy = { createdPosts: true, savedPosts: false, taggedPosts: false }
-        this.postService.loadPosts({ userId: this.user.id, type: 'createdPosts' });
-        this.posts$ = this.postService.posts$;
-        break;
-      case 'savedPosts':
-        this.filterBy = { createdPosts: false, savedPosts: true, taggedPosts: false }
-        this.postService.loadPosts({ userId: this.user.id, type: 'savedPosts' });
-        this.posts$ = this.postService.posts$;
-        break;
-      case 'taggedPosts':
-        this.filterBy = { createdPosts: false, savedPosts: false, taggedPosts: true }
-        this.postService.loadPosts({ userId: this.user.id, type: 'taggedPosts' });
-        this.posts$ = this.postService.posts$;
-        break;
+      // case 'createdPosts':
+      //   this.filterBy = { createdPosts: true, savedPosts: false, taggedPosts: false }
+      //   this.postService.loadPosts({ userId: this.user.id, type: 'createdPosts' });
+      //   this.posts$ = this.postService.posts$;
+      //   break;
+      // case 'savedPosts':
+      //   this.filterBy = { createdPosts: false, savedPosts: true, taggedPosts: false }
+      //   this.postService.loadPosts({ userId: this.user.id, type: 'savedPosts' });
+      //   this.posts$ = this.postService.posts$;
+      //   break;
+      // case 'taggedPosts':
+      //   this.filterBy = { createdPosts: false, savedPosts: false, taggedPosts: true }
+      //   this.postService.loadPosts({ userId: this.user.id, type: 'taggedPosts' });
+      //   this.posts$ = this.postService.posts$;
+      //   break;
     }
 
   }

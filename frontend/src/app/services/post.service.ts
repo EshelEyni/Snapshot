@@ -17,12 +17,21 @@ export class PostService {
     private http: HttpClient,
   ) { }
 
-  public async loadPosts(filterBy?: { userId: number; type: string }) {
+  public async loadPosts(
+    filterBy?: {
+      userId: number,
+      type: string,
+      limit: number,
+      currPostId: number
+    }
+  ) {
     let options = { params: {} }
     if (filterBy) {
       options.params = {
         userId: filterBy.userId,
         type: filterBy.type,
+        limit: filterBy.limit,
+        currPostId: filterBy.currPostId,
       }
     }
     const posts = await lastValueFrom(
