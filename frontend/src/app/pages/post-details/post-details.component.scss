@@ -1,6 +1,9 @@
 @import '../../../assets/styles/setup/functions';
 @import '../../../assets/styles/setup/mixins';
 @import '../../../assets/styles/setup/vars';
+@import './post-details-mixin.scss';
+
+
 
 ::ng-deep .post-details {
 
@@ -9,6 +12,7 @@
     justify-content: space-between;
     height: 100%;
     width: 100%;
+    
 
     header {
         position: fixed;
@@ -48,7 +52,7 @@
         display: grid;
         grid-template-columns: 100%;
         grid-template-rows: auto 1fr auto auto;
-        margin-top: rem(60px);
+        margin: rem(60px) 0 rem(50px) 0;
 
         .post-creator {
             grid-row: 1;
@@ -129,12 +133,8 @@
         }
     }
 
-    // }
 
-    hr {
-        width: 100%;
-        margin-top: rem(50px);
-    }
+
 
     .post-list-container {
         display: flex;
@@ -142,6 +142,7 @@
         gap: rem(20px);
         width: 100%;
         padding: rem(50px) 0;
+        border-top: var(--border-color) solid 1px;
 
         .more-posts-suggsetion {
             font-family: var(--primarty-font);
@@ -182,11 +183,49 @@
     @media (min-width: 735px) {
         padding: rem(20px);
 
-        .post,
+        .post {
+            border: var(--border-color) solid 1px;
+
+            .comment-list-container {
+                display: flex;
+
+                .no-comments-msg-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    height: rem(80px);
+                    font-family: var(--primary-font);
+
+                    p {
+                        font-weight: 100;
+                    }
+                }
+            }
+
+            .comment-edit-container {
+                position: relative;
+                display: unset;
+                width: 100%;
+
+                .comment-form {
+                    gap: 10px;
+
+                    .txt-input {
+                        background-color: var(--primary-bg);
+                    }
+                }
+            }
+        }
+
+        .for-narrow-img {
+            @include horizontal-view;
+        }
+
         .for-wide-img {
             grid-template-columns: 1fr;
             grid-template-rows: rem(60px) 1fr auto auto rem(40px);
-            border: var(--border-color) solid 1px;
 
             .post-img-container {
                 .img-container {
@@ -198,22 +237,6 @@
 
             .comment-list-container {
                 grid-row: 4;
-                display: flex;
-
-                .no-comments-msg-container {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    width: 100%;
-                    height: rem(80px);
-                    font-family: var(--primary-font);
-                    // padding: rem(20px);
-
-                    p {
-                        font-weight: 100;
-                    }
-                }
 
                 .comment-list {
                     display: none;
@@ -226,19 +249,7 @@
 
             .comment-edit-container {
                 grid-row: 6;
-                position: relative;
-                display: unset;
-                // align-items: center;
-                // justify-content: center;
-                width: 100%;
 
-                .comment-form {
-                    gap: 10px;
-
-                    .txt-input {
-                        background-color: var(--primary-bg);
-                    }
-                }
             }
         }
     }
@@ -252,10 +263,9 @@
             display: none;
         }
 
-
-
         .post {
-            grid-template-columns: 1fr;
+            // grid-template-columns: 1fr;
+            margin-top: 0;
 
             .post-img-container {
                 .img-container {
@@ -264,34 +274,30 @@
                     max-width: rem(750px);
                 }
             }
-
-
         }
-
     }
 
     @media (min-width: 875px) {
 
-        .post,
         .for-wide-img {
-
-
-            .comment-list-container {
-                .comment-list {
-                    min-height: rem(300px);
-                    display: unset;
-                }
-            }
-
-
+            @include horizontal-view;
+            min-height: rem(500px);
         }
     }
 
     @include for-normal-layout {
-        // width: calc(100% - rem(75px));
-        // margin-left: rem(75px);
+        align-items: center;
+
+        .post {
+            grid-template-columns: minmax(rem(500px), rem(600px)) minmax(rem(200px), rem(335px));
+
+        }
 
 
+
+        .post-list-container {
+            width: fit-content;
+        }
     }
 
     @include for-wide-layout {

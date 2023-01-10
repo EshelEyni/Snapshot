@@ -8,34 +8,44 @@
     justify-content: center;
     align-items: center;
     position: relative;
-
-    gap: calc(1%/2);
+    gap: rem(10px);
 
     &.for-mini-preview {
         display: grid;
         grid-template-columns: repeat(3, 33%);
+        gap: calc(1%/2);
         grid-template-rows: 1fr;
         align-items: unset;
         justify-content: unset;
         width: 100%;
     }
-    
+
     @media (min-width: 735px) {
-        $curr-width: calc(100% - rem(20px));
-        $curr-size: calc($curr-width / 3);
-        $curr-gap: calc($curr-width / 100);
-        width: $curr-width;
-        gap: $curr-gap;
-        
-        
+
+
         &.for-mini-preview {
+            $curr-width: calc(100% - rem(20px));
+            $curr-size: calc($curr-width / 3);
+            $curr-gap: calc($curr-width / 100);
+            width: $curr-width;
+            gap: $curr-gap;
             grid-template-columns: repeat(3, $curr-size);
         }
     }
 
     @include for-narrow-layout {
+
         &.for-mini-preview {
-            grid-template-columns: repeat(3, rem(220px));
+            gap: 5%;
+            grid-template-columns: repeat(3, 30%);
+        }
+    }
+
+    @include for-normal-layout {
+
+        &.for-mini-preview {
+            gap: rem(20px);
+            grid-template-columns: repeat(3, minmax(rem(200px), rem(300px)));
         }
     }
 }

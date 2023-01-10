@@ -39,7 +39,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   isShareModalShown: boolean = false
   isMainScreen: boolean = false
   userPosts$!: Observable<Post[]>;
-  isWideImg!: boolean;
+  classForPost = 'post'
 
   faChevronLeft = faChevronLeft;
 
@@ -55,7 +55,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
       this.isHome = isHome
       if (post) {
         this.post = post
-        await this.setIsWideImg(this.post.imgUrls[0])
+        await this.setPostClassName(this.post.imgUrls[0])
         const loggedinUser = this.userService.getLoggedinUser()
         if (loggedinUser) {
 
@@ -80,11 +80,13 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     })
   }
 
-  async setIsWideImg(img: string) {
+  async setPostClassName(img: string) {
+    let isWideImg;
     const imgEl = new Image()
     imgEl.src = img
     imgEl.onload = () => {
-      this.isWideImg = imgEl.width / imgEl.height > 1 ? true : false
+      isWideImg = imgEl.width / imgEl.height > 1 ? true : false
+      this.classForPost = isWideImg ? 'post for-wide-img' : 'post for-narrow-img'
     }
   }
 

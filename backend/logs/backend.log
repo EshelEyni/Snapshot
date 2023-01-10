@@ -197,3 +197,5 @@
 9.1.2023, 20:32:38 - ERROR - Failed to update post | Failed to commit transaction: TypeError: post.tags is not iterable 
 9.1.2023, 20:35:07 - ERROR - cannot update post 50 | Failed to commit transaction: TypeError: post.tags is not iterable 
 9.1.2023, 20:35:07 - ERROR - Failed to update post | Failed to commit transaction: TypeError: post.tags is not iterable 
+9.1.2023, 22:47:53 - INFO - Server is running on port: 3030 
+10.1.2023, 6:11:24 - INFO - Server is running on port: 3030 
