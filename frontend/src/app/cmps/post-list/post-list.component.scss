@@ -20,7 +20,7 @@
         width: 100%;
     }
 
-    @media (min-width: 735px) {
+    @include for-extra-small-layout {
 
 
         &.for-mini-preview {
@@ -33,7 +33,7 @@
         }
     }
 
-    @include for-narrow-layout {
+    @include for-small-layout {
 
         &.for-mini-preview {
             gap: 5%;
@@ -41,7 +41,7 @@
         }
     }
 
-    @include for-normal-layout {
+    @include for-large-layout {
 
         &.for-mini-preview {
             gap: rem(20px);

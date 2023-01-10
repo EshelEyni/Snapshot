@@ -21,19 +21,17 @@
         padding: 15px;
         transition: all 0.3s ease-in-out;
 
-        @media (min-width: 300px) {
+        @include for-mobile-narrow-layout {
             font-size: rem(25px);
         }
 
-        @media (min-width: 450px) {
+        @include for-mobile-normal-layout {
             font-size: rem(30px);
         }
-      
-        @media (min-width: 550px) {
+
+        @include for-mobile-wide-layout {
             font-size: rem(35px);
         }
-
-
     }
 
     .home-page-header-main-container {
@@ -56,7 +54,7 @@
         position: absolute;
         top: rem(74px);
         right: 1%;
-        width:rem(370px);
+        width: rem(370px);
         min-height: rem(350px);
         background-color: var(--secondary-bg);
         z-index: 10;
@@ -64,7 +62,7 @@
         border-radius: 5px;
         z-index: 20;
 
-        &.no-res-msg-mode{
+        &.no-res-msg-mode {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -83,7 +81,7 @@
         }
     }
 
-    @include for-narrow-layout {
+    @include for-small-layout {
         display: none;
     }
 

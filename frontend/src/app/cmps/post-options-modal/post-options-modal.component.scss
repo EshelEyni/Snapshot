@@ -2,7 +2,11 @@
 @import '../../../assets/styles/setup/vars';
 
 .post-options-modal {
+    @include modal;
+    @include options-modal;
+    
     width: rem(400px);
+
 
     >* {
         height: rem(50px);

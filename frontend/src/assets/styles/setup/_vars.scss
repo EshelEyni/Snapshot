@@ -41,6 +41,12 @@
 $layoutPadding: 244px;
 
 // LAYOUT BREAKPOINTS
-$break-narrow: 770px;
-$break-normal: 1000px;
-$break-wide: 1260px;
+$break-mobile-small: 300px;
+$break-mobile-medium: 450px;
+$break-mobile-large: 550px;
+
+$breakpoint-XS : 735px;
+$breakpoint-SM : 770px;
+$breakpoint-MD : 875px;
+$breakpoint-LG : 1000px;
+$breakpoint-XL : 1260px;

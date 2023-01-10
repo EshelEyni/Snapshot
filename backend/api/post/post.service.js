@@ -82,7 +82,18 @@ async function getById(postId) {
             post.location = null;
         }
         delete post.locationId;
+
+        const tags = await db.query(
+            `select name from tags
+                join postTags on tags.id = postTags.tagId
+            where postTags.postId = $postId`, {
+            $postId: postId
+        });
+
+        post.tags = tags.map(tag => tag.name);
+
         return post
+
     } catch (err) {
         logger.error(`while finding post ${postId}`, err)
         throw err

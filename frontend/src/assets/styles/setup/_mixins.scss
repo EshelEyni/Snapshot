@@ -3,26 +3,57 @@
 
 // Media queries Breakpoint mixins
 
+
+@mixin for-mobile-narrow-layout {
+    @media (min-width: $break-mobile-small) {
+        @content;
+    }
+}
+
+@mixin for-mobile-normal-layout {
+    @media (min-width: $break-mobile-medium) {
+        @content;
+    }
+}
+
+@mixin for-mobile-wide-layout {
+    @media (min-width: $break-mobile-large) {
+        @content;
+    }
+}
+
 @mixin for-mobile-layout {
-    @media (max-width: $break-narrow) {
+    @media (max-width: $breakpoint-SM) {
         @content;
     }
 }
 
-@mixin for-narrow-layout {
-    @media (min-width: $break-narrow) {
+@mixin for-extra-small-layout {
+    @media (min-width: $breakpoint-XS) {
         @content;
     }
 }
 
-@mixin for-normal-layout {
-    @media (min-width: $break-normal) {
+@mixin for-small-layout {
+    @media (min-width: $breakpoint-SM) {
         @content;
     }
 }
 
-@mixin for-wide-layout {
-    @media (min-width: $break-wide) {
+@mixin for-medium-layout {
+    @media (min-width: $breakpoint-MD) {
+        @content;
+    }
+}
+
+@mixin for-large-layout {
+    @media (min-width: $breakpoint-LG) {
+        @content;
+    }
+}
+
+@mixin for-extra-large-layout {
+    @media (min-width: $breakpoint-XL) {
         @content;
     }
 }
@@ -93,6 +124,30 @@
             transform: scale(1.3);
             opacity: 1;
         }
+    }
+}
+
+// Modal mixin
+
+@mixin modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: rem(550px);
+    max-height: 65vh;
+    background-color: var(--secondary-bg);
+    z-index: 20;
+    border-radius: 10px;
+}
+
+@mixin options-modal {
+    display: flex;
+    flex-direction: column;
+
+    >*:not(:last-child) {
+
+        border-bottom: 1px solid var(--border-color);
     }
 }
 

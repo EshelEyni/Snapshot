@@ -33,7 +33,7 @@ export class PostActionsComponent implements OnInit, OnChanges, OnDestroy {
   ngOnInit() {
   }
 
-  async ngOnChanges(changes: SimpleChanges) {
+  async ngOnChanges() {
     this.isLiked = await this.postService.checkIsLiked({ postId: this.post.id, userId: this.loggedinUser.id })
     this.isSaved = await this.postService.checkIsSaved({ postId: this.post.id, userId: this.loggedinUser.id })
   }

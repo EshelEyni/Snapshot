@@ -1,7 +1,8 @@
 <section class="post-details" *ngIf="loggedinUser" [class.is-home]="isHome">
-  <div class="main-screen dark-mode" *ngIf="isHome" routerLink="/"></div>
+  <div class="main-screen dark-mode" *ngIf="isHome || isShareModalShown" (click)="onClickMainScreen()">
+  </div>
 
-  <header>
+  <header class="post-details-header">
     <fa-icon [icon]="faChevronLeft" (click)="onGoBack()"></fa-icon>
     <h2>photo</h2>
   </header>
@@ -18,8 +19,8 @@
     </section>
 
     <div class="comment-list-container">
-      <comment-list *ngIf="post.commentSum; else noComments" [postId]="post.id"
-        [loggedinUser]="loggedinUser"></comment-list>
+      <comment-list *ngIf="post.commentSum; else noComments" [postId]="post.id" [loggedinUser]="loggedinUser"
+        [commentSum]="post.commentSum" [type]="'post-details'"></comment-list>
       <ng-template #noComments>
         <div class="no-comments-msg-container">
           <h2 class="no-comments">No comments yet.</h2>
@@ -49,7 +50,7 @@
       <p class="date-added">{{ post.createdAt | formattedDate }}</p>
     </div>
 
-    <share-modal *ngIf="isShareModalShown" (close)="onToggleShareModal()"></share-modal>
+    <share-modal *ngIf="isShareModalShown" (close)="onToggleShareModal()" [loggedinUser]="loggedinUser"></share-modal>
 
     <div class="comment-edit-container">
       <comment-edit [post]="post"></comment-edit>

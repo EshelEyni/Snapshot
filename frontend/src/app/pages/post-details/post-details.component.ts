@@ -5,7 +5,7 @@ import { State } from './../../store/store'
 import { Store } from '@ngrx/store'
 import { User } from './../../models/user.model'
 import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { Subscription, Observable, map, lastValueFrom } from 'rxjs'
 import { Post } from 'src/app/models/post.model'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
@@ -19,6 +19,7 @@ import { Location } from '@angular/common';
 export class PostDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private $location: Location,
     private postService: PostService,
     private userService: UserService,
@@ -29,17 +30,17 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
       .pipe(map((x) => x.loggedinUser))
   }
 
-  post!: Post
-  isHome: boolean = false
-  paramsSubscription!: Subscription
+  post!: Post;
+  isHome: boolean = false;
+  paramsSubscription!: Subscription;
 
-  loggedinUser$: Observable<User | null>
-  loggedinUser!: User
-  sub: Subscription | null = null
-  isShareModalShown: boolean = false
-  isMainScreen: boolean = false
+  loggedinUser$: Observable<User | null>;
+  loggedinUser!: User;
+  sub: Subscription | null = null;
+  isShareModalShown: boolean = false;
+  isMainScreen: boolean = false;
   userPosts$!: Observable<Post[]>;
-  classForPost = 'post'
+  classForPost = 'post';
 
   faChevronLeft = faChevronLeft;
 
@@ -49,7 +50,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
       this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
     }
 
-    this.paramsSubscription = this.route.data.subscribe( async (data) => {
+    this.paramsSubscription = this.route.data.subscribe(async (data) => {
       const post = data['post']
       const isHome = data['isHome']
       this.isHome = isHome
@@ -86,7 +87,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     imgEl.src = img
     imgEl.onload = () => {
       isWideImg = imgEl.width / imgEl.height > 1 ? true : false
-      this.classForPost = isWideImg ? 'post for-wide-img' : 'post for-narrow-img'
+      this.classForPost += isWideImg ? ' for-wide-img' : ' for-narrow-img'
     }
   }
 
@@ -95,11 +96,19 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     this.isMainScreen = true
   }
 
+  onClickMainScreen() {
+    if (this.isHome) {
+      this.router.navigate(['/'])
+    } else {
+      this.onToggleShareModal()
+    }
+  }
+
   onFirstLike() {
-    // this.post.likedBy.push(this.userService.getMiniUser(this.loggedinUser));
-    // this.post = { ...this.post }
-    // this.postService.save(this.post)
+    this.postService.toggleLike(false, { postId: this.post.id, user: this.userService.getMiniUser(this.loggedinUser) })
     this.post.likeSum++
+    this.post = { ...this.post }
+    this.postService.save(this.post)
   }
 
   addCommentToPost(commentIds: string[]) {

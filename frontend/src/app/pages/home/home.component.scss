@@ -36,13 +36,13 @@
 
     }
 
-    @include for-narrow-layout {
+    @include for-small-layout {
         .post-app {
             margin-top: rem(30px);
         }
     }
 
-    @include for-normal-layout {
+    @include for-large-layout {
             @include page;
 
         .post-app {

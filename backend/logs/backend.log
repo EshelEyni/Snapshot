@@ -199,3 +199,21 @@
 9.1.2023, 20:35:07 - ERROR - Failed to update post | Failed to commit transaction: TypeError: post.tags is not iterable 
 9.1.2023, 22:47:53 - INFO - Server is running on port: 3030 
 10.1.2023, 6:11:24 - INFO - Server is running on port: 3030 
+10.1.2023, 14:40:36 - ERROR - cannot update post 51 | Failed to commit transaction: TypeError: post.tags is not iterable 
+10.1.2023, 14:40:36 - ERROR - Failed to update post | Failed to commit transaction: TypeError: post.tags is not iterable 
+10.1.2023, 14:40:59 - ERROR - cannot update post 51 | Failed to commit transaction: TypeError: post.tags is not iterable 
+10.1.2023, 14:40:59 - ERROR - Failed to update post | Failed to commit transaction: TypeError: post.tags is not iterable 
+10.1.2023, 14:41:04 - ERROR - cannot update post 51 | Failed to commit transaction: TypeError: post.tags is not iterable 
+10.1.2023, 14:41:04 - ERROR - Failed to update post | Failed to commit transaction: TypeError: post.tags is not iterable 
+10.1.2023, 14:41:05 - ERROR - cannot update post 51 | Failed to commit transaction: TypeError: post.tags is not iterable 
+10.1.2023, 14:41:05 - ERROR - Failed to update post | Failed to commit transaction: TypeError: post.tags is not iterable 
+10.1.2023, 14:41:07 - ERROR - cannot update post 51 | Failed to commit transaction: TypeError: post.tags is not iterable 
+10.1.2023, 14:41:07 - ERROR - Failed to update post | Failed to commit transaction: TypeError: post.tags is not iterable 
+10.1.2023, 14:42:20 - INFO - Server is running on port: 3030 
+10.1.2023, 14:42:23 - ERROR - cannot update post 51 | Failed to commit transaction: TypeError: post.tags is not iterable 
+10.1.2023, 14:42:23 - ERROR - Failed to update post | Failed to commit transaction: TypeError: post.tags is not iterable 
+10.1.2023, 14:42:28 - ERROR - cannot update post 51 | Failed to commit transaction: TypeError: post.tags is not iterable 
+10.1.2023, 14:42:28 - ERROR - Failed to update post | Failed to commit transaction: TypeError: post.tags is not iterable 
+10.1.2023, 14:44:27 - INFO - Server is running on port: 3030 
+10.1.2023, 14:53:16 - INFO - Server is running on port: 3030 
+10.1.2023, 14:54:18 - INFO - Server is running on port: 3030 

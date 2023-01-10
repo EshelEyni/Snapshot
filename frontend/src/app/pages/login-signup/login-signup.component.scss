@@ -12,7 +12,7 @@
     .img-bg {
         display: none;
 
-        @include for-wide-layout {
+        @include for-extra-large-layout{
             display: flex;
             position: relative;
             background-image: url('https://static.cdninstagram.com/rsrc.php/v3/y4/r/ItTndlZM2n2.png');

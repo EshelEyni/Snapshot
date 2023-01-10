@@ -42,15 +42,16 @@
                 padding: rem(5px) 0 rem(5px) rem(15px);
             }
 
-            @media (min-width: 300px) {
+
+            @include for-mobile-narrow-layout {
                 width: rem(150px);
             }
 
-            @media (min-width: 450px) {
+            @include for-mobile-normal-layout {
                 width: rem(200px);
             }
 
-            @media (min-width: 550px) {
+            @include for-mobile-wide-layout {
                 width: rem(365px);
             }
         }
@@ -71,7 +72,7 @@
     .user-search-input-container {
         display: flex;
         align-items: center;
-        justify-content: start;
+        justify-content: flex-start;
         gap: rem(16px);
         width: 100%;
         font-family: var(--primary-font);

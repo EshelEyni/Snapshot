@@ -65,7 +65,7 @@
         width: 33vw;
     }
 
-    @media (min-width: 735px) {
+    @include for-extra-small-layout {
         $curr-width: calc(100vw - rem(75px));
         $curr-size: calc($curr-width / 3);
 
@@ -75,7 +75,7 @@
         }
     }
 
-    @include for-narrow-layout {
+    @include for-small-layout {
         $curr-width: calc(95vw - rem(125px));
         $curr-size: calc($curr-width / 3);
 
@@ -85,7 +85,7 @@
         }
     }
 
-    @include for-normal-layout {
+    @include for-large-layout {
         $curr-width: calc(95vw - rem(200px));
         $curr-size: calc($curr-width / 3);
 
