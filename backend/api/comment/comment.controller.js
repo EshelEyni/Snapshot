@@ -38,6 +38,8 @@ async function deleteComment(req, res) {
 }
 
 async function updateComment(req, res) {
+    console.log('req.body', req.body)
+
     try {
         const comment = req.body
         const savedComment = await commentService.update(comment)

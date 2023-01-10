@@ -7,5 +7,5 @@ export interface Comment {
     text: string;
     createdAt: Date;
     isOriginalText: boolean;
-    likedBy: MiniUser[];
+    likeSum: number;
 }

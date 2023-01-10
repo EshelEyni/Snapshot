@@ -6,7 +6,7 @@
         <emoji-mart [style]="{position:'relative'}" (emojiClick)="onAddEmoji($event)">
         </emoji-mart>
     </div>
-    <input class="txt-input" type="text" placeholder="Add a comment..." [(ngModel)]="commentText" name="commentTxt" autocomplete="off">
+    <input #commentInput class="txt-input" type="text" placeholder="Add a comment..." [(ngModel)]="commentText" name="commentTxt" autocomplete="off">
     <button class="clean-btn" [class.txt-in-input]="commentText" [class.z-index-20]="isEmojiPickerShown"
         type="submit">post</button>
 </form>

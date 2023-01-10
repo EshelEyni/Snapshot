@@ -1,30 +1,48 @@
 <article class="comment">
-    <div class="post-preview-comment-container">
-        <div class="comment-text-container">
-            <span [routerLink]="['/profile/',comment.by.id]"> {{comment.by.username}} </span>
-            <p *ngIf="!isExpandTxt; else longTxt" [innerHTML]="comment.text| shortTxt | tag"><button
-                    class="more-btn clean-btn" *ngIf="isLongTxt" (click)="onExpandTxt()">more</button></p>
-            <ng-template #longTxt>
-                <p [innerHTML]="comment.text| tag"> </p>
-            </ng-template>
-        </div>
+    <container-element [ngSwitch]="type">
 
-        <div class="like-btn-container" *ngIf="!comment.isOriginalText">
-            <like-icon [isLiked]="isLiked" (click)="onToggleLike()"></like-icon>
-        </div>
-
-    </div>
-
-
-    <ng-template #forPostDetails>
-        <div class="post-details-comment-container">
-
+        <div class="post-preview-comment-container" *ngSwitchCase="'post-preview'">
             <div class="comment-text-container">
                 <span [routerLink]="['/profile/',comment.by.id]"> {{comment.by.username}} </span>
-                <p> {{comment.text}} </p>
+                <p *ngIf="!isExpandTxt; else longTxt" [innerHTML]="comment.text| shortTxt | tag"><button
+                        class="more-btn clean-btn" *ngIf="isLongTxt" (click)="onExpandTxt()">more</button></p>
+                <ng-template #longTxt>
+                    <p [innerHTML]="comment.text| tag"> </p>
+                </ng-template>
             </div>
 
-            <ellipsis></ellipsis>
+            <div class="like-btn-container" *ngIf="!comment.isOriginalText">
+                <like-icon [isLiked]="isLiked" (click)="onToggleLike()"></like-icon>
+            </div>
+
         </div>
-    </ng-template>
+
+
+        <div class="post-details-comment-container" *ngSwitchCase="'post-details'">
+
+            <div class="comment-avatar-container">
+                <img class="comment-avatar" src="{{comment.by.imgUrl}}" alt="Avatar"
+                    [routerLink]="['/profile/',comment.by.id]">
+            </div>
+
+            <div class="comment-main-container">
+                <div class="comment-content-container">
+                    <div class="comment-text-container">
+                        <span class="username" [routerLink]="['/profile/',comment.by.id]"> {{comment.by.username}}
+                        </span>
+                        <p> {{comment.text}} </p>
+                    </div>
+                    <div class="comment-actions">
+                        <span class="comment-date">{{comment.createdAt | formattedDate : 'short' }}</span>
+                        <span class="comment-like-count" *ngIf="comment.likeSum">{{comment.likeSum}} likes</span>
+                        <svg-icon class="ellipsis" src="../../../assets/svgs/ellipsis.svg"></svg-icon>
+                    </div>
+                </div>
+            </div>
+
+            <div class="like-btn-container" *ngIf="!comment.isOriginalText">
+                <like-icon [isLiked]="isLiked" (click)="onToggleLike()"></like-icon>
+            </div>
+        </div>
+    </container-element>
 </article>

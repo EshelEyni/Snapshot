@@ -57,7 +57,7 @@ export class CommentService {
   }
 
   private async _update(comment: Comment) {
-    return await firstValueFrom(this.http.put<Comment>('http://localhost:3030/api/comment', comment))
+    return await firstValueFrom(this.http.put<Comment>(`http://localhost:3030/api/comment/${comment.id}`, comment))
   }
 
   private async _add(comment: Comment) {
@@ -72,7 +72,7 @@ export class CommentService {
       text: '',
       createdAt: new Date(),
       isOriginalText: false,
-      likedBy: []
+      likeSum: 0,
     }
   }
 

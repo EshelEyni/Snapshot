@@ -6,7 +6,7 @@
 @mixin horizontal-view {
     grid-template-columns: 3fr 2fr;
     grid-template-rows: rem(60px) 1fr auto auto rem(40px);
-   
+
 
     .post-img-container {
         grid-column: 1;
@@ -15,7 +15,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        
+
 
         .img-container {
             display: flex;
@@ -37,14 +37,39 @@
     .comment-list-container {
         grid-column: 2;
         grid-row: 2;
-        display: flex;
+        display: inline-block;
         border-left: var(--border-color) solid 1px;
         border-bottom: var(--border-color) solid 1px;
         border-radius: 5px 0 0 0;
+        position: relative;
+
+
 
         .comment-list {
+            display: flex;
+            flex-direction: column;
+            gap: rem(20px);
             min-height: rem(300px);
-            display: unset;
+            max-height: rem(500px);
+            position: relative;
+            width: 100%;
+            padding: rem(20px);
+
+            flex: 1;
+            align-self: stretch;
+
+            overflow-y: scroll;
+            @include scrollbar-hidden;
+
+            >* {
+               width: 100%;
+
+                &:hover {
+                    .ellipsis {
+                        display: flex;
+                    }
+                }
+            }
         }
     }
 

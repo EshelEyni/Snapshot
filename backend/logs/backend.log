@@ -217,3 +217,31 @@
 10.1.2023, 14:44:27 - INFO - Server is running on port: 3030 
 10.1.2023, 14:53:16 - INFO - Server is running on port: 3030 
 10.1.2023, 14:54:18 - INFO - Server is running on port: 3030 
+10.1.2023, 19:29:18 - ERROR - cannot add like | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: commentsLikedBy.userId 
+10.1.2023, 19:39:05 - INFO - Server is running on port: 3030 
+10.1.2023, 19:40:14 - INFO - Server is running on port: 3030 
+10.1.2023, 19:45:39 - ERROR - cannot update comment undefined | Error: SQLITE_ERROR: near "likeSum": syntax error 
+10.1.2023, 19:45:39 - ERROR - Failed to update comment | Error: SQLITE_ERROR: near "likeSum": syntax error 
+10.1.2023, 19:46:24 - ERROR - cannot remove comment 48 | Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+10.1.2023, 19:46:24 - ERROR - Failed to delete comment | Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+10.1.2023, 19:47:40 - INFO - Server is running on port: 3030 
+10.1.2023, 19:47:45 - ERROR - Failed to update comment | Error: SQLITE_ERROR: near "likeSum": syntax error 
+10.1.2023, 19:47:45 - ERROR - cannot update comment undefined | Error: SQLITE_ERROR: near "likeSum": syntax error 
+10.1.2023, 19:47:46 - ERROR - Failed to update comment | Error: SQLITE_ERROR: near "likeSum": syntax error 
+10.1.2023, 19:47:46 - ERROR - cannot update comment undefined | Error: SQLITE_ERROR: near "likeSum": syntax error 
+10.1.2023, 19:47:48 - ERROR - cannot update comment undefined | Error: SQLITE_ERROR: near "likeSum": syntax error 
+10.1.2023, 19:47:48 - ERROR - Failed to update comment | Error: SQLITE_ERROR: near "likeSum": syntax error 
+10.1.2023, 19:48:01 - ERROR - cannot update comment undefined | Error: SQLITE_ERROR: near "likeSum": syntax error 
+10.1.2023, 19:48:01 - ERROR - Failed to update comment | Error: SQLITE_ERROR: near "likeSum": syntax error 
+10.1.2023, 19:48:42 - INFO - Server is running on port: 3030 
+10.1.2023, 19:49:34 - INFO - Server is running on port: 3030 
+10.1.2023, 19:49:43 - ERROR - cannot update comment undefined | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: comments.userId 
+10.1.2023, 19:49:43 - ERROR - Failed to update comment | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: comments.userId 
+10.1.2023, 19:50:15 - INFO - Server is running on port: 3030 
+10.1.2023, 19:52:45 - INFO - Server is running on port: 3030 
+10.1.2023, 19:53:00 - ERROR - cannot update comment undefined | TypeError: Cannot read properties of undefined (reading 'length') 
+10.1.2023, 19:53:00 - ERROR - Failed to update comment | TypeError: Cannot read properties of undefined (reading 'length') 
+10.1.2023, 19:53:03 - ERROR - cannot update comment undefined | TypeError: Cannot read properties of undefined (reading 'length') 
+10.1.2023, 19:53:03 - ERROR - Failed to update comment | TypeError: Cannot read properties of undefined (reading 'length') 
+10.1.2023, 19:53:25 - INFO - Server is running on port: 3030 
+10.1.2023, 19:53:31 - INFO - Server is running on port: 3030 

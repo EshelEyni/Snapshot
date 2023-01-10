@@ -30,7 +30,7 @@
     </div>
 
     <div class="post-details-action-container">
-      <post-actions [post]="post" [loggedinUser]="loggedinUser" (toggleModal)="onToggleShareModal()"></post-actions>
+      <post-actions [post]="post" [loggedinUser]="loggedinUser" [type]="'post-details'" (toggleModal)="onToggleShareModal()"></post-actions>
 
       <div class="likes-container">
         <p class="likes" *ngIf="post.likeSum > 0; else firstLike">

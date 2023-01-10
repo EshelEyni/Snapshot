@@ -31,10 +31,11 @@ export class CommentComponent implements OnInit {
   async onToggleLike() {
     this.commentService.toggleLike(this.isLiked, { user: this.loggedinUser, commentId: this.comment.id });
     this.isLiked = !this.isLiked;
+    this.comment.likeSum = this.isLiked ? this.comment.likeSum + 1 : this.comment.likeSum - 1;
+    this.commentService.save(this.comment);
   }
 
   onExpandTxt() {
     this.isExpandTxt = true;
   }
-
 }

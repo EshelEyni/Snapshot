@@ -170,3 +170,43 @@
     opacity: 1;
     pointer-events: auto;
 }
+
+// Scrollbar mixin
+
+@mixin scrollbar {
+    &::-webkit-scrollbar {
+        width: rem(10px);
+    }
+
+    &::-webkit-scrollbar-track {
+        background: var(--secondary-bg);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: rem(10px);
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: var(--border-color);
+    }
+}
+
+@mixin scrollbar-hidden {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    & {
+        scrollbar-width: none;
+    }
+
+    & {
+        -ms-overflow-style: none;
+    }
+
+    &::-webkit-scrollbar {
+        width: 0.2em;
+        background-color: transparent;
+    }
+}

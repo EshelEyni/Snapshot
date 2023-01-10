@@ -11,7 +11,7 @@ async function getLikesForComment(req, res) {
 }
 
 async function addLikeToComment(req, res) {
-    try {
+    try { 
         const { commentId, user } = req.body
         const like = await likeService.addLikeToComment({ commentId, user })
         res.send({ like: like })

@@ -48,9 +48,6 @@ async function getById(commentId) {
         const user = await db.query(`select id, username, fullname, imgUrl from users where id = $id limit 1`, { $id: comments[0].userId });
         comments[0].by = user[0];
         delete comments[0].userId;
-        const likeBy = await db.query(`select userId, username, fullname, imgUrl from commentsLikedBy where commentId = $id`, { $id: commentId });
-        comments[0].likeBy = likeBy;
-        delete comments[0].likeSum;
         return comments[0]
     } catch (err) {
         logger.error(`while finding comment ${commentId}`, err)
@@ -69,13 +66,19 @@ async function remove(commentId) {
 
 async function update(comment) {
     try {
-        await db.exec(`update comments set userId = $userId, postId = $postId, text = $text, createdAt = $createdAt, isOriginalText = $isOriginalText likeSum = $likeSum where id = $id`, {
-            $userId: comment.userId,
+        await db.exec(
+            `update comments set userId = $userId,
+             postId = $postId,
+             text = $text,
+             createdAt = $createdAt,
+             isOriginalText = $isOriginalText,
+             likeSum = $likeSum where id = $id`, {
+            $userId: comment.by.id,
             $postId: comment.postId,
             $text: comment.text,
             $createdAt: comment.createdAt,
             $isOriginalText: comment.isOriginalText,
-            $likeSum: comment.likeBy.length,
+            $likeSum: comment.likeSum,
             $id: comment.id
         })
         return comment

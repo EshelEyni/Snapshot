@@ -4,7 +4,8 @@
             <like-icon [isLiked]="isLiked" (click)="onToggleLike()"></like-icon>
         </div>
         <div>
-            <svg-icon src="../../../assets/svgs/comment.svg" [routerLink]="['h/post/', post.id]"></svg-icon>
+            <svg-icon src="../../../assets/svgs/comment.svg" (click)="onAddComment()" 
+                [svgStyle]="{ 'color': commentIconDarkMode ? '#262626' : '#8e8e8e'}"></svg-icon>
         </div>
         <div>
             <svg-icon src="../../../assets/svgs/paper-airplane.svg" (click)="onToggleModal()"></svg-icon>

@@ -194,7 +194,7 @@
             border: var(--border-color) solid 1px;
 
             .comment-list-container {
-                display: flex;
+                display: inline-block;
 
                 .no-comments-msg-container {
                     align-self: center;
@@ -267,7 +267,7 @@
         width: calc(100% - rem(75px));
         margin-left: rem(75px);
 
-        header {
+        .post-details-header {
             display: none;
         }
 

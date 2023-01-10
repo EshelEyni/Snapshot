@@ -1,3 +1,5 @@
-<ul class="comment-list" *ngFor="let comment of comments">
-    <comment [comment]="comment" [type]="type" [loggedinUser]="loggedinUser"></comment>
+<ul class="comment-list">
+    <li *ngFor="let comment of comments">
+        <comment [comment]="comment" [type]="type" [loggedinUser]="loggedinUser"></comment>
+    </li>
 </ul>

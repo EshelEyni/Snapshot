@@ -23,7 +23,7 @@
         (toggleCommentDisplay)="onToggleCommentDisplay()"
         (toggleLikeDisplay)="onToggleLikeDisplay()"></post-options-modal>
 
-      <post-actions [post]="post" [loggedinUser]="loggedinUser"
+      <post-actions [post]="post" [loggedinUser]="loggedinUser" [type]="'post-preview'"
         (toggleModal)="onToggleModal('share-modal')"></post-actions>
 
 

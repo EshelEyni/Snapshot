@@ -5,10 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FormattedDatePipe implements PipeTransform {
 
-  transform(value: number | Date): string {
+  transform(value: number | Date, format: 'short' | 'long' = 'long'): string {
     // typeof value from local storage = string
     if (typeof value === 'string') value = new Date(value)
-
     if (typeof value !== 'number') value = value.getTime()
     const formattedTimeStamp = +((Date.now() - value) / 1000).toFixed()
     const minute = 60
@@ -18,21 +17,29 @@ export class FormattedDatePipe implements PipeTransform {
 
     let timeStr!: string
     if (formattedTimeStamp < minute) {
-      timeStr = formattedTimeStamp + ' seconds ago'
+      const str = format === 'long' ? ' seconds ago' : 's'
+      timeStr = formattedTimeStamp + str
     }
     if (formattedTimeStamp > minute) {
-      timeStr = (formattedTimeStamp / minute).toFixed() + ' minutes ago'
+      const str = format === 'long' ? ' minutes ago' : 'm'
+      timeStr = (formattedTimeStamp / minute).toFixed() + str
     }
     if (formattedTimeStamp > hour) {
-      timeStr = (formattedTimeStamp / hour).toFixed() + ' hours ago'
+      const str = format === 'long' ? ' hours ago' : 'h'
+      timeStr = (formattedTimeStamp / hour).toFixed() + str
     }
     if (formattedTimeStamp > day) {
-      timeStr = (formattedTimeStamp / day).toFixed() + ' days ago'
+      const str = format === 'long' ? ' days ago' : 'd'
+      timeStr = (formattedTimeStamp / day).toFixed() + str
     }
     if (formattedTimeStamp > week) {
-      const date = new Date(value)
-      const month = date.toLocaleString('default', { month: 'long' })
-      timeStr = `${month} ${date.getDate()}, ${date.getFullYear()}`
+      if (format === 'long') {
+        const date = new Date(value)
+        const month = date.toLocaleString('default', { month: 'long' })
+        timeStr = `${month} ${date.getDate()}, ${date.getFullYear()}`
+      } else {
+        timeStr = (formattedTimeStamp / week).toFixed() + 'w'
+      }
     }
 
     return timeStr

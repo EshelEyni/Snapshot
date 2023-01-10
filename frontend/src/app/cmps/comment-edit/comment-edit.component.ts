@@ -1,13 +1,14 @@
 import { Tag } from './../../models/tag.model';
 import { TagService } from './../../services/tag.service';
-import { lastValueFrom } from 'rxjs'
+import { Subscription } from 'rxjs'
 import { PostService } from './../../services/post.service'
 import { Post } from './../../models/post.model'
 import { UserService } from './../../services/user.service'
 import { CommentService } from 'src/app/services/comment.service'
 import { Emoji } from '@ctrl/ngx-emoji-mart/ngx-emoji'
-import { Component, EventEmitter, OnInit, inject } from '@angular/core'
+import { Component, OnInit, inject, ViewChild, ElementRef, OnDestroy } from '@angular/core'
 import { faFaceSmile } from '@fortawesome/free-regular-svg-icons'
+import { CommunicationService } from 'src/app/services/communication.service';
 
 @Component({
   selector: 'comment-edit',
@@ -16,8 +17,10 @@ import { faFaceSmile } from '@fortawesome/free-regular-svg-icons'
   inputs: ['post'],
 })
 
-export class CommentEditComponent implements OnInit {
+export class CommentEditComponent implements OnInit, OnDestroy {
   constructor() { }
+
+  @ViewChild('commentInput', { static: true }) input!: ElementRef;
 
   // toggleModal = new EventEmitter<string>()
 
@@ -25,6 +28,7 @@ export class CommentEditComponent implements OnInit {
   commentService = inject(CommentService)
   postService = inject(PostService)
   tagService = inject(TagService)
+  communicationService = inject(CommunicationService)
 
   faFaceSmile = faFaceSmile
   isEmojiPickerShown: boolean = false
@@ -32,7 +36,13 @@ export class CommentEditComponent implements OnInit {
   commentText: string = ''
   post!: Post
 
-  ngOnInit(): void { }
+  sub: Subscription | null = null;
+
+  ngOnInit(): void {
+    this.sub = this.communicationService.focusEmitter.subscribe(() => {
+      this.input.nativeElement.focus();
+    })
+  }
 
   onAddEmoji(emoji: Emoji) {
     if (typeof emoji.emoji !== 'string') this.commentText += emoji.emoji.native
@@ -63,5 +73,9 @@ export class CommentEditComponent implements OnInit {
   onToggleEmojiPicker() {
     this.isEmojiPickerShown = !this.isEmojiPickerShown
     this.isMainScreen = !this.isMainScreen
+  }
+
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
   }
 }

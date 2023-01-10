@@ -5,6 +5,17 @@
 ::ng-deep .comment {
     display: flex;
     align-items: center;
+    width: 100%;
+
+    >* {
+        width: 100%;
+    }
+
+    .like-btn-container {
+        fa-icon {
+            font-size: rem(12px);
+        }
+    }
 
     .post-preview-comment-container {
         display: flex;
@@ -12,7 +23,7 @@
         gap: rem(5px);
         align-items: center;
         width: 100%;
-        
+
         .comment-text-container {
             display: flex;
             justify-content: center;
@@ -36,19 +47,92 @@
 
 
     .post-details-comment-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
+        display: grid;
+        grid-template-columns: rem(45px) 1fr rem(45px);
+        grid-template-rows: auto;
 
-        .ellipsis {
-            display: none;
+        .comment-avatar-container {
+            grid-column: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: rem(45px);
+            width: rem(45px);
+
+            .comment-avatar {
+                width: rem(32px);
+                height: rem(32px);
+                border-radius: 50%;
+                object-fit: cover;
+            }
         }
 
-        &:hover {
-            .ellipsis {
+        .comment-main-container {
+            grid-column: 2;
+            display: flex;
+            gap: rem(15px);
+
+            .comment-content-container {
                 display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+
+
+                .comment-text-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: rem(5px);
+
+                    .username {
+                        font-weight: 600;
+                        cursor: pointer;
+                        font-family: var(--primary-font);
+                    }
+
+                    p {
+                        word-break: break-word;
+                    }
+                }
             }
+
+            .comment-actions {
+                display: flex;
+                gap: rem(10px);
+                align-items: center;
+                justify-content: center;
+                height: rem(25px);
+
+                >* {
+                    font-family: var(--primary-font);
+                    color: var(--secondary-color);
+
+                }
+
+                .comment-like-count {
+                    font-weight: 600;
+                }
+
+                .reply-btn {
+                    font-weight: 600;
+                    text-transform: capitalize;
+                    font-size: rem(16px);
+                    padding: 0;
+                }
+
+                .ellipsis {
+                    display: none;
+                    padding-left: rem(10px);
+                }
+            }
+
+        }
+
+        .like-btn-container {
+            grid-column: 3;
+            display: flex;
+            justify-content: flex-end;
+            height: rem(45px);
+            width: rem(45px);
         }
     }
 }

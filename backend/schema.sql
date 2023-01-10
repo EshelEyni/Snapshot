@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS "postsImgs" (
 CREATE TABLE IF NOT EXISTS "postsLikedBy"(
     "id" INTEGER NOT NULL UNIQUE,
     "postId" INTEGER NOT NULL,
-    "userId" INTEGER NOT NULL UNIQUE,
+    "userId" INTEGER NOT NULL,
     "username" TEXT NOT NULL,
     "fullname" TEXT NOT NULL,
     "imgUrl" TEXT NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS "comments" (
 CREATE TABLE IF NOT EXISTS "commentsLikedBy"(
     "id" INTEGER NOT NULL UNIQUE,
     "commentId" INTEGER NOT NULL,
-    "userId" INTEGER NOT NULL UNIQUE,
+    "userId" INTEGER NOT NULL,
     "username" TEXT NOT NULL,
     "fullname" TEXT NOT NULL,
     "imgUrl" TEXT NOT NULL,
