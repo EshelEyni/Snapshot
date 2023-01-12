@@ -71,7 +71,7 @@ export class PostActionsComponent implements OnInit, OnChanges, OnDestroy {
   onAddComment() {
     this.iconClicked = true;
     if (this.type === 'post-preview') {
-      this.router.navigate([`/post/${this.post.id}`])
+      this.router.navigate([`homepage/post/${this.post.id}`])
     } else if (this.type === 'post-details') {
       this.communicationService.focusInput()
     }

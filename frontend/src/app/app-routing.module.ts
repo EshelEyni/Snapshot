@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'inbox', component: MessagesComponent, canActivate: [AuthGuard] },
   {
     path: '', component: HomeComponent, canActivate: [AuthGuard], children: [
-      { path: 'h/post/:id', component: PostDetailsComponent, resolve: { post: PostResolver }, data: { isHome: true } },
+      { path: 'homepage/post/:id', component: PostDetailsComponent, resolve: { post: PostResolver }, data: { isNested: true } },
     ]
   },
   { path: 'activity', component: ActivityComponent, canActivate: [AuthGuard] },

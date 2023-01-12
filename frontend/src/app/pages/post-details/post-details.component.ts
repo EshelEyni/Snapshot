@@ -31,7 +31,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   }
 
   post!: Post;
-  isHome: boolean = false;
+  isNested: boolean = false;
   paramsSubscription!: Subscription;
 
   loggedinUser$: Observable<User | null>;
@@ -56,8 +56,8 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
 
     this.paramsSubscription = this.route.data.subscribe(async (data) => {
       const post = data['post']
-      const isHome = data['isHome']
-      this.isHome = isHome
+      const isNested = data['isNested']
+      this.isNested = isNested
       if (post) {
         this.post = post
         await this.setPostClassName(this.post.imgUrls[0])
@@ -72,7 +72,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
               currPostId: this.post.id
             }
           )
-          this.userPosts$ = this.postService.posts$
+          this.userPosts$ = this.postService.createdPosts$
         }
 
       }
@@ -114,7 +114,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   }
 
   onClickMainScreen() {
-    if (this.isHome) {
+    if (this.isNested) {
       this.router.navigate(['/'])
     } else {
       this.onToggleModal('main-screen')

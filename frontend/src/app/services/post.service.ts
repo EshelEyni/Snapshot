@@ -12,6 +12,9 @@ export class PostService {
   private _posts$ = new BehaviorSubject<Post[]>([])
   public posts$ = this._posts$.asObservable()
 
+  private _createdPosts$ = new BehaviorSubject<Post[]>([])
+  public createdPosts$ = this._createdPosts$.asObservable()
+
   constructor(
     private userService: UserService,
     private http: HttpClient,
@@ -37,7 +40,13 @@ export class PostService {
     const posts = await lastValueFrom(
       this.http.get<Post[]>('http://localhost:3030/api/post', options),
     )
-    this._posts$.next(posts)
+    if (!filterBy) {
+      this._posts$.next(posts)
+    } else {
+      if (filterBy.type === 'createdPosts') {
+        this._createdPosts$.next(posts)
+      }
+    }
   }
 
   public getById(postId: string): Observable<Post> {

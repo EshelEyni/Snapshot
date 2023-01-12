@@ -1,5 +1,5 @@
-<section class="post-details" *ngIf="loggedinUser" [class.is-home]="isHome">
-  <div class="main-screen dark-mode" *ngIf="isHome || isMainScreen" (click)="onClickMainScreen()">
+<section class="post-details" *ngIf="loggedinUser" [class.is-home]="isNested">
+  <div class="main-screen dark-mode" *ngIf="isNested || isMainScreen" (click)="onClickMainScreen()">
   </div>
 
   <header class="post-details-header">
@@ -64,7 +64,7 @@
 
   <div *ngIf="(userPosts$ | async) as posts">
 
-    <div class="post-list-container" *ngIf="!isHome && posts.length > 0">
+    <div class="post-list-container" *ngIf="!isNested && posts.length > 0">
 
       <p class="more-posts-suggsetion">
         More posts from
