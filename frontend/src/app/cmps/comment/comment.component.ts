@@ -22,10 +22,13 @@ export class CommentComponent implements OnInit {
   isLongTxt!: boolean;
   isLiked: boolean = false;
   loggedinUser !: User;
+  isUserComment: boolean = false;
+  isCommentModalShown: boolean = false;
 
   async ngOnInit() {
     this.isLongTxt = this.comment.text.length > 100;
     this.isLiked = await this.commentService.checkIsLiked(this.loggedinUser.id, this.comment.id);
+    this.isUserComment = this.loggedinUser.id === this.comment.by.id;
   }
 
   async onToggleLike() {
@@ -33,6 +36,16 @@ export class CommentComponent implements OnInit {
     this.isLiked = !this.isLiked;
     this.comment.likeSum = this.isLiked ? this.comment.likeSum + 1 : this.comment.likeSum - 1;
     this.commentService.save(this.comment);
+  }
+
+  onToggleCommentModal() {
+    this.isCommentModalShown = !this.isCommentModalShown;
+  }
+
+  onRemoveComment() {
+    console.log('onRemoveComment');
+    this.commentService.remove(this.comment.id);
+    this.onToggleCommentModal();
   }
 
   onExpandTxt() {

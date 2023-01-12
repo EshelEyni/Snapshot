@@ -90,6 +90,7 @@ import { HomePageHeaderComponent } from './cmps/home-page-header/home-page-heade
 import { SearchResultsListComponent } from './cmps/search-results-list/search-results-list.component';
 import { RecentSearchListComponent } from './cmps/recent-search-list/recent-search-list.component';
 import { ActivityComponent } from './pages/activity/activity.component';
+import { CommentOptionsModalComponent } from './cmps/comment-options-modal/comment-options-modal.component';
 
 @NgModule({
   declarations: [
@@ -159,6 +160,7 @@ import { ActivityComponent } from './pages/activity/activity.component';
     SearchResultsListComponent,
     RecentSearchListComponent,
     ActivityComponent,
+    CommentOptionsModalComponent,
   ],
   imports: [
     BrowserAnimationsModule,

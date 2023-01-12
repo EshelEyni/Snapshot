@@ -1,5 +1,5 @@
 <section class="post-details" *ngIf="loggedinUser" [class.is-home]="isHome">
-  <div class="main-screen dark-mode" *ngIf="isHome || isShareModalShown" (click)="onClickMainScreen()">
+  <div class="main-screen dark-mode" *ngIf="isHome || isMainScreen" (click)="onClickMainScreen()">
   </div>
 
   <header class="post-details-header">
@@ -15,7 +15,10 @@
 
     <section class="post-creator">
       <user-preview [user]="post.by" [location]="post.location"></user-preview>
-      <ellipsis></ellipsis>
+      <ellipsis (click)="onToggleModal('post-options-modal')"></ellipsis>
+
+      <post-options-modal *ngIf="isOptionsModalShown" [isPostOwnedByUser]="isPostOwnedByUser" [post]="post"
+        [loggedinUserId]="loggedinUser.id" (close)="onToggleModal('post-options-modal')"></post-options-modal>
     </section>
 
     <div class="comment-list-container">
@@ -30,7 +33,8 @@
     </div>
 
     <div class="post-details-action-container">
-      <post-actions [post]="post" [loggedinUser]="loggedinUser" [type]="'post-details'" (toggleModal)="onToggleShareModal()"></post-actions>
+      <post-actions [post]="post" [loggedinUser]="loggedinUser" [type]="'post-details'"
+        (toggleModal)="onToggleModal('share-modal')"></post-actions>
 
       <div class="likes-container">
         <p class="likes" *ngIf="post.likeSum > 0; else firstLike">
@@ -50,23 +54,30 @@
       <p class="date-added">{{ post.createdAt | formattedDate }}</p>
     </div>
 
-    <share-modal *ngIf="isShareModalShown" (close)="onToggleShareModal()" [loggedinUser]="loggedinUser"></share-modal>
+    <share-modal *ngIf="isShareModalShown" (close)="onToggleModal('share-modal')"
+      [loggedinUser]="loggedinUser"></share-modal>
 
     <div class="comment-edit-container">
       <comment-edit [post]="post"></comment-edit>
     </div>
   </main>
 
+  <div *ngIf="(userPosts$ | async) as posts">
 
-  <div class="post-list-container" *ngIf="!isHome && userPosts$">
+    <div class="post-list-container" *ngIf="!isHome && posts.length > 0">
 
-    <p class="more-posts-suggsetion">
-      More posts from
-      <span [routerLink]="['/profile/', loggedinUser.id]">
-        {{ loggedinUser.username }}
-      </span>
-    </p>
-    <post-list [posts]="(userPosts$|async)!" [isMiniPreview]="true"></post-list>
+      <p class="more-posts-suggsetion">
+        More posts from
+        <span [routerLink]="['/profile/', loggedinUser.id]">
+          {{ loggedinUser.username }}
+        </span>
+      </p>
+      <post-list [posts]="posts" [isMiniPreview]="true"></post-list>
+    </div>
+
+    <ng-template #loading>
+      <div>Loading...</div>
+    </ng-template>
 
   </div>
 </section>

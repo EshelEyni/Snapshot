@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user.service';
 import { PostService } from 'src/app/services/post.service';
 import { Router } from '@angular/router';
 import { Post } from './../../models/post.model';
@@ -7,7 +8,7 @@ import { Component, OnInit, EventEmitter, inject } from '@angular/core';
   selector: 'post-options-modal',
   templateUrl: './post-options-modal.component.html',
   styleUrls: ['./post-options-modal.component.scss'],
-  inputs: ['post'],
+  inputs: ['post', 'loggedinUserId', 'isPostOwnedByUser'],
   outputs: ['close', 'toggleCommentDisplay', 'toggleLikeDisplay'],
 })
 export class PostOptionsModalComponent implements OnInit {
@@ -16,6 +17,7 @@ export class PostOptionsModalComponent implements OnInit {
 
   router = inject(Router);
   postService = inject(PostService);
+  userService = inject(UserService);
   post!: Post;
   close = new EventEmitter();
   toggleCommentDisplay = new EventEmitter();
@@ -25,10 +27,16 @@ export class PostOptionsModalComponent implements OnInit {
   toggleLikeDisplayBtnTxt: string = 'Hide like count';
 
   isConfirmDeleteMsgShown: boolean = false;
-  
-  ngOnInit(): void {
+  isPostOwnedByUser!: boolean;
+  loggedinUserId!: number;
+  isFollowed: boolean = false;
+
+  async ngOnInit() {
     this.toggleCommentDisplayBtnTxt = this.post.isCommentShown ? 'Turn off commenting' : 'Turn on commenting';
     this.toggleLikeDisplayBtnTxt = this.post.isLikeShown ? 'Hide like count' : 'Unhide like count';
+    if (!this.isPostOwnedByUser) {
+      this.isFollowed = await this.userService.checkIsFollowing(this.loggedinUserId, this.post.by.id);
+    }
   }
 
   onToggleConfirmDelete() {
@@ -38,6 +46,11 @@ export class PostOptionsModalComponent implements OnInit {
   async onDeletePost() {
     await this.postService.remove(this.post.id);
     this.router.navigate(['']);
+    this.close.emit();
+  }
+
+  async onUnfollowUser() {
+    await this.userService.toggleFollow(true, this.loggedinUserId, this.post.by);
     this.close.emit();
   }
 

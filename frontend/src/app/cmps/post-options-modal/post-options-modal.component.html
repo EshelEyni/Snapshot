@@ -1,4 +1,4 @@
-<section class="post-options-modal" *ngIf="!isConfirmDeleteMsgShown">
+<section class="post-options-modal" *ngIf="!isConfirmDeleteMsgShown && isPostOwnedByUser">
     <button class="clean-btn delete-btn" (click)="onToggleConfirmDelete()">Delete</button>
     <button class="clean-btn">Edit</button>
     <button class="clean-btn" (click)="onToggleLikeDisplay()">{{toggleLikeDisplayBtnTxt}}</button>
@@ -8,5 +8,12 @@
     <button class="clean-btn" (click)="onCloseModal()">Cancel</button>
 </section>
 
-<confirm-delete-msg *ngIf="isConfirmDeleteMsgShown" [entityType]="'post'" (close)="onToggleConfirmDelete()"
-    (deleteEntity)="onDeletePost()"></confirm-delete-msg>
+<section class="post-options-modal" *ngIf="!isPostOwnedByUser">
+    <button class="clean-btn unfollow-btn" *ngIf="isFollowed" (click)="onUnfollowUser()">Unfollow</button>
+    <button class="clean-btn" (click)="onGoToPost()">Go to post</button>
+    <button class="clean-btn" (click)="onCopyLink()">Copy link</button>
+    <button class="clean-btn" (click)="onCloseModal()">Cancel</button>
+</section>
+
+<confirm-delete-msg *ngIf="isConfirmDeleteMsgShown && isPostOwnedByUser" [entityType]="'post'"
+    (close)="onToggleConfirmDelete()" (deleteEntity)="onDeletePost()"></confirm-delete-msg>

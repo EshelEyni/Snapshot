@@ -17,7 +17,6 @@ async function addSearch(req, res) {
     try {
         const search = req.body
         const savedSearch = await searchService.add(search)
-        console.log('savedSearch', savedSearch)
         res.send({ id: savedSearch })
     } catch (err) {
         logger.error('Failed to add search', err)
@@ -26,7 +25,6 @@ async function addSearch(req, res) {
 }
 
 async function deleteSearch(req, res) {
-    console.log('req.params.id', req.params.id)
     try {
         await searchService.remove(req.params.id)
         res.end()

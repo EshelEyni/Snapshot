@@ -57,9 +57,7 @@ async function addPost(req, res) {
 
 async function addPostToTag(req, res) {
     try {
-        console.log('req.body', req.body);
         const { postId, tagId } = req.body
-
         const post = await postService.addPostToTag(tagId, postId)
         res.send(post)
     } catch (err) {

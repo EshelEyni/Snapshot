@@ -7,7 +7,6 @@ async function getLikesForStory(storyId) {
         const likes = await db.query(`select * from storiesLikedBy where storyId = $storyId`, {
             $storyId: storyId
         });
-        console.log('likes', likes)
         return likes
     } catch (err) {
         logger.error('cannot find likes', err)

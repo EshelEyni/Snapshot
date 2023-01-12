@@ -2,7 +2,7 @@ import { User } from 'src/app/models/user.model';
 import { CommentService } from 'src/app/services/comment.service';
 import { Component, Input, OnInit, inject, OnChanges, SimpleChanges, DoCheck } from '@angular/core';
 import { Comment } from 'src/app/models/comment.model';
-import { lastValueFrom } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'comment-list',
@@ -20,7 +20,7 @@ export class CommentListComponent implements OnInit, OnChanges {
   type!: string;
   commentSum!: number;
 
-  comments: Comment[] = [];
+  comments$!: Observable<Comment[]>;
 
   ngOnInit() {
     this.getComments();
@@ -34,27 +34,23 @@ export class CommentListComponent implements OnInit, OnChanges {
 
   async getComments() {
     if (this.type === 'post-preview') {
-      const comments = await lastValueFrom(
-        this.commentService.loadComments(
-          {
-            postId: this.postId,
-            userId: this.loggedinUser.id,
-            type: 'post-preview'
-          }
-        )
-      );
-      this.comments = comments;
+      this.commentService.loadComments(
+        {
+          postId: this.postId,
+          userId: this.loggedinUser.id,
+          type: 'post-preview'
+        }
+      )
+      this.comments$ = this.commentService.comments$;
     } else {
-      const comments = await lastValueFrom(
-        this.commentService.loadComments(
-          {
-            postId: this.postId,
-            userId: this.loggedinUser.id,
-            type: 'post-details'
-          }
-        )
-      );
-      this.comments = comments;
+      this.commentService.loadComments(
+        {
+          postId: this.postId,
+          userId: this.loggedinUser.id,
+          type: 'post-details'
+        }
+      )
+      this.comments$ = this.commentService.comments$;
     }
   }
 

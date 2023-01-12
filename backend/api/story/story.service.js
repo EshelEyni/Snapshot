@@ -102,7 +102,6 @@ async function add(story) {
 
 
             for (const i of story.imgUrls) {
-                console.log('i', i);
                 await db.exec(`insert into storyImg (storyId, imgUrl) values ($storyId, $imgUrl)`, {
                     $storyId: id,
                     $imgUrl: i

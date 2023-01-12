@@ -17,7 +17,6 @@ async function query(filter) {
                 posts = await db.query(
                     `select * from posts order by createdAt desc`, {
                 });
-                console.log('posts.length', posts.length)
             }
 
             for (const post of posts) {

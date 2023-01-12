@@ -43,6 +43,10 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   classForPost = 'post';
 
   faChevronLeft = faChevronLeft;
+  isOptionsModalShown: boolean = false;
+  isPostOwnedByUser: boolean = false;
+
+
 
   ngOnInit() {
     const loggedinUser = this.userService.getLoggedinUser()
@@ -77,6 +81,8 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     this.sub = this.loggedinUser$.subscribe((user) => {
       if (user) {
         this.loggedinUser = JSON.parse(JSON.stringify(user))
+        this.isPostOwnedByUser = this.loggedinUser.id === this.post.by.id
+
       }
     })
   }
@@ -91,16 +97,27 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  onToggleShareModal() {
-    this.isShareModalShown = !this.isShareModalShown
-    this.isMainScreen = true
+  onToggleModal(el: string) {
+    switch (el) {
+      case 'share-modal':
+        this.isShareModalShown = !this.isShareModalShown
+        break
+      case 'post-options-modal':
+        this.isOptionsModalShown = !this.isOptionsModalShown
+        break
+      case 'main-screen':
+        if (this.isShareModalShown) this.isShareModalShown = !this.isShareModalShown
+        if (this.isOptionsModalShown) this.isOptionsModalShown = !this.isOptionsModalShown
+        break
+    }
+    this.isMainScreen = !this.isMainScreen
   }
 
   onClickMainScreen() {
     if (this.isHome) {
       this.router.navigate(['/'])
     } else {
-      this.onToggleShareModal()
+      this.onToggleModal('main-screen')
     }
   }
 

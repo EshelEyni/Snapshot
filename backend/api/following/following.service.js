@@ -32,8 +32,6 @@ async function getById(followingId) {
 }
 
 async function remove(followerId, userId) {
-    console.log('followerId', followerId);
-    console.log('userId', userId);
     try {
         await db.exec(
             `delete from following where followerId = $followerId and userId = $userId`, {

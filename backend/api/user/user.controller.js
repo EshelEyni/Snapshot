@@ -4,7 +4,6 @@ const logger = require('../../services/logger.service')
 
 
 async function queryUsers(req, res) {
-    console.log('req.query', req.query)
     try {
         const users = await userService.query(req.query)
         res.send(users)
@@ -49,7 +48,6 @@ async function addUser(req, res) {
 async function updateUser(req, res) {
     try {
         const userToUpdate = req.body
-        console.log('userToUpdate', userToUpdate)
         const updatedUser = await userService.update(userToUpdate)
         // socketService.broadcast({ type: 'user-updated', data: updatedUser, userId: updatedUser._id })
         res.send(updatedUser)

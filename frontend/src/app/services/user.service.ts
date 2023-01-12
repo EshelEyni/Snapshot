@@ -168,9 +168,6 @@ export class UserService {
   }
 
   public async toggleFollow(isFollowing: boolean, loggedinUserId: number, user: MiniUser) {
-    console.log('isFollowing', isFollowing)
-    console.log('loggedinUserId', loggedinUserId)
-    console.log('user', user)
 
     if (isFollowing) {
       await firstValueFrom(

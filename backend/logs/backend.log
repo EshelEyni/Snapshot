@@ -245,3 +245,36 @@
 10.1.2023, 19:53:03 - ERROR - Failed to update comment | TypeError: Cannot read properties of undefined (reading 'length') 
 10.1.2023, 19:53:25 - INFO - Server is running on port: 3030 
 10.1.2023, 19:53:31 - INFO - Server is running on port: 3030 
+11.1.2023, 12:02:46 - INFO - Server is running on port: 3030 
+12.1.2023, 21:11:14 - INFO - Server is running on port: 3030 
+12.1.2023, 22:15:16 - INFO - Server is running on port: 3030 
+12.1.2023, 22:15:34 - INFO - Server is running on port: 3030 
+12.1.2023, 22:16:17 - INFO - Server is running on port: 3030 
+12.1.2023, 22:16:22 - INFO - Server is running on port: 3030 
+12.1.2023, 22:16:26 - INFO - Server is running on port: 3030 
+12.1.2023, 22:16:30 - INFO - Server is running on port: 3030 
+12.1.2023, 22:16:34 - INFO - Server is running on port: 3030 
+12.1.2023, 22:16:45 - INFO - Server is running on port: 3030 
+12.1.2023, 22:16:50 - INFO - Server is running on port: 3030 
+12.1.2023, 22:16:54 - INFO - Server is running on port: 3030 
+12.1.2023, 22:16:59 - INFO - Server is running on port: 3030 
+12.1.2023, 22:17:14 - INFO - Server is running on port: 3030 
+12.1.2023, 22:32:51 - ERROR - cannot remove comment 48 | Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+12.1.2023, 22:32:51 - ERROR - Failed to delete comment | Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+12.1.2023, 22:38:11 - INFO - Server is running on port: 3030 
+12.1.2023, 22:40:15 - INFO - Server is running on port: 3030 
+12.1.2023, 22:44:42 - INFO - Server is running on port: 3030 
+12.1.2023, 22:45:09 - INFO - Server is running on port: 3030 
+12.1.2023, 22:55:17 - DEBUG - auth.service - login with username: tal 
+12.1.2023, 22:55:17 - ERROR - Failed to Login Invalid username or password2 
+12.1.2023, 22:55:19 - DEBUG - auth.service - login with username: tal 
+12.1.2023, 22:55:19 - ERROR - Failed to Login Invalid username or password2 
+12.1.2023, 22:55:39 - DEBUG - auth.service - login with username: tal 
+12.1.2023, 22:55:39 - ERROR - Failed to Login Invalid username or password2 
+12.1.2023, 22:55:43 - DEBUG - auth.service - login with username: tal 
+12.1.2023, 22:55:43 - ERROR - Failed to Login Invalid username or password2 
+12.1.2023, 22:56:30 - DEBUG - auth.service - signup with username: user2, fullname: user2 
+12.1.2023, 22:56:30 - ERROR - cannot find users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
+12.1.2023, 22:56:30 - ERROR - Failed to signup TypeError: Cannot read properties of undefined (reading 'searchTerm') 
+12.1.2023, 23:46:16 - INFO - Server is running on port: 3030 
+12.1.2023, 23:46:44 - INFO - Server is running on port: 3030 

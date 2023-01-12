@@ -10,11 +10,8 @@
     height: 100%;
     background-color: var(--secondary-bg);
 
-
-
     display: grid;
     grid-template-rows: rem(50px) 1fr rem(82px);
-
     z-index: 20;
 
     .share-modal-header {

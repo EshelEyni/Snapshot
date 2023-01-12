@@ -19,7 +19,8 @@
 
       <like-modal *ngIf="isLikeModalShown" [post]="post" (close)="onToggleModal('like-modal')"></like-modal>
 
-      <post-options-modal *ngIf="isOptionsModalShown" (close)="onToggleModal('post-options-modal')" [post]="post"
+      <post-options-modal *ngIf="isOptionsModalShown" [isPostOwnedByUser]="isPostOwnedByUser" [post]="post"
+        [loggedinUserId]="loggedinUser.id" (close)="onToggleModal('post-options-modal')"
         (toggleCommentDisplay)="onToggleCommentDisplay()"
         (toggleLikeDisplay)="onToggleLikeDisplay()"></post-options-modal>
 

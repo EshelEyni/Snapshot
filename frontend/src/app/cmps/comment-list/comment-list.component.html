@@ -1,5 +1,5 @@
 <ul class="comment-list">
-    <li *ngFor="let comment of comments">
+    <li *ngFor="let comment of (comments$ | async)!">
         <comment [comment]="comment" [type]="type" [loggedinUser]="loggedinUser"></comment>
     </li>
 </ul>

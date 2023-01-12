@@ -46,7 +46,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
   currTitle: string = 'create new post'
   postImgs: PostCanvasImg[] = [
     {
-      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666727746/afi91eazphvmtuopifrk.jpg',
+      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666644422/joph3bb9hyyhjkdxnhc8.jpg',
       x: 0,
       y: 0,
       width: 830,

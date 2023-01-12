@@ -41,14 +41,16 @@ async function query({ postId, userId, type }) {
 
 async function getById(commentId) {
     try {
-        const comments = await db.query(`select * from comments where id = $id`, { $id: commentId });
-        if (comments.length === 0) {
-            return 'comment not found';
-        }
-        const user = await db.query(`select id, username, fullname, imgUrl from users where id = $id limit 1`, { $id: comments[0].userId });
-        comments[0].by = user[0];
-        delete comments[0].userId;
-        return comments[0]
+        return await db.txn(async () => {
+            const comments = await db.query(`select * from comments where id = $id`, { $id: commentId });
+            if (comments.length === 0) {
+                return 'comment not found';
+            }
+            const user = await db.query(`select id, username, fullname, imgUrl from users where id = $id limit 1`, { $id: comments[0].userId });
+            comments[0].by = user[0];
+            delete comments[0].userId;
+            return comments[0]
+        })
     } catch (err) {
         logger.error(`while finding comment ${commentId}`, err)
         throw err
@@ -57,7 +59,10 @@ async function getById(commentId) {
 
 async function remove(commentId) {
     try {
-        await db.exec(`delete from comments where id = $id`, { $id: commentId });
+        await db.txn(async () => {
+            await db.exec(`delete from commentsLikedBy where commentId = $id`, { $id: commentId });
+            await db.exec(`delete from comments where id = $id`, { $id: commentId });
+        })
     } catch (err) {
         logger.error(`cannot remove comment ${commentId}`, err)
         throw err

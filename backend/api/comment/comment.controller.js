@@ -28,9 +28,10 @@ async function getComment(req, res) {
 }
 
 async function deleteComment(req, res) {
+    console.log('req.params.id', req.params.id)
     try {
         await commentService.remove(req.params.id)
-        res.send({ msg: 'Deleted successfully' })
+        res.send({ msg: 'Comment deleted' })
     } catch (err) {
         logger.error('Failed to delete comment', err)
         res.status(500).send({ err: 'Failed to delete comment' })
@@ -38,8 +39,6 @@ async function deleteComment(req, res) {
 }
 
 async function updateComment(req, res) {
-    console.log('req.body', req.body)
-
     try {
         const comment = req.body
         const savedComment = await commentService.update(comment)

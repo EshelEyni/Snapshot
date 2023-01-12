@@ -31,7 +31,13 @@ export class CommentService {
   postService = inject(PostService);
   http = inject(HttpClient);
 
-  public loadComments(filterBy = { postId: 0, userId: 0, type: '' }): Observable<Comment[]> {
+  public async loadComments(
+    filterBy: {
+      postId: number,
+      userId: number
+      , type: string
+    }
+  ) {
     console
     let options = { params: {} }
     if (filterBy) {
@@ -41,15 +47,27 @@ export class CommentService {
         type: filterBy.type,
       }
     }
-    return this.http.get<Comment[]>('http://localhost:3030/api/comment', options)
+    const comments = await lastValueFrom(
+      this.http.get<Comment[]>('http://localhost:3030/api/comment', options)
+    )
+    this._comments$.next(comments)
   }
 
-  public getById(commentId: string): Observable<Comment> {
+  public getById(commentId: number): Observable<Comment> {
     return this.http.get<Comment>(`http://localhost:3030/api/comment/${commentId}`)
   }
 
-  public remove(commentId: string) {
-    return this.http.delete<Comment>(`http://localhost:3030/api/comment/${commentId}`)
+  public async remove(commentId: number) {
+    const res = await firstValueFrom(
+      this.http.delete(`http://localhost:3030/api/comment/${commentId}`)
+    ) as { msg: string }
+
+    if (res.msg === 'Comment deleted') {
+      const comments = this._comments$.getValue()
+      const idx = comments.findIndex((comment) => comment.id === commentId)
+      comments.splice(idx, 1)
+      this._comments$.next(comments)
+    }
   }
 
   public save(comment: Comment) {
