@@ -170,8 +170,8 @@
 
     }
 
-    @include for-extra-large-layout{
-        width: rem(244px);
+    @include for-extra-large-layout {
+        width: rem(245px);
 
         header {
 
@@ -231,6 +231,10 @@
         }
     }
 
+    @include for-extra-extra-large-layout {
+        width: rem(336px);
+    }
+
     .modal-container {
         position: absolute;
         top: 0;
@@ -240,8 +244,8 @@
         z-index: 20;
         transition: 0.5s;
     }
-    
-    
+
+
     &.modal-state {
         .modal-container {
             left: rem(70px);
@@ -250,6 +254,6 @@
     }
 }
 
-.post-edit-container{
+.post-edit-container {
     z-index: 20;
 }

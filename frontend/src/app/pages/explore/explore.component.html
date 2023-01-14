@@ -1,3 +1,6 @@
-<section class="explore">
-    <post-list  [posts]="(posts$|async)!" [isMiniPreview]="true"></post-list>
+<section class="explore-page">
+    <div class="post-list-container">
+        <post-list [posts]="posts" [isMiniPreview]="true" [isPostDetailsNestedRoute]="true"></post-list>
+    </div>
+    <router-outlet></router-outlet>
 </section>

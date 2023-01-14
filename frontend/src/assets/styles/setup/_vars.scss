@@ -35,10 +35,8 @@
     // FONTS
     --primary-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     --secondary-font: pacifico;
+    
 }
-
-// LAYOUT
-$layoutPadding: 244px;
 
 // LAYOUT BREAKPOINTS
 $break-mobile-small: 300px;
@@ -50,3 +48,4 @@ $breakpoint-SM : 770px;
 $breakpoint-MD : 875px;
 $breakpoint-LG : 1000px;
 $breakpoint-XL : 1260px;
+$breakpoint-XXL : 1920px;

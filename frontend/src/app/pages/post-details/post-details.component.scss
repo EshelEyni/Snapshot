@@ -6,6 +6,7 @@
 
 
 ::ng-deep .post-details {
+    @include page;
 
     display: flex;
     flex-direction: column;
@@ -134,9 +135,9 @@
         .comment-edit-container {
             display: none;
         }
+
+      
     }
-
-
 
 
     .post-list-container {
@@ -193,10 +194,30 @@
 
         .post {
             border-radius: 5px;
-            margin: 0 rem(50px);
+            margin: 0 rem(65px);
 
             .post-creator {
                 border-radius: 5px 5px 0 0;
+            }
+
+
+            .btn-pagination {
+
+                top: 50%;
+                transform: translate(-50%);
+    
+                fa-icon {
+                    color: var(--primary-pagination-button);
+                    font-size: rem(32px);
+                }
+    
+                &.prev {
+                    left: 7.5%;
+                }
+
+                &.next {
+                    right: 7.5%;
+                }
             }
         }
     }
@@ -300,7 +321,6 @@
     @include for-small-layout {
         position: relative;
         width: calc(100% - rem(75px));
-        margin-left: rem(75px);
 
         .post-details-header {
             display: none;
@@ -338,15 +358,8 @@
 
         }
 
-
-
         .post-list-container {
             width: fit-content;
         }
     }
-
-    @include for-extra-large-layout {
-        @include page;
-    }
-
 }

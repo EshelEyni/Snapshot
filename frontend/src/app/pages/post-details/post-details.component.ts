@@ -116,7 +116,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
 
   onClickMainScreen() {
     if (this.isNested) {
-      this.router.navigate(['/'])
+      this.$location.back()
     } else {
       this.onToggleModal('main-screen')
     }

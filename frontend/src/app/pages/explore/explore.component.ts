@@ -23,16 +23,20 @@ export class ExploreComponent implements OnInit, OnDestroy {
   store = inject(Store<State>);
 
   posts$!: Observable<Post[]>;
+  posts: Post[] = [];
   loggedinUser$: Observable<User | null>
   loggedinUser!: User
   sub: Subscription | null = null;
+  postSub: Subscription | null = null;
 
-  ngOnInit(): void {
+  async ngOnInit() {
 
     const loggedinUser = this.userService.getLoggedinUser()
+
     if (loggedinUser) {
       this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
-      this.postService.loadPosts(
+
+      await this.postService.loadPosts(
         {
           userId: loggedinUser.id,
           type: 'explorePagePosts',
@@ -40,8 +44,12 @@ export class ExploreComponent implements OnInit, OnDestroy {
           currPostId: null
         }
       );
-      this.posts$ = this.postService.posts$;
+
+      this.postSub = this.postService.posts$.subscribe(posts => {
+        this.posts = posts;
+      })
     }
+
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) this.loggedinUser = JSON.parse(JSON.stringify(user));
     })
@@ -51,6 +59,7 @@ export class ExploreComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.sub) this.sub.unsubscribe();
+    if (this.postSub) this.postSub.unsubscribe();
   }
 
 }

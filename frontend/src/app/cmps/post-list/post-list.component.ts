@@ -10,6 +10,7 @@ export class PostListComponent implements OnInit {
 
   @Input() posts!: Post[]
   @Input() isMiniPreview!: boolean;
+  @Input() isPostDetailsNestedRoute!: boolean;
   
   constructor() { }
 

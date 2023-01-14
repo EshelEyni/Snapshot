@@ -1,6 +1,26 @@
 @import '../../../assets/styles/setup/functions';
 @import '../../../assets/styles/setup/mixins';
 
-.explore {
+::ng-deep .explore-page {
     @include page;
+
+    .post-list-container {
+        margin-top: rem(20px);
+        width: 100%;
+    }
+
+    @include for-extra-small-layout {
+        .post-list-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+
+            .post-list.for-mini-preview {
+                width: 100%;
+                grid-template-columns: repeat(3, 1fr);
+                gap: rem(20px);
+            }
+        }
+    }
+
 }

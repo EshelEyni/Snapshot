@@ -58,6 +58,12 @@
     }
 }
 
+@mixin for-extra-extra-large-layout {
+    @media (min-width: $breakpoint-XXL) {
+        @content;
+    }
+}
+
 // logo mixin
 
 @mixin logo {
@@ -66,12 +72,24 @@
 }
 
 // Page mixin 
-
 @mixin page($width: 1, $height: 1) {
     display: flex;
     height: 100vh;
-    margin-inline-start: rem(244px);
-    width: calc(100vw - rem(244px));
+
+    @include for-small-layout {
+        margin-inline-start: rem(75px);
+        width: calc(100vw - rem(75px));
+    }
+
+    @include  for-extra-large-layout {
+        margin-inline-start: rem(245px);
+        width: calc(100vw - rem(245px));
+    }
+
+    @include for-extra-extra-large-layout {
+        margin-inline-start: rem(336px);
+        width: calc(100vw - rem(336px));
+    }
 }
 
 // story preview mixin

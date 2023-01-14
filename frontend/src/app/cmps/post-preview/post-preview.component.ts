@@ -20,10 +20,12 @@ export class PostPreviewComponent implements OnInit, OnDestroy {
       .pipe(map((x) => x.loggedinUser))
   }
 
-  commentService = inject(CommentService)
-  userService = inject(UserService)
-  @Input() post!: Post
-  @Input() isMiniPreview!: boolean
+  commentService = inject(CommentService);
+  userService = inject(UserService);
+  @Input() post!: Post;
+  @Input() isMiniPreview!: boolean;
+  @Input() isPostDetailsNestedRoute!: boolean;
+
 
   faFaceSmile = faFaceSmile;
 
@@ -41,6 +43,7 @@ export class PostPreviewComponent implements OnInit, OnDestroy {
 
   commentTxt: string = '';
   isPostOwnedByUser: boolean = false;
+  miniPreviewPostDetailsLink: string = '';
 
   ngOnInit(): void {
     this.sub = this.loggedinUser$.subscribe((user) => {
@@ -50,6 +53,7 @@ export class PostPreviewComponent implements OnInit, OnDestroy {
       }
     })
 
+    this.miniPreviewPostDetailsLink = this.isPostDetailsNestedRoute ? `_/post/${this.post.id}` : `/post/${this.post.id}`
     this.isCommentShown = this.post.isCommentShown;
     this.isLikeShown = this.post.isLikeShown;
   }

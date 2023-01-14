@@ -31,7 +31,7 @@
       <p class="likes" *ngIf="isLikeShown && post.likeSum" (click)="onToggleModal('like-modal')">{{ post.likeSum }}
         likes</p>
 
-      <a class="view-all-link" [routerLink]="['h/post/', post.id]" *ngIf="isCommentShown && post.commentSum">View all
+      <a class="view-all-link" [routerLink]="['_/post/', post.id]" *ngIf="isCommentShown && post.commentSum">View all
         {{post.commentSum}} comments</a>
 
       <comment-list *ngIf="isCommentShown && post.commentSum" [postId]="post.id" [type]="'post-preview'"
@@ -49,7 +49,7 @@
   </div>
 
   <ng-template #miniPreview>
-    <div class="mini-preview-container" [routerLink]="['/post/', post.id]">
+    <div class="mini-preview-container" [routerLink]="[miniPreviewPostDetailsLink]">
       <div class="multiple-img-icon-container">
         <svg-icon *ngIf="post.imgUrls.length > 1" src="../../../assets/svgs/files-solid.svg"
           [svgStyle]="{ display: 'flex' }"></svg-icon>

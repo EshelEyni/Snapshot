@@ -61,7 +61,9 @@
     <div class="comment-edit-container">
       <comment-edit [post]="post"></comment-edit>
     </div>
+    <pagination-btns *ngIf="isExplorePage" [isPaginationBtnShown]="{left:true,right:true}"></pagination-btns>
   </main>
+
 
   <div *ngIf="(userPosts$ | async) as posts">
 
