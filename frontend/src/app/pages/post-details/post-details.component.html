@@ -61,7 +61,8 @@
     <div class="comment-edit-container">
       <comment-edit [post]="post"></comment-edit>
     </div>
-    <pagination-btns *ngIf="isExplorePage" [isPaginationBtnShown]="{left:true,right:true}"></pagination-btns>
+    <pagination-btns *ngIf="isExplorePage" [isPaginationBtnShown]="isPaginationBtnShown" (prevItem)="onChangePost(-1)"
+      (nextItem)="onChangePost(1)"></pagination-btns>
   </main>
 
 

@@ -41,12 +41,17 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   isShareModalShown: boolean = false;
   isMainScreen: boolean = false;
   userPosts$!: Observable<Post[]>;
+  posts$!: Observable<Post[]>;
+  postsIds: number[] = [];
   classForPost = 'post';
 
   faChevronLeft = faChevronLeft;
   isOptionsModalShown: boolean = false;
   isPostOwnedByUser: boolean = false;
   faX = faX;
+  isPaginationBtnShown = { left: false, right: false };
+  postsSub!: Subscription;
+  currIdx: number = 0;
 
 
 
@@ -66,16 +71,24 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
         this.post = data['post']
         await this.setPostClassName(this.post.imgUrls[0])
 
-        this.postService.loadPosts(
-          {
-            userId: this.post.by.id,
-            type: 'createdPosts',
-            limit: 6,
-            currPostId: this.post.id
-          }
-        )
-        this.userPosts$ = this.postService.createdPosts$
-
+        if (!this.isNested) {
+          this.postService.loadPosts(
+            {
+              userId: this.post.by.id,
+              type: 'createdPosts',
+              limit: 6,
+              currPostId: this.post.id
+            }
+          )
+          this.userPosts$ = this.postService.createdPosts$
+        }
+        else if (this.isExplorePage) {
+          this.posts$ = this.postService.posts$
+          this.postsSub = this.posts$.subscribe((posts) => {
+            this.postsIds = posts.map((post) => post.id)
+            this.setPaginationBtns()
+          })
+        }
       }
     })
 
@@ -98,6 +111,14 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
+  setPaginationBtns() {
+    this.currIdx = this.postsIds.indexOf(this.post.id);
+    if (this.currIdx === 0) this.isPaginationBtnShown.left = false;
+    else this.isPaginationBtnShown.left = true;
+    if (this.currIdx === this.postsIds.length - 1) this.isPaginationBtnShown.right = false;
+    else this.isPaginationBtnShown.right = true;
+  }
+
   onToggleModal(el: string) {
     switch (el) {
       case 'share-modal':
@@ -116,7 +137,10 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
 
   onClickMainScreen() {
     if (this.isNested) {
-      this.$location.back()
+      if (this.isExplorePage) this.router.navigate(['/explore'])
+      else {
+        this.router.navigate(['/'])
+      }
     } else {
       this.onToggleModal('main-screen')
     }
@@ -129,16 +153,19 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     this.postService.save(this.post)
   }
 
-  addCommentToPost(commentIds: string[]) {
-    // this.post.commentsIds = [...commentIds];
-  }
-
   onGoBack() {
     this.$location.back()
+  }
+
+  onChangePost(index: number) {
+    this.currIdx = this.postsIds.indexOf(this.post.id);
+    const newIdx = this.currIdx + index;
+    this.router.navigate([`/explore/_/post/${this.postsIds[newIdx]}`])
   }
 
   ngOnDestroy() {
     this.sub?.unsubscribe()
     this.paramsSubscription.unsubscribe()
+    this.postsSub?.unsubscribe()
   }
 }
