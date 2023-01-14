@@ -1,5 +1,6 @@
-<section class="post-details" *ngIf="loggedinUser" [class.is-home]="isNested">
+<section class="post-details" *ngIf="loggedinUser" [class.for-nested-display]="isNested">
   <div class="main-screen dark-mode" *ngIf="isNested || isMainScreen" (click)="onClickMainScreen()">
+    <fa-icon [icon]="faX"></fa-icon>
   </div>
 
   <header class="post-details-header">

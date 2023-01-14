@@ -32,14 +32,21 @@ export class ExploreComponent implements OnInit, OnDestroy {
     const loggedinUser = this.userService.getLoggedinUser()
     if (loggedinUser) {
       this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
+      this.postService.loadPosts(
+        {
+          userId: loggedinUser.id,
+          type: 'explorePagePosts',
+          limit: 1000,
+          currPostId: null
+        }
+      );
+      this.posts$ = this.postService.posts$;
     }
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) this.loggedinUser = JSON.parse(JSON.stringify(user));
     })
 
 
-    this.postService.loadPosts();
-    this.posts$ = this.postService.posts$;
   }
 
   ngOnDestroy(): void {

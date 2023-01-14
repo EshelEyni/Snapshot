@@ -37,8 +37,17 @@ export class HomeComponent implements OnInit {
     const loggedinUser = this.userService.getLoggedinUser()
     if (loggedinUser) {
       this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
+      this.postService.loadPosts(
+        {
+          userId: loggedinUser.id,
+          type: 'homepagePosts',
+          limit: 1000,
+          currPostId: null
+        }
+      );
+      this.posts$ = this.postService.posts$;
     }
-    this.store.dispatch(new LoadUsers('suggested'));
+    this.store.dispatch(new LoadUsers('suggested')); 
 
     this.subLoggedinUSer = this.loggedinUser$.subscribe(user => {
       if (user) this.loggedinUser = JSON.parse(JSON.stringify(user));
@@ -48,8 +57,6 @@ export class HomeComponent implements OnInit {
       if (users) this.users = JSON.parse(JSON.stringify(users));
     });
 
-    this.postService.loadPosts();
-    this.posts$ = this.postService.posts$;
   }
 
   ngOnDestroy(): void {

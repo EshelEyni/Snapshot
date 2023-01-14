@@ -21,32 +21,40 @@ export class PostService {
   ) { }
 
   public async loadPosts(
-    filterBy?: {
+    filterBy: {
       userId: number,
       type: string,
       limit: number,
-      currPostId: number
+      currPostId: number | null,
     }
   ) {
     let options = { params: {} }
-    if (filterBy) {
-      options.params = {
-        userId: filterBy.userId,
-        type: filterBy.type,
-        limit: filterBy.limit,
-        currPostId: filterBy.currPostId,
-      }
+
+    options.params = {
+      userId: filterBy.userId,
+      type: filterBy.type,
+      limit: filterBy.limit,
+      currPostId: filterBy.currPostId,
     }
+
     const posts = await lastValueFrom(
       this.http.get<Post[]>('http://localhost:3030/api/post', options),
     )
-    if (!filterBy) {
-      this._posts$.next(posts)
-    } else {
-      if (filterBy.type === 'createdPosts') {
+
+    switch (filterBy.type) {
+      case 'homepagePosts':
+        this._posts$.next(posts)
+        break
+      case 'createdPosts':
         this._createdPosts$.next(posts)
-      }
+        break
+        case 'explorePagePosts':
+        this._posts$.next(posts)
+        break
+      default:
+        break
     }
+
   }
 
   public getById(postId: string): Observable<Post> {

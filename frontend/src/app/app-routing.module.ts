@@ -26,7 +26,11 @@ const routes: Routes = [
   { path: 'tag/:name', component: TagDetailsComponent, resolve: { tag: TagResolver }, canActivate: [AuthGuard] },
   { path: 'story/:id', component: StoryDetailsComponent, resolve: { story: StoryResolver }, canActivate: [AuthGuard] },
   { path: 'story-edit', component: StoryEditComponent, canActivate: [AuthGuard] },
-  { path: 'explore', component: ExploreComponent, canActivate: [AuthGuard] },
+  {
+    path: 'explore', component: ExploreComponent, canActivate: [AuthGuard], children: [
+      { path: 'explore/post/:id', component: PostDetailsComponent, resolve: { post: PostResolver }, data: { isNested: true, isExplorePage: true } },
+    ]
+  },
   { path: 'inbox', component: MessagesComponent, canActivate: [AuthGuard] },
   {
     path: '', component: HomeComponent, canActivate: [AuthGuard], children: [

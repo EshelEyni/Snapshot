@@ -1,4 +1,4 @@
-import { LoadLoggedInUser } from './../../store/actions/user.actions';
+import { LoadLoggedInUser, LoadUsers } from './../../store/actions/user.actions';
 import { UserService } from './../../services/user.service'
 import { PostService } from './../../services/post.service'
 import { State } from './../../store/store'
@@ -8,7 +8,7 @@ import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Subscription, Observable, map, lastValueFrom } from 'rxjs'
 import { Post } from 'src/app/models/post.model'
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faX } from '@fortawesome/free-solid-svg-icons';
 import { Location } from '@angular/common';
 
 @Component({
@@ -32,6 +32,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
 
   post!: Post;
   isNested: boolean = false;
+  isExplorePage: boolean = false;
   paramsSubscription!: Subscription;
 
   loggedinUser$: Observable<User | null>;
@@ -45,6 +46,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   faChevronLeft = faChevronLeft;
   isOptionsModalShown: boolean = false;
   isPostOwnedByUser: boolean = false;
+  faX = faX;
 
 
 
@@ -53,27 +55,26 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     if (loggedinUser) {
       this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
     }
+    this.store.dispatch(new LoadUsers('suggested'));
+
 
     this.paramsSubscription = this.route.data.subscribe(async (data) => {
-      const post = data['post']
-      const isNested = data['isNested']
-      this.isNested = isNested
-      if (post) {
-        this.post = post
-        await this.setPostClassName(this.post.imgUrls[0])
-        const loggedinUser = this.userService.getLoggedinUser()
-        if (loggedinUser) {
+      this.isExplorePage = data['isExplorePage']
+      this.isNested = data['isNested']
 
-          this.postService.loadPosts(
-            {
-              userId: loggedinUser.id,
-              type: 'createdPosts',
-              limit: 6,
-              currPostId: this.post.id
-            }
-          )
-          this.userPosts$ = this.postService.createdPosts$
-        }
+      if (data['post']) {
+        this.post = data['post']
+        await this.setPostClassName(this.post.imgUrls[0])
+
+        this.postService.loadPosts(
+          {
+            userId: this.post.by.id,
+            type: 'createdPosts',
+            limit: 6,
+            currPostId: this.post.id
+          }
+        )
+        this.userPosts$ = this.postService.createdPosts$
 
       }
     })

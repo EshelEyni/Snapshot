@@ -162,7 +162,7 @@
     }
 
 
-    &.is-home {
+    &.for-nested-display {
         position: fixed;
         top: 0;
         left: 0;
@@ -279,7 +279,7 @@
             }
         }
 
-        &.is-home {
+        &.for-nested-display {
             .post {
                 border-radius: 5px;
                 margin: 0;
