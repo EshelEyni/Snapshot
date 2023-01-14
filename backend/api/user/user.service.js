@@ -35,6 +35,13 @@ async function query(queryParams) {
                 or email like $searchTerm 
                 or bio like $searchTerm
              order by username`, { $searchTerm: queryParams.searchTerm + '%' });
+             
+        // return await db.query(
+        //         `SELECT * FROM users 
+        // WHERE username REGEXP $searchTerm
+        // OR email REGEXP $searchTerm 
+        // OR bio REGEXP $searchTerm
+        // ORDER BY username`, '.*' + queryParams.searchTerm + '.*');
 
     } catch (err) {
         logger.error('cannot find users', err)

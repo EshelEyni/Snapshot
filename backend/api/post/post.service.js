@@ -4,19 +4,54 @@ const db = require('../../database');
 async function query(filter) {
     try {
         return await db.txn(async () => {
-            let posts
-            if (filter) {
-                posts = await db.query(
-                    `select * from posts where id != $currPostId and userId = $userId order by createdAt desc limit $limit `, {
-                    $limit: filter.limit,
-                    $currPostId: filter.currPostId,
-                    $userId: filter.userId,
-                });
-            }
-            else {
-                posts = await db.query(
-                    `select * from posts order by createdAt desc`, {
-                });
+            let posts, userIds, followingIds
+
+            switch (filter.type) {
+                case 'createdPosts':
+                    posts = await db.query(
+                        `select * from posts where id != $currPostId and userId = $userId order by createdAt desc limit $limit `, {
+                        $limit: filter.limit,
+                        $currPostId: filter.currPostId,
+                        $userId: filter.userId,
+                    });
+                    break;
+                case 'homepagePosts':
+                    userIds = [filter.userId]
+                    followingIds = await db.query(`select userId from following where followerId = $id`, { $id: filter.userId });
+                    userIds = [...userIds, ...followingIds.map(following => following.userId)];
+
+                    if (followingIds.length > 0) {
+                        posts = await db.query(
+                            `select * from posts where userId in (${userIds.map(id => `'${id}'`).join(',')}) order by createdAt desc limit $limit `, {
+                            $limit: filter.limit,
+                        });
+                    } else {
+                        posts = await db.query(
+                            `select * from posts order by likeSum desc limit $limit `, {
+                            $limit: filter.limit,
+                        });
+                    }
+                    break;
+                case 'explorePagePosts':
+                    userIds = [filter.userId]
+                    followingIds = await db.query(`select userId from following where followerId = $id`, { $id: filter.userId });
+                    userIds = [...userIds, ...followingIds.map(following => following.userId)];
+
+                    if (followingIds.length > 0) {
+                        posts = await db.query(
+                            `select * from posts where userId not in (${userIds.map(id => `'${id}'`).join(',')}) order by createdAt desc limit $limit `, {
+                            $limit: filter.limit,
+                        });
+                    } else {
+                        posts = await db.query(
+                            `select * from posts where userId != $userId order by likeSum desc limit $limit `, {
+                            $limit: filter.limit,
+                            $userId: filter.userId,
+                        });
+                    }
+                    break;
+                default:
+                    break;
             }
 
             for (const post of posts) {

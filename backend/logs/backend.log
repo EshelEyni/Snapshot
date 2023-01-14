@@ -278,3 +278,31 @@
 12.1.2023, 22:56:30 - ERROR - Failed to signup TypeError: Cannot read properties of undefined (reading 'searchTerm') 
 12.1.2023, 23:46:16 - INFO - Server is running on port: 3030 
 12.1.2023, 23:46:44 - INFO - Server is running on port: 3030 
+13.1.2023, 1:22:05 - INFO - Server is running on port: 3030 
+13.1.2023, 23:58:29 - INFO - Server is running on port: 3030 
+14.1.2023, 0:25:34 - INFO - Server is running on port: 3030 
+14.1.2023, 0:26:10 - INFO - Server is running on port: 3030 
+14.1.2023, 0:26:35 - INFO - Server is running on port: 3030 
+14.1.2023, 0:40:06 - INFO - Server is running on port: 3030 
+14.1.2023, 0:42:50 - INFO - Server is running on port: 3030 
+14.1.2023, 0:43:36 - INFO - Server is running on port: 3030 
+14.1.2023, 0:43:52 - INFO - Server is running on port: 3030 
+14.1.2023, 0:45:55 - INFO - Server is running on port: 3030 
+14.1.2023, 0:47:27 - INFO - Server is running on port: 3030 
+14.1.2023, 0:52:46 - INFO - Server is running on port: 3030 
+14.1.2023, 0:53:00 - INFO - Server is running on port: 3030 
+14.1.2023, 0:57:39 - INFO - Server is running on port: 3030 
+14.1.2023, 0:59:19 - INFO - Server is running on port: 3030 
+14.1.2023, 1:01:28 - INFO - Server is running on port: 3030 
+14.1.2023, 1:04:12 - INFO - Server is running on port: 3030 
+14.1.2023, 1:05:55 - INFO - Server is running on port: 3030 
+14.1.2023, 1:46:33 - INFO - Server is running on port: 3030 
+14.1.2023, 1:46:51 - ERROR - cannot find posts | Failed to commit transaction: ReferenceError: Cannot access 'userIds' before initialization 
+14.1.2023, 1:46:51 - ERROR - Failed to get posts | Failed to commit transaction: ReferenceError: Cannot access 'userIds' before initialization 
+14.1.2023, 1:47:59 - INFO - Server is running on port: 3030 
+14.1.2023, 1:48:59 - INFO - Server is running on port: 3030 
+14.1.2023, 1:49:18 - INFO - Server is running on port: 3030 
+14.1.2023, 1:49:28 - INFO - Server is running on port: 3030 
+14.1.2023, 1:50:01 - INFO - Server is running on port: 3030 
+14.1.2023, 1:51:58 - INFO - Server is running on port: 3030 
+14.1.2023, 1:55:09 - INFO - Server is running on port: 3030 
