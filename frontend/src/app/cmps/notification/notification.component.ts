@@ -38,7 +38,7 @@ export class NotificationComponent implements OnInit,OnDestroy {
 
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) {
-        this.loggedinUser = JSON.parse(JSON.stringify(user))
+        this.loggedinUser = {...user}
         // this.isFollowed = this.loggedinUser.following.some(following => following.id === this.notification.by.id)
       }
     })

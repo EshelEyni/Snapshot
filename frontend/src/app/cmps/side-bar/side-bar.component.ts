@@ -32,7 +32,7 @@ export class SideBarComponent implements OnInit, OnChanges, OnDestroy {
   loggedinUser!: User
   userImgUrl: string = this.userService.getDefaultUserImgUrl()
   profileUrl: string = ''
-  isBtnClicked = { search: false, create: false, notification: false }
+  isBtnClicked = { search: false, create: false, notification: false, more: false }
   isMainScreen: boolean = false;
   sub: Subscription | null = null;
 
@@ -51,20 +51,20 @@ export class SideBarComponent implements OnInit, OnChanges, OnDestroy {
   getUserUrls() {
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) {
-        this.loggedinUser = JSON.parse(JSON.stringify(user))
+        this.loggedinUser = { ...user }
         this.userImgUrl = this.loggedinUser.imgUrl || this.userService.getDefaultUserImgUrl()
         this.profileUrl = '/profile/' + this.loggedinUser.id
       }
     })
-
   }
 
   get isLoginSignupPath() {
     return !(this.router.url === '/login' || this.router.url === '/signup')
   }
 
-  onToggleModal() {
-    console.log('onToggleModal', this.router.url)
+  onCloseModal() {
+    if (!this.isMainScreen) return;
+
     switch (this.router.url) {
       case '/':
         this.links.get(0)?.nativeElement.classList.add('active')
@@ -79,16 +79,18 @@ export class SideBarComponent implements OnInit, OnChanges, OnDestroy {
         this.links.get(3)?.nativeElement.classList.add('active')
         break;
     }
-    this.isBtnClicked = { search: false, create: false, notification: false }
+    this.isBtnClicked = { search: false, create: false, notification: false, more: false }
     this.isMainScreen = false;
 
   }
 
-  onTogglePostEdit() {
+  onTogglePostEdit(e: Event) {
+    e.stopPropagation()
     this.isBtnClicked = {
       search: false,
       create: !this.isBtnClicked.create,
-      notification: false
+      notification: false,
+      more: false
     }
 
     this.isMainScreen = !this.isMainScreen;
@@ -98,38 +100,52 @@ export class SideBarComponent implements OnInit, OnChanges, OnDestroy {
     })
   }
 
-  onToggleSearch() {
+  onToggleSearch(e: Event) {
+    e.stopPropagation()
     this.isBtnClicked = {
       search: !this.isBtnClicked.search,
       create: false,
-      notification: false
+      notification: false,
+      more: false
     }
 
-    this.isMainScreen = !this.isMainScreen;
-
-    if (this.isBtnClicked.search) {
-      this.links.forEach(link => {
-        link.nativeElement.classList.remove('active')
-      })
-    } else {
-      this.onToggleModal()
-    }
+    this.onToggleBtnClicked(this.isBtnClicked.search)
   }
 
-  onToggleNotifications() {
+  onToggleNotifications(e: Event) {
+    e.stopPropagation()
     this.isBtnClicked = {
       search: false,
       create: false,
-      notification: !this.isBtnClicked.notification
+      notification: !this.isBtnClicked.notification,
+      more: false
     }
 
+    this.onToggleBtnClicked(this.isBtnClicked.notification)
+  }
+
+  onToggleMoreOptionsModal(e: Event) {
+    e.stopPropagation()
+    this.isBtnClicked = {
+      search: false,
+      create: false,
+      notification: false,
+      more: !this.isBtnClicked.more
+    }
+
+    this.onToggleBtnClicked(this.isBtnClicked.more)
+  }
+
+  onToggleBtnClicked(isBtnClicked: boolean) {
+
     this.isMainScreen = !this.isMainScreen;
-    if (this.isBtnClicked.notification) {
+
+    if (isBtnClicked) {
       this.links.forEach(link => {
         link.nativeElement.classList.remove('active')
       })
     } else {
-      this.onToggleModal()
+      this.onCloseModal()
     }
   }
 

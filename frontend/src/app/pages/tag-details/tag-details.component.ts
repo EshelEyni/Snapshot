@@ -34,13 +34,9 @@ export class TagDetailsComponent implements OnInit, OnDestroy {
   sub: Subscription | null = null;
 
   ngOnInit(): void {
-
-    const loggedinUser = this.userService.getLoggedinUser()
-    if (loggedinUser) {
-      this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
-    }
+    
     this.sub = this.loggedinUser$.subscribe(user => {
-      if (user) this.loggedinUser = JSON.parse(JSON.stringify(user));
+      if (user) this.loggedinUser = {...user};
     })
 
     this.paramsSubscription = this.route.data.subscribe(data => {

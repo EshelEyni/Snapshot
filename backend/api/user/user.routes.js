@@ -7,8 +7,8 @@ router.get('/', queryUsers)
 router.get('/search', queryUsers)
 router.get('/id/:id', getUser)
 router.get('/name/:name', getUserByName)
-router.put('/', updateUser)
+router.put('/', updateUser) 
 router.delete('/:id', deleteUser)
 
 
-module.exports = router
+module.exports = router 

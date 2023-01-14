@@ -100,7 +100,7 @@ export class AppEffects {
     return this.actions$.pipe(
       ofType(SAVE_USER),
       switchMap((action) =>
-        this.userService.save(action.user).pipe(
+        this.userService.update(action.user).pipe(
           tap(() => console.log('Effects: User saved by service, inform the ===> Reducer')),
           map((savedUser) => ({
             type: (action.user.id) ? UPDATED_USER : ADDED_USER,

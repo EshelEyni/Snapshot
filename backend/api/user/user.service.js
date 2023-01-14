@@ -1,6 +1,5 @@
 const logger = require('../../services/logger.service')
 const db = require('../../database');
-const bcrypt = require('bcrypt');
 
 async function query(queryParams) {
     try {
@@ -69,6 +68,8 @@ async function getById(userId) {
             else {
                 user.currStoryId = null;
             }
+
+            user.isDarkMode = !!user.isDarkMode;
             return user
         });
 
@@ -113,7 +114,7 @@ async function update(user) {
         await db.exec(`update users set username = $username, fullname = $fullname,
          email = $email, imgUrl = $imgUrl, gender = $gender,
           phone = $phone, bio = $bio, website = $website, followersSum = $followersSum,
-           followingSum = $followingSum, postSum = $postSum where id = $id`, {
+           followingSum = $followingSum, postSum = $postSum, isDarkMode = $isDarkMode where id = $id`, {
 
             $username: user.username,
             $fullname: user.fullname,
@@ -126,6 +127,7 @@ async function update(user) {
             $followersSum: user.followersSum,
             $followingSum: user.followingSum,
             $postSum: user.postSum,
+            $isDarkMode: user.isDarkMode ? 1 : 0,
             $id: user.id
         })
         return user

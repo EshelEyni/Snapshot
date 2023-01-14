@@ -91,6 +91,7 @@ import { SearchResultsListComponent } from './cmps/search-results-list/search-re
 import { RecentSearchListComponent } from './cmps/recent-search-list/recent-search-list.component';
 import { ActivityComponent } from './pages/activity/activity.component';
 import { CommentOptionsModalComponent } from './cmps/comment-options-modal/comment-options-modal.component';
+import { SideBarOptionsModalComponent } from './cmps/side-bar-options-modal/side-bar-options-modal.component';
 
 @NgModule({
   declarations: [
@@ -161,6 +162,7 @@ import { CommentOptionsModalComponent } from './cmps/comment-options-modal/comme
     RecentSearchListComponent,
     ActivityComponent,
     CommentOptionsModalComponent,
+    SideBarOptionsModalComponent,
   ],
   imports: [
     BrowserAnimationsModule,

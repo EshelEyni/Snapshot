@@ -36,7 +36,7 @@ export class HomePageHeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sub = this.loggedinUser$.subscribe(async user => {
       if (user) {
-        this.loggedinUser = JSON.parse(JSON.stringify(user))
+        this.loggedinUser = {...user}
         this.recentSearches = await this.searchService.getRecentSearches(this.loggedinUser.id)
       }
     })

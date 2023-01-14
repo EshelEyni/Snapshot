@@ -69,8 +69,9 @@ export class UserService {
       )
   }
 
-  public getById(userId: number): Observable<User> {
-    return this.http.get<User>(`http://localhost:3030/api/user/id/${userId}`)
+  public getById(userId: number): Observable<User | null> {
+    if (userId) return this.http.get<User>(`http://localhost:3030/api/user/id/${userId}`)
+    else return of(null)
   }
 
   public remove(userId: number): Observable<boolean> {
@@ -81,8 +82,8 @@ export class UserService {
     )
   }
 
-  public save(user: User): Observable<User> {
-    return this.http.put<User>(`http://localhost:3030/api/user`, user)
+  public update(user: User) {
+    return this.http.put(`http://localhost:3030/api/user`, user)
   }
 
   public async login(userCred: { username: string; password: string }) {

@@ -1,65 +1,74 @@
-<div class="main-screen " *ngIf="isMainScreen" [class.dark-mode]="isBtnClicked.create" (click)="onToggleModal()">
+<div class="main-screen " *ngIf="isMainScreen" [class.dark-mode]="isBtnClicked.create" (click)="onCloseModal()">
     <fa-icon [icon]="faX" *ngIf="isBtnClicked.create"></fa-icon>
-
 </div>
 
 <section class="side-bar" *ngIf="isLoginSignupPath"
-    [class.modal-state]="isBtnClicked.search || isBtnClicked.notification">
+    [class.modal-state]="isBtnClicked.search || isBtnClicked.notification" (click)="onCloseModal()">
 
     <header>
         <a class="logo" routerLink="/">
-            <img src="../../../assets/imgs/logo.png" alt="logo" (click)="onToggleModal()">
+            <img src="../../../assets/imgs/logo.png" alt="logo">
             <span>Snapshot</span>
         </a>
     </header>
 
     <main>
         <a class="home" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" #link
-            (click)="onToggleModal()">
+            (click)="onCloseModal()">
             <svg-icon src="../../../assets/svgs/home-solid.svg" class="icon-active"> </svg-icon>
             <svg-icon src="../../../assets/svgs/home-outline.svg" class="icon-unactive"> </svg-icon>
             <span class="home-title">home</span>
         </a>
-        <button class="btn-search clean-btn" (click)="onToggleSearch()" [class.active]="isBtnClicked.search">
+        <button class="btn-search clean-btn" (click)="onToggleSearch($event)" [class.active]="isBtnClicked.search">
             <svg-icon src="../../../assets/svgs/search-solid.svg" class="icon-active"> </svg-icon>
             <svg-icon src="../../../assets/svgs/search-outline.svg" class="icon-unactive"> </svg-icon>
             <span class="search-title">search</span>
         </button>
-        <a class="explore" routerLink="/explore" routerLinkActive="active" #link (click)="onToggleModal()">
+        <a class="explore" routerLink="/explore" routerLinkActive="active" #link (click)="onCloseModal()">
             <svg-icon src="../../../assets/svgs/compass-solid.svg" class="icon-active"> </svg-icon>
             <svg-icon src="../../../assets/svgs/compass-outline.svg" class="icon-unactive"> </svg-icon>
             <span class="messages-title">explore</span>
         </a>
-        <a class="messages" routerLink="/inbox" routerLinkActive="active" #link (click)="onToggleModal()">
+        <a class="messages" routerLink="/inbox" routerLinkActive="active" #link (click)="onCloseModal()">
             <svg-icon src="../../../assets/svgs/inbox-solid.svg" class="icon-active"> </svg-icon>
             <svg-icon src="../../../assets/svgs/inbox-outline.svg" class="icon-unactive"> </svg-icon>
             <span class="messages-title">messages</span>
         </a>
-        <button class="btn-notifications clean-btn" (click)="onToggleNotifications()"
+        <button class="btn-notifications clean-btn" (click)="onToggleNotifications($event)"
             [class.active]="isBtnClicked.notification">
             <svg-icon src="../../../assets/svgs/heart-icon-solid.svg" class="icon-active"> </svg-icon>
             <svg-icon src="../../../assets/svgs/heart-icon-outline.svg" class="icon-unactive"> </svg-icon>
             <span>notifications</span>
         </button>
-        <button class="btn-create clean-btn" (click)="onTogglePostEdit()" [class.active]="isBtnClicked.create">
+        <button class="btn-create clean-btn" (click)="onTogglePostEdit($event)" [class.active]="isBtnClicked.create">
             <svg-icon src="../../../assets/svgs/plus-rect-solid.svg" class="icon-active"> </svg-icon>
             <svg-icon src="../../../assets/svgs/plus-rect-outline.svg" class="icon-unactive"> </svg-icon>
             <span>create</span>
         </button>
-        <a class="profile" [routerLink]="profileUrl" routerLinkActive="active" #link (click)="onToggleModal()">
+        <a class="profile" [routerLink]="profileUrl" routerLinkActive="active" #link (click)="onCloseModal()">
             <div class="user-img-container">
                 <img [src]="userImgUrl" alt="userImg">
             </div>
             <span class="profile-title">profile</span>
         </a>
+        <button class="btn-more clean-btn" (click)="onToggleMoreOptionsModal($event)"
+            [class.active]="isBtnClicked.more">
+            <svg-icon src="../../../assets/svgs/hamburger-icon-solid.svg" class="icon-active"> </svg-icon>
+            <svg-icon src="../../../assets/svgs/hamburger-icon-outline.svg" class="icon-unactive"> </svg-icon>
+            <span>more</span>
+        </button>
     </main>
 
+
     <div class="modal-container">
-        <search-modal *ngIf="isBtnClicked.search" (onClose)="onToggleModal()"></search-modal>
-        <notification-modal *ngIf="isBtnClicked.notification" (onClose)="onToggleModal()"></notification-modal>
+        <search-modal *ngIf="isBtnClicked.search" (onClose)="onCloseModal()"></search-modal>
+        <notification-modal *ngIf="isBtnClicked.notification" (onClose)="onCloseModal()"></notification-modal>
     </div>
+
+    <side-bar-options-modal *ngIf="isBtnClicked.more" [loggedinUser]="loggedinUser"></side-bar-options-modal>
+
 </section>
 
 <div class="post-edit-container">
-    <post-edit *ngIf="isBtnClicked.create" (togglePostEdit)="onTogglePostEdit()"></post-edit>
+    <post-edit *ngIf="isBtnClicked.create" (togglePostEdit)="onTogglePostEdit($event)"></post-edit>
 </div>

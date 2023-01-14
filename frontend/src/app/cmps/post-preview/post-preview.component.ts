@@ -48,7 +48,7 @@ export class PostPreviewComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sub = this.loggedinUser$.subscribe((user) => {
       if (user) {
-        this.loggedinUser = JSON.parse(JSON.stringify(user))
+        this.loggedinUser = {...user}
         this.isPostOwnedByUser = this.loggedinUser.id === this.post.by.id
       }
     })

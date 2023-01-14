@@ -44,7 +44,7 @@ export class StoryPreviewComponent implements OnInit, OnChanges, OnDestroy {
   ngOnInit(): void {
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) {
-        this.loggedinUser = JSON.parse(JSON.stringify(user))
+        this.loggedinUser = {...user}
         if (this.story) this.isUserStory = this.loggedinUser.id === this.story.by.id
       }
     })

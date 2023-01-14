@@ -13,6 +13,7 @@ export interface User {
     followingSum: number
     postSum: number
     currStoryId: number
+    isDarkMode: boolean
 }
 
 export interface MiniUser {

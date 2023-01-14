@@ -56,12 +56,6 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    const loggedinUser = this.userService.getLoggedinUser()
-    if (loggedinUser) {
-      this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
-    }
-    this.store.dispatch(new LoadUsers('suggested'));
-
 
     this.paramsSubscription = this.route.data.subscribe(async (data) => {
       this.isExplorePage = data['isExplorePage']
@@ -82,19 +76,24 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
           )
           this.userPosts$ = this.postService.createdPosts$
         }
-        else if (this.isExplorePage) {
-          this.posts$ = this.postService.posts$
-          this.postsSub = this.posts$.subscribe((posts) => {
-            this.postsIds = posts.map((post) => post.id)
-            this.setPaginationBtns()
-          })
+        else {
+          this.store.dispatch(new LoadUsers('suggested'));
+
+          if (this.isExplorePage) {
+            this.posts$ = this.postService.posts$
+            this.postsSub = this.posts$.subscribe((posts) => {
+              this.postsIds = posts.map((post) => post.id)
+              this.setPaginationBtns()
+            })
+          }
         }
+
       }
     })
 
     this.sub = this.loggedinUser$.subscribe((user) => {
       if (user) {
-        this.loggedinUser = JSON.parse(JSON.stringify(user))
+        this.loggedinUser = {...user};
         this.isPostOwnedByUser = this.loggedinUser.id === this.post.by.id
 
       }

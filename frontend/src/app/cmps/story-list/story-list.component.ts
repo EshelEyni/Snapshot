@@ -25,7 +25,7 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
   store = inject(Store<State>);
   userService = inject(UserService);
   storyService = inject(StoryService);
-  route = inject(Router);
+  router = inject(Router);
 
   loggedinUser$: Observable<User | null>;
   loggedinUser!: User
@@ -46,8 +46,8 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit(): void {
     this.loggedinUserSub = this.loggedinUser$.subscribe(user => {
-      this.loggedinUser = JSON.parse(JSON.stringify(user));
       if (user) {
+        this.loggedinUser = {...user};
         if (user.currStoryId) this.isLinkToStoryEdit = false;
         else this.isLinkToStoryEdit = true;
         this.storyService.loadStories(user.id);
@@ -99,7 +99,7 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onSetCurrStory(num: number) {
-    this.route.navigate(['/story/', this.stories[this.idx + num].id]);
+    this.router.navigate(['/story/', this.stories[this.idx + num].id]);
   }
 
   ngOnDestroy() {

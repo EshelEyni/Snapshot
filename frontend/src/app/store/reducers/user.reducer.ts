@@ -42,7 +42,7 @@ export function reducer(state: UserState = initialState, action: any): UserState
     }
     case LOADED_LOGGEDIN_USER: {
       const { user } = action;
-      console.log(`Reducer: Setting loaded loggedin user ${user.id}`);
+      console.log(`Reducer: Setting loaded loggedin user ${user?.id}`);
       return { ...state, loggedinUser: user, error: '' };
     }
     case REMOVED_USER: {

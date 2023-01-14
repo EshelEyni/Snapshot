@@ -9,7 +9,8 @@
 
             <checkbox [isChecked]="isSelectUser[idx].isSelected" (click)="onToggleSelectUser(idx)"
                 *ngIf="type==='share-modal'"></checkbox>
-            <follow-btn [user]="user" [type]="type" *ngIf="isFollowBtnShow && loggedinUser.id !== user.id"></follow-btn>
+            <follow-btn [user]="user" [type]="type"
+                *ngIf="isFollowBtnShow && loggedinUser && loggedinUser.id !== user.id"></follow-btn>
         </li>
     </ul>
 

@@ -74,7 +74,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.loggedinUser$.subscribe((user) => {
       if (user) {
-        this.loggedinUser = JSON.parse(JSON.stringify(user))
+        this.loggedinUser = {...user}
       }
     })
   }

@@ -66,7 +66,7 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.sub = this.loggedinUser$.subscribe(user => {
-      if (user) this.loggedinUser = JSON.parse(JSON.stringify(user));
+      if (user) this.loggedinUser = {...user};
     })
     this.currStoryImg = this.storyImgs[this.currImgIdx];
     this.imgUrls = this.storyImgs.map(storyImg => storyImg.url);
@@ -433,7 +433,7 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
 
     const id = await this.storyService.save(storyToAdd);
     if (typeof id === 'number') this.loggedinUser.currStoryId = id;
-    const updatedUser = await lastValueFrom(this.userService.save(this.loggedinUser));
+    const updatedUser = await lastValueFrom(this.userService.update(this.loggedinUser));
     if (updatedUser) this.router.navigate(['/']);
   }
 

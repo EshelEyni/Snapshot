@@ -13,7 +13,7 @@ export class StoryTimerComponent implements OnInit, OnDestroy, OnChanges {
 
 
   constructor() { }
-  route = inject(Router);
+  router = inject(Router);
   onSetImgUrl = new EventEmitter<number>();
   imgUrls!: string[];
   values!: number[];
@@ -53,7 +53,7 @@ export class StoryTimerComponent implements OnInit, OnDestroy, OnChanges {
       }
       if (this.idx > this.values.length - 1) {
         clearInterval(this.intervalId);
-        if (this.nextStory) this.route.navigate(['/story/', this.nextStory.id]);
+        if (this.nextStory) this.router.navigate(['/story/', this.nextStory.id]);
       }
     }, 100);
   }

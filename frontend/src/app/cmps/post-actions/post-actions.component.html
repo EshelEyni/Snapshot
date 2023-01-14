@@ -12,8 +12,7 @@
         </div>
     </div>
     <div class="btn-save-container" (click)="onToggleSave()">
-        <svg-icon src="../../../assets/svgs/bookmark-outline.svg" *ngIf="!isSaved else solidBookmark"
-            [svgStyle]="{'height':24,'width':24,'color':'black'}"></svg-icon>
+        <svg-icon src="../../../assets/svgs/bookmark-outline.svg" *ngIf="!isSaved else solidBookmark"></svg-icon>
         <ng-template #solidBookmark>
             <svg-icon src="../../../assets/svgs/bookmark-solid.svg"></svg-icon>
         </ng-template>

@@ -44,7 +44,7 @@ export class UserPreviewComponent implements OnInit {
 
     if (!this.isStoryDisabled) {
       const user = await lastValueFrom(this.userService.getById(this.user.id))
-      if (user.currStoryId) {
+      if (user && user.currStoryId) {
         const story = await lastValueFrom(
           this.storyService.getById(user.currStoryId),
         )

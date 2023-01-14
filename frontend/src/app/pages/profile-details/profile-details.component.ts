@@ -25,6 +25,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   }
 
   paramsSubscription!: Subscription;
+  queryParamsSubscription!: Subscription;
   sub: Subscription | null = null;
   user$: Observable<User | null>;
   user!: User;
@@ -42,25 +43,32 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
       }
     })
 
+
+    this.queryParamsSubscription = this.route.queryParams.subscribe(data => {
+      const filterByQueryParams: 'createdPosts' | 'savedPosts' | 'taggedPosts' = data['filterBy'];
+      if (filterByQueryParams) this.onSetFilter(filterByQueryParams)
+      else this.onSetFilter('createdPosts')
+    });
+
   }
 
   onSetFilter(filterBy: string) {
     switch (filterBy) {
-      // case 'createdPosts':
-      //   this.filterBy = { createdPosts: true, savedPosts: false, taggedPosts: false }
-      //   this.postService.loadPosts({ userId: this.user.id, type: 'createdPosts' });
-      //   this.posts$ = this.postService.posts$;
-      //   break;
-      // case 'savedPosts':
-      //   this.filterBy = { createdPosts: false, savedPosts: true, taggedPosts: false }
-      //   this.postService.loadPosts({ userId: this.user.id, type: 'savedPosts' });
-      //   this.posts$ = this.postService.posts$;
-      //   break;
-      // case 'taggedPosts':
-      //   this.filterBy = { createdPosts: false, savedPosts: false, taggedPosts: true }
-      //   this.postService.loadPosts({ userId: this.user.id, type: 'taggedPosts' });
-      //   this.posts$ = this.postService.posts$;
-      //   break;
+      case 'createdPosts':
+        this.filterBy = { createdPosts: true, savedPosts: false, taggedPosts: false }
+        // this.postService.loadPosts({ userId: this.user.id, type: 'createdPosts' });
+        this.posts$ = this.postService.posts$;
+        break;
+      case 'savedPosts':
+        this.filterBy = { createdPosts: false, savedPosts: true, taggedPosts: false }
+        // this.postService.loadPosts({ userId: this.user.id, type: 'savedPosts' });
+        this.posts$ = this.postService.posts$;
+        break;
+      case 'taggedPosts':
+        this.filterBy = { createdPosts: false, savedPosts: false, taggedPosts: true }
+        // this.postService.loadPosts({ userId: this.user.id, type: 'taggedPosts' });
+        this.posts$ = this.postService.posts$;
+        break;
     }
 
   }
@@ -68,5 +76,6 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.sub?.unsubscribe()
     this.paramsSubscription.unsubscribe()
+    this.queryParamsSubscription.unsubscribe()
   }
 }

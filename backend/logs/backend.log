@@ -310,3 +310,79 @@
 14.1.2023, 9:02:59 - INFO - Server is running on port: 3030 
 14.1.2023, 11:00:25 - INFO - Server is running on port: 3030 
 14.1.2023, 15:12:52 - INFO - Server is running on port: 3030 
+14.1.2023, 19:02:17 - ERROR - while finding user edit | Failed to commit transaction: user with id #edit was not found 
+14.1.2023, 19:02:17 - ERROR - Failed to get user | Failed to commit transaction: user with id #edit was not found 
+14.1.2023, 19:05:13 - ERROR - while finding user edit | Failed to commit transaction: user with id #edit was not found 
+14.1.2023, 19:05:13 - ERROR - Failed to get user | Failed to commit transaction: user with id #edit was not found 
+14.1.2023, 20:01:07 - DEBUG - auth.service - login with username: tal 
+14.1.2023, 20:01:07 - ERROR - Failed to Login Invalid username or password2 
+14.1.2023, 20:01:39 - INFO - Server is running on port: 3030 
+14.1.2023, 20:01:44 - DEBUG - auth.service - login with username: tal 
+14.1.2023, 20:01:44 - ERROR - Failed to Login Invalid username or password 
+14.1.2023, 20:03:58 - DEBUG - auth.service - signup with username: user2, fullname: user2 
+14.1.2023, 20:03:58 - ERROR - Failed to signup TypeError: Cannot read properties of undefined (reading 'searchTerm') 
+14.1.2023, 20:03:58 - ERROR - cannot find users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
+14.1.2023, 20:04:51 - INFO - Server is running on port: 3030 
+14.1.2023, 20:05:09 - DEBUG - auth.service - signup with username: user2, fullname: user2 
+14.1.2023, 20:05:09 - ERROR - Failed to signup TypeError: Cannot read properties of undefined (reading 'searchTerm') 
+14.1.2023, 20:05:09 - ERROR - cannot find users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
+14.1.2023, 20:07:01 - INFO - Server is running on port: 3030 
+14.1.2023, 20:07:04 - DEBUG - auth.service - signup with username: user2, fullname: user2 
+14.1.2023, 20:07:04 - ERROR - Failed to signup user with name user2 was not found 
+14.1.2023, 20:07:04 - ERROR - while finding user user2 | user with name user2 was not found 
+14.1.2023, 20:11:56 - INFO - Server is running on port: 3030 
+14.1.2023, 20:12:02 - DEBUG - auth.service - signup with username: user2, fullname: user2 
+14.1.2023, 20:12:02 - ERROR - while finding user user2 | ReferenceError: db is not defined 
+14.1.2023, 20:12:02 - ERROR - Failed to signup ReferenceError: db is not defined 
+14.1.2023, 20:12:22 - INFO - Server is running on port: 3030 
+14.1.2023, 20:12:27 - INFO - Server is running on port: 3030 
+14.1.2023, 20:12:29 - DEBUG - auth.service - signup with username: user2, fullname: user2 
+14.1.2023, 20:12:30 - DEBUG - auth.route - new account created: "user2" 
+14.1.2023, 20:12:30 - DEBUG - auth.service - login with username: user2 
+14.1.2023, 20:12:30 - INFO - User login:  | {"id":4,"username":"user2","fullname":"user2","email":"user2@gmail.com","password":"$2b$10$03SgF2p2jM/CPzpES4cIK.AfqesfEGFXonrDIIfjJupZ/dsYNky6K","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"currStoryId":null} 
+14.1.2023, 20:13:53 - DEBUG - auth.service - login with username: user2 
+14.1.2023, 20:13:53 - INFO - User login:  | {"id":4,"username":"user2","fullname":"user2","email":"user2@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} | 79358bc2c622acb8f2fbcb821deb91e4a24a5b7086e90c53a3e5c56154fdf57e1526d6c9711debce3fb468d3b01678a4a853f0e977260c9d3c0aa88b8d4b36aa708490ea0d2d2f14510192ae7c253a33b3cb0bb9bd325cb952688d0fd41ab09ca6 
+14.1.2023, 20:14:10 - DEBUG - auth.service - login with username: tal 
+14.1.2023, 20:14:11 - ERROR - Failed to Login Invalid username or password 
+14.1.2023, 20:14:16 - DEBUG - auth.service - login with username: tal 
+14.1.2023, 20:14:17 - ERROR - Failed to Login Invalid username or password 
+14.1.2023, 20:14:23 - DEBUG - auth.service - login with username: tal 
+14.1.2023, 20:14:23 - INFO - User login:  | {"id":2,"username":"tal","fullname":"tal","email":"tal@gmial.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} | 02f5f207dc07e8b34b48dceb2e119cda4345f7732ebc70428bf8333c4e288eee4436ed7ab49c16681df87a5061e9a9d47c2be4980678e3dbd525af89a6fb629de6630a697f69f40b584dc7f63131f8848fba6948534dca435e844fe22372a27d2a 
+14.1.2023, 20:17:39 - DEBUG - auth.service - login with username: tal 
+14.1.2023, 20:17:39 - INFO - User login:  | {"id":2,"username":"tal","fullname":"tal","email":"tal@gmial.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} | 86f718a80519d8c00244c2a61d2be5b6dfea6e79a774053cf0e7e28ab008603f4265ab47dcff6a41fd26848a7fc85ab97ef59c500d2aa8435d7eab572853722ab6b0298aa1a4a5951ce4d2f2b98156e672951bdf7bcfb18e1b1a7fb8b238477bdc 
+14.1.2023, 20:17:56 - DEBUG - auth.service - login with username: tal 
+14.1.2023, 20:17:56 - ERROR - Failed to Login Invalid username or password 
+14.1.2023, 20:17:58 - DEBUG - auth.service - login with username: tal 
+14.1.2023, 20:17:58 - INFO - User login:  | {"id":2,"username":"tal","fullname":"tal","email":"tal@gmial.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} | 15be3f67d7b22d61f9ff65deb09aa70ffcbe7f4b7546c6d1a29c6e8c7f920b1af275863437c524bc804c6d07fec25c6b394decd3ec85f693492d457413a703f1e8917d55fa589cd49727152672c7194a9484f55bfb973e5a664a7d2c299744b0bc 
+14.1.2023, 20:18:19 - DEBUG - auth.service - login with username: user2 
+14.1.2023, 20:18:19 - INFO - User login:  | {"id":4,"username":"user2","fullname":"user2","email":"user2@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} | e853917f76d27ebb8859114d85a1bb5bc300dd7de5fad9dc03bf5a70333956519349fba725f4ecab4842dc10e5d348f758f9e0dd389068e5f642bb47b2c64f7ca6a76f3065f96c23d0a8b935647863dc5dda8ddb859adec1a68da277050f754297 
+14.1.2023, 20:19:34 - DEBUG - auth.service - login with username: tal 
+14.1.2023, 20:19:35 - INFO - User login:  | {"id":2,"username":"tal","fullname":"tal","email":"tal@gmial.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} | 6613b25f325d71fa7ed473370de4195e6f9190c19fafc35dd91ff414f27c984f0bef4f2ae039ecb0c6300f122379f42dd2ff761ac031278252d513cd1bd0135d3e787cc23ddc48052012042c1fb1d391b7851fe04d9eeaae5ebcf323b8759efad9 
+14.1.2023, 20:20:29 - DEBUG - auth.service - login with username: user2 
+14.1.2023, 20:20:29 - INFO - User login:  | {"id":4,"username":"user2","fullname":"user2","email":"user2@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} | 5a0669f89d17758e84243f54746ab6784842caf5fc1d7d7dc3303db68eb436464a555b0d598dad5fa3e22cee3a4630a37d2233420156d11c6d12d75c2f00d4710dd25555abdb3b367c28cc666b278cfb417909453e93b82bc11c293800fcfa0bd6 
+14.1.2023, 20:23:09 - DEBUG - auth.service - login with username: tal 
+14.1.2023, 20:23:10 - INFO - User login:  | {"id":2,"username":"tal","fullname":"tal","email":"tal@gmial.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} | ecc609b15a785e142616200a638f0d3ac8054076353d3f61cf242135b32b7d5eea8116873dbf3b3be7057de45f9a8ce0af1b0cd2d60484edbc9710917e1244eb70d1e11287b1b486039bfc1ff145497827b3ed76f05c585b579a69db4e2af4d3a2 
+14.1.2023, 20:23:21 - DEBUG - auth.service - login with username: user2 
+14.1.2023, 20:23:21 - INFO - User login:  | {"id":4,"username":"user2","fullname":"user2","email":"user2@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} | 1ef89dd3954a279646f3dd4430d7ab855b20ad09b1c4fa20ed0aca153a193f1bc7ec6fa68a87bd3411139ae337cd9342026e808a433b5a18fd71638eaa09f2f708d494741c3efad5f4f621bf71c1379cd63039d8a1e24e2a4def3cfd00d2035f0c 
+14.1.2023, 20:23:42 - DEBUG - auth.service - login with username: tal 
+14.1.2023, 20:23:42 - INFO - User login:  | {"id":2,"username":"tal","fullname":"tal","email":"tal@gmial.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} | 3e9dffefd0a99237738432d36dc8e9b45d778252b6ebfbb42fcb0adeb79552d00a144eff7b549a578af8e4386e7aa3c98dcf3d820dc0ad43c7d612e1267b9ed557ef0b5ee3c6f3eb5512b560584dc6bd68e4d21ba06c418c84f2fd5747f1f91a0d 
+14.1.2023, 20:25:50 - DEBUG - auth.service - login with username: user2 
+14.1.2023, 20:25:51 - INFO - User login:  | {"id":4,"username":"user2","fullname":"user2","email":"user2@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} | f072fc79b49dc9b400f0de591ad2f4e0b062eb532844bc12c1eebd9bb7996fca0e3bfc26235da3c217abc1f54f05a2bb0c788b581c428d86ee12e4e7efbd1bfa72d882fe8dbe82b613b61463f627357423f5eae6444634bd8bd73304a0a59f41fb 
+14.1.2023, 20:27:34 - DEBUG - auth.service - login with username: tal 
+14.1.2023, 20:27:34 - INFO - User login:  | {"id":2,"username":"tal","fullname":"tal","email":"tal@gmial.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} | 9ef775a2c808aedebf57bc14a84025bd0d3252d600e78604a8d2b7f8dbc376833b67ed98efdcaa1fae9542c5eab72f3cdb732fe7c2f0177bf1c09514acbc51b3a50fa3f33d5e286ce81438fd44c6afbcb4455a4b404ebb6fc1a6d0c50c1618adf1 
+14.1.2023, 20:56:02 - DEBUG - auth.service - login with username: tal 
+14.1.2023, 20:56:02 - INFO - User login:  | {"id":2,"username":"tal","fullname":"tal","email":"tal@gmial.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0} | a6ee11fadb0d017a988a39767b166200b0265dae107bc2c1c61256f1bb7604aecc39683ea76aef1ace3cfcae0522ecb29d690b03ab8dd7839cbad91c2fc2225ae6a9fc8722d860efccd2526d293ddde7af93f4601357601eb24ce4e79308311ee7 
+14.1.2023, 21:03:29 - INFO - Server is running on port: 3030 
+14.1.2023, 21:03:50 - INFO - Server is running on port: 3030 
+14.1.2023, 21:38:01 - INFO - Server is running on port: 3030 
+14.1.2023, 21:38:44 - INFO - Server is running on port: 3030 
+14.1.2023, 21:40:54 - INFO - Server is running on port: 3030 
+14.1.2023, 21:49:49 - INFO - Server is running on port: 3030 
+14.1.2023, 21:50:36 - INFO - Server is running on port: 3030 
+14.1.2023, 21:51:26 - INFO - Server is running on port: 3030 
+14.1.2023, 21:55:22 - ERROR - cannot update comment undefined | TypeError: Cannot read properties of undefined (reading 'id') 
+14.1.2023, 21:55:22 - ERROR - Failed to update comment | TypeError: Cannot read properties of undefined (reading 'id') 
+14.1.2023, 22:00:33 - INFO - Server is running on port: 3030 
+14.1.2023, 22:15:43 - INFO - Server is running on port: 3030 
+14.1.2023, 22:18:44 - INFO - Server is running on port: 3030 
+14.1.2023, 22:18:48 - INFO - Server is running on port: 3030 

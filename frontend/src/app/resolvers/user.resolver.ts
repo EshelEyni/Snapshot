@@ -11,7 +11,7 @@ import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UserResolver implements Resolve<Observable<void | User>> {
+export class UserResolver implements Resolve<Observable<void | null | User>> {
   userService = inject(UserService)
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const id = route.params['id']

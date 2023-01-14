@@ -25,7 +25,6 @@ async function signup(req, res) {
         await authService.login(username, password)
         const user = await userService.getById(id)
         const loginToken = authService.getLoginToken(user)
-        // console.log('loginToken', loginToken)
         logger.info('User login: ', user)
         res.cookie('loginToken', loginToken)
         res.json(user)

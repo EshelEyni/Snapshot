@@ -39,8 +39,6 @@ export class StoryEditComponent implements OnInit {
   isEditMode: boolean = false;
 
   ngOnInit(): void {
-    const loggedinUser = this.userService.getLoggedinUser()
-    if (loggedinUser) this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
 
   }
 

@@ -38,7 +38,7 @@ export class RecentSearchListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sub = this.loggedinUser$.subscribe(async user => {
       if (user) {
-        this.loggedinUser = JSON.parse(JSON.stringify(user))
+        this.loggedinUser = {...user}
       }
     })
   }

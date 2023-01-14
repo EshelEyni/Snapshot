@@ -18,10 +18,7 @@ import { Location } from '@angular/common';
 export class StoryDetailsComponent implements OnInit {
 
   constructor(
-    private $location: Location,
     private route: ActivatedRoute,
-    private userService: UserService,
-    private store: Store<State>,
     private navigation: NavigationService
   ) { }
 
@@ -30,8 +27,6 @@ export class StoryDetailsComponent implements OnInit {
   paramsSubscription!: Subscription;
 
   ngOnInit(): void {
-    const loggedinUser = this.userService.getLoggedinUser()
-    if (loggedinUser) this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
 
     this.paramsSubscription = this.route.data.subscribe(data => {
       const story = data['story']
@@ -40,7 +35,6 @@ export class StoryDetailsComponent implements OnInit {
   }
 
   onGoBack() {
-    // this.$location.back();
     this.navigation.storyDetailsGoBack()
   }
 }

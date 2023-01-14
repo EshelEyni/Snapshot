@@ -47,6 +47,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.paramsSubscription = this.route.data.subscribe(data => {
       const user = data['user']
+  
       if (user) {
         this.user = user
         this.userImgUrl = this.user.imgUrl
