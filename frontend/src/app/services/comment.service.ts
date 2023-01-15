@@ -21,6 +21,8 @@ export class CommentService {
 
   private _comments$ = new BehaviorSubject<Comment[]>([]);
   public comments$ = this._comments$.asObservable();
+  private _commentsPostPreview$ = new BehaviorSubject<Comment[]>([]);
+  public commentsPostPreview$ = this._commentsPostPreview$.asObservable();
 
 
   constructor() { }
@@ -50,7 +52,11 @@ export class CommentService {
     const comments = await lastValueFrom(
       this.http.get<Comment[]>('http://localhost:3030/api/comment', options)
     )
-    this._comments$.next(comments)
+    if (filterBy.type === 'post-preview') {
+      this._commentsPostPreview$.next(comments)
+    } else {
+      this._comments$.next(comments)
+    }
   }
 
   public getById(commentId: number): Observable<Comment> {

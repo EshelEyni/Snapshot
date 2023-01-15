@@ -59,7 +59,7 @@
       [loggedinUser]="loggedinUser"></share-modal>
 
     <div class="comment-edit-container">
-      <comment-edit [post]="post"></comment-edit>
+      <comment-edit [post]="post" [isPostDetails]="true"></comment-edit>
     </div>
     <pagination-btns *ngIf="isExplorePage" [isPaginationBtnShown]="isPaginationBtnShown" (prevItem)="onChangePost(-1)"
       (nextItem)="onChangePost(1)"></pagination-btns>

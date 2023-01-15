@@ -1,6 +1,4 @@
-import { LoadLoggedInUser } from './../../store/actions/user.actions';
-import { UserService } from './../../services/user.service';
-import { Component, EventEmitter, Input, OnInit, Output, ViewChildren, ElementRef, QueryList, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChildren, ElementRef, QueryList, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { State } from 'src/app/store/store';
 import { Store } from '@ngrx/store';
@@ -8,6 +6,7 @@ import { User } from 'src/app/models/user.model';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { faX } from '@fortawesome/free-solid-svg-icons'
+import { SvgIconComponent } from 'angular-svg-icon';
 
 
 @Component({
@@ -16,45 +15,41 @@ import { faX } from '@fortawesome/free-solid-svg-icons'
   styleUrls: ['./side-bar.component.scss']
 })
 
-export class SideBarComponent implements OnInit, OnChanges, OnDestroy {
+export class SideBarComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private userService: UserService,
     private store: Store<State>
   ) {
     this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
   }
 
   @ViewChildren('link') links!: QueryList<ElementRef>;
-  @Input() isPostEdit!: boolean
-  loggedinUser$: Observable<User | null>
-  loggedinUser!: User
-  userImgUrl: string = this.userService.getDefaultUserImgUrl()
-  profileUrl: string = ''
+  @ViewChildren('svgIcon') icons!: QueryList<SvgIconComponent>;
+  isPostEdit: boolean = false;
+  loggedinUser$: Observable<User | null>;
+  loggedinUser!: User;
   isBtnClicked = { search: false, create: false, notification: false, more: false }
   isMainScreen: boolean = false;
   sub: Subscription | null = null;
+  iconColor: string = 'var(--tertiary-color)'
 
   faX = faX
 
 
   async ngOnInit(): Promise<void> {
-    this.isBtnClicked.create = this.isPostEdit
-    this.getUserUrls()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.isBtnClicked.create = this.isPostEdit
-  }
-
-  getUserUrls() {
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) {
         this.loggedinUser = { ...user }
-        this.userImgUrl = this.loggedinUser.imgUrl || this.userService.getDefaultUserImgUrl()
-        this.profileUrl = '/profile/' + this.loggedinUser.id
+        this.setIconColor();
       }
+    })
+  }
+
+  setIconColor() {
+    this.iconColor = this.loggedinUser.isDarkMode ? 'var(--primary-color)' : 'var(--tertiary-color)'
+    this.icons.forEach(icon => {
+      icon.svgStyle = { color: this.iconColor, fill: this.iconColor }
     })
   }
 
@@ -75,10 +70,11 @@ export class SideBarComponent implements OnInit, OnChanges, OnDestroy {
       case '/inbox':
         this.links.get(2)?.nativeElement.classList.add('active')
         break;
-      case this.profileUrl:
+      case `/profile/${this.loggedinUser.id}`:
         this.links.get(3)?.nativeElement.classList.add('active')
         break;
     }
+
     this.isBtnClicked = { search: false, create: false, notification: false, more: false }
     this.isMainScreen = false;
 

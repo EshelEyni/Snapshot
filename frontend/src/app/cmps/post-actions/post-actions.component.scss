@@ -11,6 +11,7 @@
         font-size: rem(24px);
     }
 
+
     .main-btn-container {
         display: flex;
         gap: 15px;
@@ -24,12 +25,26 @@
             display: flex;
             align-items: center;
             justify-content: center;
-        }
 
+            
+        }
+        :hover {
+            >*{
+                color: var(--secondary-color);
+            }  
+        }
+        
         .solid-heart {
             @include solid-heart;
         }
     }
+    
+    .btn-save-container{
+        :hover {
+            >*{
+                color: var(--secondary-color);
+            }  
+        }
 
-   
+    }
 }

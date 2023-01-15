@@ -41,7 +41,7 @@ export class CommentListComponent implements OnInit, OnChanges {
           type: 'post-preview'
         }
       )
-      this.comments$ = this.commentService.comments$;
+      this.comments$ = this.commentService.commentsPostPreview$;
     } else {
       this.commentService.loadComments(
         {

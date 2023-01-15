@@ -2,6 +2,12 @@
 @import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
-.solid-heart {
+.heart-outline {
+    &:hover {
+        color: var(--secondary-color);
+    }
+}
+
+.heart-solid {
     @include solid-heart;
 }

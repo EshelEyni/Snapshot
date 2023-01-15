@@ -15,46 +15,47 @@
     <main>
         <a class="home" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" #link
             (click)="onCloseModal()">
-            <svg-icon src="../../../assets/svgs/home-solid.svg" class="icon-active"> </svg-icon>
-            <svg-icon src="../../../assets/svgs/home-outline.svg" class="icon-unactive"> </svg-icon>
+            <svg-icon src="../../../assets/svgs/home-solid.svg" class="icon-active" #svgIcon></svg-icon>
+            <svg-icon src="../../../assets/svgs/home-outline.svg" class="icon-unactive" #svgIcon> </svg-icon>
             <span class="home-title">home</span>
         </a>
         <button class="btn-search clean-btn" (click)="onToggleSearch($event)" [class.active]="isBtnClicked.search">
-            <svg-icon src="../../../assets/svgs/search-solid.svg" class="icon-active"> </svg-icon>
-            <svg-icon src="../../../assets/svgs/search-outline.svg" class="icon-unactive"> </svg-icon>
+            <svg-icon src="../../../assets/svgs/search-solid.svg" class="icon-active" #svgIcon> </svg-icon>
+            <svg-icon src="../../../assets/svgs/search-outline.svg" class="icon-unactive" #svgIcon> </svg-icon>
             <span class="search-title">search</span>
         </button>
         <a class="explore" routerLink="/explore" routerLinkActive="active" #link (click)="onCloseModal()">
-            <svg-icon src="../../../assets/svgs/compass-solid.svg" class="icon-active"> </svg-icon>
-            <svg-icon src="../../../assets/svgs/compass-outline.svg" class="icon-unactive"> </svg-icon>
+            <svg-icon src="../../../assets/svgs/compass-solid.svg" class="icon-active" #svgIcon> </svg-icon>
+            <svg-icon src="../../../assets/svgs/compass-outline.svg" class="icon-unactive" #svgIcon> </svg-icon>
             <span class="messages-title">explore</span>
         </a>
         <a class="messages" routerLink="/inbox" routerLinkActive="active" #link (click)="onCloseModal()">
-            <svg-icon src="../../../assets/svgs/inbox-solid.svg" class="icon-active"> </svg-icon>
-            <svg-icon src="../../../assets/svgs/inbox-outline.svg" class="icon-unactive"> </svg-icon>
+            <svg-icon src="../../../assets/svgs/inbox-solid.svg" class="icon-active" #svgIcon> </svg-icon>
+            <svg-icon src="../../../assets/svgs/inbox-outline.svg" class="icon-unactive" #svgIcon> </svg-icon>
             <span class="messages-title">messages</span>
         </a>
         <button class="btn-notifications clean-btn" (click)="onToggleNotifications($event)"
             [class.active]="isBtnClicked.notification">
-            <svg-icon src="../../../assets/svgs/heart-icon-solid.svg" class="icon-active"> </svg-icon>
-            <svg-icon src="../../../assets/svgs/heart-icon-outline.svg" class="icon-unactive"> </svg-icon>
+            <svg-icon src="../../../assets/svgs/heart-icon-solid.svg" class="icon-active" #svgIcon> </svg-icon>
+            <svg-icon src="../../../assets/svgs/heart-icon-outline.svg" class="icon-unactive" #svgIcon> </svg-icon>
             <span>notifications</span>
         </button>
         <button class="btn-create clean-btn" (click)="onTogglePostEdit($event)" [class.active]="isBtnClicked.create">
-            <svg-icon src="../../../assets/svgs/plus-rect-solid.svg" class="icon-active"> </svg-icon>
-            <svg-icon src="../../../assets/svgs/plus-rect-outline.svg" class="icon-unactive"> </svg-icon>
+            <svg-icon src="../../../assets/svgs/plus-rect-solid.svg" class="icon-active" #svgIcon> </svg-icon>
+            <svg-icon src="../../../assets/svgs/plus-rect-outline.svg" class="icon-unactive" #svgIcon> </svg-icon>
             <span>create</span>
         </button>
-        <a class="profile" [routerLink]="profileUrl" routerLinkActive="active" #link (click)="onCloseModal()">
+        <a class="profile" *ngIf="loggedinUser" [routerLink]="['/profile/',loggedinUser.id]" routerLinkActive="active"
+            #link (click)="onCloseModal()">
             <div class="user-img-container">
-                <img [src]="userImgUrl" alt="userImg">
+                <img [src]="loggedinUser.imgUrl" alt="userImg">
             </div>
             <span class="profile-title">profile</span>
         </a>
         <button class="btn-more clean-btn" (click)="onToggleMoreOptionsModal($event)"
             [class.active]="isBtnClicked.more">
-            <svg-icon src="../../../assets/svgs/hamburger-icon-solid.svg" class="icon-active"> </svg-icon>
-            <svg-icon src="../../../assets/svgs/hamburger-icon-outline.svg" class="icon-unactive"> </svg-icon>
+            <svg-icon src="../../../assets/svgs/hamburger-icon-solid.svg" class="icon-active" #svgIcon> </svg-icon>
+            <svg-icon src="../../../assets/svgs/hamburger-icon-outline.svg" class="icon-unactive" #svgIcon> </svg-icon>
             <span>more</span>
         </button>
     </main>

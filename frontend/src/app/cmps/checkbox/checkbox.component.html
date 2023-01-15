@@ -1,6 +1,6 @@
 <div *ngIf="!isChecked; else checkboxFull">
-    <svg-icon src="../../../assets/svgs/checkbox-empty.svg"></svg-icon>
+    <svg-icon src="../../../assets/svgs/checkbox-empty.svg" #svgIcon></svg-icon>
 </div>
 <ng-template #checkboxFull>
-    <svg-icon src="../../../assets/svgs/checkbox-full.svg"></svg-icon>
+    <svg-icon src="../../../assets/svgs/checkbox-full.svg" #svgIcon></svg-icon>
 </ng-template>

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Tag } from './../../models/tag.model';
 import { TagService } from './../../services/tag.service';
 import { Subscription } from 'rxjs'
@@ -14,13 +15,13 @@ import { CommunicationService } from 'src/app/services/communication.service';
   selector: 'comment-edit',
   templateUrl: './comment-edit.component.html',
   styleUrls: ['./comment-edit.component.scss'],
-  inputs: ['post'],
+  inputs: ['post', 'isPostDetails'],
 })
 
 export class CommentEditComponent implements OnInit, OnDestroy {
   constructor() { }
 
-  @ViewChild('commentInput', { static: true }) input!: ElementRef;
+  @ViewChild('commentInput', { static: true }) commentInput!: ElementRef;
 
   // toggleModal = new EventEmitter<string>()
 
@@ -29,19 +30,23 @@ export class CommentEditComponent implements OnInit, OnDestroy {
   postService = inject(PostService)
   tagService = inject(TagService)
   communicationService = inject(CommunicationService)
+  router = inject(Router)
 
   faFaceSmile = faFaceSmile
   isEmojiPickerShown: boolean = false
   isMainScreen: boolean = false
   commentText: string = ''
   post!: Post
+  isPostDetails!: boolean;
 
   sub: Subscription | null = null;
 
   ngOnInit(): void {
-    this.sub = this.communicationService.focusEmitter.subscribe(() => {
-      this.input.nativeElement.focus();
-    })
+    if (this.isPostDetails) {
+      this.sub = this.communicationService.focusEmitter.subscribe(() => {
+        this.commentInput.nativeElement.focus();
+      })
+    }
   }
 
   onAddEmoji(emoji: Emoji) {

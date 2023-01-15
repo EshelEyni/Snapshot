@@ -5,16 +5,18 @@
         </div>
         <div>
             <svg-icon src="../../../assets/svgs/comment.svg" (click)="onAddComment()"
-                [svgStyle]="{ 'color': commentIconDarkMode ? '#262626' : '#8e8e8e'}"></svg-icon>
+                [svgStyle]="{ 'color': commentIconUnactiveMode ? iconColor : 'var(--secondary-color)'}"
+                #svgIcon></svg-icon>
         </div>
         <div>
-            <svg-icon src="../../../assets/svgs/paper-airplane.svg" (click)="onToggleModal()"></svg-icon>
+            <svg-icon src="../../../assets/svgs/paper-airplane.svg" (click)="onToggleModal()" #svgIcon></svg-icon>
         </div>
     </div>
     <div class="btn-save-container" (click)="onToggleSave()">
-        <svg-icon src="../../../assets/svgs/bookmark-outline.svg" *ngIf="!isSaved else solidBookmark"></svg-icon>
+        <svg-icon src="../../../assets/svgs/bookmark-outline.svg" *ngIf="!isSaved else solidBookmark"
+            #svgIcon></svg-icon>
         <ng-template #solidBookmark>
-            <svg-icon src="../../../assets/svgs/bookmark-solid.svg"></svg-icon>
+            <svg-icon src="../../../assets/svgs/bookmark-solid.svg" #svgIcon></svg-icon>
         </ng-template>
     </div>
 </section>

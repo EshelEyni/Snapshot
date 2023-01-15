@@ -1,4 +1,4 @@
-<fa-icon [icon]="faHeart" *ngIf="!isLiked else solidHeart"></fa-icon>
+<fa-icon class="heart-outline" [icon]="faHeart" *ngIf="!isLiked else solidHeart"></fa-icon>
 <ng-template #solidHeart>
-    <fa-icon class="solid-heart" [icon]="faHeartSolid"></fa-icon>
+    <fa-icon class="heart-solid" [icon]="faHeartSolid"></fa-icon>
 </ng-template>
