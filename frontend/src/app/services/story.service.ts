@@ -5,6 +5,7 @@ import { Story } from './../models/story.model';
 import { BehaviorSubject, firstValueFrom, from, Observable } from 'rxjs';
 import { Injectable, inject } from '@angular/core';
 import { asyncStorageService } from './async-storage.service';
+import { MiniUser } from '../models/user.model';
 
 const STORIES: Story[] = []
 
@@ -86,10 +87,17 @@ export class StoryService {
       id: 0,
       imgUrls: [],
       by: this.userService.getEmptyMiniUser(),
-      watchedBy: [],
+      viewedBy: [],
       createdAt: new Date()
     }
   }
 
+
+  public async addStoryView(user: MiniUser, storyId: number) {
+    await firstValueFrom(
+      this.http.put(`http://localhost:3030/api/story/views/${storyId}`, user),
+    )
+
+  }
 
 }

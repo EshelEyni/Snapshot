@@ -4,6 +4,7 @@
 
 
 .user-preview {
+    position: relative;
     display: flex;
     align-items: center;
     gap: rem(8px);
@@ -35,7 +36,10 @@
     }
 
     .user-info {
-
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        
         .title {
             font-weight: 600;
         }
@@ -53,7 +57,7 @@
         }
     }
 
-    &.is-watched {
+    &.is-viewed {
         .img-container {
             background: linear-gradient(white, white) padding-box,
                 linear-gradient(to bottom left, var(--border-color), var(--border-color)) border-box;
@@ -70,20 +74,15 @@
 
     &.edit-story {
         .img-container {
-            height: rem(50px);
-            width: rem(50px);
+            height: rem(60px);
+            width: rem(60px);
 
-            background: linear-gradient(white, white) padding-box,
-                linear-gradient(to bottom left, var(--border-color), var(--border-color)) border-box;
             border: 1px solid transparent;
-            padding: rem(7.5px);
 
             .plus-circle-container {
                 position: absolute;
                 bottom: -20%;
                 right: 0;
-                width: fit-content;
-                height: fit-content;
             }
         }
     }

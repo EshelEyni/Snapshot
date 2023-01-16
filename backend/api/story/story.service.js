@@ -10,21 +10,27 @@ async function query(userId) {
             userIds = [...userIds, ...followingIds.map(following => following.userId)];
 
             const promises = userIds.map(async userId => {
-                const currStory = await db.query(
+                const stories = await db.query(
                     `select * from stories where userId = $id  order by createdAt asc limit 1`,
                     { $id: userId }
                 );
-                if (currStory.length === 0) return null;
-                const users = await db.query(`select * from users where id = $id limit 1`, { $id: currStory[0].userId });
-                if (users.length === 0) throw new Error('user not found: ' + currStory[0].userId);
-                const user = users[0];
-                currStory[0].by = { id: user.id, username: user.username, fullname: user.fullname, imgUrl: user.imgUrl };
-                const userViews = await db.query(`select * from storyViews where storyId = $id`, { $id: currStory[0].id });
-                currStory[0].watchedBy = userViews;
-                const images = await db.query(`select * from storyImg where storyId = $storyId`, { $storyId: currStory[0].id });
-                currStory[0].imgUrls = images.map(img => img.imgUrl);
+                if (stories.length === 0) return null;
+                const currStory = stories[0];
 
-                return currStory[0];
+                const users = await db.query(`select * from users where id = $id limit 1`, { $id: currStory.userId });
+                if (users.length === 0) throw new Error('user not found: ' + currStory.userId);
+                const user = users[0];
+                currStory.by = { id: user.id, username: user.username, fullname: user.fullname, imgUrl: user.imgUrl };
+
+                const userViews = await db.query(
+                    `select userId as id, username, fullname, imgUrl from storyViews where storyId = $id`,
+                    { $id: currStory.id });
+                currStory.viewedBy = userViews;
+
+                const images = await db.query(`select * from storyImg where storyId = $storyId`, { $storyId: currStory.id });
+                currStory.imgUrls = images.map(img => img.imgUrl);
+
+                return currStory;
             });
 
             let stories = await Promise.all(promises);
@@ -45,16 +51,18 @@ async function getById(storyId) {
             if (stories.length === 0) {
                 return 'story not found';
             }
-            const users = await db.query(`select * from users where id = $id`, { $id: stories[0].userId });
-            if (users.length === 0) throw new Error('user not found: ' + stories[0].userId);
+            const currStory = stories[0];
+            const users = await db.query(`select * from users where id = $id`, { $id: currStory.userId });
+            if (users.length === 0) throw new Error('user not found: ' + currStory.userId);
             const user = users[0];
-            stories[0].by = { id: user.id, username: user.username, fullname: user.fullname, imgUrl: user.imgUrl };
-            const userViews = await db.query(`select * from storyViews where storyId = $id`, { $id: storyId });
-            stories[0].watchedBy = userViews;
+            currStory.by = { id: user.id, username: user.username, fullname: user.fullname, imgUrl: user.imgUrl };
+            const userViews = await db.query(`select userId as id, username, fullname, imgUrl from storyViews where storyId = $id`, { $id: storyId });
+            console.log('userViews', userViews);
+            currStory.viewedBy = userViews;
             const images = await db.query(`select * from storyImg where storyId = $storyId`, { $storyId: storyId });
-            stories[0].imgUrls = images.map(img => img.imgUrl);
+            currStory.imgUrls = images.map(img => img.imgUrl);
 
-            return stories[0]
+            return currStory
         });
     } catch (err) {
         logger.error(`while finding story ${storyId}`, err)
@@ -116,10 +124,33 @@ async function add(story) {
     }
 }
 
+async function addView(storyId, user) {
+    try {
+        return await db.txn(async () => {
+            const id = await db.exec(
+                `insert into storyViews (storyId, userId, username, fullname, imgUrl) 
+                values ($storyId, $userId, $username, $fullname, $imgUrl)`, {
+                $storyId: storyId,
+                $userId: user.id,
+                $username: user.username,
+                $fullname: user.fullname,
+                $imgUrl: user.imgUrl
+
+            })
+            return id
+        });
+    } catch (err) {
+        logger.error(`cannot insert story`, err)
+        throw err
+    }
+}
+
+
 module.exports = {
     query,
     getById,
     remove,
     update,
-    add
+    add,
+    addView
 }

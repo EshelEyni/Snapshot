@@ -78,6 +78,7 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
 
 
   setPaginationBtns(stories: Story[]) {
+    if(stories.length < 5) return;
     if (this.idx === 0) this.isPaginationBtnShown.left = false;
     else this.isPaginationBtnShown.left = true;
     if (this.currStory) {
@@ -94,7 +95,7 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
     this.idx += num;
     if (this.idx < 0) this.idx = 0;
     if (this.idx > this.stories.length - 1) this.idx = this.stories.length - 1;
-    this.listPosition = `${-this.idx * 10}%`;
+    this.listPosition = `${-this.idx * 17.5}%`;
     this.setPaginationBtns(this.stories);
   }
 

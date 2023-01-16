@@ -1,13 +1,10 @@
+import { StoryService } from './../../services/story.service';
 import { NavigationService } from './../../services/navigation.service';
-import { Store } from '@ngrx/store';
-import { State } from './../../store/store';
 import { UserService } from './../../services/user.service';
-import { LoadLoggedInUser } from './../../store/actions/user.actions';
 import { Story } from './../../models/story.model';
 import { Subscription } from 'rxjs';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
 
 
 @Component({
@@ -21,7 +18,8 @@ export class StoryDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private navigation: NavigationService
   ) { }
-
+  userService = inject(UserService);
+  storyService = inject(StoryService);
 
   story!: Story;
   paramsSubscription!: Subscription;
@@ -30,7 +28,19 @@ export class StoryDetailsComponent implements OnInit {
 
     this.paramsSubscription = this.route.data.subscribe(data => {
       const story = data['story']
-      if (story) this.story = story
+      if (story) {
+        this.story = story
+
+        const loggedinUser = this.userService.getLoggedinUser()
+        if(!loggedinUser) return
+
+        const isViewedByUser = this.story.viewedBy.some(viewedBy => viewedBy.id === loggedinUser.id)
+        if (!isViewedByUser) {
+          this.story.viewedBy.push(this.story.by)
+          this.storyService.addStoryView(loggedinUser, this.story.id)
+        }
+
+      }
     })
   }
 

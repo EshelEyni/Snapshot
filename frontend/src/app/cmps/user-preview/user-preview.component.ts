@@ -23,7 +23,7 @@ export class UserPreviewComponent implements OnInit {
 
   story!: Story;
   isStoryDisabled: boolean = false;
-  isWatched: boolean = false;
+  isViewed: boolean = false;
 
   type!: string;
 
@@ -48,9 +48,11 @@ export class UserPreviewComponent implements OnInit {
         const story = await lastValueFrom(
           this.storyService.getById(user.currStoryId),
         )
-        this.isWatched = story.watchedBy.some(
-          (watchedUser) => watchedUser.id === this.user.id,
-        )
+
+        const loggedinUser = this.userService.getLoggedinUser()
+        if (loggedinUser) {
+          this.isViewed = story.viewedBy.some(u => u.id === loggedinUser.id)
+        }
         this.story = story
       } else {
         this.isStoryDisabled = true
@@ -137,9 +139,9 @@ export class UserPreviewComponent implements OnInit {
   }
 
   setWatchedStory() {
-    if (this.isWatched || !this.story) return
-    this.story.watchedBy.push(this.user)
+    if (this.isViewed || !this.story) return
+    this.story.viewedBy.push(this.user)
     this.storyService.save(this.story)
-    this.isWatched = true
+    this.isViewed = true
   }
 }

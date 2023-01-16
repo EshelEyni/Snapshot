@@ -6,6 +6,8 @@
 
     .post-preview-container {
 
+        display: flex;
+        flex-direction: column;
         height: fit-content;
         max-width: rem(470px);
         background-color: var(--primary-bg);
@@ -89,6 +91,13 @@
                 cursor: pointer;
                 padding-bottom: rem(15px);
             }
+
+        }
+        
+        .comment-edit-container {
+            position: relative;
+            width: 100%;
+            border-top: 1px solid var(--border-color);
         }
 
     }

@@ -6,45 +6,32 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     background-color: white;
     z-index: 10;
-    
-    header {
-        display: flex;
-        align-items: flex-start;
-        padding: rem(15px);
-        
-        .logo {
-            @include logo;
-            font-size: rem(40px);
-            color: black;
-        }
-        
-        svg-icon {
-            font-size: rem(30px);
-            color: black;
-        }
-        
-        z-index: 10;
+    background-color: var(--primary-bg);
+
+    .story-edit-header {
+        display: none;
+        transition: all 0.3s ease-in-out;
     }
-    
-    .input-file-container{
+
+    .input-file-container {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100%;
         width: 100%;
     }
-    
-    
-    
-    &.edit-mode{
+
+
+
+    &.edit-mode {
         background-color: var(--tertiary-color);
 
         header {
-            .logo{
+            .logo {
                 color: white;
 
             }
@@ -52,5 +39,29 @@
 
     }
 
-   
+    @include for-large-layout {
+        .story-edit-header {
+            display: flex;
+            align-items: flex-start;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: rem(15px);
+
+            .logo {
+                @include logo;
+                font-size: rem(40px);
+                color: var(--primary-color);
+            }
+
+            svg-icon {
+                font-size: rem(30px);
+                color: black;
+            }
+
+            z-index: 10;
+        }
+    }
+
+
 }

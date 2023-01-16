@@ -36,6 +36,9 @@ export class HomeComponent implements OnInit {
   async ngOnInit() {
     const loggedinUser = this.userService.getLoggedinUser()
     if (loggedinUser) {
+
+      this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
+      
       this.postService.loadPosts(
         {
           userId: loggedinUser.id,

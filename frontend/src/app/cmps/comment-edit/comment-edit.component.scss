@@ -7,13 +7,13 @@
     align-items: center;
     gap: rem(10px);
     position: relative;
-    width: 100%;
+    width: 95%;
     height: rem(40px);
     padding: 0 rem(25px);
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
     background-color: var(--primary-bg);
-    border-radius: 5px ;
+    margin: 0 auto;
+
+    border-radius: 5px;
 
     fa-icon {
         font-size: rem(24px);
@@ -30,7 +30,6 @@
     ::placeholder {
         font-size: rem(16px);
         color: var(--secondary-color);
-
     }
 
     .emoji-picker-container {

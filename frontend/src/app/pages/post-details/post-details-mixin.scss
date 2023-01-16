@@ -5,7 +5,7 @@
 
 @mixin horizontal-view {
     grid-template-columns: 3fr 2fr;
-    grid-template-rows: rem(60px) 1fr auto auto rem(40px);
+    grid-template-rows: rem(60px) 1fr auto auto rem(42px);
 
 
     .post-img-container {

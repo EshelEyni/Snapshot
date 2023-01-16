@@ -1,4 +1,3 @@
-import { LoadLoggedInUser } from './../../store/actions/user.actions';
 import { State } from './../../store/store';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription, map, lastValueFrom } from 'rxjs';
@@ -6,9 +5,9 @@ import { StoryService } from './../../services/story.service';
 import { Router } from '@angular/router';
 import { UploadImgService } from './../../services/upload-img.service';
 import { UserService } from './../../services/user.service';
-import { User, MiniUser } from './../../models/user.model';
+import { User } from './../../models/user.model';
 import { CanvasSticker, CanvasStroke, CanvasTxt, Position } from './../../models/canvas.model';
-import { Story, StoryImg } from './../../models/story.model';
+import { StoryImg } from './../../models/story.model';
 import { Component, OnInit, HostListener, ViewChild, ElementRef, inject, OnDestroy } from '@angular/core';
 import { faNoteSticky, } from '@fortawesome/free-regular-svg-icons';
 import { faL, faPaintbrush, faT, faTrashCan } from '@fortawesome/free-solid-svg-icons';
@@ -54,6 +53,8 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
   isEditMode = { txt: false, sticker: false, painter: false };
   isDefaultMode = true;
   isDeleteAreaShown = false;
+  canvasHeight: number = 0;
+  canvasWidth: number = 0;
 
   mousePos = { x: 0, y: 0 };
 
@@ -64,16 +65,38 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
   painterHistory: any[] = [];
   painterHistoryIdx = 0;
 
+
   ngOnInit(): void {
     this.sub = this.loggedinUser$.subscribe(user => {
-      if (user) this.loggedinUser = {...user};
+      if (user) this.loggedinUser = { ...user };
     })
     this.currStoryImg = this.storyImgs[this.currImgIdx];
     this.imgUrls = this.storyImgs.map(storyImg => storyImg.url);
     const canvas = this.canvas.nativeElement;
     if (canvas.getContext) this.ctx = canvas.getContext('2d')!;
+    this.setCanvasSize();
     this.setCanvas();
     this.setPaginationBtns();
+  }
+
+  setCanvasSize() {
+    if (window.innerWidth < 1000) {
+      this.canvasHeight = window.innerHeight;
+      this.canvasWidth = window.innerWidth;
+
+    } else {
+      this.canvasHeight = 900;
+      this.canvasWidth = 515;
+    }
+
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    if (window.innerWidth > 1000 && this.canvasHeight === 900 && this.canvasWidth === 515) return;
+    this.setCanvasSize();
+    this.setCanvas();
+
   }
 
   setCanvas(canvas: HTMLCanvasElement = this.canvas.nativeElement, storyImg: StoryImg = this.currStoryImg, ctx: CanvasRenderingContext2D = this.ctx) {
@@ -428,7 +451,8 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
 
   async onShareStory() {
     const storyToAdd = this.storyService.getEmptyStory();
-    await this.convertCanvasImgsToImgUrls(storyToAdd.imgUrls);
+    storyToAdd.imgUrls = this.storyImgs.map(storyImg => storyImg.url); // Delete after DEV
+    // await this.convertCanvasImgsToImgUrls(storyToAdd.imgUrls);
     storyToAdd.by = this.userService.getMiniUser(this.loggedinUser);
 
     const id = await this.storyService.save(storyToAdd);

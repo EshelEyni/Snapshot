@@ -1,9 +1,9 @@
-<section class="user-preview" (click)="setWatchedStory()" [class.is-watched]="isWatched"
+<section class="user-preview" (click)="setWatchedStory()" [class.is-viewed]="isViewed"
     [class.is-no-story]="isStoryDisabled" [class.edit-story]="type==='link-to-story-edit'">
     <div class="img-container" routerLink="{{urlForImg}}" [class.disabled]="isUrlsDisabled">
         <img src={{user.imgUrl}} alt="user-img">
         <div class="plus-circle-container" *ngIf="type==='link-to-story-edit'">
-            <svg-icon src="../../../assets/svgs/plus-circle.svg"></svg-icon>
+            <svg-icon src="../../../assets/svgs/plus-circle.svg" [svgStyle]="{'backgroundColor':'white','borderRadius':'50%','border':'1px solid var(--primary-bg)'}"></svg-icon>
         </div>
     </div>
     <section class="user-info">

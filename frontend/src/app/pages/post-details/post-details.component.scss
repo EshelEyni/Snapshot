@@ -255,9 +255,16 @@
                 position: relative;
                 display: unset;
                 width: 100%;
+                border-top: 1px solid var(--border-color);
+                background-color: var(--primary-bg);
 
                 .comment-form {
+                    background-color: var(--primary-bg);
                     gap: 10px;
+
+                    ::placeholder {
+                        font-size: rem(9px);
+                    }
 
                     .txt-input {
                         background-color: var(--primary-bg);
@@ -349,6 +356,15 @@
                     max-width: rem(750px);
                 }
             }
+
+            .comment-edit-container {
+                .comment-form {
+
+                    ::placeholder {
+                        font-size: rem(11px);
+                    }
+                }
+            }
         }
 
 
@@ -368,17 +384,25 @@
         .post {
             grid-template-columns: minmax(rem(500px), rem(600px)) minmax(rem(200px), rem(335px));
 
+            .comment-edit-container {
+                .comment-form {
+
+                    ::placeholder {
+                        font-size: rem(16px);
+                    }
+                }
+            }
         }
-        
+
         .post-list-container {
             width: fit-content;
         }
-        
-        &.for-nested-display {
-        .post{
 
-            width: fit-content;
-        }
+        &.for-nested-display {
+            .post {
+
+                width: fit-content;
+            }
         }
     }
 }

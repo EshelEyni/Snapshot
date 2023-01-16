@@ -1,26 +1,45 @@
+import { Store } from '@ngrx/store';
+import { State } from './../../store/store';
+import { User } from './../../models/user.model';
 import { UploadImgService } from './../../services/upload-img.service';
-import { Component, OnInit, HostListener, inject, EventEmitter } from '@angular/core';
+import { Component, OnInit, HostListener, inject, EventEmitter, ViewChild } from '@angular/core';
+import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
   selector: 'file-input',
   templateUrl: './file-input.component.html',
   styleUrls: ['./file-input.component.scss'],
-  inputs: ['type'],
+  inputs: ['type', 'loggedinUser'],
   outputs: ['uploadedImgUrls']
 })
 export class FileInputComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+
+  }
+
+  @ViewChild('svgIcon') icons!: SvgIconComponent;
 
   uploadImgService = inject(UploadImgService)
+  store = inject(Store<State>)
   type!: string;
   dragAreaClass!: string;
   imgUrls: string[] = [];
   uploadedImgUrls = new EventEmitter<string[]>();
+  iconColor: string = 'var(--tertiary-color)'
+  loggedinUser!: User;
 
   ngOnInit(): void {
     this.dragAreaClass = "dragarea";
 
+    setTimeout(() => {
+      this.setIconColor()
+    }, 0);
+  }
+
+  setIconColor() {
+    this.iconColor = this.loggedinUser.isDarkMode ? 'var(--primary-color)' : 'var(--tertiary-color)'
+    this.icons.svgStyle = { color: this.iconColor, fill: this.iconColor }
   }
 
 

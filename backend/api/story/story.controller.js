@@ -55,10 +55,26 @@ async function addStory(req, res) {
     }
 }
 
+async function addStoryView(req, res) {
+
+    try {
+        const storyId = req.params.id
+        const user = req.body
+        const id = await storyService.addView(storyId, user)
+        res.send({ msg: 'Story view added', id })
+    } catch (err) {
+        logger.error('Failed to add story view', err)
+        res.status(500).send({ err: 'Failed to add story view' })
+    }
+}
+
+
+
 module.exports = {
     getStories,
     getStory,
     deleteStory,
     updateStory,
-    addStory
+    addStory,
+    addStoryView
 }

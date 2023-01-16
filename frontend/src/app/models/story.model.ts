@@ -5,7 +5,7 @@ export interface Story {
     createdAt: Date;
     imgUrls: string[];
     by: MiniUser;
-    watchedBy: MiniUser[];
+    viewedBy: MiniUser[];
 }
 
 export interface StoryImg {

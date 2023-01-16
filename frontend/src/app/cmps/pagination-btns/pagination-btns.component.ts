@@ -5,7 +5,7 @@ import { faCircleChevronLeft, faCircleChevronRight, } from '@fortawesome/free-so
   selector: 'pagination-btns',
   templateUrl: './pagination-btns.component.html',
   styleUrls: ['./pagination-btns.component.scss'],
-  inputs: ['isPaginationBtnShown', 'isEditPost'],
+  inputs: ['isPaginationBtnShown', 'isEditIcon'],
   outputs: ['nextItem', 'prevItem']
 })
 export class PaginationBtnsComponent implements OnInit {
@@ -18,7 +18,7 @@ export class PaginationBtnsComponent implements OnInit {
 
 
   isPaginationBtnShown = { left: false, right: false };
-  isEditPost!: boolean;
+  isEditIcon!: boolean;
   nextItem = new EventEmitter<number>();
   prevItem = new EventEmitter<number>();
 

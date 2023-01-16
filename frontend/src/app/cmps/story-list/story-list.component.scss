@@ -10,30 +10,59 @@
     border-radius: 5px;
     padding: rem(15px);
     overflow-x: hidden;
+    margin-top: rem(20px);
 
     .story-list {
         position: relative;
         display: flex;
         align-items: flex-end;
-        gap: rem(15px);
+        gap: rem(7.5px);
         transition: 0.3s;
+
+        >*:first-child {
+            .story-preview .for-home-page {
+                .user-preview {
+                    .user-info {
+                        .title {
+                            font-size: rem(12.5px);
+                        }
+                    }
+                }
+            }
+
+        }
 
         .user-preview {
             flex-direction: column;
+            gap: rem(2px);
 
             .img-container {
-                height: rem(60px);
-                width: rem(60px);
+                height: rem(70px);
+                width: rem(70px);
+            }
+
+            .user-info {
+                text-align: center;
+                width: rem(70px);
+                line-height: 1;
             }
         }
     }
 
     .btn-pagination {
-        top: 30%;
+        top: 27.5%;
 
         fa-icon {
-            font-size: rem(20px);
+            font-size: rem(28px);
             color: white;
+        }
+
+        &.prev {
+            left: 7.5%;
+        }
+
+        &.next {
+            left: 95%;
         }
     }
 }

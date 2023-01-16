@@ -45,7 +45,10 @@
 
     </div>
 
-    <comment-edit *ngIf="isCommentShown" [post]="post"></comment-edit>
+
+    <div class="comment-edit-container">
+      <comment-edit *ngIf="isCommentShown" [post]="post"></comment-edit>
+    </div>
   </div>
 
   <ng-template #miniPreview>

@@ -14,42 +14,45 @@ import { Store } from '@ngrx/store';
 })
 export class StoryEditComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+    this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
+
+  }
 
 
   store = inject(Store<State>);
   userService = inject(UserService);
 
-  // storyImgs: { url: string, items: [] }[] = [];
   storyImgs: StoryImg[] = [
     {
-      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044177/ukfallhy757gdlswvfuj.jpg',
+      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666727081/fpswmz9kgjouuoaj2va1.jpg',
       items: []
     },
     {
-      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669305397/p7o8v7gvoy3bgdcymu0d.jpg',
+      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg',
       items: []
     },
     {
-      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044038/pxbi0wi3po7fiadwdcke.jpg',
+      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664739345/yqvuwzj1lp7ozm53fqps.jpg',
       items: []
     },
   ];
 
-  isEditMode: boolean = false;
+  loggedinUser!: User;
+  sub!: Subscription;
+  loggedinUser$: Observable<User | null>;
 
   ngOnInit(): void {
-
+    this.sub = this.loggedinUser$.subscribe(user => {
+      if (user) {
+        this.loggedinUser = { ...user }
+      }
+    })
   }
+
+  
 
   onSetFiles(imgUrls: string[]) {
     this.storyImgs = imgUrls.map(imgUrl => ({ url: imgUrl, items: [] }));
-    this.isEditMode = true;
   }
-
-  onGoBack() {
-    this.isEditMode = false;
-    this.storyImgs = [];
-  }
-
 }

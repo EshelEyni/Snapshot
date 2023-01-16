@@ -18,7 +18,7 @@
             <painter-settings *ngIf="this.isEditMode.painter" (close)="onToggleEdit($event)" (undo)="onUndoStroke()"
                 (strokeChange)="onStrokeChange($event)" [isDrawing]="isDrawing"></painter-settings>
 
-            <canvas #canvas height="900" width="515"></canvas>
+            <canvas #canvas [height]="canvasHeight" [width]="canvasWidth"></canvas>
             <canvas #offScreenCanvas height="900" width="515" [style]="{'display':'none'}"></canvas>
 
             <div class="btns-container">
@@ -34,7 +34,8 @@
 
         </div>
         <pagination-btns *ngIf="isPaginationBtnShown" [isPaginationBtnShown]="isPaginationBtnShown"
-            (prevItem)="onSetCurrStoryImg($event,true)" (nextItem)="onSetCurrStoryImg($event,true)"></pagination-btns>
+            (prevItem)="onSetCurrStoryImg($event,true)" (nextItem)="onSetCurrStoryImg($event,true)"
+            [isEditIcon]="true"></pagination-btns>
     </div>
     <div class="delete-drag-area" [class.is-visible]="isDeleteAreaShown">
         <fa-icon [icon]="faTrashCan"></fa-icon>

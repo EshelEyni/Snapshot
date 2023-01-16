@@ -1,16 +1,16 @@
-<main class="story-edit" [class.edit-mode]="isEditMode">
-    <header>
+<main class="story-edit" [class.edit-mode]="storyImgs.length">
+    <header class="story-edit-header">
         <a class="logo" routerLink="/">
             <span>Snapshot</span>
         </a>
     </header>
 
     <div class="input-file-container" *ngIf="!storyImgs.length else canvasContainer">
-        <file-input (uploadedImgUrls)="onSetFiles($event)" [type]="'draggable'">
+        <file-input (uploadedImgUrls)="onSetFiles($event)" [type]="'draggable'" [loggedinUser]="loggedinUser">
         </file-input>
     </div>
 
     <ng-template #canvasContainer>
-        <story-canvas [storyImgs]="storyImgs" (cancel)="onGoBack()"></story-canvas>
+        <story-canvas [storyImgs]="storyImgs"></story-canvas>
     </ng-template>
 </main>
