@@ -1,0 +1,106 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
+
+::ng-deep .story {
+    display: flex;
+position: relative;
+    width: 100%;
+    height: 100%;
+
+    .story-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .img-container {
+            @include story-preview-img(350px);
+
+            img {
+                border-radius: 5px;
+            }
+        }
+
+        .info {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+
+            .user-preview {
+                flex-direction: column;
+                align-items: center;
+
+                .img-container {
+                    height: rem(75px);
+                    width: rem(75px);
+                }
+
+            }
+        }
+    }
+
+    .curr-story-container {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        .curr-story {
+            position: relative;
+            // display: flex;
+
+            .timer-container {
+                position: absolute;
+                width: 100%;
+                padding: rem(25px) rem(15px);
+            }
+
+            .img-container {
+                height: 100%;
+                width: 100%;
+
+                img {
+                    border-radius: 5px;
+                }
+
+            }
+
+            .reply-container {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+            }
+
+        }
+
+        .btn-pagination {
+            display: none;
+        }
+
+        @include for-large-layout {
+            width: 650px;
+            height: fit-content;
+
+            .curr-story {
+                align-items: center;
+                .img-container {
+                    @include story-preview-img(700px);
+                }
+            }
+
+            .btn-pagination {
+                display: flex;
+                top: 50%;
+
+                fa-icon {
+                    color: var(--primary-pagination-button);
+                    font-size: rem(30px);
+                }
+            }
+        }
+    }
+}

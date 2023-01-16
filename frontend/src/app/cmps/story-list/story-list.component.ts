@@ -78,7 +78,6 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
 
 
   setPaginationBtns(stories: Story[]) {
-    if(stories.length < 5) return;
     if (this.idx === 0) this.isPaginationBtnShown.left = false;
     else this.isPaginationBtnShown.left = true;
     if (this.currStory) {

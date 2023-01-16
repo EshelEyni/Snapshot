@@ -6,8 +6,6 @@
 ::ng-deep .story-timer-container {
 
     position: relative;
-    // width: 100%;
-    // top: 10%;
     z-index: 10;
 
     .timer {
@@ -35,7 +33,6 @@
             }
 
             .img-container {
-                // flex: 1;
                 height: rem(40px);
                 width: rem(40px);
             }

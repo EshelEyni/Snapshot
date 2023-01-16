@@ -92,6 +92,7 @@ import { RecentSearchListComponent } from './cmps/recent-search-list/recent-sear
 import { ActivityComponent } from './pages/activity/activity.component';
 import { CommentOptionsModalComponent } from './cmps/comment-options-modal/comment-options-modal.component';
 import { SideBarOptionsModalComponent } from './cmps/side-bar-options-modal/side-bar-options-modal.component';
+import { StoryComponent } from './cmps/story/story.component';
 
 @NgModule({
   declarations: [
@@ -163,6 +164,7 @@ import { SideBarOptionsModalComponent } from './cmps/side-bar-options-modal/side
     ActivityComponent,
     CommentOptionsModalComponent,
     SideBarOptionsModalComponent,
+    StoryComponent,
   ],
   imports: [
     BrowserAnimationsModule,

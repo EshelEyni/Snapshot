@@ -10,70 +10,33 @@ import { Component, EventEmitter, OnInit, OnChanges, inject, OnDestroy } from '@
   selector: 'story-preview',
   templateUrl: './story-preview.component.html',
   styleUrls: ['./story-preview.component.scss'],
-  inputs: ['story', 'isHighlight', 'isStoryDetails', 'isCurrStory', 'nextStory', 'isPaginationBtnShown', 'isLinkToStoryEdit'],
+  inputs: ['story', 'isHighlight',   'isLinkToStoryEdit'],
   outputs: ['setPrevStory', 'setNextStory']
 })
-export class StoryPreviewComponent implements OnInit, OnChanges, OnDestroy {
+export class StoryPreviewComponent implements OnInit, OnDestroy {
 
-  constructor(
-    private store: Store<State>
-
-  ) {
+  constructor(  ) {
     this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
 
   }
   userService = inject(UserService);
-
+  store = inject(Store<State>);
   loggedinUser$: Observable<User | null>
   loggedinUser!: User
   sub: Subscription | null = null;
-
-  setPrevStory = new EventEmitter<number>();
-  setNextStory = new EventEmitter<number>();
   story!: Story;
   isHighlight!: boolean;
-  isStoryDetails!: boolean;
   isLinkToStoryEdit!: boolean;
-  isCurrStory!: boolean;
-  nextStory!: Story;
-  isPaginationBtnShown!: { left: boolean, right: boolean };
-  currImgUrl = '';
-  currImgIdx = 0;
-  isUserStory!: boolean;
 
   ngOnInit(): void {
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) {
-        this.loggedinUser = {...user}
-        if (this.story) this.isUserStory = this.loggedinUser.id === this.story.by.id
+        this.loggedinUser = { ...user }
       }
     })
   }
 
-  ngOnChanges() {
-    if (this.story) {
-      if (this.loggedinUser) this.isUserStory = this.loggedinUser.id === this.story.by.id
-      this.currImgIdx = 0;
-      this.currImgUrl = this.story.imgUrls.length ? this.story.imgUrls[this.currImgIdx] : '';
-    }
-  }
-
-  onSetCurrImgUrl(num: number) {
-    this.currImgIdx = this.currImgIdx + num;
-    if (this.currImgIdx < 0) {
-      this.setPrevStory.emit(-1);
-      return;
-    }
-    if (this.currImgIdx > this.story.imgUrls.length - 1) {
-      this.setNextStory.emit(1);
-      return;
-    }
-    this.currImgUrl = this.story.imgUrls[this.currImgIdx];
-
-  }
-
   ngOnDestroy() {
-    this.sub?.unsubscribe()
+    this.sub?.unsubscribe();
   }
-
 }

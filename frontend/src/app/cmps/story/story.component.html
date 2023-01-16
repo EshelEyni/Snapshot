@@ -1,0 +1,38 @@
+<article class="story">
+
+    <div class="story-container" *ngIf="!isCurrStory" [routerLink]="['/story/',story.id]">
+        <div class="img-container">
+            <img [src]="story.imgUrls[0]" alt="story-img">
+        </div>
+        <div class="info">
+            <user-preview [user]="story.by"> </user-preview>
+            <p>{{story.createdAt | formattedDate}}</p>
+        </div>
+    </div>
+
+    <div class="curr-story-container" *ngIf="isCurrStory">
+
+        <div class="curr-story">
+            <div class="timer-container">
+                <story-timer [currStory]="story" [nextStory]="nextStory" (onSetImgUrl)="onSetCurrImgUrl($event)"
+                    [currImgIdx]="currImgIdx">
+                </story-timer>
+            </div>
+
+            <div class="img-container">
+                <img [src]="currImgUrl" alt="story-img">
+            </div>
+
+            <div class="reply-container">
+                <div *ngIf="isUserStory; else msgEdit">userstory</div>
+                <ng-template #msgEdit>
+                    <msg-edit [isStoryReply]="true" [story]="story"> </msg-edit>
+                </ng-template>
+            </div>
+        </div>
+
+        <pagination-btns *ngIf="isPaginationBtnShown" [isPaginationBtnShown]="isPaginationBtnShown"
+            (prevItem)="onSetCurrImgUrl($event)" (nextItem)="onSetCurrImgUrl($event)"></pagination-btns>
+    </div>
+
+</article>

@@ -1,4 +1,3 @@
-<div>
     <div class="story-list-container" *ngIf="!currStory; else forStoryDetails">
         <ul class="story-list" [style.left]="listPosition">
             <li *ngIf="isLinkToStoryEdit">
@@ -16,19 +15,18 @@
         <div class="details-story-list">
             <ul class="pre-story-list">
                 <li *ngFor="let story of preCurrStoryList">
-                    <story-preview [story]="story" [isStoryDetails]="true"></story-preview>
+                    <story [story]="story"></story>
                 </li>
             </ul>
 
-            <story-preview [story]="currStory" [nextStory]="postCurrStoryList[0]" [isCurrStory]="true"
+            <story [story]="currStory" [nextStory]="postCurrStoryList[0]" [isCurrStory]="true"
                 [isPaginationBtnShown]="isPaginationBtnShown" (setPrevStory)="onSetCurrStory($event)"
-                (setNextStory)="onSetCurrStory($event)"></story-preview>
+                (setNextStory)="onSetCurrStory($event)"></story>
 
             <ul class="post-story-list">
                 <li *ngFor="let story of postCurrStoryList">
-                    <story-preview [story]="story" [isStoryDetails]="true"></story-preview>
+                    <story [story]="story"></story>
                 </li>
             </ul>
         </div>
     </ng-template>
-</div>

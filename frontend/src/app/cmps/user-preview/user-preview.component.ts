@@ -2,7 +2,7 @@ import { Story } from './../../models/story.model'
 import { StoryService } from './../../services/story.service'
 import { UserService } from 'src/app/services/user.service'
 import { MiniUser } from './../../models/user.model'
-import { Component, OnInit, inject } from '@angular/core'
+import { Component, OnInit,OnChanges, inject } from '@angular/core'
 import { Location } from 'src/app/models/post.model'
 import { lastValueFrom } from 'rxjs'
 
@@ -12,7 +12,7 @@ import { lastValueFrom } from 'rxjs'
   styleUrls: ['./user-preview.component.scss'],
   inputs: ['user', 'type', 'location'],
 })
-export class UserPreviewComponent implements OnInit {
+export class UserPreviewComponent implements OnInit, OnChanges {
 
   constructor() { }
 
@@ -58,6 +58,12 @@ export class UserPreviewComponent implements OnInit {
         this.isStoryDisabled = true
       }
     }
+    this.title = this.setTitle()
+    this.setDesc()
+    this.setUrls()
+  }
+
+  ngOnChanges() {
     this.title = this.setTitle()
     this.setDesc()
     this.setUrls()

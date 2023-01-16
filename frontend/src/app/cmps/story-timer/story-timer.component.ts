@@ -22,7 +22,7 @@ export class StoryTimerComponent implements OnInit, OnDestroy, OnChanges {
   idx = 0;
   currStory!: Story;
   nextStory!: Story;
-  isPlaying: boolean = true;
+  isPlaying: boolean = false;
 
   ngOnInit(): void { }
 
