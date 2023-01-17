@@ -56,7 +56,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
       filter: 'normal',
     },
     {
-      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666644422/joph3bb9hyyhjkdxnhc8.jpg',
+      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664789187/jsywue9raehtraavttaw.jpg',
       x: 0,
       y: 0,
       width: 830,
@@ -66,7 +66,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
       filter: 'normal',
     },
     {
-      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666644422/joph3bb9hyyhjkdxnhc8.jpg',
+      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664328265/ubgpmrhtkoi4syzj5w0r.jpg',
       x: 0,
       y: 0,
       width: 830,
@@ -144,8 +144,8 @@ export class PostEditComponent implements OnInit, OnDestroy {
   async savePost() {
     const postToSave = this.postService.getEmptyPost();
     const author = this.userService.getMiniUser(this.loggedinUser);
-    await this.convertCanvasImgsToImgUrls(this.postImgs, postToSave.imgUrls);
-    // postToSave.imgUrls = this.postImgs.map(img => img.url);
+    // await this.convertCanvasImgsToImgUrls(this.postImgs, postToSave.imgUrls);
+    postToSave.imgUrls = this.postImgs.map(img => img.url);
     postToSave.by = author;
     postToSave.location = this.location;
     postToSave.tags = this.tagService.detectTags(this.txt);

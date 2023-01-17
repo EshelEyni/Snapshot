@@ -4,7 +4,8 @@
 
 ::ng-deep .story {
     display: flex;
-position: relative;
+    justify-content: center;
+    position: relative;
     width: 100%;
     height: 100%;
 
@@ -15,7 +16,7 @@ position: relative;
         align-items: center;
 
         .img-container {
-            @include story-preview-img(350px);
+            @include story-aspect-ratio(45vw);
 
             img {
                 border-radius: 5px;
@@ -46,12 +47,14 @@ position: relative;
         display: flex;
         justify-content: center;
         position: relative;
-        width: 100%;
-        height: 100%;
+        width: 100vw;
+        height: 100vh;
 
         .curr-story {
             position: relative;
-            // display: flex;
+            display: flex;
+            width: 100vw;
+            height: 100vh;
 
             .timer-container {
                 position: absolute;
@@ -64,9 +67,22 @@ position: relative;
                 width: 100%;
 
                 img {
-                    border-radius: 5px;
+                    object-fit: contain;
                 }
+            }
 
+            .pagination-screen {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+
+                >* {
+                    width: 100%;
+                    height: 100%;
+                }
             }
 
             .reply-container {
@@ -81,26 +97,99 @@ position: relative;
             display: none;
         }
 
-        @include for-large-layout {
-            width: 650px;
-            height: fit-content;
+    }
+
+    @include for-large-layout {
+
+        .curr-story-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr;
+            height: 100%;
+            width: 100%;
 
             .curr-story {
-                align-items: center;
+                grid-column: 2;
+                @include story-aspect-ratio(90vw);
+
                 .img-container {
-                    @include story-preview-img(700px);
+                    @include story-aspect-ratio(90vw);
+
+                    img {
+                        border-radius: 5px;
+                        object-fit: cover;
+                    }
+                }
+
+                .pagination-screen {
+                    display: none;
                 }
             }
 
             .btn-pagination {
+                position: relative;
                 display: flex;
-                top: 50%;
+                align-items: center;
+                justify-content: center;
 
                 fa-icon {
                     color: var(--primary-pagination-button);
                     font-size: rem(30px);
                 }
+
+                &.prev {
+                    justify-content: flex-end;
+                    grid-column: 1;
+                    grid-row: 1;
+                    padding-inline-end: rem(15px);
+                }
+
+                &.next {
+                    justify-content: flex-start;
+                    grid-column: 3;
+                    grid-row: 1;
+                    padding-inline-start: rem(15px);
+                }
             }
         }
+    }
+
+
+    @include for-extra-large-layout {
+
+        .story-container {
+            .img-container {
+                @include story-aspect-ratio(24vw);
+            }
+        }
+
+        .curr-story-container {
+            .curr-story {
+                @include story-aspect-ratio(62.5vw);
+
+                .img-container {
+                    @include story-aspect-ratio(62.5vw);
+                }
+            }
+        }
+    }
+
+    @include for-extra-extra-large-layout{
+            
+            .story-container {
+                .img-container {
+                    @include story-aspect-ratio(20vw);
+                }
+            }
+    
+            .curr-story-container {
+                .curr-story {
+                    @include story-aspect-ratio(50vw);
+    
+                    .img-container {
+                        @include story-aspect-ratio(50vw);
+                    }
+                }
+            }
     }
 }

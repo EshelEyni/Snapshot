@@ -93,6 +93,8 @@ import { ActivityComponent } from './pages/activity/activity.component';
 import { CommentOptionsModalComponent } from './cmps/comment-options-modal/comment-options-modal.component';
 import { SideBarOptionsModalComponent } from './cmps/side-bar-options-modal/side-bar-options-modal.component';
 import { StoryComponent } from './cmps/story/story.component';
+import { PaginationBtnPrevComponent } from './cmps/pagination-btn-prev/pagination-btn-prev.component';
+import { PaginationBtnNextComponent } from './cmps/pagination-btn-next/pagination-btn-next.component';
 
 @NgModule({
   declarations: [
@@ -165,6 +167,8 @@ import { StoryComponent } from './cmps/story/story.component';
     CommentOptionsModalComponent,
     SideBarOptionsModalComponent,
     StoryComponent,
+    PaginationBtnPrevComponent,
+    PaginationBtnNextComponent,
   ],
   imports: [
     BrowserAnimationsModule,

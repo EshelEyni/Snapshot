@@ -76,7 +76,6 @@
     .img-container {
         height: rem(60px);
         width: rem(60px);
-        margin-right: rem(10px);
     }
 
 
@@ -87,14 +86,14 @@
 
     @include for-large-layout {
         display: grid;
-        grid-template-columns: 400px 1fr 400px;
+        grid-template-columns: 1fr 5fr 1fr;
         gap: rem(15px);
         width: 100%;
 
         .img-container {
             height: rem(60px);
             width: rem(60px);
-            margin-right: rem(10px);
+            // margin-right: rem(10px);
         }
 
         .pre-story-list,
@@ -114,4 +113,21 @@
         }
     }
 
+    @include for-extra-large-layout {
+        grid-template-columns: 2fr 3fr 2fr;
+
+        .pre-story-list,
+        .post-story-list {
+            gap: 7.5vw;
+        }
+    }
+
+    @include for-extra-extra-large-layout {
+        grid-template-columns: 3fr 4fr 3fr;
+
+        .pre-story-list,
+        .post-story-list {
+            gap: rem(100px);
+        }
+    }
 }

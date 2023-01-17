@@ -1,0 +1,11 @@
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/functions';
+
+svg-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: rem(10px);
+    border-radius: 50%;
+    background-color: var(--pagination-button-bgc);
+}

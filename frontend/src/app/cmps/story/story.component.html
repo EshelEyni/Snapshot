@@ -23,6 +23,11 @@
                 <img [src]="currImgUrl" alt="story-img">
             </div>
 
+            <div class="pagination-screen">
+                <div (click)="onSetCurrImgUrl(-1)"></div>
+                <div (click)="onSetCurrImgUrl(1)"></div>
+            </div>
+
             <div class="reply-container">
                 <div *ngIf="isUserStory; else msgEdit">userstory</div>
                 <ng-template #msgEdit>
@@ -31,8 +36,12 @@
             </div>
         </div>
 
-        <pagination-btns *ngIf="isPaginationBtnShown" [isPaginationBtnShown]="isPaginationBtnShown"
-            (prevItem)="onSetCurrImgUrl($event)" (nextItem)="onSetCurrImgUrl($event)"></pagination-btns>
+        <div class="btn-pagination prev">
+            <pagination-btn-prev *ngIf="isPaginationBtnShown.left" (click)="onSetCurrImgUrl(-1)"></pagination-btn-prev>
+        </div>
+        <div class="btn-pagination next">
+            <pagination-btn-next *ngIf="isPaginationBtnShown.right" (click)="onSetCurrImgUrl(1)"></pagination-btn-next>
+        </div>
     </div>
 
 </article>

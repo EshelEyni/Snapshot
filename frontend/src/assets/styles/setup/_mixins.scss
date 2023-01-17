@@ -93,7 +93,7 @@
 }
 
 // story preview mixin
-@mixin story-preview-img($height) {
+@mixin story-aspect-ratio($height) {
     height:#{$height};
     width: calc(#{$height}/1.75);
 }

@@ -81,7 +81,7 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
     if (this.idx === 0) this.isPaginationBtnShown.left = false;
     else this.isPaginationBtnShown.left = true;
     if (this.currStory) {
-      if (this.idx === stories.length - 1) this.isPaginationBtnShown.right = false;
+      if (this.idx === this.currStory.imgUrls.length - 1) this.isPaginationBtnShown.right = false;
       else this.isPaginationBtnShown.right = true;
     }
     else {

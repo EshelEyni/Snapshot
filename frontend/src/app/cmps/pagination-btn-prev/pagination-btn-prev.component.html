@@ -1,0 +1,4 @@
+<svg-icon src="../../../assets/svgs/chevron-left.svg" *ngIf="isEditIcon; else faIcon"></svg-icon>
+<ng-template #faIcon>
+    <fa-icon [icon]="faCircleChevronLeft"> </fa-icon>
+</ng-template>

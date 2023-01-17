@@ -1,5 +1,4 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { faCircleChevronLeft, faCircleChevronRight, } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'pagination-btns',
@@ -11,11 +10,6 @@ import { faCircleChevronLeft, faCircleChevronRight, } from '@fortawesome/free-so
 export class PaginationBtnsComponent implements OnInit {
 
   constructor() { }
-
-  // Icons
-  faCircleChevronLeft = faCircleChevronLeft;
-  faCircleChevronRight = faCircleChevronRight;
-
 
   isPaginationBtnShown = { left: false, right: false };
   isEditIcon!: boolean;

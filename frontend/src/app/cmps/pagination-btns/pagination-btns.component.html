@@ -1,16 +1,8 @@
 <div class="btn-pagination prev">
-    <div (click)="onPrevItem()" *ngIf="isPaginationBtnShown.left">
-        <svg-icon src="../../../assets/svgs/chevron-left.svg" *ngIf="isEditIcon; else faIcon"></svg-icon>
-        <ng-template #faIcon>
-            <fa-icon [icon]="faCircleChevronLeft"> </fa-icon>
-        </ng-template>
-    </div>
+    <pagination-btn-prev (click)="onPrevItem()" *ngIf="isPaginationBtnShown.left"
+        [isEditIcon]="isEditIcon"></pagination-btn-prev>
 </div>
 <div class="btn-pagination next">
-    <div (click)="onNextItem()" *ngIf="isPaginationBtnShown.right">
-        <svg-icon src="../../../assets/svgs/chveron-right.svg" *ngIf="isEditIcon; else faIcon"> </svg-icon>
-        <ng-template #faIcon>
-            <fa-icon [icon]="faCircleChevronRight"> </fa-icon>
-        </ng-template>
-    </div>
+    <pagination-btn-next (click)="onNextItem()" *ngIf="isPaginationBtnShown.right"
+        [isEditIcon]="isEditIcon"></pagination-btn-next>
 </div>
