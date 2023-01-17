@@ -2,14 +2,19 @@
 @import '../../../assets/styles/setup/mixins';
 @import '../../../assets/styles/setup/vars';
 
-.profile-details {
+::ng-deep .profile-details {
     @include page;
-
+    flex-direction: column;
+    align-items: center;
+    gap: rem(25px);
+    width: 100%;
+    
     .main-container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: rem(50px);
+        gap: rem(25px);
+        width: 100%;
 
         .user-details {
             display: flex;
@@ -63,26 +68,57 @@
             display: flex;
             justify-content: center;
             width: 100%;
-            margin: rem(50px) 0;
+            // margin: rem(50px) 0;
             border-top: var(--border-color) 1px solid;
 
-            .btns-cotnainer {
+            .btns-container {
                 display: flex;
                 justify-content: center;
                 gap: rem(10px);
-                padding: rem(10px) 0;
 
                 >* {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: rem(10px);
+                    position: relative;
+                    top: -0.5px;
+                    padding: rem(10px) 0;
+
 
                     &.active {
-                        button {
+                        border-top: black 1.5px solid;
+
+                        span {
                             color: var(--primary-color);
+                            font-weight: 600;
+                            font-family: var(--primary-font);
                         }
                     }
 
-                    button {
-                        color: var(--secondary-color);
-                        text-transform: uppercase;
+                    span {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+
+    @include for-extra-small-layout {
+        .main-container {
+            .user-details{
+                padding: 0 rem(50px);
+            }
+            .post-filter {
+                padding: 0 rem(50px);
+                .btns-container {
+                    >* {
+                        span {
+                            display: flex;
+                            color: var(--secondary-color);
+                            text-transform: uppercase;
+                        }
                     }
                 }
             }

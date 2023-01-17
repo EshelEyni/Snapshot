@@ -65,8 +65,6 @@ export class UserPreviewComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.title = this.setTitle()
-    this.setDesc()
-    this.setUrls()
   }
 
   setTitle() {

@@ -1,0 +1,71 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/mixins';
+@import '../../../assets/styles/setup/vars';
+
+.profile-options-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--secondary-bg);
+
+    .profile-options-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: rem(60px);
+        padding: 0 rem(20px);
+        background-color: var(--secondary-bg);
+        border-bottom: var(--border-color) solid 1px;
+        transition: all 0.5s ease-in-out;
+        z-index: 10;
+
+        h2 {
+            flex-basis: 0px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            font-size: rem(20px);
+            font-weight: 600;
+            font-family: var(--primary-font);
+            text-align: center;
+            text-transform: capitalize;
+        }
+
+        fa-icon {
+            font-size: rem(25px);
+            cursor: pointer;
+            flex-basis: rem(35px);
+        }
+    }
+
+    .profile-options-modal-btns-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        >* {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: rem(50px);
+            color: var(--primary-color);
+            font-size: rem(18px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 rem(15px);
+        }
+
+        >*:last-child {
+            color: var(--red-button);
+        }
+
+        >*:hover {
+            background-color: var(--primary-bg);
+        }
+
+
+    }
+}

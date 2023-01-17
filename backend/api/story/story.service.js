@@ -57,7 +57,6 @@ async function getById(storyId) {
             const user = users[0];
             currStory.by = { id: user.id, username: user.username, fullname: user.fullname, imgUrl: user.imgUrl };
             const userViews = await db.query(`select userId as id, username, fullname, imgUrl from storyViews where storyId = $id`, { $id: storyId });
-            console.log('userViews', userViews);
             currStory.viewedBy = userViews;
             const images = await db.query(`select * from storyImg where storyId = $storyId`, { $storyId: storyId });
             currStory.imgUrls = images.map(img => img.imgUrl);

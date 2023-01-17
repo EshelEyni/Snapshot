@@ -30,6 +30,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   user$: Observable<User | null>;
   user!: User;
   posts$!: Observable<Post[]>;
+  isOptionsModalShown = true;
   filterBy = { createdPosts: true, savedPosts: false, taggedPosts: false }
   // user
 
@@ -37,8 +38,15 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
     this.paramsSubscription = this.route.data.subscribe(data => {
       const user = data['user']
       if (user) {
+        console.log('user.postSum', user.postSum)
         this.user = user
-        // this.postService.loadPosts({ userId: this.user.id, type: 'createdPosts' });
+        this.postService.loadPosts(
+          {
+            userId: this.user.id,
+            type: 'createdPosts',
+            limit: 100,
+          }
+        )
         this.posts$ = this.postService.posts$;
       }
     })
@@ -53,24 +61,48 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   }
 
   onSetFilter(filterBy: string) {
+    console.log('onSetFilter')
     switch (filterBy) {
       case 'createdPosts':
         this.filterBy = { createdPosts: true, savedPosts: false, taggedPosts: false }
-        // this.postService.loadPosts({ userId: this.user.id, type: 'createdPosts' });
+        this.postService.loadPosts(
+          {
+            userId: this.user.id,
+            type: 'createdPosts',
+            limit: 100,
+          }
+        )
         this.posts$ = this.postService.posts$;
         break;
       case 'savedPosts':
         this.filterBy = { createdPosts: false, savedPosts: true, taggedPosts: false }
-        // this.postService.loadPosts({ userId: this.user.id, type: 'savedPosts' });
+        this.postService.loadPosts(
+          {
+            userId: this.user.id,
+            type: 'savedPosts',
+            limit: 100,
+          }
+        );
         this.posts$ = this.postService.posts$;
         break;
       case 'taggedPosts':
         this.filterBy = { createdPosts: false, savedPosts: false, taggedPosts: true }
-        // this.postService.loadPosts({ userId: this.user.id, type: 'taggedPosts' });
+        this.postService.loadPosts(
+          {
+            userId: this.user.id,
+            type: 'taggedPosts',
+            limit: 100,
+            username: this.user.username
+          }
+        );
         this.posts$ = this.postService.posts$;
         break;
     }
 
+  }
+
+  onToggleModal() {
+    this.isOptionsModalShown = !this.isOptionsModalShown;
   }
 
   ngOnDestroy() {

@@ -1,0 +1,13 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/mixins';
+@import '../../../assets/styles/setup/vars';
+
+.profile-details-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: rem(45px);
+    padding: rem(15px);
+    width: 100vw;
+    border-bottom: 1px solid var(--border-color);
+}

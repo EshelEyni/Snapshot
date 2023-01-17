@@ -44,7 +44,6 @@ export class HomeComponent implements OnInit {
           userId: loggedinUser.id,
           type: 'homepagePosts',
           limit: 1000,
-          currPostId: null
         }
       );
       this.posts$ = this.postService.posts$;

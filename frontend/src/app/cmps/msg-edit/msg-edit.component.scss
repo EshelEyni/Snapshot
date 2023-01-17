@@ -9,8 +9,7 @@
 
     .story-reply {
         position: relative;
-        // z-index: 20;
-        
+
         .quick-reactions-container {
             position: relative;
             z-index: 20;
@@ -21,8 +20,9 @@
         .reply-actions {
             display: flex;
             color: var(--border-color);
-            margin: rem(20px);
-            gap: rem(20px);
+            padding: rem(15px);
+            gap: rem(10px);
+            width: 100%;
 
             .msg-form {
                 display: flex;
@@ -58,7 +58,12 @@
             }
 
             .btn-container {
-                flex: 1;
+                // flex: 1;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: rem(10px);
 
                 fa-icon {
                     font-size: rem(24px);

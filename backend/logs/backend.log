@@ -426,3 +426,32 @@
 16.1.2023, 22:08:27 - INFO - Server is running on port: 3030 
 16.1.2023, 22:11:05 - INFO - Server is running on port: 3030 
 16.1.2023, 22:16:20 - INFO - Server is running on port: 3030 
+17.1.2023, 15:34:47 - INFO - Server is running on port: 3030 
+17.1.2023, 15:41:51 - INFO - Server is running on port: 3030 
+17.1.2023, 15:51:04 - ERROR - cannot find posts | Failed to commit transaction: TypeError: posts is not iterable 
+17.1.2023, 15:51:04 - ERROR - Failed to get posts | Failed to commit transaction: TypeError: posts is not iterable 
+17.1.2023, 15:52:26 - ERROR - cannot find posts | Failed to commit transaction: TypeError: posts is not iterable 
+17.1.2023, 15:52:26 - ERROR - Failed to get posts | Failed to commit transaction: TypeError: posts is not iterable 
+17.1.2023, 16:11:05 - INFO - Server is running on port: 3030 
+17.1.2023, 16:11:25 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: no such table: taggedPosts 
+17.1.2023, 16:11:25 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: no such table: taggedPosts 
+17.1.2023, 16:11:27 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: no such table: taggedPosts 
+17.1.2023, 16:11:27 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: no such table: taggedPosts 
+17.1.2023, 16:15:33 - INFO - Server is running on port: 3030 
+17.1.2023, 16:15:37 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: no such table: taggedPosts 
+17.1.2023, 16:15:37 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: no such table: taggedPosts 
+17.1.2023, 16:16:02 - INFO - Server is running on port: 3030 
+17.1.2023, 16:16:07 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: no such table: taggedPosts 
+17.1.2023, 16:16:07 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: no such table: taggedPosts 
+17.1.2023, 16:16:25 - INFO - Server is running on port: 3030 
+17.1.2023, 16:16:28 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: no such column: createdAt 
+17.1.2023, 16:16:28 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: no such column: createdAt 
+17.1.2023, 16:16:56 - INFO - Server is running on port: 3030 
+17.1.2023, 16:17:37 - INFO - Server is running on port: 3030 
+17.1.2023, 16:18:54 - INFO - Server is running on port: 3030 
+17.1.2023, 16:37:59 - INFO - Server is running on port: 3030 
+17.1.2023, 16:38:52 - INFO - Server is running on port: 3030 
+17.1.2023, 16:46:16 - INFO - Server is running on port: 3030 
+17.1.2023, 16:46:43 - INFO - Server is running on port: 3030 
+17.1.2023, 18:32:11 - INFO - Server is running on port: 3030 
+17.1.2023, 20:00:24 - INFO - Server is running on port: 3030 

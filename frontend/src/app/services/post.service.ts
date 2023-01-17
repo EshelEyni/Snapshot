@@ -25,7 +25,8 @@ export class PostService {
       userId: number,
       type: string,
       limit: number,
-      currPostId: number | null,
+      currPostId?: number,
+      username?: string,
     }
   ) {
     let options = { params: {} }
@@ -34,8 +35,10 @@ export class PostService {
       userId: filterBy.userId,
       type: filterBy.type,
       limit: filterBy.limit,
-      currPostId: filterBy.currPostId,
     }
+
+    if (filterBy.currPostId) options.params = { ...options.params, currPostId: filterBy.currPostId }
+    if (filterBy.username) options.params = { ...options.params, username: filterBy.username }
 
     const posts = await lastValueFrom(
       this.http.get<Post[]>('http://localhost:3030/api/post', options),
@@ -46,9 +49,16 @@ export class PostService {
         this._posts$.next(posts)
         break
       case 'createdPosts':
-        this._createdPosts$.next(posts)
+        if (filterBy.currPostId) this._createdPosts$.next(posts)
+        else this._posts$.next(posts)
         break
-        case 'explorePagePosts':
+      case 'savedPosts':
+        this._posts$.next(posts)
+        break
+      case 'taggedPosts':
+        this._posts$.next(posts)
+        break
+      case 'explorePagePosts':
         this._posts$.next(posts)
         break
       default:

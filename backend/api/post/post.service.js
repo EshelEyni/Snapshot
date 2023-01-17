@@ -8,13 +8,44 @@ async function query(filter) {
 
             switch (filter.type) {
                 case 'createdPosts':
+                    if (filter.currPostId) {
+                        posts = await db.query(
+                            `select * from posts where id != $currPostId and userId = $userId order by createdAt desc limit $limit `, {
+                            $limit: filter.limit,
+                            $currPostId: filter.currPostId,
+                            $userId: filter.userId,
+                        });
+                    } else {
+                        posts = await db.query(
+                            `select * from posts where userId = $userId order by createdAt desc limit $limit `, {
+                            $limit: filter.limit,
+                            $userId: filter.userId,
+                        });
+                    }
+                    break;
+
+                case 'savedPosts':
                     posts = await db.query(
-                        `select * from posts where id != $currPostId and userId = $userId order by createdAt desc limit $limit `, {
+                        `select * from posts where id in (select postId from savedPosts where userId = $userId) order by createdAt desc limit $limit `, {
                         $limit: filter.limit,
-                        $currPostId: filter.currPostId,
                         $userId: filter.userId,
                     });
                     break;
+
+                case 'taggedPosts':
+                    const tags = await db.query(`select id from tags where name = $username`, { $username: filter.username });
+                    const tagId = tags[0].id;
+                    let taggedPostsIds = await db.query(
+                        `select postId from postTags where tagId = $tagId`, {
+                        $tagId: tagId
+                    });
+                    taggedPostsIds = taggedPostsIds.map(post => post.postId);
+                    posts = await db.query(
+                        `select * from posts where id in (${taggedPostsIds.map(id => `'${id}'`).join(',')}) order by createdAt desc limit $limit `, {
+                        $limit: filter.limit,
+                    });
+                    break;
+
                 case 'homepagePosts':
                     userIds = [filter.userId]
                     followingIds = await db.query(`select userId from following where followerId = $id`, { $id: filter.userId });

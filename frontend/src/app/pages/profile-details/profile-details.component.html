@@ -1,6 +1,6 @@
 <section class="profile-details main-layout" *ngIf="user">
+    <profile-details-header [user]="user" (openModal)="onToggleModal()"> </profile-details-header>
     <main class="main-container">
-
         <div class="user-details">
             <div class="img-container">
                 <img [src]="user.imgUrl" alt="Avatar">
@@ -23,28 +23,31 @@
         </div>
 
         <div class="post-filter">
-            <div class="btns-cotnainer">
-                <div [class.active]="filterBy.createdPosts">
+            <div class="btns-container">
+                <button class="clean-btn" [class.active]="filterBy.createdPosts" (click)="onSetFilter('createdPosts')">
                     <svg-icon src="../../../assets/svgs/posts-rect.svg"
                         [svgStyle]="{ 'display':'flex','color': filterBy.createdPosts ? '#262626' : '#8e8e8e'}">
                     </svg-icon>
-                    <button class="clean-btn" (click)="onSetFilter('createdPosts')">posts</button>
-                </div>
-                <div [class.active]="filterBy.savedPosts">
+                    <span>posts</span>
+                </button>
+                <button class="clean-btn" [class.active]="filterBy.savedPosts" (click)="onSetFilter('savedPosts')">
                     <svg-icon src="../../../assets/svgs/bookmark-outline.svg"
-                        [svgStyle]="{ 'display':'flex' ,'color': filterBy.savedPosts ? '#262626' : '#8e8e8e'}">
+                        [svgStyle]="{ 'display':'flex' ,'color': filterBy.savedPosts ? '#262626' : '#8e8e8e','height':12,'width':12}">
                     </svg-icon>
-                    <button class="clean-btn" (click)="onSetFilter('savedPosts')">saved</button>
-                </div>
-                <div [class.active]="filterBy.taggedPosts">
+                    <span>saved</span>
+                </button>
+                <button class="clean-btn" [class.active]="filterBy.taggedPosts" (click)="onSetFilter('taggedPosts')">
                     <svg-icon src="../../../assets/svgs/rect-user-tag.svg"
                         [svgStyle]="{ 'display':'flex' ,'color': filterBy.taggedPosts ? '#262626' : '#8e8e8e'}">
                     </svg-icon>
-                    <button class="clean-btn" (click)="onSetFilter('taggedPosts')">tagged</button>
-                </div>
+                    <span>tagged</span>
+                </button>
             </div>
         </div>
 
         <post-list [posts]="(posts$|async)!" [isMiniPreview]="true"></post-list>
     </main>
+
+    <profile-options-modal *ngIf="isOptionsModalShown" [user]="user"
+        (closeModal)="onToggleModal()"></profile-options-modal>
 </section>

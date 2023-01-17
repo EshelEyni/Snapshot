@@ -34,7 +34,7 @@ async function query(queryParams) {
                 or email like $searchTerm 
                 or bio like $searchTerm
              order by username`, { $searchTerm: queryParams.searchTerm + '%' });
-             
+
         // return await db.query(
         //         `SELECT * FROM users 
         // WHERE username REGEXP $searchTerm
@@ -110,6 +110,7 @@ async function remove(userId) {
 }
 
 async function update(user) {
+    console.log('user.service -> update -> user', user.username, user.followersSum);
     try {
         await db.exec(`update users set username = $username, fullname = $fullname,
          email = $email, imgUrl = $imgUrl, gender = $gender,

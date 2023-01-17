@@ -95,6 +95,8 @@ import { SideBarOptionsModalComponent } from './cmps/side-bar-options-modal/side
 import { StoryComponent } from './cmps/story/story.component';
 import { PaginationBtnPrevComponent } from './cmps/pagination-btn-prev/pagination-btn-prev.component';
 import { PaginationBtnNextComponent } from './cmps/pagination-btn-next/pagination-btn-next.component';
+import { ProfileDetailsHeaderComponent } from './cmps/profile-details-header/profile-details-header.component';
+import { ProfileOptionsModalComponent } from './cmps/profile-options-modal/profile-options-modal.component';
 
 @NgModule({
   declarations: [
@@ -169,6 +171,8 @@ import { PaginationBtnNextComponent } from './cmps/pagination-btn-next/paginatio
     StoryComponent,
     PaginationBtnPrevComponent,
     PaginationBtnNextComponent,
+    ProfileDetailsHeaderComponent,
+    ProfileOptionsModalComponent,
   ],
   imports: [
     BrowserAnimationsModule,

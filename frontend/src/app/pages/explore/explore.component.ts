@@ -40,7 +40,6 @@ export class ExploreComponent implements OnInit, OnDestroy {
             userId: user.id,
             type: 'explorePagePosts',
             limit: 1000,
-            currPostId: null
           }
         );
       }

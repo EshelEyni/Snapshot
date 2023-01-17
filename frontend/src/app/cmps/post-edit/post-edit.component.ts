@@ -1,3 +1,4 @@
+import { SaveUser } from './../../store/actions/user.actions';
 import { TagService } from './../../services/tag.service';
 import { PostCanvasImg } from './../../models/post.model';
 import { User } from 'src/app/models/user.model'
@@ -162,6 +163,10 @@ export class PostEditComponent implements OnInit, OnDestroy {
       commentToAdd.isOriginalText = true;
       await this.commentService.save(commentToAdd);
     }
+
+    this.loggedinUser.postSum++;
+    this.store.dispatch(new SaveUser(this.loggedinUser));
+
 
     this.onTogglePostEdit()
   }
