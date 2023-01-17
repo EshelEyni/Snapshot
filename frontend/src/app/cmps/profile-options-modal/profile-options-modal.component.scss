@@ -8,9 +8,10 @@
     left: 0;
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     background-color: var(--secondary-bg);
+    z-index: 10;
 
     .profile-options-modal-header {
         display: flex;
@@ -38,6 +39,10 @@
         fa-icon {
             font-size: rem(25px);
             cursor: pointer;
+            flex-basis: rem(35px);
+        }
+
+        div {
             flex-basis: rem(35px);
         }
     }
@@ -68,4 +73,28 @@
 
 
     }
+
+    @include for-small-layout {
+        @include modal;
+
+        width: rem(400px);
+        height: fit-content;
+
+        .profile-options-modal-header {
+            display: none;
+        }
+
+        .profile-options-modal-btns-container {
+            border-radius: 10px;
+
+            >* {
+                justify-content: center;
+            }
+
+            >*:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+
 }

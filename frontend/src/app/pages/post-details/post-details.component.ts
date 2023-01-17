@@ -1,12 +1,12 @@
-import { LoadLoggedInUser, LoadUsers } from './../../store/actions/user.actions';
+import { LoadUsers } from './../../store/actions/user.actions';
 import { UserService } from './../../services/user.service'
 import { PostService } from './../../services/post.service'
 import { State } from './../../store/store'
 import { Store } from '@ngrx/store'
 import { User } from './../../models/user.model'
-import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
-import { Subscription, Observable, map, lastValueFrom } from 'rxjs'
+import { Subscription, Observable, map } from 'rxjs'
 import { Post } from 'src/app/models/post.model'
 import { faChevronLeft, faX } from '@fortawesome/free-solid-svg-icons';
 import { Location } from '@angular/common';
@@ -53,8 +53,6 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   postsSub!: Subscription;
   currIdx: number = 0;
 
-
-
   ngOnInit() {
 
     this.paramsSubscription = this.route.data.subscribe(async (data) => {
@@ -93,7 +91,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
 
     this.sub = this.loggedinUser$.subscribe((user) => {
       if (user) {
-        this.loggedinUser = {...user};
+        this.loggedinUser = { ...user };
         this.isPostOwnedByUser = this.loggedinUser.id === this.post.by.id
 
       }

@@ -5,7 +5,8 @@
 
   <header class="post-details-header">
     <fa-icon [icon]="faChevronLeft" (click)="onGoBack()"></fa-icon>
-    <h2>photo</h2>
+    <h2>{{this.post.imgUrls.length > 1 ? 'Post' : 'Photo'}}</h2>
+    <div></div>
   </header>
 
   <main [ngClass]="classForPost">
@@ -52,7 +53,7 @@
     </div>
 
     <div class="date-container">
-      <p class="date-added">{{ post.createdAt | formattedDate }}</p>
+      <p class="date-added" [routerLink]="['/post/',post.id]">{{ post.createdAt | formattedDate }}</p>
     </div>
 
     <share-modal *ngIf="isShareModalShown" (close)="onToggleModal('share-modal')"

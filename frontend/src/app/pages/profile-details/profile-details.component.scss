@@ -8,7 +8,7 @@
     align-items: center;
     gap: rem(25px);
     width: 100%;
-    
+
     .main-container {
         display: flex;
         flex-direction: column;
@@ -102,16 +102,22 @@
                 }
             }
         }
-    }
 
+    }
+    
+    .main-screen {
+        display: none;
+    }
 
     @include for-extra-small-layout {
         .main-container {
-            .user-details{
+            .user-details {
                 padding: 0 rem(50px);
             }
+
             .post-filter {
                 padding: 0 rem(50px);
+
                 .btns-container {
                     >* {
                         span {
@@ -122,6 +128,16 @@
                     }
                 }
             }
+        }
+    }
+
+    @include for-small-layout {
+        profile-details-header {
+            display: none;
+        }
+
+        .main-screen {
+            display: unset;
         }
     }
 }

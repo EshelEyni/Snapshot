@@ -1,5 +1,5 @@
 <section class="profile-details main-layout" *ngIf="user">
-    <profile-details-header [user]="user" (openModal)="onToggleModal()"> </profile-details-header>
+    <profile-details-header [user]="user" [isCurrUserLoggedInUser]="isCurrUserLoggedInUser" (openModal)="onToggleModal()"> </profile-details-header>
     <main class="main-container">
         <div class="user-details">
             <div class="img-container">
@@ -30,7 +30,7 @@
                     </svg-icon>
                     <span>posts</span>
                 </button>
-                <button class="clean-btn" [class.active]="filterBy.savedPosts" (click)="onSetFilter('savedPosts')">
+                <button class="clean-btn" [class.active]="filterBy.savedPosts" *ngIf="isCurrUserLoggedInUser" (click)="onSetFilter('savedPosts')">
                     <svg-icon src="../../../assets/svgs/bookmark-outline.svg"
                         [svgStyle]="{ 'display':'flex' ,'color': filterBy.savedPosts ? '#262626' : '#8e8e8e','height':12,'width':12}">
                     </svg-icon>
@@ -48,6 +48,8 @@
         <post-list [posts]="(posts$|async)!" [isMiniPreview]="true"></post-list>
     </main>
 
-    <profile-options-modal *ngIf="isOptionsModalShown" [user]="user"
+    <profile-options-modal *ngIf="isOptionsModalShown && isCurrUserLoggedInUser" [loggedinUser]="loggedinUser"
         (closeModal)="onToggleModal()"></profile-options-modal>
+        
+    <div class="main-screen dark-mode" *ngIf="isOptionsModalShown" (click)="onToggleModal()"></div>
 </section>

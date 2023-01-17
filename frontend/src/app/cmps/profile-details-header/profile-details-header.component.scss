@@ -2,7 +2,7 @@
 @import '../../../assets/styles/setup/mixins';
 @import '../../../assets/styles/setup/vars';
 
-.profile-details-header{
+.profile-details-header.for-logged-in-user {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -10,4 +10,38 @@
     padding: rem(15px);
     width: 100vw;
     border-bottom: 1px solid var(--border-color);
+}
+
+.profile-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: rem(60px);
+    padding: 0 rem(20px);
+    background-color: var(--secondary-bg);
+    border-bottom: var(--border-color) solid 1px;
+    transition: all 0.5s ease-in-out;
+    z-index: 10;
+
+    h2 {
+        flex-basis: 0px;
+        flex-grow: 1;
+        flex-shrink: 1;
+        font-size: rem(20px);
+        font-weight: 600;
+        font-family: var(--primary-font);
+        text-align: center;
+        text-transform: capitalize;
+    }
+
+    fa-icon {
+        font-size: rem(25px);
+        cursor: pointer;
+        flex-basis: rem(35px);
+    }
+
+    div {
+        flex-basis: rem(35px);
+    }
 }

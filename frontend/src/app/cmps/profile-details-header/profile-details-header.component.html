@@ -1,5 +1,13 @@
-<header class="profile-details-header">
+<header class="profile-details-header for-logged-in-user" *ngIf="isCurrUserLoggedInUser; else headerForUser">
     <svg-icon src="../../../assets/svgs/settings-icon.svg" (click)="onOpenModal()"></svg-icon>
     <h1>{{user.username}}</h1>
     <svg-icon src="../../../assets/svgs/user-plus-icon.svg"></svg-icon>
 </header>
+
+<ng-template #headerForUser>
+    <header class="profile-details-header">
+        <fa-icon [icon]="faChevronLeft" (click)="onGoBack()"></fa-icon>
+        <h1>{{user.username}}</h1>
+        <div></div>
+    </header>
+</ng-template>

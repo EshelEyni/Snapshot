@@ -34,6 +34,7 @@ async function query(filter) {
 
                 case 'taggedPosts':
                     const tags = await db.query(`select id from tags where name = $username`, { $username: filter.username });
+                    if(!tags.length) return Promise.resolve([]);
                     const tagId = tags[0].id;
                     let taggedPostsIds = await db.query(
                         `select postId from postTags where tagId = $tagId`, {

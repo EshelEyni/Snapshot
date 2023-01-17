@@ -1,3 +1,4 @@
+import { switchMap } from 'rxjs/operators';
 import { Post } from './../../models/post.model';
 import { Store } from '@ngrx/store';
 import { PostService } from 'src/app/services/post.service';
@@ -18,46 +19,52 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private postService: PostService,
-    private userService: UserService,
     private store: Store<State>
   ) {
-    this.user$ = this.store.select('userState').pipe(map((x => x.user)));
+    this.loggedinUser$ = this.store.select('userState').pipe(map((x => x.loggedinUser)));
   }
 
-  paramsSubscription!: Subscription;
   queryParamsSubscription!: Subscription;
-  sub: Subscription | null = null;
-  user$: Observable<User | null>;
+  userSub!: Subscription;
+  loggedinUser$: Observable<User | null>;
+  loggedinUser!: User;
+  isCurrUserLoggedInUser!: boolean;
   user!: User;
   posts$!: Observable<Post[]>;
-  isOptionsModalShown = true;
+  isOptionsModalShown = false;
   filterBy = { createdPosts: true, savedPosts: false, taggedPosts: false }
-  // user
 
   ngOnInit(): void {
-    this.paramsSubscription = this.route.data.subscribe(data => {
-      const user = data['user']
-      if (user) {
-        console.log('user.postSum', user.postSum)
-        this.user = user
-        this.postService.loadPosts(
-          {
-            userId: this.user.id,
-            type: 'createdPosts',
-            limit: 100,
-          }
-        )
-        this.posts$ = this.postService.posts$;
-      }
-    })
 
+    this.userSub = this.route.data.pipe(
+      switchMap(data => {
+        const user = data['user']
+        if (user) {
+          console.log('user.postSum', user.postSum)
+          this.user = user
+          this.postService.loadPosts(
+            {
+              userId: this.user.id,
+              type: 'createdPosts',
+              limit: 100,
+            }
+          )
+          this.posts$ = this.postService.posts$;
+        }
+        return this.loggedinUser$
+      }
+      )).subscribe(user => {
+        if (user) {
+          this.loggedinUser = user
+          this.isCurrUserLoggedInUser = this.user.id === this.loggedinUser.id
+        }
+      })
 
     this.queryParamsSubscription = this.route.queryParams.subscribe(data => {
       const filterByQueryParams: 'createdPosts' | 'savedPosts' | 'taggedPosts' = data['filterBy'];
       if (filterByQueryParams) this.onSetFilter(filterByQueryParams)
       else this.onSetFilter('createdPosts')
     });
-
   }
 
   onSetFilter(filterBy: string) {
@@ -106,8 +113,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.sub?.unsubscribe()
-    this.paramsSubscription.unsubscribe()
+    this.userSub?.unsubscribe()
     this.queryParamsSubscription.unsubscribe()
   }
 }

@@ -84,7 +84,11 @@ export class PostActionsComponent implements OnInit, OnChanges, OnDestroy {
     if (this.type === 'post-preview') {
       this.router.navigate([`_/post/${this.post.id}`])
     } else if (this.type === 'post-details') {
-      this.communicationService.focusInput()
+      if (window.innerWidth < 770) {
+        this.router.navigate([`/post/${this.post.id}`])
+      } else {
+        this.communicationService.focusInput()
+      }
     }
   }
 
