@@ -10,6 +10,7 @@
     }
 
     @include for-extra-small-layout {
+        padding: rem(20px);
         .post-list-container {
             display: flex;
             justify-content: center;

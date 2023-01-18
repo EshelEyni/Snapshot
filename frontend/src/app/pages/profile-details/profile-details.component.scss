@@ -5,6 +5,8 @@
 ::ng-deep .profile-details {
     @include page;
     flex-direction: column;
+    align-items: center;
+    position: relative;
     width: 100%;
     background-color: var(--secondary-bg);
 
@@ -72,12 +74,12 @@
             line-height: 1;
             position: relative;
             width: calc(100% - rem(15px));
-            
+
             .user-full-name {
                 font-size: rem(14px);
                 width: x;
             }
-            
+
             .user-bio {
                 position: relative;
                 overflow: hidden;
@@ -135,6 +137,10 @@
     }
 
     .profile-details-post-list-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         position: relative;
         width: 100%;
 
@@ -180,6 +186,7 @@
 
 
         }
+
     }
 
     .main-screen {
@@ -251,6 +258,7 @@
         }
 
         .profile-details-post-list-container {
+            padding: 0 rem(10px);
 
             .post-filter {
 
@@ -264,7 +272,6 @@
                     }
                 }
             }
-
         }
     }
 
@@ -292,9 +299,13 @@
     }
 
     @include for-large-layout {
+        .user-details{
+
+            width: 80%;
+        }
 
         .profile-details-post-list-container {
-            width: fit-content;
+            width: 80%;
         }
     }
 }
