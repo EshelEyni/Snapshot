@@ -137,6 +137,8 @@ CREATE TABLE IF NOT EXISTS "stories" (
     "id" INTEGER NOT NULL UNIQUE,
     "userId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP NOT NULL,
+    "isArchived" BOOLEAN NOT NULL,
+    "isSaved" BOOLEAN NOT NULL,
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("userId") references "users"("id")
 );
 
@@ -154,7 +156,6 @@ CREATE TABLE IF NOT EXISTS "storyViews" (
     "username" TEXT NOT NULL,
     "fullname" TEXT NOT NULL,
     "imgUrl" TEXT NOT NULL,
-    
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("storyId") references "stories"("id") foreign key ("userId") references "users"("id")
 );
 
@@ -167,3 +168,5 @@ CREATE TABLE IF NOT EXISTS "storiesLikedBy"(
     "imgUrl" TEXT NOT NULL,
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("storyId") references "stories"("id") foreign key ("userId") references "users"("id")
 );
+
+CREATE TABLE IF NOT EXISTS "storyArchiveDate"("date" TIMESTAMP NOT NULL);

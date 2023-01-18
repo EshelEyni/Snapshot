@@ -238,7 +238,7 @@ async function add(post) {
                  values ($userId, $createdAt, true, true, 0, 0, $locationId)`,
                 {
                     $userId: post.by.id,
-                    $createdAt: new Date().toISOString(),
+                    $createdAt: Date.now(),
                     $locationId: post.location.id === 0 ? null : post.location.id
                 });
             for (const i in post.imgUrls) {

@@ -47,10 +47,10 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
   ngOnInit(): void {
     this.loggedinUserSub = this.loggedinUser$.subscribe(user => {
       if (user) {
-        this.loggedinUser = {...user};
+        this.loggedinUser = { ...user };
         if (user.currStoryId) this.isLinkToStoryEdit = false;
         else this.isLinkToStoryEdit = true;
-        this.storyService.loadStories(user.id);
+        this.storyService.loadStories({ userId: user.id, type: this.type });
       }
     });
 

@@ -59,20 +59,25 @@ async function getById(userId) {
                 throw 'user with id #' + userId + ' was not found'
             }
             const user = users[0];
+            user.isDarkMode = !!user.isDarkMode;
 
-            const currStoryId = await db.query(
+            const stories = await db.query(
                 `select * from stories 
                     where userId = $id 
+                    and isArchived = 0
                     order by createdAt asc
                     limit 1 `, { $id: userId })
-            if (currStoryId.length > 0) {
-                user.currStoryId = currStoryId[0].id;
-            }
-            else {
+
+            if (!stories.length) {
                 user.currStoryId = null;
+                return user
             }
 
-            user.isDarkMode = !!user.isDarkMode;
+            const currStoryId = stories[0]
+            if (!currStoryId.isArchived) {
+                user.currStoryId = currStoryId.id;
+            }
+
             return user
         });
 

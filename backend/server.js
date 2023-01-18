@@ -19,6 +19,7 @@ const likeRoutes = require('./api/like/like.routes')
 const followerRoutes = require('./api/followers/followers.routes')
 const followingRoutes = require('./api/following/following.routes')
 const searchRoutes = require('./api/search/search.routes.js')
+const storyArchiveService = require('./services/story-archive.service.js')
 
 // Express App Config
 app.use(cookieParser())
@@ -40,7 +41,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-app.use('/api/user', userRoutes) 
+app.use('/api/user', userRoutes)
 app.use('/api/post', postRoutes)
 app.use('/api/auth', authRoutes)
 app.use('/api/comment', commentRoutes)
@@ -57,6 +58,10 @@ app.use('/api/search', searchRoutes)
 app.get('/**', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
+
+setInterval(() => {
+    storyArchiveService.setStoryArchive();
+}, 1000 * 60 * 60 * 24);
 
 const logger = require('./services/logger.service.js');
 

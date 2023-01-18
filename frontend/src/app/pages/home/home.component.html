@@ -2,7 +2,7 @@
     <home-page-header></home-page-header>
     <main class="post-app">
         <div class="main-container">
-            <story-list></story-list>
+            <story-list [type]="'home-page'"></story-list>
             <post-list [posts]="(posts$|async)!"></post-list>
         </div>
         <div class="user-list-container">

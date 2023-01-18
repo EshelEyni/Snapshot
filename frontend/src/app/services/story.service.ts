@@ -26,12 +26,11 @@ export class StoryService {
   userService = inject(UserService);
   http = inject(HttpClient);
 
-  public async loadStories(userId: number) {
+  public async loadStories(filter: { userId: number, type: string }) {
     let options = { params: {} }
-    if (userId) {
-      options.params = {
-        userId
-      }
+    options.params = {
+      userId: filter.userId,
+      type: filter.type
     }
 
     const stories = await firstValueFrom(
@@ -39,16 +38,13 @@ export class StoryService {
     )
 
     this._stories$.next(stories);
-    // this._stories$.next([]);
   }
 
   public getById(storyId: number): Observable<Story> {
-    // return from(asyncStorageService.get(ENTITY, storyId) as Promise<Story>);
     return this.http.get<Story>(`http://localhost:3030/api/story/${storyId}`)
   }
 
   public remove(storyId: number): Observable<boolean> {
-    // return from(asyncStorageService.remove(ENTITY, storyId));
     return this.http.delete<boolean>(`http://localhost:3030/api/story/${storyId}`)
   }
 
@@ -88,7 +84,9 @@ export class StoryService {
       imgUrls: [],
       by: this.userService.getEmptyMiniUser(),
       viewedBy: [],
-      createdAt: new Date()
+      createdAt: new Date(),
+      isArchived: false,
+      isSaved: false
     }
   }
 

@@ -6,6 +6,8 @@ export interface Story {
     imgUrls: string[];
     by: MiniUser;
     viewedBy: MiniUser[];
+    isArchived: boolean;
+    isSaved: boolean;
 }
 
 export interface StoryImg {

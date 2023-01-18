@@ -1,7 +1,7 @@
 const logger = require('../../services/logger.service')
 const db = require('../../database');
 
-async function query(userId) {
+async function query(userId, type) {
 
     try {
         return await db.txn(async () => {
@@ -10,10 +10,32 @@ async function query(userId) {
             userIds = [...userIds, ...followingIds.map(following => following.userId)];
 
             const promises = userIds.map(async userId => {
-                const stories = await db.query(
-                    `select * from stories where userId = $id  order by createdAt asc limit 1`,
-                    { $id: userId }
-                );
+                let stories = [];
+                if (type === 'home-page') {
+                    stories = await db.query(
+                        `select * from stories where userId = $id and isArchived = 0 order by createdAt asc limit 1`,
+                        { $id: userId }
+                    );
+                }
+                else if (type === 'story-details') {
+                    stories = await db.query(
+                        `select * from stories where userId = $id order by createdAt desc limit 1`,
+                        { $id: userId }
+                    );
+                }
+                else if (type === 'profile-details') {
+                    stories = await db.query(
+                        `select * from stories where userId = $id and isSaved = 1 order by createdAt desc limit 1`,
+                        { $id: userId }
+                    );
+                }
+                else if (type === 'hightlight-modal') {
+                    stories = await db.query(
+                        `select * from stories where userId = $id and isSaved = 0 order by createdAt desc limit 1`,
+                        { $id: userId }
+                    );
+                }
+
                 if (stories.length === 0) return null;
                 const currStory = stories[0];
 
@@ -37,6 +59,7 @@ async function query(userId) {
             stories = stories.filter(story => story !== null);
             return stories;
         });
+
     } catch (err) {
         logger.error('cannot find stories', err)
         throw err
@@ -47,7 +70,7 @@ async function getById(storyId) {
 
     try {
         return await db.txn(async () => {
-            const stories = await db.query(`select * from stories where id = $id`, { $id: storyId });
+            const stories = await db.query(`select * from stories where id = $id and isArchived = 0`, { $id: storyId });
             if (stories.length === 0) {
                 return 'story not found';
             }
@@ -60,7 +83,6 @@ async function getById(storyId) {
             currStory.viewedBy = userViews;
             const images = await db.query(`select * from storyImg where storyId = $storyId`, { $storyId: storyId });
             currStory.imgUrls = images.map(img => img.imgUrl);
-
             return currStory
         });
     } catch (err) {
@@ -85,10 +107,17 @@ async function remove(storyId) {
 
 async function update(story) {
     try {
-        await db.exec(`update stories set userId = $userId, createdAt = $createdAt where id = $id`, {
+        await db.exec(
+            `update stories set userId = $userId,
+             createdAt = $createdAt,
+             isArchived = $isArchived,
+             isSaved = $isSaved
+             where id = $id`, {
             $userId: story.userId,
             $createdAt: story.createdAt,
-            $id: story.id
+            $id: story.id,
+            $isArchived: story.isArchived,
+            $isSaved: story.isSaved
 
         })
         return story
@@ -102,9 +131,13 @@ async function add(story) {
     try {
         return await db.txn(async () => {
 
-            const id = await db.exec(`insert into stories (userId,  createdAt) values ($userId, $createdAt)`, {
+            const id = await db.exec(
+                `insert into stories (userId, createdAt, isArchived, isSaved) 
+                values ($userId, $createdAt, $isArchived, $isSaved)`, {
                 $userId: story.by.id,
-                $createdAt: story.createdAt
+                $createdAt: Date.now(),
+                $isArchived: false,
+                $isSaved: false
             })
 
 

@@ -472,3 +472,90 @@
 18.1.2023, 0:38:15 - DEBUG - auth.service - login with username: tal 
 18.1.2023, 0:38:15 - INFO - User login:  | {"id":2,"username":"tal","fullname":"tal","email":"tal@gmial.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":1,"postSum":4,"isDarkMode":0} | 478f2a8e3ae58034630b2e69737280c817fff44cfa6145cc051eab545b40dfdc084de3b342db4710c50bdec334f12520fc48da88e2c6e45969c2ebc22b76b25ffd3edbc5895ba5976ac599c63e083ea1d9645f4d9086dee8975e311b626f494f97 
 18.1.2023, 10:13:15 - INFO - Server is running on port: 3030 
+18.1.2023, 19:26:41 - INFO - Server is running on port: 3030 
+18.1.2023, 23:06:10 - INFO - Server is running on port: 3030 
+18.1.2023, 23:46:31 - INFO - Server is running on port: 3030 
+18.1.2023, 23:46:51 - INFO - Server is running on port: 3030 
+18.1.2023, 23:47:55 - INFO - Server is running on port: 3030 
+18.1.2023, 23:54:04 - INFO - Server is running on port: 3030 
+18.1.2023, 23:54:21 - INFO - Server is running on port: 3030 
+19.1.2023, 0:00:54 - INFO - Server is running on port: 3030 
+19.1.2023, 0:00:59 - INFO - Server is running on port: 3030 
+19.1.2023, 0:01:12 - INFO - Server is running on port: 3030 
+19.1.2023, 0:02:00 - INFO - Server is running on port: 3030 
+19.1.2023, 0:02:53 - INFO - Server is running on port: 3030 
+19.1.2023, 0:03:42 - INFO - Server is running on port: 3030 
+19.1.2023, 0:04:13 - INFO - Server is running on port: 3030 
+19.1.2023, 0:04:45 - INFO - Server is running on port: 3030 
+19.1.2023, 0:05:12 - INFO - Server is running on port: 3030 
+19.1.2023, 0:05:55 - INFO - Server is running on port: 3030 
+19.1.2023, 0:05:55 - ERROR - cannot set story archive | Failed to commit transaction: Error: SQLITE_ERROR: no such table: storyArchive 
+19.1.2023, 0:06:13 - INFO - Server is running on port: 3030 
+19.1.2023, 0:08:28 - INFO - Server is running on port: 3030 
+19.1.2023, 0:09:29 - ERROR - cannot update post 56 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+19.1.2023, 0:09:29 - ERROR - Failed to update post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+19.1.2023, 0:14:50 - INFO - Server is running on port: 3030 
+19.1.2023, 0:15:27 - ERROR - cannot remove story 25 | Failed to commit transaction: Error: SQLITE_BUSY: database is locked 
+19.1.2023, 0:15:27 - ERROR - Failed to delete story | Failed to commit transaction: Error: SQLITE_BUSY: database is locked 
+19.1.2023, 0:16:02 - ERROR - cannot insert story | Failed to commit transaction: TypeError: story.createdAt.getTime is not a function 
+19.1.2023, 0:16:02 - ERROR - Failed to add story | Failed to commit transaction: TypeError: story.createdAt.getTime is not a function 
+19.1.2023, 0:16:56 - INFO - Server is running on port: 3030 
+19.1.2023, 0:18:15 - INFO - Server is running on port: 3030 
+19.1.2023, 0:19:24 - INFO - Server is running on port: 3030 
+19.1.2023, 0:20:35 - INFO - Server is running on port: 3030 
+19.1.2023, 0:20:51 - INFO - Server is running on port: 3030 
+19.1.2023, 0:22:10 - INFO - Server is running on port: 3030 
+19.1.2023, 0:23:29 - INFO - Server is running on port: 3030 
+19.1.2023, 0:23:37 - INFO - Server is running on port: 3030 
+19.1.2023, 0:24:24 - INFO - Server is running on port: 3030 
+19.1.2023, 0:25:42 - INFO - Server is running on port: 3030 
+19.1.2023, 0:26:28 - INFO - Server is running on port: 3030 
+19.1.2023, 0:29:08 - INFO - Server is running on port: 3030 
+19.1.2023, 0:30:02 - INFO - Server is running on port: 3030 
+19.1.2023, 0:30:29 - INFO - Server is running on port: 3030 
+19.1.2023, 0:31:08 - INFO - Server is running on port: 3030 
+19.1.2023, 0:31:22 - INFO - Server is running on port: 3030 
+19.1.2023, 0:31:52 - INFO - Server is running on port: 3030 
+19.1.2023, 0:35:15 - INFO - Server is running on port: 3030 
+19.1.2023, 0:35:43 - INFO - Server is running on port: 3030 
+19.1.2023, 0:38:39 - INFO - Server is running on port: 3030 
+19.1.2023, 0:39:10 - INFO - Server is running on port: 3030 
+19.1.2023, 0:39:56 - INFO - Server is running on port: 3030 
+19.1.2023, 0:43:46 - INFO - Server is running on port: 3030 
+19.1.2023, 0:50:51 - INFO - Server is running on port: 3030 
+19.1.2023, 0:50:51 - ERROR - cannot set story archive | Failed to commit transaction: Error: SQLITE_ERROR: near ",": syntax error 
+19.1.2023, 0:51:06 - INFO - Server is running on port: 3030 
+19.1.2023, 0:51:06 - ERROR - cannot set story archive | Failed to commit transaction: Error: SQLITE_ERROR: near ",": syntax error 
+19.1.2023, 0:51:46 - INFO - Server is running on port: 3030 
+19.1.2023, 0:54:49 - INFO - Server is running on port: 3030 
+19.1.2023, 0:56:33 - INFO - Server is running on port: 3030 
+19.1.2023, 0:56:53 - INFO - Server is running on port: 3030 
+19.1.2023, 1:00:25 - INFO - Server is running on port: 3030 
+19.1.2023, 1:06:34 - INFO - Server is running on port: 3030 
+19.1.2023, 1:07:50 - INFO - Server is running on port: 3030 
+19.1.2023, 1:10:34 - INFO - Server is running on port: 3030 
+19.1.2023, 1:10:38 - ERROR - Failed to get user | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+19.1.2023, 1:10:38 - ERROR - while finding user 2 | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+19.1.2023, 1:10:38 - ERROR - while finding user 2 | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+19.1.2023, 1:10:38 - ERROR - Failed to get user | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+19.1.2023, 1:10:38 - ERROR - while finding user 5 | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+19.1.2023, 1:10:38 - ERROR - Failed to get user | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+19.1.2023, 1:10:38 - ERROR - while finding user 8 | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+19.1.2023, 1:10:38 - ERROR - Failed to get user | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+19.1.2023, 1:10:38 - ERROR - while finding user 4 | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+19.1.2023, 1:10:38 - ERROR - Failed to get user | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+19.1.2023, 1:10:38 - ERROR - while finding user 7 | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+19.1.2023, 1:10:38 - ERROR - Failed to get user | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+19.1.2023, 1:10:38 - ERROR - while finding user 3 | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+19.1.2023, 1:10:38 - ERROR - Failed to get user | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
+19.1.2023, 1:10:57 - INFO - Server is running on port: 3030 
+19.1.2023, 1:15:57 - INFO - Server is running on port: 3030 
+19.1.2023, 1:16:00 - ERROR - Failed to get users | Failed to commit transaction: Error: SQLITE_ERROR: no such column: isArchived 
+19.1.2023, 1:16:00 - ERROR - cannot find users | Failed to commit transaction: Error: SQLITE_ERROR: no such column: isArchived 
+19.1.2023, 1:16:20 - INFO - Server is running on port: 3030 
+19.1.2023, 1:16:26 - INFO - Server is running on port: 3030 
+19.1.2023, 1:17:26 - INFO - Server is running on port: 3030 
+19.1.2023, 1:17:38 - INFO - Server is running on port: 3030 
+19.1.2023, 1:27:15 - INFO - Server is running on port: 3030 
+19.1.2023, 1:27:48 - INFO - Server is running on port: 3030 
+19.1.2023, 1:37:25 - INFO - Server is running on port: 3030 

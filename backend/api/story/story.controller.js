@@ -2,10 +2,10 @@ const storyService = require('./story.service');
 const logger = require('../../services/logger.service')
 
 async function getStories(req, res) {
-    let userId = +req.query.userId;
+    const { userId, type } = req.query;
 
     try {
-        const stories = await storyService.query(userId)
+        const stories = await storyService.query(userId, type)
         res.send(stories)
     } catch (err) {
         logger.error('Failed to get stories', err)

@@ -302,10 +302,12 @@
         .user-details{
 
             width: 80%;
+            max-width: rem(1000px);
         }
-
+        
         .profile-details-post-list-container {
             width: 80%;
+            max-width: rem(1000px);
         }
     }
 }
