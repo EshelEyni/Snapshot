@@ -60,13 +60,12 @@
     }
 
     &.for-mini-preview {
-        position: relative;
         height: 33vw;
         width: 33vw;
     }
 
     @include for-extra-small-layout {
-        $curr-width: calc(100vw - rem(75px));
+        $curr-width: calc(100vw - rem(90px));
         $curr-size: calc($curr-width / 3);
 
         &.for-mini-preview {
@@ -76,7 +75,7 @@
     }
 
     @include for-small-layout {
-        $curr-width: calc(95vw - rem(125px));
+        $curr-width: calc(95vw - rem(150px));
         $curr-size: calc($curr-width / 3);
 
         &.for-mini-preview {

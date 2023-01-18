@@ -76,9 +76,6 @@ export class PostEditComponent implements OnInit, OnDestroy {
       zoom: 0,
       filter: 'normal',
     },
-    // ,
-    // 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669305397/p7o8v7gvoy3bgdcymu0d.jpg',
-    // 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667044038/pxbi0wi3po7fiadwdcke.jpg',
   ];
   txt: string = '';
   location: Location = {

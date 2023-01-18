@@ -5,70 +5,144 @@
 ::ng-deep .profile-details {
     @include page;
     flex-direction: column;
-    align-items: center;
-    gap: rem(25px);
     width: 100%;
+    background-color: var(--secondary-bg);
 
-    .main-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: rem(25px);
+
+
+    .user-details {
+        position: relative;
+        display: grid;
+        grid-template-columns: rem(100px) 1fr;
+        grid-template-rows: repeat(4, auto);
+        gap: rem(10px);
         width: 100%;
 
-        .user-details {
+        .img-container {
+            grid-column: 1;
+            grid-row: 1;
             display: flex;
-            justify-content: center;
-            gap: rem(150px);
+            justify-content: flex-start;
+            width: rem(80px);
+            height: rem(80px);
+            margin: rem(20px) 0 rem(20px) rem(15px);
 
-            .img-container {
-                width: rem(150px);
-                height: rem(150px);
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 50%;
-                }
-            }
-
-            .user-details-main-container {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                gap: rem(10px);
-
-                .user-name-container {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-
-                    .edit-link {
-                        font-weight: 500;
-                        padding: 5px 7.5px;
-                        font-size: rem(14px);
-                        font-weight: bold;
-                        border: 1px solid var(--border-color);
-                        border-radius: 5px;
-                    }
-                }
-
-                .info {
-                    display: flex;
-                    gap: rem(10px);
-
-                    span {
-                        font-weight: 600;
-                    }
-                }
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
             }
         }
 
+        .user-details-action-container {
+            grid-column: 2;
+            grid-row: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: rem(20px) 0;
+
+            .user-name {
+                font-size: rem(20px);
+            }
+
+            .btn-edit {
+                font-weight: 500;
+                padding: 5px 7.5px;
+                font-size: rem(14px);
+                font-weight: bold;
+                background-color: rgb(239, 239, 239);
+                border-radius: 5px;
+                max-width: rem(250px);
+            }
+
+            .btn-settings {
+                display: none;
+            }
+
+        }
+
+        .profile-details-user-info {
+            grid-column: 1/3;
+            grid-row: 2;
+            display: flex;
+            flex-direction: column;
+            gap: rem(2.5px);
+            margin: 0 0 rem(20px) rem(15px);
+            line-height: 1;
+            position: relative;
+            width: calc(100% - rem(15px));
+            
+            .user-full-name {
+                font-size: rem(14px);
+                width: x;
+            }
+            
+            .user-bio {
+                position: relative;
+                overflow: hidden;
+                width: 100%;
+            }
+        }
+
+        .hightlights-container {
+            grid-column: 1/3;
+            grid-row: 3;
+            display: flex;
+            margin-inline-start: rem(15px);
+
+            .btn-highlights {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: rem(65px);
+                height: rem(65px);
+                border: 1px solid rgb(226, 226, 226);
+                border-radius: 50%;
+            }
+        }
+
+        .profile-details-user-stats {
+            grid-column: 1/3;
+            grid-row: 4;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+
+            gap: rem(10px);
+            border-top: 1px solid var(--border-color);
+            padding: rem(12px) 0;
+            width: 100%;
+
+            >* {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: rem(5px);
+                line-height: 1;
+                font-size: rem(14px);
+
+                .stat-num {
+                    font-weight: 600;
+                }
+
+                .stat-name {
+                    color: var(--secondary-color);
+                }
+            }
+        }
+    }
+
+    .profile-details-post-list-container {
+        position: relative;
+        width: 100%;
+
         .post-filter {
+            position: relative;
             display: flex;
             justify-content: center;
             width: 100%;
-            // margin: rem(50px) 0;
             border-top: var(--border-color) 1px solid;
 
             .btns-container {
@@ -96,27 +170,89 @@
                         }
                     }
 
+
+
                     span {
                         display: none;
                     }
                 }
             }
-        }
 
+
+        }
     }
-    
+
     .main-screen {
         display: none;
     }
 
     @include for-extra-small-layout {
-        .main-container {
-            .user-details {
-                padding: 0 rem(50px);
+
+        .user-details {
+            padding: 0 rem(25px);
+            grid-template-columns: rem(175px) auto;
+            grid-template-rows: repeat(4, auto);
+            gap: 0 rem(10px);
+            margin-bottom: rem(20px);
+
+            .img-container {
+                grid-column: 1;
+                grid-row: 1/4;
+                justify-content: center;
+                align-items: center;
+                width: rem(150px);
+                height: rem(150px);
             }
 
+            .user-details-action-container {
+                grid-column: 2;
+                grid-row: 1;
+                height: fit-content;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                gap: rem(15px);
+
+                .btn-edit {
+                    width: rem(100px);
+                    height: rem(35px);
+                }
+
+            }
+
+            .profile-details-user-info {
+                grid-column: 2;
+                grid-row: 3;
+                margin: 0 0 rem(20px) 0;
+
+            }
+
+            .hightlights-container {
+                grid-column: 1/3;
+                grid-row: 4;
+            }
+
+            .profile-details-user-stats {
+                grid-column: 2;
+                grid-row: 2;
+                border-top: none;
+                justify-content: flex-start;
+                gap: rem(20px);
+
+                >* {
+                    flex-direction: row;
+
+                    .stat-name {
+                        color: var(--primary-color)
+                    }
+                }
+            }
+
+        }
+
+        .profile-details-post-list-container {
+
             .post-filter {
-                padding: 0 rem(50px);
 
                 .btns-container {
                     >* {
@@ -128,16 +264,37 @@
                     }
                 }
             }
+
         }
     }
 
     @include for-small-layout {
+        padding: rem(60px) rem(20px) rem(20px) rem(45px);
+
         profile-details-header {
             display: none;
         }
 
+        .user-details {
+            .user-details-action-container {
+                .btn-settings {
+                    display: unset;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+        }
+
         .main-screen {
             display: unset;
+        }
+    }
+
+    @include for-large-layout {
+
+        .profile-details-post-list-container {
+            width: fit-content;
         }
     }
 }

@@ -1,55 +1,84 @@
-<section class="profile-details main-layout" *ngIf="user">
-    <profile-details-header [user]="user" [isCurrUserLoggedInUser]="isCurrUserLoggedInUser" (openModal)="onToggleModal()"> </profile-details-header>
-    <main class="main-container">
-        <div class="user-details">
-            <div class="img-container">
-                <img [src]="user.imgUrl" alt="Avatar">
-            </div>
+<section class="profile-details" *ngIf="user">
 
-            <div class="user-details-main-container">
-                <div class="user-name-container">
-                    <h2>{{user.username}}</h2>
-                    <a class="edit-link" [routerLink]="['/profile-edit/',user.id]">Edit profile</a>
-                </div>
-                <div class="info">
-                    <p><span>{{user.postSum}} </span> posts</p>
-                    <p><span>{{user.followersSum}} </span> followers</p>
-                    <p><span>{{user.followingSum}} </span> following</p>
-                </div>
+    <profile-details-header [user]="user" [isCurrUserLoggedInUser]="isCurrUserLoggedInUser"
+        (openModal)="onToggleModal()"> </profile-details-header>
 
-                <h1>{{user.fullname}}</h1>
-            </div>
 
+    <div class="user-details">
+        <div class="img-container">
+            <img [src]="user.imgUrl" alt="Avatar">
         </div>
 
-        <div class="post-filter">
+        <div class="user-details-action-container">
+            <p class="user-name">{{user.username}}</p>
+            <button class="clean-btn btn-edit" [routerLink]="['/profile-edit/',user.id]">Edit profile</button>
+            <svg-icon src="../../../assets/svgs/settings-icon.svg" class="btn-settings"
+                (click)="onToggleModal()"></svg-icon>
+        </div>
+
+        <div class="profile-details-user-info">
+            <h4 class="user-full-name">{{user.fullname}}</h4>
+            <p class="user-bio">{{user.bio}}</p>
+        </div>
+
+        <div class="hightlights-container">
+            <button class="clean-btn btn-highlights">
+                <svg-icon src="../../../assets/svgs/plus.svg" [svgStyle]="{
+                    height:highlightsIconSize,
+                    width:highlightsIconSize,
+                    color:'rgb(199,199,199)',
+                    fill:'rgb(199,199,199)'
+                }"></svg-icon>
+            </button>
+        </div>
+
+        <div class="profile-details-user-stats">
+            <p>
+                <span class="stat-num">{{user.postSum}}</span>
+                <span class="stat-name">posts</span>
+            </p>
+            <p>
+                <span class="stat-num">{{user.followersSum}}</span>
+                <span class="stat-name">followers</span>
+            </p>
+            <p>
+                <span class="stat-num">{{user.followingSum}} </span>
+                <span class="stat-name">following</span>
+            </p>
+        </div>
+    </div>
+
+    <section class="profile-details-post-list-container">
+
+        <section class="post-filter">
             <div class="btns-container">
                 <button class="clean-btn" [class.active]="filterBy.createdPosts" (click)="onSetFilter('createdPosts')">
                     <svg-icon src="../../../assets/svgs/posts-rect.svg"
-                        [svgStyle]="{ 'display':'flex','color': filterBy.createdPosts ? '#262626' : '#8e8e8e'}">
+                        [svgStyle]="{ color: filterBy.createdPosts ? '#262626' : '#8e8e8e',height:postFilterIconSize,width:postFilterIconSize}">
                     </svg-icon>
                     <span>posts</span>
                 </button>
-                <button class="clean-btn" [class.active]="filterBy.savedPosts" *ngIf="isCurrUserLoggedInUser" (click)="onSetFilter('savedPosts')">
+                <button class="clean-btn" [class.active]="filterBy.savedPosts" *ngIf="isCurrUserLoggedInUser"
+                    (click)="onSetFilter('savedPosts')">
                     <svg-icon src="../../../assets/svgs/bookmark-outline.svg"
-                        [svgStyle]="{ 'display':'flex' ,'color': filterBy.savedPosts ? '#262626' : '#8e8e8e','height':12,'width':12}">
+                        [svgStyle]="{color: filterBy.savedPosts ? '#262626' : '#8e8e8e',height:postFilterIconSize,width:postFilterIconSize}">
                     </svg-icon>
                     <span>saved</span>
                 </button>
                 <button class="clean-btn" [class.active]="filterBy.taggedPosts" (click)="onSetFilter('taggedPosts')">
                     <svg-icon src="../../../assets/svgs/rect-user-tag.svg"
-                        [svgStyle]="{ 'display':'flex' ,'color': filterBy.taggedPosts ? '#262626' : '#8e8e8e'}">
+                        [svgStyle]="{ color: filterBy.taggedPosts ? '#262626' : '#8e8e8e',height:postFilterIconSize,width:postFilterIconSize}">
                     </svg-icon>
                     <span>tagged</span>
                 </button>
             </div>
-        </div>
+        </section>
 
         <post-list [posts]="(posts$|async)!" [isMiniPreview]="true"></post-list>
-    </main>
+    </section>
 
     <profile-options-modal *ngIf="isOptionsModalShown && isCurrUserLoggedInUser" [loggedinUser]="loggedinUser"
         (closeModal)="onToggleModal()"></profile-options-modal>
-        
+
     <div class="main-screen dark-mode" *ngIf="isOptionsModalShown" (click)="onToggleModal()"></div>
 </section>

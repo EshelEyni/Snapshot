@@ -7,7 +7,7 @@ import { State } from './../../store/store';
 import { User } from './../../models/user.model';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, Observable, map } from 'rxjs';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 
 @Component({
   selector: 'profile-details',
@@ -33,6 +33,8 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   posts$!: Observable<Post[]>;
   isOptionsModalShown = false;
   filterBy = { createdPosts: true, savedPosts: false, taggedPosts: false }
+  highlightsIconSize = window.innerWidth < 735 ? 30 : 45;
+  postFilterIconSize = window.innerWidth < 735 ? 24 : 12;
 
   ngOnInit(): void {
 
@@ -65,6 +67,15 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
       if (filterByQueryParams) this.onSetFilter(filterByQueryParams)
       else this.onSetFilter('createdPosts')
     });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    if ((window.innerWidth < 735 && this.highlightsIconSize !== 30)
+      || (window.innerWidth >= 735 && this.highlightsIconSize !== 45)) {
+      this.highlightsIconSize = window.innerWidth < 735 ? 30 : 45;
+      this.postFilterIconSize = window.innerWidth < 735 ? 24 : 12;
+    }
   }
 
   onSetFilter(filterBy: string) {

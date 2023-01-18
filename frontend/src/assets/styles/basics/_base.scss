@@ -65,6 +65,9 @@ ul {
 }
 
 svg-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
 }
 
@@ -106,4 +109,3 @@ svg-icon {
         font-size: 16px;
     }
 }
-
