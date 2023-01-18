@@ -33,19 +33,19 @@ export class UserService {
     return loggedinUser
   }
 
-  public loadUsers(filterBy = ''): Observable<User[]> {
+  public loadUsers(filterBy: { userId: number, type: string, limit: number }): Observable<User[]> {
     this.store.dispatch(new LoadingUsers())
-    console.log('UserService: Return Users ===> effect')
     return this.getUsers(filterBy)
   }
 
-  public getUsers(type: string): Observable<User[]> {
+  public getUsers(filterBy: { userId: number, type: string, limit: number }): Observable<User[]> {
     let options = {}
-    if (type) {
+    if (filterBy) {
       options = {
         params: {
-          type,
-          userId: this.getLoggedinUser()?.id
+          type: filterBy.type,
+          limit: filterBy.limit,
+          userId: filterBy.userId
         }
       }
     }

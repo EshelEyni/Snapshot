@@ -1,0 +1,11 @@
+<section class="discover-people-page">
+    <header class="discover-people-header">
+        <fa-icon [icon]="faChevronLeft" (click)="onGoBack()"></fa-icon>
+        <h1>discover people</h1>
+        <div></div>
+    </header>
+
+    <main class="discover-people-main-container">
+        <user-list [users]="users" [type]="'discover-people-list'"></user-list>
+    </main>
+</section>

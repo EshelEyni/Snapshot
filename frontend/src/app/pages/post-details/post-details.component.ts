@@ -44,6 +44,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   posts$!: Observable<Post[]>;
   postsIds: number[] = [];
   classForPost = 'post';
+  isUserReqDispatched: boolean = false;
 
   faChevronLeft = faChevronLeft;
   isOptionsModalShown: boolean = false;
@@ -75,7 +76,6 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
           this.userPosts$ = this.postService.createdPosts$
         }
         else {
-          this.store.dispatch(new LoadUsers('suggested'));
 
           if (this.isExplorePage) {
             this.posts$ = this.postService.posts$
@@ -93,7 +93,15 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
       if (user) {
         this.loggedinUser = { ...user };
         this.isPostOwnedByUser = this.loggedinUser.id === this.post.by.id
-
+      
+        if (this.isNested && this.loggedinUser && !this.isUserReqDispatched) {
+          this.isUserReqDispatched = true;
+          this.store.dispatch(new LoadUsers({
+            userId: this.loggedinUser.id,
+            type: 'suggested',
+            limit: 5,
+          }));
+        }
       }
     })
   }

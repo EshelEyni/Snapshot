@@ -7,7 +7,23 @@
     gap: rem(15px);
 
     .user-list-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         color: var(--secondary-color);
+
+        .see-all-link {
+            font-size: rem(14px);
+            color: var(--primary-color);
+            cursor: pointer;
+            font-family: var(--primary-font);
+            text-transform: capitalize;
+            font-weight: 500;
+
+            &:hover {
+                color: var(--secondary-color);
+            }
+        }
     }
 
     .default-list {

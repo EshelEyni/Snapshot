@@ -9,7 +9,7 @@
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease-in-out;
-    
+
     .post-app {
         position: relative;
         display: flex;
@@ -50,7 +50,7 @@
 
             flex-direction: row;
             justify-content: center;
-            align-items:unset ;
+            align-items: unset;
             margin-top: rem(50px);
 
             .user-list-container {
@@ -69,11 +69,15 @@
                     }
 
                     .user-info {
+                        width: rem(70px);
+                        line-height: 1;
+
                         span {
                             font-weight: 600;
                         }
                     }
                 }
+
             }
         }
 

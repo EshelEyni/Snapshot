@@ -12,7 +12,6 @@ export class AppEffects {
   loadUsers$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(LOAD_USERS),
-      tap(() => console.log('Effects: load users ==> service')),
       switchMap((action) =>
         this.userService.loadUsers(action.filterBy).pipe(
           tap(() => console.log('Effects: Got users from service, send it to ===> Reducer')),
@@ -34,7 +33,6 @@ export class AppEffects {
   loadUser$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(LOAD_USER),
-      tap(() => console.log('Effects: load user ==> service')),
       switchMap((action) =>
         this.userService.getById(action.userId).pipe(
           tap(() => console.log('Effects: Got user from service ===> Reducer')),
@@ -56,7 +54,6 @@ export class AppEffects {
   loadLoggedinUser$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(LOAD_LOGGEDIN_USER),
-      tap(() => console.log('Effects: load user ==> service')),
       switchMap((action) =>
         this.userService.getById(action.userId).pipe(
           tap(() => console.log('Effects: Got user from service ===> Reducer')),
@@ -80,7 +77,6 @@ export class AppEffects {
       ofType(REMOVE_USER),
       switchMap((action) =>
         this.userService.remove(action.userId).pipe(
-          tap(() => console.log('Effects: User removed by service ===> Reducer')),
           map(() => ({
             type: REMOVED_USER,
             userId: action.userId,
@@ -101,7 +97,6 @@ export class AppEffects {
       ofType(SAVE_USER),
       switchMap((action) =>
         this.userService.update(action.user).pipe(
-          tap(() => console.log('Effects: User saved by service, inform the ===> Reducer')),
           map((savedUser) => ({
             type: (action.user.id) ? UPDATED_USER : ADDED_USER,
             user: savedUser,

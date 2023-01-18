@@ -6,9 +6,11 @@
             <post-list [posts]="(posts$|async)!"></post-list>
         </div>
         <div class="user-list-container">
-            <user-preview [user]="userService.getMiniUser(loggedinUser)" [type]="'suggestion-list'"
-                *ngIf="loggedinUser"></user-preview>
-            <user-list [type]="'suggestion-list'" [users]="users"></user-list>
+                <user-preview [user]="userService.getMiniUser(loggedinUser)" [type]="'suggestion-list'"
+                    *ngIf="loggedinUser"></user-preview>
+
+
+            <user-list [type]="'home-page-suggestion-list'" [users]="users"></user-list>
         </div>
     </main>
     <router-outlet></router-outlet>

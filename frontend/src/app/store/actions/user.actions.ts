@@ -19,7 +19,7 @@ export type UserAction = LoadUsers | LoadUser | LoadLoggedInUser | RemoveUser | 
 
 export class LoadUsers implements Action {
   readonly type = LOAD_USERS;
-  constructor(public filterBy: string = '') { }
+  constructor(public filterBy: { userId: number, type: string, limit: number }) { }
 }
 export class LoadUser implements Action {
   readonly type = LOAD_USER;

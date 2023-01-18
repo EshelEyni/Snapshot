@@ -4,7 +4,7 @@ const db = require('../../database');
 async function query(queryParams) {
     try {
         if (!queryParams.searchTerm) {
-            const { type, userId } = queryParams;
+            const { userId, type, limit } = queryParams;
             if (type === 'suggested') {
                 return await db.txn(async () => {
                     const following = await db.query(`select * from following where followerId = $id`, { $id: userId });
@@ -20,7 +20,10 @@ async function query(queryParams) {
                             `select * from users
                         where id != $id
                         order by random()
-                        limit 5`, { $id: userId });
+                        limit  $limit`, {
+                            $id: userId,
+                            $limit: limit
+                        });
                         return randomUsers;
                     }
                 });

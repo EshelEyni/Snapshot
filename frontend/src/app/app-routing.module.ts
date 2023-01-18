@@ -1,3 +1,4 @@
+import { DiscoverPeopleComponent } from './pages/discover-people/discover-people.component';
 import { ActivityComponent } from './pages/activity/activity.component';
 import { StoryEditComponent } from './cmps/story-edit/story-edit.component';
 import { StoryDetailsComponent } from './cmps/story-details/story-details.component';
@@ -38,6 +39,8 @@ const routes: Routes = [
     ]
   },
   { path: 'activity', component: ActivityComponent, canActivate: [AuthGuard] },
+  { path: 'discover-people', component: DiscoverPeopleComponent, resolve: { user: UserResolver }, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

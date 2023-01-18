@@ -42,12 +42,12 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
   ngOnInit(): void {
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) {
-        this.loggedinUser = {...user}
+        this.loggedinUser = { ...user }
       }
     })
     this.setTitle();
 
-    this.isFollowBtnShow = this.type === 'like-modal' || this.type === 'suggestion-list'
+    this.isFollowBtnShow = this.type === 'like-modal' || this.type === 'home-page-suggestion-list' || this.type === 'discover-people-list';
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -87,8 +87,11 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
 
   setTitle() {
     switch (this.type) {
-      case 'suggestion-list':
+      case 'home-page-suggestion-list':
         this.title = 'Suggestion For You';
+        break;
+      case 'discover-people-list':
+        this.title = 'Suggested';
         break;
       case 'share-modal':
         this.title = 'Suggested';

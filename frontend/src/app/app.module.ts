@@ -97,6 +97,7 @@ import { PaginationBtnPrevComponent } from './cmps/pagination-btn-prev/paginatio
 import { PaginationBtnNextComponent } from './cmps/pagination-btn-next/pagination-btn-next.component';
 import { ProfileDetailsHeaderComponent } from './cmps/profile-details-header/profile-details-header.component';
 import { ProfileOptionsModalComponent } from './cmps/profile-options-modal/profile-options-modal.component';
+import { DiscoverPeopleComponent } from './pages/discover-people/discover-people.component';
 
 @NgModule({
   declarations: [
@@ -173,6 +174,7 @@ import { ProfileOptionsModalComponent } from './cmps/profile-options-modal/profi
     PaginationBtnNextComponent,
     ProfileDetailsHeaderComponent,
     ProfileOptionsModalComponent,
+    DiscoverPeopleComponent,
   ],
   imports: [
     BrowserAnimationsModule,

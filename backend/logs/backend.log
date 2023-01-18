@@ -471,3 +471,4 @@
 18.1.2023, 0:33:30 - INFO - Server is running on port: 3030 
 18.1.2023, 0:38:15 - DEBUG - auth.service - login with username: tal 
 18.1.2023, 0:38:15 - INFO - User login:  | {"id":2,"username":"tal","fullname":"tal","email":"tal@gmial.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":1,"postSum":4,"isDarkMode":0} | 478f2a8e3ae58034630b2e69737280c817fff44cfa6145cc051eab545b40dfdc084de3b342db4710c50bdec334f12520fc48da88e2c6e45969c2ebc22b76b25ffd3edbc5895ba5976ac599c63e083ea1d9645f4d9086dee8975e311b626f494f97 
+18.1.2023, 10:13:15 - INFO - Server is running on port: 3030 

@@ -1,6 +1,7 @@
 <section class="user-list">
     <header class="user-list-header" *ngIf="isTitle">
         <p>{{title}}</p>
+        <span class="see-all-link" *ngIf="type === 'home-page-suggestion-list'" [routerLink]="'/discover-people/'">see all</span>
     </header>
 
     <ul class="default-list" *ngIf="type !== 'search-bar-list'">
