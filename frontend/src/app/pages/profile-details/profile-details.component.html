@@ -21,7 +21,7 @@
             <p class="user-bio">{{user.bio}}</p>
         </div>
 
-        <div class="hightlights-container">
+        <div class="hightlights-container" *ngIf="isCurrUserLoggedInUser">
             <button class="clean-btn btn-highlights" (click)="onToggleModal('highlights')">
                 <svg-icon src="../../../assets/svgs/plus.svg" [svgStyle]="{
                     height:highlightsIconSize,
@@ -77,10 +77,11 @@
         <post-list [posts]="(posts$|async)!" [isMiniPreview]="true"></post-list>
     </section>
 
-    <profile-options-modal *ngIf="isOptionsModalShown && isCurrUserLoggedInUser" [loggedinUser]="loggedinUser"
-        (closeModal)="onToggleModal('options')"></profile-options-modal>
 
-    <highlights-modal *ngIf="isHighlightsModalShown" (closeModal)="onToggleModal('highlight')"></highlights-modal>
-
-    <div class="main-screen dark-mode" *ngIf="isMainScreenShown" (click)="onToggleModal('main-screen')"></div>
 </section>
+<profile-options-modal *ngIf="isOptionsModalShown && isCurrUserLoggedInUser" [loggedinUser]="loggedinUser"
+    (closeModal)="onToggleModal('options')"></profile-options-modal>
+
+<highlights-modal *ngIf="isHighlightsModalShown" [loggedinUser]="loggedinUser"
+    (closeModal)="onToggleModal('highlights')"></highlights-modal>
+<div class="main-screen dark-mode" *ngIf="isMainScreenShown" (click)="onToggleModal('main-screen')"></div>

@@ -1,0 +1,125 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/mixins';
+@import '../../../assets/styles/setup/vars';
+
+.highlights-name-edit {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    background-color: var(--secondary-bg);
+
+    .highlights-name-edit-header {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: rem(50px);
+        padding: 0 rem(15px);
+        background-color: var(--secondary-bg);
+        border-bottom: var(--border-color) solid 1px;
+        transition: all 0.5s ease-in-out;
+        border-radius: 10px 10px 0 0;
+
+        h2 {
+            flex-basis: 0px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            font-weight: 600;
+            font-size: rem(16px);
+            font-family: var(--primary-font);
+            text-align: center;
+            text-transform: capitalize;
+        }
+
+        fa-icon {
+            font-size: rem(18px);
+            cursor: pointer;
+            flex-basis: rem(35px);
+        }
+
+        div {
+            flex-basis: rem(15px);
+        }
+    }
+
+    .highlights-name-edit-content {
+        flex-grow: 1;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        width: 100%;
+
+        .highlights-name-edit-input {
+            position: relative;
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            width: 100%;
+            padding: rem(15px);
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--secondary-bg);
+
+            input {
+                width: 100%;
+                height: rem(40px);
+                padding: 0 rem(15px);
+                font-size: rem(16px);
+                font-family: var(--primary-font);
+                border: var(--border-color) solid 1px;
+                border-radius: 10px;
+                outline: none;
+                transition: all 0.5s ease-in-out;
+                background-color: var(--primary-bg);
+
+                &::placeholder {
+                    color: var(--input-placeholder-secondary-color);
+                    text-transform: capitalize;
+                }
+            }
+        }
+
+        .btn-add-highlight {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: rem(16px);
+            font-weight: 700;
+            font-family: var(--primary-font);
+            text-transform: capitalize;
+            height: rem(40px);
+            color: var(--secondary-color);
+
+            &.input-valid {
+                color: var(--primary-button);
+            }
+        }
+    }
+
+
+    @include for-extra-small-layout {
+        width: rem(400px);
+
+        .highlights-name-edit-content {
+            .highlights-name-edit-input {
+                input {
+                    height: rem(50px);
+                }
+            }
+
+            .btn-add-highlight {
+
+                height: rem(50px);
+            }
+
+        }
+    }
+
+}

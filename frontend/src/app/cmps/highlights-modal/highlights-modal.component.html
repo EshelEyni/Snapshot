@@ -1,1 +1,11 @@
-<p>highlights-modal works!</p>
+<section class="highlights-modal" [class.name-edit-mode]="isHighlightNameEdit">
+
+    <highlights-name-edit *ngIf="isHighlightNameEdit" (close)="onCloseModal()"
+        (addHightlightName)="onAddHighlightName($event)" [highlightName]="highlightName"></highlights-name-edit>
+
+    <hightlights-story-picker *ngIf="isStoryPicker" (goBack)="onGoBack()" (storySelected)="onStorySelected($event)"
+        (close)="onCloseModal()"></hightlights-story-picker>
+
+
+    <hightlights-cover-picker *ngIf="isCoverPicker" (goBack)="onGoBack()"></hightlights-cover-picker>
+</section>

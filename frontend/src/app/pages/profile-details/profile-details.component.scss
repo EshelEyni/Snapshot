@@ -189,9 +189,9 @@
 
     }
 
-    .main-screen {
-        display: none;
-    }
+    // .main-screen {
+    //     display: none;
+    // }
 
     @include for-extra-small-layout {
 
@@ -293,9 +293,9 @@
             }
         }
 
-        .main-screen {
-            display: unset;
-        }
+        // .main-screen {
+        //     display: unset;
+        // }
     }
 
     @include for-large-layout {

@@ -1,0 +1,27 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/mixins';
+@import '../../../assets/styles/setup/vars';
+
+::ng-deep .highlights-modal {
+    @include modal;
+    display: flex;
+    width: rem(360px);
+    height: rem(700px);
+    background-color: var(--primary-bg);
+    
+    &.name-edit-mode {
+        height: rem(175px);
+        width: rem(260px);
+    }
+
+    @include for-mobile-wide-layout {
+        width: rem(445px);
+    }
+        
+    @include for-extra-small-layout {
+        &.name-edit-mode {
+            width: rem(400px);
+        }
+    }
+
+}

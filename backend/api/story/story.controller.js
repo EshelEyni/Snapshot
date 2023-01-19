@@ -14,8 +14,9 @@ async function getStories(req, res) {
 }
 
 async function getStory(req, res) {
+    const { type } = req.query;
     try {
-        const story = await storyService.getById(req.params.id)
+        const story = await storyService.getById(req.params.id, type)
         res.send(story)
     } catch (err) {
         logger.error('Failed to get story', err)

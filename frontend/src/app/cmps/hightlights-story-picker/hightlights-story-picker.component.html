@@ -1,0 +1,19 @@
+<section class="highlights-story-picker">
+    <header class="highlights-story-picker-header">
+        <button class="clean-btn btn-go-back" (click)="onGoBack()">
+            <fa-icon [icon]="faChevronLeft"></fa-icon>
+        </button>
+        <h2>Stories</h2>
+        <button class="clean-btn">
+            <fa-icon [icon]="faX" (click)="onCloseModal()"></fa-icon>
+        </button>
+    </header>
+
+    <main class="highlights-story-picker-content">
+        <div class="highlights-story-picker-list-container">
+            <story-list [type]="'highlight-story-picker'"></story-list>
+        </div>
+        <button class="clean-btn btn-add-highlight" [class.input-valid]="story"
+            (click)="onStorySelected()">next</button>
+    </main>
+</section>

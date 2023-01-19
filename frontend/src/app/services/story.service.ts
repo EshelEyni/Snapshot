@@ -4,12 +4,7 @@ import { StorageService } from './storage.service';
 import { Story } from './../models/story.model';
 import { BehaviorSubject, firstValueFrom, from, Observable } from 'rxjs';
 import { Injectable, inject } from '@angular/core';
-import { asyncStorageService } from './async-storage.service';
 import { MiniUser } from '../models/user.model';
-
-const STORIES: Story[] = []
-
-const ENTITY = 'story';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +12,11 @@ const ENTITY = 'story';
 
 export class StoryService {
 
-  private _storiesDb = STORIES;
-  private _stories$ = new BehaviorSubject<Story[]>(this._storiesDb);
+  private _stories$ = new BehaviorSubject<Story[]>([]);
   public stories$ = this._stories$.asObservable();
+
+  private _highlightedStories$ = new BehaviorSubject<Story[]>([]);
+  public highlightedStories$ = this._highlightedStories$.asObservable();
 
   constructor() { }
   storageService = inject(StorageService);
@@ -40,8 +37,9 @@ export class StoryService {
     this._stories$.next(stories);
   }
 
-  public getById(storyId: number): Observable<Story> {
-    return this.http.get<Story>(`http://localhost:3030/api/story/${storyId}`)
+  public getById(storyId: number, type: string): Observable<Story> {
+    let options = { params: { type } }
+    return this.http.get<Story>(`http://localhost:3030/api/story/${storyId}`, options)
   }
 
   public remove(storyId: number): Observable<boolean> {

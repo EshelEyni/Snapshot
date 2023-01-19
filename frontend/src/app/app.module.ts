@@ -99,6 +99,9 @@ import { ProfileDetailsHeaderComponent } from './cmps/profile-details-header/pro
 import { ProfileOptionsModalComponent } from './cmps/profile-options-modal/profile-options-modal.component';
 import { DiscoverPeopleComponent } from './pages/discover-people/discover-people.component';
 import { HighlightsModalComponent } from './cmps/highlights-modal/highlights-modal.component';
+import { HighlightsNameEditComponent } from './cmps/highlights-name-edit/highlights-name-edit.component';
+import { HightlightsStoryPickerComponent } from './cmps/hightlights-story-picker/hightlights-story-picker.component';
+import { HightlightsCoverPickerComponent } from './cmps/hightlights-cover-picker/hightlights-cover-picker.component';
 
 @NgModule({
   declarations: [
@@ -177,6 +180,9 @@ import { HighlightsModalComponent } from './cmps/highlights-modal/highlights-mod
     ProfileOptionsModalComponent,
     DiscoverPeopleComponent,
     HighlightsModalComponent,
+    HighlightsNameEditComponent,
+    HightlightsStoryPickerComponent,
+    HightlightsCoverPickerComponent,
   ],
   imports: [
     BrowserAnimationsModule,

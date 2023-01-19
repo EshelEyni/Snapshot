@@ -1,0 +1,17 @@
+<section class="highlights-name-edit">
+    <header class="highlights-name-edit-header">
+        <div></div>
+        <h2>new highlight</h2>
+        <div>
+            <fa-icon (click)="onCloseModal()" [icon]="faX"></fa-icon>
+        </div>
+    </header>
+
+    <main class="highlights-name-edit-content">
+        <div class="highlights-name-edit-input">
+            <input type="text" placeholder="highlight name" [(ngModel)]="highlightName">
+        </div>
+        <button class="clean-btn btn-add-highlight" [class.input-valid]="highlightName"
+            (click)="onAddHighlightName()">next</button>
+    </main>
+</section>

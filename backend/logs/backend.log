@@ -559,3 +559,23 @@
 19.1.2023, 1:27:15 - INFO - Server is running on port: 3030 
 19.1.2023, 1:27:48 - INFO - Server is running on port: 3030 
 19.1.2023, 1:37:25 - INFO - Server is running on port: 3030 
+19.1.2023, 1:47:18 - INFO - Server is running on port: 3030 
+19.1.2023, 1:51:12 - INFO - Server is running on port: 3030 
+19.1.2023, 1:51:22 - INFO - Server is running on port: 3030 
+19.1.2023, 1:54:57 - INFO - Server is running on port: 3030 
+19.1.2023, 1:56:48 - INFO - Server is running on port: 3030 
+19.1.2023, 1:57:48 - INFO - Server is running on port: 3030 
+19.1.2023, 1:58:10 - INFO - Server is running on port: 3030 
+19.1.2023, 1:59:01 - INFO - Server is running on port: 3030 
+19.1.2023, 2:01:20 - INFO - Server is running on port: 3030 
+19.1.2023, 2:03:20 - INFO - Server is running on port: 3030 
+19.1.2023, 6:18:51 - INFO - Server is running on port: 3030 
+19.1.2023, 9:03:41 - INFO - Server is running on port: 3030 
+19.1.2023, 9:06:49 - INFO - Server is running on port: 3030 
+19.1.2023, 9:07:44 - INFO - Server is running on port: 3030 
+19.1.2023, 9:08:21 - INFO - Server is running on port: 3030 
+19.1.2023, 9:08:56 - INFO - Server is running on port: 3030 
+19.1.2023, 9:17:53 - INFO - Server is running on port: 3030 
+19.1.2023, 9:29:21 - INFO - Server is running on port: 3030 
+19.1.2023, 9:29:54 - ERROR - cannot insert story | Failed to commit transaction: Error: SQLITE_BUSY: database is locked 
+19.1.2023, 9:29:54 - ERROR - Failed to add story | Failed to commit transaction: Error: SQLITE_BUSY: database is locked 

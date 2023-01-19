@@ -2,7 +2,7 @@ import { Story } from './../../models/story.model'
 import { StoryService } from './../../services/story.service'
 import { UserService } from 'src/app/services/user.service'
 import { MiniUser } from './../../models/user.model'
-import { Component, OnInit,OnChanges, inject } from '@angular/core'
+import { Component, OnInit, OnChanges, inject } from '@angular/core'
 import { Location } from 'src/app/models/post.model'
 import { lastValueFrom } from 'rxjs'
 
@@ -37,16 +37,18 @@ export class UserPreviewComponent implements OnInit, OnChanges {
   isUrlsDisabled!: boolean;
 
   async ngOnInit() {
+
     this.isStoryDisabled = this.type === 'story-edit-page'
       || this.type === 'link-to-story-edit'
       || this.type === 'story-timer'
       || this.type === 'suggestion-list'
+      || this.type === 'home-page-suggestion-list'
 
     if (!this.isStoryDisabled) {
       const user = await lastValueFrom(this.userService.getById(this.user.id))
       if (user && user.currStoryId) {
         const story = await lastValueFrom(
-          this.storyService.getById(user.currStoryId),
+          this.storyService.getById(user.currStoryId, 'user-preview'),
         )
 
         const loggedinUser = this.userService.getLoggedinUser()
@@ -83,8 +85,8 @@ export class UserPreviewComponent implements OnInit, OnChanges {
   setUrls() {
     switch (this.type) {
       case 'home-page-list':
-        this.urlForImg = `/story/${this.story.id}`
-        this.urlForTitle = `/story/${this.story.id}`
+        this.urlForImg = `/story/${this.story?.id}`
+        this.urlForTitle = `/story/${this.story?.id}`
         break
       case 'post-preview':
         this.urlForImg = this.story
@@ -94,6 +96,10 @@ export class UserPreviewComponent implements OnInit, OnChanges {
         if (this.desc) this.urlForDesc = `/location/${this.location?.name}`
         break
       case 'suggestion-list':
+        this.urlForImg = `/profile/${this.user.id}`
+        this.urlForTitle = `/profile/${this.user.id}`
+        break
+      case 'home-page-suggestion-list':
         this.urlForImg = `/profile/${this.user.id}`
         this.urlForTitle = `/profile/${this.user.id}`
         break
@@ -133,6 +139,9 @@ export class UserPreviewComponent implements OnInit, OnChanges {
         this.desc = this.location ? this.location.name : ''
         break
       case 'suggestion-list':
+        this.desc = this.user.fullname
+        break
+      case 'home-page-suggestion-list':
         this.desc = this.user.fullname
         break
       case 'search-modal':

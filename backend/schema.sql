@@ -139,6 +139,9 @@ CREATE TABLE IF NOT EXISTS "stories" (
     "createdAt" TIMESTAMP NOT NULL,
     "isArchived" BOOLEAN NOT NULL,
     "isSaved" BOOLEAN NOT NULL,
+    "savedAt" TIMESTAMP,
+    "hightlightTitle" TEXT,
+    "hightlightCover" INTEGER,
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("userId") references "users"("id")
 );
 

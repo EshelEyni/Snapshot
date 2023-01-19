@@ -35,8 +35,8 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   filterBy = { createdPosts: true, savedPosts: false, taggedPosts: false }
   highlightsIconSize = window.innerWidth < 735 ? 30 : 45;
   postFilterIconSize = window.innerWidth < 735 ? 24 : 12;
-  isHighlightsModalShown: boolean = false;
-  isMainScreenShown: boolean = false;
+  isHighlightsModalShown: boolean = true;
+  isMainScreenShown: boolean = true;
 
   ngOnInit(): void {
 
@@ -122,6 +122,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   }
 
   onToggleModal(el: string) {
+    console.log('onCloseModal');
 
     switch (el) {
       case 'highlights':

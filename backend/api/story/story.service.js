@@ -5,59 +5,65 @@ async function query(userId, type) {
 
     try {
         return await db.txn(async () => {
-            let userIds = [userId]
-            const followingIds = await db.query(`select userId from following where followerId = $id`, { $id: userId });
-            userIds = [...userIds, ...followingIds.map(following => following.userId)];
 
-            const promises = userIds.map(async userId => {
-                let stories = [];
-                if (type === 'home-page') {
-                    stories = await db.query(
-                        `select * from stories where userId = $id and isArchived = 0 order by createdAt asc limit 1`,
+            if (type === 'home-page' || type === 'story-details') {
+
+                let userIds = [userId]
+                const followingIds = await db.query(`select userId from following where followerId = $id`, { $id: userId });
+                userIds = [...userIds, ...followingIds.map(following => following.userId)];
+
+                const promises = userIds.map(async userId => {
+                    let stories = [];
+                    if (type === 'home-page') {
+                        stories = await db.query(
+                            `select * from stories where userId = $id and isArchived = 0 order by createdAt asc limit 1`,
+                            { $id: userId }
+                        );
+                    }
+                    else if (type === 'story-details') {
+                        stories = await db.query(
+                            `select * from stories where userId = $id order by createdAt desc limit 1`,
+                            { $id: userId }
+                        );
+                    }
+
+                    if (stories.length === 0) return null;
+                    const currStory = stories[0];
+                    return await _getStoryData(currStory);
+                });
+
+                let stories = await Promise.all(promises);
+                stories = stories.filter(story => story !== null);
+                return stories;
+            }
+
+            if (type === 'profile-details' || type === 'highlight-story-picker') {
+                let storiesTableResults
+                if (type === 'profile-details') {
+                    storiesTableResults = await db.query(
+                        `select * from stories where userId = $id and isSaved = 1 order by createdAt asc`,
                         { $id: userId }
                     );
+
+                    if (storiesTableResults.length === 0) return null;
+
                 }
-                else if (type === 'story-details') {
-                    stories = await db.query(
-                        `select * from stories where userId = $id order by createdAt desc limit 1`,
+                else if (type === 'highlight-story-picker') {
+                    storiesTableResults = await db.query(
+                        `select * from stories where userId = $id and isSaved = 0 order by createdAt asc`,
                         { $id: userId }
                     );
+                    if (storiesTableResults.length === 0) return null;
+
                 }
-                else if (type === 'profile-details') {
-                    stories = await db.query(
-                        `select * from stories where userId = $id and isSaved = 1 order by createdAt desc limit 1`,
-                        { $id: userId }
-                    );
-                }
-                else if (type === 'hightlight-modal') {
-                    stories = await db.query(
-                        `select * from stories where userId = $id and isSaved = 0 order by createdAt desc limit 1`,
-                        { $id: userId }
-                    );
-                }
+                const promises = storiesTableResults.map(async story => {
+                    return await _getStoryData(story);
+                });
 
-                if (stories.length === 0) return null;
-                const currStory = stories[0];
+                let stories = await Promise.all(promises);
+                return stories;
 
-                const users = await db.query(`select * from users where id = $id limit 1`, { $id: currStory.userId });
-                if (users.length === 0) throw new Error('user not found: ' + currStory.userId);
-                const user = users[0];
-                currStory.by = { id: user.id, username: user.username, fullname: user.fullname, imgUrl: user.imgUrl };
-
-                const userViews = await db.query(
-                    `select userId as id, username, fullname, imgUrl from storyViews where storyId = $id`,
-                    { $id: currStory.id });
-                currStory.viewedBy = userViews;
-
-                const images = await db.query(`select * from storyImg where storyId = $storyId`, { $storyId: currStory.id });
-                currStory.imgUrls = images.map(img => img.imgUrl);
-
-                return currStory;
-            });
-
-            let stories = await Promise.all(promises);
-            stories = stories.filter(story => story !== null);
-            return stories;
+            }
         });
 
     } catch (err) {
@@ -66,29 +72,44 @@ async function query(userId, type) {
     }
 }
 
-async function getById(storyId) {
-
+async function getById(storyId, type) {
     try {
         return await db.txn(async () => {
-            const stories = await db.query(`select * from stories where id = $id and isArchived = 0`, { $id: storyId });
+            let stories = [];
+
+            if (type === 'user-preview') {
+                stories = await db.query(`select * from stories where id = $id and isArchived = 0`, {
+                    $id: storyId,
+                });
+            }
+            else if (type === 'story-details') {
+                stories = await db.query(`select * from stories where id = $id`, {
+                    $id: storyId,
+                });
+            }
+
             if (stories.length === 0) {
                 return 'story not found';
             }
             const currStory = stories[0];
-            const users = await db.query(`select * from users where id = $id`, { $id: currStory.userId });
-            if (users.length === 0) throw new Error('user not found: ' + currStory.userId);
-            const user = users[0];
-            currStory.by = { id: user.id, username: user.username, fullname: user.fullname, imgUrl: user.imgUrl };
-            const userViews = await db.query(`select userId as id, username, fullname, imgUrl from storyViews where storyId = $id`, { $id: storyId });
-            currStory.viewedBy = userViews;
-            const images = await db.query(`select * from storyImg where storyId = $storyId`, { $storyId: storyId });
-            currStory.imgUrls = images.map(img => img.imgUrl);
-            return currStory
+            return await _getStoryData(currStory);
         });
     } catch (err) {
         logger.error(`while finding story ${storyId}`, err)
         throw err
     }
+}
+
+async function _getStoryData(currStory) {
+    const users = await db.query(`select * from users where id = $id`, { $id: currStory.userId });
+    if (users.length === 0) throw new Error('user not found: ' + currStory.userId);
+    const user = users[0];
+    currStory.by = { id: user.id, username: user.username, fullname: user.fullname, imgUrl: user.imgUrl };
+    const userViews = await db.query(`select userId as id, username, fullname, imgUrl from storyViews where storyId = $id`, { $id: currStory.id });
+    currStory.viewedBy = userViews;
+    const images = await db.query(`select * from storyImg where storyId = $storyId`, { $storyId: currStory.id });
+    currStory.imgUrls = images.map(img => img.imgUrl);
+    return currStory
 }
 
 async function remove(storyId) {
@@ -111,13 +132,15 @@ async function update(story) {
             `update stories set userId = $userId,
              createdAt = $createdAt,
              isArchived = $isArchived,
-             isSaved = $isSaved
+             isSaved = $isSaved,
+             savedAt = $savedAt
              where id = $id`, {
             $userId: story.userId,
             $createdAt: story.createdAt,
             $id: story.id,
             $isArchived: story.isArchived,
-            $isSaved: story.isSaved
+            $isSaved: story.isSaved,
+            $savedAt: story.isSaved ? Date.now() : null
 
         })
         return story
