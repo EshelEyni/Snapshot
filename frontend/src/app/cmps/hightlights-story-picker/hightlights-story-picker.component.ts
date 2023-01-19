@@ -7,7 +7,7 @@ import { Story } from 'src/app/models/story.model';
   selector: 'hightlights-story-picker',
   templateUrl: './hightlights-story-picker.component.html',
   styleUrls: ['./hightlights-story-picker.component.scss'],
-  outputs: ['close','goBack', 'storySelected']
+  outputs: ['close', 'goBack', 'storySelected']
 })
 export class HightlightsStoryPickerComponent implements OnInit {
 
@@ -16,17 +16,18 @@ export class HightlightsStoryPickerComponent implements OnInit {
   storySelected = new EventEmitter<Story>();
   close = new EventEmitter();
   goBack = new EventEmitter();
-  story!: Story;
+  story!: Story | null;
   faX = faX;
   faChevronLeft = faChevronLeft;
   ngOnInit(): void {
   }
 
   onStorySelected() {
+    if(!this.story) return;
     this.storySelected.emit(this.story);
   }
 
-  onStoryChecked(story: Story) {
+  onStoryChecked(story: Story | null) {
     this.story = story;
   }
 

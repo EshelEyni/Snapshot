@@ -1,6 +1,20 @@
-<div *ngIf="!isChecked; else checkboxFull">
-    <svg-icon src="../../../assets/svgs/checkbox-empty.svg" #svgIcon></svg-icon>
-</div>
-<ng-template #checkboxFull>
-    <svg-icon src="../../../assets/svgs/checkbox-full.svg" #svgIcon></svg-icon>
-</ng-template>
+<container-element [ngSwitch]="type">
+    <div *ngSwitchCase="'user-list'">
+        <div *ngIf="!isChecked; else checkboxFull">
+            <svg-icon src="../../../assets/svgs/checkbox-empty.svg" #svgIcon></svg-icon>
+        </div>
+        <ng-template #checkboxFull>
+            <svg-icon src="../../../assets/svgs/checkbox-full.svg"></svg-icon>
+        </ng-template>
+    </div>
+
+    <div *ngSwitchCase="'highlight-story-picker'">
+        <div *ngIf="!isChecked; else checkboxFull">
+            <svg-icon src="../../../assets/svgs/checkbox-empty.svg" [svgStyle]="{color:'white'}"></svg-icon>
+        </div>
+        <ng-template #checkboxFull>
+            <svg-icon src="../../../assets/svgs/checkbox-full.svg"
+                [svgStyle]="{backgroundColor:'white',border:'0.5px solid white',borderRadius:'50%'}"></svg-icon>
+        </ng-template>
+    </div>
+</container-element>

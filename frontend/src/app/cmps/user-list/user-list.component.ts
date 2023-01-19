@@ -34,7 +34,7 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
   title: string = '';
   isFollowBtnShow: boolean = false;
 
-  isSelectUser: { userId: number, idx: number, isSelected: boolean }[] = [];
+  isSelectUser: { idx: number, isSelected: boolean }[] = [];
   addUser = new EventEmitter<MiniUser>();
   removeUser = new EventEmitter<MiniUser>();
 
@@ -67,7 +67,7 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
   setIsSelectUser() {
     this.isSelectUser = this.users.map((user, idx) => {
       const isUserSelected = this.usersToSend.some((userToSend) => userToSend.id === user.id);
-      return { userId: user.id, idx, isSelected: isUserSelected };
+      return { idx, isSelected: isUserSelected };
     });
   }
 

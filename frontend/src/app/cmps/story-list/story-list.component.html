@@ -1,32 +1,46 @@
-    <div class="story-list-container" *ngIf="!currStory; else forStoryDetails">
+<container-element [ngSwitch]="type">
+
+
+    <div class="story-list-container" *ngSwitchCase="'home-page'">
         <ul class="story-list" [style.left]="listPosition">
             <li *ngIf="isLinkToStoryEdit">
                 <story-preview [isLinkToStoryEdit]="true"></story-preview>
             </li>
             <li *ngFor="let story of stories">
-                <story-preview [story]="story" [isHighlight]="isHighlight"></story-preview>
+                <story-preview [story]="story" [type]="type"></story-preview>
             </li>
         </ul>
         <pagination-btns [isPaginationBtnShown]="isPaginationBtnShown" (prevItem)="onScrollStory($event)"
             (nextItem)="onScrollStory($event)"></pagination-btns>
     </div>
 
-    <ng-template #forStoryDetails>
-        <div class="details-story-list">
-            <ul class="pre-story-list">
-                <li *ngFor="let story of preCurrStoryList">
-                    <story [story]="story"></story>
-                </li>
-            </ul>
+    <div class="details-story-list" *ngSwitchCase="'story-details'">
+        <ul class="pre-story-list">
+            <li *ngFor="let story of preCurrStoryList">
+                <story [story]="story"></story>
+            </li>
+        </ul>
 
-            <story [story]="currStory" [nextStory]="postCurrStoryList[0]" [isCurrStory]="true"
-                [isPaginationBtnShown]="isPaginationBtnShown" (setPrevStory)="onSetCurrStory($event)"
-                (setNextStory)="onSetCurrStory($event)"></story>
+        <story [story]="currStory" [nextStory]="postCurrStoryList[0]" [isCurrStory]="true"
+            [isPaginationBtnShown]="isPaginationBtnShown" (setPrevStory)="onSetCurrStory($event)"
+            (setNextStory)="onSetCurrStory($event)"></story>
 
-            <ul class="post-story-list">
-                <li *ngFor="let story of postCurrStoryList">
-                    <story [story]="story"></story>
-                </li>
-            </ul>
-        </div>
-    </ng-template>
+        <ul class="post-story-list">
+            <li *ngFor="let story of postCurrStoryList">
+                <story [story]="story"></story>
+            </li>
+        </ul>
+    </div>
+
+    <div class="highlight-story-picker-list" *ngSwitchCase="'highlight-story-picker'">
+        <ul class="story-list">
+            <li *ngFor="let story of stories; index as idx ">
+                <story-preview [story]="story" [type]="type"></story-preview>
+                <checkbox [isChecked]="isStorySelectedForHighlight[idx].isSelected"
+                    (click)="onPickStoryForHighlights(idx)" [type]="'highlight-story-picker'">
+                </checkbox>
+            </li>
+        </ul>
+    </div>
+
+</container-element>

@@ -7,13 +7,14 @@ import { Observable, Subscription, map, lastValueFrom } from 'rxjs';
 import { Story } from './../../models/story.model';
 import { State } from 'src/app/store/store';
 import { Store } from '@ngrx/store';
-import { Component, OnInit, inject, OnChanges, OnDestroy } from '@angular/core';
+import { Component, OnInit, inject, OnChanges, OnDestroy, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'story-list',
   templateUrl: './story-list.component.html',
   styleUrls: ['./story-list.component.scss'],
-  inputs: ['isHighlight', 'currStory', 'type']
+  inputs: ['isHighlight', 'currStory', 'type'],
+  outputs: ['storySelected']
 })
 export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
 
@@ -22,6 +23,7 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
 
   }
 
+  storySelected = new EventEmitter<Story | null>();
   store = inject(Store<State>);
   userService = inject(UserService);
   storyService = inject(StoryService);
@@ -41,8 +43,8 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
   stories!: Story[];
   isPaginationBtnShown = { left: false, right: false };
   listPosition: string = '0';
-
   type!: string;
+  isStorySelectedForHighlight: { idx: number, isSelected: boolean }[] = [];
 
   ngOnInit(): void {
     this.loggedinUserSub = this.loggedinUser$.subscribe(user => {
@@ -56,15 +58,22 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
 
     this.storySub = this.storyService.stories$.subscribe(stories => {
       this.stories = stories;
-      if (this.type === 'story-details') {
-        stories = stories.filter(story => story.id);
-        this.preCurrStoryList = stories.slice(0, stories.findIndex(story => story.id === this.currStory.id));
-        this.postCurrStoryList = stories.slice(stories.findIndex(story => story.id === this.currStory.id) + 1);
-        this.idx = this.preCurrStoryList.length;
+      switch (this.type) {
+        case 'story-details':
+          stories = stories.filter(story => story.id);
+          this.preCurrStoryList = stories.slice(0, stories.findIndex(story => story.id === this.currStory.id));
+          this.postCurrStoryList = stories.slice(stories.findIndex(story => story.id === this.currStory.id) + 1);
+          this.idx = this.preCurrStoryList.length;
+          break;
+        case 'highlight-story-picker':
+          this.isStorySelectedForHighlight = stories.map((s, idx) => {
+            return { idx, isSelected: false }
+          }
+          );
+          break;
       }
       this.setPaginationBtns(stories);
     });
-
   }
 
   ngOnChanges() {
@@ -75,7 +84,6 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
       this.setPaginationBtns(this.stories);
     }
   }
-
 
   setPaginationBtns(stories: Story[]) {
     if (this.idx === 0) this.isPaginationBtnShown.left = false;
@@ -102,9 +110,20 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
     this.router.navigate(['/story/', this.stories[this.idx + num].id]);
   }
 
+  onPickStoryForHighlights(idx: number) {
+    if (!this.isStorySelectedForHighlight[idx].isSelected) {
+      this.isStorySelectedForHighlight.forEach(story => story.isSelected = false);
+      this.isStorySelectedForHighlight[idx].isSelected = true
+      this.storySelected.emit(this.stories[idx]);
+    }
+    else {
+      this.isStorySelectedForHighlight[idx].isSelected = false;
+      this.storySelected.emit(null);
+    }
+  }
+
   ngOnDestroy() {
     this.loggedinUserSub?.unsubscribe();
     this.storySub?.unsubscribe();
   }
-
 }

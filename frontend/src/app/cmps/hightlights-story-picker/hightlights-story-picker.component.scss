@@ -41,11 +41,11 @@
             flex-basis: rem(35px);
             color: var(--tertiary-color);
         }
-        
+
         button {
             flex-basis: rem(15px);
         }
-        
+
         .btn-go-back {
             fa-icon {
                 font-size: rem(22px);
@@ -65,30 +65,10 @@
         .highlights-story-picker-list-container {
             position: relative;
             display: flex;
-            align-items: center;
             flex-grow: 1;
             width: 100%;
-            padding: rem(15px);
             border-bottom: 1px solid var(--border-color);
             background-color: var(--secondary-bg);
-
-            input {
-                width: 100%;
-                height: rem(40px);
-                padding: 0 rem(15px);
-                font-size: rem(16px);
-                font-family: var(--primary-font);
-                border: var(--border-color) solid 1px;
-                border-radius: 10px;
-                outline: none;
-                transition: all 0.5s ease-in-out;
-                background-color: var(--primary-bg);
-
-                &::placeholder {
-                    color: var(--input-placeholder-secondary-color);
-                    text-transform: capitalize;
-                }
-            }
         }
 
         .btn-add-highlight {

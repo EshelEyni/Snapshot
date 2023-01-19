@@ -131,3 +131,26 @@
         }
     }
 }
+
+
+.highlight-story-picker-list {
+
+    .story-list {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(auto-fit, rem(265px));
+
+        li {
+            position: relative;
+
+            checkbox {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                z-index: 1;
+                margin: 0 rem(5px) rem(5px) 0;
+            }
+        }
+    }
+}

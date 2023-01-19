@@ -11,7 +11,7 @@
 
     <main class="highlights-story-picker-content">
         <div class="highlights-story-picker-list-container">
-            <story-list [type]="'highlight-story-picker'"></story-list>
+            <story-list [type]="'highlight-story-picker'" (storySelected)="onStoryChecked($event)"></story-list>
         </div>
         <button class="clean-btn btn-add-highlight" [class.input-valid]="story"
             (click)="onStorySelected()">next</button>

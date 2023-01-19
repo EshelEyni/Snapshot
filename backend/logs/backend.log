@@ -579,3 +579,19 @@
 19.1.2023, 9:29:21 - INFO - Server is running on port: 3030 
 19.1.2023, 9:29:54 - ERROR - cannot insert story | Failed to commit transaction: Error: SQLITE_BUSY: database is locked 
 19.1.2023, 9:29:54 - ERROR - Failed to add story | Failed to commit transaction: Error: SQLITE_BUSY: database is locked 
+19.1.2023, 10:18:40 - ERROR - while finding user 28 | Failed to commit transaction: user with id #28 was not found 
+19.1.2023, 10:18:40 - ERROR - Failed to get user | Failed to commit transaction: user with id #28 was not found 
+19.1.2023, 10:18:40 - ERROR - while finding user 29 | Failed to commit transaction: user with id #29 was not found 
+19.1.2023, 10:18:40 - ERROR - Failed to get user | Failed to commit transaction: user with id #29 was not found 
+19.1.2023, 18:46:03 - ERROR - while finding user 28 | Failed to commit transaction: user with id #28 was not found 
+19.1.2023, 18:46:03 - ERROR - Failed to get user | Failed to commit transaction: user with id #28 was not found 
+19.1.2023, 18:46:03 - ERROR - while finding user 29 | Failed to commit transaction: user with id #29 was not found 
+19.1.2023, 18:46:03 - ERROR - Failed to get user | Failed to commit transaction: user with id #29 was not found 
+19.1.2023, 18:46:26 - ERROR - while finding user 28 | Failed to commit transaction: user with id #28 was not found 
+19.1.2023, 18:46:26 - ERROR - Failed to get user | Failed to commit transaction: user with id #28 was not found 
+19.1.2023, 18:46:26 - ERROR - while finding user 29 | Failed to commit transaction: user with id #29 was not found 
+19.1.2023, 18:46:26 - ERROR - Failed to get user | Failed to commit transaction: user with id #29 was not found 
+19.1.2023, 18:46:52 - ERROR - Failed to get user | Failed to commit transaction: user with id #28 was not found 
+19.1.2023, 18:46:52 - ERROR - while finding user 28 | Failed to commit transaction: user with id #28 was not found 
+19.1.2023, 18:46:52 - ERROR - while finding user 29 | Failed to commit transaction: user with id #29 was not found 
+19.1.2023, 18:46:52 - ERROR - Failed to get user | Failed to commit transaction: user with id #29 was not found 

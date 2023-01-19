@@ -10,12 +10,12 @@ import { Component, EventEmitter, OnInit, OnChanges, inject, OnDestroy } from '@
   selector: 'story-preview',
   templateUrl: './story-preview.component.html',
   styleUrls: ['./story-preview.component.scss'],
-  inputs: ['story', 'isHighlight',   'isLinkToStoryEdit'],
+  inputs: ['story', 'type', 'isLinkToStoryEdit'],
   outputs: ['setPrevStory', 'setNextStory']
 })
 export class StoryPreviewComponent implements OnInit, OnDestroy {
 
-  constructor(  ) {
+  constructor() {
     this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
 
   }
@@ -25,8 +25,9 @@ export class StoryPreviewComponent implements OnInit, OnDestroy {
   loggedinUser!: User
   sub: Subscription | null = null;
   story!: Story;
-  isHighlight!: boolean;
+  type!: string;
   isLinkToStoryEdit!: boolean;
+  hightlightStoryPickerDate!: { day: string, month: string, year: string }
 
   ngOnInit(): void {
     this.sub = this.loggedinUser$.subscribe(user => {
@@ -34,6 +35,21 @@ export class StoryPreviewComponent implements OnInit, OnDestroy {
         this.loggedinUser = { ...user }
       }
     })
+    this.setHightlightStoryPickerDate(this.story.createdAt);
+  }
+
+
+  setHightlightStoryPickerDate(timeStamp: Date) {
+    const date = new Date(timeStamp);
+    const monthNames = [
+      "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+    this.hightlightStoryPickerDate = {
+      day: date.getDate().toString(),
+      month: monthNames[date.getMonth()],
+      year: date.getFullYear().toString()
+    }
+
   }
 
   ngOnDestroy() {

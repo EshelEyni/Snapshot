@@ -47,6 +47,8 @@ export class HighlightsModalComponent implements OnInit {
 
   onStorySelected(story: Story) {
     this.story = story;
+    this.isStoryPicker = false;
+    this.isCoverPicker = true;
   }
 
   onCoverSelected(cover: number) {

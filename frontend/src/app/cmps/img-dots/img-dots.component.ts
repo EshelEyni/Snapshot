@@ -15,8 +15,7 @@ export class ImgDotsComponent implements OnInit {
   faCircle = faCircle;
   imgUrls: string[] = [];
   currImgUrl: string = '';
-
+  
   ngOnInit(): void {
   }
-
 }

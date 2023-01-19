@@ -87,14 +87,42 @@
         }
 
         .post-img-container {
+            position: relative;
             grid-row: 2;
 
             .img-container {
+                position: relative;
                 width: 100%;
                 height: auto;
 
                 img {
                     object-fit: cover;
+                }
+
+                .btn-pagination {
+
+                    top: 50%;
+                    transform: translate(-50%);
+
+                    fa-icon {
+                        color: var(--primary-pagination-button);
+                        font-size: rem(32px);
+                    }
+
+                    &.prev {
+                        left: 10%;
+                    }
+
+                    &.next {
+                        left: 90%;
+                    }
+
+                }
+                
+                .img-dots {
+                    .active {
+                        color: var(--secondary-bg);
+                    }
                 }
             }
         }
@@ -206,24 +234,7 @@
             }
 
 
-            .btn-pagination {
 
-                top: 50%;
-                transform: translate(-50%);
-
-                fa-icon {
-                    color: var(--primary-pagination-button);
-                    font-size: rem(32px);
-                }
-
-                // &.prev {
-                //     left: 10%;
-                // }
-
-                // &.next {
-                //     left: 90%;
-                // }
-            }
         }
     }
 
