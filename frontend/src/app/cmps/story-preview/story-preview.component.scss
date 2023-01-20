@@ -94,10 +94,12 @@
 
             img {
                 border-radius: 50%;
+                cursor: pointer;
             }
         }
-
+        
         span {
+            cursor: pointer;
             font-size: rem(12px);
         }
         

@@ -610,3 +610,30 @@
 20.1.2023, 3:23:09 - ERROR - cannot remove story 30 | Failed to commit transaction: Error: SQLITE_BUSY: database is locked 
 20.1.2023, 3:27:58 - INFO - Server is running on port: 3030 
 20.1.2023, 3:28:24 - INFO - Server is running on port: 3030 
+20.1.2023, 11:18:40 - INFO - Server is running on port: 3030 
+20.1.2023, 11:29:03 - INFO - Server is running on port: 3030 
+20.1.2023, 11:41:33 - INFO - Server is running on port: 3030 
+20.1.2023, 11:41:37 - INFO - Server is running on port: 3030 
+20.1.2023, 11:42:10 - INFO - Server is running on port: 3030 
+20.1.2023, 11:43:13 - INFO - Server is running on port: 3030 
+20.1.2023, 11:43:22 - INFO - Server is running on port: 3030 
+20.1.2023, 11:44:07 - ERROR - while checking user tal password | wrong password 
+20.1.2023, 11:46:17 - INFO - Server is running on port: 3030 
+20.1.2023, 11:47:14 - ERROR - while checking user tal password | wrong password 
+20.1.2023, 11:48:24 - INFO - Server is running on port: 3030 
+20.1.2023, 11:50:32 - INFO - Server is running on port: 3030 
+20.1.2023, 11:51:46 - INFO - Server is running on port: 3030 
+20.1.2023, 11:53:37 - ERROR - while checking user tal password | ReferenceError: saltRounds is not defined 
+20.1.2023, 11:54:15 - INFO - Server is running on port: 3030 
+20.1.2023, 11:54:18 - ERROR - while checking user tal password | Error: data and salt arguments required 
+20.1.2023, 11:55:23 - INFO - Server is running on port: 3030 
+20.1.2023, 11:55:26 - ERROR - while checking user tal password | Error: data and salt arguments required 
+20.1.2023, 11:56:17 - ERROR - while checking user tal password | Error: data and salt arguments required 
+20.1.2023, 11:57:13 - INFO - Server is running on port: 3030 
+20.1.2023, 12:00:01 - INFO - Server is running on port: 3030 
+20.1.2023, 12:04:58 - INFO - Server is running on port: 3030 
+20.1.2023, 12:05:14 - INFO - Server is running on port: 3030 
+20.1.2023, 12:45:39 - ERROR - while finding user 28 | Failed to commit transaction: user with id #28 was not found 
+20.1.2023, 12:45:39 - ERROR - Failed to get user | Failed to commit transaction: user with id #28 was not found 
+20.1.2023, 12:45:39 - ERROR - while finding user 29 | Failed to commit transaction: user with id #29 was not found 
+20.1.2023, 12:45:39 - ERROR - Failed to get user | Failed to commit transaction: user with id #29 was not found 

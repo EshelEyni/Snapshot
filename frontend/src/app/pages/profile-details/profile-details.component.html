@@ -25,11 +25,11 @@
 
         <div class="profile-details-user-info">
             <h4 class="user-full-name" *ngIf="isCurrUserLoggedInUser">{{user.fullname}}</h4>
-            <p class="user-bio">{{user.bio}}</p>
+            <p class="user-bio" [innerText]="user.bio"></p>
         </div>
 
         <div class="hightlights-container" *ngIf="isUserHaveStory">
-            <story-list [type]="'profile-details'"></story-list>
+                <story-list [type]="'profile-details'"></story-list>
             <div class="btn-highlights-container">
                 <button class="clean-btn btn-highlights" (click)="onToggleModal('highlights')"
                     *ngIf="isCurrUserLoggedInUser">

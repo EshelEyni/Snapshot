@@ -1,4 +1,4 @@
-import { faCamera, faHashtag  } from '@fortawesome/free-solid-svg-icons';
+import { faCamera, faHashtag } from '@fortawesome/free-solid-svg-icons';
 import { StoryService } from './../../services/story.service';
 import { switchMap } from 'rxjs/operators';
 import { Post } from './../../models/post.model';
@@ -8,7 +8,7 @@ import { State } from './../../store/store';
 import { User } from './../../models/user.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, Observable, map, lastValueFrom } from 'rxjs';
-import { Component, OnInit, OnDestroy, HostListener  } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, ViewChild, ElementRef, Renderer2, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'profile-details',
@@ -22,7 +22,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
     private router: Router,
     private postService: PostService,
     private storyService: StoryService,
-    private store: Store<State>
+    private store: Store<State>,
   ) {
     this.loggedinUser$ = this.store.select('userState').pipe(map((x => x.loggedinUser)));
   }
@@ -47,9 +47,9 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   userImgClass: string = '';
   isStoryViewed: boolean = false;
   isPostEditModalShown: boolean = false;
-
   faCamera = faCamera;
   faHashtag = faHashtag;
+  isPaginationBtnShown = { left: false, right: false };
 
   ngOnInit(): void {
 
@@ -68,7 +68,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
           )
           this.postSub = this.postService.posts$.subscribe(posts => {
             this.posts = posts
-            });
+          });
 
         }
         return this.loggedinUser$
@@ -96,7 +96,6 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
       if (filterByQueryParams) this.onSetFilter(filterByQueryParams)
       else this.onSetFilter('createdPosts')
     });
-
   }
 
   @HostListener('window:resize', ['$event'])
@@ -171,6 +170,8 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   onGoToStory() {
     this.router.navigate(['/story/', this.user.currStoryId])
   }
+
+
 
   ngOnDestroy() {
     this.userSub?.unsubscribe();

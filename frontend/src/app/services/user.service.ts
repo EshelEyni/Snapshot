@@ -123,6 +123,25 @@ export class UserService {
     this.storageService.saveToStorage('loggedinUser', null)
   }
 
+  public async checkPassword(newPassword: string, password: string, username: string): Promise<string> {
+    const options = {
+      params: {
+        newPassword,
+        password,
+        username
+      }
+    }
+    const res: { hashedPassword: string } = await lastValueFrom(
+      this.http.get<{ hashedPassword: string }>(
+        `http://localhost:3030/api/auth/check-password`, options
+      )
+    )
+
+    return res.hashedPassword
+
+  }
+
+
   public getMiniUser(user: User): MiniUser {
     const { id, fullname, username, imgUrl } = user
     return { id, fullname, username, imgUrl }

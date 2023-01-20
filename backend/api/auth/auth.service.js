@@ -12,7 +12,7 @@ async function login(username, password) {
     logger.debug(`auth.service - login with username: ${username}`)
 
     const user = await userService.getByUsername(username)
-    if (!user) return Promise.reject('Invalid username or password')
+    if (!user) return Promise.reject('Invalid username')
     const match = await bcrypt.compare(password, user.password)
     if (!match) return Promise.reject('Invalid username or password')
 
@@ -60,9 +60,31 @@ async function _checkIfUserExists(username) {
     }
 }
 
+async function checkPassword(username, password, newPassword) {
+    try {
+
+        const users = await db.query(`select * from users where username = $username`, { $username: username });
+        if (!users.length) {
+            throw 'user with name ' + username + ' was not found';
+        }
+        const user = users[0];
+        const isMatch = password === user.password;
+        if (!isMatch) {
+            throw 'wrong password';
+        }
+        const saltRounds = 10
+        const hashedPassword = await bcrypt.hash(newPassword, saltRounds)
+        return hashedPassword;
+    } catch (err) {
+        logger.error(`while checking user ${username} password`, err)
+        throw err
+    }
+}
+
 module.exports = {
     signup,
     login,
     getLoginToken,
-    validateToken
+    validateToken,
+    checkPassword
 }

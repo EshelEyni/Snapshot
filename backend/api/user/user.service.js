@@ -118,11 +118,13 @@ async function remove(userId) {
 }
 
 async function update(user) {
+
     try {
         await db.exec(
             `update users set 
              username = $username,
              fullname = $fullname,
+             password = $password,
              email = $email,
              imgUrl = $imgUrl,
              gender = $gender,
@@ -137,6 +139,7 @@ async function update(user) {
              where id = $id`, {
             $username: user.username,
             $fullname: user.fullname,
+            $password: user.password,
             $email: user.email,
             $imgUrl: user.imgUrl,
             $gender: user.gender,

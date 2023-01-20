@@ -7,7 +7,7 @@ import { Observable, Subscription, map, lastValueFrom } from 'rxjs';
 import { Story } from './../../models/story.model';
 import { State } from 'src/app/store/store';
 import { Store } from '@ngrx/store';
-import { Component, OnInit, inject, OnChanges, OnDestroy, EventEmitter } from '@angular/core';
+import { Component, OnInit, inject, OnChanges, OnDestroy, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'story-list',
@@ -46,6 +46,7 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
   isStorySelectedForHighlight: { idx: number, isSelected: boolean }[] = [];
 
   ngOnInit(): void {
+    
     this.loggedinUserSub = this.loggedinUser$.subscribe(user => {
       if (user) {
         this.loggedinUser = { ...user };

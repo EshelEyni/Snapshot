@@ -44,57 +44,8 @@
                 }
 
                 .link-container {
-
                     color: var(--primary-button);
                     font-weight: 600;
-
-                    .img-setting-modal {
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        justify-content: space-between;
-                        background-color: var(--secondary-bg);
-                        width: rem(400px);
-                        height: rem(225px);
-                        z-index: 20;
-                        border-radius: 15px;
-                        padding: rem(20px) 0 0 rem(10px);
-
-                        h1 {
-                            color: var(--primary-color)
-                        }
-
-                        .btn-cotnainer {
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            align-items: center;
-                            gap: rem(10px);
-                            width: 100%;
-
-                            >* {
-                                width: 100%;
-                                border-top: var(--border-color) 1px solid;
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                                padding: rem(10px);
-                                font-weight: 600;
-                            }
-
-                            .btn-upload {
-                                color: var(--primary-button);
-                            }
-
-                            .btn-remove {
-                                color: var(--red-button);
-                            }
-                        }
-                    }
                 }
             }
         }
@@ -134,7 +85,7 @@
                 max-width: rem(350px);
                 height: rem(100px);
                 resize: vertical;
-
+                white-space: pre-line;
                 @include scrollbar-hidden;
             }
 
@@ -147,7 +98,6 @@
         .btn-container {
             margin: rem(10px) 0 0 rem(20px);
 
-
             .btn-submit {
                 background-color: var(--primary-button);
                 color: white;
@@ -157,22 +107,10 @@
                 font-weight: 600;
                 font-family: roboto-bold;
                 max-width: rem(75px);
-
-                // margin-inline-start: rem(200px);
             }
         }
     }
 
-    .user-msg {
-        position: fixed;
-        width: 100%;
-        bottom: 0;
-        left: 0;
-        background-color: var(--primary-color);
-        color: white;
-        padding: 5px 15px;
-        z-index: 20;
-    }
 
     @include for-mobile-normal-layout {
         .profile-edit-form {

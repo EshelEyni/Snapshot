@@ -5,10 +5,10 @@
         <div class="post-preview-comment-container" *ngSwitchCase="'post-preview'">
             <div class="comment-text-container">
                 <span [routerLink]="['/profile/',comment.by.id]"> {{comment.by.username}} </span>
-                <p *ngIf="!isExpandTxt; else longTxt" [innerHTML]="comment.text| shortTxt | tag"><button
-                        class="more-btn clean-btn" *ngIf="isLongTxt" (click)="onExpandTxt()">more</button></p>
+                <p class="comment-text" *ngIf="!isExpandTxt; else longTxt" [innerHTML]="comment.text| shortTxt | tag">
+                    <button class="more-btn clean-btn" *ngIf="isLongTxt" (click)="onExpandTxt()">more</button></p>
                 <ng-template #longTxt>
-                    <p [innerHTML]="comment.text| tag"> </p>
+                    <p class="comment-text" [innerHTML]="comment.text| tag"> </p>
                 </ng-template>
             </div>
 

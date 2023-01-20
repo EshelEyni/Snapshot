@@ -1,10 +1,10 @@
-<!-- <div class="img-setting-modal" *ngIf="isImgSettingModalOpen">
+<div class="profile-img-setting-modal" >
     <h1>Change Profile Photo</h1>
-    <div class="btn-cotnainer">
+    <div class="btns-cotnainer">
         <button class="btn-upload clean-btn" (click)="file.click()">Upload Photo</button>
-        <input type="file" class="img-input" #file id="img-input" (change)="onImgChange($event)"
+        <input type="file" class="img-input" #file id="img-input" (change)="onImgSelected($event)"
             style="display:none">
         <button class="btn-remove clean-btn" (click)="onRemoveImg()">Remove Current Photo</button>
-        <button class="btn-cancel clean-btn" (click)="onToggleModal()">Cancel</button>
+        <button class="btn-cancel clean-btn" (click)="onCloseModal()">Cancel</button>
     </div>
-</div> -->
+</div>

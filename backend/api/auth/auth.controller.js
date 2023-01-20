@@ -43,8 +43,20 @@ async function logout(req, res) {
     }
 }
 
+async function checkPassword(req, res) {
+    try {
+        const { newPassword, password, username } = req.query;
+        const hashedPassword = await authService.checkPassword(username, password, newPassword)
+        res.send({ hashedPassword })
+    } catch (err) {
+        res.status(500).send({ err: 'Failed to check password' })
+    }
+}
+
+
 module.exports = {
     login,
     signup,
-    logout
+    logout,
+    checkPassword
 }

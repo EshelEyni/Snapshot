@@ -3,16 +3,18 @@
     <profile-edit-header></profile-edit-header>
     <form class="profile-edit-form" [formGroup]="form">
         <header class="profile-edit-form-header">
-            <div class="img-container">
+            <div class="img-container" (click)="onChangeImg()">
                 <img class="img" [src]="userImgUrl">
             </div>
             <div class="user-name-img-change-container">
                 <h1>{{user.username}}</h1>
                 <div class="link-container">
-                    <div (click)="onToggleModal()">
+                    <div (click)="onChangeImg()">
                         <p>Change profile photo</p>
                     </div>
                 </div>
+                <input type="file" class="img-input" #file id="img-input" (change)="onImgSelected($event)"
+                    style="display:none">
             </div>
         </header>
 
@@ -70,9 +72,8 @@
         </div>
     </form>
 
-    <!-- TODO: use userMsg Component -->
-    <div class="user-msg" *ngIf="userMsg">
-        <p>{{userMsg}}</p>
-    </div>
+    <profile-img-setting-modal *ngIf="isImgSettingModalOpen" [onImgSelected]="onImgSelected" (closeModal)="onToggleModal()"
+        (removeImg)="onRemoveImg()"></profile-img-setting-modal>
+
 
 </section>
