@@ -81,7 +81,7 @@
         width: calc(100vw - rem(75px));
     }
 
-    @include  for-extra-large-layout {
+    @include for-extra-large-layout {
         margin-inline-start: rem(245px);
         width: calc(100vw - rem(245px));
     }
@@ -143,6 +143,31 @@
             opacity: 1;
         }
     }
+}
+
+// Story Circle Mixin
+
+@mixin unviewed-story-circle {
+    background: linear-gradient(white, white) padding-box,
+        linear-gradient(to bottom left, var(--primary-icon-color), var(--secondary-icon-color)) border-box;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    padding: rem(2px);
+}
+
+@mixin viewed-story-circle {
+    background: linear-gradient(white, white) padding-box,
+    linear-gradient(to bottom left, var(--border-color), var(--border-color)) border-box;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    padding: rem(2px);
+
+}
+
+@mixin no-story-circle {
+    border: none;
+    background: none;
+    padding: 0;
 }
 
 // Modal mixin

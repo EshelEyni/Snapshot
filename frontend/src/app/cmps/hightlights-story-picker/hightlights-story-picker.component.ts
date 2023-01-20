@@ -7,14 +7,14 @@ import { Story } from 'src/app/models/story.model';
   selector: 'hightlights-story-picker',
   templateUrl: './hightlights-story-picker.component.html',
   styleUrls: ['./hightlights-story-picker.component.scss'],
-  outputs: ['close', 'goBack', 'storySelected']
+  outputs: ['closeModal', 'goBack', 'storySelected']
 })
 export class HightlightsStoryPickerComponent implements OnInit {
 
   constructor() { }
 
   storySelected = new EventEmitter<Story>();
-  close = new EventEmitter();
+  closeModal = new EventEmitter();
   goBack = new EventEmitter();
   story!: Story | null;
   faX = faX;
@@ -32,11 +32,10 @@ export class HightlightsStoryPickerComponent implements OnInit {
   }
 
   onCloseModal() {
-    this.close.emit();
+    this.closeModal.emit();
   }
 
   onGoBack() {
     this.goBack.emit();
   }
-
 }

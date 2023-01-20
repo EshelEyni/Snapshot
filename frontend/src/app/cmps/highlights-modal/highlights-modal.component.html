@@ -1,11 +1,12 @@
 <section class="highlights-modal" [class.name-edit-mode]="isHighlightNameEdit">
 
-    <highlights-name-edit *ngIf="isHighlightNameEdit" (close)="onCloseModal()"
+    <highlights-name-edit *ngIf="isHighlightNameEdit" (closeModal)="onCloseModal()"
         (addHightlightName)="onAddHighlightName($event)" [highlightName]="highlightName"></highlights-name-edit>
 
     <hightlights-story-picker *ngIf="isStoryPicker" (goBack)="onGoBack()" (storySelected)="onStorySelected($event)"
-        (close)="onCloseModal()"></hightlights-story-picker>
+        (closeModal)="onCloseModal()"></hightlights-story-picker>
 
 
-    <hightlights-cover-picker *ngIf="isCoverPicker" (goBack)="onGoBack()"></hightlights-cover-picker>
+    <hightlights-cover-picker *ngIf="isCoverPicker" [story]="story" (goBack)="onGoBack()" (closeModal)="onCloseModal()"
+        (coverSelected)="onCoverSelected($event)"></hightlights-cover-picker>
 </section>

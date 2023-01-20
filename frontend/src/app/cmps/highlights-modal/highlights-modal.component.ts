@@ -1,5 +1,6 @@
+import { StoryService } from './../../services/story.service';
 import { User } from 'src/app/models/user.model';
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, inject } from '@angular/core';
 import { Story } from 'src/app/models/story.model';
 
 @Component({
@@ -12,24 +13,22 @@ import { Story } from 'src/app/models/story.model';
 export class HighlightsModalComponent implements OnInit {
 
   constructor() { }
+  closeModal = new EventEmitter();
 
+  storyService = inject(StoryService);
   loggedinUser!: User;
-  highlightName = 'a';
-  isHighlightNameEdit: boolean = false;
-  isStoryPicker: boolean = true;
+  highlightName = '';
+  isHighlightNameEdit: boolean = true;
+  isStoryPicker: boolean = false;
   isCoverPicker: boolean = false;
   story!: Story;
   cover!: number;
-  closeModal = new EventEmitter();
 
   ngOnInit(): void {
   }
 
-
-
   onAddHighlightName(name: string) {
     this.highlightName = name;
-    console.log('this.highlightName', this.highlightName);
     this.isHighlightNameEdit = false;
     this.isStoryPicker = true;
   }
@@ -53,15 +52,21 @@ export class HighlightsModalComponent implements OnInit {
 
   onCoverSelected(cover: number) {
     this.cover = cover;
+    this.onSaveHighlight();
   }
-
+  
   onSaveHighlight() {
-    console.log('this.story', this.story);
-    console.log('this.cover', this.cover);
-    console.log('this.highlightName', this.highlightName);
+    const story = this.story;
+    story.isSaved = true;
+    story.highlightTitle = this.highlightName;
+    story.highlightCover = this.cover;
+    
+    this.storyService.save(story);
+    this.onCloseModal();
   }
 
   onCloseModal() {
+    console.log('close modal');
     this.closeModal.emit();
   }
 }

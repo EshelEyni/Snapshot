@@ -19,7 +19,7 @@
         width: 100%;
         height: rem(50px);
         padding: 0 rem(15px);
-        background-color: var(--secondary-bg);
+        background-color: var(--primary-bg);
         border-bottom: var(--border-color) solid 1px;
         transition: all 0.5s ease-in-out;
         border-radius: 10px 10px 0 0;
@@ -54,21 +54,22 @@
     }
 
     .highlights-story-picker-content {
-        flex-grow: 1;
         position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
-
         width: 100%;
-
+        
+        
         .highlights-story-picker-list-container {
             position: relative;
             display: flex;
-            flex-grow: 1;
+            height: rem(610px);
             width: 100%;
             border-bottom: 1px solid var(--border-color);
             background-color: var(--secondary-bg);
+            overflow-y: scroll;
+            @include scrollbar-hidden;
         }
 
         .btn-add-highlight {

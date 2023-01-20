@@ -2,19 +2,18 @@ import { switchMap } from 'rxjs/operators';
 import { Post } from './../../models/post.model';
 import { Store } from '@ngrx/store';
 import { PostService } from 'src/app/services/post.service';
-import { UserService } from './../../services/user.service';
 import { State } from './../../store/store';
 import { User } from './../../models/user.model';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, Observable, map } from 'rxjs';
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, ViewChild, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'profile-details',
   templateUrl: './profile-details.component.html',
   styleUrls: ['./profile-details.component.scss']
 })
-export class ProfileDetailsComponent implements OnInit, OnDestroy {
+export class ProfileDetailsComponent implements OnInit,  OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
@@ -35,8 +34,12 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   filterBy = { createdPosts: true, savedPosts: false, taggedPosts: false }
   highlightsIconSize = window.innerWidth < 735 ? 30 : 45;
   postFilterIconSize = window.innerWidth < 735 ? 24 : 12;
-  isHighlightsModalShown: boolean = true;
-  isMainScreenShown: boolean = true;
+  isHighlightsModalShown: boolean = false;
+  isMainScreenShown: boolean = false;
+  isUserHaveStory: boolean = false;
+  isPaginationBtnShown = { left: false, right: false };
+  listPosition: string = '0';
+  highlightIdx: number = 0;
 
   ngOnInit(): void {
 
@@ -44,8 +47,8 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
       switchMap(data => {
         const user = data['user']
         if (user) {
-          console.log('user.postSum', user.postSum)
           this.user = user
+          this.isUserHaveStory = this.user.isUserHaveStory;
           this.postService.loadPosts(
             {
               userId: this.user.id,
@@ -69,6 +72,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
       if (filterByQueryParams) this.onSetFilter(filterByQueryParams)
       else this.onSetFilter('createdPosts')
     });
+
   }
 
   @HostListener('window:resize', ['$event'])
@@ -81,7 +85,6 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   }
 
   onSetFilter(filterBy: string) {
-    console.log('onSetFilter')
     switch (filterBy) {
       case 'createdPosts':
         this.filterBy = { createdPosts: true, savedPosts: false, taggedPosts: false }
@@ -138,6 +141,10 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
 
     }
     this.isMainScreenShown = !this.isMainScreenShown;
+
+  }
+
+  onScrollHighlight(num: number) {
 
   }
 

@@ -8,13 +8,11 @@
                 [type]="'link-to-story-edit'"></user-preview>
         </div>
 
-        <div class="for-profile-details" *ngSwitchCase="'profile-details'">
-            <div class="img-container">
-                <img [src]="story.imgUrls[0]" alt="story-img">
+        <div class="for-profile-details" *ngSwitchCase="'profile-details'" [routerLink]="['/story/',story.id]">
+            <div class="highlight-img-container" *ngIf="story.highlightCover !== null && story.highlightTitle">
+                <img [src]="story.imgUrls[story.highlightCover]" alt="story-img">
             </div>
-            <div class="username-container">
-                <p>{{story.by.username}}</p>
-            </div>
+            <span>{{story.highlightTitle}}</span>
         </div>
 
         <div class="for-highlghts-story-picker" *ngSwitchCase="'highlight-story-picker'">

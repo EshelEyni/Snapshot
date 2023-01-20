@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS "users" (
     "followingSum" INTEGER NOT NULL,
     "postSum" INTEGER NOT NULL,
     "isDarkMode" BOOLEAN NOT NULL,
+    "isUserHaveStory" BOOLEAN NOT NULL,
     PRIMARY KEY("id" AUTOINCREMENT)
 );
 
@@ -140,8 +141,8 @@ CREATE TABLE IF NOT EXISTS "stories" (
     "isArchived" BOOLEAN NOT NULL,
     "isSaved" BOOLEAN NOT NULL,
     "savedAt" TIMESTAMP,
-    "hightlightTitle" TEXT,
-    "hightlightCover" INTEGER,
+    "highlightTitle" TEXT,
+    "highlightCover" INTEGER,
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("userId") references "users"("id")
 );
 

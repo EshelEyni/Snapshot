@@ -2,7 +2,7 @@
 @import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
-::ng-deep .story-list-container {
+::ng-deep .home-page-story-list-container {
 
     position: relative;
     width: clamp(rem(370px), 100%, rem(470px));
@@ -45,7 +45,6 @@
             .user-info {
                 text-align: center;
                 width: rem(70px);
-                line-height: 1;
             }
         }
     }
@@ -152,5 +151,11 @@
                 margin: 0 rem(5px) rem(5px) 0;
             }
         }
+    }
+}
+
+.profile-details-list{
+    .story-list {
+        display: flex;
     }
 }

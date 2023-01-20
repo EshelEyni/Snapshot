@@ -6,14 +6,14 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
   templateUrl: './highlights-name-edit.component.html',
   styleUrls: ['./highlights-name-edit.component.scss'],
   inputs: ['highlightName'],
-  outputs: ['close', 'addHightlightName']
+  outputs: ['closeModal', 'addHightlightName']
 })
 export class HighlightsNameEditComponent implements OnInit {
 
   constructor() { }
 
   faX = faX;
-  close = new EventEmitter();
+  closeModal = new EventEmitter();
   addHightlightName = new EventEmitter<string>();
   highlightName: string = '';
 
@@ -26,7 +26,7 @@ export class HighlightsNameEditComponent implements OnInit {
   }
 
   onCloseModal() {
-    this.close.emit();
+    this.closeModal.emit();
   }
 
 }

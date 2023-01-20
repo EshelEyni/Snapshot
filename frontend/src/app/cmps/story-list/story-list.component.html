@@ -1,10 +1,10 @@
 <container-element [ngSwitch]="type">
 
 
-    <div class="story-list-container" *ngSwitchCase="'home-page'">
+    <div class="home-page-story-list-container" *ngSwitchCase="'home-page'">
         <ul class="story-list" [style.left]="listPosition">
             <li *ngIf="isLinkToStoryEdit">
-                <story-preview [isLinkToStoryEdit]="true"></story-preview>
+                <story-preview [isLinkToStoryEdit]="true" [type]="type"></story-preview>
             </li>
             <li *ngFor="let story of stories">
                 <story-preview [story]="story" [type]="type"></story-preview>
@@ -37,8 +37,16 @@
             <li *ngFor="let story of stories; index as idx ">
                 <story-preview [story]="story" [type]="type"></story-preview>
                 <checkbox [isChecked]="isStorySelectedForHighlight[idx].isSelected"
-                    (click)="onPickStoryForHighlights(idx)" [type]="'highlight-story-picker'">
+                    (click)="onPickStoryForHighlights(idx)" [type]="'highlights-modal'">
                 </checkbox>
+            </li>
+        </ul>
+    </div>
+
+    <div class="profile-details-list" *ngSwitchCase="'profile-details'">
+        <ul class="story-list">
+            <li *ngFor="let story of stories">
+                <story-preview [story]="story" [type]="type"></story-preview>
             </li>
         </ul>
     </div>

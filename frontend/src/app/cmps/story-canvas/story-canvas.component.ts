@@ -456,7 +456,14 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
     storyToAdd.by = this.userService.getMiniUser(this.loggedinUser);
 
     const id = await this.storyService.save(storyToAdd);
-    if (typeof id === 'number') this.loggedinUser.currStoryId = id;
+    if (typeof id === 'number') {
+
+      if (!this.loggedinUser.isUserHaveStory) {
+        this.loggedinUser.isUserHaveStory = true;
+      }
+
+      this.loggedinUser.currStoryId = id;
+    }
     const updatedUser = await lastValueFrom(this.userService.update(this.loggedinUser));
     if (updatedUser) this.router.navigate(['/']);
   }

@@ -34,7 +34,12 @@ export class StoryService {
       this.http.get<Story[]>('http://localhost:3030/api/story', options),
     )
 
-    this._stories$.next(stories);
+    if (filter.type !== 'profile-details') {
+      this._stories$.next(stories);
+    }
+    else {
+      this._highlightedStories$.next(stories);
+    }
   }
 
   public getById(storyId: number, type: string): Observable<Story> {
@@ -63,16 +68,21 @@ export class StoryService {
       const stories = this._stories$.getValue()
       story.id = res.id
       stories.unshift(story)
-      this._stories$.next(stories)
-
+      this._stories$.next(stories);
       return res.id
     }
   }
 
   private async _update(story: Story): Promise<void> {
-    await firstValueFrom(
+    const res = await firstValueFrom(
       this.http.put(`http://localhost:3030/api/story/${story.id}`, story),
-    )
+    ) as { msg: string }
+
+    if (res.msg === 'Story updated' && story.isSaved) {
+      const stories = this._highlightedStories$.getValue()
+      stories.unshift(story)
+      this._highlightedStories$.next(stories);
+    }
   }
 
 
@@ -84,7 +94,9 @@ export class StoryService {
       viewedBy: [],
       createdAt: new Date(),
       isArchived: false,
-      isSaved: false
+      isSaved: false,
+      highlightTitle: null,
+      highlightCover: null,
     }
   }
 

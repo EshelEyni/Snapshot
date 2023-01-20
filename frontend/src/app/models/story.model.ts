@@ -8,6 +8,8 @@ export interface Story {
     viewedBy: MiniUser[];
     isArchived: boolean;
     isSaved: boolean;
+    highlightTitle: string | null;
+    highlightCover: number | null;
 }
 
 export interface StoryImg {

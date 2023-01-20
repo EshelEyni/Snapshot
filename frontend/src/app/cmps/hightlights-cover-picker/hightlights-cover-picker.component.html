@@ -1,1 +1,30 @@
-<p>hightlights-cover-picker works!</p>
+<section class="highlights-cover-picker">
+    <header class="highlights-cover-picker-header">
+        <button class="clean-btn btn-go-back" (click)="onGoBack()">
+            <fa-icon [icon]="faChevronLeft"></fa-icon>
+        </button>
+        <h2>Cover</h2>
+        <button class="clean-btn">
+            <fa-icon [icon]="faX" (click)="onCloseModal()"></fa-icon>
+        </button>
+    </header>
+
+    <main class="highlights-cover-picker-content" *ngIf="currCoverImgUrl">
+        <div class="curr-cover-preview">
+            <div class="img-container">
+                <img [src]="currCoverImgUrl" alt="currCoverImgUrl">
+            </div>
+        </div>
+
+        <ul class="cover-list">
+            <li *ngFor="let cover of story.imgUrls;index as idx" (click)="onCoverChecked(idx)">
+                <img [src]="cover" alt="cover">
+                <checkbox [isChecked]="isCoverImgSelected[idx].isSelected" [type]="'highlights-modal'">
+                </checkbox>
+            </li>
+        </ul>
+        <button class="clean-btn btn-add-highlight" [class.input-valid]="story"
+        (click)="onCoverSelected()">done</button>
+    </main>
+
+</section>

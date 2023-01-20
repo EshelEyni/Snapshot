@@ -13,7 +13,7 @@ import { Component, OnInit, inject, OnChanges, OnDestroy, EventEmitter } from '@
   selector: 'story-list',
   templateUrl: './story-list.component.html',
   styleUrls: ['./story-list.component.scss'],
-  inputs: ['isHighlight', 'currStory', 'type'],
+  inputs: ['currStory', 'type'],
   outputs: ['storySelected']
 })
 export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
@@ -36,7 +36,6 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
   idx: number = 0;
   isLinkToStoryEdit = false;
 
-  isHighlight!: boolean;
   currStory!: Story;
   preCurrStoryList: Story[] = [];
   postCurrStoryList: Story[] = [];
@@ -52,28 +51,38 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
         this.loggedinUser = { ...user };
         if (user.currStoryId) this.isLinkToStoryEdit = false;
         else this.isLinkToStoryEdit = true;
+
         this.storyService.loadStories({ userId: user.id, type: this.type });
       }
     });
 
-    this.storySub = this.storyService.stories$.subscribe(stories => {
-      this.stories = stories;
-      switch (this.type) {
-        case 'story-details':
-          stories = stories.filter(story => story.id);
-          this.preCurrStoryList = stories.slice(0, stories.findIndex(story => story.id === this.currStory.id));
-          this.postCurrStoryList = stories.slice(stories.findIndex(story => story.id === this.currStory.id) + 1);
-          this.idx = this.preCurrStoryList.length;
-          break;
-        case 'highlight-story-picker':
-          this.isStorySelectedForHighlight = stories.map((s, idx) => {
-            return { idx, isSelected: false }
-          }
-          );
-          break;
-      }
-      this.setPaginationBtns(stories);
-    });
+    if (this.type !== 'profile-details') {
+      this.storySub = this.storyService.stories$.subscribe(stories => {
+        this.stories = stories;
+        switch (this.type) {
+          case 'story-details':
+            stories = stories.filter(story => story.id);
+            this.preCurrStoryList = stories.slice(0, stories.findIndex(story => story.id === this.currStory.id));
+            this.postCurrStoryList = stories.slice(stories.findIndex(story => story.id === this.currStory.id) + 1);
+            this.idx = this.preCurrStoryList.length;
+            break;
+          case 'highlight-story-picker':
+            this.isStorySelectedForHighlight = stories.map((s, idx) => {
+              return { idx, isSelected: false }
+            }
+            );
+            break;
+        }
+        this.setPaginationBtns(stories);
+      });
+    }
+    else {
+      this.storySub = this.storyService.highlightedStories$.subscribe(stories => {
+        this.stories = stories;
+        this.setPaginationBtns(stories);
+      });
+    }
+
   }
 
   ngOnChanges() {

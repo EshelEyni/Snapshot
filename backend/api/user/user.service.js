@@ -118,13 +118,23 @@ async function remove(userId) {
 }
 
 async function update(user) {
-    console.log('user.service -> update -> user', user.username, user.followersSum);
     try {
-        await db.exec(`update users set username = $username, fullname = $fullname,
-         email = $email, imgUrl = $imgUrl, gender = $gender,
-          phone = $phone, bio = $bio, website = $website, followersSum = $followersSum,
-           followingSum = $followingSum, postSum = $postSum, isDarkMode = $isDarkMode where id = $id`, {
-
+        await db.exec(
+            `update users set 
+             username = $username,
+             fullname = $fullname,
+             email = $email,
+             imgUrl = $imgUrl,
+             gender = $gender,
+             phone = $phone,
+             bio = $bio,
+             website = $website,
+             followersSum = $followersSum,
+             followingSum = $followingSum,
+             postSum = $postSum,
+             isDarkMode = $isDarkMode,
+             isUserHaveStory = $isUserHaveStory
+             where id = $id`, {
             $username: user.username,
             $fullname: user.fullname,
             $email: user.email,
@@ -137,6 +147,7 @@ async function update(user) {
             $followingSum: user.followingSum,
             $postSum: user.postSum,
             $isDarkMode: user.isDarkMode ? 1 : 0,
+            $isUserHaveStory: user.isUserHaveStory ? 1 : 0,
             $id: user.id
         })
         return user
@@ -150,8 +161,8 @@ async function update(user) {
 async function add(user) {
     try {
         const id = await db.exec(
-            `insert into users (username, fullname, email, password, imgUrl, gender, phone, bio, website, followersSum, followingSum, postSum) 
-             values ($username, $fullname, $email, $password, $imgUrl, $gender, $phone, $bio, $website, $followersSum, $followingSum, $postSum)`,
+            `insert into users (username, fullname, email, password, imgUrl, gender, phone, bio, website, followersSum, followingSum, postSum, isDarkMode, isUserHaveStory) 
+             values ($username, $fullname, $email, $password, $imgUrl, $gender, $phone, $bio, $website, $followersSum, $followingSum, $postSum, $isDarkMode, $isUserHaveStory)`,
             {
                 $username: user.username,
                 $fullname: user.fullname,
@@ -165,6 +176,8 @@ async function add(user) {
                 $followersSum: 0,
                 $followingSum: 0,
                 $postSum: 0,
+                $isDarkMode: 0,
+                $isUserHaveStory: 0
             });
         return id;
     } catch (err) {

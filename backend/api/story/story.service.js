@@ -45,7 +45,7 @@ async function query(userId, type) {
                         { $id: userId }
                     );
 
-                    if (storiesTableResults.length === 0) return null;
+                    if (storiesTableResults.length === 0) return [];
 
                 }
                 else if (type === 'highlight-story-picker') {
@@ -53,7 +53,7 @@ async function query(userId, type) {
                         `select * from stories where userId = $id and isSaved = 0 order by createdAt asc`,
                         { $id: userId }
                     );
-                    if (storiesTableResults.length === 0) return null;
+                    if (storiesTableResults.length === 0) return [];
 
                 }
                 const promises = storiesTableResults.map(async story => {
@@ -133,14 +133,18 @@ async function update(story) {
              createdAt = $createdAt,
              isArchived = $isArchived,
              isSaved = $isSaved,
-             savedAt = $savedAt
+             savedAt = $savedAt,
+             highlightTitle = $highlightTitle,
+             highlightCover = $highlightCover
              where id = $id`, {
             $userId: story.userId,
             $createdAt: story.createdAt,
             $id: story.id,
             $isArchived: story.isArchived,
             $isSaved: story.isSaved,
-            $savedAt: story.isSaved ? Date.now() : null
+            $savedAt: story.isSaved ? Date.now() : null,
+            $highlightTitle: story.highlightTitle,
+            $highlightCover: story.highlightCover
 
         })
         return story
@@ -155,12 +159,15 @@ async function add(story) {
         return await db.txn(async () => {
 
             const id = await db.exec(
-                `insert into stories (userId, createdAt, isArchived, isSaved) 
-                values ($userId, $createdAt, $isArchived, $isSaved)`, {
+                `insert into stories (userId, createdAt, isArchived, isSaved,savedAt, highlightTitle, highlightCover) 
+                values ($userId, $createdAt, $isArchived, $isSaved, $savedAt, $highlightTitle, $highlightCover)`, {
                 $userId: story.by.id,
                 $createdAt: Date.now(),
                 $isArchived: false,
-                $isSaved: false
+                $isSaved: false,
+                $savedAt: null,
+                $highlightTitle: null,
+                $highlightCover: null
             })
 
 

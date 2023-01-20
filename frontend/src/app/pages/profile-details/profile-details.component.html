@@ -21,15 +21,22 @@
             <p class="user-bio">{{user.bio}}</p>
         </div>
 
-        <div class="hightlights-container" *ngIf="isCurrUserLoggedInUser">
-            <button class="clean-btn btn-highlights" (click)="onToggleModal('highlights')">
-                <svg-icon src="../../../assets/svgs/plus.svg" [svgStyle]="{
-                    height:highlightsIconSize,
-                    width:highlightsIconSize,
-                    color:'rgb(199,199,199)',
-                    fill:'rgb(199,199,199)'
-                }"></svg-icon>
-            </button>
+        <div class="hightlights-container" *ngIf="isUserHaveStory">
+            <story-list [type]="'profile-details'"></story-list>
+            <div class="btn-highlights-container">
+                <button class="clean-btn btn-highlights" (click)="onToggleModal('highlights')"
+                    *ngIf="isCurrUserLoggedInUser">
+                    <svg-icon src="../../../assets/svgs/plus.svg" [svgStyle]="{
+                        height:highlightsIconSize,
+                        width:highlightsIconSize,
+                        color:'rgb(199,199,199)',
+                        fill:'rgb(199,199,199)'
+                    }"></svg-icon>
+                </button>
+                <span>new</span>
+            </div>
+            <pagination-btns [isPaginationBtnShown]="isPaginationBtnShown" (prevItem)="onScrollHighlight($event)"
+                (nextItem)="onScrollHighlight($event)"></pagination-btns>
         </div>
 
         <div class="profile-details-user-stats">

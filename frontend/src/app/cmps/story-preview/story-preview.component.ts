@@ -30,12 +30,16 @@ export class StoryPreviewComponent implements OnInit, OnDestroy {
   hightlightStoryPickerDate!: { day: string, month: string, year: string }
 
   ngOnInit(): void {
+
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) {
         this.loggedinUser = { ...user }
       }
     })
-    this.setHightlightStoryPickerDate(this.story.createdAt);
+
+    if (this.type === 'highlight-story-picker') {
+      this.setHightlightStoryPickerDate(this.story.createdAt);
+    }
   }
 
 
@@ -51,6 +55,8 @@ export class StoryPreviewComponent implements OnInit, OnDestroy {
     }
 
   }
+
+
 
   ngOnDestroy() {
     this.sub?.unsubscribe();

@@ -37,8 +37,8 @@ async function deleteStory(req, res) {
 async function updateStory(req, res) {
     try {
         const story = req.body
-        const savedStory = await storyService.update(story)
-        res.send(savedStory)
+        await storyService.update(story)
+        res.send({ msg: 'Story updated' })
     } catch (err) {
         logger.error('Failed to update story', err)
         res.status(500).send({ err: 'Failed to update story' })

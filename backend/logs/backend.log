@@ -595,3 +595,18 @@
 19.1.2023, 18:46:52 - ERROR - while finding user 28 | Failed to commit transaction: user with id #28 was not found 
 19.1.2023, 18:46:52 - ERROR - while finding user 29 | Failed to commit transaction: user with id #29 was not found 
 19.1.2023, 18:46:52 - ERROR - Failed to get user | Failed to commit transaction: user with id #29 was not found 
+20.1.2023, 1:08:21 - INFO - Server is running on port: 3030 
+20.1.2023, 1:26:03 - INFO - Server is running on port: 3030 
+20.1.2023, 1:37:01 - INFO - Server is running on port: 3030 
+20.1.2023, 2:00:27 - INFO - Server is running on port: 3030 
+20.1.2023, 3:09:02 - INFO - Server is running on port: 3030 
+20.1.2023, 3:13:02 - ERROR - cannot insert story | Failed to commit transaction: Error: SQLITE_ERROR: no such column: savedAt 
+20.1.2023, 3:13:02 - ERROR - Failed to add story | Failed to commit transaction: Error: SQLITE_ERROR: no such column: savedAt 
+20.1.2023, 3:14:31 - INFO - Server is running on port: 3030 
+20.1.2023, 3:14:33 - ERROR - cannot update user undefined | Error: SQLITE_ERROR: near "isUserHaveStory": syntax error 
+20.1.2023, 3:14:33 - ERROR - Failed to update user | Error: SQLITE_ERROR: near "isUserHaveStory": syntax error 
+20.1.2023, 3:16:30 - INFO - Server is running on port: 3030 
+20.1.2023, 3:23:09 - ERROR - Failed to delete story | Failed to commit transaction: Error: SQLITE_BUSY: database is locked 
+20.1.2023, 3:23:09 - ERROR - cannot remove story 30 | Failed to commit transaction: Error: SQLITE_BUSY: database is locked 
+20.1.2023, 3:27:58 - INFO - Server is running on port: 3030 
+20.1.2023, 3:28:24 - INFO - Server is running on port: 3030 
