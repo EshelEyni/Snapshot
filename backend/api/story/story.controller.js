@@ -27,7 +27,7 @@ async function getStory(req, res) {
 async function deleteStory(req, res) {
     try {
         await storyService.remove(req.params.id)
-        res.send({ msg: 'Deleted successfully' })
+        res.send({ msg: 'Story deleted' })
     } catch (err) {
         logger.error('Failed to delete story', err)
         res.status(500).send({ err: 'Failed to delete story' })

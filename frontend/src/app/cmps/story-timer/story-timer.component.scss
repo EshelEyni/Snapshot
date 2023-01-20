@@ -22,19 +22,57 @@
         display: flex;
         justify-content: space-between;
         margin-top: 10px;
+        position: relative;
 
         button {
             padding: 7.5px;
         }
 
-        .user-preview {
-            .user-info {
-                color: white;
+        .user-preview-and-date-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: rem(10px);
+
+            .user-preview {
+                gap: rem(10px) !important;
+
+                .user-info {
+                    max-width: rem(200px);
+                    color: white;
+
+                    .title {
+                        font-size: rem(18px);
+                        font-weight: normal !important;
+                    }
+                }
+
             }
 
             .img-container {
+                position: relative;
                 height: rem(40px);
                 width: rem(40px);
+
+                .plus-circle-container {
+                    position: absolute;
+                    bottom: 0;
+                    left: 65%;
+                }
+            }
+
+            .date {
+                font-size: rem(18px);
+                color: var(--secondary-color);
+            }
+        }
+
+    }
+
+    @include for-extra-small-layout {
+        .user-preview-and-date-container {
+            .user-info {
+                max-width: rem(250px);
             }
         }
     }

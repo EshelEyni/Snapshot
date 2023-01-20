@@ -32,15 +32,21 @@ export class UserPreviewComponent implements OnInit, OnChanges {
   urlForDesc: string = '';
   isUrlsDisabled!: boolean;
   userImgClass: string = '';
-
+  isBtnPlusShown: boolean = false;
+  plusBtnSize: number = 16;
 
   async ngOnInit() {
 
-    this.isStoryDisabled = this.type === 'story-edit-page'
-      || this.type === 'link-to-story-edit'
-      || this.type === 'story-timer'
-      || this.type === 'suggestion-list'
-      || this.type === 'home-page-suggestion-list'
+    // this.isStoryDisabled = this.type === 'story-edit-page'
+    //   || this.type === 'link-to-story-edit'
+    //   || this.type === 'user-story-timer'
+    //   || this.type === 'story'
+    //   || this.type === 'story-timer'
+    //   || this.type === 'suggestion-list'
+    //   || this.type === 'home-page-suggestion-list'
+
+    // this.isBtnPlusShown = this.type === 'user-story-timer'
+    //   || this.type === 'link-to-story-edit'
 
     if (!this.isStoryDisabled) {
       const user = await lastValueFrom(this.userService.getById(this.user.id))
@@ -63,7 +69,23 @@ export class UserPreviewComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
+    this.isBtnPlusShown = this.type === 'user-story-timer'
+      || this.type === 'link-to-story-edit'
+
+    this.isStoryDisabled = this.type === 'story-edit-page'
+      || this.type === 'link-to-story-edit'
+      || this.type === 'user-story-timer'
+      || this.type === 'story'
+      || this.type === 'story-timer'
+      || this.type === 'suggestion-list'
+      || this.type === 'home-page-suggestion-list'
+
+    if (this.isStoryDisabled) this.userImgClass = ''
+    if (this.type === 'user-story-timer') this.plusBtnSize = 14
+
     this.title = this.setTitle()
+    this.setDesc()
+    this.setUrls()
   }
 
   setTitle() {
@@ -100,9 +122,16 @@ export class UserPreviewComponent implements OnInit, OnChanges {
         this.urlForImg = `/profile/${this.user.id}`
         this.urlForTitle = `/profile/${this.user.id}`
         break
+      case 'story':
+        this.isUrlsDisabled = true;
+        break
       case 'story-timer':
         this.urlForImg = `/profile/${this.user.id}`
         this.urlForTitle = `/profile/${this.user.id}`
+        break
+      case 'user-story-timer':
+        this.urlForImg = `/story-edit`
+        this.urlForTitle = `/story-edit`
         break
       case 'link-to-story-edit':
         this.urlForImg = `/story-edit`

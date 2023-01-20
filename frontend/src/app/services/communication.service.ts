@@ -6,7 +6,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 export class CommunicationService {
 
   focusEmitter = new EventEmitter<void>();
-  userMsgEmitter = new EventEmitter<string | null>();
+  userMsgEmitter = new EventEmitter<string>();
 
   constructor() { }
 

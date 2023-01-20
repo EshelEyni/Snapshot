@@ -118,7 +118,6 @@ async function remove(userId) {
 }
 
 async function update(user) {
-
     try {
         await db.exec(
             `update users set 
@@ -135,7 +134,7 @@ async function update(user) {
              followingSum = $followingSum,
              postSum = $postSum,
              isDarkMode = $isDarkMode,
-             isUserHaveStory = $isUserHaveStory
+             storySum = $storySum
              where id = $id`, {
             $username: user.username,
             $fullname: user.fullname,
@@ -150,7 +149,7 @@ async function update(user) {
             $followingSum: user.followingSum,
             $postSum: user.postSum,
             $isDarkMode: user.isDarkMode ? 1 : 0,
-            $isUserHaveStory: user.isUserHaveStory ? 1 : 0,
+            $storySum: user.storySum,
             $id: user.id
         })
         return user
@@ -164,8 +163,8 @@ async function update(user) {
 async function add(user) {
     try {
         const id = await db.exec(
-            `insert into users (username, fullname, email, password, imgUrl, gender, phone, bio, website, followersSum, followingSum, postSum, isDarkMode, isUserHaveStory) 
-             values ($username, $fullname, $email, $password, $imgUrl, $gender, $phone, $bio, $website, $followersSum, $followingSum, $postSum, $isDarkMode, $isUserHaveStory)`,
+            `insert into users (username, fullname, email, password, imgUrl, gender, phone, bio, website, followersSum, followingSum, postSum, isDarkMode, storySum) 
+             values ($username, $fullname, $email, $password, $imgUrl, $gender, $phone, $bio, $website, $followersSum, $followingSum, $postSum, $isDarkMode, $storySum)`,
             {
                 $username: user.username,
                 $fullname: user.fullname,
@@ -180,7 +179,7 @@ async function add(user) {
                 $followingSum: 0,
                 $postSum: 0,
                 $isDarkMode: 0,
-                $isUserHaveStory: 0
+                $storySum: 0
             });
         return id;
     } catch (err) {

@@ -1,10 +1,13 @@
 @import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/mixins';
 
 .confirm-delete-msg {
+    @include modal;
     display: flex;
     flex-direction: column;
     width: rem(400px);
+    transition: all 0.3s step-end;
 
     header {
         display: flex;

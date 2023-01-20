@@ -1,0 +1,8 @@
+<section class="story-options-modal" *ngIf="!isConfirmDeleteMsgShown">
+    <button class="clean-btn delete-btn" (click)="onToggleConfirmDelete()">Delete</button>
+    <button class="clean-btn" *ngIf="story.isSaved" (click)="onRemoveStoryFromProfile()">Remove story from profile</button>
+    <button class="clean-btn" (click)="onCloseModal()">Cancel</button>
+</section>
+
+<confirm-delete-msg *ngIf="isConfirmDeleteMsgShown" [entityType]="'Story'"
+    (close)="onToggleConfirmDelete()" (deleteEntity)="onDeleteStory()"></confirm-delete-msg>

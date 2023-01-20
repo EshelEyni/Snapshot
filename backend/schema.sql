@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS "users" (
     "followingSum" INTEGER NOT NULL,
     "postSum" INTEGER NOT NULL,
     "isDarkMode" BOOLEAN NOT NULL,
-    "isUserHaveStory" BOOLEAN NOT NULL,
+    "storySum" INTEGER NOT NULL,
     PRIMARY KEY("id" AUTOINCREMENT)
 );
 

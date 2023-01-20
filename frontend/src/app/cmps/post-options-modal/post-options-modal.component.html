@@ -15,5 +15,5 @@
     <button class="clean-btn" (click)="onCloseModal()">Cancel</button>
 </section>
 
-<confirm-delete-msg *ngIf="isConfirmDeleteMsgShown && isPostOwnedByUser" [entityType]="'post'"
+<confirm-delete-msg *ngIf="isConfirmDeleteMsgShown && isPostOwnedByUser" [entityType]="'Post'"
     (close)="onToggleConfirmDelete()" (deleteEntity)="onDeletePost()"></confirm-delete-msg>

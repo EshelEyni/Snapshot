@@ -5,7 +5,10 @@
         </li>
     </ul>
     <div class="btn-container">
-        <user-preview [user]="currStory.by" [type]="'story-timer'"></user-preview>
+        <div class="user-preview-and-date-container">
+            <user-preview [user]="currStory.by" [type]="userPreviewType"></user-preview>
+            <div class="date">{{currStory.createdAt | formattedDate:'short' }}</div>
+        </div>
         <button class="clean-btn" (click)="onTogglePlayStory()">
             <svg-icon src="../../../assets/svgs/pause-icon.svg" *ngIf="isPlaying; else playIcon"></svg-icon>
             <ng-template #playIcon>

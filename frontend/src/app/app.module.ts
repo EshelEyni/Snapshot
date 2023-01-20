@@ -67,7 +67,6 @@ import { PainterSettingsComponent } from './cmps/painter-settings/painter-settin
 import { StrokeTypePickerComponent } from './cmps/stroke-type-picker/stroke-type-picker.component';
 import { StickerPickerComponent } from './cmps/sticker-picker/sticker-picker.component';
 import { ImgListComponent } from './cmps/img-list/img-list.component';
-import { OptionModalComponent } from './cmps/option-modal/option-modal.component';
 import { StoryCanvasComponent } from './cmps/story-canvas/story-canvas.component';
 import { PostCanvasComponent } from './cmps/post-canvas/post-canvas.component';
 import { LikeModalComponent } from './cmps/like-modal/like-modal.component';
@@ -104,6 +103,7 @@ import { HightlightsStoryPickerComponent } from './cmps/hightlights-story-picker
 import { HightlightsCoverPickerComponent } from './cmps/hightlights-cover-picker/hightlights-cover-picker.component';
 import { ProfileImgSettingModalComponent } from './cmps/profile-img-setting-modal/profile-img-setting-modal.component';
 import { ProfileEditHeaderComponent } from './cmps/profile-edit-header/profile-edit-header.component';
+import { StoryOptionsModalComponent } from './cmps/story-options-modal/story-options-modal.component';
 
 @NgModule({
   declarations: [
@@ -155,7 +155,6 @@ import { ProfileEditHeaderComponent } from './cmps/profile-edit-header/profile-e
     StrokeTypePickerComponent,
     StickerPickerComponent,
     ImgListComponent,
-    OptionModalComponent,
     StoryCanvasComponent,
     PostCanvasComponent,
     LikeModalComponent,
@@ -187,6 +186,7 @@ import { ProfileEditHeaderComponent } from './cmps/profile-edit-header/profile-e
     HightlightsCoverPickerComponent,
     ProfileImgSettingModalComponent,
     ProfileEditHeaderComponent,
+    StoryOptionsModalComponent,
   ],
   imports: [
     BrowserAnimationsModule,

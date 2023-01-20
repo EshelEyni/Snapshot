@@ -6,7 +6,7 @@ import { Component, OnInit, inject, OnChanges, OnDestroy, EventEmitter } from '@
   selector: 'story-timer',
   templateUrl: './story-timer.component.html',
   styleUrls: ['./story-timer.component.scss'],
-  inputs: ['currStory', 'nextStory', 'currImgIdx'],
+  inputs: ['currStory', 'nextStory', 'currImgIdx', 'isPlaying', 'isUserStory'],
   outputs: ['onSetImgUrl']
 })
 export class StoryTimerComponent implements OnInit, OnDestroy, OnChanges {
@@ -22,11 +22,16 @@ export class StoryTimerComponent implements OnInit, OnDestroy, OnChanges {
   idx = 0;
   currStory!: Story;
   nextStory!: Story;
-  isPlaying: boolean = false;
+  isPlaying!: boolean;
+  isUserStory!: boolean;
+  userPreviewType: string = '';
 
-  ngOnInit(): void { }
 
+  ngOnInit(): void {
+  }
+  
   ngOnChanges() {
+    this.userPreviewType = this.isUserStory ? 'user-story-timer' : 'story-timer';
     this.imgUrls = this.currStory.imgUrls;
     this.values = this.imgUrls.map((imgUrl, idx) => {
       if (idx < this.currImgIdx) return 100;

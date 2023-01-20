@@ -5,7 +5,7 @@
             <img [src]="story.imgUrls[0]" alt="story-img">
         </div>
         <div class="info">
-            <user-preview [user]="story.by"> </user-preview>
+            <user-preview [user]="story.by" [type]="'story'"> </user-preview>
             <p>{{story.createdAt | formattedDate}}</p>
         </div>
     </div>
@@ -14,8 +14,8 @@
 
         <div class="curr-story">
             <div class="timer-container">
-                <story-timer [currStory]="story" [nextStory]="nextStory" (onSetImgUrl)="onSetCurrImgUrl($event)"
-                    [currImgIdx]="currImgIdx">
+                <story-timer [currStory]="story" [nextStory]="nextStory" [isPlaying]="isPlaying"
+                    [isUserStory]="isUserStory" (onSetImgUrl)="onSetCurrImgUrl($event)" [currImgIdx]="currImgIdx">
                 </story-timer>
             </div>
 
@@ -28,8 +28,11 @@
                 <div (click)="onSetCurrImgUrl(1)"></div>
             </div>
 
-            <div class="reply-container">
-                <div *ngIf="isUserStory; else msgEdit">userstory</div>
+            <div class="reply-actions-container">
+                <div class="logged-in-user-story-actions" *ngIf="isUserStory; else msgEdit">
+                    <user-preview [user]="story.by" [type]="'story'"> </user-preview>
+                    <ellipsis (click)="onToggleOptionsModal()"> </ellipsis>
+                </div>
                 <ng-template #msgEdit>
                     <msg-edit [isStoryReply]="true" [story]="story"> </msg-edit>
                 </ng-template>
@@ -44,4 +47,6 @@
         </div>
     </div>
 
+    <story-options-modal *ngIf="isOptionsModalShown" [story]="story" [loggedinUser]="loggedinUser" (closeModal)="onToggleOptionsModal()"></story-options-modal>
+    <div class="main-screen dark-mode" *ngIf="isOptionsModalShown" (click)="onToggleOptionsModal()"></div>
 </article>

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from './user.service';
 import { StorageService } from './storage.service';
 import { Story } from './../models/story.model';
-import { BehaviorSubject, firstValueFrom, from, Observable } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, Observable, lastValueFrom } from 'rxjs';
 import { Injectable, inject } from '@angular/core';
 import { MiniUser } from '../models/user.model';
 
@@ -47,8 +47,19 @@ export class StoryService {
     return this.http.get<Story>(`http://localhost:3030/api/story/${storyId}`, options)
   }
 
-  public remove(storyId: number): Observable<boolean> {
-    return this.http.delete<boolean>(`http://localhost:3030/api/story/${storyId}`)
+  public async remove(storyId: number): Promise<boolean> {
+    const res = await lastValueFrom(
+      this.http.delete<{ msg: string }>(`http://localhost:3030/api/story/${storyId}`)
+    )
+
+    if (res.msg === 'Story deleted') {
+      const stories = this._stories$.getValue()
+      const idx = stories.findIndex(story => story.id === storyId)
+      stories.splice(idx, 1)
+      this._stories$.next(stories);
+      return true
+    }
+    return false
   }
 
   public save(story: Story) {

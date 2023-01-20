@@ -33,6 +33,8 @@ export class StoryComponent implements OnInit, OnChanges, OnDestroy {
   currImgIdx = 0;
   isUserStory!: boolean;
   isPaginationBtnShown!: { left: boolean, right: boolean };
+  isPlaying: boolean = true;
+  isOptionsModalShown: boolean = false;
 
   ngOnInit(): void {
     this.sub = this.loggedinUser$.subscribe(user => {
@@ -61,7 +63,11 @@ export class StoryComponent implements OnInit, OnChanges, OnDestroy {
       return;
     }
     this.currImgUrl = this.story.imgUrls[this.currImgIdx];
+  }
 
+  onToggleOptionsModal() {
+    this.isOptionsModalShown = !this.isOptionsModalShown;
+    this.isPlaying = !this.isPlaying;
   }
 
   ngOnDestroy() {

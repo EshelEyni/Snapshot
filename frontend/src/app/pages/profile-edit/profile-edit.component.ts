@@ -113,15 +113,9 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
     const user = { ...this.user, username, fullname, website, bio, email, phone, gender }
     await this.store.dispatch(new SaveUser(user))
     this.communicationService.userMsgEmitter.emit('Profile saved.')
-    // setTimeout(() => {
-    //   console.log('emitting null')
-    //   this.communicationService.userMsgEmitter.emit(null)
-    // }, 2500);
-
   }
 
   ngOnDestroy() {
     this.paramsSubscription.unsubscribe()
   }
-
 }

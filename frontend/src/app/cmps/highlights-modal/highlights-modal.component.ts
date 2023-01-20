@@ -56,7 +56,7 @@ export class HighlightsModalComponent implements OnInit {
   }
   
   onSaveHighlight() {
-    const story = this.story;
+    const story = {...this.story};
     story.isSaved = true;
     story.highlightTitle = this.highlightName;
     story.highlightCover = this.cover;

@@ -41,7 +41,6 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   postFilterIconSize = window.innerWidth < 735 ? 24 : 12;
   isHighlightsModalShown: boolean = false;
   isMainScreenShown: boolean = false;
-  isUserHaveStory: boolean = false;
   listPosition: string = '0';
   highlightIdx: number = 0;
   userImgClass: string = '';
@@ -58,7 +57,6 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
         const user = data['user']
         if (user) {
           this.user = user
-          this.isUserHaveStory = this.user.isUserHaveStory;
           this.postService.loadPosts(
             {
               userId: this.user.id,

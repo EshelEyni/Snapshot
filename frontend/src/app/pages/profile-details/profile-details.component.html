@@ -28,7 +28,7 @@
             <p class="user-bio" [innerText]="user.bio"></p>
         </div>
 
-        <div class="hightlights-container" *ngIf="isUserHaveStory">
+        <div class="hightlights-container" *ngIf="user.storySum">
                 <story-list [type]="'profile-details'"></story-list>
             <div class="btn-highlights-container">
                 <button class="clean-btn btn-highlights" (click)="onToggleModal('highlights')"
