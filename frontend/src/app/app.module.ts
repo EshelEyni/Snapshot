@@ -102,6 +102,8 @@ import { HighlightsModalComponent } from './cmps/highlights-modal/highlights-mod
 import { HighlightsNameEditComponent } from './cmps/highlights-name-edit/highlights-name-edit.component';
 import { HightlightsStoryPickerComponent } from './cmps/hightlights-story-picker/hightlights-story-picker.component';
 import { HightlightsCoverPickerComponent } from './cmps/hightlights-cover-picker/hightlights-cover-picker.component';
+import { ProfileImgSettingModalComponent } from './cmps/profile-img-setting-modal/profile-img-setting-modal.component';
+import { ProfileEditHeaderComponent } from './cmps/profile-edit-header/profile-edit-header.component';
 
 @NgModule({
   declarations: [
@@ -183,6 +185,8 @@ import { HightlightsCoverPickerComponent } from './cmps/hightlights-cover-picker
     HighlightsNameEditComponent,
     HightlightsStoryPickerComponent,
     HightlightsCoverPickerComponent,
+    ProfileImgSettingModalComponent,
+    ProfileEditHeaderComponent,
   ],
   imports: [
     BrowserAnimationsModule,

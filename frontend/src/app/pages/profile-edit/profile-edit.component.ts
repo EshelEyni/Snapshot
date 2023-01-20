@@ -28,6 +28,8 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
       username: [''],
       fullname: [''],
       password: [''],
+      newPassword: [''],
+      confirmPassword: [''],
       website: [''],
       bio: [''],
       email: [''],
@@ -41,7 +43,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
   user!: User;
   userMsg: string = '';
   userImgUrl: string = this.userService.getDefaultUserImgUrl()
-  isImgSettingModalOpen = true
+  isImgSettingModalOpen = false
 
 
   ngOnInit(): void {

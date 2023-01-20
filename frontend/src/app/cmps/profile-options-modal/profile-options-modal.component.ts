@@ -39,10 +39,6 @@ export class ProfileOptionsModalComponent implements OnInit {
     this.router.navigate(['/profile-edit/', this.loggedinUser.id])
   }
 
-  onGoToChangePassword() {
-    this.router.navigate(['/profile-edit/', this.loggedinUser.id], { queryParams: { filterBy: 'changePassword' } })
-  }
-
   onToggleDarkMode() {
     this.isDarkMode = !this.isDarkMode;
 
