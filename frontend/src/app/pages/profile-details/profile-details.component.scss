@@ -30,9 +30,20 @@
             margin: rem(20px) 0 rem(20px) rem(15px);
 
             img {
-                width: 100%;
-                height: 100%;
                 border-radius: 50%;
+            }
+
+            &.story-viewed {
+                @include viewed-story-circle;
+            }
+
+            &.story-not-viewed {
+                @include unviewed-story-circle;
+            }
+
+            &.disabled {
+                pointer-events: none;
+                cursor: default;
             }
         }
 
@@ -50,16 +61,41 @@
 
             .btn-edit {
                 font-weight: 500;
-                padding: 5px 7.5px;
+                padding: rem(5px) rem(7.5px);
                 font-size: rem(14px);
                 font-weight: bold;
                 background-color: rgb(239, 239, 239);
                 border-radius: 5px;
                 max-width: rem(250px);
+                font-family: var(--primary-font);
             }
 
             .btn-settings {
                 display: none;
+            }
+
+            .btns-for-non-logged-in-user {
+                display: flex;
+                align-items: center;
+                gap: rem(10px);
+
+                .btn-follow {
+                    width: rem(120px);
+                }
+
+                .btn-unfollow {
+                    width: rem(135px);
+                }
+
+                .btn-msg {
+                    padding: rem(5px) rem(7.5px);
+                    font-size: rem(14px);
+                    font-weight: 500;
+                    background-color: rgb(239, 239, 239);
+                    border-radius: 5px;
+                    font-family: var(--primary-font);
+                    width: rem(120px);
+                }
             }
 
         }
@@ -203,6 +239,77 @@
 
         }
 
+        .no-posts-msg-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+
+            >* {
+                .icon-container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: rem(90px);
+                    height: rem(90px);
+                    border-radius: 50%;
+                    border: 1px solid var(--primary-color);
+
+                    fa-icon {
+                        font-size: rem(40px);
+                        color: var(--primary-color);
+                    }
+                }
+
+                h1 {
+                    font-size: rem(40px);
+                    text-transform: capitalize;
+                }
+
+                p {
+                    font-size: rem(16px);
+                    color: var(--secondary-color);
+                }
+
+            }
+
+            .no-tagged-posts-msg,
+            .no-created-posts-msg {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: rem(10px);
+                margin: rem(60px) rem(45px);
+
+                .btn-share-photo {
+                    font-size: rem(18px);
+                    font-weight: 500;
+                    font-family: var(--primary-font);
+                    color: var(--primary-button);
+                }
+            }
+
+            .no-saved-posts-msg {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: rem(10px) rem(45px);
+                gap: rem(50px);
+
+                >* {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    max-width: rem(350px);
+                    gap: rem(10px);
+
+                }
+            }
+        }
+
     }
 
     @include for-extra-small-layout {
@@ -237,6 +344,21 @@
                     height: rem(35px);
                 }
 
+                .btns-for-non-logged-in-user {
+
+                    .btn-unfollow {
+                        width: rem(120px);
+                    }
+
+                    .btn-follow {
+                        width: rem(80px);
+                    }
+
+                    .btn-msg {
+                        width: rem(85px);
+                    }
+                }
+
             }
 
             .profile-details-user-info {
@@ -252,6 +374,7 @@
 
                 .btn-highlights-container {
                     padding: rem(10px) rem(17.5px);
+
                     .btn-highlights {
                         width: rem(90px);
                         height: rem(90px);

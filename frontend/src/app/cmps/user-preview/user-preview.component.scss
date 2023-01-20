@@ -16,14 +16,6 @@
         align-items: center;
         cursor: pointer;
 
-        // *************** user img circle  ***************
-        // background: linear-gradient(white, white) padding-box,
-        //     linear-gradient(to bottom left, var(--primary-icon-color), var(--secondary-icon-color)) border-box;
-        // border-radius: 50%;
-        // border: 2px solid transparent;
-        // padding: rem(2px);
-
-        @include unviewed-story-circle;
 
         img {
             border-radius: 50%;
@@ -59,21 +51,15 @@
         }
     }
 
-    &.is-viewed {
+    &.story-viewed {
         .img-container {
-            // border: 1px solid transparent;
-            // background: linear-gradient(white, white) padding-box,
-            //     linear-gradient(to bottom left, var(--border-color), var(--border-color)) border-box;
             @include viewed-story-circle;
         }
     }
 
-    &.is-no-story {
+    &.story-not-viewed {
         .img-container {
-            // border: none;
-            // background: none;
-            // padding: 0;
-            @include no-story-circle
+            @include unviewed-story-circle;
         }
     }
 

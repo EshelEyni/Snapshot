@@ -1,23 +1,27 @@
+import { faCamera, faHashtag  } from '@fortawesome/free-solid-svg-icons';
+import { StoryService } from './../../services/story.service';
 import { switchMap } from 'rxjs/operators';
 import { Post } from './../../models/post.model';
 import { Store } from '@ngrx/store';
 import { PostService } from 'src/app/services/post.service';
 import { State } from './../../store/store';
 import { User } from './../../models/user.model';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription, Observable, map } from 'rxjs';
-import { Component, OnInit, OnDestroy, HostListener, ViewChild, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription, Observable, map, lastValueFrom } from 'rxjs';
+import { Component, OnInit, OnDestroy, HostListener  } from '@angular/core';
 
 @Component({
   selector: 'profile-details',
   templateUrl: './profile-details.component.html',
   styleUrls: ['./profile-details.component.scss']
 })
-export class ProfileDetailsComponent implements OnInit,  OnDestroy {
+export class ProfileDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private postService: PostService,
+    private storyService: StoryService,
     private store: Store<State>
   ) {
     this.loggedinUser$ = this.store.select('userState').pipe(map((x => x.loggedinUser)));
@@ -25,11 +29,12 @@ export class ProfileDetailsComponent implements OnInit,  OnDestroy {
 
   queryParamsSubscription!: Subscription;
   userSub!: Subscription;
+  postSub!: Subscription;
   loggedinUser$: Observable<User | null>;
   loggedinUser!: User;
   isCurrUserLoggedInUser!: boolean;
   user!: User;
-  posts$!: Observable<Post[]>;
+  posts: Post[] = [];
   isOptionsModalShown = false;
   filterBy = { createdPosts: true, savedPosts: false, taggedPosts: false }
   highlightsIconSize = window.innerWidth < 735 ? 30 : 45;
@@ -37,9 +42,14 @@ export class ProfileDetailsComponent implements OnInit,  OnDestroy {
   isHighlightsModalShown: boolean = false;
   isMainScreenShown: boolean = false;
   isUserHaveStory: boolean = false;
-  isPaginationBtnShown = { left: false, right: false };
   listPosition: string = '0';
   highlightIdx: number = 0;
+  userImgClass: string = '';
+  isStoryViewed: boolean = false;
+  isPostEditModalShown: boolean = false;
+
+  faCamera = faCamera;
+  faHashtag = faHashtag;
 
   ngOnInit(): void {
 
@@ -56,14 +66,28 @@ export class ProfileDetailsComponent implements OnInit,  OnDestroy {
               limit: 100,
             }
           )
-          this.posts$ = this.postService.posts$;
+          this.postSub = this.postService.posts$.subscribe(posts => {
+            this.posts = posts
+            });
+
         }
         return this.loggedinUser$
       }
-      )).subscribe(user => {
+      )).subscribe(async user => {
         if (user) {
           this.loggedinUser = user
           this.isCurrUserLoggedInUser = this.user.id === this.loggedinUser.id
+
+          if (this.user.currStoryId) {
+            const story = await lastValueFrom(
+              this.storyService.getById(user.currStoryId, 'user-preview'),
+            )
+            this.isStoryViewed = story.viewedBy.some(u => u.id === this.loggedinUser.id)
+            this.userImgClass = this.isStoryViewed ? 'story-viewed' : 'story-not-viewed'
+          }
+          else {
+            this.userImgClass = ''
+          }
         }
       })
 
@@ -95,7 +119,6 @@ export class ProfileDetailsComponent implements OnInit,  OnDestroy {
             limit: 100,
           }
         )
-        this.posts$ = this.postService.posts$;
         break;
       case 'savedPosts':
         this.filterBy = { createdPosts: false, savedPosts: true, taggedPosts: false }
@@ -106,7 +129,6 @@ export class ProfileDetailsComponent implements OnInit,  OnDestroy {
             limit: 100,
           }
         );
-        this.posts$ = this.postService.posts$;
         break;
       case 'taggedPosts':
         this.filterBy = { createdPosts: false, savedPosts: false, taggedPosts: true }
@@ -118,10 +140,8 @@ export class ProfileDetailsComponent implements OnInit,  OnDestroy {
             username: this.user.username
           }
         );
-        this.posts$ = this.postService.posts$;
         break;
     }
-
   }
 
   onToggleModal(el: string) {
@@ -134,9 +154,13 @@ export class ProfileDetailsComponent implements OnInit,  OnDestroy {
       case 'options':
         this.isOptionsModalShown = !this.isOptionsModalShown;
         break;
+      case 'post-edit':
+        this.isPostEditModalShown = !this.isPostEditModalShown;
+        break;
       case 'main-screen':
         if (this.isOptionsModalShown) this.isOptionsModalShown = false;
         if (this.isHighlightsModalShown) this.isHighlightsModalShown = false;
+        if (this.isPostEditModalShown) this.isPostEditModalShown = false;
         break;
 
     }
@@ -144,12 +168,13 @@ export class ProfileDetailsComponent implements OnInit,  OnDestroy {
 
   }
 
-  onScrollHighlight(num: number) {
-
+  onGoToStory() {
+    this.router.navigate(['/story/', this.user.currStoryId])
   }
 
   ngOnDestroy() {
-    this.userSub?.unsubscribe()
-    this.queryParamsSubscription.unsubscribe()
+    this.userSub?.unsubscribe();
+    this.queryParamsSubscription.unsubscribe();
+    this.postSub?.unsubscribe();
   }
 }

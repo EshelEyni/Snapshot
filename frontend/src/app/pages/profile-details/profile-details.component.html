@@ -5,19 +5,26 @@
 
 
     <div class="user-details">
-        <div class="img-container">
+        <div class="img-container" [ngClass]="userImgClass" (click)="onGoToStory()"
+            [class.disabled]="!user.currStoryId">
             <img [src]="user.imgUrl" alt="Avatar">
         </div>
 
         <div class="user-details-action-container">
             <p class="user-name">{{user.username}}</p>
-            <button class="clean-btn btn-edit" [routerLink]="['/profile-edit/',user.id]">Edit profile</button>
-            <svg-icon src="../../../assets/svgs/settings-icon.svg" class="btn-settings"
+            <button class="clean-btn btn-edit" [routerLink]="['/profile-edit/',user.id]"
+                *ngIf="isCurrUserLoggedInUser">Edit profile</button>
+            <svg-icon src="../../../assets/svgs/settings-icon.svg" class="btn-settings" *ngIf="isCurrUserLoggedInUser"
                 (click)="onToggleModal('options')"></svg-icon>
+
+            <div class="btns-for-non-logged-in-user" *ngIf="!isCurrUserLoggedInUser">
+                <follow-btn [user]="user"></follow-btn>
+                <button class="clean-btn btn-msg">Message</button>
+            </div>
         </div>
 
         <div class="profile-details-user-info">
-            <h4 class="user-full-name">{{user.fullname}}</h4>
+            <h4 class="user-full-name" *ngIf="isCurrUserLoggedInUser">{{user.fullname}}</h4>
             <p class="user-bio">{{user.bio}}</p>
         </div>
 
@@ -35,8 +42,6 @@
                 </button>
                 <span>new</span>
             </div>
-            <pagination-btns [isPaginationBtnShown]="isPaginationBtnShown" (prevItem)="onScrollHighlight($event)"
-                (nextItem)="onScrollHighlight($event)"></pagination-btns>
         </div>
 
         <div class="profile-details-user-stats">
@@ -81,7 +86,50 @@
             </div>
         </section>
 
-        <post-list [posts]="(posts$|async)!" [isMiniPreview]="true"></post-list>
+        <div>
+            <post-list [posts]="posts" [isMiniPreview]="true" *ngIf="posts.length;else noPostMsg"></post-list>
+            <ng-template #noPostMsg>
+                <div class="no-posts-msg-container">
+
+                    <div class="no-created-posts-msg" *ngIf="filterBy.createdPosts">
+                        <div class="icon-container">
+                            <fa-icon [icon]="faCamera"></fa-icon>
+                        </div>
+                        <h1>share photos</h1>
+                        <p>When you share photos, they will appear on your profile.</p>
+                        <button class="clean-btn btn-share-photo" (click)="onToggleModal('post-edit')">Share your first
+                            photo</button>
+                        <post-edit *ngIf="isPostEditModalShown"
+                            (togglePostEdit)="onToggleModal('post-edit')"></post-edit>
+
+                    </div>
+                    <div class="no-saved-posts-msg" *ngIf="filterBy.savedPosts">
+                        <p>Only you can see what you've saved</p>
+
+                        <div>
+                            <div class="icon-container">
+                                <svg-icon src="../../../assets/svgs/bookmark-outline.svg" [svgStyle]="{
+                                    color:'var(--color-primary)',height:40,width:40
+                                }"></svg-icon>
+                            </div>
+                            <h1>save</h1>
+                            <p>Save photos and videos that you want to see again. No one is notified, and only you can
+                                see
+                                what you've saved.
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="no-tagged-posts-msg" *ngIf="filterBy.taggedPosts">
+                        <div class="icon-container">
+                            <fa-icon [icon]="faHashtag"></fa-icon>
+                        </div>
+                        <h1>Photos of you </h1>
+                        <p>When people tag you in photos, they'll appear here. </p>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
     </section>
 
 

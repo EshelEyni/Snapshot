@@ -20,21 +20,19 @@ export class UserPreviewComponent implements OnInit, OnChanges {
   storyService = inject(StoryService);
 
   user!: MiniUser;
-
   story!: Story;
   isStoryDisabled: boolean = false;
-  isViewed: boolean = false;
-
+  isStoryViewed: boolean = false;
   type!: string;
-
   desc!: string;
   title = '';
-
   location!: Location | null;
   urlForImg: string = '';
   urlForTitle: string = '';
   urlForDesc: string = '';
   isUrlsDisabled!: boolean;
+  userImgClass: string = '';
+
 
   async ngOnInit() {
 
@@ -53,11 +51,10 @@ export class UserPreviewComponent implements OnInit, OnChanges {
 
         const loggedinUser = this.userService.getLoggedinUser()
         if (loggedinUser) {
-          this.isViewed = story.viewedBy.some(u => u.id === loggedinUser.id)
+          this.isStoryViewed = story.viewedBy.some(u => u.id === loggedinUser.id)
+          this.userImgClass = this.isStoryViewed ? 'story-viewed' : 'story-not-viewed'
         }
         this.story = story
-      } else {
-        this.isStoryDisabled = true
       }
     }
     this.title = this.setTitle()
@@ -152,9 +149,9 @@ export class UserPreviewComponent implements OnInit, OnChanges {
   }
 
   setWatchedStory() {
-    if (this.isViewed || !this.story) return
+    if (this.isStoryViewed || !this.story) return
     this.story.viewedBy.push(this.user)
     this.storyService.save(this.story)
-    this.isViewed = true
+    this.isStoryViewed = true
   }
 }
