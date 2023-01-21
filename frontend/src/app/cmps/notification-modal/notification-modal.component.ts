@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { NotificationService } from './../../services/notification.service';
-import { Component, OnInit, inject, EventEmitter } from '@angular/core';
+import { Component, OnInit, inject, EventEmitter, HostListener } from '@angular/core';
 import { Notification } from 'src/app/models/notification.model';
 import { User } from 'src/app/models/user.model';
 
@@ -28,5 +28,4 @@ export class NotificationModalComponent implements OnInit {
   onCloseModal() {
     this.onClose.emit()
   }
-
 }

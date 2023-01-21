@@ -128,14 +128,17 @@ async function add(comment) {
 
             const users = await db.query(`select userId from posts where id = $id`, { $id: comment.postId });
             const userId = users[0].userId;
-            const noitification = {
-                type: 'comment',
-                byUserId: comment.by.id,
-                entityId: id,
-                userId,
-                postId: comment.postId,
+
+            if (userId !== comment.by.id) {
+                const noitification = {
+                    type: 'comment',
+                    byUserId: comment.by.id,
+                    entityId: id,
+                    userId,
+                    postId: comment.postId,
+                }
+                await noitificationService.add(noitification)
             }
-            await noitificationService.add(noitification)
 
             const mentionRegex = /@(\w+)/g;
             const mentions = comment.text.match(mentionRegex);
@@ -150,6 +153,7 @@ async function add(comment) {
                 );
                 const mentionedUserIds = mentionedUsers.map(user => user.id);
                 mentionedUserIds.forEach(async (mentionedUserId) => {
+                    if (mentionedUserId === comment.by.id) return;
                     const noitification = {
                         type: 'mention',
                         byUserId: comment.by.id,
@@ -160,6 +164,7 @@ async function add(comment) {
                     await noitificationService.add(noitification)
                 })
             }
+
 
             return id
         });

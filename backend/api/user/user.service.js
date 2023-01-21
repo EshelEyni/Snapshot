@@ -74,10 +74,7 @@ async function getById(userId) {
             }
 
             const currStoryId = stories[0]
-            if (!currStoryId.isArchived) {
-                user.currStoryId = currStoryId.id;
-            }
-
+            user.currStoryId = currStoryId.id;
             return user
         });
 

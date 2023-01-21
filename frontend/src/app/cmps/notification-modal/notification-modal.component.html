@@ -3,7 +3,7 @@
         <h1>notifications</h1>
     </header>
 
-    <div class="notification-container">
-        <notification-list [notifications]="(notifications$|async)!" (onClose)="onCloseModal()"></notification-list>
-    </div>
+    <main class="notification-modal-main-container">
+        <notification-list [notifications]="(notifications$|async)!" (close)="onCloseModal()"></notification-list>
+    </main>
 </section>

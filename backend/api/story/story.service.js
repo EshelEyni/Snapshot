@@ -81,6 +81,8 @@ async function getById(storyId, type) {
                 stories = await db.query(`select * from stories where id = $id and isArchived = 0`, {
                     $id: storyId,
                 });
+                console.log('stories', stories);
+                console.log('storyId', storyId);
             }
             else if (type === 'story-details') {
                 stories = await db.query(`select * from stories where id = $id`, {

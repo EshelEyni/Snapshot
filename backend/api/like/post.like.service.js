@@ -42,14 +42,16 @@ async function addLikeToPost({ post, user }) {
                 $imgUrl: user.imgUrl
             });
 
-            const noitification = {
-                type: 'like-post',
-                byUserId: user.id,
-                userId: post.by.id,
-                entityId: id,
-                postId: post.id,
+            if (post.by.id !== user.id) {
+                const noitification = {
+                    type: 'like-post',
+                    byUserId: user.id,
+                    userId: post.by.id,
+                    entityId: id,
+                    postId: post.id,
+                }
+                await noitificationService.add(noitification)
             }
-            await noitificationService.add(noitification)
 
             return id
         })
@@ -68,7 +70,7 @@ async function deleteLikeToPost({ postId, userId }) {
                 $userId: userId
             });
             const entityId = entity[0].id;
-            
+
             await db.exec(`delete from postsLikedBy where postId = $postId and userId = $userId`, {
                 $postId: postId,
                 $userId: userId

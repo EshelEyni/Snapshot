@@ -51,14 +51,16 @@ async function addLikeToComment({ commentId, user }) {
             });
             const post = posts[0]
 
-            const noitification = {
-                type: 'like-comment',
-                byUserId: user.id,
-                userId: post.userId,
-                entityId: id,
-                postId: post.id,
+            if (post.userId !== user.id) {
+                const noitification = {
+                    type: 'like-comment',
+                    byUserId: user.id,
+                    userId: post.userId,
+                    entityId: id,
+                    postId: post.id,
+                }
+                await noitificationService.add(noitification)
             }
-            await noitificationService.add(noitification)
 
             return id
         })

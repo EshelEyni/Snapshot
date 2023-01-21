@@ -46,6 +46,10 @@ export class SideBarComponent implements OnInit, OnDestroy {
     })
   }
 
+  onModalContainerClick(e:Event){
+    e.stopPropagation()
+  }
+
   setIconColor() {
     this.iconColor = this.loggedinUser.isDarkMode ? 'var(--primary-color)' : 'var(--tertiary-color)'
     this.icons.forEach(icon => {
@@ -68,7 +72,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
         this.links.get(1)?.nativeElement.classList.add('active')
         break;
       case '/inbox':
-        this.links.get(2)?.nativeElement.classList.add('active') 
+        this.links.get(2)?.nativeElement.classList.add('active')
         break;
       case `/profile/${this.loggedinUser.id}`:
         this.links.get(3)?.nativeElement.classList.add('active')

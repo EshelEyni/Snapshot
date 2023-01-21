@@ -1,4 +1,4 @@
-<article class="notification" (click)="onCloseModal()">
+<article class="notification" (click)="onClickNotification()">
     <div class="main-container">
         <div class="img-container">
             <img [src]="notification.by.imgUrl" alt="Avatar">
@@ -11,9 +11,9 @@
     </div>
 
     <div class="secondary-container">
-        <div class="img-container" *ngIf="post && post.imgUrls.length">
+        <div class="img-container" *ngIf="isPostImgShown">
             <img [src]="post.imgUrls[0]" alt="postImg">
         </div>
-        <follow-btn [user]="notification.by"></follow-btn>
+        <follow-btn [user]="notification.by" *ngIf="isFollowedBtnShown" (click)="onClickFollowBtn($event)"></follow-btn>
     </div>
 </article>

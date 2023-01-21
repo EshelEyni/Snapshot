@@ -6,8 +6,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: rem(10px);
     cursor: pointer;
+
 
     .main-container {
         display: flex;
@@ -36,7 +36,7 @@
             }
 
             .username {
-                font-weight: bold;
+                font-weight: 500;
             }
 
             .date {
@@ -75,5 +75,16 @@
 
     &:hover {
         background-color: var(--primary-bg);
+    }
+
+    @include for-large-layout {
+
+
+        .main-container {
+            .txt-container {
+                font-size: rem(18px);
+            }
+        }
+
     }
 }

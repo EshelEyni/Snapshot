@@ -13,7 +13,7 @@
 
     .like-btn-container {
         fa-icon {
-            font-size: rem(12px);
+            font-size: rem(14px);
         }
     }
 
@@ -142,6 +142,10 @@
             justify-content: flex-end;
             height: rem(45px);
             width: rem(45px);
+
+            fa-icon {
+                font-size: rem(16px);
+            }
         }
     }
 }

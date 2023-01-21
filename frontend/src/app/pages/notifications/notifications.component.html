@@ -1,5 +1,12 @@
-<header class="ac-header">
-    <fa-icon [icon]="faChevronLeft" (click)="onGoBack()"></fa-icon>
-    <h1>Notifications</h1>
-    <div></div>
-</header>
+<section class="notifications">
+
+    <header class="notifications-header">
+        <fa-icon [icon]="faChevronLeft" (click)="onGoBack()"></fa-icon>
+        <h1>Notifications</h1>
+        <div></div>
+    </header>
+
+    <main class="notifications-main-container">
+        <notification-list [notifications]="(notifications$|async)!"></notification-list>
+    </main>
+</section>

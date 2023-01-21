@@ -1,5 +1,12 @@
-<ul class="notification-list">
-    <li *ngFor="let notification of notifications">
-        <notification [notification]="notification" (onClose)="onCloseModal()"></notification>
-    </li>
-</ul>
+<div class="notification-lists-container" *ngIf="notificationsByDate">
+    <div *ngFor="let key of keys">
+        <div class="notification-list-container" *ngIf="notificationsByDate[key]">
+            <h1 class="title">{{notificationsByDate[key].label}}</h1>
+            <ul class="notification-list">
+                <li *ngFor="let notification of notificationsByDate[key].notifications">
+                    <notification [notification]="notification" (close)="closeModal()"></notification>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -6,7 +6,6 @@ async function getNotifications(req, res) {
 
     try {
         const userId = req.query.userId
-        console.log('userId', userId)
         const notifications = await notificationService.query(userId)
         res.send(notifications)
     } catch (err) {

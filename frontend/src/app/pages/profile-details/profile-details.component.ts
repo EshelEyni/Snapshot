@@ -75,10 +75,9 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
         if (user) {
           this.loggedinUser = user
           this.isCurrUserLoggedInUser = this.user.id === this.loggedinUser.id
-
           if (this.user.currStoryId) {
             const story = await lastValueFrom(
-              this.storyService.getById(user.currStoryId, 'user-preview'),
+              this.storyService.getById(this.user.currStoryId, 'user-preview'),
             )
             this.isStoryViewed = story.viewedBy.some(u => u.id === this.loggedinUser.id)
             this.userImgClass = this.isStoryViewed ? 'story-viewed' : 'story-not-viewed'

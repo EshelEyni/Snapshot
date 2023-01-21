@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { map, Observable, Subscription } from 'rxjs';
 import { Component, OnInit, inject } from '@angular/core';
 import { Location } from '@angular/common';
+import { Notification } from 'src/app/models/notification.model';
 
 @Component({
   selector: 'notifications',
@@ -35,6 +36,8 @@ export class NotificationsComponent implements OnInit {
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) {
         this.loggedinUser = { ...user }
+        this.notificationService.loadNotifications(this.loggedinUser.id);
+        this.notifications$ = this.notificationService.notifications$;
       }
     })
   }

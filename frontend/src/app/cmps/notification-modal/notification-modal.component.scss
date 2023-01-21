@@ -2,17 +2,21 @@
 @import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
-.notification-modal {
+::ng-deep .notification-modal {
     width: rem(400px);
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
     border-radius: 0 15px 15px 0;
     background-color: var(--secondary-bg);
     padding: rem(5px);
+    z-index: 20;
+    position: relative;
+    overflow: scroll;
+    @include scrollbar-hidden;
 
     header {
-        margin: rem(8px) 0;
-        padding: rem(12px) rem(24px) rem(36px) rem(14px);
+        padding: rem(12px) rem(24px) rem(10px) rem(14px);
 
         h1 {
             text-transform: capitalize;
@@ -20,9 +24,22 @@
         }
     }
 
-    ul {
-        >* {
-            cursor: pointer;
+    .notification-modal-main-container {
+        .notification-lists-container {
+
+            .notification-list-container {
+                width: rem(400px) !important;
+
+                .notification-list {
+                    .notification {
+                        .main-container {
+                            .txt-container {
+                                font-size: rem(14px);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 

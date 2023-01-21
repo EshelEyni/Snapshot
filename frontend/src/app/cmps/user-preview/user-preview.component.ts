@@ -107,7 +107,7 @@ export class UserPreviewComponent implements OnInit, OnChanges {
         this.urlForImg = `/story/${this.story?.id}`
         this.urlForTitle = `/story/${this.story?.id}`
         break
-      case 'post-preview':
+      case 'post':
         this.urlForImg = this.story
           ? `/story/${this.story.id}`
           : `/profile/${this.user.id}`
@@ -161,7 +161,7 @@ export class UserPreviewComponent implements OnInit, OnChanges {
 
   setDesc() {
     switch (this.type) {
-      case 'post-preview':
+      case 'post':
         this.desc = this.location ? this.location.name : ''
         break
       case 'suggestion-list':

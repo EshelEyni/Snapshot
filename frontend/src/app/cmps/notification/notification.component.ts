@@ -1,7 +1,8 @@
+import { Router } from '@angular/router';
 import { Post } from 'src/app/models/post.model';
 import { User } from 'src/app/models/user.model';
 import { Subscription } from 'rxjs';
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, inject } from '@angular/core';
 import { Notification } from 'src/app/models/notification.model';
 
 @Component({
@@ -9,36 +10,61 @@ import { Notification } from 'src/app/models/notification.model';
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss'],
   inputs: ['notification'],
-  outputs: ['onClose']
+  outputs: ['close']
 
 })
 export class NotificationComponent implements OnInit {
 
   constructor() { }
-
+  router = inject(Router);
   loggedinUser!: User
   sub: Subscription | null = null;
 
 
   notification!: Notification;
   txt: string = '';
-  isFollowed: boolean = false;
+  isFollowedBtnShown: boolean = false;
+  isPostImgShown: boolean = false;
   post!: Post;
-  onClose = new EventEmitter();
+  close = new EventEmitter();
 
 
   ngOnInit(): void {
     if (this.notification.post) this.post = this.notification.post;
 
-    if (this.notification.type === 'like-post') this.txt = 'liked your post.';
-    if (this.notification.type === 'like-comment') this.txt = 'liked your comment.';
-    else if (this.notification.type === 'comment') this.txt = 'commented on your post.';
-    else if (this.notification.type === 'follow') this.txt = 'started following you.';
-    else if (this.notification.type === 'mention') this.txt = 'mentioned you in a post.';
+    switch (this.notification.type) {
+      case 'like-post':
+        this.txt = 'liked your post.';
+        this.isPostImgShown = true;
+        break;
+      case 'like-comment':
+        this.txt = 'liked your comment.';
+        this.isPostImgShown = true;
+        break;
+      case 'comment':
+        this.txt = 'commented on your post.';
+        this.isPostImgShown = true;
+        break;
+      case 'follow':
+        this.txt = 'started following you.';
+        this.isFollowedBtnShown = true;
+        break;
+      case 'mention':
+        this.txt = 'mentioned you in a post.';
+        this.isPostImgShown = true;
+        break;
+    };
   }
 
-  onCloseModal() {
-    this.onClose.emit()
+  onClickNotification() {
+    console.log('notification clicked');
+    if (this.post) this.router.navigate(['/post', this.post.id]);
+    else this.router.navigate(['/profile', this.notification.userId]);
+    this.close.emit()
+  }
+
+  onClickFollowBtn(e: Event) {
+    e.stopPropagation();
   }
 
 }

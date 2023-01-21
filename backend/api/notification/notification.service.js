@@ -6,7 +6,7 @@ async function query(userId) {
     try {
         return await db.txn(async () => {
             const notifications = await db.query(
-                `select * from notifications where userId = $userId`,
+                `select * from notifications where userId = $userId order by createdAt desc limit 30`,
                 { $userId: userId }
             );
             if (notifications.length === 0) return [];
@@ -21,7 +21,7 @@ async function query(userId) {
 
                 if (notification.postId) {
                     const post = await postService.getById(notification.postId);
-                    notification.post = post[0];
+                    notification.post = post;
                     delete notification.postId;
                 }
             }

@@ -1,4 +1,30 @@
-.notification-list{
-    margin: 0;
-    padding: 0;
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/mixins';
+@import '../../../assets/styles/setup/vars';
+
+.notification-lists-container {
+    margin:0 auto rem(80px) auto;
+    overflow: scroll;
+    @include scrollbar-hidden;
+
+    &>*:not(:last-child){
+
+        border-bottom: var(--border-color) solid 1px;
+    }
+    
+    .notification-list-container{
+        display: flex;
+        flex-direction: column;
+        gap: rem(20px);
+        padding: rem(30px) rem(20px);
+        margin: 0 auto;
+        width: 100vw;
+        max-width: rem(600px);
+
+        .notification-list{
+            display: flex;
+            flex-direction: column;
+            gap: rem(10px);
+        }
+    }
 }

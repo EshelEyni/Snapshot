@@ -90,13 +90,15 @@ async function add(following) {
                 $imgUrl: following.imgUrl
             })
 
-            const noitification = {
-                type: 'follow',
-                byUserId: following.followerId,
-                userId: following.userId,
-                entityId: id,
+            if (following.userId !== following.followerId) {
+                const noitification = {
+                    type: 'follow',
+                    byUserId: following.followerId,
+                    userId: following.userId,
+                    entityId: id,
+                }
+                await noitificationService.add(noitification)
             }
-            await noitificationService.add(noitification)
 
             return id
         })

@@ -3,7 +3,7 @@
 </div>
 
 <section class="side-bar" *ngIf="isLoginSignupPath"
-    [class.modal-state]="isBtnClicked.search || isBtnClicked.notification" (click)="onCloseModal()">
+    [class.modal-state]="isBtnClicked.search || isBtnClicked.notification"  (click)="onCloseModal()">
 
     <header>
         <a class="logo" routerLink="/">
@@ -61,7 +61,7 @@
     </main>
 
 
-    <div class="modal-container">
+    <div class="modal-container" (click)="onModalContainerClick($event)">
         <search-modal *ngIf="isBtnClicked.search" (onClose)="onCloseModal()"></search-modal>
         <notification-modal *ngIf="isBtnClicked.notification" [loggedinUser]="loggedinUser" (onClose)="onCloseModal()"></notification-modal>
     </div>

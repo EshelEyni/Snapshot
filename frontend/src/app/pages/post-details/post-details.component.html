@@ -16,7 +16,7 @@
     </div>
 
     <section class="post-creator">
-      <user-preview [user]="post.by" [location]="post.location"></user-preview>
+      <user-preview [user]="post.by" [location]="post.location" [type]="'post'"></user-preview>
       <ellipsis (click)="onToggleModal('post-options-modal')"></ellipsis>
 
       <post-options-modal *ngIf="isOptionsModalShown" [isPostOwnedByUser]="isPostOwnedByUser" [post]="post"

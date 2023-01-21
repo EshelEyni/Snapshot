@@ -120,6 +120,7 @@ async function query(filter) {
 
 
 async function getById(postId) {
+
     try {
         const posts = await db.query(`select * from posts where id = $id`, { $id: postId });
         if (posts.length === 0) {
