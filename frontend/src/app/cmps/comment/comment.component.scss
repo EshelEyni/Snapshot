@@ -97,6 +97,9 @@
 
                     p {
                         word-break: break-word;
+                        a {
+                            color: var(--primary-button);
+                        }
                     }
                 }
             }

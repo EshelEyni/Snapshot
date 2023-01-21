@@ -1,9 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { UtilService } from './util.service'
 import { StorageService } from './storage.service'
 import { User, MiniUser } from './../models/user.model'
 import {
-  BehaviorSubject,
   Observable,
   of,
   map,
@@ -14,7 +13,6 @@ import { Injectable } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { UserState } from '../store/reducers/user.reducer'
 import { LoadingUsers } from '../store/actions/user.actions'
-import { asyncStorageService } from './async-storage.service'
 
 @Injectable({
   providedIn: 'root',

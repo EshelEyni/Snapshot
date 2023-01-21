@@ -8,4 +8,5 @@ export interface Comment {
     createdAt: Date;
     isOriginalText: boolean;
     likeSum: number;
+    mentions?: { userId: number, username: string }[];
 }

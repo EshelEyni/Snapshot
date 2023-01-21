@@ -1,5 +1,6 @@
 const logger = require('../../services/logger.service')
 const db = require('../../database');
+const noitificationService = require('../notification/notification.service');
 
 async function query(filterBy) {
     try {
@@ -67,6 +68,7 @@ async function add(tag) {
         const id = await db.exec(`insert into tags (name) values ($name)`, {
             $name: tag.name
         })
+
         return id
     } catch (err) {
         logger.error(`cannot insert tag ${tag._id}`, err)

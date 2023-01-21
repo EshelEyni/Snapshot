@@ -1,5 +1,6 @@
 const logger = require('../../services/logger.service')
 const db = require('../../database');
+const noitificationService = require('../notification/notification.service');
 
 async function query(followerId, userId) {
     try {
@@ -33,11 +34,19 @@ async function getById(followingId) {
 
 async function remove(followerId, userId) {
     try {
-        await db.exec(
-            `delete from following where followerId = $followerId and userId = $userId`, {
-            $followerId: followerId,
-            $userId: userId
-        });
+        await db.txn(async () => {
+            await db.exec(
+                `delete from following where followerId = $followerId and userId = $userId`, {
+                $followerId: followerId,
+                $userId: userId
+            });
+
+            await db.exec(
+                `delete from notifications where userId = $userId and byUserId = $followerId and type = 'follow'`, {
+                $followerId: followerId,
+                $userId: userId
+            });
+        })
     } catch (err) {
         logger.error(`cannot remove following ${followingId}`, err)
         throw err
@@ -69,16 +78,28 @@ async function update(following) {
 
 async function add(following) {
     try {
-        const followings = await db.query(
-            `insert into following (userId, followerId, username, fullname, imgUrl) 
+        return await db.txn(async () => {
+
+            const id = await db.exec(
+                `insert into following (userId, followerId, username, fullname, imgUrl) 
             values ($userId, $followerId, $username, $fullname, $imgUrl)`, {
-            $userId: following.userId,
-            $followerId: following.followerId,
-            $username: following.username,
-            $fullname: following.fullname,
-            $imgUrl: following.imgUrl
+                $userId: following.userId,
+                $followerId: following.followerId,
+                $username: following.username,
+                $fullname: following.fullname,
+                $imgUrl: following.imgUrl
+            })
+
+            const noitification = {
+                type: 'follow',
+                byUserId: following.followerId,
+                userId: following.userId,
+                entityId: id,
+            }
+            await noitificationService.add(noitification)
+
+            return id
         })
-        return followings[0]
     } catch (err) {
         logger.error('cannot insert following', err)
         throw err

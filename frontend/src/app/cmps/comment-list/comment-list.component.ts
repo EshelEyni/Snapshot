@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./comment-list.component.scss'],
   inputs: ['postId', 'loggedinUser', 'type', 'commentSum']
 })
-export class CommentListComponent implements OnInit, OnChanges {
+export class CommentListComponent implements OnInit {
   constructor() { }
 
   commentService = inject(CommentService);
@@ -24,12 +24,6 @@ export class CommentListComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.getComments();
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['commentSum']) {
-      this.getComments();
-    }
   }
 
   async getComments() {

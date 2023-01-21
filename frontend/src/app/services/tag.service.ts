@@ -6,7 +6,6 @@ import { UtilService } from './util.service';
 import { BehaviorSubject, Observable, throwError, of, map, lastValueFrom, firstValueFrom } from 'rxjs';
 import { Tag } from '../models/tag.model';
 import { Injectable, inject } from '@angular/core';
-import { asyncStorageService } from './async-storage.service';
 
 const TAGS = [
   {

@@ -152,7 +152,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   }
 
   onFirstLike() {
-    this.postService.toggleLike(false, { postId: this.post.id, user: this.userService.getMiniUser(this.loggedinUser) })
+    this.postService.toggleLike(false, { post: this.post, user: this.userService.getMiniUser(this.loggedinUser) })
     this.post.likeSum++
     this.post = { ...this.post }
     this.postService.save(this.post)

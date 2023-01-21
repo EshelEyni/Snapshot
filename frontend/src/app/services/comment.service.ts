@@ -76,16 +76,33 @@ export class CommentService {
     }
   }
 
-  public save(comment: Comment) {
-    return comment.id ? this._update(comment) : this._add(comment)
+  public save(comment: Comment, type?: string) {
+    return comment.id ? this._update(comment) : this._add(comment, type)
   }
 
   private async _update(comment: Comment) {
     return await firstValueFrom(this.http.put<Comment>(`http://localhost:3030/api/comment/${comment.id}`, comment))
   }
 
-  private async _add(comment: Comment) {
-    return await firstValueFrom(this.http.post<Comment>('http://localhost:3030/api/comment', comment))
+  private async _add(comment: Comment, type?: string): Promise<number | void> {
+    const res = await firstValueFrom(
+      this.http.post('http://localhost:3030/api/comment', comment)
+    ) as { msg: string, id: number }
+
+    if (res.msg === 'Comment added') {
+      if (type === 'post-preview') {
+        const comments = this._commentsPostPreview$.getValue()
+        comment.id = res.id
+        comments.unshift(comment)
+        this._commentsPostPreview$.next(comments)
+      } else {
+        const comments = this._comments$.getValue()
+        comment.id = res.id
+        comments.unshift(comment)
+        this._comments$.next(comments)
+      }
+      return res.id
+    }
   }
 
   public getEmptyComment(): Comment {

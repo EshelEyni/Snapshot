@@ -1,3 +1,4 @@
+import { NotificationService } from './notification.service';
 import { HttpClient } from '@angular/common/http'
 import { MiniUser } from './../models/user.model'
 import { Injectable } from '@angular/core'
@@ -157,17 +158,18 @@ export class PostService {
     return false
   }
 
-  public async toggleLike(isLiked: boolean, details: { user: MiniUser, postId: number }) {
+  public async toggleLike(isLiked: boolean, details: { user: MiniUser, post: Post }) {
 
     if (isLiked) {
       await firstValueFrom(
         this.http.delete(`http://localhost:3030/api/like/post`, {
-          body: { postId: details.postId, userId: details.user.id }
+          body: { postId: details.post.id, userId: details.user.id }
         }),
       )
     } else {
       await firstValueFrom(
-        this.http.post(`http://localhost:3030/api/like/post`, details),
+        this.http.post(`http://localhost:3030/api/like/post`,
+          { post: details.post, user: details.user }),
       )
     }
   }

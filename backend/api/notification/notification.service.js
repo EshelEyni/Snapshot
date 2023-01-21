@@ -1,25 +1,35 @@
 const logger = require('../../services/logger.service')
 const db = require('../../database');
+const postService = require('../post/post.service');
 
-async function query() {
+async function query(userId) {
     try {
-        const notifications = await db.query(`select * from notifications`);
-        return notifications
+        return await db.txn(async () => {
+            const notifications = await db.query(
+                `select * from notifications where userId = $userId`,
+                { $userId: userId }
+            );
+            if (notifications.length === 0) return [];
+
+            for (const notification of notifications) {
+                const user = await db.query(
+                    `select * from users where id = $id`,
+                    { $id: notification.byUserId }
+                );
+                notification.by = user[0];
+                delete notification.byUserId;
+
+                if (notification.postId) {
+                    const post = await postService.getById(notification.postId);
+                    notification.post = post[0];
+                    delete notification.postId;
+                }
+            }
+
+            return notifications
+        })
     } catch (err) {
         logger.error('cannot find notifications', err)
-        throw err
-    }
-}
-
-async function getById(notificationId) {
-    try {
-        const notifications = await db.query(`select * from notifications where id = $id`, { $id: notificationId });
-        if (notifications.length === 0) {
-            return 'notification not found';
-        }
-        return notifications[0]
-    } catch (err) {
-        logger.error(`while finding notification ${notificationId}`, err)
         throw err
     }
 }
@@ -33,32 +43,17 @@ async function remove(notificationId) {
     }
 }
 
-async function update(notification) {
-    try {
-        await db.exec(`update notifications set userId = $userId, byUserId = $byUserId, type = $type, postImg = $postImg, createdAt = $createdAt where id = $id`, {
-            $userId: notification.userId,
-            $byUserId: notification.byUserId,
-            $type: notification.type,
-            $postImg: notification.postImg,
-            $createdAt: notification.createdAt,
-            $id: notification.id
-
-        })
-        return notification
-    } catch (err) {
-        logger.error(`cannot update notification ${notification._id}`, err)
-        throw err
-    }
-}
-
 async function add(notification) {
     try {
-        const result = await db.exec(`insert into notifications (userId, byUserId, type, postImg, createdAt) values ($userId, $byUserId, $type, $postImg, $createdAt)`, {
-            $userId: notification.userId,
-            $byUserId: notification.byUserId,
+        const result = await db.exec(
+            `insert into notifications (userId, byUserId, type, postId, createdAt, entityId)
+             values ($userId, $byUserId, $type, $postId, $createdAt, $entityId)`, {
             $type: notification.type,
-            $postImg: notification.postImg,
-            $createdAt: notification.createdAt
+            $byUserId: notification.byUserId,
+            $userId: notification.userId,
+            $entityId: notification.entityId,
+            $createdAt: Date.now(),
+            $postId: notification.postId ? notification.postId : null
         })
         return result
     } catch (err) {
@@ -69,8 +64,6 @@ async function add(notification) {
 
 module.exports = {
     query,
-    getById,
     remove,
-    update,
     add
 }

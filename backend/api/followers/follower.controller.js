@@ -14,8 +14,8 @@ async function getFollowers(req, res) {
 
 async function getFollower(req, res) {
     try {
-        const follower = await followerService.getById(req.params.id)
-        res.send(follower)
+        const id = await followerService.getById(req.params.id)
+        res.send({ id })
     } catch (err) {
         logger.error('Failed to get follower', err)
         res.status(500).send({ err: 'Failed to get follower' })

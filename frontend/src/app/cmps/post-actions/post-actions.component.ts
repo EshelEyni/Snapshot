@@ -68,7 +68,7 @@ export class PostActionsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onToggleLike() {
-    this.postService.toggleLike(this.isLiked, { postId: this.post.id, user: this.userService.getMiniUser(this.loggedinUser) })
+    this.postService.toggleLike(this.isLiked, { post: this.post, user: this.userService.getMiniUser(this.loggedinUser) })
     this.isLiked = !this.isLiked
     this.post.likeSum = this.isLiked ? this.post.likeSum + 1 : this.post.likeSum - 1;
     this.postService.save(this.post)

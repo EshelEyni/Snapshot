@@ -63,7 +63,7 @@
 
     <div class="modal-container">
         <search-modal *ngIf="isBtnClicked.search" (onClose)="onCloseModal()"></search-modal>
-        <notification-modal *ngIf="isBtnClicked.notification" (onClose)="onCloseModal()"></notification-modal>
+        <notification-modal *ngIf="isBtnClicked.notification" [loggedinUser]="loggedinUser" (onClose)="onCloseModal()"></notification-modal>
     </div>
 
     <side-bar-options-modal *ngIf="isBtnClicked.more" [loggedinUser]="loggedinUser"></side-bar-options-modal>

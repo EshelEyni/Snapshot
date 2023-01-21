@@ -88,7 +88,6 @@ import { TagPipe } from './pipes/tag.pipe';
 import { HomePageHeaderComponent } from './cmps/home-page-header/home-page-header.component';
 import { SearchResultsListComponent } from './cmps/search-results-list/search-results-list.component';
 import { RecentSearchListComponent } from './cmps/recent-search-list/recent-search-list.component';
-import { ActivityComponent } from './pages/activity/activity.component';
 import { CommentOptionsModalComponent } from './cmps/comment-options-modal/comment-options-modal.component';
 import { SideBarOptionsModalComponent } from './cmps/side-bar-options-modal/side-bar-options-modal.component';
 import { StoryComponent } from './cmps/story/story.component';
@@ -104,6 +103,8 @@ import { HightlightsCoverPickerComponent } from './cmps/hightlights-cover-picker
 import { ProfileImgSettingModalComponent } from './cmps/profile-img-setting-modal/profile-img-setting-modal.component';
 import { ProfileEditHeaderComponent } from './cmps/profile-edit-header/profile-edit-header.component';
 import { StoryOptionsModalComponent } from './cmps/story-options-modal/story-options-modal.component';
+import { MentionPipe } from './pipes/mention.pipe';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -171,7 +172,6 @@ import { StoryOptionsModalComponent } from './cmps/story-options-modal/story-opt
     HomePageHeaderComponent,
     SearchResultsListComponent,
     RecentSearchListComponent,
-    ActivityComponent,
     CommentOptionsModalComponent,
     SideBarOptionsModalComponent,
     StoryComponent,
@@ -187,6 +187,8 @@ import { StoryOptionsModalComponent } from './cmps/story-options-modal/story-opt
     ProfileImgSettingModalComponent,
     ProfileEditHeaderComponent,
     StoryOptionsModalComponent,
+    MentionPipe,
+    NotificationsComponent,
   ],
   imports: [
     BrowserAnimationsModule,

@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-// import DOMPurify from 'dompurify';
 
 @Pipe({
   name: 'tag'
@@ -9,8 +8,11 @@ export class TagPipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) { }
 
 
-  transform(value: string): string | void | SafeHtml {
+  transform(value: string | void | SafeHtml): string | void | SafeHtml {
+
     if (!value) return;
+    if (typeof value !== 'string') return value;
+
     const DOMPurify = require('dompurify');
 
     const regex = /#(\w+)/g;

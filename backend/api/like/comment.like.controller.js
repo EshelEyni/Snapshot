@@ -11,10 +11,10 @@ async function getLikesForComment(req, res) {
 }
 
 async function addLikeToComment(req, res) {
-    try { 
+    try {
         const { commentId, user } = req.body
-        const like = await likeService.addLikeToComment({ commentId, user })
-        res.send({ like: like })
+        const id = await likeService.addLikeToComment({ commentId, user })
+        res.send({ id })
     } catch (err) {
         res.status(500).send({ err: 'Failed to add like' })
     }

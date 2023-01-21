@@ -41,8 +41,8 @@ async function deleteComment(req, res) {
 async function updateComment(req, res) {
     try {
         const comment = req.body
-        const savedComment = await commentService.update(comment)
-        res.send(savedComment)
+        const id = await commentService.update(comment)
+        res.send({ msg: 'Comment updated', id })
     } catch (err) {
         logger.error('Failed to update comment', err)
         res.status(500).send({ err: 'Failed to update comment' })
@@ -52,8 +52,8 @@ async function updateComment(req, res) {
 async function addComment(req, res) {
     try {
         const comment = req.body
-        const savedComment = await commentService.add(comment)
-        res.send({ savedComment: savedComment })
+        const id = await commentService.add(comment)
+        res.send({ msg: 'Comment added', id })
     } catch (err) {
         logger.error('Failed to add comment', err)
         res.status(500).send({ err: 'Failed to add comment' })

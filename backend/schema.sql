@@ -126,11 +126,12 @@ CREATE TABLE IF NOT EXISTS "locations" (
 
 CREATE TABLE IF NOT EXISTS "notifications" (
     "id" INTEGER NOT NULL UNIQUE,
-    "userId" INTEGER NOT NULL,
-    "byUserId" INTEGER NOT NULL,
     "type" TEXT NOT NULL,
-    "postImg" TEXT,
+    "byUserId" INTEGER NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "entityTypeId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP NOT NULL,
+    "postId" INTEGER,
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("userId") references "users"("id") foreign key ("byUserId") references "users"("id")
 );
 

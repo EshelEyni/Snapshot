@@ -63,7 +63,7 @@ export class CommentEditComponent implements OnInit, OnDestroy {
     this.commentText = ''
     if (user) commentToAdd.by = user
     commentToAdd.postId = this.post.id
-    await this.commentService.save(commentToAdd)
+    await this.commentService.save(commentToAdd, this.isPostDetails ? 'post-details' : 'post-preview')
     this.post.commentSum++
     await this.postService.save(this.post)
     const tags = this.tagService.detectTags(commentToAdd.text)

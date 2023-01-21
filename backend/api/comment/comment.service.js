@@ -1,5 +1,6 @@
 const logger = require('../../services/logger.service')
 const db = require('../../database');
+const noitificationService = require('../notification/notification.service')
 
 async function query({ postId, userId, type }) {
     try {
@@ -46,10 +47,25 @@ async function getById(commentId) {
             if (comments.length === 0) {
                 return 'comment not found';
             }
+            const comment = comments[0];
             const user = await db.query(`select id, username, fullname, imgUrl from users where id = $id limit 1`, { $id: comments[0].userId });
-            comments[0].by = user[0];
-            delete comments[0].userId;
-            return comments[0]
+            comment.by = user[0];
+            delete comment.userId;
+
+            const mentionRegex = /@(\w+)/g;
+            let mentions = comment.text.match(mentionRegex);
+            if (mentions) {
+                mentions = mentions.map(mention => {
+                    return mention.slice(1)
+                })
+
+                const users = await db.query(`select id, username from users where username in (${mentions.map(mention => `'${mention}'`).join(',')})`);
+                comment.mentions = users.map(user => {
+                    return { userId: user.id, username: user.username }
+                })
+            }
+
+            return comment
         })
     } catch (err) {
         logger.error(`while finding comment ${commentId}`, err)
@@ -62,6 +78,9 @@ async function remove(commentId) {
         await db.txn(async () => {
             await db.exec(`delete from commentsLikedBy where commentId = $id`, { $id: commentId });
             await db.exec(`delete from comments where id = $id`, { $id: commentId });
+            await db.exec(`delete from notifications where entityId = $entityId and type = 'comment'`, {
+                $entityId: commentId,
+            })
         })
     } catch (err) {
         logger.error(`cannot remove comment ${commentId}`, err)
@@ -95,16 +114,55 @@ async function update(comment) {
 
 async function add(comment) {
     try {
-        const result = await db.exec(`insert into comments (userId, postId, text, createdAt, isOriginalText, likeSum) values ($userId, $postId, $text, $createdAt, $isOriginalText, $likeSum)`, {
-            $userId: comment.by.id,
-            $postId: comment.postId,
-            $text: comment.text,
-            $createdAt: Date.now(),
-            $isOriginalText: comment.isOriginalText,
-            $likeSum: 0
-        })
-        comment.id = result.lastID;
-        return comment
+        return await db.txn(async () => {
+            const id = await db.exec(
+                `insert into comments (userId, postId, text, createdAt, isOriginalText, likeSum) 
+             values ($userId, $postId, $text, $createdAt, $isOriginalText, $likeSum)`, {
+                $userId: comment.by.id,
+                $postId: comment.postId,
+                $text: comment.text,
+                $createdAt: Date.now(),
+                $isOriginalText: comment.isOriginalText,
+                $likeSum: 0
+            })
+
+            const users = await db.query(`select userId from posts where id = $id`, { $id: comment.postId });
+            const userId = users[0].userId;
+            const noitification = {
+                type: 'comment',
+                byUserId: comment.by.id,
+                entityId: id,
+                userId,
+                postId: comment.postId,
+            }
+            await noitificationService.add(noitification)
+
+            const mentionRegex = /@(\w+)/g;
+            const mentions = comment.text.match(mentionRegex);
+            const tags = [];
+            if (mentions) {
+                mentions.forEach((hashtag) => {
+                    const tag = hashtag.substring(1);
+                    tags.push(tag);
+                });
+                const mentionedUsers = await db.query(
+                    `select id from users where username in (${tags.map(tag => `'${tag}'`).join(',')})`
+                );
+                const mentionedUserIds = mentionedUsers.map(user => user.id);
+                mentionedUserIds.forEach(async (mentionedUserId) => {
+                    const noitification = {
+                        type: 'mention',
+                        byUserId: comment.by.id,
+                        entityId: id,
+                        userId: mentionedUserId,
+                        postId: comment.postId,
+                    }
+                    await noitificationService.add(noitification)
+                })
+            }
+
+            return id
+        });
     } catch (err) {
         logger.error('cannot insert comment', err)
         throw err

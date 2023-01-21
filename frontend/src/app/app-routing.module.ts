@@ -1,5 +1,4 @@
 import { DiscoverPeopleComponent } from './pages/discover-people/discover-people.component';
-import { ActivityComponent } from './pages/activity/activity.component';
 import { StoryEditComponent } from './cmps/story-edit/story-edit.component';
 import { StoryDetailsComponent } from './cmps/story-details/story-details.component';
 import { TagResolver } from './resolvers/tag.resolver';
@@ -17,6 +16,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PostResolver } from './resolvers/post.resolver';
 import { AuthGuard } from './guards/auth.guard';
 import { StoryResolver } from './resolvers/story.resolver';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginSignupComponent },
@@ -38,7 +38,7 @@ const routes: Routes = [
       { path: '_/post/:id', component: PostDetailsComponent, resolve: { post: PostResolver }, data: { isNested: true } },
     ]
   },
-  { path: 'activity', component: ActivityComponent, canActivate: [AuthGuard] },
+  { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuard] },
   { path: 'discover-people', component: DiscoverPeopleComponent, resolve: { user: UserResolver }, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '' }
 ];

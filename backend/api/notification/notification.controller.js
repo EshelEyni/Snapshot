@@ -3,25 +3,17 @@ const logger = require('../../services/logger.service')
 
 
 async function getNotifications(req, res) {
+
     try {
-        const notifications = await notificationService.query(req.query)
+        const userId = req.query.userId
+        console.log('userId', userId)
+        const notifications = await notificationService.query(userId)
         res.send(notifications)
     } catch (err) {
         logger.error('Failed to get notifications', err)
         res.status(500).send({ err: 'Failed to get notifications' })
     }
 }
-
-async function getNotification(req, res) {
-    try {
-        const notification = await notificationService.getById(req.params.id)
-        res.send(notification)
-    } catch (err) {
-        logger.error('Failed to get notification', err)
-        res.status(500).send({ err: 'Failed to get notification' })
-    }
-}
-
 
 async function deleteNotification(req, res) {
     try {
@@ -33,16 +25,6 @@ async function deleteNotification(req, res) {
     }
 }
 
-async function updateNotification(req, res) {
-    try {
-        const notification = req.body
-        const savedNotification = await notificationService.update(notification)
-        res.send(savedNotification)
-    } catch (err) {
-        logger.error('Failed to update notification', err)
-        res.status(500).send({ err: 'Failed to update notification' })
-    }
-}
 
 async function addNotification(req, res) {
     try {
@@ -57,8 +39,6 @@ async function addNotification(req, res) {
 
 module.exports = {
     getNotifications,
-    getNotification,
     deleteNotification,
-    updateNotification,
     addNotification
 }
