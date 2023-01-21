@@ -1,3 +1,4 @@
+import { User } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
 import { Tag } from './../../models/tag.model';
 import { TagService } from './../../services/tag.service';
@@ -15,7 +16,7 @@ import { CommunicationService } from 'src/app/services/communication.service';
   selector: 'comment-edit',
   templateUrl: './comment-edit.component.html',
   styleUrls: ['./comment-edit.component.scss'],
-  inputs: ['post', 'isPostDetails'],
+  inputs: ['post', 'isPostDetails', 'loggedinUser'],
 })
 
 export class CommentEditComponent implements OnInit, OnDestroy {
@@ -32,6 +33,7 @@ export class CommentEditComponent implements OnInit, OnDestroy {
   communicationService = inject(CommunicationService)
   router = inject(Router)
 
+  loggedinUser!: User;
   faFaceSmile = faFaceSmile
   isEmojiPickerShown: boolean = false
   isMainScreen: boolean = false
@@ -57,11 +59,10 @@ export class CommentEditComponent implements OnInit, OnDestroy {
 
   async onAddComment() {
     this.isEmojiPickerShown = false
-    const user = this.userService.getLoggedinUser()
     const commentToAdd = this.commentService.getEmptyComment()
     commentToAdd.text = this.commentText
     this.commentText = ''
-    if (user) commentToAdd.by = user
+    commentToAdd.by = this.userService.getMiniUser(this.loggedinUser)
     commentToAdd.postId = this.post.id
     await this.commentService.save(commentToAdd, this.isPostDetails ? 'post-details' : 'post-preview')
     this.post.commentSum++

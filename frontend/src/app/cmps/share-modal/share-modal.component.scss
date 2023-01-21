@@ -74,6 +74,9 @@
             .default-list {
                 display: flex;
                 width: 100%;
+                max-height: rem(250px);
+                overflow-y: scroll;
+                @include scrollbar-hidden;
 
                 li {
                     display: flex;
@@ -122,7 +125,8 @@
     @include for-extra-small-layout {
         grid-template-rows: rem(50px) auto rem(82px);
         width: rem(550px);
-        height: fit-content;
         @include modal;
+        height: fit-content;
+        max-height: none;
     }
 }

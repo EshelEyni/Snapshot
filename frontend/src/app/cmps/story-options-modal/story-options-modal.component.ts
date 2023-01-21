@@ -1,3 +1,4 @@
+import { CommunicationService } from 'src/app/services/communication.service';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
@@ -17,6 +18,7 @@ export class StoryOptionsModalComponent implements OnInit {
 
   constructor() { }
 
+  communicationService = inject(CommunicationService);
   storyService = inject(StoryService);
   userService = inject(UserService);
   router = inject(Router);
@@ -37,17 +39,21 @@ export class StoryOptionsModalComponent implements OnInit {
     const user = { ...this.loggedinUser };
     user.storySum--;
     const updatedUser = await lastValueFrom(this.userService.update(user));
-    if (res && updatedUser) this.router.navigate(['/']);
+    if (res && updatedUser) {
+      this.communicationService.setUserMsg('Story Deleted.')
+      this.router.navigate(['/']);
+    }
   }
 
-  onRemoveStoryFromProfile() {
+  async onRemoveStoryFromProfile() {
 
-    const story = {...this.story};
+    const story = { ...this.story };
     story.isSaved = false;
     story.highlightTitle = '';
     story.highlightCover = 0;
-    
-    this.storyService.save(story);
+
+    await this.storyService.save(story);
+    this.communicationService.setUserMsg('Story removed from profile.')
     this.closeModal.emit();
   }
 

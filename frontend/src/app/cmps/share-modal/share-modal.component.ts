@@ -33,8 +33,7 @@ export class ShareModalComponent implements OnInit {
   }
 
   onRemoveUser(user: MiniUser) {
-    const idx = this.usersToSend.findIndex(currUser => currUser.id === user.id);
-    this.usersToSend.splice(idx, 1);
+    this.usersToSend = this.usersToSend.filter(currUser => currUser.id !== user.id);
   }
 
   onCloseModal() {

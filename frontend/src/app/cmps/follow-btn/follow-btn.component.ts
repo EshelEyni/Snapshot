@@ -30,12 +30,12 @@ export class FollowBtnComponent implements OnInit, OnDestroy {
   type!: string;
 
   async ngOnInit() {
-    this.sub = this.loggedinUser$.subscribe(user => {
+    this.sub = this.loggedinUser$.subscribe(async user => {
       if (user) {
         this.loggedinUser = { ...user }
+        this.isFollowed = await this.userService.checkIsFollowing(this.loggedinUser.id, this.user.id);
       }
     })
-    this.isFollowed = await this.userService.checkIsFollowing(this.loggedinUser.id, this.user.id);
   }
 
   async onToggleFollow(user: MiniUser) {

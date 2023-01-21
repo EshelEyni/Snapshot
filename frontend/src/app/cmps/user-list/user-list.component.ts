@@ -52,6 +52,9 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges) {
     // this.users = this.users;
+    if(changes['users']) {
+      console.log('this.users', this.users);
+    }
 
     if (this.type === 'share-modal') {
       this.setIsSelectUser();
@@ -72,6 +75,7 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onToggleSelectUser(idx: number) {
+    if (this.type !== 'share-modal') return;
     this.isSelectUser[idx].isSelected = !this.isSelectUser[idx].isSelected;
     if (this.isSelectUser[idx].isSelected) {
       this.addUser.emit(this.users[idx]);

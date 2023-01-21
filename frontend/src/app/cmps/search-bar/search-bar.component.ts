@@ -3,9 +3,10 @@ import { Tag } from '../../models/tag.model';
 import { User } from 'src/app/models/user.model';
 import { TagService } from './../../services/tag.service';
 import { SearchService } from './../../services/search.service';
-import { UtilService } from './../../services/util.service';
 import { Component, OnInit, inject, EventEmitter, OnChanges } from '@angular/core';
 import { faCircleXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { debounceTime } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'search-bar',
@@ -19,7 +20,6 @@ export class SearchBarComponent implements OnInit, OnChanges {
   constructor() {
   }
 
-  utilService = inject(UtilService)
   searchService = inject(SearchService)
   tagService = inject(TagService)
 
@@ -29,6 +29,7 @@ export class SearchBarComponent implements OnInit, OnChanges {
   }>();
   removeUser = new EventEmitter<MiniUser>();
   inputFocused = new EventEmitter<boolean>();
+  searchSubject = new Subject<string>();
 
 
   faCircleXmark = faCircleXmark;
@@ -44,7 +45,11 @@ export class SearchBarComponent implements OnInit, OnChanges {
   userSearchResults: User[] = []
 
   ngOnInit(): void {
-    // console.log('this.usersToSend', this.usersToSend);
+    this.searchSubject
+    .pipe(debounceTime(1000))
+    .subscribe(searchTerm => {
+        this.handleSearch();
+    });
   }
 
   ngOnChanges() {
@@ -70,7 +75,7 @@ export class SearchBarComponent implements OnInit, OnChanges {
   }
 
   onChange() {
-    this.handleSearch()
+    this.searchSubject.next(this.searchTerm);
   }
 
   onRemoveUser(user: MiniUser) {

@@ -22,7 +22,7 @@
         <div class="post-details-comment-container" *ngSwitchCase="'post-details'">
 
             <div class="comment-avatar-container">
-                <img class="comment-avatar" src="{{comment.by.imgUrl}}" alt="Avatar"
+                <img class="comment-avatar" [src]="comment.by.imgUrl" alt="Avatar"
                     [routerLink]="['/profile/',comment.by.id]">
             </div>
 

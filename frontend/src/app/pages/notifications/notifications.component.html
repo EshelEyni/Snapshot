@@ -6,7 +6,13 @@
         <div></div>
     </header>
 
-    <main class="notifications-main-container">
-        <notification-list [notifications]="(notifications$|async)!"></notification-list>
+    <main class="notifications-main-container" *ngIf="(notifications$|async) as notifications">
+        <notification-list [notifications]="notifications"
+            *ngIf="notifications.length; else noNotificationsMsg"></notification-list>
+        <ng-template #noNotificationsMsg>
+            <div class="no-notifications-msg-container">
+                <h2 class="no-notifications">No notifications yet.</h2>
+            </div>
+        </ng-template>
     </main>
 </section>

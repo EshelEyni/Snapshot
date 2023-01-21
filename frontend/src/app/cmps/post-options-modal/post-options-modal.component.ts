@@ -1,3 +1,4 @@
+import { CommunicationService } from 'src/app/services/communication.service';
 import { UserService } from 'src/app/services/user.service';
 import { PostService } from 'src/app/services/post.service';
 import { Router } from '@angular/router';
@@ -14,6 +15,7 @@ import { Component, OnInit, EventEmitter, inject } from '@angular/core';
 export class PostOptionsModalComponent implements OnInit {
 
   constructor() { }
+  communicationService = inject(CommunicationService);
 
   router = inject(Router);
   postService = inject(PostService);
@@ -45,6 +47,7 @@ export class PostOptionsModalComponent implements OnInit {
 
   async onDeletePost() {
     await this.postService.remove(this.post.id);
+    this.communicationService.setUserMsg('Post Deleted.')
     this.router.navigate(['']);
     this.close.emit();
   }

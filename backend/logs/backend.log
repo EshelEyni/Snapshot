@@ -97,3 +97,42 @@
 21.1.2023, 11:37:31 - INFO - Server is running on port: 3030 
 21.1.2023, 11:38:36 - INFO - Server is running on port: 3030 
 21.1.2023, 11:39:28 - INFO - Server is running on port: 3030 
+21.1.2023, 12:17:10 - ERROR - while finding user 29 | Failed to commit transaction: user with id #29 was not found 
+21.1.2023, 12:17:10 - ERROR - Failed to get user | Failed to commit transaction: user with id #29 was not found 
+21.1.2023, 12:17:10 - ERROR - while finding user 32 | Failed to commit transaction: user with id #32 was not found 
+21.1.2023, 12:17:10 - ERROR - Failed to get user | Failed to commit transaction: user with id #32 was not found 
+21.1.2023, 12:17:10 - ERROR - while finding user 40 | Failed to commit transaction: user with id #40 was not found 
+21.1.2023, 12:17:10 - ERROR - Failed to get user | Failed to commit transaction: user with id #40 was not found 
+21.1.2023, 12:21:52 - INFO - Server is running on port: 3030 
+21.1.2023, 12:22:13 - ERROR - while finding user 29 | Failed to commit transaction: user with id #29 was not found 
+21.1.2023, 12:22:13 - ERROR - Failed to get user | Failed to commit transaction: user with id #29 was not found 
+21.1.2023, 12:22:13 - ERROR - while finding user 32 | Failed to commit transaction: user with id #32 was not found 
+21.1.2023, 12:22:13 - ERROR - Failed to get user | Failed to commit transaction: user with id #32 was not found 
+21.1.2023, 12:22:13 - ERROR - while finding user 40 | Failed to commit transaction: user with id #40 was not found 
+21.1.2023, 12:22:13 - ERROR - Failed to get user | Failed to commit transaction: user with id #40 was not found 
+21.1.2023, 12:22:27 - INFO - Server is running on port: 3030 
+21.1.2023, 12:22:36 - INFO - Server is running on port: 3030 
+21.1.2023, 12:22:40 - ERROR - while finding user 29 | Failed to commit transaction: user with id #29 was not found 
+21.1.2023, 12:22:40 - ERROR - Failed to get user | Failed to commit transaction: user with id #29 was not found 
+21.1.2023, 12:22:40 - ERROR - while finding user 32 | Failed to commit transaction: user with id #32 was not found 
+21.1.2023, 12:22:40 - ERROR - Failed to get user | Failed to commit transaction: user with id #32 was not found 
+21.1.2023, 12:22:40 - ERROR - while finding user 40 | Failed to commit transaction: user with id #40 was not found 
+21.1.2023, 12:22:40 - ERROR - Failed to get user | Failed to commit transaction: user with id #40 was not found 
+21.1.2023, 12:25:24 - ERROR - while finding user 29 | Failed to commit transaction: user with id #29 was not found 
+21.1.2023, 12:25:24 - ERROR - Failed to get user | Failed to commit transaction: user with id #29 was not found 
+21.1.2023, 12:25:24 - ERROR - while finding user 32 | Failed to commit transaction: user with id #32 was not found 
+21.1.2023, 12:25:24 - ERROR - Failed to get user | Failed to commit transaction: user with id #32 was not found 
+21.1.2023, 12:25:24 - ERROR - while finding user 40 | Failed to commit transaction: user with id #40 was not found 
+21.1.2023, 12:25:24 - ERROR - Failed to get user | Failed to commit transaction: user with id #40 was not found 
+21.1.2023, 12:25:48 - INFO - Server is running on port: 3030 
+21.1.2023, 12:26:13 - ERROR - while finding user 29 | Failed to commit transaction: user with id #29 was not found 
+21.1.2023, 12:26:13 - ERROR - Failed to get user | Failed to commit transaction: user with id #29 was not found 
+21.1.2023, 12:26:13 - ERROR - while finding user 32 | Failed to commit transaction: user with id #32 was not found 
+21.1.2023, 12:26:13 - ERROR - Failed to get user | Failed to commit transaction: user with id #32 was not found 
+21.1.2023, 12:26:13 - ERROR - while finding user 40 | Failed to commit transaction: user with id #40 was not found 
+21.1.2023, 12:26:13 - ERROR - Failed to get user | Failed to commit transaction: user with id #40 was not found 
+21.1.2023, 13:04:12 - INFO - Server is running on port: 3030 
+21.1.2023, 13:04:48 - INFO - Server is running on port: 3030 
+21.1.2023, 14:28:47 - INFO - Server is running on port: 3030 
+21.1.2023, 14:34:05 - INFO - Server is running on port: 3030 
+21.1.2023, 14:35:59 - INFO - Server is running on port: 3030 

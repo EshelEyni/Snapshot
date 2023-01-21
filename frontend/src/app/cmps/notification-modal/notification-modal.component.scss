@@ -25,8 +25,10 @@
     }
 
     .notification-modal-main-container {
-        .notification-lists-container {
+        display: flex;
+        height: 100%;
 
+        .notification-lists-container {
             .notification-list-container {
                 width: rem(400px) !important;
 
@@ -39,6 +41,26 @@
                         }
                     }
                 }
+            }
+        }
+
+        .no-notifications-msg-container {
+            position: relative;
+            top: -10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+
+            .no-notifications-msg-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                font-size: rem(20px);
+                font-weight: 600;
+                color: var(--secondary-color);
             }
         }
     }

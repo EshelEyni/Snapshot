@@ -31,14 +31,14 @@ async function getLikesForComment(commentId, userId) {
 }
 
 
-async function addLikeToComment({ commentId, user }) {
+async function addLikeToComment({ comment, user }) {
     try {
         return await db.txn(async () => {
 
             const id = await db.exec(
                 `insert into commentsLikedBy (commentId, userId, username, fullname, imgUrl ) 
             values ($commentId, $userId, $username, $fullname, $imgUrl)`, {
-                $commentId: commentId,
+                $commentId: comment.id,
                 $userId: user.id,
                 $username: user.username,
                 $fullname: user.fullname,
@@ -47,15 +47,15 @@ async function addLikeToComment({ commentId, user }) {
 
             const posts = await db.query(
                 `select id, userId from posts where id = (select postId from comments where id = $commentId)`, {
-                $commentId: commentId
+                $commentId: comment.id
             });
             const post = posts[0]
 
-            if (post.userId !== user.id) {
+            if (comment.by.id !== user.id) {
                 const noitification = {
                     type: 'like-comment',
                     byUserId: user.id,
-                    userId: post.userId,
+                    userId: comment.by.id,
                     entityId: id,
                     postId: post.id,
                 }

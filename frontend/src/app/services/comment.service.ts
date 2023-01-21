@@ -132,17 +132,18 @@ export class CommentService {
     return isLiked.length > 0
   }
 
-  public async toggleLike(isLiked: boolean, details: { user: MiniUser, commentId: number }) {
+  public async toggleLike(isLiked: boolean, details: { user: MiniUser, comment: Comment }) {
 
     if (isLiked) {
       await firstValueFrom(
         this.http.delete(`http://localhost:3030/api/like/comment`, {
-          body: { userId: details.user.id, commentId: details.commentId }
+          body: { userId: details.user.id, commentId: details.comment.id }
         }),
       )
     } else {
       await firstValueFrom(
-        this.http.post(`http://localhost:3030/api/like/comment`, details),
+        this.http.post(`http://localhost:3030/api/like/comment`, 
+        { user: details.user, comment: details.comment }),
       )
     }
   }

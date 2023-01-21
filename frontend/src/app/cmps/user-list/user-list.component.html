@@ -5,10 +5,10 @@
     </header>
 
     <ul class="default-list" *ngIf="type !== 'search-bar-list'">
-        <li *ngFor="let user of users; index as idx">
+        <li *ngFor="let user of users; index as idx" (click)="onToggleSelectUser(idx)">
             <user-preview [user]="user" [type]="type"></user-preview>
 
-            <checkbox [isChecked]="isSelectUser[idx].isSelected" [type]="'user-list'" (click)="onToggleSelectUser(idx)"
+            <checkbox [isChecked]="isSelectUser[idx].isSelected" [type]="'user-list'" 
                 *ngIf="type==='share-modal'"></checkbox>
             <follow-btn [user]="user" [type]="type"
                 *ngIf="isFollowBtnShow && loggedinUser && loggedinUser.id !== user.id"></follow-btn>

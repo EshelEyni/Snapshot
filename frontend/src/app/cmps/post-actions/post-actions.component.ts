@@ -54,17 +54,20 @@ export class PostActionsComponent implements OnInit, OnChanges, OnDestroy {
       this.setIconColor();
     }, 0)
   }
-
+  
   setIconColor() {
     this.iconColor = this.loggedinUser.isDarkMode ? 'var(--primary-color)' : 'var(--tertiary-color)'
     this.icons.forEach(icon => {
       icon.svgStyle = { color: this.iconColor, fill: this.iconColor }
     })
   }
-
+  
   async ngOnChanges() {
     this.isLiked = await this.postService.checkIsLiked({ postId: this.post.id, userId: this.loggedinUser.id })
     this.isSaved = await this.postService.checkIsSaved({ postId: this.post.id, userId: this.loggedinUser.id })
+    setTimeout(() => {
+      this.setIconColor();
+    }, 0)
   }
 
   onToggleLike() {
