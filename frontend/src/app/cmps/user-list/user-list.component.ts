@@ -47,14 +47,15 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
     })
     this.setTitle();
 
-    this.isFollowBtnShow = this.type === 'like-modal' || this.type === 'home-page-suggestion-list' || this.type === 'discover-people-list';
+    this.isFollowBtnShow = this.type === 'like-modal'
+      || this.type === 'home-page-suggestion-list'
+      || this.type === 'discover-people-list'
+      || this.type === 'share-modal'
+      || this.type === 'following-list'
+      || this.type === 'followers-list';
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    // this.users = this.users;
-    if(changes['users']) {
-      console.log('this.users', this.users);
-    }
 
     if (this.type === 'share-modal') {
       this.setIsSelectUser();
@@ -103,12 +104,12 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
       case 'like-modal':
         this.isTitle = false;
         break;
-      // case 'followers-list':
-      //   this.title = 'Followers';
-      //   break;
-      // case 'followings-list':
-      //   this.title = 'Followings';
-      //   break;
+      case 'followers-list':
+        this.title = '';
+        break;
+      case 'following-list':
+        this.title = '';
+        break;
       case 'search-list':
         this.title = 'Search Results';
         break;

@@ -63,23 +63,23 @@
                 }
             }
 
-            .user-img-container {
-                height: rem(24px);
-                width: rem(24px);
-
-                img {
-                    height: 100%;
-                    width: 100%;
-                    border-radius: 50%;
-                }
-
-            }
 
             >span {
                 display: none;
             }
         }
 
+        .profile {
+
+            .user-img-container {
+                height: rem(24px);
+                width: rem(24px);
+
+                img {
+                    border-radius: 50%;
+                }
+            }
+        }
     }
 
     .modal-container {
@@ -154,6 +154,14 @@
                     border-radius: 25px;
                 }
 
+            }
+
+            .profile {
+                padding: rem(10px);
+                .user-img-container {
+                    height: rem(30px);
+                    width: rem(30px);
+                }
             }
 
             .btn-notifications,

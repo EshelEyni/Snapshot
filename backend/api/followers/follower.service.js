@@ -1,9 +1,10 @@
 const logger = require('../../services/logger.service')
 const db = require('../../database');
 
-async function query(userId) {
+async function query(followingId) {
     try {
-        return await db.query(`select * from followers where userId = $userId`, { $userId: userId });
+        const followers = await db.query(`select * from followers where followingId = $followingId`, { $followingId: followingId });
+        return followers
     } catch (err) {
         logger.error('cannot find followers', err)
         throw err
@@ -23,9 +24,15 @@ async function getById(followerId) {
     }
 }
 
-async function remove(followerId) {
+async function remove(followerId, userId) {
     try {
-        await db.exec(`delete from followers where id = $id`, { $id: followerId });
+        await db.exec(
+            `delete from followers where followerId = $followerId and userId = userId`,
+            {
+                $followerId: followerId,
+                $userId: userId
+            }
+        );
     } catch (err) {
         logger.error(`cannot remove follower ${followerId}`, err)
         throw err

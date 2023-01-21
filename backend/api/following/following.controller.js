@@ -4,7 +4,7 @@ const logger = require('../../services/logger.service')
 
 async function getFollowings(req, res) {
     try {
-        const following = await followingService.query(followerId = req.query.followerId, userToCheckId = req.query.userToCheckId)
+        const following = await followingService.query(userId = req.query.followerId, userToCheckId = req.query.userToCheckId)
         res.send(following)
     } catch (err) {
         logger.error('Failed to get following', err)

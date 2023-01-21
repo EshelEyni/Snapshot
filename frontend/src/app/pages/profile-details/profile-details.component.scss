@@ -176,6 +176,10 @@
             padding: rem(12px) 0;
             width: 100%;
 
+            &>*:not(:first-child){
+                cursor: pointer;
+            }
+
             >* {
                 display: flex;
                 flex-direction: column;

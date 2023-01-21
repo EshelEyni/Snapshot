@@ -30,6 +30,7 @@ export class FollowBtnComponent implements OnInit, OnDestroy {
   type!: string;
 
   async ngOnInit() {
+
     this.sub = this.loggedinUser$.subscribe(async user => {
       if (user) {
         this.loggedinUser = { ...user }
@@ -39,8 +40,7 @@ export class FollowBtnComponent implements OnInit, OnDestroy {
   }
 
   async onToggleFollow(user: MiniUser) {
-    this.userService.toggleFollow(this.isFollowed, this.loggedinUser.id, user);
-    this.isFollowed = !this.isFollowed;
+    this.userService.toggleFollow(this.isFollowed, this.loggedinUser, user);
     this.loggedinUser.followingSum = this.isFollowed ? this.loggedinUser.followingSum + 1 : this.loggedinUser.followingSum - 1;
     this.store.dispatch(new SaveUser(this.loggedinUser));
     const fullUser = await lastValueFrom(this.userService.getById(user.id));

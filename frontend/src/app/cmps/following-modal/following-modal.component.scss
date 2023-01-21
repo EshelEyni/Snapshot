@@ -1,15 +1,15 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
+@import '../../../assets/styles/setup/vars';
 
-::ng-deep .like-modal {
+
+::ng-deep .following {
     @include modal;
     display: grid;
     grid-template-rows: rem(50px) 1fr;
     width: rem(400px);
 
-
-    .like-modal-header {
+    .following-header {
         grid-row: 1/2;
         display: grid;
         grid-template-columns: 1fr 5%;
@@ -38,24 +38,35 @@
 
     }
 
-    .user-list {
+    .following-main-container{
         grid-row: 2/3;
-        max-height: calc(65vh - 50px);
 
-        .default-list {
-            li {
-                padding: 0 rem(16px);
-                padding-bottom: rem(10px);
+        .user-list {
+            max-height: calc(65vh - 50px);
+            padding-bottom: rem(10px);
 
-                .user-preview {
-                    .img-container {
-                        height: rem(50px);
-                        width: rem(50px);
+            .default-list {
+                li {
+                    padding: 0 rem(16px);
+                    
+                    .user-preview {
+                        .img-container {
+                            height: rem(50px);
+                            width: rem(50px);
+                        }
                     }
                 }
             }
         }
+
+        .no-following-msg-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: rem(300px);
+            color: var(--primary-color);
+            font-size: rem(16px);
+            font-weight: 600;
+        }
     }
-
-
 }

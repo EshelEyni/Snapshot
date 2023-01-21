@@ -105,6 +105,8 @@ import { ProfileEditHeaderComponent } from './cmps/profile-edit-header/profile-e
 import { StoryOptionsModalComponent } from './cmps/story-options-modal/story-options-modal.component';
 import { MentionPipe } from './pipes/mention.pipe';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { FollowersModalComponent } from './cmps/followers-modal/followers-modal.component';
+import { FollowingModalComponent } from './cmps/following-modal/following-modal.component';
 
 @NgModule({
   declarations: [
@@ -189,6 +191,8 @@ import { NotificationsComponent } from './pages/notifications/notifications.comp
     StoryOptionsModalComponent,
     MentionPipe,
     NotificationsComponent,
+    FollowersModalComponent,
+    FollowingModalComponent,
   ],
   imports: [
     BrowserAnimationsModule,

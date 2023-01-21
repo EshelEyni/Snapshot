@@ -153,16 +153,23 @@ export class UserService {
     return 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg'
   }
 
-  // public getFollowers(userId: string): Observable<MiniUser[]> {
-  //   return this.http.get<MiniUser[]>(
-  //     `http://localhost:3030/api/user/followers/${userId}`,
-  //   )
-  // }
+  public async getFollowers(followingId: number): Promise<MiniUser[] | []> {
+    const options = {
+      params: {
+        followingId
+      }
+    }
+    return await lastValueFrom(
+      this.http.get<MiniUser[]>(
+        `http://localhost:3030/api/followers`, options
+      )
+    )
+  }
 
   public async getFollowings(followerId: number): Promise<MiniUser[]> {
     const options = {
       params: {
-        followerId,
+        followerId
       }
     }
     return await lastValueFrom(
@@ -185,20 +192,34 @@ export class UserService {
     return isFollowing.length > 0
   }
 
-  public async toggleFollow(isFollowing: boolean, loggedinUserId: number, user: MiniUser) {
+  public async toggleFollow(isFollowing: boolean, loggedinUser: MiniUser, user: MiniUser) {
 
     if (isFollowing) {
       await firstValueFrom(
-        this.http.delete(`http://localhost:3030/api/following`, { body: { followerId: loggedinUserId, userId: user.id } })
+        this.http.delete(`http://localhost:3030/api/following`, { body: { followerId: loggedinUser.id, userId: user.id } })
       )
+      await firstValueFrom(
+        this.http.delete(`http://localhost:3030/api/followers`, { body: { followingId: loggedinUser.id, userId: user.id } })
+      )
+
     } else {
       await firstValueFrom(
         this.http.post(`http://localhost:3030/api/following`, {
-          followerId: loggedinUserId,
+          followerId: loggedinUser.id,
           userId: user.id,
           username: user.username,
           fullname: user.fullname,
           imgUrl: user.imgUrl,
+        })
+      )
+
+      await firstValueFrom(
+        this.http.post(`http://localhost:3030/api/followers`, {
+          followingId: user.id,
+          userId: loggedinUser.id,
+          username: loggedinUser.username,
+          fullname: loggedinUser.fullname,
+          imgUrl: loggedinUser.imgUrl,
         })
       )
     }

@@ -29,7 +29,7 @@
         </div>
 
         <div class="hightlights-container" *ngIf="user.storySum">
-                <story-list [type]="'profile-details'"></story-list>
+            <story-list [type]="'profile-details'"></story-list>
             <div class="btn-highlights-container">
                 <button class="clean-btn btn-highlights" (click)="onToggleModal('highlights')"
                     *ngIf="isCurrUserLoggedInUser">
@@ -49,11 +49,11 @@
                 <span class="stat-num">{{user.postSum}}</span>
                 <span class="stat-name">posts</span>
             </p>
-            <p>
+            <p (click)="onToggleModal('followers')">
                 <span class="stat-num">{{user.followersSum}}</span>
                 <span class="stat-name">followers</span>
             </p>
-            <p>
+            <p (click)="onToggleModal('following')">
                 <span class="stat-num">{{user.followingSum}} </span>
                 <span class="stat-name">following</span>
             </p>
@@ -135,8 +135,13 @@
 
 </section>
 <profile-options-modal *ngIf="isOptionsModalShown && isCurrUserLoggedInUser" [loggedinUser]="loggedinUser"
-    (closeModal)="onToggleModal('options')"></profile-options-modal>
+    (close)="onToggleModal('options')"></profile-options-modal>
 
 <highlights-modal *ngIf="isHighlightsModalShown" [loggedinUser]="loggedinUser"
-    (closeModal)="onToggleModal('highlights')"></highlights-modal>
+    (close)="onToggleModal('highlights')"></highlights-modal>
+
+<followers-modal *ngIf="isFollowersModalShown" [loggedinUser]="loggedinUser"
+    (close)="onToggleModal('followers')"></followers-modal>
+<following-modal *ngIf="isFollowingModalShown" [loggedinUser]="loggedinUser"
+    (close)="onToggleModal('following')"></following-modal>
 <div class="main-screen dark-mode" *ngIf="isMainScreenShown" (click)="onToggleModal('main-screen')"></div>

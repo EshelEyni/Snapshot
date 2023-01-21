@@ -13,7 +13,7 @@ import { State } from './../../store/store'
   templateUrl: './profile-options-modal.component.html',
   styleUrls: ['./profile-options-modal.component.scss'],
   inputs: ['loggedinUser'],
-  outputs: ['closeModal']
+  outputs: ['close']
 })
 export class ProfileOptionsModalComponent implements OnInit {
 
@@ -23,7 +23,7 @@ export class ProfileOptionsModalComponent implements OnInit {
   userService = inject(UserService)
   loggedinUser!: User;
   faChevronLeft = faChevronLeft;
-  closeModal = new EventEmitter();
+  close = new EventEmitter();
   isDarkMode!: boolean;
 
   ngOnInit(): void {
@@ -32,7 +32,7 @@ export class ProfileOptionsModalComponent implements OnInit {
   }
 
   onCloseModal() {
-    this.closeModal.emit()
+    this.close.emit()
   }
 
   onGoToProfileEdit() {

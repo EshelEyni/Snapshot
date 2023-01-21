@@ -46,6 +46,8 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   userImgClass: string = '';
   isStoryViewed: boolean = false;
   isPostEditModalShown: boolean = false;
+  isFollowersModalShown: boolean = false;
+  isFollowingModalShown: boolean = false;
   faCamera = faCamera;
   faHashtag = faHashtag;
   isPaginationBtnShown = { left: false, right: false };
@@ -141,7 +143,6 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   }
 
   onToggleModal(el: string) {
-    console.log('onCloseModal');
 
     switch (el) {
       case 'highlights':
@@ -153,22 +154,26 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
       case 'post-edit':
         this.isPostEditModalShown = !this.isPostEditModalShown;
         break;
+      case 'followers':
+        this.isFollowersModalShown = !this.isFollowersModalShown;
+        break;
+      case 'following':
+        this.isFollowingModalShown = !this.isFollowingModalShown;
+        break;
       case 'main-screen':
+        if (this.isFollowersModalShown) this.isFollowersModalShown = false;
+        if (this.isFollowingModalShown) this.isFollowingModalShown = false;
         if (this.isOptionsModalShown) this.isOptionsModalShown = false;
         if (this.isHighlightsModalShown) this.isHighlightsModalShown = false;
         if (this.isPostEditModalShown) this.isPostEditModalShown = false;
         break;
-
     }
     this.isMainScreenShown = !this.isMainScreenShown;
-
   }
 
   onGoToStory() {
     this.router.navigate(['/story/', this.user.currStoryId])
   }
-
-
 
   ngOnDestroy() {
     this.userSub?.unsubscribe();

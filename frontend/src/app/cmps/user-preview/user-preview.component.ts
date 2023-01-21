@@ -80,6 +80,8 @@ export class UserPreviewComponent implements OnInit, OnChanges {
       || this.type === 'suggestion-list'
       || this.type === 'home-page-suggestion-list'
       || this.type === 'share-modal'
+      || this.type === 'following-list'
+      || this.type === 'followers-list'
 
     if (this.isStoryDisabled) this.userImgClass = ''
     if (this.type === 'user-story-timer') this.plusBtnSize = 14

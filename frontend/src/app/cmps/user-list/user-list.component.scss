@@ -2,7 +2,7 @@
 @import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
-.user-list {
+::ng-deep .user-list {
     display: flex;
     flex-direction: column;
     gap: rem(15px);
@@ -40,6 +40,12 @@
             align-items: center;
             width: 100%;
             cursor: pointer;
+
+            .user-preview {
+                .user-info {
+                    max-width: rem(200px);
+                }
+            }
         }
     }
 

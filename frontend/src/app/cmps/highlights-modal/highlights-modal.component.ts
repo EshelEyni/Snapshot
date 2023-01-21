@@ -8,12 +8,12 @@ import { Story } from 'src/app/models/story.model';
   templateUrl: './highlights-modal.component.html',
   styleUrls: ['./highlights-modal.component.scss'],
   inputs: ['loggedinUser'],
-  outputs: ['closeModal']
+  outputs: ['close']
 })
 export class HighlightsModalComponent implements OnInit {
 
   constructor() { }
-  closeModal = new EventEmitter();
+  close = new EventEmitter();
 
   storyService = inject(StoryService);
   loggedinUser!: User;
@@ -67,6 +67,6 @@ export class HighlightsModalComponent implements OnInit {
 
   onCloseModal() {
     console.log('close modal');
-    this.closeModal.emit();
+    this.close.emit();
   }
 }

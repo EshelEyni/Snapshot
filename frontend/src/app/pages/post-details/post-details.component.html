@@ -20,7 +20,7 @@
       <ellipsis (click)="onToggleModal('post-options-modal')"></ellipsis>
 
       <post-options-modal *ngIf="isOptionsModalShown" [isPostOwnedByUser]="isPostOwnedByUser" [post]="post"
-        [loggedinUserId]="loggedinUser.id" (close)="onToggleModal('post-options-modal')"></post-options-modal>
+        [loggedinUser]="loggedinUser" (close)="onToggleModal('post-options-modal')"></post-options-modal>
     </section>
 
     <div class="comment-list-container">

@@ -136,3 +136,111 @@
 21.1.2023, 14:28:47 - INFO - Server is running on port: 3030 
 21.1.2023, 14:34:05 - INFO - Server is running on port: 3030 
 21.1.2023, 14:35:59 - INFO - Server is running on port: 3030 
+21.1.2023, 16:14:03 - ERROR - while finding user 41 | Failed to commit transaction: user with id #41 was not found 
+21.1.2023, 16:14:03 - ERROR - Failed to get user | Failed to commit transaction: user with id #41 was not found 
+21.1.2023, 16:14:03 - ERROR - while finding user 42 | Failed to commit transaction: user with id #42 was not found 
+21.1.2023, 16:14:03 - ERROR - Failed to get user | Failed to commit transaction: user with id #42 was not found 
+21.1.2023, 16:14:03 - ERROR - Failed to get user | Failed to commit transaction: user with id #43 was not found 
+21.1.2023, 16:14:03 - ERROR - while finding user 43 | Failed to commit transaction: user with id #43 was not found 
+21.1.2023, 16:14:03 - ERROR - while finding user 44 | Failed to commit transaction: user with id #44 was not found 
+21.1.2023, 16:14:03 - ERROR - Failed to get user | Failed to commit transaction: user with id #44 was not found 
+21.1.2023, 16:14:58 - ERROR - while finding user 41 | Failed to commit transaction: user with id #41 was not found 
+21.1.2023, 16:14:58 - ERROR - Failed to get user | Failed to commit transaction: user with id #41 was not found 
+21.1.2023, 16:14:58 - ERROR - while finding user 42 | Failed to commit transaction: user with id #42 was not found 
+21.1.2023, 16:14:58 - ERROR - Failed to get user | Failed to commit transaction: user with id #42 was not found 
+21.1.2023, 16:14:58 - ERROR - while finding user 43 | Failed to commit transaction: user with id #43 was not found 
+21.1.2023, 16:14:58 - ERROR - Failed to get user | Failed to commit transaction: user with id #43 was not found 
+21.1.2023, 16:14:58 - ERROR - while finding user 44 | Failed to commit transaction: user with id #44 was not found 
+21.1.2023, 16:14:58 - ERROR - Failed to get user | Failed to commit transaction: user with id #44 was not found 
+21.1.2023, 16:18:40 - ERROR - while finding user 41 | Failed to commit transaction: user with id #41 was not found 
+21.1.2023, 16:18:40 - ERROR - Failed to get user | Failed to commit transaction: user with id #41 was not found 
+21.1.2023, 16:18:40 - ERROR - while finding user 42 | Failed to commit transaction: user with id #42 was not found 
+21.1.2023, 16:18:40 - ERROR - Failed to get user | Failed to commit transaction: user with id #42 was not found 
+21.1.2023, 16:18:40 - ERROR - while finding user 43 | Failed to commit transaction: user with id #43 was not found 
+21.1.2023, 16:18:40 - ERROR - Failed to get user | Failed to commit transaction: user with id #43 was not found 
+21.1.2023, 16:18:40 - ERROR - while finding user 44 | Failed to commit transaction: user with id #44 was not found 
+21.1.2023, 16:18:40 - ERROR - Failed to get user | Failed to commit transaction: user with id #44 was not found 
+21.1.2023, 16:19:25 - ERROR - while finding user 41 | Failed to commit transaction: user with id #41 was not found 
+21.1.2023, 16:19:25 - ERROR - Failed to get user | Failed to commit transaction: user with id #41 was not found 
+21.1.2023, 16:19:25 - ERROR - while finding user 42 | Failed to commit transaction: user with id #42 was not found 
+21.1.2023, 16:19:25 - ERROR - Failed to get user | Failed to commit transaction: user with id #42 was not found 
+21.1.2023, 16:19:25 - ERROR - while finding user 43 | Failed to commit transaction: user with id #43 was not found 
+21.1.2023, 16:19:25 - ERROR - Failed to get user | Failed to commit transaction: user with id #43 was not found 
+21.1.2023, 16:19:25 - ERROR - while finding user 44 | Failed to commit transaction: user with id #44 was not found 
+21.1.2023, 16:19:25 - ERROR - Failed to get user | Failed to commit transaction: user with id #44 was not found 
+21.1.2023, 16:20:33 - ERROR - while finding user 41 | Failed to commit transaction: user with id #41 was not found 
+21.1.2023, 16:20:33 - ERROR - Failed to get user | Failed to commit transaction: user with id #41 was not found 
+21.1.2023, 16:20:33 - ERROR - while finding user 42 | Failed to commit transaction: user with id #42 was not found 
+21.1.2023, 16:20:33 - ERROR - Failed to get user | Failed to commit transaction: user with id #42 was not found 
+21.1.2023, 16:20:33 - ERROR - while finding user 43 | Failed to commit transaction: user with id #43 was not found 
+21.1.2023, 16:20:33 - ERROR - Failed to get user | Failed to commit transaction: user with id #43 was not found 
+21.1.2023, 16:20:33 - ERROR - while finding user 44 | Failed to commit transaction: user with id #44 was not found 
+21.1.2023, 16:20:33 - ERROR - Failed to get user | Failed to commit transaction: user with id #44 was not found 
+21.1.2023, 16:24:13 - ERROR - while finding user 45 | Failed to commit transaction: user with id #45 was not found 
+21.1.2023, 16:24:13 - ERROR - Failed to get user | Failed to commit transaction: user with id #45 was not found 
+21.1.2023, 16:24:13 - ERROR - while finding user 46 | Failed to commit transaction: user with id #46 was not found 
+21.1.2023, 16:24:13 - ERROR - Failed to get user | Failed to commit transaction: user with id #46 was not found 
+21.1.2023, 16:24:13 - ERROR - while finding user 47 | Failed to commit transaction: user with id #47 was not found 
+21.1.2023, 16:24:13 - ERROR - Failed to get user | Failed to commit transaction: user with id #47 was not found 
+21.1.2023, 16:24:13 - ERROR - while finding user 48 | Failed to commit transaction: user with id #48 was not found 
+21.1.2023, 16:24:13 - ERROR - Failed to get user | Failed to commit transaction: user with id #48 was not found 
+21.1.2023, 16:24:13 - ERROR - while finding user 49 | Failed to commit transaction: user with id #49 was not found 
+21.1.2023, 16:24:13 - ERROR - Failed to get user | Failed to commit transaction: user with id #49 was not found 
+21.1.2023, 16:25:11 - ERROR - Failed to get user | Failed to commit transaction: user with id #45 was not found 
+21.1.2023, 16:25:11 - ERROR - while finding user 45 | Failed to commit transaction: user with id #45 was not found 
+21.1.2023, 16:25:11 - ERROR - Failed to get user | Failed to commit transaction: user with id #46 was not found 
+21.1.2023, 16:25:11 - ERROR - while finding user 46 | Failed to commit transaction: user with id #46 was not found 
+21.1.2023, 16:25:11 - ERROR - while finding user 47 | Failed to commit transaction: user with id #47 was not found 
+21.1.2023, 16:25:11 - ERROR - Failed to get user | Failed to commit transaction: user with id #47 was not found 
+21.1.2023, 16:25:11 - ERROR - while finding user 48 | Failed to commit transaction: user with id #48 was not found 
+21.1.2023, 16:25:11 - ERROR - Failed to get user | Failed to commit transaction: user with id #48 was not found 
+21.1.2023, 16:25:11 - ERROR - while finding user 49 | Failed to commit transaction: user with id #49 was not found 
+21.1.2023, 16:25:11 - ERROR - Failed to get user | Failed to commit transaction: user with id #49 was not found 
+21.1.2023, 16:26:28 - ERROR - Failed to get user | Failed to commit transaction: user with id #45 was not found 
+21.1.2023, 16:26:28 - ERROR - while finding user 45 | Failed to commit transaction: user with id #45 was not found 
+21.1.2023, 16:26:28 - ERROR - while finding user 46 | Failed to commit transaction: user with id #46 was not found 
+21.1.2023, 16:26:28 - ERROR - Failed to get user | Failed to commit transaction: user with id #46 was not found 
+21.1.2023, 16:26:28 - ERROR - while finding user 47 | Failed to commit transaction: user with id #47 was not found 
+21.1.2023, 16:26:28 - ERROR - Failed to get user | Failed to commit transaction: user with id #47 was not found 
+21.1.2023, 16:26:28 - ERROR - while finding user 48 | Failed to commit transaction: user with id #48 was not found 
+21.1.2023, 16:26:28 - ERROR - Failed to get user | Failed to commit transaction: user with id #48 was not found 
+21.1.2023, 16:26:28 - ERROR - while finding user 49 | Failed to commit transaction: user with id #49 was not found 
+21.1.2023, 16:26:28 - ERROR - Failed to get user | Failed to commit transaction: user with id #49 was not found 
+21.1.2023, 16:27:52 - ERROR - while finding user 45 | Failed to commit transaction: user with id #45 was not found 
+21.1.2023, 16:27:52 - ERROR - Failed to get user | Failed to commit transaction: user with id #45 was not found 
+21.1.2023, 16:27:52 - ERROR - while finding user 46 | Failed to commit transaction: user with id #46 was not found 
+21.1.2023, 16:27:52 - ERROR - Failed to get user | Failed to commit transaction: user with id #46 was not found 
+21.1.2023, 16:27:52 - ERROR - while finding user 47 | Failed to commit transaction: user with id #47 was not found 
+21.1.2023, 16:27:52 - ERROR - Failed to get user | Failed to commit transaction: user with id #47 was not found 
+21.1.2023, 16:27:52 - ERROR - while finding user 48 | Failed to commit transaction: user with id #48 was not found 
+21.1.2023, 16:27:52 - ERROR - Failed to get user | Failed to commit transaction: user with id #48 was not found 
+21.1.2023, 16:27:52 - ERROR - while finding user 49 | Failed to commit transaction: user with id #49 was not found 
+21.1.2023, 16:27:52 - ERROR - Failed to get user | Failed to commit transaction: user with id #49 was not found 
+21.1.2023, 16:28:52 - ERROR - while finding user 45 | Failed to commit transaction: user with id #45 was not found 
+21.1.2023, 16:28:52 - ERROR - Failed to get user | Failed to commit transaction: user with id #45 was not found 
+21.1.2023, 16:28:52 - ERROR - while finding user 46 | Failed to commit transaction: user with id #46 was not found 
+21.1.2023, 16:28:52 - ERROR - Failed to get user | Failed to commit transaction: user with id #46 was not found 
+21.1.2023, 16:28:52 - ERROR - while finding user 47 | Failed to commit transaction: user with id #47 was not found 
+21.1.2023, 16:28:52 - ERROR - Failed to get user | Failed to commit transaction: user with id #47 was not found 
+21.1.2023, 16:28:52 - ERROR - while finding user 48 | Failed to commit transaction: user with id #48 was not found 
+21.1.2023, 16:28:52 - ERROR - Failed to get user | Failed to commit transaction: user with id #48 was not found 
+21.1.2023, 16:28:52 - ERROR - while finding user 49 | Failed to commit transaction: user with id #49 was not found 
+21.1.2023, 16:28:52 - ERROR - Failed to get user | Failed to commit transaction: user with id #49 was not found 
+21.1.2023, 16:42:56 - INFO - Server is running on port: 3030 
+21.1.2023, 16:44:54 - INFO - Server is running on port: 3030 
+21.1.2023, 16:45:41 - INFO - Server is running on port: 3030 
+21.1.2023, 16:56:51 - INFO - Server is running on port: 3030 
+21.1.2023, 16:56:51 - INFO - Server is running on port: 3030 
+21.1.2023, 16:57:59 - INFO - Server is running on port: 3030 
+21.1.2023, 16:58:00 - INFO - Server is running on port: 3030 
+21.1.2023, 17:02:57 - INFO - Server is running on port: 3030 
+21.1.2023, 17:03:34 - INFO - Server is running on port: 3030 
+21.1.2023, 17:04:11 - INFO - Server is running on port: 3030 
+21.1.2023, 17:04:16 - INFO - Server is running on port: 3030 
+21.1.2023, 17:06:27 - INFO - Server is running on port: 3030 
+21.1.2023, 17:07:12 - INFO - Server is running on port: 3030 
+21.1.2023, 17:25:23 - INFO - Server is running on port: 3030 
+21.1.2023, 17:26:58 - INFO - Server is running on port: 3030 
+21.1.2023, 17:28:03 - INFO - Server is running on port: 3030 
+21.1.2023, 17:36:03 - INFO - Server is running on port: 3030 
+21.1.2023, 17:36:04 - INFO - Server is running on port: 3030 

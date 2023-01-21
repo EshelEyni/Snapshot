@@ -1,0 +1,16 @@
+<section class="following">
+
+    <header class="following-header">
+        <h1>following</h1>
+        <fa-icon (click)="onCloseModal()" [icon]="faX"></fa-icon>
+    </header>
+
+    <main class="following-main-container">
+        <user-list [users]="users" [type]="'following-list'" *ngIf="users.length; else noFollowingMsg"></user-list>
+        <ng-template #noFollowingMsg>
+            <div class="no-following-msg-container">
+                <h2 class="no-following">No following yet.</h2>
+            </div>
+        </ng-template>
+    </main>
+</section>
