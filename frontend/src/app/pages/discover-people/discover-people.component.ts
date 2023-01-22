@@ -16,7 +16,6 @@ export class DiscoverPeopleComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.users$ = this.store.select('userState').pipe(map((x => x.users)));
-
   }
 
   $location = inject(Location);

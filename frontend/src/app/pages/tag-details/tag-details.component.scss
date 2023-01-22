@@ -2,66 +2,149 @@
 @import '../../../assets/styles/setup/mixins';
 @import '../../../assets/styles/setup/vars';
 
-.tag-details {
+::ng-deep .tag-details {
     @include page;
+    flex-direction: column;
 
-    .main-container {
+
+    .tag-details-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100vw;
+        height: rem(60px);
+        padding: 0 rem(20px);
+        background-color: var(--secondary-bg);
+        border-bottom: var(--border-color) solid 1px;
+        transition: all 0.5s ease-in-out;
+        z-index: 10;
+
+        h1 {
+            flex-basis: 0px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            font-size: rem(20px);
+            font-weight: 600;
+            font-family: var(--primary-font);
+            text-align: center;
+            text-transform: capitalize;
+        }
+
+        fa-icon {
+            font-size: rem(25px);
+            cursor: pointer;
+            flex-basis: rem(35px);
+        }
+
+        div {
+            flex-basis: rem(35px);
+        }
+    }
+
+    .tag-info {
+
+        display: flex;
+        width: 100%;
+        gap: rem(20px);
+        margin-top: rem(25px);
+        padding: rem(5px);
+
+        .img-container {
+            position: relative;
+            display: flex;
+
+
+            img {
+                height: rem(100px);
+                width: rem(100px);
+                border-radius: 50%;
+            }
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            width: 100%;
+
+            h1 {
+                font-weight: normal;
+            }
+
+            span {
+                font-weight: 700;
+            }
+
+            .btn-follow,
+            .btn-unfollow {
+                position: relative;
+                margin-top: rem(25px);
+                font-size: rem(14px);
+                width: rem(100px) !important;
+                transition: all 0.5s ease-in-out;
+            }
+        }
+    }
+
+    .tag-details-main-container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: rem(15px) rem(50px);
+        padding: 0 rem(10px);
         width: 100%;
 
-        header {
-            display: flex;
-            align-items: center;
-            height: 200px;
-            width: 100%;
-
-            gap: rem(25px);
-
-            .img-container {
-                height: rem(150px);
-                width: rem(150px);
-
-                img {
-                    height: 100%;
-                    width: 100%;
-                    border-radius: 50%;
-                }
-            }
-
-            .info {
-                width: 100%;
-
-                h1 {
-                    font-weight: normal;
-                }
-
-                span {
-                    font-weight: 700;
-                }
-
-                .btn-follow {
-                    margin-top: rem(25px);
-                    background-color: var(--primary-button);
-                    color: white;
-                    padding: 5px 10px;
-                    border-radius: 5px;
-                    text-transform: capitalize;
-                    width: 100%;
-                }
-            }
-        }
 
         .post-list-container {
             width: 100%;
             margin-top: rem(25px);
 
-            .post-list {
-                display: flex;
-                flex-direction: column;
-                gap: rem(25px);
+
+            h5 {
+                font-weight: 600;
+                font-size: rem(16px);
+                margin-bottom: rem(25px);
+                color: var(--secondary-color);
+                text-align: start;
+            }
+        }
+    }
+
+    @include for-small-layout {
+        align-items: center;
+        padding: rem(20px);
+
+        .tag-details-header {
+            display: none;
+        }
+
+        .tag-info {
+            align-items: center;
+            gap: rem(45px);
+
+            .img-container {
+                img {
+                    height: rem(155px);
+                    width: rem(155px);
+                }
+            }
+
+            .info {
+                .btn-follow,
+                .btn-unfollow {
+                    position: relative;
+                    width: 90% !important;
+                    max-width: rem(735px) !important;
+                }
+            }
+        }
+    }
+
+    @include for-large-layout {
+        .tag-info {
+            .info {
+                .btn-follow {
+                    font-size: rem(18px);
+                }
             }
         }
     }

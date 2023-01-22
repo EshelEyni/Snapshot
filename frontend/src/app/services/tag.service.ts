@@ -2,20 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { PostService } from './post.service';
 import { StorageService } from './storage.service';
 import { UserService } from './user.service';
-import { UtilService } from './util.service';
-import { BehaviorSubject, Observable, throwError, of, map, lastValueFrom, firstValueFrom } from 'rxjs';
+import { BehaviorSubject, Observable, lastValueFrom, firstValueFrom } from 'rxjs';
 import { Tag } from '../models/tag.model';
 import { Injectable, inject } from '@angular/core';
 
-const TAGS = [
-  {
-    id: 648487,
-    name: '#Angular',
-    postIds: ['1', '2'],
-  }
-]
-
-const ENTITY = 'tag';
 
 @Injectable({
   providedIn: 'root'
@@ -23,13 +13,11 @@ const ENTITY = 'tag';
 
 export class TagService {
 
-  private _tagsDb: Tag[] = TAGS;
   private _tags$ = new BehaviorSubject<Tag[]>([]);
   public tags$ = this._tags$.asObservable();
 
   constructor() { }
 
-  utilService = inject(UtilService);
   userSerivce = inject(UserService);
   storageService = inject(StorageService);
   postService = inject(PostService);
@@ -78,6 +66,44 @@ export class TagService {
       return res.id;
     } else {
       return;
+    }
+  }
+
+  public async getfollowedTags(userId: number): Promise<Tag[]> {
+    const tags = await lastValueFrom(
+      this.http.get<Tag[]>(`http://localhost:3030/api/tag/follow/${userId}`)
+    );
+    return tags;
+  }
+
+
+  public async checkIsFollowing(userId: number, tagId: number): Promise<boolean> {
+    const isFollowing = await lastValueFrom(
+      this.http.get(`http://localhost:3030/api/tag/follow/${userId}/${tagId}`)
+    ) as boolean;
+
+    return isFollowing;
+  }
+
+
+  public async toggleFollow(isFollowing: boolean, userId: number, tagId: number): Promise<number | void> {
+
+    if (isFollowing) {
+      await firstValueFrom(
+        this.http.delete(`http://localhost:3030/api/tag/follow/${userId}/${tagId}`)
+      );
+
+    }
+    else {
+      const res = await firstValueFrom(
+        this.http.post(`http://localhost:3030/api/tag/follow`, { userId, tagId })
+      ) as { msg: string, id: number }
+
+      if (res.msg === 'Tag followed') {
+        return res.id;
+      } else {
+        return;
+      }
     }
   }
 

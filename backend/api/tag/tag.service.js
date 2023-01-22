@@ -11,7 +11,7 @@ async function query(filterBy) {
                 const postIds = await db.query(`select postId from postTags where tagId = $tagId`, { $tagId: tag.id });
                 tag.postIds = postIds.map(postId => postId.postId);
             }
-            
+
             return tags;
         });
     } catch (err) {
@@ -76,10 +76,86 @@ async function add(tag) {
     }
 }
 
+async function getFollowedTags(userId) {
+    try {
+        return await db.txn(async () => {
+            const followedTags = await db.query(
+                `select * from followedTags where userId = $userId`,
+                { $userId: userId });
+
+            const tags = await db.query(`select * from tags where id in (${followedTags.map(tag => tag.tagId).join(',')})`);
+            
+            for (const tag of tags) {
+                const postIds = await db.query(`select postId from postTags where tagId = $tagId`, { $tagId: tag.id });
+                tag.postIds = postIds.map(postId => postId.postId);
+            }
+
+            return tags;
+        });
+    } catch (err) {
+        logger.error(`cannot get followed tags for userId: ${userId}`, err)
+        throw err
+    }
+}
+
+async function getFollowedStatus(userId, tagId) {
+    try {
+        const followedTags = await db.query(
+            `select * from followedTags where userId = $userId and tagId = $tagId`,
+            { $userId: userId, $tagId: tagId });
+        return followedTags.length > 0;
+    } catch (err) {
+        logger.error(`cannot get followed tags for userId: ${userId}`, err)
+        throw err
+    }
+}
+
+
+
+async function follow(userId, tagId) {
+    try {
+        const isFollowed = await db.query(
+            `select * from followedTags where userId = $userId and tagId = $tagId`,
+            { $userId: userId, $tagId: tagId });
+        if (isFollowed.length > 0) {
+            return isFollowed[0].id;
+        }
+
+        const id = await db.exec(`insert into followedTags (userId, tagId) values ($userId, $tagId)`, {
+            $userId: userId,
+            $tagId: tagId
+        })
+
+
+        return id
+    } catch (err) {
+        logger.error(`cannot follow tag ${tagId}`, err)
+        throw err
+    }
+}
+
+async function unFollow(userId, tagId) {
+    try {
+        await db.exec(`delete from followedTags where userId = $userId and tagId = $tagId`, {
+            $userId: userId,
+            $tagId: tagId
+        })
+    } catch (err) {
+        logger.error(`cannot unfollow tag ${tagId}`, err)
+        throw err
+    }
+}
+
+
+
 module.exports = {
     query,
     getByName,
     remove,
     update,
-    add
+    add,
+    getFollowedTags,
+    getFollowedStatus,
+    follow,
+    unFollow
 }

@@ -1,3 +1,4 @@
+import { FollowingComponent } from './pages/following/following.component';
 import { DiscoverPeopleComponent } from './pages/discover-people/discover-people.component';
 import { StoryEditComponent } from './cmps/story-edit/story-edit.component';
 import { StoryDetailsComponent } from './cmps/story-details/story-details.component';
@@ -17,6 +18,7 @@ import { PostResolver } from './resolvers/post.resolver';
 import { AuthGuard } from './guards/auth.guard';
 import { StoryResolver } from './resolvers/story.resolver';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { FollowersComponent } from './pages/followers/followers.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginSignupComponent },
@@ -40,6 +42,8 @@ const routes: Routes = [
   },
   { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuard] },
   { path: 'discover-people', component: DiscoverPeopleComponent, resolve: { user: UserResolver }, canActivate: [AuthGuard] },
+  { path: 'following/:id', component: FollowingComponent, resolve: { user: UserResolver }, canActivate: [AuthGuard] },
+  { path: 'followers/:id', component: FollowersComponent, resolve: { user: UserResolver }, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '' }
 ];
 

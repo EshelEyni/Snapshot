@@ -142,6 +142,23 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
+  onClickFollowing() {
+    if (window.innerWidth < 735) {
+      this.router.navigate(['/following/', this.loggedinUser.id])
+    } else {
+      this.onToggleModal('following')
+    }
+  }
+
+  onClickFollowers() {
+    if (window.innerWidth < 735) {
+      this.router.navigate(['/followers/', this.loggedinUser.id])
+    } else {
+      this.onToggleModal('followers')
+    }
+  }
+
+
   onToggleModal(el: string) {
 
     switch (el) {

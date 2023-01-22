@@ -1,4 +1,5 @@
-import { LoadLoggedInUser } from './../../store/actions/user.actions';
+import { TagService } from './../../services/tag.service';
+import { Location } from '@angular/common';
 import { State } from './../../store/store';
 import { Store } from '@ngrx/store';
 import { UserService } from './../../services/user.service';
@@ -9,6 +10,7 @@ import { Subscription, lastValueFrom, Observable, map } from 'rxjs';
 import { PostService } from './../../services/post.service';
 import { Tag } from '../../models/tag.model';
 import { Component, OnInit, inject, OnDestroy } from '@angular/core';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'tag-details',
@@ -19,10 +21,12 @@ export class TagDetailsComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.loggedinUser$ = this.store.select('userState').pipe(map((x => x.loggedinUser)));
-
   }
+
+  $location = inject(Location);
   postService = inject(PostService);
   userService = inject(UserService);
+  tagService = inject(TagService);
   route = inject(ActivatedRoute);
   store = inject(Store<State>);
 
@@ -32,11 +36,12 @@ export class TagDetailsComponent implements OnInit, OnDestroy {
   loggedinUser$: Observable<User | null>
   loggedinUser!: User
   sub: Subscription | null = null;
+  faChevronLeft = faChevronLeft;
 
   ngOnInit(): void {
-    
+
     this.sub = this.loggedinUser$.subscribe(user => {
-      if (user) this.loggedinUser = {...user};
+      if (user) this.loggedinUser = { ...user };
     })
 
     this.paramsSubscription = this.route.data.subscribe(data => {
@@ -49,6 +54,10 @@ export class TagDetailsComponent implements OnInit, OnDestroy {
         })
       }
     })
+  }
+
+  onGoBack() {
+    this.$location.back()
   }
 
   ngOnDestroy(): void {

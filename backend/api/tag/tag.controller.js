@@ -53,10 +53,60 @@ async function addTag(req, res) {
     }
 }
 
+async function getFollowedTags(req, res) {
+    try {
+        const { userId } = req.params
+        console.log('userId', userId);
+        const tags = await tagService.getFollowedTags(userId)
+        res.send(tags)
+    } catch (err) {
+        logger.error('Failed to get followed status', err)
+        res.status(500).send({ err: 'Failed to get followed status' })
+    }
+}
+
+async function getFollowedStatus(req, res) {
+    try {
+        const { userId, tagId } = req.params
+        const tags = await tagService.getFollowedStatus(userId, tagId)
+        res.send(tags)
+    } catch (err) {
+        logger.error('Failed to get followed status', err)
+        res.status(500).send({ err: 'Failed to get followed status' })
+    }
+}
+
+
+async function followTag(req, res) {
+    try {
+        const { userId, tagId } = req.body
+        const id = await tagService.follow(userId, tagId)
+        res.send({ msg: 'Tag followed', id })
+    } catch (err) {
+        logger.error('Failed to follow tag', err)
+        res.status(500).send({ err: 'Failed to follow tag' })
+    }
+}
+
+async function unFollowTag(req, res) {
+    try {
+        const { userId, tagId } = req.params
+        const id = await tagService.unFollow(userId, tagId)
+        res.send({ msg: 'Tag unfollowed', id })
+    } catch (err) {
+        logger.error('Failed to unfollow tag', err)
+        res.status(500).send({ err: 'Failed to unfollow tag' })
+    }
+}
+
 module.exports = {
     getTags,
     getTag,
     deleteTag,
     updateTag,
-    addTag
+    addTag,
+    getFollowedTags,
+    getFollowedStatus,
+    followTag,
+    unFollowTag
 }

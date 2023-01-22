@@ -116,6 +116,13 @@ CREATE TABLE IF NOT EXISTS "postTags" (
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("postId") references "posts"("id") foreign key ("tagId") references "tags"("id")
 );
 
+CREATE TABLE IF NOT EXISTS "followedTags" (
+    "id" INTEGER NOT NULL UNIQUE,
+    "userId" INTEGER NOT NULL,
+    "tagId" INTEGER NOT NULL,
+    PRIMARY KEY("id" AUTOINCREMENT) foreign key ("userId") references "users"("id") foreign key ("tagId") references "tags"("id")
+);
+
 CREATE TABLE IF NOT EXISTS "locations" (
     "id" INTEGER NOT NULL UNIQUE,
     "lat" INTEGER NOT NULL,

@@ -9,6 +9,8 @@
         border-radius: 5px;
         padding: rem(7.5px) rem(15px);
         font-weight: 600;
+        cursor: pointer;
+
     }
 
     .btn-unfollow {
@@ -16,6 +18,7 @@
         border-radius: 5px;
         padding: rem(7.5px) rem(15px);
         font-weight: 600;
+        cursor: pointer;
     }
 
     &.suggestion-list {

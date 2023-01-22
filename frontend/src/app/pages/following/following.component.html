@@ -1,0 +1,22 @@
+<section class="following-page">
+    <header class="following-header">
+        <fa-icon [icon]="faChevronLeft" (click)="onGoBack()"></fa-icon>
+        <h1>Following</h1>
+        <div></div>
+    </header>
+
+    <main class="following-main-container">
+        <section class="following-list-filter">
+            <button class="clean-btn filter-btn" [class.active]="filterBy.usersShown"
+                (click)="onSetFilter('people')">People</button>
+            <button class="clean-btn filter-btn" [class.active]="filterBy.tagsShown"
+                (click)="onSetFilter('hashtags')">Hashtags</button>
+        </section>
+
+        <user-list [users]="users" [type]="'following-list'" *ngIf="users.length && filterBy.usersShown"></user-list>
+        <tag-list [tags]="tags" *ngIf="tags.length && filterBy.tagsShown"></tag-list>
+        <div class="no-following-msg-container" *ngIf="isNoFollowingMsgShown">
+            <h2 class="no-following">No following yet.</h2>
+        </div>
+    </main>
+</section>

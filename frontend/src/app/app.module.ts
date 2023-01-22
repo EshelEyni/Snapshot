@@ -107,6 +107,9 @@ import { MentionPipe } from './pipes/mention.pipe';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
 import { FollowersModalComponent } from './cmps/followers-modal/followers-modal.component';
 import { FollowingModalComponent } from './cmps/following-modal/following-modal.component';
+import { FollowingComponent } from './pages/following/following.component';
+import { FollowersComponent } from './pages/followers/followers.component';
+import { TagListComponent } from './cmps/tag-list/tag-list.component';
 
 @NgModule({
   declarations: [
@@ -193,6 +196,9 @@ import { FollowingModalComponent } from './cmps/following-modal/following-modal.
     NotificationsComponent,
     FollowersModalComponent,
     FollowingModalComponent,
+    FollowingComponent,
+    FollowersComponent,
+    TagListComponent,
   ],
   imports: [
     BrowserAnimationsModule,

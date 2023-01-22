@@ -1,19 +1,24 @@
-<main class="tag-details main-layout">
-    <div class="main-container">
+<main class="tag-details">
+    <header class="tag-details-header">
+        <fa-icon [icon]="faChevronLeft" (click)="onGoBack()"></fa-icon>
+        <h1>{{tag.name}}</h1>
+        <div></div>
+    </header>
 
-        <header>
-            <div class="img-container" *ngIf="posts[0]">
-                <img [src]="posts[0].imgUrls[0]" alt="tag image">
-            </div>
-            <div class="info">
-                <h1>{{tag.name}}</h1>
-                <p><span>{{tag.postIds.length}}</span> posts</p>
-                <button class="btn-follow clean-btn">follow</button>
-            </div>
-        </header>
-        
+    <div class="tag-info">
+        <div class="img-container" *ngIf="posts[0]">
+            <img [src]="posts[0].imgUrls[0]" alt="tag image">
+        </div>
+        <div class="info">
+            <h1>#{{tag.name}}</h1>
+            <p><span>{{tag.postIds.length}}</span> posts</p>
+            <follow-btn [tag]="tag"></follow-btn>
+        </div>
+    </div>
+
+    <div class="tag-details-main-container">
         <div class="post-list-container" *ngIf="posts.length">
-            <h1>Top posts</h1>
+            <h5>Top posts</h5>
             <post-list [posts]="posts" [isMiniPreview]="true"></post-list>
         </div>
     </div>
