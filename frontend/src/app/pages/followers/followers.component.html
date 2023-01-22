@@ -9,7 +9,7 @@
         <user-list [users]="users" [type]="'followers-list'" *ngIf="users.length; else noFollowersMsg"></user-list>
         <ng-template #noFollowersMsg>
             <div class="no-followers-msg-container">
-                <h2 class="no-followers">No followers yet.</h2>
+                <h1 class="no-followers">No followers yet.</h1>
             </div>
         </ng-template>
     </main>

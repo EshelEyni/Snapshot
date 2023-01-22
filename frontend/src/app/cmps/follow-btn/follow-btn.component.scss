@@ -11,7 +11,11 @@
         font-weight: 600;
         cursor: pointer;
 
+        &:hover {
+            background-color: var(--button-hover);
+        }
     }
+
 
     .btn-unfollow {
         border: 1px solid var(--border-color);
@@ -33,4 +37,5 @@
             color: var(--primary-color);
         }
     }
+
 }

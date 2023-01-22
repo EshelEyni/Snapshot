@@ -157,7 +157,7 @@
 
 @mixin viewed-story-circle {
     background: linear-gradient(white, white) padding-box,
-    linear-gradient(to bottom left, var(--border-color), var(--border-color)) border-box;
+        linear-gradient(to bottom left, var(--border-color), var(--border-color)) border-box;
     border-radius: 50%;
     border: 1px solid transparent;
     padding: rem(2px);
@@ -203,6 +203,42 @@
 
     @include for-medium-layout {
         width: rem(400px);
+    }
+}
+
+// mobile header mixin
+
+@mixin mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: rem(60px);
+    padding: 0 rem(20px);
+    background-color: var(--secondary-bg);
+    border-bottom: var(--border-color) solid 1px;
+    transition: all 0.5s ease-in-out;
+    z-index: 10;
+
+    h1 {
+        flex-basis: 0px;
+        flex-grow: 1;
+        flex-shrink: 1;
+        font-size: rem(20px);
+        font-weight: 600;
+        font-family: var(--primary-font);
+        text-align: center;
+        text-transform: capitalize;
+    }
+
+    fa-icon {
+        font-size: rem(25px);
+        flex-basis: rem(35px);
+        cursor: pointer;
+    }
+
+    div {
+        flex-basis: rem(35px);
     }
 }
 

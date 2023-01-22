@@ -1,3 +1,29 @@
-<section class="messages main-layout">
-    <p>messages works!</p>
+<section class="messages">
+    <header class="messages-small-layout-header">
+        <fa-icon [icon]="faChevronLeft" (click)="onGoBack()"></fa-icon>
+        <h1>{{loggedinUser.username}}</h1>
+        <div>
+            <svg-icon src="../../../assets/svgs/pencil-rect.svg"></svg-icon>
+        </div>
+    </header>
+
+    <main class="messages-main-container">
+        <div class="messages-user-list-container">
+            <div class="messages-user-list-header">
+                <h1>{{loggedinUser.username}}</h1>
+                <svg-icon src="../../../assets/svgs/pencil-rect.svg" (click)="onToggleShareModal()"></svg-icon>
+            </div>
+            <user-list [users]="users"></user-list>
+        </div>
+        <div class="chat-container">
+            <div class="no-active-chat-msg">
+                <svg-icon src="../../../assets/svgs/paper-airplane-circle.svg"></svg-icon>
+                <h1>your messages</h1>
+                <p>Send private photos and messages to a friend or group.</p>
+                <button class="clean-btn btn-send" (click)="onToggleShareModal()">send message</button>
+            </div>
+        </div>
+    </main>
+    <share-modal *ngIf="isShareModalShown"></share-modal>
+    <div class="main-screen dark-mode" *ngIf="isShareModalShown" (click)="onToggleShareModal()"></div>
 </section>

@@ -40,12 +40,14 @@ export class LoginSignupComponent implements OnInit, OnDestroy {
   async onLogin() {
     const userCred = this.form.value
     if (this.routerUrl === 'login') {
-      await this.userService.login({
+      const res = await this.userService.login({
         username: userCred.username,
         password: userCred.password,
       })
+      if (!res) return
     } else {
-      await this.userService.signup(userCred)
+      const res = await this.userService.signup(userCred)
+      if (!res) return
     }
     this.form.reset()
     this.router.navigate(['/'])

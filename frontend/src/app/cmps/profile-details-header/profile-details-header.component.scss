@@ -13,35 +13,9 @@
 }
 
 .profile-details-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100vw;
-    height: rem(60px);
-    padding: 0 rem(20px);
-    background-color: var(--secondary-bg);
-    border-bottom: var(--border-color) solid 1px;
-    transition: all 0.5s ease-in-out;
-    z-index: 10;
+    @include mobile-header;
 
-    h2 {
-        flex-basis: 0px;
-        flex-grow: 1;
-        flex-shrink: 1;
-        font-size: rem(20px);
-        font-weight: 600;
-        font-family: var(--primary-font);
-        text-align: center;
-        text-transform: capitalize;
-    }
-
-    fa-icon {
-        font-size: rem(25px);
-        cursor: pointer;
-        flex-basis: rem(35px);
-    }
-
-    div {
-        flex-basis: rem(35px);
+    h1 {
+        text-transform: none;
     }
 }

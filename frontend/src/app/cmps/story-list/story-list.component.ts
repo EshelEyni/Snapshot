@@ -46,7 +46,7 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
   isStorySelectedForHighlight: { idx: number, isSelected: boolean }[] = [];
 
   ngOnInit(): void {
-    
+
     this.loggedinUserSub = this.loggedinUser$.subscribe(user => {
       if (user) {
         this.loggedinUser = { ...user };
@@ -103,7 +103,8 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
       else this.isPaginationBtnShown.right = true;
     }
     else {
-      if (this.idx === stories.length - 4) this.isPaginationBtnShown.right = false;
+      if (this.idx === stories.length - 4 && window.innerWidth > 400) this.isPaginationBtnShown.right = false;
+      if (this.idx === stories.length - 3 && window.innerWidth < 400) this.isPaginationBtnShown.right = false;
       else this.isPaginationBtnShown.right = true;
     }
   }

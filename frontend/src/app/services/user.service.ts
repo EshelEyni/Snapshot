@@ -1,3 +1,4 @@
+import { CommunicationService } from 'src/app/services/communication.service';
 import { HttpClient } from '@angular/common/http'
 import { UtilService } from './util.service'
 import { StorageService } from './storage.service'
@@ -21,7 +22,7 @@ export class UserService {
   constructor(
     private store: Store<UserState>,
     private storageService: StorageService,
-    private utilService: UtilService,
+    private communicationService: CommunicationService,
     private http: HttpClient,
   ) { }
 
@@ -85,16 +86,23 @@ export class UserService {
   }
 
   public async login(userCred: { username: string; password: string }) {
-    const user = await firstValueFrom(
-      this.http.post<User>(`http://localhost:3030/api/auth/login`, userCred),
-    )
-    if (!user) return
-    this.storageService.saveToStorage('loggedinUser', {
-      id: user.id,
-      fullname: user.fullname,
-      username: user.username,
-      imgUrl: user.imgUrl,
-    })
+    try {
+
+      const user = await firstValueFrom(
+        this.http.post<User>(`http://localhost:3030/api/auth/login`, userCred),
+      )
+      if (!user) return
+      this.storageService.saveToStorage('loggedinUser', {
+        id: user.id,
+        fullname: user.fullname,
+        username: user.username,
+        imgUrl: user.imgUrl,
+      })
+      return 'User logged in successfully'
+    } catch (error) {
+      this.communicationService.setUserMsg('Invalid username or password')
+      return null;
+    }
   }
 
   public async signup(userCred: {
@@ -103,15 +111,22 @@ export class UserService {
     username: string
     password: string
   }) {
-    const addedUser = await lastValueFrom(
-      this.http.post<User>(`http://localhost:3030/api/auth/signup`, userCred),
-    )
-    this.storageService.saveToStorage('loggedinUser', {
-      id: addedUser.id,
-      fullname: addedUser.fullname,
-      username: addedUser.username,
-      imgUrl: this.getDefaultUserImgUrl(),
-    })
+    try {
+
+      const addedUser = await lastValueFrom(
+        this.http.post<User>(`http://localhost:3030/api/auth/signup`, userCred),
+      )
+      this.storageService.saveToStorage('loggedinUser', {
+        id: addedUser.id,
+        fullname: addedUser.fullname,
+        username: addedUser.username,
+        imgUrl: this.getDefaultUserImgUrl(),
+      })
+      return 'User added successfully'
+    } catch (error) {
+      this.communicationService.setUserMsg(`Username ${userCred.username} already exists!`)
+      return null;
+    }
   }
 
   public async logout() {
