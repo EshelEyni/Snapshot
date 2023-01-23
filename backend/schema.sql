@@ -183,8 +183,6 @@ CREATE TABLE IF NOT EXISTS "storiesLikedBy"(
 
 CREATE TABLE IF NOT EXISTS "chats"(
     "id" INTEGER NOT NULL UNIQUE,
-    "lastAction" TEXT NOT NULL DEFAULT "",
-    "lastActionTime" TIMESTAMP,
     PRIMARY KEY("id" AUTOINCREMENT)
 );
 

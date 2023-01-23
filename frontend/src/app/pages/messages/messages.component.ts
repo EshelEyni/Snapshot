@@ -35,8 +35,9 @@ export class MessagesComponent implements OnInit, OnDestroy {
   currActiveChat!: Chat;
 
   ngOnInit(): void {
-    this.userSub = this.loggedinUser$.pipe(
+    let isChatLoaded = false;
 
+    this.userSub = this.loggedinUser$.pipe(
       switchMap(user => {
         if (user) {
           this.loggedinUser = user;
@@ -44,8 +45,9 @@ export class MessagesComponent implements OnInit, OnDestroy {
         return this.chats$
       }
       )).subscribe(chats => {
-        if (!chats.length && this.loggedinUser) {
+        if (!chats.length && this.loggedinUser && !isChatLoaded) {
           this.chatService.loadChats(this.loggedinUser.id);
+          isChatLoaded = true;
         }
         console.log('chats', chats);
       })

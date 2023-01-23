@@ -31,9 +31,11 @@ export class ShareModalComponent implements OnInit, OnDestroy {
   close = new EventEmitter();
 
   async ngOnInit() {
-    this.chatSub = this.chats$.subscribe(chats => {
-      if (!chats.length) {
+    let isChatLoaded = false;
+    this.chatSub = this.chats$.subscribe(async chats => {
+      if (!chats.length && !isChatLoaded) {
         this.chatService.loadChats(this.loggedinUser.id);
+        isChatLoaded = true;
       }
       else {
         this.users = chats.reduce((acc, chat) => {
@@ -72,11 +74,12 @@ export class ShareModalComponent implements OnInit, OnDestroy {
   }
 
   onSend() {
-    const users = [
-      { isAdmin: true, ...this.userService.getMiniUser(this.loggedinUser) },
-      ...this.usersToSend
-    ]
-    this.chatService.addChat(users)
+    const chatToAdd = this.chatService.getEmptyChat(
+      this.userService.getMiniUser(this.loggedinUser),
+      this.usersToSend
+    );
+
+    this.chatService.addChat(chatToAdd)
     this.onCloseModal();
   }
 

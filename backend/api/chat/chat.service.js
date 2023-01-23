@@ -87,16 +87,32 @@ async function updateChat(chat) {
 async function addChat(members) {
     try {
         return await db.txn(async (txn) => {
-            const isChatAlreadyExist = await db.query(
-                `SELECT chatId FROM chatMembers WHERE userId IN (${members.map(member => member.id).join(',')}) 
-                GROUP BY chatId HAVING COUNT(DISTINCT userId) = ${members.length}`
+            let isChatAlreadyExist;
+            let savedChatIds = await db.query(
+                `SELECT chatId FROM chatMembers WHERE userId IN (${members.map(member => member.id).join(',')})`
             );
 
-            if (isChatAlreadyExist.length === 1) {
-                const chatId = isChatAlreadyExist[0].chatId;
-                const chats = await db.query(`select * from chats where id = $id`, { $id: chatId });
-                const chat = chats[0];
-                return chat;
+            savedChatIds = new Set(savedChatIds.map(chatId => chatId.chatId));
+            savedChatIds = Array.from(savedChatIds);
+
+            let savedChats = [];
+
+            if (savedChatIds.length) {
+
+                for (const savedChatId of savedChatIds) {
+                    const chatMembers = await db.query(`select * from chatMembers where chatId = $chatId`, { $chatId: savedChatId });
+                    savedChats.push({
+                        chatId: savedChatId,
+                        members: chatMembers,
+                    });
+                }
+                for (const savedChat of savedChats) {
+                    const chatMemberIds = new Set(savedChat.members.map(member => member.userId));
+                    isChatAlreadyExist = members.every(m => chatMemberIds.has(m.id));
+                    if (isChatAlreadyExist) {
+                        return savedChat.chatId;
+                    }
+                }
             }
 
             const id = await db.exec(`INSERT INTO "chats" DEFAULT VALUES`);

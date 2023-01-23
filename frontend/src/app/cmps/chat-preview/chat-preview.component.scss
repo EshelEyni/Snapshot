@@ -1,12 +1,15 @@
-@import '../../assets/styles/setup/functions';
-@import '../../assets/styles/setup/vars';
-@import '../../assets/styles/setup/mixins';
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
 
 .chat-preview {
+    position: relative;
+    width: 100%;
     display: flex;
     align-items: center;
     gap: rem(5px);
     padding: rem(10px) rem(15px);
+    width: 100%;
 
     .img-container {
         width: rem(55px);
@@ -18,16 +21,32 @@
         }
     }
 
+    .info {
+        position: relative;
+        width: calc(100% - rem(55px));
 
-    .member-name {
-        font-size: rem(16px);
-        font-weight: 400;
-        color: var(--primary-color);
-    }
+        .members-name-list {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
 
-    .last-action-container {
-        display: flex;
-        gap: rem(2.5px);
+        .member-name {
+            font-size: rem(16px);
+            font-weight: 400;
+            color: var(--primary-color);
+        }
+
+        .last-action-container {
+            display: flex;
+            gap: rem(2.5px);
+
+            .desc {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
     }
 
     .multiple-img-container {

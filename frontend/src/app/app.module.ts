@@ -110,9 +110,9 @@ import { FollowingModalComponent } from './cmps/following-modal/following-modal.
 import { FollowingComponent } from './pages/following/following.component';
 import { FollowersComponent } from './pages/followers/followers.component';
 import { TagListComponent } from './cmps/tag-list/tag-list.component';
-import { ChatPreviewComponent } from './chat-preview/chat-preview.component';
-import { ChatListComponent } from './chat-list/chat-list.component';
-import { ChatDetailsComponent } from './chat-details/chat-details.component';
+import { ChatPreviewComponent } from './cmps/chat-preview/chat-preview.component';
+import { ChatListComponent } from './cmps/chat-list/chat-list.component';
+import { ChatDetailsComponent } from './cmps/chat-details/chat-details.component';
 
 @NgModule({
   declarations: [

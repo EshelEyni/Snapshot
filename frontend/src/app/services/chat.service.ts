@@ -28,12 +28,36 @@ export class ChatService {
   }
 
 
-  public async addChat(members: MiniUser[]) {
-    const chat = await firstValueFrom(
+  public async addChat(chat: Chat) {
+    const { members } = chat;
+    const res = await firstValueFrom(
       this.http.post(`${BASE_URL}/chat`, members)
+    ) as { msg: string, id: number };
+
+    if (res.msg === 'Chat added') {
+      const chats = this._chats$.getValue();
+      chats.unshift({ ...chat, id: res.id });
+      this._chats$.next(chats);
+    }
+  }
+
+  public async removeChat(chatId: number, userId: number) {
+    await firstValueFrom(
+      this.http.delete(`${BASE_URL}/chat/${chatId}`)
     );
-    return chat;
 
+    await this.loadChats(userId);
+  }
 
+  public getEmptyChat(loggedinUser: MiniUser, members: MiniUser[]): Chat {
+    return {
+      id: 0,
+      admin: loggedinUser,
+      members: [{ isAdmin: true, ...loggedinUser } as MiniUser, ...members],
+      messages: [],
+      isGroup: members.length > 2,
+      isBlocked: false,
+      isMuted: false,
+    }
   }
 }

@@ -384,3 +384,39 @@
 23.1.2023, 18:29:05 - INFO - Server is running on port: 3030 
 23.1.2023, 18:29:11 - ERROR - cannot find chats | Failed to commit transaction: Error: SQLITE_ERROR: no such column: lastActionTime 
 23.1.2023, 18:29:11 - ERROR - Failed to get chats | Failed to commit transaction: Error: SQLITE_ERROR: no such column: lastActionTime 
+23.1.2023, 23:51:58 - INFO - Server is running on port: 3030 
+23.1.2023, 23:52:18 - INFO - Server is running on port: 3030 
+24.1.2023, 0:00:14 - INFO - Server is running on port: 3030 
+24.1.2023, 0:03:29 - INFO - Server is running on port: 3030 
+24.1.2023, 0:06:46 - INFO - Server is running on port: 3030 
+24.1.2023, 0:06:57 - ERROR - Failed to add chat | Failed to commit transaction: Error: SQLITE_ERROR: near ")": syntax error 
+24.1.2023, 0:06:57 - ERROR - cannot add chat | Failed to commit transaction: Error: SQLITE_ERROR: near ")": syntax error 
+24.1.2023, 0:07:27 - INFO - Server is running on port: 3030 
+24.1.2023, 0:09:13 - INFO - Server is running on port: 3030 
+24.1.2023, 0:09:18 - ERROR - cannot add chat | Failed to commit transaction: Error: SQLITE_RANGE: column index out of range 
+24.1.2023, 0:09:18 - ERROR - Failed to add chat | Failed to commit transaction: Error: SQLITE_RANGE: column index out of range 
+24.1.2023, 0:09:39 - INFO - Server is running on port: 3030 
+24.1.2023, 0:12:33 - INFO - Server is running on port: 3030 
+24.1.2023, 0:14:39 - INFO - Server is running on port: 3030 
+24.1.2023, 0:14:45 - INFO - Server is running on port: 3030 
+24.1.2023, 0:26:22 - INFO - Server is running on port: 3030 
+24.1.2023, 0:26:30 - ERROR - cannot add chat | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'map') 
+24.1.2023, 0:26:30 - ERROR - Failed to add chat | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'map') 
+24.1.2023, 0:27:13 - INFO - Server is running on port: 3030 
+24.1.2023, 0:27:19 - ERROR - cannot add chat | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'map') 
+24.1.2023, 0:27:19 - ERROR - Failed to add chat | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'map') 
+24.1.2023, 0:30:55 - INFO - Server is running on port: 3030 
+24.1.2023, 0:31:06 - INFO - Server is running on port: 3030 
+24.1.2023, 0:31:11 - ERROR - cannot add chat | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'push') 
+24.1.2023, 0:31:11 - ERROR - Failed to add chat | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'push') 
+24.1.2023, 0:31:34 - INFO - Server is running on port: 3030 
+24.1.2023, 0:32:44 - INFO - Server is running on port: 3030 
+24.1.2023, 0:32:51 - INFO - Server is running on port: 3030 
+24.1.2023, 0:33:31 - INFO - Server is running on port: 3030 
+24.1.2023, 0:34:39 - INFO - Server is running on port: 3030 
+24.1.2023, 0:35:34 - INFO - Server is running on port: 3030 
+24.1.2023, 0:39:04 - INFO - Server is running on port: 3030 
+24.1.2023, 0:39:20 - INFO - Server is running on port: 3030 
+24.1.2023, 0:39:50 - INFO - Server is running on port: 3030 
+24.1.2023, 0:55:58 - INFO - Server is running on port: 3030 
+24.1.2023, 0:57:35 - INFO - Server is running on port: 3030 

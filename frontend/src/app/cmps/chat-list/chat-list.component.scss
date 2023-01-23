@@ -1,6 +1,6 @@
-@import '../../assets/styles/setup/functions';
-@import '../../assets/styles/setup/vars';
-@import '../../assets/styles/setup/mixins';
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
 
 .chat-list {
     >* {
@@ -10,6 +10,7 @@
 
         &:not(.active):hover {
             background-color: var(--primary-bg);
+            cursor: pointer;
         }
     }
 }

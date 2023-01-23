@@ -8,10 +8,6 @@ export interface Chat {
     isGroup: boolean;
     isBlocked: boolean;
     isMuted: boolean;
-    lastAction: {
-        desc: string;
-        createdAt: Date;
-    };
 }
 
 export interface Message {

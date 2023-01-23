@@ -49,7 +49,6 @@ async function updateChat(req, res) {
 async function addChat(req, res) {
     try {
         const members = req.body
-        console.log('members', members);
         const id = await chatService.addChat(members)
         res.send({ msg: 'Chat added', id })
     } catch (err) {

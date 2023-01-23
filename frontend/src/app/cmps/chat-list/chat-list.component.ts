@@ -1,5 +1,5 @@
-import { User } from './../models/user.model';
-import { Chat } from './../models/chat.model';
+import { User } from './../../models/user.model';
+import { Chat } from './../../models/chat.model';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 
 @Component({
