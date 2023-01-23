@@ -270,3 +270,113 @@
 22.1.2023, 15:22:31 - INFO - Server is running on port: 3030 
 22.1.2023, 15:25:30 - INFO - Server is running on port: 3030 
 22.1.2023, 15:25:36 - INFO - Server is running on port: 3030 
+22.1.2023, 15:45:36 - INFO - Server is running on port: 3030 
+22.1.2023, 15:54:39 - DEBUG - auth.service - signup with username: user, fullname: user 
+22.1.2023, 15:54:39 - ERROR - Failed to signup Username user already exists! 
+22.1.2023, 16:02:44 - DEBUG - auth.service - signup with username: user, fullname: asd 
+22.1.2023, 16:02:44 - ERROR - Failed to signup Username user already exists! 
+22.1.2023, 16:03:19 - DEBUG - auth.service - login with username: tal 
+22.1.2023, 16:03:19 - ERROR - Failed to Login Invalid username or password 
+22.1.2023, 16:04:18 - DEBUG - auth.service - login with username: asd 
+22.1.2023, 16:04:18 - ERROR - while finding user asd | user with name asd was not found 
+22.1.2023, 16:04:18 - ERROR - Failed to Login user with name asd was not found 
+22.1.2023, 16:04:26 - DEBUG - auth.service - login with username: tal 
+22.1.2023, 16:04:26 - INFO - User login:  | {"id":2,"username":"tal","fullname":"tal1","email":"tal@gmial.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1674206112/gfdjbbmdtbg9madxvync.png","gender":"","phone":"","bio":"a\ns\nc\nz\ns\na\nxc\nv\nb","website":"","followersSum":0,"followingSum":7,"postSum":5,"isDarkMode":0,"storySum":2} | 578db5f33b5e4aaaa8b810378b090fc6cbff104723db1eea56d48365bae08cb0bb1843e4e5b87cb9065e33251205fb64ad056d900cc221453e29c66c7654a5a5c2a445487d58a592265f5ad3585f1712b8806791b3be0cea35a078b8cefaf36942 
+22.1.2023, 16:36:31 - INFO - Server is running on port: 3030 
+22.1.2023, 22:41:17 - INFO - Server is running on port: 3030 
+23.1.2023, 8:40:42 - INFO - Server is running on port: 3030 
+23.1.2023, 9:02:25 - INFO - Server is running on port: 3030 
+23.1.2023, 9:02:51 - INFO - Server is running on port: 3030 
+23.1.2023, 9:28:00 - INFO - Server is running on port: 3030 
+23.1.2023, 9:33:07 - INFO - Server is running on port: 3030 
+23.1.2023, 9:33:49 - INFO - Server is running on port: 3030 
+23.1.2023, 10:29:54 - INFO - Server is running on port: 3030 
+23.1.2023, 10:30:36 - INFO - Server is running on port: 3030 
+23.1.2023, 10:31:06 - ERROR - Failed to add chat | ReferenceError: chatService is not defined 
+23.1.2023, 10:31:25 - INFO - Server is running on port: 3030 
+23.1.2023, 10:31:26 - ERROR - Failed to add chat | TypeError: chatService.add is not a function 
+23.1.2023, 10:32:40 - INFO - Server is running on port: 3030 
+23.1.2023, 10:32:47 - INFO - Server is running on port: 3030 
+23.1.2023, 10:32:48 - ERROR - cannot add chat | Error: SQLITE_ERROR: incomplete input 
+23.1.2023, 10:32:48 - ERROR - Failed to add chat | Error: SQLITE_ERROR: incomplete input 
+23.1.2023, 10:33:15 - INFO - Server is running on port: 3030 
+23.1.2023, 10:36:48 - INFO - Server is running on port: 3030 
+23.1.2023, 10:37:31 - INFO - Server is running on port: 3030 
+23.1.2023, 10:38:04 - INFO - Server is running on port: 3030 
+23.1.2023, 11:22:53 - INFO - Server is running on port: 3030 
+23.1.2023, 11:27:05 - ERROR - cannot add chat | Failed to commit transaction: Error: SQLITE_ERROR: table chatMembers has no column named isChatMuted 
+23.1.2023, 11:27:05 - ERROR - Failed to add chat | Failed to commit transaction: Error: SQLITE_ERROR: table chatMembers has no column named isChatMuted 
+23.1.2023, 11:27:32 - INFO - Server is running on port: 3030 
+23.1.2023, 11:27:33 - ERROR - cannot add chat | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: chatMembers.isAdmin 
+23.1.2023, 11:27:33 - ERROR - Failed to add chat | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: chatMembers.isAdmin 
+23.1.2023, 11:28:31 - INFO - Server is running on port: 3030 
+23.1.2023, 11:30:17 - INFO - Server is running on port: 3030 
+23.1.2023, 11:36:23 - INFO - Server is running on port: 3030 
+23.1.2023, 11:36:35 - INFO - Server is running on port: 3030 
+23.1.2023, 11:37:21 - INFO - Server is running on port: 3030 
+23.1.2023, 11:38:19 - INFO - Server is running on port: 3030 
+23.1.2023, 11:39:35 - INFO - Server is running on port: 3030 
+23.1.2023, 11:39:55 - INFO - Server is running on port: 3030 
+23.1.2023, 11:40:15 - INFO - Server is running on port: 3030 
+23.1.2023, 11:41:43 - INFO - Server is running on port: 3030 
+23.1.2023, 11:42:15 - INFO - Server is running on port: 3030 
+23.1.2023, 11:43:56 - INFO - Server is running on port: 3030 
+23.1.2023, 11:44:44 - INFO - Server is running on port: 3030 
+23.1.2023, 11:44:46 - ERROR - cannot add chat | Failed to commit transaction: Error: SQLITE_ERROR: near "where": syntax error 
+23.1.2023, 11:44:46 - ERROR - Failed to add chat | Failed to commit transaction: Error: SQLITE_ERROR: near "where": syntax error 
+23.1.2023, 11:45:21 - INFO - Server is running on port: 3030 
+23.1.2023, 11:45:37 - INFO - Server is running on port: 3030 
+23.1.2023, 11:50:14 - INFO - Server is running on port: 3030 
+23.1.2023, 11:51:53 - INFO - Server is running on port: 3030 
+23.1.2023, 12:36:15 - INFO - Server is running on port: 3030 
+23.1.2023, 12:56:15 - ERROR - cannot add chat | Failed to commit transaction: TypeError: members.map is not a function 
+23.1.2023, 12:56:15 - ERROR - Failed to add chat | Failed to commit transaction: TypeError: members.map is not a function 
+23.1.2023, 12:56:55 - INFO - Server is running on port: 3030 
+23.1.2023, 12:57:17 - ERROR - cannot add chat | Failed to commit transaction: TypeError: members.map is not a function 
+23.1.2023, 12:57:17 - ERROR - Failed to add chat | Failed to commit transaction: TypeError: members.map is not a function 
+23.1.2023, 13:00:00 - INFO - Server is running on port: 3030 
+23.1.2023, 13:00:15 - INFO - Server is running on port: 3030 
+23.1.2023, 15:28:41 - INFO - Server is running on port: 3030 
+23.1.2023, 15:28:54 - INFO - Server is running on port: 3030 
+23.1.2023, 15:29:53 - INFO - Server is running on port: 3030 
+23.1.2023, 15:31:13 - INFO - Server is running on port: 3030 
+23.1.2023, 15:31:14 - INFO - Server is running on port: 3030 
+23.1.2023, 15:31:15 - ERROR - Failed to get chats | TypeError: chatService.query is not a function 
+23.1.2023, 15:31:59 - INFO - Server is running on port: 3030 
+23.1.2023, 15:31:59 - ERROR - Failed to get chats | TypeError: chatService.query is not a function 
+23.1.2023, 15:32:14 - INFO - Server is running on port: 3030 
+23.1.2023, 15:32:14 - ERROR - cannot find chats | Error: SQLITE_ERROR: near "=": syntax error 
+23.1.2023, 15:32:14 - ERROR - Failed to get chats | Error: SQLITE_ERROR: near "=": syntax error 
+23.1.2023, 15:32:46 - INFO - Server is running on port: 3030 
+23.1.2023, 15:32:46 - ERROR - cannot find chats | Error: SQLITE_ERROR: near "=": syntax error 
+23.1.2023, 15:32:46 - ERROR - Failed to get chats | Error: SQLITE_ERROR: near "=": syntax error 
+23.1.2023, 15:33:16 - INFO - Server is running on port: 3030 
+23.1.2023, 15:47:58 - INFO - Server is running on port: 3030 
+23.1.2023, 15:48:19 - ERROR - cannot find chats | Failed to commit transaction: TypeError: a.username.localCompare is not a function 
+23.1.2023, 15:48:19 - ERROR - Failed to get chats | Failed to commit transaction: TypeError: a.username.localCompare is not a function 
+23.1.2023, 15:49:16 - INFO - Server is running on port: 3030 
+23.1.2023, 15:49:51 - INFO - Server is running on port: 3030 
+23.1.2023, 15:51:57 - INFO - Server is running on port: 3030 
+23.1.2023, 15:55:36 - INFO - Server is running on port: 3030 
+23.1.2023, 16:07:04 - INFO - Server is running on port: 3030 
+23.1.2023, 16:10:10 - ERROR - cannot find chats | Failed to commit transaction: Error: SQLITE_ERROR: no such table: messages 
+23.1.2023, 16:10:10 - ERROR - Failed to get chats | Failed to commit transaction: Error: SQLITE_ERROR: no such table: messages 
+23.1.2023, 16:10:36 - INFO - Server is running on port: 3030 
+23.1.2023, 16:54:30 - INFO - Server is running on port: 3030 
+23.1.2023, 17:12:20 - INFO - Server is running on port: 3030 
+23.1.2023, 17:17:34 - INFO - Server is running on port: 3030 
+23.1.2023, 17:18:41 - INFO - Server is running on port: 3030 
+23.1.2023, 17:40:56 - INFO - Server is running on port: 3030 
+23.1.2023, 17:40:58 - ERROR - Failed to get chats | Failed to commit transaction: Error: SQLITE_ERROR: no such column: lastAction 
+23.1.2023, 17:40:58 - ERROR - cannot find chats | Failed to commit transaction: Error: SQLITE_ERROR: no such column: lastAction 
+23.1.2023, 17:41:10 - ERROR - cannot find chats | Failed to commit transaction: Error: SQLITE_ERROR: no such column: lastAction 
+23.1.2023, 17:41:10 - ERROR - Failed to get chats | Failed to commit transaction: Error: SQLITE_ERROR: no such column: lastAction 
+23.1.2023, 17:41:10 - ERROR - Failed to get chats | Failed to commit transaction: Error: SQLITE_ERROR: no such column: lastAction 
+23.1.2023, 17:41:10 - ERROR - cannot find chats | Failed to commit transaction: Error: SQLITE_ERROR: no such column: lastAction 
+23.1.2023, 17:41:35 - INFO - Server is running on port: 3030 
+23.1.2023, 17:41:44 - INFO - Server is running on port: 3030 
+23.1.2023, 17:41:47 - ERROR - cannot find chats | Failed to commit transaction: Error: SQLITE_ERROR: no such column: lastAction 
+23.1.2023, 17:41:47 - ERROR - Failed to get chats | Failed to commit transaction: Error: SQLITE_ERROR: no such column: lastAction 
+23.1.2023, 17:42:04 - ERROR - cannot find chats | Failed to commit transaction: Error: SQLITE_ERROR: no such column: chatId 
+23.1.2023, 17:42:04 - ERROR - Failed to get chats | Failed to commit transaction: Error: SQLITE_ERROR: no such column: chatId 
+23.1.2023, 17:42:29 - INFO - Server is running on port: 3030 

@@ -41,6 +41,7 @@
     .user-list {
         grid-row: 2/3;
         max-height: calc(65vh - 50px);
+        padding: rem(10px);
 
         .default-list {
             li {

@@ -1,4 +1,7 @@
-import { User } from './../../models/user.model';
+import { switchMap } from 'rxjs/operators';
+import { Chat } from './../../models/chat.model';
+import { ChatService } from './../../services/chat.service';
+import { User, MiniUser } from './../../models/user.model';
 import { map, Subscription, Observable } from 'rxjs';
 import { State } from './../../store/store';
 import { Store } from '@ngrx/store';
@@ -20,25 +23,41 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   store = inject(Store<State>);
   $location = inject(Location);
+  chatService = inject(ChatService);
   userSub!: Subscription;
+  chatSub!: Subscription;
   loggedinUser$: Observable<User | null>;
   loggedinUser!: User;
-  users: User[] = [];
+  users: MiniUser[] = [];
+  chats$ = this.chatService.chats$;
   faChevronLeft = faChevronLeft;
   isShareModalShown = false;
+  currActiveChat!: Chat;
 
   ngOnInit(): void {
-    this.userSub = this.loggedinUser$.subscribe(user => {
-      if (user) {
-        this.loggedinUser = user;
+    this.userSub = this.loggedinUser$.pipe(
+
+      switchMap(user => {
+        if (user) {
+          this.loggedinUser = user;
+        }
+        return this.chats$
       }
-    })
+      )).subscribe(chats => {
+        if (!chats.length && this.loggedinUser) {
+          this.chatService.loadChats(this.loggedinUser.id);
+        }
+        console.log('chats', chats);
+      })
   }
 
   onToggleShareModal() {
     this.isShareModalShown = !this.isShareModalShown;
   }
 
+  onSelectChat(chat: Chat) {
+    this.currActiveChat = {...chat};
+  }
 
   onGoBack() {
     this.$location.back()

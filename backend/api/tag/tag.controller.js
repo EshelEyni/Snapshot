@@ -56,7 +56,6 @@ async function addTag(req, res) {
 async function getFollowedTags(req, res) {
     try {
         const { userId } = req.params
-        console.log('userId', userId);
         const tags = await tagService.getFollowedTags(userId)
         res.send(tags)
     } catch (err) {

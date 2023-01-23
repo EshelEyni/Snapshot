@@ -181,4 +181,35 @@ CREATE TABLE IF NOT EXISTS "storiesLikedBy"(
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("storyId") references "stories"("id") foreign key ("userId") references "users"("id")
 );
 
+CREATE TABLE IF NOT EXISTS "chats"(
+    "id" INTEGER NOT NULL UNIQUE,
+    "lastAction" TEXT NOT NULL DEFAULT "",
+    PRIMARY KEY("id" AUTOINCREMENT)
+);
+
+CREATE TABLE IF NOT EXISTS "chatMembers"(
+    "id" INTEGER NOT NULL UNIQUE,
+    "chatId" INTEGER NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "username" TEXT NOT NULL,
+    "fullname" TEXT NOT NULL,
+    "imgUrl" TEXT NOT NULL,
+    "isAdmin" BOOLEAN NOT NULL,
+    "isChatBlocked" BOOLEAN NOT NULL,
+    "isChatMuted" BOOLEAN NOT NULL,
+    PRIMARY KEY("id" AUTOINCREMENT) foreign key ("chatId") references "chats"("id") foreign key ("userId") references "users"("id")
+);
+
+CREATE TABLE IF NOT EXISTS "chatMessages"(
+    "id" INTEGER NOT NULL UNIQUE,
+    "chatId" INTEGER NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "username" TEXT NOT NULL,
+    "fullname" TEXT NOT NULL,
+    "imgUrl" TEXT NOT NULL,
+    "message" TEXT NOT NULL,
+    "createdAt" TIMESTAMP NOT NULL,
+    PRIMARY KEY("id" AUTOINCREMENT) foreign key ("chatId") references "chats"("id") foreign key ("userId") references "users"("id")
+);
+
 CREATE TABLE IF NOT EXISTS "storyArchiveDate"("date" TIMESTAMP NOT NULL);

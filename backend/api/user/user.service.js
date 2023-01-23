@@ -30,21 +30,24 @@ async function query(queryParams) {
             }
             return await db.query(`select * from users order by username`);
         }
+        else {
 
-        return await db.query(
-            `select * from users 
+            const users = await db.query(
+                `select * from users 
              where username like $searchTerm
-                or email like $searchTerm 
-                or bio like $searchTerm
+             or email like $searchTerm 
+             or bio like $searchTerm
              order by username`, { $searchTerm: queryParams.searchTerm + '%' });
 
-        // return await db.query(
-        //         `SELECT * FROM users 
-        // WHERE username REGEXP $searchTerm
-        // OR email REGEXP $searchTerm 
-        // OR bio REGEXP $searchTerm
-        // ORDER BY username`, '.*' + queryParams.searchTerm + '.*');
+            // return await db.query(
+            //         `SELECT * FROM users 
+            // WHERE username REGEXP $searchTerm
+            // OR email REGEXP $searchTerm 
+            // OR bio REGEXP $searchTerm
+            // ORDER BY username`, '.*' + queryParams.searchTerm + '.*');
 
+            return users;
+        }
     } catch (err) {
         logger.error('cannot find users', err)
         throw err

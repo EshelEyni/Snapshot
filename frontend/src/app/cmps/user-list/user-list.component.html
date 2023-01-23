@@ -1,25 +1,34 @@
 <section class="user-list">
     <header class="user-list-header" *ngIf="isTitle">
         <p>{{title}}</p>
-        <span class="see-all-link" *ngIf="type === 'home-page-suggestion-list'" [routerLink]="'/discover-people/'">see all</span>
+        <span class="see-all-link" *ngIf="type === 'home-page-suggestion-list'" [routerLink]="'/discover-people/'">see
+            all</span>
     </header>
 
-    <ul class="default-list" *ngIf="type !== 'search-bar-list'">
-        <li *ngFor="let user of users; index as idx" (click)="onToggleSelectUser(idx)">
-            <user-preview [user]="user" [type]="type"></user-preview>
+    <div *ngIf="users.length; else noUsersMsg">
+        <ul class="default-list" *ngIf="type !== 'search-bar-list'">
+            <li *ngFor="let user of users; index as idx" (click)="onToggleSelectUser(idx)">
+                <user-preview [user]="user" [type]="type"></user-preview>
 
-            <checkbox [isChecked]="isSelectUser[idx].isSelected" [type]="'user-list'" 
-                *ngIf="type==='share-modal'"></checkbox>
-            <follow-btn [user]="user" [type]="type"
-                *ngIf="isFollowBtnShow && loggedinUser && loggedinUser.id !== user.id"></follow-btn>
-        </li>
-    </ul>
+                <checkbox [isChecked]="isSelectUser[idx].isSelected" [type]="'user-list'" *ngIf="type==='share-modal'">
+                </checkbox>
+                <follow-btn [user]="user" [type]="type"
+                    *ngIf="isFollowBtnShow && loggedinUser && loggedinUser.id !== user.id"></follow-btn>
+            </li>
+        </ul>
 
-    <ul class="search-bar-list" *ngIf="type === 'search-bar-list'">
-        <li *ngFor="let user of users; index as idx">
-            <p>{{user.username}}</p>
-            <svg-icon src="../../../assets/svgs/x.svg" [svgStyle]="{'color':'rgb(0, 149, 246)'}"
-                (click)="onRemoveUser(idx)"></svg-icon>
-        </li>
-    </ul>
+        <ul class="search-bar-list" *ngIf="type === 'search-bar-list'">
+            <li *ngFor="let user of users; index as idx">
+                <p>{{user.username}}</p>
+                <svg-icon src="../../../assets/svgs/x.svg" [svgStyle]="{'color':'rgb(0, 149, 246)'}"
+                    (click)="onRemoveUser(idx)"></svg-icon>
+            </li>
+        </ul>
+    </div>
+
+    <ng-template #noUsersMsg>
+        <div class="no-users-msg">
+            <p>no account found.</p>
+        </div>
+    </ng-template>
 </section>

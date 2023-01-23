@@ -1,0 +1,19 @@
+<article class="chat-preview" *ngIf="!chat.isGroup; else groupChatDisplay">
+    <div class="img-container">
+        <img [src]="imgUrlList[0]" alt="chat-img">
+    </div>
+    <!-- <h3>{{}}</h3> -->
+</article>
+
+<ng-template #groupChatDisplay>
+    <article class="chat-preview">
+        <div class="multiple-img-container">
+            <div class="img-container">
+                <img [src]="imgUrlList[0]" alt="chat-img">
+            </div>
+            <div class="img-container">
+                <img [src]="imgUrlList[1]" alt="chat-img">
+            </div>
+        </div>
+    </article>
+</ng-template>

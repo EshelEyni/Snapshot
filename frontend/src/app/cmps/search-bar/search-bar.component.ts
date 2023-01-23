@@ -12,7 +12,7 @@ import { Subject } from 'rxjs';
   selector: 'search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
-  inputs: ['isUserSearch', 'usersToSend'],
+  inputs: ['isUserSearch', 'usersToSend', 'loggedinUser'],
   outputs: ['searchFinished', 'removeUser', 'inputFocused']
 })
 export class SearchBarComponent implements OnInit, OnChanges {
@@ -38,6 +38,7 @@ export class SearchBarComponent implements OnInit, OnChanges {
   isLoading: boolean = false;
   isUserSearch: boolean = false;
   isInputFocused: boolean = false;
+  loggedinUser!: User;
 
 
   usersToSend!: MiniUser[];
@@ -46,10 +47,10 @@ export class SearchBarComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.searchSubject
-    .pipe(debounceTime(1000))
-    .subscribe(searchTerm => {
+      .pipe(debounceTime(1000))
+      .subscribe(searchTerm => {
         this.handleSearch();
-    });
+      });
   }
 
   ngOnChanges() {
@@ -107,8 +108,12 @@ export class SearchBarComponent implements OnInit, OnChanges {
       )
       this.isLoading = false
 
-    } else {
+    }
+    else {
       this.userSearchResults = await this.searchService.searchForUsers(this.searchTerm)
+      this.userSearchResults = this.userSearchResults.filter(user => {
+        return !this.usersToSend.some(u => u.id === user.id) && user.id !== this.loggedinUser.id
+      })
       this.searchFinished.emit(
         {
           searchResult: { users: this.userSearchResults, tags: [] },

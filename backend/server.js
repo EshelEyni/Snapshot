@@ -18,7 +18,8 @@ const storyRoutes = require('./api/story/story.routes')
 const likeRoutes = require('./api/like/like.routes')
 const followerRoutes = require('./api/followers/followers.routes')
 const followingRoutes = require('./api/following/following.routes')
-const searchRoutes = require('./api/search/search.routes.js')
+const searchRoutes = require('./api/search/search.routes')
+const chatRoutes = require('./api/chat/chat.routes.js')
 const storyArchiveService = require('./services/story-archive.service.js')
 
 // Express App Config
@@ -54,6 +55,7 @@ app.use('/api/followers', followerRoutes)
 app.use('/api/following', followingRoutes)
 app.use('/api/save-post', savedPostRoutes)
 app.use('/api/search', searchRoutes)
+app.use('/api/chat', chatRoutes)
 
 app.get('/**', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'))

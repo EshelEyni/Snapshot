@@ -50,7 +50,6 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
     this.isFollowBtnShow = this.type === 'like-modal'
       || this.type === 'home-page-suggestion-list'
       || this.type === 'discover-people-list'
-      || this.type === 'share-modal'
       || this.type === 'following-list'
       || this.type === 'followers-list';
   }
@@ -63,9 +62,7 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
 
     if (changes['usersToSend']) {
       this.usersToSend = this.usersToSend;
-      console.log('this.uersToSend', this.usersToSend);
     }
-
   }
 
   setIsSelectUser() {
@@ -100,6 +97,7 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
         break;
       case 'share-modal':
         this.title = 'Suggested';
+
         break;
       case 'like-modal':
         this.isTitle = false;
@@ -116,8 +114,8 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
       case 'search-bar-list':
         this.isTitle = false;
         break;
-      default:
-        this.title = 'Users';
+        default:
+          this.isTitle = false;
         break;
     }
 

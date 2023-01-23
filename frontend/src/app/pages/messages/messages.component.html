@@ -1,4 +1,4 @@
-<section class="messages">
+<section class="messages" *ngIf="loggedinUser">
     <header class="messages-small-layout-header">
         <fa-icon [icon]="faChevronLeft" (click)="onGoBack()"></fa-icon>
         <h1>{{loggedinUser.username}}</h1>
@@ -13,17 +13,21 @@
                 <h1>{{loggedinUser.username}}</h1>
                 <svg-icon src="../../../assets/svgs/pencil-rect.svg" (click)="onToggleShareModal()"></svg-icon>
             </div>
-            <user-list [users]="users"></user-list>
+            <chat-list [chats]="(chats$|async)!" [loggedinUser]="loggedinUser" (chatSelected)="onSelectChat($event)"></chat-list>
         </div>
         <div class="chat-container">
-            <div class="no-active-chat-msg">
-                <svg-icon src="../../../assets/svgs/paper-airplane-circle.svg"></svg-icon>
-                <h1>your messages</h1>
-                <p>Send private photos and messages to a friend or group.</p>
-                <button class="clean-btn btn-send" (click)="onToggleShareModal()">send message</button>
-            </div>
+            <chat-details [loggedinUser]="loggedinUser" [chat]="currActiveChat"
+                *ngIf="currActiveChat; else noActiveChatMsg"></chat-details>
+            <ng-template #noActiveChatMsg>
+                <div class="no-active-chat-msg">
+                    <svg-icon src="../../../assets/svgs/paper-airplane-circle.svg"></svg-icon>
+                    <h1>your messages</h1>
+                    <p>Send private photos and messages to a friend or group.</p>
+                    <button class="clean-btn btn-send" (click)="onToggleShareModal()">send message</button>
+                </div>
+            </ng-template>
         </div>
     </main>
-    <share-modal *ngIf="isShareModalShown"></share-modal>
+    <share-modal *ngIf="isShareModalShown" [loggedinUser]="loggedinUser" (close)="onToggleShareModal()"></share-modal>
     <div class="main-screen dark-mode" *ngIf="isShareModalShown" (click)="onToggleShareModal()"></div>
 </section>

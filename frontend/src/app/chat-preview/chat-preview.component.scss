@@ -1,0 +1,47 @@
+@import '../../assets/styles/setup/functions';
+@import '../../assets/styles/setup/vars';
+@import '../../assets/styles/setup/mixins';
+
+.chat-preview {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: rem(10px) rem(15px);
+
+    .img-container {
+        width: rem(55px);
+        height: rem(55px);
+        border-radius: 50%;
+
+        img {
+            border-radius: 50%;
+        }
+    }
+    
+    .multiple-img-container {
+        width: rem(55px);
+        height: rem(55px);
+        position: relative;
+        
+        .img-container {
+            position: absolute;
+            width: rem(40px);
+            height: rem(40px);
+            border-radius: 50%;
+            top: 0;
+            left: 0;
+            
+            img {
+                border-radius: 50%;
+            }
+        }
+
+        .img-container:nth-child(2) {
+            top: 50%;
+            left: 50%;
+            transform: translate(-25%, -25%);
+            border: 2px solid var(--primary-bg);
+            background-color: var(--primary-bg);
+        }
+    }
+}

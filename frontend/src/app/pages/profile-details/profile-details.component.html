@@ -95,11 +95,13 @@
                         <div class="icon-container">
                             <fa-icon [icon]="faCamera"></fa-icon>
                         </div>
-                        <h1>share photos</h1>
-                        <p>When you share photos, they will appear on your profile.</p>
-                        <button class="clean-btn btn-share-photo" (click)="onToggleModal('post-edit')">Share your first
+                        <h1 *ngIf="isCurrUserLoggedInUser">share photos</h1>
+                        <p *ngIf="isCurrUserLoggedInUser">When you share photos, they will appear on your profile.</p>
+                        <p *ngIf="!isCurrUserLoggedInUser">no photos.</p>
+                        <button class="clean-btn btn-share-photo" *ngIf="isCurrUserLoggedInUser"
+                            (click)="onToggleModal('post-edit')">Share your first
                             photo</button>
-                        <post-edit *ngIf="isPostEditModalShown"
+                        <post-edit *ngIf="isPostEditModalShown && isCurrUserLoggedInUser"
                             (togglePostEdit)="onToggleModal('post-edit')"></post-edit>
 
                     </div>
@@ -124,8 +126,9 @@
                         <div class="icon-container">
                             <fa-icon [icon]="faHashtag"></fa-icon>
                         </div>
-                        <h1>Photos of you </h1>
-                        <p>When people tag you in photos, they'll appear here. </p>
+                        <h1 *ngIf="isCurrUserLoggedInUser">Photos of you </h1>
+                        <p *ngIf="isCurrUserLoggedInUser">When people tag you in photos, they'll appear here. </p>
+                        <p *ngIf="!isCurrUserLoggedInUser">no photos.</p>
                     </div>
                 </div>
             </ng-template>

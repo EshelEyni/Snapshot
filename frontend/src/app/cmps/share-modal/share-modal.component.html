@@ -5,13 +5,13 @@
     </header>
     <main class="share-modal-main-container">
         <div class="search-bar-container">
-            <search-bar [isUserSearch]="true" [usersToSend]="usersToSend"
-                (removeUser)="onRemoveUser($event)"></search-bar>
+            <search-bar [isUserSearch]="true" [usersToSend]="usersToSend" [loggedinUser]="loggedinUser"
+                (removeUser)="onRemoveUser($event)" (searchFinished)="onSearchFinished($event)"></search-bar>
         </div>
         <user-list [users]="users" [usersToSend]="usersToSend" [type]="'share-modal'" (addUser)="onAddUser($event)"
-            (removeUser)="onRemoveUser($event)" *ngIf="users"></user-list>
+            (removeUser)="onRemoveUser($event)"></user-list>
     </main>
     <div class="btn-container">
-        <button class="clean-btn" [class.btn-on]="usersToSend.length">send</button>
+        <button class="clean-btn" [class.btn-on]="usersToSend.length" (click)="onSend()">send</button>
     </div>
 </section>
