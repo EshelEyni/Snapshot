@@ -380,3 +380,7 @@
 23.1.2023, 17:42:04 - ERROR - cannot find chats | Failed to commit transaction: Error: SQLITE_ERROR: no such column: chatId 
 23.1.2023, 17:42:04 - ERROR - Failed to get chats | Failed to commit transaction: Error: SQLITE_ERROR: no such column: chatId 
 23.1.2023, 17:42:29 - INFO - Server is running on port: 3030 
+23.1.2023, 18:28:23 - INFO - Server is running on port: 3030 
+23.1.2023, 18:29:05 - INFO - Server is running on port: 3030 
+23.1.2023, 18:29:11 - ERROR - cannot find chats | Failed to commit transaction: Error: SQLITE_ERROR: no such column: lastActionTime 
+23.1.2023, 18:29:11 - ERROR - Failed to get chats | Failed to commit transaction: Error: SQLITE_ERROR: no such column: lastActionTime 

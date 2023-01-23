@@ -1,4 +1,4 @@
-import {  MiniUser } from './user.model';
+import { MiniUser } from './user.model';
 
 export interface Chat {
     id: number
@@ -8,6 +8,10 @@ export interface Chat {
     isGroup: boolean;
     isBlocked: boolean;
     isMuted: boolean;
+    lastAction: {
+        desc: string;
+        createdAt: Date;
+    };
 }
 
 export interface Message {

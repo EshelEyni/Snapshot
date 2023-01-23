@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FormattedDatePipe implements PipeTransform {
 
   transform(value: number | Date, format: 'short' | 'long' = 'long'): string {
-    // typeof value from local storage = string
+    if (!value) return '';
     if (typeof value === 'string') value = new Date(value)
     if (typeof value !== 'number') value = value.getTime()
     const formattedTimeStamp = +((Date.now() - value) / 1000).toFixed()

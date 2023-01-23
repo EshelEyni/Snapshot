@@ -15,12 +15,12 @@ export class ChatPreviewComponent implements OnInit {
   chat!: Chat;
   loggedinUser!: User;
   imgUrlList!: string[];
-  titleList!: string[];
+  memberNameList!: string[];
 
   ngOnInit(): void {
     const { members } = this.chat;
     this.imgUrlList = members.map(m => m.imgUrl).slice(0, this.chat.isGroup ? 2 : 1);
-    this.titleList = members.map(m => m.username).filter(u => u !== this.loggedinUser.username);
+    this.memberNameList = members.filter(u => u.id !== this.loggedinUser.id).map(m => m.fullname);
   }
 
 }

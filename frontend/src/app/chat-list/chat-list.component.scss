@@ -1,0 +1,15 @@
+@import '../../assets/styles/setup/functions';
+@import '../../assets/styles/setup/vars';
+@import '../../assets/styles/setup/mixins';
+
+.chat-list {
+    >* {
+        &.active {
+            background-color: var(--input-bg-color);
+        }
+
+        &:not(.active):hover {
+            background-color: var(--primary-bg);
+        }
+    }
+}

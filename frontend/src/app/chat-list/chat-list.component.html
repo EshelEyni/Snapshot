@@ -1,5 +1,6 @@
 <ul class="chat-list">
-    <li class="chat-list-item" *ngFor="let chat of chats" (click)="onSelectChat(chat)">
+    <li class="chat-list-item" *ngFor="let chat of chats" (click)="onSelectChat(chat)"
+        [class.active]="chat.id===currActiveChatId">
         <chat-preview [chat]="chat" [loggedinUser]="loggedinUser"></chat-preview>
     </li>
 </ul>

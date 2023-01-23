@@ -2,7 +2,13 @@
     <div class="img-container">
         <img [src]="imgUrlList[0]" alt="chat-img">
     </div>
-    <!-- <h3>{{}}</h3> -->
+    <div class="info">
+        <span class="member-name">{{memberNameList[0]}}</span>
+        <div class="last-action-container" *ngIf="chat.lastAction">
+            <span class="desc">{{chat.lastAction.desc}}</span>
+            <span class="time">{{chat.lastAction.createdAt | formattedDate:'short'}}</span>
+        </div>
+    </div>
 </article>
 
 <ng-template #groupChatDisplay>
@@ -13,6 +19,17 @@
             </div>
             <div class="img-container">
                 <img [src]="imgUrlList[1]" alt="chat-img">
+            </div>
+        </div>
+        <div class="info">
+            <div class="members-name-list">
+                <p *ngFor="let name of memberNameList; index as idx" class="member-name">{{name}}<span
+                        *ngIf="idx !== memberNameList.length-1">,</span>
+                </p>
+            </div>
+            <div class="last-action-container" *ngIf="chat.lastAction">
+                <span class="desc">{{chat.lastAction.desc}}</span>
+                <span class="time">{{chat.lastAction.createdAt | formattedDate:'short'}}</span>
             </div>
         </div>
     </article>

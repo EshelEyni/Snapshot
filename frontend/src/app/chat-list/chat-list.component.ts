@@ -6,7 +6,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
   selector: 'chat-list',
   templateUrl: './chat-list.component.html',
   styleUrls: ['./chat-list.component.scss'],
-  inputs: ['chats','loggedinUser'],
+  inputs: ['chats', 'loggedinUser'],
   outputs: ['chatSelected']
 })
 
@@ -17,11 +17,13 @@ export class ChatListComponent implements OnInit {
 
   chats!: Chat[];
   loggedinUser!: User;
+  currActiveChatId!: number;
 
   ngOnInit(): void {
   }
 
   onSelectChat(chat: Chat) {
+    this.currActiveChatId = chat.id;
     this.chatSelected.emit(chat);
   }
 }

@@ -38,8 +38,8 @@ async function getChats(userId) {
                 }, []);
 
             for (const chat of chats) {
-                const lastAction = await db.query(`select lastAction from chats where id = $id`, { $id: chat.id });
-                chat.lastAction = lastAction[0].lastAction;
+                const lastAction = await db.query(`select lastAction, lastActionTime from chats where id = $id`, { $id: chat.id });
+                chat.lastAction = { desc: lastAction[0].lastAction, createdAt: lastAction[0].lastActionTime };
                 chat.isGroup = chat.members.length > 2;
                 const messages = await db.query(`select * from chatMessages where chatId = $chatId`, { $chatId: chat.id });
                 chat.messages = messages;
