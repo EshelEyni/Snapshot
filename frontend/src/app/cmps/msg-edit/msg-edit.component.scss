@@ -4,8 +4,58 @@
 
 ::ng-deep .msg-edit-main-container {
     position: relative;
-    // z-index: 20;
     width: 100%;
+    height: 100%;
+
+    .msg-edit-container {
+        position: relative;
+        width: 100%;
+        display: flex;
+        padding: rem(20px);
+        height: rem(80px);
+
+        .msg-edit {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: rem(45px);
+            padding: 0 rem(15px) 0 rem(35px);
+            border-radius: 35px;
+            border: 1px solid var(--border-color);
+
+            >* {
+                z-index: 5;
+            }
+
+            .smiley-icon {
+                position: absolute;
+                left: rem(32px);
+                font-size: rem(20px);
+
+            }
+
+            input {
+                position: relative;
+                width: 100%;
+                z-index: 1;
+            }
+
+            .btn-send {
+                background-color: transparent;
+                font-size: rem(14px);
+                font-weight: 500;
+                color: var(--primary-button);
+
+                &:hover {
+                    color: var(--primary-button-hover);
+                }
+            }
+
+            .btn-add-like {
+                font-size: 24px;
+            }
+        }
+    }
 
     .story-reply {
         position: relative;
@@ -24,7 +74,7 @@
             gap: rem(10px);
             width: 100%;
 
-            .msg-form {
+            .input-container {
                 display: flex;
                 align-items: center;
                 position: relative;
@@ -53,7 +103,6 @@
                     font-size: rem(16px);
                     font-weight: 600;
                     color: var(--border-color);
-
                 }
             }
 

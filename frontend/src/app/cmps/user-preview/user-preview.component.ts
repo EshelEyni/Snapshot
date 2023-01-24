@@ -71,7 +71,6 @@ export class UserPreviewComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log('ngOnChanges');
     this.isBtnPlusShown = this.type === 'user-story-timer'
       || this.type === 'link-to-story-edit'
 

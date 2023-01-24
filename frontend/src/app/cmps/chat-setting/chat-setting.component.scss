@@ -5,7 +5,7 @@
 ::ng-deep .chat-setting {
     display: flex;
     flex-direction: column;
-   
+
     .inputs-container {
         border-bottom: 1px solid var(--border-color);
 
@@ -46,13 +46,16 @@
         }
     }
 
-    
+
     .member-list-container {
+        position: relative;
         padding: rem(15px) rem(20px);
         border-bottom: 1px solid var(--border-color);
+        max-height: rem(450px);
+        
         overflow: scroll;
         @include scrollbar-hidden;
-        
+
         .user-list {
             .default-list {
 

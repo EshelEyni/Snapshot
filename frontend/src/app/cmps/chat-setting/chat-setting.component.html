@@ -1,7 +1,7 @@
 <section class="chat-setting">
     <div class="inputs-container">
 
-        <div class="chat-name-input">
+        <div class="chat-name-input" *ngIf="isLoggedinUserAdmin">
             <div class="input-container">
                 <label for="groupName">group name:</label>
                 <input type="text" id="groupName" class="clean-input" [(ngModel)]="chatName">

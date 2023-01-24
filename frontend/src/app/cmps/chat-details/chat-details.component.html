@@ -13,10 +13,14 @@
             </ng-template>
         </div>
     </header>
-    <div class="chat-contaier" *ngIf="!isSettingShown; else setting">
+    <div class="chat-container" *ngIf="!isSettingShown; else setting">
+        <div class="messages-container">
+
+        </div>
         <msg-edit></msg-edit>
     </div>
     <ng-template #setting>
-        <chat-setting [chat]="chat" [loggedinUser]="loggedinUser" (chatDeleted)="onDeleteChat()"></chat-setting>
+        <chat-setting [chat]="chat" [loggedinUser]="loggedinUser" (clearChat)="onDeleteChat()"></chat-setting>
     </ng-template>
 </section>
+

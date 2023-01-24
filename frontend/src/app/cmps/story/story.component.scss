@@ -162,10 +162,10 @@
 
             .curr-story {
                 grid-column: 2;
-                @include story-aspect-ratio(75vw);
+                @include story-aspect-ratio(65vw);
 
                 .img-container {
-                    @include story-aspect-ratio(75vw);
+                    @include story-aspect-ratio(65vw);
 
                     img {
                         border-radius: 5px;

@@ -17,7 +17,7 @@
         </div>
         <div class="chat-container">
             <chat-details [loggedinUser]="loggedinUser" [chat]="currActiveChat"
-                *ngIf="currActiveChat; else noActiveChatMsg" (chatDeleted)="onClearChat()"></chat-details>
+                *ngIf="currActiveChat; else noActiveChatMsg" (clearChat)="onClearChat()"></chat-details>
             <ng-template #noActiveChatMsg>
                 <div class="no-active-chat-msg">
                     <svg-icon src="../../../assets/svgs/paper-airplane-circle.svg"></svg-icon>

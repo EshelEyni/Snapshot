@@ -1,38 +1,58 @@
-
 @import '../../../assets/styles/setup/mixins';
 @import '../../../assets/styles/setup/vars';
 
 ::ng-deep .chat-details {
+    position: relative;
     display: flex;
     flex-direction: column;
+    height: 100%;
 
     .chat-details-header {
+        position: relative;
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: rem(10px) rem(15px);
         height: rem(60px);
+        flex-basis: rem(60px);
+        width: 100%;
         border-bottom: 1px solid var(--border-color);
 
+        &>*:first-child {
+            width: 90%;
+        }
+
         .chat-preview {
-            position: static;
             padding: 0;
             cursor: pointer;
+            width: 100%;
 
-            .multiple-img-container,
+            .multiple-img-container {
+                width: rem(40px) !important;
+                height: rem(40px) !important;
+
+                .img-container {
+                    width: rem(30px) !important;
+                    height: rem(30px) !important;
+                }
+            }
+
             .img-container {
                 width: rem(40px) !important;
                 height: rem(40px) !important;
             }
 
             .info {
+
                 >* {
                     font-size: rem(18px) !important;
                     font-weight: 600 !important;
-
                 }
+
                 :hover {
-                    color: rgb(147, 147, 147) !important;
+                    >* {
+                        color: rgb(147, 147, 147) !important;
+                    }
                 }
             }
         }
@@ -55,5 +75,26 @@
             width: rem(100px);
             z-index: 10;
         }
+    }
+
+    .chat-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        .messages-container {
+            position: relative;
+            width: 100%;
+            height: calc(100% - rem(85px));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+
+        
     }
 }

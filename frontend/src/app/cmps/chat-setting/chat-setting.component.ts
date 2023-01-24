@@ -9,12 +9,12 @@ import { Component, OnInit, OnChanges, inject, EventEmitter } from '@angular/cor
   templateUrl: './chat-setting.component.html',
   styleUrls: ['./chat-setting.component.scss'],
   inputs: ['chat', 'loggedinUser'],
-  outputs: ['chatDeleted']
+  outputs: ['clearChat']
 })
 export class ChatSettingComponent implements OnInit, OnChanges {
 
   constructor() { }
-  chatDeleted = new EventEmitter();
+  clearChat = new EventEmitter();
   chatService = inject(ChatService);
   chat!: Chat;
   loggedinUser!: User;
@@ -39,12 +39,11 @@ export class ChatSettingComponent implements OnInit, OnChanges {
     this.chat = chat;
   }
 
-  onUpdateChat() {
-    console.log('update chat name', this.chatName);
-  }
-
-  onLeaveChat() {
-    console.log('leave chat');
+  async onLeaveChat() {
+    this.chat.members = this.chat.members.filter(m => m.id !== this.loggedinUser.id);
+    this.chat.admins = this.chat.admins.filter(a => a.id !== this.loggedinUser.id);
+    await this.chatService.updateChat(this.chat, this.loggedinUser.id);
+    this.clearChat.emit();
   }
 
   async onToggleMute() {
@@ -55,6 +54,6 @@ export class ChatSettingComponent implements OnInit, OnChanges {
 
   async onDeleteChat() {
     await this.chatService.deleteChat(this.chat.id, this.loggedinUser.id);
-    this.chatDeleted.emit();
+    this.clearChat.emit();
   }
 }

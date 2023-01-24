@@ -26,6 +26,7 @@ export class ChatOptionsModalComponent implements OnInit {
 
   async onRemoveUser() {
     this.chat.members = this.chat.members.filter(m => m.id !== this.currUser.id);
+    this.chat.admins = this.chat.admins.filter(a => a.id !== this.currUser.id);
     await this.chatService.updateChat(this.chat, this.loggedinUser.id);
     this.close.emit();
   }

@@ -49,7 +49,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
           this.chatService.loadChats(this.loggedinUser.id);
           isChatLoaded = true;
         }
-        console.log('chats', chats);
+        this.currActiveChat = chats[0];
       })
   }
 

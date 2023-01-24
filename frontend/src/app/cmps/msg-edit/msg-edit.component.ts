@@ -1,7 +1,8 @@
 import { Story } from './../../models/story.model';
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { faPaperPlane, } from '@fortawesome/free-regular-svg-icons';
+import { faPaperPlane, faFaceSmile, faHeart } from '@fortawesome/free-regular-svg-icons';
+import { Emoji } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class MsgEditComponent implements OnInit {
   constructor() { }
 
   faPaperPlane = faPaperPlane;
+  faHeart = faHeart;
   isStoryReply!: boolean;
   story!: Story;
   placeHolderStr = '';
@@ -22,10 +24,14 @@ export class MsgEditComponent implements OnInit {
   msgSent = false;
   isShareModalShown: boolean = false;
   isLiked: boolean = false;
+  isEmojiPickerShown: boolean = false
+  faFaceSmile = faFaceSmile
+  isMainScreen: boolean = false;
+  text: string = '';
+
   ngOnInit(): void {
     this.placeHolderStr = this.isStoryReply ? `Reply to ${this.story.by.username}...` : 'Message...'
   }
-
 
   onToggleQuickReaction() {
     this.isQuickReactionShown = !this.isQuickReactionShown;
@@ -37,14 +43,22 @@ export class MsgEditComponent implements OnInit {
 
   onToggleLike() {
     this.isLiked = !this.isLiked;
-    if (this.isLiked) this.onSendMsg('👍')
+    // if (this.isLiked) this.onSendMsg('👍')
   }
 
-  onSubmit(form: NgForm) {
-    console.log('form.value:', form.value);
-    this.onSendMsg(form.value.msg)
-    form.reset()
+  onAddEmoji(emoji: Emoji) {
+    if (typeof emoji.emoji !== 'string') this.text += emoji.emoji.native
+    else this.text += emoji.emoji
+
   }
+
+  onToggleEmojiPicker() {
+    this.isEmojiPickerShown = !this.isEmojiPickerShown
+    this.isMainScreen = !this.isMainScreen
+  }
+
+
+
 
   onSendMsg(msg: string) {
     console.log('msg:', msg);
