@@ -1,0 +1,31 @@
+<section class="chat-setting">
+    <div class="inputs-container">
+
+        <div class="chat-name-input">
+            <div class="input-container">
+                <label for="groupName">group name:</label>
+                <input type="text" id="groupName" class="clean-input" [(ngModel)]="chatName">
+            </div>
+            <button class="clean-btn btn-change-name" *ngIf="chatName && chatName !== chat.name"
+                (click)="onChangeChatName()">Done</button>
+        </div>
+
+        <div class="mute-msg-input">
+            <input type="checkbox" [(ngModel)]="isMuteMsg" (ngModelChange)="onToggleMute()" id="mute-input">
+            <label for="mute-input">Mute messages</label>
+        </div>
+    </div>
+
+    <div class="member-list-container">
+        <user-list [users]="chat.members" [type]="'chat-setting'" [chat]="chat"></user-list>
+    </div>
+
+    <div class="btns-container">
+        <div class="btn-leave-chat-container">
+            <button class="clean-btn btn-leave-chat" (click)="onLeaveChat()">leave chat</button>
+            <p>You won't get messages from this group unless someone adds you back to the chat.</p>
+        </div>
+        <button class="clean-btn btn-delete-chat" (click)="onDeleteChat()" *ngIf="isLoggedinUserAdmin">delete
+            chat</button>
+    </div>
+</section>

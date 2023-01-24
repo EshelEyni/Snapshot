@@ -1,8 +1,59 @@
-@import '../../../assets/styles/setup/functions';
+
 @import '../../../assets/styles/setup/mixins';
 @import '../../../assets/styles/setup/vars';
 
-.chat-details{
+::ng-deep .chat-details {
     display: flex;
     flex-direction: column;
+
+    .chat-details-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: rem(10px) rem(15px);
+        height: rem(60px);
+        border-bottom: 1px solid var(--border-color);
+
+        .chat-preview {
+            position: static;
+            padding: 0;
+            cursor: pointer;
+
+            .multiple-img-container,
+            .img-container {
+                width: rem(40px) !important;
+                height: rem(40px) !important;
+            }
+
+            .info {
+                >* {
+                    font-size: rem(18px) !important;
+                    font-weight: 600 !important;
+
+                }
+                :hover {
+                    color: rgb(147, 147, 147) !important;
+                }
+            }
+        }
+
+        .chat-setting-title {
+            width: 100%;
+            text-align: center;
+            font-size: rem(20px);
+            font-weight: 500;
+            text-transform: capitalize;
+            color: var(--primary-color);
+
+        }
+
+        .icon-container {
+            flex-basis: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: rem(100px);
+            z-index: 10;
+        }
+    }
 }

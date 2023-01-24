@@ -1,0 +1,108 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/mixins';
+@import '../../../assets/styles/setup/vars';
+
+::ng-deep .chat-setting {
+    display: flex;
+    flex-direction: column;
+   
+    .inputs-container {
+        border-bottom: 1px solid var(--border-color);
+
+        .chat-name-input {
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: rem(5px) rem(10px);
+
+            .input-container {
+                display: flex;
+                align-items: center;
+                gap: rem(5px);
+
+                label {
+                    text-transform: capitalize;
+                    font-size: rem(14px);
+                }
+
+            }
+
+            .btn-change-name {
+                font-size: rem(14px);
+                font-weight: 500;
+                color: var(--primary-button);
+            }
+        }
+
+        .mute-msg-input {
+            display: flex;
+            align-items: center;
+            padding: rem(5px) rem(10px);
+
+            label {
+                font-size: rem(14px);
+            }
+        }
+    }
+
+    
+    .member-list-container {
+        padding: rem(15px) rem(20px);
+        border-bottom: 1px solid var(--border-color);
+        overflow: scroll;
+        @include scrollbar-hidden;
+        
+        .user-list {
+            .default-list {
+
+
+                .user-preview {
+                    .img-container {
+                        width: rem(55px);
+                        height: rem(55px);
+                    }
+                }
+
+                .ellipsis {
+                    fa-icon {
+
+                        font-size: rem(3px) !important;
+                    }
+                }
+            }
+        }
+    }
+
+    .btns-container {
+        padding: rem(10px) rem(20px);
+        border-bottom: 1px solid var(--border-color);
+
+        .btn-leave-chat-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: rem(5px);
+
+            .btn-leave-chat {
+                font-size: rem(12px);
+                text-transform: capitalize;
+                color: var(--red-button);
+                padding: 0;
+            }
+
+            p {
+                font-size: rem(10px);
+                color: var(--secondary-color);
+            }
+        }
+
+        .btn-delete-chat {
+            font-size: rem(12px);
+            text-transform: capitalize;
+            color: var(--red-button);
+            padding: 0;
+        }
+    }
+}

@@ -28,6 +28,13 @@
                 color: var(--secondary-color);
             }
         }
+
+        .btn-add-people {
+            color: var(--primary-button);
+            font-size: rem(14px);
+            font-weight: 500;
+            text-transform: capitalize;
+        }
     }
 
     .default-list {

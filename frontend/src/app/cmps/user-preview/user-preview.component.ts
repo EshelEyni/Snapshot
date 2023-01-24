@@ -1,3 +1,4 @@
+import { Chat } from './../../models/chat.model';
 import { Story } from './../../models/story.model'
 import { StoryService } from './../../services/story.service'
 import { UserService } from 'src/app/services/user.service'
@@ -10,7 +11,7 @@ import { lastValueFrom } from 'rxjs'
   selector: 'user-preview',
   templateUrl: './user-preview.component.html',
   styleUrls: ['./user-preview.component.scss'],
-  inputs: ['user', 'type', 'location'],
+  inputs: ['user', 'type', 'location', 'chat'],
 })
 export class UserPreviewComponent implements OnInit, OnChanges {
 
@@ -34,6 +35,7 @@ export class UserPreviewComponent implements OnInit, OnChanges {
   userImgClass: string = '';
   isBtnPlusShown: boolean = false;
   plusBtnSize: number = 16;
+  chat!: Chat;
 
   async ngOnInit() {
 
@@ -69,6 +71,7 @@ export class UserPreviewComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
+    console.log('ngOnChanges');
     this.isBtnPlusShown = this.type === 'user-story-timer'
       || this.type === 'link-to-story-edit'
 
@@ -82,6 +85,7 @@ export class UserPreviewComponent implements OnInit, OnChanges {
       || this.type === 'share-modal'
       || this.type === 'following-list'
       || this.type === 'followers-list'
+      || this.type === 'chat-setting'
 
     if (this.isStoryDisabled) this.userImgClass = ''
     if (this.type === 'user-story-timer') this.plusBtnSize = 14
@@ -140,6 +144,10 @@ export class UserPreviewComponent implements OnInit, OnChanges {
         this.urlForImg = `/story-edit`
         this.urlForTitle = `/story-edit`
         break
+      case 'chat-setting':
+        this.urlForImg = `/profile/${this.user.id}`
+        this.urlForTitle = `/profile/${this.user.id}`
+        break
       case 'story-edit-page':
         this.isUrlsDisabled = true;
         break
@@ -175,6 +183,10 @@ export class UserPreviewComponent implements OnInit, OnChanges {
         break
       case 'search-modal':
         this.desc = this.user.fullname
+        break
+      case 'chat-setting':
+        if (this.chat.admins.some(a => a.id === this.user.id)) this.desc = `Admin ‧ ${this.user.fullname}`
+        else this.desc = this.user.fullname
         break
     }
 

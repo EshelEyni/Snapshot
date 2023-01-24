@@ -32,7 +32,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   chats$ = this.chatService.chats$;
   faChevronLeft = faChevronLeft;
   isShareModalShown = false;
-  currActiveChat!: Chat;
+  currActiveChat!: Chat | null;
 
   ngOnInit(): void {
     let isChatLoaded = false;
@@ -58,7 +58,11 @@ export class MessagesComponent implements OnInit, OnDestroy {
   }
 
   onSelectChat(chat: Chat) {
-    this.currActiveChat = {...chat};
+    this.currActiveChat = { ...chat };
+  }
+
+  onClearChat() {
+    this.currActiveChat = null;
   }
 
   onGoBack() {

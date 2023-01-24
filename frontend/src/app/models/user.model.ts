@@ -21,7 +21,7 @@ export interface MiniUser {
     id: number
     fullname: string,
     username: string,
-    imgUrl: string
+    imgUrl: string,
 }
 
 

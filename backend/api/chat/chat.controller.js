@@ -4,7 +4,7 @@ const logger = require('../../services/logger.service')
 async function getChats(req, res) {
     try {
         const { userId } = req.params
-        const chats = await chatService.getChats(userId)
+        const chats = await chatService.getChats(+userId)
         res.send(chats)
     } catch (err) {
         logger.error('Failed to get chats', err)
@@ -37,8 +37,8 @@ async function deleteChat(req, res) {
 
 async function updateChat(req, res) {
     try {
-        const chat = req.body
-        const id = await chatService.updateChat(chat)
+        const { chat, userId } = req.body
+        const id = await chatService.updateChat(chat, userId)
         res.send({ msg: 'Chat updated', id })
     } catch (err) {
         logger.error('Failed to update chat', err)

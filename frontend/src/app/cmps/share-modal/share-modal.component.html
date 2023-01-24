@@ -1,17 +1,17 @@
 <section class="share-modal">
     <header class="share-modal-header">
-        <h1>share</h1>
+        <h1>{{setTitle()}}</h1>
         <fa-icon (click)="onCloseModal()" [icon]="faX"></fa-icon>
     </header>
     <main class="share-modal-main-container">
         <div class="search-bar-container">
-            <search-bar [isUserSearch]="true" [usersToSend]="usersToSend" [loggedinUser]="loggedinUser"
+            <search-bar [isUserSearch]="true" [selectedUsers]="selectedUsers" [loggedinUser]="loggedinUser"
                 (removeUser)="onRemoveUser($event)" (searchFinished)="onSearchFinished($event)"></search-bar>
         </div>
-        <user-list [users]="users" [usersToSend]="usersToSend" [type]="'share-modal'" (addUser)="onAddUser($event)"
+        <user-list [users]="users" [selectedUsers]="selectedUsers" [type]="'share-modal'" (addUser)="onAddUser($event)"
             (removeUser)="onRemoveUser($event)"></user-list>
     </main>
     <div class="btn-container">
-        <button class="clean-btn" [class.btn-on]="usersToSend.length" (click)="onSend()">send</button>
+        <button class="clean-btn" [class.btn-on]="selectedUsers.length" (click)="onSend()">send</button>
     </div>
 </section>

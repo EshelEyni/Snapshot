@@ -1,0 +1,8 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
+
+.post-options-modal {
+    @include modal;
+    @include options-modal;
+}

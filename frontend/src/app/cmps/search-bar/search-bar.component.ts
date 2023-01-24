@@ -3,7 +3,7 @@ import { Tag } from '../../models/tag.model';
 import { User } from 'src/app/models/user.model';
 import { TagService } from './../../services/tag.service';
 import { SearchService } from './../../services/search.service';
-import { Component, OnInit, inject, EventEmitter, OnChanges } from '@angular/core';
+import { Component, OnInit, inject, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { faCircleXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { debounceTime } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -12,10 +12,10 @@ import { Subject } from 'rxjs';
   selector: 'search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
-  inputs: ['isUserSearch', 'usersToSend', 'loggedinUser'],
+  inputs: ['isUserSearch', 'selectedUsers', 'loggedinUser'],
   outputs: ['searchFinished', 'removeUser', 'inputFocused']
 })
-export class SearchBarComponent implements OnInit, OnChanges {
+export class SearchBarComponent implements OnInit {
 
   constructor() {
   }
@@ -39,9 +39,8 @@ export class SearchBarComponent implements OnInit, OnChanges {
   isUserSearch: boolean = false;
   isInputFocused: boolean = false;
   loggedinUser!: User;
-
-
-  usersToSend!: MiniUser[];
+  currChatMemberidsSet!: Set<number>;
+  selectedUsers!: MiniUser[];
   searchResults: { users: User[], tags: Tag[] } = { users: [], tags: [] }
   userSearchResults: User[] = []
 
@@ -51,12 +50,11 @@ export class SearchBarComponent implements OnInit, OnChanges {
       .subscribe(searchTerm => {
         this.handleSearch();
       });
+
+   
   }
 
-  ngOnChanges() {
-    // this.usersToSend = [...this.usersToSend]
-    // console.log('this.usersToSend', this.usersToSend);
-  }
+  
 
   onFocus() {
     this.isInputFocused = true
@@ -112,7 +110,7 @@ export class SearchBarComponent implements OnInit, OnChanges {
     else {
       this.userSearchResults = await this.searchService.searchForUsers(this.searchTerm)
       this.userSearchResults = this.userSearchResults.filter(user => {
-        return !this.usersToSend.some(u => u.id === user.id) && user.id !== this.loggedinUser.id
+        return !this.selectedUsers.some(u => u.id === user.id) && user.id !== this.loggedinUser.id
       })
       this.searchFinished.emit(
         {

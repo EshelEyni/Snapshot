@@ -6,7 +6,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
   selector: 'chat-list',
   templateUrl: './chat-list.component.html',
   styleUrls: ['./chat-list.component.scss'],
-  inputs: ['chats', 'loggedinUser'],
+  inputs: ['chats', 'loggedinUser',],
   outputs: ['chatSelected']
 })
 

@@ -420,3 +420,100 @@
 24.1.2023, 0:39:50 - INFO - Server is running on port: 3030 
 24.1.2023, 0:55:58 - INFO - Server is running on port: 3030 
 24.1.2023, 0:57:35 - INFO - Server is running on port: 3030 
+24.1.2023, 11:00:21 - ERROR - cannot find chats | Failed to commit transaction: Error: SQLITE_ERROR: no such column: lastAction 
+24.1.2023, 11:00:21 - ERROR - Failed to get chats | Failed to commit transaction: Error: SQLITE_ERROR: no such column: lastAction 
+24.1.2023, 11:01:46 - INFO - Server is running on port: 3030 
+24.1.2023, 11:43:00 - INFO - Server is running on port: 3030 
+24.1.2023, 13:04:28 - INFO - Server is running on port: 3030 
+24.1.2023, 13:04:58 - INFO - Server is running on port: 3030 
+24.1.2023, 15:12:09 - INFO - Server is running on port: 3030 
+24.1.2023, 15:40:02 - ERROR - cannot delete chat | Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+24.1.2023, 15:40:02 - ERROR - Failed to delete chat | Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed 
+24.1.2023, 15:40:53 - INFO - Server is running on port: 3030 
+24.1.2023, 15:49:29 - INFO - Server is running on port: 3030 
+24.1.2023, 15:58:39 - INFO - Server is running on port: 3030 
+24.1.2023, 16:06:47 - INFO - Server is running on port: 3030 
+24.1.2023, 16:07:20 - INFO - Server is running on port: 3030 
+24.1.2023, 16:12:17 - ERROR - cannot update chat | Failed to commit transaction: Error: SQLITE_ERROR: near "chatMembers": syntax error 
+24.1.2023, 16:12:17 - ERROR - Failed to update chat | Failed to commit transaction: Error: SQLITE_ERROR: near "chatMembers": syntax error 
+24.1.2023, 16:13:06 - INFO - Server is running on port: 3030 
+24.1.2023, 16:13:09 - ERROR - cannot update chat | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: chatMembers.isChatBlocked 
+24.1.2023, 16:13:09 - ERROR - Failed to update chat | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: chatMembers.isChatBlocked 
+24.1.2023, 16:13:33 - INFO - Server is running on port: 3030 
+24.1.2023, 16:13:35 - ERROR - cannot update chat | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: chatMembers.isChatBlocked 
+24.1.2023, 16:13:35 - ERROR - Failed to update chat | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: chatMembers.isChatBlocked 
+24.1.2023, 16:13:38 - ERROR - cannot update chat | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: chatMembers.isChatBlocked 
+24.1.2023, 16:13:38 - ERROR - Failed to update chat | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: chatMembers.isChatBlocked 
+24.1.2023, 16:13:57 - INFO - Server is running on port: 3030 
+24.1.2023, 16:14:00 - ERROR - Failed to update chat | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: chatMembers.isChatBlocked 
+24.1.2023, 16:14:00 - ERROR - cannot update chat | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: chatMembers.isChatBlocked 
+24.1.2023, 16:14:04 - ERROR - cannot update chat | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: chatMembers.isChatBlocked 
+24.1.2023, 16:14:04 - ERROR - Failed to update chat | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: chatMembers.isChatBlocked 
+24.1.2023, 16:18:30 - INFO - Server is running on port: 3030 
+24.1.2023, 16:22:12 - INFO - Server is running on port: 3030 
+24.1.2023, 16:22:23 - ERROR - cannot update chat | Failed to commit transaction: Error: SQLITE_ERROR: near "where": syntax error 
+24.1.2023, 16:22:23 - ERROR - Failed to update chat | Failed to commit transaction: Error: SQLITE_ERROR: near "where": syntax error 
+24.1.2023, 16:27:17 - INFO - Server is running on port: 3030 
+24.1.2023, 16:27:20 - ERROR - cannot update chat | Failed to commit transaction: Error: SQLITE_ERROR: near "where": syntax error 
+24.1.2023, 16:27:20 - ERROR - Failed to update chat | Failed to commit transaction: Error: SQLITE_ERROR: near "where": syntax error 
+24.1.2023, 16:27:32 - INFO - Server is running on port: 3030 
+24.1.2023, 16:27:34 - ERROR - cannot update chat | Failed to commit transaction: Error: SQLITE_ERROR: near "where": syntax error 
+24.1.2023, 16:27:34 - ERROR - Failed to update chat | Failed to commit transaction: Error: SQLITE_ERROR: near "where": syntax error 
+24.1.2023, 16:27:55 - INFO - Server is running on port: 3030 
+24.1.2023, 16:27:57 - ERROR - cannot update chat | Failed to commit transaction: Error: SQLITE_ERROR: near "where": syntax error 
+24.1.2023, 16:27:57 - ERROR - Failed to update chat | Failed to commit transaction: Error: SQLITE_ERROR: near "where": syntax error 
+24.1.2023, 16:28:59 - INFO - Server is running on port: 3030 
+24.1.2023, 16:29:01 - ERROR - cannot update chat | Failed to commit transaction: Error: SQLITE_ERROR: near "where": syntax error 
+24.1.2023, 16:29:01 - ERROR - Failed to update chat | Failed to commit transaction: Error: SQLITE_ERROR: near "where": syntax error 
+24.1.2023, 16:29:28 - INFO - Server is running on port: 3030 
+24.1.2023, 16:29:31 - ERROR - cannot update chat | Failed to commit transaction: Error: SQLITE_ERROR: near "where": syntax error 
+24.1.2023, 16:29:31 - ERROR - Failed to update chat | Failed to commit transaction: Error: SQLITE_ERROR: near "where": syntax error 
+24.1.2023, 16:29:33 - ERROR - cannot update chat | Failed to commit transaction: Error: SQLITE_ERROR: near "where": syntax error 
+24.1.2023, 16:29:33 - ERROR - Failed to update chat | Failed to commit transaction: Error: SQLITE_ERROR: near "where": syntax error 
+24.1.2023, 16:30:31 - INFO - Server is running on port: 3030 
+24.1.2023, 16:39:05 - INFO - Server is running on port: 3030 
+24.1.2023, 16:43:19 - INFO - Server is running on port: 3030 
+24.1.2023, 16:47:16 - INFO - Server is running on port: 3030 
+24.1.2023, 16:47:55 - INFO - Server is running on port: 3030 
+24.1.2023, 16:48:34 - INFO - Server is running on port: 3030 
+24.1.2023, 16:50:38 - INFO - Server is running on port: 3030 
+24.1.2023, 16:51:28 - INFO - Server is running on port: 3030 
+24.1.2023, 16:51:45 - INFO - Server is running on port: 3030 
+24.1.2023, 16:54:52 - INFO - Server is running on port: 3030 
+24.1.2023, 16:58:41 - INFO - Server is running on port: 3030 
+24.1.2023, 17:00:02 - INFO - Server is running on port: 3030 
+24.1.2023, 17:00:30 - INFO - Server is running on port: 3030 
+24.1.2023, 17:00:46 - INFO - Server is running on port: 3030 
+24.1.2023, 17:01:28 - INFO - Server is running on port: 3030 
+24.1.2023, 17:01:38 - INFO - Server is running on port: 3030 
+24.1.2023, 17:03:02 - INFO - Server is running on port: 3030 
+24.1.2023, 17:03:27 - INFO - Server is running on port: 3030 
+24.1.2023, 17:03:51 - INFO - Server is running on port: 3030 
+24.1.2023, 17:03:54 - INFO - Server is running on port: 3030 
+24.1.2023, 17:04:13 - INFO - Server is running on port: 3030 
+24.1.2023, 17:43:55 - INFO - Server is running on port: 3030 
+24.1.2023, 17:46:44 - INFO - Server is running on port: 3030 
+24.1.2023, 19:13:07 - ERROR - cannot find chats | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'push') 
+24.1.2023, 19:13:07 - ERROR - Failed to get chats | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'push') 
+24.1.2023, 19:13:08 - ERROR - cannot find chats | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'push') 
+24.1.2023, 19:13:08 - ERROR - Failed to get chats | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'push') 
+24.1.2023, 19:13:30 - ERROR - cannot find chats | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'push') 
+24.1.2023, 19:13:30 - ERROR - Failed to get chats | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'push') 
+24.1.2023, 19:13:30 - ERROR - cannot find chats | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'push') 
+24.1.2023, 19:13:30 - ERROR - Failed to get chats | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'push') 
+24.1.2023, 19:14:09 - ERROR - cannot find chats | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'push') 
+24.1.2023, 19:14:09 - ERROR - Failed to get chats | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'push') 
+24.1.2023, 19:15:27 - ERROR - cannot find chats | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'push') 
+24.1.2023, 19:15:27 - ERROR - Failed to get chats | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'push') 
+24.1.2023, 19:15:32 - ERROR - Failed to get chats | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'push') 
+24.1.2023, 19:15:32 - ERROR - cannot find chats | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'push') 
+24.1.2023, 19:15:38 - ERROR - cannot find chats | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'push') 
+24.1.2023, 19:15:38 - ERROR - Failed to get chats | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'push') 
+24.1.2023, 19:16:19 - INFO - Server is running on port: 3030 
+24.1.2023, 19:17:25 - INFO - Server is running on port: 3030 
+24.1.2023, 19:23:33 - INFO - Server is running on port: 3030 
+24.1.2023, 19:25:01 - INFO - Server is running on port: 3030 
+24.1.2023, 19:26:00 - INFO - Server is running on port: 3030 
+24.1.2023, 19:26:22 - INFO - Server is running on port: 3030 
+24.1.2023, 19:26:31 - INFO - Server is running on port: 3030 
+24.1.2023, 19:27:01 - INFO - Server is running on port: 3030 

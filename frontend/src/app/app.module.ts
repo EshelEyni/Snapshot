@@ -113,6 +113,8 @@ import { TagListComponent } from './cmps/tag-list/tag-list.component';
 import { ChatPreviewComponent } from './cmps/chat-preview/chat-preview.component';
 import { ChatListComponent } from './cmps/chat-list/chat-list.component';
 import { ChatDetailsComponent } from './cmps/chat-details/chat-details.component';
+import { ChatSettingComponent } from './cmps/chat-setting/chat-setting.component';
+import { ChatOptionsModalComponent } from './cmps/chat-options-modal/chat-options-modal.component';
 
 @NgModule({
   declarations: [
@@ -205,6 +207,8 @@ import { ChatDetailsComponent } from './cmps/chat-details/chat-details.component
     ChatPreviewComponent,
     ChatListComponent,
     ChatDetailsComponent,
+    ChatSettingComponent,
+    ChatOptionsModalComponent,
   ],
   imports: [
     BrowserAnimationsModule,

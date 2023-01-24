@@ -2,7 +2,8 @@ import { MiniUser } from './user.model';
 
 export interface Chat {
     id: number
-    admin: MiniUser;
+    name: string | null;
+    admins: MiniUser[];
     members: MiniUser[];
     messages: Message[];
     isGroup: boolean;

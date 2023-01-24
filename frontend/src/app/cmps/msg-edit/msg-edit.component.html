@@ -1,5 +1,5 @@
 <div class="msg-edit-main-container">
-    <section class="msg-edit" *ngIf="!isStoryReply; else storyReply"></section>
+    <section class="msg-edit" *ngIf="!isStoryReply; else storyReply">msg edit</section>
 
     <ng-template #storyReply>
         <div class="main-screen" (click)="onToggleQuickReaction()" *ngIf="isQuickReactionShown && msg.invalid"></div>

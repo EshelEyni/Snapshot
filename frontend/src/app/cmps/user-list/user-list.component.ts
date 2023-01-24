@@ -1,3 +1,4 @@
+import { Chat } from './../../models/chat.model';
 import { Observable, Subscription, map } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { State } from './../../store/store';
@@ -9,7 +10,7 @@ import { User } from 'src/app/models/user.model';
   selector: 'user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss'],
-  inputs: ['users', 'usersToSend', 'type'],
+  inputs: ['users', 'selectedUsers', 'type', 'chat'],
   outputs: ['addUser', 'removeUser']
 })
 export class UserListComponent implements OnInit, OnChanges, OnDestroy {
@@ -27,17 +28,20 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
   sub: Subscription | null = null;
 
   users!: MiniUser[];
-  usersToSend!: MiniUser[];
+  selectedUsers!: MiniUser[];
   type!: string;
-
+  chat!: Chat;
+  currUser!: MiniUser; // for chat options modal
+  isLoggedinUserAdmin: boolean = false;
   isTitle: boolean = true;
   title: string = '';
   isFollowBtnShow: boolean = false;
-
+  isShareModalShown: boolean = false;
+  isChatOptionsModalShown: boolean = false;
+  isMainScreenShown: boolean = false;
   isSelectUser: { idx: number, isSelected: boolean }[] = [];
   addUser = new EventEmitter<MiniUser>();
   removeUser = new EventEmitter<MiniUser>();
-
 
   ngOnInit(): void {
     this.sub = this.loggedinUser$.subscribe(user => {
@@ -52,6 +56,10 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
       || this.type === 'discover-people-list'
       || this.type === 'following-list'
       || this.type === 'followers-list';
+
+    if (this.type === 'chat-setting') {
+      this.isLoggedinUserAdmin = this.chat.admins.some(a => a.id === this.loggedinUser.id);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -60,14 +68,14 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
       this.setIsSelectUser();
     }
 
-    if (changes['usersToSend']) {
-      this.usersToSend = this.usersToSend;
+    if (changes['selectedUsers']) {
+      this.selectedUsers = this.selectedUsers;
     }
   }
 
   setIsSelectUser() {
     this.isSelectUser = this.users.map((user, idx) => {
-      const isUserSelected = this.usersToSend.some((userToSend) => userToSend.id === user.id);
+      const isUserSelected = this.selectedUsers.some((userToSend) => userToSend.id === user.id);
       return { idx, isSelected: isUserSelected };
     });
   }
@@ -82,10 +90,32 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
+  onToggleModal(el: string, user?: MiniUser) {
+    switch (el) {
+      case 'share-modal':
+        this.isShareModalShown = !this.isShareModalShown;
+        break;
+      case 'chat-options-modal':
+        this.currUser = user!;
+        this.isChatOptionsModalShown = !this.isChatOptionsModalShown;
+        break;
+      case 'main-screen':
+        if (this.isChatOptionsModalShown) this.isChatOptionsModalShown = false;
+        if (this.isShareModalShown) this.isShareModalShown = false;
+        break;
+    }
+
+    this.isMainScreenShown = !this.isMainScreenShown;
+  }
+
   onRemoveUser(idx: number) {
     this.removeUser.emit(this.users[idx]);
   }
 
+  onAddChatMembers(chatMembers: MiniUser[]) {
+    console.log('chatMembers', chatMembers);
+    this.users = [...this.users, ...chatMembers];
+  }
 
   setTitle() {
     switch (this.type) {
@@ -97,7 +127,9 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
         break;
       case 'share-modal':
         this.title = 'Suggested';
-
+        break;
+      case 'chat-setting':
+        this.title = 'Members';
         break;
       case 'like-modal':
         this.isTitle = false;
@@ -114,8 +146,8 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
       case 'search-bar-list':
         this.isTitle = false;
         break;
-        default:
-          this.isTitle = false;
+      default:
+        this.isTitle = false;
         break;
     }
 

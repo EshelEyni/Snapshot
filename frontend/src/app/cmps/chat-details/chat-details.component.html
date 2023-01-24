@@ -1,6 +1,22 @@
 <section class="chat-details">
     <header class="chat-details-header">
-        <chat-preview [chat]="chat" [loggedinUser]="loggedinUser"></chat-preview>
+        <chat-preview [chat]="chat" [loggedinUser]="loggedinUser" *ngIf="!isSettingShown; else settingTitle"
+            (click)="onToggleSetting()"></chat-preview>
+        <ng-template #settingTitle>
+            <h1 class="chat-setting-title">details</h1>
+        </ng-template>
+        <div class="icon-container" (click)="onToggleSetting()">
+            <svg-icon src="../../../assets/svgs/i-circle-outline.svg"
+                *ngIf="!isSettingShown; else solidIcon"></svg-icon>
+            <ng-template #solidIcon>
+                <svg-icon src="../../../assets/svgs/i-circle-solid.svg"></svg-icon>
+            </ng-template>
+        </div>
     </header>
-    <p>{{chat.id}}</p>
+    <div class="chat-contaier" *ngIf="!isSettingShown; else setting">
+        <msg-edit></msg-edit>
+    </div>
+    <ng-template #setting>
+        <chat-setting [chat]="chat" [loggedinUser]="loggedinUser" (chatDeleted)="onDeleteChat()"></chat-setting>
+    </ng-template>
 </section>

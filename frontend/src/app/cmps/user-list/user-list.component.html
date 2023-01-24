@@ -3,32 +3,41 @@
         <p>{{title}}</p>
         <span class="see-all-link" *ngIf="type === 'home-page-suggestion-list'" [routerLink]="'/discover-people/'">see
             all</span>
+        <button class="clean-btn btn-add-people" (click)="onToggleModal('share-modal')">add people</button>
     </header>
 
     <div *ngIf="users.length; else noUsersMsg">
         <ul class="default-list" *ngIf="type !== 'search-bar-list'">
             <li *ngFor="let user of users; index as idx" (click)="onToggleSelectUser(idx)">
-                <user-preview [user]="user" [type]="type"></user-preview>
+                <user-preview [user]="user" [type]="type" [chat]="chat"></user-preview>
 
                 <checkbox [isChecked]="isSelectUser[idx].isSelected" [type]="'user-list'" *ngIf="type==='share-modal'">
                 </checkbox>
                 <follow-btn [user]="user" [type]="type"
                     *ngIf="isFollowBtnShow && loggedinUser && loggedinUser.id !== user.id"></follow-btn>
-            </li>
-        </ul>
+                <ellipsis *ngIf="isLoggedinUserAdmin && loggedinUser.id !== user.id"
+                    (click)="onToggleModal('chat-options-modal',user)"></ellipsis>
+                </li>
+            </ul>
 
         <ul class="search-bar-list" *ngIf="type === 'search-bar-list'">
             <li *ngFor="let user of users; index as idx">
                 <p>{{user.username}}</p>
                 <svg-icon src="../../../assets/svgs/x.svg" [svgStyle]="{'color':'rgb(0, 149, 246)'}"
-                    (click)="onRemoveUser(idx)"></svg-icon>
+                (click)="onRemoveUser(idx)"></svg-icon>
             </li>
         </ul>
     </div>
-
+    
     <ng-template #noUsersMsg>
         <div class="no-users-msg">
             <p>no account found.</p>
         </div>
     </ng-template>
+    
+    <chat-options-modal *ngIf="isChatOptionsModalShown" [chat]="chat" [currUser]="currUser"
+        [loggedinUser]="loggedinUser" (close)="onToggleModal('chat-options-modal')"></chat-options-modal>
+    <share-modal *ngIf="isShareModalShown" [loggedinUser]="loggedinUser" [type]="type" [chat]="chat"
+        (close)="onToggleModal('share-modal')"></share-modal>
+    <div class="main-screen dark-mode" *ngIf="isMainScreenShown" (click)="onToggleModal('main-screen')"></div>
 </section>

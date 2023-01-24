@@ -6,7 +6,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
   selector: 'chat-preview',
   templateUrl: './chat-preview.component.html',
   styleUrls: ['./chat-preview.component.scss'],
-  inputs: ['chat', 'loggedinUser']
+  inputs: ['chat', 'loggedinUser',]
 })
 export class ChatPreviewComponent implements OnInit, OnChanges {
 

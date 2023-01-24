@@ -9,6 +9,7 @@ async function getChats(userId) {
                 `select * from chatMembers where chatId in (select chatId from chatMembers where userId = $userId)`,
                 { $userId: userId }
             );
+
             const chats = chatMembers
                 .sort((a, b) => a.username.localeCompare(b.username))
                 .reduce((acc, chatMember) => {
@@ -19,27 +20,35 @@ async function getChats(userId) {
                         fullname: chatMember.fullname,
                         imgUrl: chatMember.imgUrl,
                     };
-
                     const chat = acc.find(chat => chat.id === chatMember.chatId);
 
                     if (chat) {
                         chat.members.push(formmatedChatMember);
+                        if (chatMember.isAdmin) chat.admins.push(formmatedChatMember);
+                        if (chatMember.userId === userId) {
+                            chat.isBlocked = chatMember.isChatBlocked ? 1 : 0;
+                            chat.isMuted = chatMember.isChatMuted ? 1 : 0;
+                        }
                     } else {
                         acc.push({
                             id: chatMember.chatId,
-                            admin: chatMember.isAdmin ? formmatedChatMember : null,
+                            admins: chatMember.isAdmin ? [formmatedChatMember] : [],
                             members: [formmatedChatMember],
-                            messages: [],
-                            isBlocked: chatMember.isChatBlocked,
-                            isMuted: chatMember.isChatMuted,
+                            isBlocked: null,
+                            isMuted: null,
                         });
+
+                        if (chatMember.userId === userId) {
+                            acc[acc.length - 1].isBlocked = chatMember.isChatBlocked ? 1 : 0;
+                            acc[acc.length - 1].isMuted = chatMember.isChatMuted ? 1 : 0;
+                        }
                     }
                     return acc;
                 }, []);
 
             for (const chat of chats) {
-                const lastAction = await db.query(`select lastAction, lastActionTime from chats where id = $id`, { $id: chat.id });
-                chat.lastAction = { desc: lastAction[0].lastAction, createdAt: lastAction[0].lastActionTime };
+                const chatName = await db.query(`select name from chats where id = $id`, { $id: chat.id });
+                chat.name = chatName[0].name;
                 chat.isGroup = chat.members.length > 2;
                 const messages = await db.query(`select * from chatMessages where chatId = $chatId`, { $chatId: chat.id });
                 chat.messages = messages;
@@ -65,18 +74,98 @@ async function getById(chatId) {
 
 async function deleteChat(chatId) {
     try {
-        await db.query(`delete from chats where id = $id`, { $id: chatId });
+        await db.txn(async (txn) => {
+            await db.exec(`delete from chatMembers where chatId = $chatId`, { $chatId: chatId });
+            await db.exec(`delete from chatMessages where chatId = $chatId`, { $chatId: chatId });
+            await db.exec(`delete from chats where id = $id`, { $id: chatId });
+        });
     } catch (err) {
         logger.error('cannot delete chat', err)
         throw err
     }
 }
 
-async function updateChat(chat) {
+async function updateChat(chat, userId) {
     try {
-        const { id, userId, name, imgUrl } = chat
-        await db.query(`update chats set userId = $userId, name = $name, imgUrl = $imgUrl where id = $id`, { $id: id, $userId: userId, $name: name, $imgUrl: imgUrl });
-        return chat;
+        return await db.txn(async (txn) => {
+            const { id, name, admins, members, messages, isBlocked, isMuted } = chat;
+            await db.exec(`update chats set name = $name where id = $id`, { $id: id, $name: name });
+            const savedMembersIds = await db.query(`select userId from chatMembers where chatId = $chatId`, { $chatId: id });
+            const membersIdsSet = new Set(members.map(m => m.id));
+            const membersIdsToDelete = savedMembersIds.map(m => m.userId).filter(id => !membersIdsSet.has(id));
+            if (membersIdsToDelete.length) {
+                console.log('membersIdsToDelete', membersIdsToDelete);
+                await db.exec(`delete from chatMembers where chatId = $chatId and userId in (${membersIdsToDelete.join(',')})`,
+                    { $chatId: id }
+                );
+            }
+
+            const savedMembersIdsSet = new Set(savedMembersIds.map(m => m.userId));
+            const membersToAdd = members.filter(m => !savedMembersIdsSet.has(m.id));
+
+            if (membersToAdd.length) {
+                for (const member of membersToAdd) {
+                    await db.exec(
+                        `insert into chatMembers (chatId, userId, username, fullname, imgUrl, isAdmin, isChatBlocked, isChatMuted)
+                         values ($chatId, $userId, $username, $fullname, $imgUrl, 0, 0, 0)`,
+                        {
+                            $chatId: id,
+                            $userId: member.id,
+                            $username: member.username,
+                            $fullname: member.fullname,
+                            $imgUrl: member.imgUrl,
+                        }
+                    );
+                }
+            }
+
+            for (const member of members) {
+                if (member.id === userId) {
+                    await db.exec(
+                        `update chatMembers set 
+                         isChatBlocked = $isChatBlocked,
+                         isChatMuted = $isChatMuted,
+                         isAdmin = $isAdmin
+                         where chatId = $chatId and userId = $userId`,
+                        {
+                            $chatId: id,
+                            $userId: member.id,
+                            $isAdmin: admins.some(a => a.id === member.id) ? 1 : 0,
+                            $isChatBlocked: isBlocked ? 1 : 0,
+                            $isChatMuted: isMuted ? 1 : 0,
+                        }
+                    );
+                }
+                else {
+                    await db.exec(
+                        `update chatMembers set
+                         isAdmin = $isAdmin
+                         where chatId = $chatId and userId = $userId`,
+                        {
+                            $chatId: id,
+                            $userId: member.id,
+                            $isAdmin: admins.some(a => a.id === member.id) ? 1 : 0,
+                        }
+                    );
+                }
+            }
+
+            // for (const message of messages) {
+            //     await db.exec(
+            //         `update chatMessages set username = $username, fullname = $fullname, imgUrl = $imgUrl, text = $text, createdAt = $createdAt where chatId = $chatId and id = $id`,
+            //         {
+            //             $chatId: id,
+            //             $id: message.id,
+            //             $username: message.username,
+            //             $fullname: message.fullname,
+            //             $imgUrl: message.imgUrl,
+            //             $text: message.text,
+            //             $createdAt: message.createdAt,
+            //         }
+            //     );
+            // }
+            return chat;
+        });
     } catch (err) {
         logger.error('cannot update chat', err)
         throw err
@@ -85,6 +174,7 @@ async function updateChat(chat) {
 
 
 async function addChat(members) {
+    
     try {
         return await db.txn(async (txn) => {
             let isChatAlreadyExist;
@@ -108,7 +198,7 @@ async function addChat(members) {
                 }
                 for (const savedChat of savedChats) {
                     const chatMemberIds = new Set(savedChat.members.map(member => member.userId));
-                    isChatAlreadyExist = members.every(m => chatMemberIds.has(m.id));
+                    isChatAlreadyExist = members.every(m => chatMemberIds.has(m.id)) && members.length === savedChat.members.length;
                     if (isChatAlreadyExist) {
                         return savedChat.chatId;
                     }

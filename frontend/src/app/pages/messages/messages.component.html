@@ -17,7 +17,7 @@
         </div>
         <div class="chat-container">
             <chat-details [loggedinUser]="loggedinUser" [chat]="currActiveChat"
-                *ngIf="currActiveChat; else noActiveChatMsg"></chat-details>
+                *ngIf="currActiveChat; else noActiveChatMsg" (chatDeleted)="onClearChat()"></chat-details>
             <ng-template #noActiveChatMsg>
                 <div class="no-active-chat-msg">
                     <svg-icon src="../../../assets/svgs/paper-airplane-circle.svg"></svg-icon>
@@ -28,6 +28,6 @@
             </ng-template>
         </div>
     </main>
-    <share-modal *ngIf="isShareModalShown" [loggedinUser]="loggedinUser" (close)="onToggleShareModal()"></share-modal>
+    <share-modal *ngIf="isShareModalShown" [loggedinUser]="loggedinUser" [type]="'message-page'" (close)="onToggleShareModal()"></share-modal>
     <div class="main-screen dark-mode" *ngIf="isShareModalShown" (click)="onToggleShareModal()"></div>
 </section>

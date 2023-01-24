@@ -24,13 +24,16 @@
     .info {
         position: relative;
         width: calc(100% - rem(55px));
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
 
         .members-name-list {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
-
+        
         .member-name {
             font-size: rem(16px);
             font-weight: 400;

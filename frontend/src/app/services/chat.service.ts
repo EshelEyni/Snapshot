@@ -41,7 +41,20 @@ export class ChatService {
     }
   }
 
-  public async removeChat(chatId: number, userId: number) {
+  public async updateChat(chat: Chat, userId: number) {
+    const res = await firstValueFrom(
+      this.http.put(`${BASE_URL}/chat/${chat.id}`, { chat, userId })
+    ) as { msg: string };
+
+    if (res.msg === 'Chat updated') {
+      const chats = this._chats$.getValue();
+      const idx = chats.findIndex(c => c.id === chat.id);
+      chats[idx] = chat ;
+      this._chats$.next(chats);
+    }
+  }
+
+  public async deleteChat(chatId: number, userId: number) {
     await firstValueFrom(
       this.http.delete(`${BASE_URL}/chat/${chatId}`)
     );
@@ -52,7 +65,8 @@ export class ChatService {
   public getEmptyChat(loggedinUser: MiniUser, members: MiniUser[]): Chat {
     return {
       id: 0,
-      admin: loggedinUser,
+      name: null,
+      admins: [loggedinUser],
       members: [{ isAdmin: true, ...loggedinUser } as MiniUser, ...members],
       messages: [],
       isGroup: members.length > 2,

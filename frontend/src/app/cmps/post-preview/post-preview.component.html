@@ -15,7 +15,7 @@
     <div class="post-preview-main-container">
 
       <share-modal *ngIf="isShareModalShown" (close)="onToggleModal('share-modal')"
-        [loggedinUser]="loggedinUser"></share-modal>
+        [loggedinUser]="loggedinUser" [type]="'post-preview'"></share-modal>
 
       <like-modal *ngIf="isLikeModalShown" [post]="post" (close)="onToggleModal('like-modal')"></like-modal>
 
