@@ -14,13 +14,12 @@
         </div>
     </header>
     <div class="chat-container" *ngIf="!isSettingShown; else setting">
-        <div class="messages-container">
-
+        <div class="messages-container" #msgContainer>
+            <message-list [messages]="messages" [loggedinUser]="loggedinUser"></message-list>
         </div>
-        <msg-edit></msg-edit>
+        <msg-edit [loggedinUser]="loggedinUser" [chat]="chat"></msg-edit>
     </div>
     <ng-template #setting>
         <chat-setting [chat]="chat" [loggedinUser]="loggedinUser" (clearChat)="onDeleteChat()"></chat-setting>
     </ng-template>
 </section>
-

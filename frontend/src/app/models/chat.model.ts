@@ -15,7 +15,9 @@ export interface Message {
     id: number
     chatId: number;
     sender: MiniUser;
-    text: string;
+    type: string;
     createdAt: Date;
+    text?: string;
     postId?: number;
+    imgUrl?: string;
 }

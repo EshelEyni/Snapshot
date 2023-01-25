@@ -10,16 +10,40 @@ function setupSocketAPI(http) {
     })
     gIo.on('connection', socket => {
         logger.info(`New connected socket [id: ${socket.id}]`)
+
         socket.on('disconnect', socket => {
             logger.info(`Socket disconnected [id: ${socket.id}]`)
         })
+
         socket.on('set-user-socket', userId => {
             logger.info(`Setting socket.userId = ${userId} for socket [id: ${socket.id}]`)
             socket.userId = userId
         })
+
         socket.on('unset-user-socket', () => {
             logger.info(`Removing socket.userId for socket [id: ${socket.id}]`)
             delete socket.userId
+        }) 
+
+        socket.on('set-chat', chatId => {
+            if (socket.chatId === chatId) return;
+            if (socket.chatId !== chatId) {
+                socket.leave(socket.chatId)
+                logger.info(`Leaving room: ${socket.chatId} for socket [id: ${socket.id}]`)
+            }
+            socket.join(chatId)
+            socket.chatId = chatId
+            logger.info(`Setting socket.chatId = ${chatId} for socket [id: ${socket.id}]`)
+        })
+
+        socket.on('unset-chat', () => {
+            logger.info(`Removing socket.chatId for socket [id: ${socket.id}]`)
+            delete socket.chatId
+        })
+
+        socket.on('msg-added', msg => {
+            logger.info(`Emiting event: chat msg-added to chat ${msg.chatId} for socket [id: ${socket.id}]`)
+            socket.to(msg.chatId).emit('msg-added', msg)
         })
 
     })
@@ -46,7 +70,6 @@ async function emitToUser({ type, data, userId }) {
 // If possible, send to all sockets BUT not the current socket 
 // Optionally, broadcast to a room / to all
 async function broadcast({ type, data, room = null, userId }) {
-    console.log('BROADCAST!');
     userId = userId.toString()
 
     logger.info(`Broadcasting event: ${type}`)

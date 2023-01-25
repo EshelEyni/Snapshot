@@ -1,0 +1,5 @@
+<ul class="message-list" #msgList>
+    <li *ngFor="let message of messages">
+        <message [message]="message" [loggedinUser]="loggedinUser"></message>
+    </li>
+</ul>

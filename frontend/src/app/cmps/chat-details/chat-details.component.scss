@@ -81,20 +81,19 @@
         position: relative;
         width: 100%;
         height: 100%;
-
         display: flex;
         flex-direction: column;
+        overflow: hidden;
+    
 
         .messages-container {
             position: relative;
             width: 100%;
-            height: calc(100% - rem(85px));
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: flex-end;
-        }
+            height: calc(100% - rem(80px));
 
-        
+            message-list{
+                overflow: auto;
+            }
+        }
     }
 }

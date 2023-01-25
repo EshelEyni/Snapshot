@@ -1,0 +1,19 @@
+<article class="message">
+    <span class="msg-date">{{message.createdAt|formattedDate}}</span>
+    <div class="msg-content-container">
+
+        <img [src]="message.sender.imgUrl" class="sender-img" *ngIf="!isSenderLoggedinUser" alt="user-img">
+
+        <container-element [ngSwitch]="message.type">
+            <div class="msg-text" *ngSwitchCase="'text'" [class.logged-in-user-msg]="isSenderLoggedinUser">
+                {{message.text}}
+            </div>
+
+            <img [src]="message.imgUrl" class="msg-img" *ngSwitchCase="'img'" alt="msg-img">
+
+            <div class="msg-like" *ngSwitchCase="'like'">
+                <fa-icon [icon]="faHeart"></fa-icon>
+            </div>
+        </container-element>
+    </div>
+</article>

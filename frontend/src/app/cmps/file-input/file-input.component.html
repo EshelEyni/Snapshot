@@ -13,3 +13,10 @@
     </a>
     <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
 </div>
+
+<div *ngIf="type==='btn-img'">
+    <a href="javascript:void(0)" (click)="file.click()">
+        <svg-icon src=".././../../assets/svgs/img-icon.svg" #svgIcon></svg-icon>
+    </a>
+    <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
+</div>

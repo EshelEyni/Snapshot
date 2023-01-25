@@ -3,23 +3,24 @@
         <section class="msg-edit">
             <fa-icon (click)="onToggleEmojiPicker()" class="smiley-icon" [icon]="faFaceSmile"></fa-icon>
 
-            <input class="clean-input" autocomplete="off" [(ngModel)]="text" [placeholder]="placeHolderStr">
+            <input class="clean-input" autocomplete="off" [(ngModel)]="text" [placeholder]="placeHolderStr"
+                (keyup.enter)="onSendMsg(text,'text')">
 
-            <button class="btn-send clean-btn" *ngIf="text" (click)="onSendMsg(text)">Send</button>
+            <button class="btn-send clean-btn" *ngIf="text" (click)="onSendMsg(text,'text')">Send</button>
 
-            <button class="btn-send-img clean-btn" (click)="onSendMsg(text)" *ngIf="!text">
-                <svg-icon src=".././../../assets/svgs/img-icon.svg"></svg-icon>
-            </button>
+            <file-input (uploadedImgUrls)="onSendImg($event)" [loggedinUser]="loggedinUser" [type]="'btn-img'"
+                *ngIf="!text"></file-input>
 
-            <button class="btn-add-like clean-btn" (click)="onSendMsg('❤️')" *ngIf="!text">
+            <button class="btn-add-like clean-btn" (click)="onSendMsg('','like')" *ngIf="!text">
                 <fa-icon [icon]="faHeart"></fa-icon>
             </button>
 
-            <div class="emoji-picker-container" *ngIf="isEmojiPickerShown">
-                <emoji-mart [style]="{position:'relative'}" (emojiClick)="onAddEmoji($event)">
-                </emoji-mart>
-            </div>
         </section>
+        <div class="emoji-picker-container" *ngIf="isEmojiPickerShown">
+            <emoji-mart [style]="{position:'relative'}" (emojiClick)="onAddEmoji($event)">
+            </emoji-mart>
+        </div>
+        <div class="main-screen" (click)="onToggleEmojiPicker()" *ngIf="isEmojiPickerShown"></div>
     </div>
 
     <ng-template #storyReply>
@@ -29,14 +30,14 @@
         <section class="story-reply">
 
             <div class="quick-reactions-container" *ngIf="isQuickReactionShown && !text">
-                <quick-reaction (reactionSubmit)="onSendMsg($event)"></quick-reaction>
+                <quick-reaction (reactionSubmit)="onSendMsg($event,'text')"></quick-reaction>
             </div>
 
             <div class="reply-actions">
                 <div class="input-container">
                     <input class="clean-input" required autocomplete="off" [placeholder]="placeHolderStr"
-                        [(ngModel)]="text" (click)="onToggleQuickReaction()" (keyup.enter)="onSendMsg(text)">
-                    <button class="btn-send clean-btn" *ngIf="text" (click)="onSendMsg(text)">Send</button>
+                        [(ngModel)]="text" (click)="onToggleQuickReaction()" (keyup.enter)="onSendMsg(text,'text')">
+                    <button class="btn-send clean-btn" *ngIf="text" (click)="onSendMsg(text,'text')">Send</button>
                 </div>
                 <div class="btn-container" *ngIf="!isQuickReactionShown && !text">
                     <like-icon [isLiked]="isLiked" (click)="onToggleLike()"></like-icon>

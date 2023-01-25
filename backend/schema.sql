@@ -204,11 +204,11 @@ CREATE TABLE IF NOT EXISTS "chatMessages"(
     "id" INTEGER NOT NULL UNIQUE,
     "chatId" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
-    "username" TEXT NOT NULL,
-    "fullname" TEXT NOT NULL,
-    "imgUrl" TEXT NOT NULL,
-    "message" TEXT NOT NULL,
+    "type" TEXT NOT NULL,
     "createdAt" TIMESTAMP NOT NULL,
+    "text" TEXT,
+    "imgUrl" TEXT,
+    "postId" INTEGER,
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("chatId") references "chats"("id") foreign key ("userId") references "users"("id")
 );
 

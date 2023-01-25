@@ -55,6 +55,13 @@
                 font-size: 24px;
             }
         }
+
+        .emoji-picker-container{
+            position: absolute;
+            top: -500%;
+            left: 5%;
+            z-index: 20;
+        }
     }
 
     .story-reply {

@@ -1,0 +1,55 @@
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/mixins';
+
+
+.message {
+    display: flex;
+    flex-direction: column;
+
+    .msg-date {
+        align-self: center;
+        text-transform: capitalize;
+        font-size: rem(12px);
+        color: var(--secondary-color);
+    }
+
+    .msg-content-container {
+        display: flex;
+        align-items: flex-end;
+        gap: rem(5px);
+
+        .sender-img {
+            height: rem(25px);
+            width: rem(25px);
+            border-radius: 50%;
+        }
+
+        .msg-text {
+            display: flex;
+            padding: rem(15px);
+            border-radius: 35px;
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+
+            &.logged-in-user-msg {
+                background-color: var(--input-bg-color);
+                border: none;
+            }
+        }
+
+        .msg-img {
+            max-width: rem(300px);
+            max-height: rem(150px);
+            border-radius: 35px;
+        }
+
+        .msg-like {
+
+            fa-icon {
+                font-size: rem(120px);
+                color: var(--red-button);
+            }
+        }
+    }
+}

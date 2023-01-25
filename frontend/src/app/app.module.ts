@@ -115,6 +115,8 @@ import { ChatListComponent } from './cmps/chat-list/chat-list.component';
 import { ChatDetailsComponent } from './cmps/chat-details/chat-details.component';
 import { ChatSettingComponent } from './cmps/chat-setting/chat-setting.component';
 import { ChatOptionsModalComponent } from './cmps/chat-options-modal/chat-options-modal.component';
+import { MessageListComponent } from './cmps/message-list/message-list.component';
+import { MessageComponent } from './cmps/message/message.component';
 
 @NgModule({
   declarations: [
@@ -209,6 +211,8 @@ import { ChatOptionsModalComponent } from './cmps/chat-options-modal/chat-option
     ChatDetailsComponent,
     ChatSettingComponent,
     ChatOptionsModalComponent,
+    MessageListComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserAnimationsModule,

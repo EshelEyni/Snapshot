@@ -20,7 +20,9 @@ const followerRoutes = require('./api/followers/followers.routes')
 const followingRoutes = require('./api/following/following.routes')
 const searchRoutes = require('./api/search/search.routes')
 const chatRoutes = require('./api/chat/chat.routes.js')
+const messageRoutes = require('./api/message/message.routes.js')
 const storyArchiveService = require('./services/story-archive.service.js')
+const { setupSocketAPI } = require('./services/socket.service')
 
 // Express App Config
 app.use(cookieParser())
@@ -56,6 +58,9 @@ app.use('/api/following', followingRoutes)
 app.use('/api/save-post', savedPostRoutes)
 app.use('/api/search', searchRoutes)
 app.use('/api/chat', chatRoutes)
+app.use('/api/message', messageRoutes)
+setupSocketAPI(http)
+
 
 app.get('/**', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'))

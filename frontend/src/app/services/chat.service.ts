@@ -6,7 +6,7 @@ import { Chat } from '../models/chat.model';
 
 const BASE_URL = process.env['NODE_ENV'] === 'production'
   ? '/api/'
-  : '//localhost:3030/api'
+  : '//localhost:3030/api';
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +49,7 @@ export class ChatService {
     if (res.msg === 'Chat updated') {
       const chats = this._chats$.getValue();
       const idx = chats.findIndex(c => c.id === chat.id);
-      chats[idx] = chat ;
+      chats[idx] = chat;
       this._chats$.next(chats);
     }
   }

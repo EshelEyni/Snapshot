@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 import { Component, OnInit, inject, OnDestroy } from '@angular/core';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { Location } from '@angular/common';
+import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
   selector: 'messages',
@@ -20,7 +21,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.loggedinUser$ = this.store.select('userState').pipe(map((x => x.loggedinUser)));
 
   }
-
+  socketService = inject(SocketService);
   store = inject(Store<State>);
   $location = inject(Location);
   chatService = inject(ChatService);
@@ -36,7 +37,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     let isChatLoaded = false;
-
+    this.socketService.setup();
     this.userSub = this.loggedinUser$.pipe(
       switchMap(user => {
         if (user) {
@@ -72,6 +73,8 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.userSub.unsubscribe();
+    this.chatSub.unsubscribe();
+    this.socketService.terminate();
   }
 
 }
