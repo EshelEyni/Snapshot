@@ -28,7 +28,7 @@ export class ChatService {
   }
 
 
-  public async addChat(chat: Chat) {
+  public async addChat(chat: Chat): Promise<number | void> {
     const { members } = chat;
     const res = await firstValueFrom(
       this.http.post(`${BASE_URL}/chat`, members)
@@ -38,6 +38,7 @@ export class ChatService {
       const chats = this._chats$.getValue();
       chats.unshift({ ...chat, id: res.id });
       this._chats$.next(chats);
+      return res.id;
     }
   }
 

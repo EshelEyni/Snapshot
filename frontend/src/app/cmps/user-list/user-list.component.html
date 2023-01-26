@@ -12,7 +12,7 @@
             <li *ngFor="let user of users; index as idx" (click)="onToggleSelectUser(idx)">
                 <user-preview [user]="user" [type]="type" [chat]="chat"></user-preview>
 
-                <checkbox [isChecked]="isSelectUser[idx].isSelected" [type]="'user-list'" *ngIf="type==='share-modal'">
+                <checkbox [isChecked]="isSelectUser[idx].isSelected" [type]="'share-modal'" *ngIf="type==='share-modal'">
                 </checkbox>
                 <follow-btn [user]="user" [type]="type"
                     *ngIf="isFollowBtnShow && loggedinUser && loggedinUser.id !== user.id"></follow-btn>

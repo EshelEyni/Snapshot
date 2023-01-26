@@ -50,7 +50,6 @@ export class MessagesComponent implements OnInit, OnDestroy {
           this.chatService.loadChats(this.loggedinUser.id);
           isChatLoaded = true;
         }
-        this.currActiveChat = chats[0];
       })
   }
 
@@ -73,8 +72,6 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.userSub.unsubscribe();
-    this.chatSub.unsubscribe();
     this.socketService.terminate();
   }
-
 }

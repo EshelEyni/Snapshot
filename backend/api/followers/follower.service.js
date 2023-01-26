@@ -24,17 +24,17 @@ async function getById(followerId) {
     }
 }
 
-async function remove(followerId, userId) {
+async function remove(followingId, userId) {
     try {
         await db.exec(
-            `delete from followers where followerId = $followerId and userId = userId`,
+            `delete from followers where followingId = $followingId and userId = $userId`,
             {
-                $followerId: followerId,
+                $followingId: followingId,
                 $userId: userId
             }
         );
     } catch (err) {
-        logger.error(`cannot remove follower ${followerId}`, err)
+        logger.error(`cannot remove follower ${followingId}`, err)
         throw err
     }
 }

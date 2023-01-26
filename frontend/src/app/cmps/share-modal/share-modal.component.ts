@@ -1,3 +1,5 @@
+import { Post } from './../../models/post.model';
+import { MessageService } from './../../services/message.service';
 import { Chat } from './../../models/chat.model';
 import { ChatService } from './../../services/chat.service';
 import { MiniUser } from './../../models/user.model';
@@ -12,7 +14,7 @@ import { Observable, Subscription } from 'rxjs';
   selector: 'share-modal',
   templateUrl: './share-modal.component.html',
   styleUrls: ['./share-modal.component.scss'],
-  inputs: ['loggedinUser', 'type', 'chat'],
+  inputs: ['loggedinUser', 'type', 'chat', 'post'],
   outputs: ['close']
 })
 export class ShareModalComponent implements OnInit, OnDestroy {
@@ -21,26 +23,36 @@ export class ShareModalComponent implements OnInit, OnDestroy {
 
   userService = inject(UserService);
   chatService = inject(ChatService);
+  mesageService = inject(MessageService);
   chat!: Chat;
+  post!: Post;
   faX = faX;
 
   loggedinUser!: User;
   users: MiniUser[] = [];
   selectedUsers: MiniUser[] = [];
   chats$: Observable<Chat[]> = this.chatService.chats$;
+  selectedChats: Chat[] = [];
   chatSub!: Subscription;
   currChatMemberidsSet!: Set<number>;
   type!: string;
+  isChatListShown: boolean = false;
+
   close = new EventEmitter();
 
   async ngOnInit() {
+    this.isChatListShown = this.type === 'post' || this.type === 'story-reply';
+
     let isChatLoaded = false;
     this.chatSub = this.chats$.subscribe(async chats => {
+
       if (!chats.length && !isChatLoaded) {
         this.chatService.loadChats(this.loggedinUser.id);
         isChatLoaded = true;
       }
+
       else {
+
         let users = chats.reduce((acc, chat) => {
           const { members } = chat;
           let otherUsers = members.filter(user => user.id !== this.loggedinUser.id);
@@ -73,11 +85,43 @@ export class ShareModalComponent implements OnInit, OnDestroy {
         return 'New Message';
       case 'chat-setting':
         return 'Add People';
-      case 'post-preview':
+      case 'post':
         return 'Share';
       default:
         return 'Share';
     }
+  }
+
+  setBtnSendTitle() {
+    switch (this.type) {
+      case 'message-page':
+        return 'Send';
+      case 'chat-setting':
+        return 'Add';
+      case 'post':
+        if (this.selectedUsers.length > 1 || this.selectedChats.length > 1) {
+          return 'send separately';
+        } else {
+          return 'Send';
+        }
+      case 'story-reply':
+        if (this.selectedUsers.length > 1 || this.selectedChats.length > 1) {
+          return 'send separately';
+        } else {
+          return 'Send';
+        }
+      default:
+        return 'Share';
+    }
+
+  }
+
+  onAddChat(chat: Chat) {
+    this.selectedChats = [...this.selectedChats, chat];
+  }
+
+  onRemoveChat(chat: Chat) {
+    this.selectedChats = this.selectedChats.filter(c => c.id !== chat.id);
   }
 
   onAddUser(user: MiniUser) {
@@ -112,26 +156,58 @@ export class ShareModalComponent implements OnInit, OnDestroy {
   }
 
   async onSend() {
+    switch (this.type) {
+      case 'message-page':
+        const chatToAdd = this.chatService.getEmptyChat(
+          this.userService.getMiniUser(this.loggedinUser),
+          this.selectedUsers
+        );
+        await this.chatService.addChat(chatToAdd)
+        break;
 
-    if (this.type === 'chat-setting') {
+      case 'chat-setting':
+        const chatToUpdate = this.chat;
+        chatToUpdate.members = [...chatToUpdate.members, ...this.selectedUsers];
+        await this.chatService.updateChat(chatToUpdate, this.loggedinUser.id);
+        break;
 
-      const chatToUpdate = this.chat ;
-      chatToUpdate.members = [...chatToUpdate.members, ...this.selectedUsers];
-      await this.chatService.updateChat(chatToUpdate, this.loggedinUser.id);
+      case 'post':
+        const { selectedUsers, selectedChats } = this;
 
-      this.onCloseModal();
-      return;
+        if (selectedUsers.length) {
+          const userPrms = selectedUsers.map(async user => {
+            const chatToAdd = this.chatService.getEmptyChat(
+              this.userService.getMiniUser(this.loggedinUser),
+              [user]
+            );
+            const chatId = await this.chatService.addChat(chatToAdd)
+            if (chatId) await this._setPostMessage(chatId);
+          });
 
-    } else {
+          await Promise.all(userPrms);
+        }
 
-      const chatToAdd = this.chatService.getEmptyChat(
-        this.userService.getMiniUser(this.loggedinUser),
-        this.selectedUsers
-      );
-      await this.chatService.addChat(chatToAdd)
+        if (selectedChats.length) {
+          const chatPrms = selectedChats.map(async chat => {
+            await this._setPostMessage(chat.id);
+          });
+
+          await Promise.all(chatPrms);
+        }
+
+        break;
     }
 
     this.onCloseModal();
+  }
+
+  private async _setPostMessage(chatId: number) {
+    const msg = this.mesageService.getEmptyMessage();
+    msg.sender = this.userService.getMiniUser(this.loggedinUser);
+    msg.chatId = chatId;
+    msg.type = 'post';
+    msg.postId = this.post.id;
+    await this.mesageService.addMessage(msg, 'from-share-modal');
   }
 
   ngOnDestroy() {

@@ -57,7 +57,7 @@
     </div>
 
     <share-modal *ngIf="isShareModalShown" (close)="onToggleModal('share-modal')"
-      [loggedinUser]="loggedinUser"></share-modal>
+      [loggedinUser]="loggedinUser" [type]="'post'"></share-modal>
 
     <div class="comment-edit-container">
       <comment-edit [post]="post" [isPostDetails]="true" [loggedinUser]="loggedinUser"></comment-edit>
@@ -77,7 +77,7 @@
           {{ loggedinUser.username }}
         </span>
       </p>
-      <post-list [posts]="posts" [isMiniPreview]="true"></post-list>
+      <post-list [posts]="posts" [type]="'mini-preview'"></post-list>
     </div>
 
   </div>

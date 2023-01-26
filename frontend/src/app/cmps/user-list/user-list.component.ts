@@ -113,7 +113,6 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onAddChatMembers(chatMembers: MiniUser[]) {
-    console.log('chatMembers', chatMembers);
     this.users = [...this.users, ...chatMembers];
   }
 

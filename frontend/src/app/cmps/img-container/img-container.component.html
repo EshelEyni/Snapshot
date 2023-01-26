@@ -1,25 +1,27 @@
-<div class="img-container" [class.for-mini-preview]="isMiniPreview">
-    <div *ngIf="!isMiniPreview else miniPreview">
-        <img src={{currImgUrl}} alt="Avatar">
-        <pagination-btns (prevItem)="onSwitchImg($event)" (nextItem)="onSwitchImg($event)"
-            [isPaginationBtnShown]="isPaginationBtnShown" [isEditIcon]="isEditPost"></pagination-btns>
-        <img-dots *ngIf="imgUrls.length>1" [imgUrls]="imgUrls" [currImgUrl]="currImgUrl"></img-dots>
-        <div class="files-svg-container" (click)="onToggleImgSelect()" *ngIf="isEditPost">
-            <svg-icon src="../../../assets/svgs/files-outline.svg" [svgStyle]="{ 'display':'flex' }"></svg-icon>
+<div class="img-container" [class.for-mini-preview]="type === 'mini-preview'">
+    <container-element [ngSwitch]="type">
+
+        <div *ngSwitchCase="'full-preview'">
+            <img src={{currImgUrl}} alt="Avatar">
+            <pagination-btns (prevItem)="onSwitchImg($event)" (nextItem)="onSwitchImg($event)"
+                [isPaginationBtnShown]="isPaginationBtnShown" [isEditIcon]="isEditPost"></pagination-btns>
+            <img-dots *ngIf="imgUrls.length>1" [imgUrls]="imgUrls" [currImgUrl]="currImgUrl"></img-dots>
+            <div class="files-svg-container" (click)="onToggleImgSelect()" *ngIf="isEditPost">
+                <svg-icon src="../../../assets/svgs/files-outline.svg" [svgStyle]="{ 'display':'flex' }"></svg-icon>
+            </div>
+            <div class="img-select" *ngIf="isImgSelect">
+                <ul>
+                    <li *ngFor="let img of imgUrls">
+                        <img src={{img}} alt="Avatar">
+                        <div class="remove-btn-container" (click)="onRemoveImg(img)">
+                            <svg-icon src="../../../assets/svgs/x.svg" [svgStyle]="{ 'display':'flex' }"></svg-icon>
+                        </div>
+                    </li>
+                </ul>
+                <file-input (uploadedImgUrls)="onSaveFiles($event)" [type]="'btn-plus'"></file-input>
+            </div>
         </div>
-        <div class="img-select" *ngIf="isImgSelect">
-            <ul>
-                <li *ngFor="let img of imgUrls">
-                    <img src={{img}} alt="Avatar">
-                    <div class="remove-btn-container" (click)="onRemoveImg(img)">
-                        <svg-icon src="../../../assets/svgs/x.svg" [svgStyle]="{ 'display':'flex' }"></svg-icon>
-                    </div>
-                </li>
-            </ul>
-            <file-input (uploadedImgUrls)="onSaveFiles($event)" [type]="'btn-plus'"></file-input>
-        </div>
-    </div>
-    <ng-template #miniPreview>
-        <img class="mini-preview-img" src={{currImgUrl}} alt="Avatar">
-    </ng-template>
+
+        <img class="mini-preview-img" src={{currImgUrl}} alt="Avatar" *ngSwitchCase="'mini-preview'">
+    </container-element>
 </div>

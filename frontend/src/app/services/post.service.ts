@@ -68,7 +68,7 @@ export class PostService {
 
   }
 
-  public getById(postId: string): Observable<Post> {
+  public getById(postId: number): Observable<Post> {
     return this.http.get<Post>(`http://localhost:3030/api/post/${postId}`)
   }
 

@@ -12,6 +12,7 @@ import { CommentService } from 'src/app/services/comment.service'
   selector: 'post-preview',
   templateUrl: './post-preview.component.html',
   styleUrls: ['./post-preview.component.scss'],
+  inputs: ['post', 'type', 'isPostDetailsNestedRoute']
 })
 export class PostPreviewComponent implements OnInit, OnDestroy {
   constructor(private store: Store<State>) {
@@ -22,9 +23,9 @@ export class PostPreviewComponent implements OnInit, OnDestroy {
 
   commentService = inject(CommentService);
   userService = inject(UserService);
-  @Input() post!: Post;
-  @Input() isMiniPreview!: boolean;
-  @Input() isPostDetailsNestedRoute!: boolean;
+  post!: Post;
+  type!: string;
+  isPostDetailsNestedRoute!: boolean;
 
 
   faFaceSmile = faFaceSmile;
@@ -48,7 +49,7 @@ export class PostPreviewComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sub = this.loggedinUser$.subscribe((user) => {
       if (user) {
-        this.loggedinUser = {...user}
+        this.loggedinUser = { ...user }
         this.isPostOwnedByUser = this.loggedinUser.id === this.post.by.id
       }
     })

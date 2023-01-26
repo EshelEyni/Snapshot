@@ -7,13 +7,14 @@ import { Component, OnInit, inject, EventEmitter, OnChanges, SimpleChanges } fro
 import { faCircleXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { debounceTime } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Chat } from 'src/app/models/chat.model';
 
 @Component({
   selector: 'search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
-  inputs: ['isUserSearch', 'selectedUsers', 'loggedinUser'],
-  outputs: ['searchFinished', 'removeUser', 'inputFocused']
+  inputs: ['isUserSearch', 'selectedUsers', 'loggedinUser', 'selectedChats'],
+  outputs: ['searchFinished', 'removeUser','removeChat', 'inputFocused']
 })
 export class SearchBarComponent implements OnInit {
 
@@ -28,6 +29,7 @@ export class SearchBarComponent implements OnInit {
     isClearSearch: boolean
   }>();
   removeUser = new EventEmitter<MiniUser>();
+  removeChat = new EventEmitter<Chat>();
   inputFocused = new EventEmitter<boolean>();
   searchSubject = new Subject<string>();
 
@@ -41,6 +43,7 @@ export class SearchBarComponent implements OnInit {
   loggedinUser!: User;
   currChatMemberidsSet!: Set<number>;
   selectedUsers!: MiniUser[];
+  selectedChats!: Chat[];
   searchResults: { users: User[], tags: Tag[] } = { users: [], tags: [] }
   userSearchResults: User[] = []
 
@@ -51,10 +54,10 @@ export class SearchBarComponent implements OnInit {
         this.handleSearch();
       });
 
-   
+
   }
 
-  
+
 
   onFocus() {
     this.isInputFocused = true
@@ -79,6 +82,10 @@ export class SearchBarComponent implements OnInit {
 
   onRemoveUser(user: MiniUser) {
     this.removeUser.emit(user)
+  }
+
+  onRemoveChat(chat: Chat) {
+    this.removeChat.emit(chat)
   }
 
 

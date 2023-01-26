@@ -34,7 +34,8 @@ export class ChatDetailsComponent implements OnInit, OnChanges, AfterViewChecked
 
     this.socketService.emit('set-chat', this.chat.id);
     this.socketService.on('msg-added', (msg: Message) => {
-      this.messages = [...this.messages, msg];
+      console.log('msg-added', `for user ${this.loggedinUser.fullname}`);
+      this.messageService.addMsgFromSocket(msg);
     })
   }
 

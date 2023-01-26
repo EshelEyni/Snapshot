@@ -14,6 +14,10 @@
             <div class="msg-like" *ngSwitchCase="'like'">
                 <fa-icon [icon]="faHeart"></fa-icon>
             </div>
+
+            <div *ngSwitchCase="'post'">
+              <post-preview *ngIf="post" [post]="post" [type]="'chat-post-preview'"></post-preview>
+            </div>
         </container-element>
     </div>
 </article>

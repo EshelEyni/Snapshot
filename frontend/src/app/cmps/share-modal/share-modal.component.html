@@ -5,13 +5,23 @@
     </header>
     <main class="share-modal-main-container">
         <div class="search-bar-container">
-            <search-bar [isUserSearch]="true" [selectedUsers]="selectedUsers" [loggedinUser]="loggedinUser"
-                (removeUser)="onRemoveUser($event)" (searchFinished)="onSearchFinished($event)"></search-bar>
+            <search-bar [isUserSearch]="true" [selectedUsers]="selectedUsers" [selectedChats]="selectedChats"
+                [loggedinUser]="loggedinUser" (removeUser)="onRemoveUser($event)" (removeChat)="onRemoveChat($event)"
+                (searchFinished)="onSearchFinished($event)"></search-bar>
         </div>
-        <user-list [users]="users" [selectedUsers]="selectedUsers" [type]="'share-modal'" (addUser)="onAddUser($event)"
-            (removeUser)="onRemoveUser($event)"></user-list>
+
+        <chat-list *ngIf="isChatListShown; else userList" [chats]="(chats$ | async)!" [selectedChats]="selectedChats"
+            [loggedinUser]="loggedinUser" [type]="'share-modal'" (addChat)="onAddChat($event)"
+            (removeChat)="onRemoveChat($event)"></chat-list>
+
+        <ng-template #userList>
+            <user-list [users]="users" [selectedUsers]="selectedUsers" [type]="'share-modal'"
+                (addUser)="onAddUser($event)" (removeUser)="onRemoveUser($event)"></user-list>
+        </ng-template>
+
     </main>
     <div class="btn-container">
-        <button class="clean-btn" [class.btn-on]="selectedUsers.length" (click)="onSend()">send</button>
+        <button class="clean-btn" [class.btn-on]="selectedUsers.length || selectedChats.length"
+            (click)="onSend()">{{setBtnSendTitle()}}</button>
     </div>
 </section>

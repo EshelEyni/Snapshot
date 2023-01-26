@@ -17,6 +17,7 @@
             <label for="friend-name">to:</label>
             <user-list [users]="selectedUsers" [type]="'search-bar-list'" *ngIf="selectedUsers.length"
                 (removeUser)="onRemoveUser($event)"></user-list>
+            <chat-list [chats]="selectedChats" [type]="'search-bar-list'" *ngIf="selectedChats.length" (removeChat)="onRemoveChat($event)"></chat-list>
             <input class="clean-input" [(ngModel)]="searchTerm" (ngModelChange)="onChange()" type="text"
                 placeholder="search..." id="friend-name" autocomplete="off">
         </div>

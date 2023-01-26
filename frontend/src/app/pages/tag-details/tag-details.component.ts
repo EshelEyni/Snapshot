@@ -48,7 +48,7 @@ export class TagDetailsComponent implements OnInit, OnDestroy {
       const tag = data['tag']
       if (tag) {
         this.tag = tag
-        tag.postIds.forEach(async (postId: string) => {
+        tag.postIds.forEach(async (postId: number) => {
           const post = await lastValueFrom(this.postService.getById(postId))
           this.posts.push({ ...post })
         })

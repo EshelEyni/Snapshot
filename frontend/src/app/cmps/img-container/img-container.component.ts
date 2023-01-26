@@ -6,6 +6,7 @@ import { UploadImgService } from 'src/app/services/upload-img.service';
   selector: 'img-container',
   templateUrl: './img-container.component.html',
   styleUrls: ['./img-container.component.scss'],
+  inputs: ['imgUrls', 'onGoBack', 'isEditPost', 'type'],
   outputs: ['uploadedImgUrls']
 })
 export class ImgContainerComponent implements OnInit, OnChanges {
@@ -13,12 +14,10 @@ export class ImgContainerComponent implements OnInit, OnChanges {
   constructor() { }
   uploadImgService = inject(UploadImgService)
 
-  @Input() imgUrls: string[] = []
-  @Input() onGoBack!: Function;
-  // @Input() onFileChange!: Function;
-  // @Input() saveFiles!: Function;
-  @Input() isEditPost!: boolean;
-  @Input() isMiniPreview!: boolean;
+  imgUrls: string[] = []
+  onGoBack!: Function;
+  isEditPost!: boolean;
+  type!: string;
 
   uploadedImgUrls = new EventEmitter<string[]>();
 
@@ -32,6 +31,7 @@ export class ImgContainerComponent implements OnInit, OnChanges {
   isImgSelect: boolean = false;
 
   ngOnInit(): void {
+    console.log('type', this.type);
     this.currImgUrl = this.imgUrls[0];
     this.setPaginationBtns();
   }

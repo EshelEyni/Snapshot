@@ -214,7 +214,7 @@ export class UserService {
         this.http.delete(`http://localhost:3030/api/following`, { body: { followerId: loggedinUser.id, userId: user.id } })
       )
       await firstValueFrom(
-        this.http.delete(`http://localhost:3030/api/followers`, { body: { followingId: loggedinUser.id, userId: user.id } })
+        this.http.delete(`http://localhost:3030/api/followers`, { body: { followingId: user.id, userId: loggedinUser.id } })
       )
 
     } else {

@@ -7,7 +7,7 @@ router.get('/', getFollowers)
 router.get('/:id', getFollower)
 router.put('/:id', updateFollower)
 router.post('/', addFollower)
-router.delete('/:id', deleteFollower)
+router.delete('/', deleteFollower)
 
 module.exports = router
 // Compare this snippet from api\Follower\Follower.service.js:

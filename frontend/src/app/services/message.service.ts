@@ -32,18 +32,24 @@ export class MessageService {
     this._messages$.next(messages);
   }
 
-  public async addMessage(msg: Message) {
+  public async addMessage(msg: Message, type: string = 'from-message-page') {
     const res = await firstValueFrom(
       this.http.post(`${BASE_URL}/message`, msg)
     ) as { msg: string, id: number };
 
-    if (res.msg === 'Message added') {
+    if (res.msg === 'Message added', type === 'from-message-page') {
       let messages = this._messages$.getValue();
       msg.id = res.id;
       messages.push(msg);
       this._messages$.next(messages);
       this.socketService.emit('msg-added', msg);
     }
+  }
+
+  public addMsgFromSocket(msg: Message) {
+    let messages = this._messages$.getValue();
+    messages.push(msg);
+    this._messages$.next(messages);
   }
 
 

@@ -13,7 +13,8 @@
                 <h1>{{loggedinUser.username}}</h1>
                 <svg-icon src="../../../assets/svgs/pencil-rect.svg" (click)="onToggleShareModal()"></svg-icon>
             </div>
-            <chat-list [chats]="(chats$|async)!" [loggedinUser]="loggedinUser" (chatSelected)="onSelectChat($event)"></chat-list>
+            <chat-list [chats]="(chats$|async)!" [loggedinUser]="loggedinUser"
+                (chatSelected)="onSelectChat($event)"></chat-list>
         </div>
         <div class="chat-container">
             <chat-details [loggedinUser]="loggedinUser" [chat]="currActiveChat"
@@ -28,6 +29,7 @@
             </ng-template>
         </div>
     </main>
-    <share-modal *ngIf="isShareModalShown" [loggedinUser]="loggedinUser" [type]="'message-page'" (close)="onToggleShareModal()"></share-modal>
+    <share-modal *ngIf="isShareModalShown" [loggedinUser]="loggedinUser" [type]="'message-page'"
+        (close)="onToggleShareModal()" [type]="'message-page'"></share-modal>
     <div class="main-screen dark-mode" *ngIf="isShareModalShown" (click)="onToggleShareModal()"></div>
 </section>

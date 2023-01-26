@@ -15,22 +15,7 @@ function setupSocketAPI(http) {
             logger.info(`Socket disconnected [id: ${socket.id}]`)
         })
 
-        socket.on('set-user-socket', userId => {
-            logger.info(`Setting socket.userId = ${userId} for socket [id: ${socket.id}]`)
-            socket.userId = userId
-        })
-
-        socket.on('unset-user-socket', () => {
-            logger.info(`Removing socket.userId for socket [id: ${socket.id}]`)
-            delete socket.userId
-        }) 
-
         socket.on('set-chat', chatId => {
-            if (socket.chatId === chatId) return;
-            if (socket.chatId !== chatId) {
-                socket.leave(socket.chatId)
-                logger.info(`Leaving room: ${socket.chatId} for socket [id: ${socket.id}]`)
-            }
             socket.join(chatId)
             socket.chatId = chatId
             logger.info(`Setting socket.chatId = ${chatId} for socket [id: ${socket.id}]`)

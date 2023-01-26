@@ -25,7 +25,7 @@
 
     <ng-template #storyReply>
         <div class="main-screen" (click)="onToggleQuickReaction()" *ngIf="isQuickReactionShown && !text"></div>
-        <share-modal *ngIf="isShareModalShown" (close)="onToggleModal()"></share-modal>
+        <share-modal *ngIf="isShareModalShown" (close)="onToggleModal()" [type]="'story-reply'"></share-modal>
 
         <section class="story-reply">
 

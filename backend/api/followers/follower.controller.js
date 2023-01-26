@@ -24,9 +24,9 @@ async function getFollower(req, res) {
 }
 
 async function deleteFollower(req, res) {
-    const { followerId, userId } = req.body
+    const { followingId, userId } = req.body
     try {
-        await followerService.remove(followerId, userId)
+        await followerService.remove(followingId, userId)
         res.send({ msg: 'Deleted successfully' })
     } catch (err) {
         logger.error('Failed to delete follower', err)

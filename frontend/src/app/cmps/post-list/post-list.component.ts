@@ -4,14 +4,15 @@ import { Post } from 'src/app/models/post.model';
 @Component({
   selector: 'post-list',
   templateUrl: './post-list.component.html',
-  styleUrls: ['./post-list.component.scss']
+  styleUrls: ['./post-list.component.scss'],
+  inputs: ['posts', 'type', 'isPostDetailsNestedRoute']
 })
 export class PostListComponent implements OnInit {
 
-  @Input() posts!: Post[]
-  @Input() isMiniPreview!: boolean;
-  @Input() isPostDetailsNestedRoute!: boolean;
-  
+  posts!: Post[]
+  type!: string;
+  isPostDetailsNestedRoute!: boolean;
+
   constructor() { }
 
   ngOnInit(): void {

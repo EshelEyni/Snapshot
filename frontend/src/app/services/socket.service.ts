@@ -17,10 +17,6 @@ export class SocketService {
 
   public setup() {
     this.socket = io(baseUrl);
-    const user = this.userService.getLoggedinUser();
-    if (user) {
-      this.socket.emit('set-user-socket', user.id);
-    }
   }
 
   public on(eventName: string, cb: any) {
@@ -35,17 +31,7 @@ export class SocketService {
     this.socket.emit(eventName, data)
   }
 
-  public login(userId: number) {
-    this.socket.emit('set-user-socket', userId);
-  }
-
-  public logout() {
-    this.socket.emit('unset-user-socket');
-  }
-
   public terminate() {
     this.socket = null;
   }
-
-
 }

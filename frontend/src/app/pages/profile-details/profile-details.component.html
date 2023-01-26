@@ -87,7 +87,7 @@
         </section>
 
         <div>
-            <post-list [posts]="posts" [isMiniPreview]="true" *ngIf="posts.length;else noPostMsg"></post-list>
+            <post-list [posts]="posts" [type]="'mini-preview'" *ngIf="posts.length;else noPostMsg"></post-list>
             <ng-template #noPostMsg>
                 <div class="no-posts-msg-container">
 
