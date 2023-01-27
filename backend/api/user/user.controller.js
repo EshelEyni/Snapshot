@@ -15,7 +15,7 @@ async function queryUsers(req, res) {
     }
 }
 
-async function getUser(req, res) {
+async function getUserById(req, res) {
     try {
         const user = await userService.getById(req.params.id)
         res.send(user)
@@ -51,7 +51,6 @@ async function updateUser(req, res) {
     try {
         const userToUpdate = req.body
         const updatedUser = await userService.update(userToUpdate)
-        // socketService.broadcast({ type: 'user-updated', data: updatedUser, userId: updatedUser._id })
         res.send(updatedUser)
     } catch (err) {
         logger.error('Failed to update user', err)
@@ -70,8 +69,8 @@ async function deleteUser(req, res) {
 }
 
 module.exports = {
-    getUser,
     queryUsers,
+    getUserById,
     addUser,
     deleteUser,
     getUserByName,

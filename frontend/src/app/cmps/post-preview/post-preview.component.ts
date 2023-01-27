@@ -6,6 +6,7 @@ import { Observable, Subscription, map } from 'rxjs'
 import { Post } from './../../models/post.model'
 import { Component, Input, OnInit, inject, OnDestroy } from '@angular/core'
 import { faFaceSmile } from '@fortawesome/free-regular-svg-icons'
+import { Comment } from 'src/app/models/comment.model'
 import { CommentService } from 'src/app/services/comment.service'
 
 @Component({
@@ -42,15 +43,25 @@ export class PostPreviewComponent implements OnInit, OnDestroy {
   isLikeShown: boolean = true;
   isCommentShown: boolean = true;
 
-  commentTxt: string = '';
   isPostOwnedByUser: boolean = false;
   miniPreviewPostDetailsLink: string = '';
 
+  comments!: Comment[];
+
   ngOnInit(): void {
-    this.sub = this.loggedinUser$.subscribe((user) => {
+    console.log('post-preview type: ', this.type);
+    this.sub = this.loggedinUser$.subscribe(async user => {
       if (user) {
         this.loggedinUser = { ...user }
         this.isPostOwnedByUser = this.loggedinUser.id === this.post.by.id
+
+        this.comments = await this.commentService.loadComments(
+          {
+            postId: this.post.id,
+            userId: this.loggedinUser.id,
+            type: this.type === 'chat-post-preview' ? this.type : 'post-preview'
+          }
+        )
       }
     })
 
@@ -77,6 +88,10 @@ export class PostPreviewComponent implements OnInit, OnDestroy {
         break
     }
     this.isMainScreen = !this.isMainScreen
+  }
+
+  onAddComment(comment: Comment) {
+    this.comments = [comment, ...this.comments]
   }
 
   onToggleCommentDisplay() {

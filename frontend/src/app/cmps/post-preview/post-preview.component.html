@@ -5,7 +5,7 @@
   <container-element [ngSwitch]="type">
 
 
-    <div class="post-preview-container" *ngSwitchCase="'full-preview'">
+    <div class="post-preview-container" *ngSwitchCase="'full-view'">
 
       <section class="post-creator">
         <user-preview [user]="post.by" [location]="post.location" [type]="'post'"></user-preview>
@@ -36,8 +36,8 @@
         <a class="view-all-link" [routerLink]="['_/post/', post.id]" *ngIf="isCommentShown && post.commentSum">View all
           {{post.commentSum}} comments</a>
 
-        <comment-list *ngIf="isCommentShown && post.commentSum" [postId]="post.id" [type]="'post-preview'"
-          [loggedinUser]="loggedinUser" [commentSum]="post.commentSum"></comment-list>
+        <comment-list *ngIf="isCommentShown && post.commentSum" [comments]="comments" [type]="'post-preview'"
+          [loggedinUser]="loggedinUser"></comment-list>
 
         <div>
           <p class="date-added" [routerLink]="['/post/', post.id]">
@@ -49,15 +49,12 @@
 
 
       <div class="comment-edit-container">
-        <comment-edit *ngIf="isCommentShown" [post]="post" [loggedinUser]="loggedinUser"></comment-edit>
+        <comment-edit *ngIf="isCommentShown" [post]="post" [loggedinUser]="loggedinUser"
+          (commentAdded)="onAddComment($event)"></comment-edit>
       </div>
     </div>
 
     <div class="mini-preview-container" [routerLink]="[miniPreviewPostDetailsLink]" *ngSwitchCase="'mini-preview'">
-      <div class="multiple-img-icon-container">
-        <svg-icon *ngIf="post.imgUrls.length > 1" src="../../../assets/svgs/files-solid.svg"
-          [svgStyle]="{ display: 'flex' }"></svg-icon>
-      </div>
       <img-container [imgUrls]="post.imgUrls" [type]="type"></img-container>
       <div class="details-container">
         <div>
@@ -78,8 +75,10 @@
     </div>
 
     <div class="chat-post-preview" *ngSwitchCase="'chat-post-preview'">
-      <p>chat post preview</p>
-      <img [src]="post.imgUrls[0]" alt="">
+      <user-preview [user]="post.by" [type]="type"></user-preview>
+
+      <img-container [type]="type" [imgUrls]="post.imgUrls" [routerLink]="['/post/',post.id]"></img-container>
+      <comment-list [loggedinUser]="loggedinUser" [comments]="comments" [type]="'chat-post-preview'"></comment-list>
     </div>
   </container-element>
 </article>

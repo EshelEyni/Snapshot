@@ -5,6 +5,7 @@ async function getChats(req, res) {
     try {
         const { userId } = req.params
         const chats = await chatService.getChats(+userId)
+        console.log('chats', chats)
         res.send(chats)
     } catch (err) {
         logger.error('Failed to get chats', err)

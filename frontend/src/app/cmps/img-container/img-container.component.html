@@ -1,7 +1,12 @@
 <div class="img-container" [class.for-mini-preview]="type === 'mini-preview'">
+    <div class="multiple-img-icon-container" *ngIf="type==='mini-preview' || type ==='chat-post-preview'">
+        <svg-icon *ngIf="imgUrls.length > 1" src="../../../assets/svgs/files-solid.svg"
+            [svgStyle]="{ display: 'flex' }"></svg-icon>
+    </div>
+
     <container-element [ngSwitch]="type">
 
-        <div *ngSwitchCase="'full-preview'">
+        <div class="full-view-container" *ngSwitchCase="'full-view'">
             <img src={{currImgUrl}} alt="Avatar">
             <pagination-btns (prevItem)="onSwitchImg($event)" (nextItem)="onSwitchImg($event)"
                 [isPaginationBtnShown]="isPaginationBtnShown" [isEditIcon]="isEditPost"></pagination-btns>
@@ -22,6 +27,9 @@
             </div>
         </div>
 
+
         <img class="mini-preview-img" src={{currImgUrl}} alt="Avatar" *ngSwitchCase="'mini-preview'">
+
+        <img class="chat-post-preview-img" src={{currImgUrl}} alt="Avatar" *ngSwitchCase="'chat-post-preview'">
     </container-element>
 </div>

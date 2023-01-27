@@ -36,8 +36,6 @@ export class HomeComponent implements OnInit {
   async ngOnInit() {
     const loggedinUser = this.userService.getLoggedinUser()
     if (loggedinUser) {
-
-      this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
       
       this.postService.loadPosts(
         {
@@ -46,7 +44,9 @@ export class HomeComponent implements OnInit {
           limit: 1000,
         }
       );
+
       this.posts$ = this.postService.posts$;
+
       this.store.dispatch(new LoadUsers({
         userId: loggedinUser.id,
         type:'suggested',

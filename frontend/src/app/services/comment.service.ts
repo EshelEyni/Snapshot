@@ -2,28 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { PostService } from 'src/app/services/post.service';
 import { MiniUser } from './../models/user.model';
 import { StorageService } from './storage.service';
-import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { UtilService } from './util.service';
 import { Comment } from './../models/comment.model';
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, of, throwError, lastValueFrom, firstValueFrom } from 'rxjs';
+import { Observable, lastValueFrom, firstValueFrom } from 'rxjs';
 
-
-const ENTITY = 'comment';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CommentService {
-  // private _commentsDb: Comment[] = COMMENTS;
-
-  private _comments$ = new BehaviorSubject<Comment[]>([]);
-  public comments$ = this._comments$.asObservable();
-  private _commentsPostPreview$ = new BehaviorSubject<Comment[]>([]);
-  public commentsPostPreview$ = this._commentsPostPreview$.asObservable();
-
 
   constructor() { }
 
@@ -36,11 +26,10 @@ export class CommentService {
   public async loadComments(
     filterBy: {
       postId: number,
-      userId: number
+      userId: number | null
       , type: string
     }
   ) {
-    console
     let options = { params: {} }
     if (filterBy) {
       options.params = {
@@ -49,60 +38,43 @@ export class CommentService {
         type: filterBy.type,
       }
     }
+
     const comments = await lastValueFrom(
       this.http.get<Comment[]>('http://localhost:3030/api/comment', options)
     )
-    if (filterBy.type === 'post-preview') {
-      this._commentsPostPreview$.next(comments)
-    } else {
-      this._comments$.next(comments)
-    }
+
+    return comments
   }
 
   public getById(commentId: number): Observable<Comment> {
     return this.http.get<Comment>(`http://localhost:3030/api/comment/${commentId}`)
   }
 
-  public async remove(commentId: number) {
+  public async remove(commentId: number): Promise<{ msg: string } | void> {
     const res = await firstValueFrom(
       this.http.delete(`http://localhost:3030/api/comment/${commentId}`)
     ) as { msg: string }
 
-    if (res.msg === 'Comment deleted') {
-      const comments = this._comments$.getValue()
-      const idx = comments.findIndex((comment) => comment.id === commentId)
-      comments.splice(idx, 1)
-      this._comments$.next(comments)
-    }
+    return res
   }
 
-  public save(comment: Comment, type?: string) {
-    return comment.id ? this._update(comment) : this._add(comment, type)
+  public save(comment: Comment): Promise<{ msg: string, id: number } | void> {
+    return comment.id ? this._update(comment) : this._add(comment)
   }
 
-  private async _update(comment: Comment) {
-    return await firstValueFrom(this.http.put<Comment>(`http://localhost:3030/api/comment/${comment.id}`, comment))
+  private async _update(comment: Comment): Promise<{ msg: string, id: number } | void> {
+    const res = await firstValueFrom(
+      this.http.put(`http://localhost:3030/api/comment/${comment.id}`, comment)
+    ) as { msg: string, id: number }
+    return res
   }
 
-  private async _add(comment: Comment, type?: string): Promise<number | void> {
+  private async _add(comment: Comment): Promise<{ msg: string, id: number } | void> {
     const res = await firstValueFrom(
       this.http.post('http://localhost:3030/api/comment', comment)
     ) as { msg: string, id: number }
 
-    if (res.msg === 'Comment added') {
-      if (type === 'post-preview') {
-        const comments = this._commentsPostPreview$.getValue()
-        comment.id = res.id
-        comments.unshift(comment)
-        this._commentsPostPreview$.next(comments)
-      } else {
-        const comments = this._comments$.getValue()
-        comment.id = res.id
-        comments.unshift(comment)
-        this._comments$.next(comments)
-      }
-      return res.id
-    }
+    return res
   }
 
   public getEmptyComment(): Comment {
@@ -142,8 +114,8 @@ export class CommentService {
       )
     } else {
       await firstValueFrom(
-        this.http.post(`http://localhost:3030/api/like/comment`, 
-        { user: details.user, comment: details.comment }),
+        this.http.post(`http://localhost:3030/api/like/comment`,
+          { user: details.user, comment: details.comment }),
       )
     }
   }

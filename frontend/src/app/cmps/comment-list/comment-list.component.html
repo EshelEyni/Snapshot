@@ -1,5 +1,6 @@
 <ul class="comment-list">
-    <li *ngFor="let comment of (comments$ | async)!">
-        <comment [comment]="comment" [type]="type" [loggedinUser]="loggedinUser"></comment>
+    <li *ngFor="let comment of comments">
+        <comment [comment]="comment" [type]="type" [loggedinUser]="loggedinUser"
+            (commentRemoved)="onRemoveComment($event)"></comment>
     </li>
 </ul>

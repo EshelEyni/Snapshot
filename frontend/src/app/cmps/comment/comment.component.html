@@ -49,5 +49,17 @@
                 <like-icon [isLiked]="isLiked" (click)="onToggleLike()"></like-icon>
             </div>
         </div>
+
+
+        <div class="chat-post-preview-comment-container" *ngSwitchCase="'chat-post-preview'">
+            <div class="comment-text-container">
+                <span [routerLink]="['/profile/',comment.by.id]"> {{comment.by.username}} </span>
+                <p class="comment-text" *ngIf="!isExpandTxt; else longTxt" [innerHTML]="comment.text| shortTxt | tag | mention:comment.mentions">
+                    <button class="more-btn clean-btn" *ngIf="isLongTxt" (click)="onExpandTxt()">more</button></p>
+                <ng-template #longTxt>
+                    <p class="comment-text" [innerHTML]="comment.text| tag | mention:comment.mentions"> </p>
+                </ng-template>
+            </div>
+        </div>
     </container-element>
 </article>

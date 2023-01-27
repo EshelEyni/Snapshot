@@ -12,6 +12,22 @@
         transition: 0.5s ease-in-out;
     }
 
+    .full-view-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .multiple-img-icon-container {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: rem(7.5px);
+        z-index: 10;
+    }
+
     .img-select {
         display: flex;
         justify-content: flex-end;
@@ -57,6 +73,10 @@
                 }
             }
         }
+    }
+
+    .chat-post-preview-img {
+        cursor: pointer;
     }
 
     &.for-mini-preview {

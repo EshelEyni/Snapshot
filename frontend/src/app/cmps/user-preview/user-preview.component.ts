@@ -85,6 +85,7 @@ export class UserPreviewComponent implements OnInit, OnChanges {
       || this.type === 'following-list'
       || this.type === 'followers-list'
       || this.type === 'chat-setting'
+      || this.type === 'chat-post-preview'
 
     if (this.isStoryDisabled) this.userImgClass = ''
     if (this.type === 'user-story-timer') this.plusBtnSize = 14
@@ -144,6 +145,10 @@ export class UserPreviewComponent implements OnInit, OnChanges {
         this.urlForTitle = `/story-edit`
         break
       case 'chat-setting':
+        this.urlForImg = `/profile/${this.user.id}`
+        this.urlForTitle = `/profile/${this.user.id}`
+        break
+      case 'chat-post-preview':
         this.urlForImg = `/profile/${this.user.id}`
         this.urlForTitle = `/profile/${this.user.id}`
         break

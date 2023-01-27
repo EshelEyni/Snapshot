@@ -148,4 +148,40 @@
             }
         }
     }
+
+    .chat-post-preview-comment-container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: rem(5px);
+        width: rem(180px);
+        overflow: hidden;
+        padding: rem(5px) rem(20px);
+
+        .comment-text-container {
+            display: flex;
+            justify-content: center;
+            gap: rem(5px);
+
+            span {
+                font-weight: 900;
+                cursor: pointer;
+            }
+
+            p {
+                word-break: break-word;
+            }
+
+            .comment-text {
+                a {
+                    color: var(--primary-button);
+                }
+            }
+
+            .more-btn {
+                padding: 0;
+                color: var(--secondary-color);
+            }
+        }
+    }
 }

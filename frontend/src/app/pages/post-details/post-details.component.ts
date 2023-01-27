@@ -10,6 +10,8 @@ import { Subscription, Observable, map } from 'rxjs'
 import { Post } from 'src/app/models/post.model'
 import { faChevronLeft, faX } from '@fortawesome/free-solid-svg-icons';
 import { Location } from '@angular/common';
+import { CommentService } from 'src/app/services/comment.service';
+import { Comment } from 'src/app/models/comment.model';
 
 @Component({
   selector: 'post-details',
@@ -23,6 +25,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     private $location: Location,
     private postService: PostService,
     private userService: UserService,
+    private commentService: CommentService,
     private store: Store<State>,
   ) {
     this.loggedinUser$ = this.store
@@ -46,6 +49,8 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   classForPost = 'post';
   isUserReqDispatched: boolean = false;
 
+  comments!: Comment[];
+
   faChevronLeft = faChevronLeft;
   isOptionsModalShown: boolean = false;
   isPostOwnedByUser: boolean = false;
@@ -56,13 +61,21 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.paramsSubscription = this.route.data.subscribe(async (data) => {
+    this.paramsSubscription = this.route.data.subscribe(async data => {
       this.isExplorePage = data['isExplorePage']
       this.isNested = data['isNested']
 
       if (data['post']) {
         this.post = data['post']
         await this.setPostClassName(this.post.imgUrls[0])
+
+        this.comments = await this.commentService.loadComments(
+          {
+            postId: this.post.id,
+            userId: null,
+            type: 'post-details'
+          }
+        )
 
         if (!this.isNested) {
           this.postService.loadPosts(
@@ -93,7 +106,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
       if (user) {
         this.loggedinUser = { ...user };
         this.isPostOwnedByUser = this.loggedinUser.id === this.post.by.id
-      
+
         if (this.isNested && this.loggedinUser && !this.isUserReqDispatched) {
           this.isUserReqDispatched = true;
           this.store.dispatch(new LoadUsers({
@@ -156,6 +169,10 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     this.post.likeSum++
     this.post = { ...this.post }
     this.postService.save(this.post)
+  }
+
+  onAddComment(comment: Comment) {
+    this.comments = [comment, ...this.comments]
   }
 
   onGoBack() {

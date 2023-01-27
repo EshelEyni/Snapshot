@@ -12,7 +12,7 @@
   <main [ngClass]="classForPost">
 
     <div class="post-img-container">
-      <img-container [imgUrls]="post.imgUrls"></img-container>
+      <img-container [imgUrls]="post.imgUrls" [type]="'full-view'"></img-container>
     </div>
 
     <section class="post-creator">
@@ -24,8 +24,8 @@
     </section>
 
     <div class="comment-list-container">
-      <comment-list *ngIf="post.commentSum; else noComments" [postId]="post.id" [loggedinUser]="loggedinUser"
-        [commentSum]="post.commentSum" [type]="'post-details'"></comment-list>
+      <comment-list *ngIf="post.commentSum; else noComments" [comments]="comments" [loggedinUser]="loggedinUser"
+        [type]="'post-details'"></comment-list>
       <ng-template #noComments>
         <div class="no-comments-msg-container">
           <h2 class="no-comments">No comments yet.</h2>
@@ -56,11 +56,12 @@
       <p class="date-added" [routerLink]="['/post/',post.id]">{{ post.createdAt | formattedDate }}</p>
     </div>
 
-    <share-modal *ngIf="isShareModalShown" (close)="onToggleModal('share-modal')"
-      [loggedinUser]="loggedinUser" [type]="'post'"></share-modal>
+    <share-modal *ngIf="isShareModalShown" (close)="onToggleModal('share-modal')" [loggedinUser]="loggedinUser"
+      [type]="'post'"></share-modal>
 
     <div class="comment-edit-container">
-      <comment-edit [post]="post" [isPostDetails]="true" [loggedinUser]="loggedinUser"></comment-edit>
+      <comment-edit [post]="post" [isPostDetails]="true" [loggedinUser]="loggedinUser"
+        (commentAdded)="onAddComment($event)"></comment-edit>
     </div>
     <pagination-btns *ngIf="isExplorePage" [isPaginationBtnShown]="isPaginationBtnShown" (prevItem)="onChangePost(-1)"
       (nextItem)="onChangePost(1)"></pagination-btns>

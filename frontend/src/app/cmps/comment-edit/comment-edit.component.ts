@@ -8,15 +8,17 @@ import { Post } from './../../models/post.model'
 import { UserService } from './../../services/user.service'
 import { CommentService } from 'src/app/services/comment.service'
 import { Emoji } from '@ctrl/ngx-emoji-mart/ngx-emoji'
-import { Component, OnInit, inject, ViewChild, ElementRef, OnDestroy } from '@angular/core'
+import { Component, OnInit, inject, ViewChild, ElementRef, EventEmitter, OnDestroy } from '@angular/core'
 import { faFaceSmile } from '@fortawesome/free-regular-svg-icons'
 import { CommunicationService } from 'src/app/services/communication.service';
+import { Comment } from 'src/app/models/comment.model';
 
 @Component({
   selector: 'comment-edit',
   templateUrl: './comment-edit.component.html',
   styleUrls: ['./comment-edit.component.scss'],
   inputs: ['post', 'isPostDetails', 'loggedinUser'],
+  outputs: ['commentAdded']
 })
 
 export class CommentEditComponent implements OnInit, OnDestroy {
@@ -25,6 +27,7 @@ export class CommentEditComponent implements OnInit, OnDestroy {
   @ViewChild('commentInput', { static: true }) commentInput!: ElementRef;
 
   // toggleModal = new EventEmitter<string>()
+  commentAdded = new EventEmitter<Comment>()
 
   userService = inject(UserService)
   commentService = inject(CommentService)
@@ -64,7 +67,11 @@ export class CommentEditComponent implements OnInit, OnDestroy {
     this.commentText = ''
     commentToAdd.by = this.userService.getMiniUser(this.loggedinUser)
     commentToAdd.postId = this.post.id
-    await this.commentService.save(commentToAdd, this.isPostDetails ? 'post-details' : 'post-preview')
+    const res = await this.commentService.save(commentToAdd)
+    if (res && res.msg === 'Comment added') {
+      commentToAdd.id = res.id
+      this.commentAdded.emit(commentToAdd)
+    }
     this.post.commentSum++
     await this.postService.save(this.post)
     const tags = this.tagService.detectTags(commentToAdd.text)

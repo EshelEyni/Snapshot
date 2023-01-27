@@ -14,7 +14,6 @@ export class AppEffects {
       ofType(LOAD_USERS),
       switchMap((action) =>
         this.userService.loadUsers(action.filterBy).pipe(
-          tap(() => console.log('Effects: Got users from service, send it to ===> Reducer')),
           map((users) => ({
             type: LOADED_USERS,
             users,
@@ -35,7 +34,6 @@ export class AppEffects {
       ofType(LOAD_USER),
       switchMap((action) =>
         this.userService.getById(action.userId).pipe(
-          tap(() => console.log('Effects: Got user from service ===> Reducer')),
           map((user) => ({
             type: LOADED_USER,
             user
@@ -56,7 +54,6 @@ export class AppEffects {
       ofType(LOAD_LOGGEDIN_USER),
       switchMap((action) =>
         this.userService.getById(action.userId).pipe(
-          tap(() => console.log('Effects: Got user from service ===> Reducer')),
           map((user) => ({
             type: LOADED_LOGGEDIN_USER,
             user

@@ -4,8 +4,8 @@ const noitificationService = require('../notification/notification.service')
 
 async function query({ postId, userId, type }) {
     try {
-        if (type === 'post-preview') {
 
+        if (type === 'post-preview') {
             let userIds = [userId]
             const followingIds = await db.query(`select id from following where followerId = $userId`, { $userId: userId });
             userIds = userIds.concat(followingIds.map(following => following.id))
@@ -34,6 +34,24 @@ async function query({ postId, userId, type }) {
             comments = await Promise.all(comments)
             return comments
         }
+        else if (type === 'chat-post-preview') {
+            const commentId = await db.query(
+                `select id from comments where postId = $postId and userId = $userId and isOriginalText = 1 limit 1`,
+                {
+                    $postId: postId,
+                    $userId: userId
+                });
+
+            if (!commentId.length) {
+                return [];
+            }
+            else {
+                const comment= await getById(commentId[0].id)
+                return [comment]
+            }
+
+        }
+
     } catch (err) {
         logger.error('cannot find comments', err)
         throw err
