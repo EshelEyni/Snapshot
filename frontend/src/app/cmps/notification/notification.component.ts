@@ -53,12 +53,18 @@ export class NotificationComponent implements OnInit {
         this.txt = 'mentioned you in a post.';
         this.isPostImgShown = true;
         break;
+      case 'message':
+        this.txt = this.notification.msgCount ?
+          `sent you ${this.notification.msgCount} messages.`
+          : 'sent you a message.';
+        break;
+
     };
   }
 
   onClickNotification() {
-    console.log('notification clicked');
     if (this.post) this.router.navigate(['/post', this.post.id]);
+    if (this.notification.type === 'message') this.router.navigate(['/inbox/'], { queryParams: { chatId: this.notification.entityId } });
     else this.router.navigate(['/profile', this.notification.userId]);
     this.close.emit()
   }

@@ -1,14 +1,14 @@
+import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Chat } from './../../models/chat.model';
 import { ChatService } from './../../services/chat.service';
 import { User, MiniUser } from './../../models/user.model';
-import { map, Subscription, Observable } from 'rxjs';
+import { map, Subscription, Observable, lastValueFrom } from 'rxjs';
 import { State } from './../../store/store';
 import { Store } from '@ngrx/store';
 import { Component, OnInit, inject, OnDestroy } from '@angular/core';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { Location } from '@angular/common';
-import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
   selector: 'messages',
@@ -21,12 +21,14 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.loggedinUser$ = this.store.select('userState').pipe(map((x => x.loggedinUser)));
 
   }
-  socketService = inject(SocketService);
+  route = inject(ActivatedRoute)
   store = inject(Store<State>);
   $location = inject(Location);
   chatService = inject(ChatService);
   userSub!: Subscription;
   chatSub!: Subscription;
+  queryParamsSubscription!: Subscription;
+
   loggedinUser$: Observable<User | null>;
   loggedinUser!: User;
   users: MiniUser[] = [];
@@ -37,7 +39,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     let isChatLoaded = false;
-    this.socketService.setup();
+
     this.userSub = this.loggedinUser$.pipe(
       switchMap(user => {
         if (user) {
@@ -45,12 +47,30 @@ export class MessagesComponent implements OnInit, OnDestroy {
         }
         return this.chats$
       }
-      )).subscribe(chats => {
-        if (!chats.length && this.loggedinUser && !isChatLoaded) {
-          this.chatService.loadChats(this.loggedinUser.id);
-          isChatLoaded = true;
+      )).pipe(
+        switchMap(chats => {
+          if (!chats.length && this.loggedinUser && !isChatLoaded) {
+            this.chatService.loadChats(this.loggedinUser.id);
+            isChatLoaded = true;
+          }
+          return this.route.queryParams
         }
-      })
+        )).subscribe(params => {
+
+          if (params['chatId']) {
+            this.chats$.forEach(data => {
+
+              if(!data) return;
+              const chats = data;
+              const queryParamsChatId = +params['chatId'];
+              const chat = chats.find(c => c.id === queryParamsChatId);
+              if (chat) {
+                this.currActiveChat = { ...chat };
+              }
+            })
+        
+          };
+        });
   }
 
   onToggleShareModal() {
@@ -72,6 +92,5 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.userSub.unsubscribe();
-    this.socketService.terminate();
   }
 }

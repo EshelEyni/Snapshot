@@ -6,9 +6,10 @@ export interface Notification {
     type: string;
     by: MiniUser;
     userId: number;
-    entityTypeId: number;
+    entityId: number;
     createdAt: Date;
     post?: Post;
+    msgCount?: number;
 }
 
 export interface NotificationsByDate {

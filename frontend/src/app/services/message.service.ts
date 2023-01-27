@@ -32,12 +32,12 @@ export class MessageService {
     this._messages$.next(messages);
   }
 
-  public async addMessage(msg: Message, type: string = 'from-message-page') {
+  public async addMessage(msg: Message) {
     const res = await firstValueFrom(
       this.http.post(`${BASE_URL}/message`, msg)
     ) as { msg: string, id: number };
 
-    if (res.msg === 'Message added', type === 'from-message-page') {
+    if (res.msg === 'Message added') {
       let messages = this._messages$.getValue();
       msg.id = res.id;
       messages.push(msg);
@@ -67,6 +67,7 @@ export class MessageService {
       createdAt: new Date(),
       text: '',
       postId: 0,
+      storyId: 0,
       imgUrl: ''
     }
 

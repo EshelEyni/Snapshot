@@ -82,7 +82,7 @@ async function getById(storyId, type) {
                     $id: storyId,
                 });
             }
-            else if (type === 'story-details') {
+            else if (type === 'story-details' || type === 'chat') {
                 stories = await db.query(`select * from stories where id = $id`, {
                     $id: storyId,
                 });

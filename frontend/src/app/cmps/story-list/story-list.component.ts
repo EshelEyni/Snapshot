@@ -98,6 +98,7 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
   setPaginationBtns(stories: Story[]) {
     if (this.idx === 0) this.isPaginationBtnShown.left = false;
     else this.isPaginationBtnShown.left = true;
+
     if (this.currStory) {
       if (this.idx === this.currStory.imgUrls.length - 1) this.isPaginationBtnShown.right = false;
       else this.isPaginationBtnShown.right = true;
@@ -107,6 +108,11 @@ export class StoryListComponent implements OnInit, OnChanges, OnDestroy {
       if (this.idx === stories.length - 3 && window.innerWidth < 400) this.isPaginationBtnShown.right = false;
       else this.isPaginationBtnShown.right = true;
     }
+  }
+
+  onSetCurrStroyImg(idx: number) {
+    this.idx = idx;
+    this.setPaginationBtns(this.stories);
   }
 
   onScrollStory(num: number) {

@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { State } from './../store/store';
 import { UserService } from 'src/app/services/user.service';
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
+import { SocketService } from '../services/socket.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   userService = inject(UserService);
   store = inject(Store<State>);
+  socketService = inject(SocketService);
 
   loggedinUser$: Observable<User | null>;
   loggedinUser!: User;
@@ -26,6 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
   isDarkMode!: boolean;
 
   async ngOnInit() {
+    this.socketService.setup();
     const loggedinUser = this.userService.getLoggedinUser()
     if (loggedinUser) {
       this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
@@ -55,6 +58,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subLoggedinUSer?.unsubscribe();
+    this.socketService.terminate();
   }
 
 }

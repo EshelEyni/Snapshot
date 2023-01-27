@@ -97,23 +97,47 @@
                 cursor: pointer;
             }
         }
-        
+
         span {
             cursor: pointer;
             font-size: rem(12px);
         }
-        
+
         @include for-extra-small-layout {
             padding: rem(10px) rem(17.5px);
-            
+
             .highlight-img-container {
                 height: rem(90px);
                 width: rem(90px);
             }
-            
+
             span {
                 font-size: rem(13px);
                 font-weight: 600;
+            }
+        }
+    }
+
+    .chat-story-container {
+        background-color: rgb(47, 47, 47);
+        border-radius: 25px;
+        padding: rem(35px);
+        cursor: pointer;
+        
+        .chat-story-img-container {
+            position: relative;
+
+            .chat-story-img {
+                @include story-aspect-ratio(rem(350px));
+                border-radius: 10px;
+            }
+
+            .chat-story-username {
+                position: absolute;
+                bottom: 5%;
+                left: 5%;
+                font-size: rem(16px);
+                color: var(--primary-bg);
             }
         }
     }

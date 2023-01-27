@@ -13,10 +13,10 @@ async function getChats(req, res) {
     }
 }
 
-async function getChat(req, res) {
+async function getPersonalChat(req, res) {
     try {
-        const chatId = req.params.id
-        const chat = await chatService.getById(chatId)
+        const { loggedinUserId, otherUserId } = req.params
+        const chat = await chatService.getByUsersId(loggedinUserId, otherUserId)
         res.send(chat)
     } catch (err) {
         logger.error('Failed to get chat', err)
@@ -60,7 +60,7 @@ async function addChat(req, res) {
 
 module.exports = {
     getChats,
-    getChat,
+    getPersonalChat,
     deleteChat,
     updateChat,
     addChat

@@ -24,24 +24,27 @@
     </div>
 
     <ng-template #storyReply>
-        <div class="main-screen" (click)="onToggleQuickReaction()" *ngIf="isQuickReactionShown && !text"></div>
-        <share-modal *ngIf="isShareModalShown" (close)="onToggleModal()" [type]="'story-reply'"></share-modal>
+        <div class="main-screen" (click)="onToggleModal('main-screen')" *ngIf="isMainScreenShown && !text"></div>
+        <share-modal *ngIf="isShareModalShown" (close)="onToggleModal('share-modal')" [type]="'story-reply'"
+            [loggedinUser]="loggedinUser" [story]="story"></share-modal>
 
         <section class="story-reply">
 
             <div class="quick-reactions-container" *ngIf="isQuickReactionShown && !text">
-                <quick-reaction (reactionSubmit)="onSendMsg($event,'text')"></quick-reaction>
+                <quick-reaction (reactionSubmit)="onSendMsg($event,'quick-reaction')"></quick-reaction>
             </div>
 
             <div class="reply-actions">
                 <div class="input-container">
                     <input class="clean-input" required autocomplete="off" [placeholder]="placeHolderStr"
-                        [(ngModel)]="text" (click)="onToggleQuickReaction()" (keyup.enter)="onSendMsg(text,'text')">
-                    <button class="btn-send clean-btn" *ngIf="text" (click)="onSendMsg(text,'text')">Send</button>
+                        [(ngModel)]="text" (click)="onToggleModal('quick-reaction')"
+                        (keyup.enter)="onSendMsg(text,'story-reply')">
+                    <button class="btn-send clean-btn" *ngIf="text"
+                        (click)="onSendMsg(text,'story-reply')">Send</button>
                 </div>
                 <div class="btn-container" *ngIf="!isQuickReactionShown && !text">
                     <like-icon [isLiked]="isLiked" (click)="onToggleLike()"></like-icon>
-                    <fa-icon [icon]="faPaperPlane" (click)="onToggleModal()"></fa-icon>
+                    <fa-icon [icon]="faPaperPlane" (click)="onToggleModal('share-modal')"></fa-icon>
                 </div>
             </div>
         </section>

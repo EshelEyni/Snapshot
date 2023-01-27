@@ -2,7 +2,8 @@
     <span class="msg-date">{{message.createdAt|formattedDate}}</span>
     <div class="msg-content-container">
 
-        <img [src]="message.sender.imgUrl" class="sender-img" *ngIf="!isSenderLoggedinUser" alt="user-img">
+        <img [src]="message.sender.imgUrl" class="sender-img" *ngIf="!isSenderLoggedinUser && isUserImgShown"
+            alt="user-img">
 
         <container-element [ngSwitch]="message.type">
             <div class="msg-text" *ngSwitchCase="'text'" [class.logged-in-user-msg]="isSenderLoggedinUser">
@@ -16,7 +17,67 @@
             </div>
 
             <div *ngSwitchCase="'post'">
-              <post-preview *ngIf="post" [post]="post" [type]="'chat-post-preview'"></post-preview>
+                <post-preview *ngIf="post" [post]="post" [type]="'chat-post-preview'"></post-preview>
+            </div>
+
+            <div *ngSwitchCase="'quick-reaction'">
+                <div class="story-reply-container">
+                    <div class="line-container">
+                        <div class="line"></div>
+                    </div>
+                    <div class="story-reply-cotent">
+                        <p class="story-reply-title">{{storyReactionTitle}} </p>
+                        <div class="story-reply-img-container">
+                            <img [src]="message.imgUrl" alt="story-img">
+                            <span class="reaction-emoji">{{message.text}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngSwitchCase="'story-reply'">
+                <div class="story-reply-container">
+                    <div class="line-container">
+                        <div class="line"></div>
+                    </div>
+                    <div class="story-reply-cotent">
+                        <p class="story-reply-title">{{storyReactionTitle}} </p>
+                        <div class="story-reply-img-container">
+                            <img [src]="message.imgUrl" alt="story-img">
+                        </div>
+                        <div class="msg-text" [class.logged-in-user-msg]="isSenderLoggedinUser">
+                            {{message.text}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngSwitchCase="'story-like'">
+                <div class="story-reply-container">
+                    <div class="line-container">
+                        <div class="line"></div>
+                    </div>
+                    <div class="story-reply-cotent">
+                        <p class="story-reply-title">{{storyReactionTitle}} </p>
+                        <div class="story-reply-img-container">
+                            <img [src]="message.imgUrl" alt="story-img">
+                            <fa-icon class="story-like" [icon]="faHeart"></fa-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngSwitchCase="'story'">
+                <div class="story-reply-container">
+                    <div class="line-container">
+                        <div class="line"></div>
+                    </div>
+                    <div class="story-reply-cotent">
+                        <p class="story-reply-title">{{storyReactionTitle}} </p>
+
+                        <story-preview *ngIf="story" [story]="story" [type]="'chat-story-preview'"></story-preview>
+                    </div>
+                </div>
             </div>
         </container-element>
     </div>

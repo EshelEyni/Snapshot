@@ -54,6 +54,7 @@
         width: 100vw;
         height: 100vh;
 
+
         .curr-story {
             position: relative;
             display: flex;
@@ -88,6 +89,24 @@
                     height: 100%;
                 }
             }
+
+            .sent-msg {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: rem(85px);
+                padding: rem(15px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: var(--primary-bg);
+                border-radius: 5px;
+                font-size: rem(20px);
+                background-color: var(--primary-color);
+
+            }
+
 
             .reply-actions-container {
                 position: absolute;

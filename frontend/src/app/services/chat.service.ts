@@ -27,6 +27,14 @@ export class ChatService {
     this._chats$.next(chats);
   }
 
+  public async loadPersonalChat(loggedinUserId: number, otherUserId: number) {
+    const chat = await firstValueFrom(
+      this.http.get(`${BASE_URL}/chat/personal-chat/${loggedinUserId}/${otherUserId}`)
+    ) as Chat;
+
+    return chat;
+  }
+
 
   public async addChat(chat: Chat): Promise<number | void> {
     const { members } = chat;

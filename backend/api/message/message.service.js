@@ -30,21 +30,39 @@ async function getMessages(chatId) {
 
 async function addMessage(message) {
     try {
-        const { chatId, sender, type, createdAt, text, imgUrl, postId } = message;
-        const id = await db.exec(
-            `INSERT INTO chatMessages (chatId, userId, type, createdAt, text, imgUrl, postId) 
-            VALUES ($chatId, $userId, $type, $createdAt, $text, $imgUrl, $postId )`, {
-            $chatId: chatId,
-            $userId: sender.id,
-            $type: type,
-            $createdAt: createdAt,
-            $text: text || null,
-            $imgUrl: imgUrl || null,
-            $postId: postId || null
+        return await db.txn(async (txn) => {
+            const { chatId, sender, type, createdAt, text, imgUrl, postId, storyId } = message;
+            const id = await db.exec(
+                `INSERT INTO chatMessages (chatId, userId, type, createdAt, text, imgUrl, postId, storyId) 
+            VALUES ($chatId, $userId, $type, $createdAt, $text, $imgUrl, $postId, $storyId )`, {
+                $chatId: chatId,
+                $userId: sender.id,
+                $type: type,
+                $createdAt: createdAt,
+                $text: text || null,
+                $imgUrl: imgUrl || null,
+                $postId: postId || null,
+                $storyId: storyId || null
+            });
+
+            const members = await db.query(`SELECT * FROM chatMembers WHERE chatId = $chatId AND userId != $senderId`,
+                {
+                    $chatId: chatId,
+                    $senderId: sender.id
+                });
+
+            for (const member of members) {
+                const notification = {
+                    type: 'message',
+                    byUserId: sender.id,
+                    entityId: chatId,
+                    userId: member.userId,
+                }
+                await noitificationService.add(notification);
+            }
+
+            return id;
         });
-
-        return id;
-
     } catch (err) {
         logger.error('Failed to add message', err)
         throw err;

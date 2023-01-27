@@ -62,10 +62,64 @@ async function getChats(userId) {
     }
 }
 
-async function getById(chatId) {
+async function getByUsersId(loggedinUserId, otherUserId) {
     try {
-        const chats = await db.query(`select * from chats where id = $id`, { $id: chatId });
-        return chats[0];
+
+        return await db.txn(async (txn) => {
+            let chatIds = await db.query(
+                `SELECT chatId from chatMembers  
+            WHERE chatId in (SELECT chatId FROM chatMembers WHERE userId = $loggedinUserId) 
+            AND chatId in (SELECT chatId FROM chatMembers WHERE userId = $otherUserId)
+            GROUP BY chatId
+            HAVING COUNT(DISTINCT userId) = 2`,
+                { $loggedinUserId: loggedinUserId, $otherUserId: otherUserId }
+            );
+
+            if (!chatIds.length) return null;
+            const currChatId = chatIds[0].chatId;
+            const chats = await db.query(
+                `SELECT * from chats WHERE id = $currChatId`,
+                { $currChatId: currChatId }
+            );
+
+            const chat = chats[0];
+
+            const chatMembers = await db.query(
+                `SELECT * from chatMembers WHERE chatId = $currChatId`,
+                { $currChatId: currChatId }
+            );
+
+            chat.members = [];
+            chat.admins = [];
+
+            chatMembers.forEach(member => {
+
+                const formmatedChatMember = {
+                    id: member.userId,
+                    username: member.username,
+                    fullname: member.fullname,
+                    imgUrl: member.imgUrl,
+                };
+
+                chat.members.push(formmatedChatMember);
+                if (member.isAdmin) chat.admins.push(formmatedChatMember);
+                if (member.userId === loggedinUserId) {
+                    chat.isBlocked = member.isChatBlocked ? 1 : 0;
+                    chat.isMuted = member.isChatMuted ? 1 : 0;
+                }
+            });
+
+            chat.isGroup = false;
+
+            const messages = await db.query(
+                `SELECT * from chatMessages WHERE chatId = $currChatId`,
+                { $currChatId: currChatId }
+            );
+
+            chat.messages = messages;
+
+            return chat;
+        });
     } catch (err) {
         logger.error('cannot find chat', err)
         throw err
@@ -174,7 +228,7 @@ async function updateChat(chat, userId) {
 
 
 async function addChat(members) {
-    
+
     try {
         return await db.txn(async (txn) => {
             let isChatAlreadyExist;
@@ -226,68 +280,13 @@ async function addChat(members) {
         logger.error('cannot add chat', err)
         throw err
     }
-}
+} 
 
-async function addMessage(message) {
-    try {
-        const { chatId, userId, txt, createdAt } = message
-        const { lastID } = await db.query(`insert into messages (chatId, userId, txt, createdAt) values ($chatId, $userId, $txt, $createdAt)`, { $chatId: chatId, $userId: userId, $txt: txt, $createdAt: createdAt });
-        return lastID;
-    } catch (err) {
-        logger.error('cannot add message', err)
-        throw err
-    }
-}
-
-async function getMessages(chatId) {
-    try {
-        const messages = await db.query(`select * from messages where chatId = $chatId`, { $chatId: chatId });
-        return messages;
-    } catch (err) {
-        logger.error('cannot find messages', err)
-        throw err
-    }
-}
-
-async function getUnreadMessages(chatId, userId) {
-    try {
-        const messages = await db.query(`select * from messages where chatId = $chatId and userId != $userId and isRead = 0`, { $chatId: chatId, $userId: userId });
-        return messages;
-    } catch (err) {
-        logger.error('cannot find messages', err)
-        throw err
-    }
-}
-
-async function updateMessage(message) {
-    try {
-        const { id, chatId, userId, txt, createdAt, isRead } = message
-        await db.query(`update messages set chatId = $chatId, userId = $userId, txt = $txt, createdAt = $createdAt, isRead = $isRead where id = $id`, { $id: id, $chatId: chatId, $userId: userId, $txt: txt, $createdAt: createdAt, $isRead: isRead });
-        return message;
-    } catch (err) {
-        logger.error('cannot update message', err)
-        throw err
-    }
-}
-
-async function deleteMessage(messageId) {
-    try {
-        await db.query(`delete from messages where id = $id`, { $id: messageId });
-    } catch (err) {
-        logger.error('cannot delete message', err)
-        throw err
-    }
-}
 
 module.exports = {
     getChats,
-    getById,
+    getByUsersId,
     deleteChat,
     updateChat,
     addChat,
-    addMessage,
-    getMessages,
-    getUnreadMessages,
-    updateMessage,
-    deleteMessage
 }

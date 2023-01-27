@@ -28,13 +28,17 @@
                 <div (click)="onSetCurrImgUrl(1)"></div>
             </div>
 
+            <div class="sent-msg" *ngIf="isSentMsgShown">Sent</div>
+
             <div class="reply-actions-container">
                 <div class="logged-in-user-story-actions" *ngIf="isUserStory; else msgEdit">
                     <user-preview [user]="story.by" [type]="'story'"> </user-preview>
                     <ellipsis (click)="onToggleOptionsModal()"> </ellipsis>
                 </div>
                 <ng-template #msgEdit>
-                    <msg-edit [isStoryReply]="true" [story]="story"> </msg-edit>
+                    <msg-edit *ngIf="loggedinUser" [isStoryReply]="true" [story]="story" [currStoryImgIdx]="currImgIdx"
+                        [loggedinUser]="loggedinUser" (toggleStoryTimer)="onToggleIsPlaying()"
+                        (msgSent)="onSetSentMsg()"> </msg-edit>
                 </ng-template>
             </div>
         </div>
@@ -47,6 +51,7 @@
         </div>
     </div>
 
-    <story-options-modal *ngIf="isOptionsModalShown" [story]="story" [loggedinUser]="loggedinUser" (closeModal)="onToggleOptionsModal()"></story-options-modal>
+    <story-options-modal *ngIf="isOptionsModalShown" [story]="story" [loggedinUser]="loggedinUser"
+        (closeModal)="onToggleOptionsModal()"></story-options-modal>
     <div class="main-screen dark-mode" *ngIf="isOptionsModalShown" (click)="onToggleOptionsModal()"></div>
 </article>

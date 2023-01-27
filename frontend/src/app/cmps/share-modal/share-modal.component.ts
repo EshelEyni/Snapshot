@@ -9,12 +9,13 @@ import { faX } from '@fortawesome/free-solid-svg-icons';
 import { User } from 'src/app/models/user.model';
 import { Tag } from 'src/app/models/tag.model';
 import { Observable, Subscription } from 'rxjs';
+import { Story } from 'src/app/models/story.model';
 
 @Component({
   selector: 'share-modal',
   templateUrl: './share-modal.component.html',
   styleUrls: ['./share-modal.component.scss'],
-  inputs: ['loggedinUser', 'type', 'chat', 'post'],
+  inputs: ['loggedinUser', 'type', 'chat', 'post', 'story'],
   outputs: ['close']
 })
 export class ShareModalComponent implements OnInit, OnDestroy {
@@ -26,6 +27,7 @@ export class ShareModalComponent implements OnInit, OnDestroy {
   mesageService = inject(MessageService);
   chat!: Chat;
   post!: Post;
+  story!: Story;
   faX = faX;
 
   loggedinUser!: User;
@@ -74,8 +76,10 @@ export class ShareModalComponent implements OnInit, OnDestroy {
           return user;
         });
 
-        this.users = users;
+        this.isChatListShown = chats.length > 0;
       }
+
+      console.log('chats: ', chats);
     })
   }
 
@@ -194,6 +198,31 @@ export class ShareModalComponent implements OnInit, OnDestroy {
 
           await Promise.all(chatPrms);
         }
+        break;
+      case 'story-reply':
+        const { selectedUsers: users, selectedChats: chats } = this;
+
+        if (users.length) {
+          const userPrms = users.map(async user => {
+            const chatToAdd = this.chatService.getEmptyChat(
+              this.userService.getMiniUser(this.loggedinUser),
+              [user]
+            );
+
+            const chatId = await this.chatService.addChat(chatToAdd)
+            if (chatId) await this._setStoryReplyMessage(chatId);
+          });
+
+          await Promise.all(userPrms);
+        }
+
+        if (chats.length) {
+          const chatPrms = chats.map(async chat => {
+            await this._setStoryReplyMessage(chat.id);
+          });
+
+          await Promise.all(chatPrms);
+        }
 
         break;
     }
@@ -207,7 +236,16 @@ export class ShareModalComponent implements OnInit, OnDestroy {
     msg.chatId = chatId;
     msg.type = 'post';
     msg.postId = this.post.id;
-    await this.mesageService.addMessage(msg, 'from-share-modal');
+    await this.mesageService.addMessage(msg);
+  }
+
+  private async _setStoryReplyMessage(chatId: number) {
+    const msg = this.mesageService.getEmptyMessage();
+    msg.sender = this.userService.getMiniUser(this.loggedinUser);
+    msg.chatId = chatId;
+    msg.type = 'story';
+    msg.storyId = this.story.id;
+    await this.mesageService.addMessage(msg);
   }
 
   ngOnDestroy() {

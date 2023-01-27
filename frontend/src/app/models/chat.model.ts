@@ -19,5 +19,6 @@ export interface Message {
     createdAt: Date;
     text?: string;
     postId?: number;
+    storyId?: number;
     imgUrl?: string;
 }

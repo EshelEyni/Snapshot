@@ -23,7 +23,7 @@
 
         <story [story]="currStory" [nextStory]="postCurrStoryList[0]" [isCurrStory]="true"
             [isPaginationBtnShown]="isPaginationBtnShown" (setPrevStory)="onSetCurrStory($event)"
-            (setNextStory)="onSetCurrStory($event)"></story>
+            (setNextStory)="onSetCurrStory($event)" (imgChange)="onSetCurrStroyImg($event)"></story>
 
         <ul class="post-story-list">
             <li *ngFor="let story of postCurrStoryList">

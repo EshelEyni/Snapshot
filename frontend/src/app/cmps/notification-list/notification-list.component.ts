@@ -25,19 +25,40 @@ export class NotificationListComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     if (this.notifications) {
-      this.notificationsByDate = this.notifications.reduce((acc, notification) => {
-        const date = new Date(notification.createdAt);
-        const key = this.getDateKey(date);
-        const label = this.getLabel(key);
-        if (!acc[key]) {
-          acc[key] = { label, notifications: [] as Notification[] };
-        }
-        acc[key].notifications.push(notification);
-        return acc;
-      }, {} as NotificationsByDate);
+      this.notifications = this.reduceDuplicatedMessageNotifications(this.notifications);
+      this.notificationsByDate = this.reduceByDate(this.notifications);
 
       this.keys = Object.keys(this.notificationsByDate) as (keyof NotificationsByDate)[];
     }
+  }
+
+  reduceDuplicatedMessageNotifications(notifications: Notification[]): Notification[] {
+    return notifications.reduce((acc, notification) => {
+      if (notification.type === 'message') {
+        const lastNotification = acc[acc.length - 1];
+        if (lastNotification && lastNotification.type === 'message'
+          && lastNotification.by.id === notification.by.id) {
+          lastNotification.msgCount = (lastNotification.msgCount || 1) + 1;
+          return acc;
+        }
+      }
+      acc.push(notification);
+      return acc;
+    }, [] as Notification[]);
+  }
+
+
+  reduceByDate(notifications: Notification[]): NotificationsByDate {
+    return notifications.reduce((acc, notification) => {
+      const date = new Date(notification.createdAt);
+      const key = this.getDateKey(date);
+      const label = this.getLabel(key);
+      if (!acc[key]) {
+        acc[key] = { label, notifications: [] as Notification[] };
+      }
+      acc[key].notifications.push(notification);
+      return acc;
+    }, {} as NotificationsByDate);
   }
 
   getDateKey(date: Date): 'today' | 'yesterday' | 'thisWeek' | 'lastWeek' | 'thisMonth' | 'earlier' {

@@ -25,5 +25,13 @@
                 <img [src]="story.imgUrls[0]" alt="story-img">
             </div>
         </div>
+
+
+        <div class="chat-story-container" *ngSwitchCase="'chat-story-preview'" [routerLink]="['/story/',story.id]">
+            <div class="chat-story-img-container">
+                <img class="chat-story-img" [src]="story.imgUrls[0]" alt="story-img">
+                <div class="chat-story-username">{{story.by.username}}</div>
+            </div>
+        </div>
     </container-element>
 </article>

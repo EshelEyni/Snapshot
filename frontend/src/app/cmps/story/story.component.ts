@@ -11,7 +11,7 @@ import { Component, OnInit, EventEmitter, OnChanges, OnDestroy, inject } from '@
   templateUrl: './story.component.html',
   styleUrls: ['./story.component.scss'],
   inputs: ['story', 'isCurrStory', 'nextStory', 'isPaginationBtnShown', 'isLinkToStoryEdit'],
-  outputs: ['setPrevStory', 'setNextStory']
+  outputs: ['setPrevStory', 'setNextStory','imgChange']
 })
 export class StoryComponent implements OnInit, OnChanges, OnDestroy {
 
@@ -26,6 +26,7 @@ export class StoryComponent implements OnInit, OnChanges, OnDestroy {
   sub: Subscription | null = null;
   setPrevStory = new EventEmitter<number>();
   setNextStory = new EventEmitter<number>();
+  imgChange = new EventEmitter<number>();
   story!: Story;
   nextStory!: Story;
   isCurrStory!: boolean;
@@ -35,6 +36,7 @@ export class StoryComponent implements OnInit, OnChanges, OnDestroy {
   isPaginationBtnShown!: { left: boolean, right: boolean };
   isPlaying: boolean = true;
   isOptionsModalShown: boolean = false;
+  isSentMsgShown: boolean = false;
 
   ngOnInit(): void {
     this.sub = this.loggedinUser$.subscribe(user => {
@@ -54,6 +56,7 @@ export class StoryComponent implements OnInit, OnChanges, OnDestroy {
   }
   onSetCurrImgUrl(num: number) {
     this.currImgIdx = this.currImgIdx + num;
+    this.imgChange.emit(this.currImgIdx)
     if (this.currImgIdx < 0) {
       this.setPrevStory.emit(-1);
       return;
@@ -67,6 +70,17 @@ export class StoryComponent implements OnInit, OnChanges, OnDestroy {
 
   onToggleOptionsModal() {
     this.isOptionsModalShown = !this.isOptionsModalShown;
+    this.onToggleIsPlaying();
+  }
+
+  onSetSentMsg() {
+    this.isSentMsgShown = true
+    setTimeout(() => {
+      this.isSentMsgShown = false;
+    }, 1000);
+  }
+
+  onToggleIsPlaying() {
     this.isPlaying = !this.isPlaying;
   }
 
