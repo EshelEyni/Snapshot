@@ -1,5 +1,6 @@
 <section class="chat-details">
     <header class="chat-details-header">
+        <fa-icon class="chevron-icon" [icon]="faChevronLeft" (click)="onGoBack()"></fa-icon>
         <chat-preview [chat]="chat" [loggedinUser]="loggedinUser" *ngIf="!isSettingShown; else settingTitle"
             (click)="onToggleSetting()"></chat-preview>
         <ng-template #settingTitle>

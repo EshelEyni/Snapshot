@@ -18,8 +18,14 @@
         width: 100%;
         border-bottom: 1px solid var(--border-color);
 
-        &>*:first-child {
-            width: 90%;
+        chat-preview {
+            width: 80%;
+        }
+
+        .chevron-icon {
+            font-size: rem(25px);
+            flex-basis: rem(35px);
+            cursor: pointer;
         }
 
         .chat-preview {
@@ -84,15 +90,29 @@
         display: flex;
         flex-direction: column;
         overflow: hidden;
-    
+
 
         .messages-container {
             position: relative;
             width: 100%;
-            height: calc(100% - rem(80px));
+            height: calc(100% - rem(130px));
 
-            message-list{
+            message-list {
                 overflow: auto;
+            }
+        }
+    }
+
+    @include for-small-layout {
+        .chat-details-header {
+            chat-preview {
+                width: 90%;
+            }
+        }
+
+        .chat-container {
+            .messages-container {
+                height: calc(100% - rem(80px));
             }
         }
     }

@@ -1,8 +1,9 @@
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { MessageService } from './../../services/message.service';
 import { Chat, Message } from '../../models/chat.model';
 import { User } from '../../models/user.model';
-import { Component, OnInit, EventEmitter, inject, OnChanges, OnDestroy, ViewChild, ElementRef, AfterViewChecked, SimpleChanges } from '@angular/core';
+import { Component, OnInit, EventEmitter, inject, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { SocketService } from 'src/app/services/socket.service';
   inputs: ['loggedinUser', 'chat'],
   outputs: ['clearChat']
 })
-export class ChatDetailsComponent implements OnInit, OnChanges, AfterViewChecked, OnDestroy {
+export class ChatDetailsComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor() { }
   socketService = inject(SocketService);
@@ -26,6 +27,8 @@ export class ChatDetailsComponent implements OnInit, OnChanges, AfterViewChecked
   memberNameList!: string[];
   isSettingShown = false;
   msgSub!: Subscription;
+
+  faChevronLeft = faChevronLeft;
 
   ngOnInit(): void {
     const { members } = this.chat;
@@ -62,7 +65,8 @@ export class ChatDetailsComponent implements OnInit, OnChanges, AfterViewChecked
     })
   }
 
-  ngAfterViewChecked() {
+  onGoBack() {
+    this.clearChat.emit();
   }
 
   onToggleSetting() {

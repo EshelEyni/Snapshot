@@ -1,15 +1,27 @@
 <section class="messages" *ngIf="loggedinUser">
-    <header class="messages-small-layout-header">
+    <header class="messages-header" *ngIf="!currActiveChat">
         <fa-icon [icon]="faChevronLeft" (click)="onGoBack()"></fa-icon>
         <h1>{{loggedinUser.username}}</h1>
         <div>
-            <svg-icon src="../../../assets/svgs/pencil-rect.svg"></svg-icon>
+            <svg-icon src="../../../assets/svgs/pencil-rect.svg" (click)="onToggleShareModal()"></svg-icon>
         </div>
     </header>
 
-    <main class="messages-main-container">
-        <div class="messages-user-list-container">
-            <div class="messages-user-list-header">
+    <div class="chat-list-container-mobile-layout" *ngIf="!currActiveChat;else mobileChatContainer">
+        <chat-list [chats]="(chats$|async)!" [loggedinUser]="loggedinUser"
+            (chatSelected)="onSelectChat($event)"></chat-list>
+    </div>
+
+    <ng-template #mobileChatContainer>
+        <div class="chat-container-mobile-layout">
+            <chat-details [loggedinUser]="loggedinUser" [chat]="currActiveChat"
+                *ngIf="currActiveChat; else noActiveChatMsg" (clearChat)="onClearChat()"></chat-details>
+        </div>
+    </ng-template>
+
+    <main class="messages-main-container-for-small-layout">
+        <div class="messages-chat-list-container">
+            <div class="messages-chat-list-header">
                 <h1>{{loggedinUser.username}}</h1>
                 <svg-icon src="../../../assets/svgs/pencil-rect.svg" (click)="onToggleShareModal()"></svg-icon>
             </div>
@@ -29,6 +41,7 @@
             </ng-template>
         </div>
     </main>
+
     <share-modal *ngIf="isShareModalShown" [loggedinUser]="loggedinUser" [type]="'message-page'"
         (close)="onToggleShareModal()" [type]="'message-page'"></share-modal>
     <div class="main-screen dark-mode" *ngIf="isShareModalShown" (click)="onToggleShareModal()"></div>
