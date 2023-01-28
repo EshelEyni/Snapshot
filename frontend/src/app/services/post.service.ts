@@ -7,7 +7,7 @@ import { Post } from '../models/post.model'
 import { UserService } from './user.service'
 
 const BASE_URL = process.env['NODE_ENV'] === 'production'
-  ? '/api/'
+  ? '/api'
   : '//localhost:3030/api';
 
 @Injectable({

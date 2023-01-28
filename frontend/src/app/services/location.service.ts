@@ -4,7 +4,7 @@ import { Injectable, inject } from '@angular/core';
 import { Location } from '../models/post.model';
 
 const BASE_URL = process.env['NODE_ENV'] === 'production'
-  ? '/api/'
+  ? '/api'
   : '//localhost:3030/api';
 
 

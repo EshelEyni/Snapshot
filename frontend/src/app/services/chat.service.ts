@@ -5,7 +5,7 @@ import { Injectable, inject } from '@angular/core';
 import { Chat } from '../models/chat.model';
 
 const BASE_URL = process.env['NODE_ENV'] === 'production'
-  ? '/api/'
+  ? '/api'
   : '//localhost:3030/api';
 
 @Injectable({

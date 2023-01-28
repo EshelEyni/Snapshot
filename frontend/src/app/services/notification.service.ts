@@ -6,7 +6,7 @@ import { Injectable, inject } from '@angular/core';
 import { Notification } from '../models/notification.model';
 
 const BASE_URL = process.env['NODE_ENV'] === 'production'
-  ? '/api/'
+  ? '/api'
   : '//localhost:3030/api';
 
 @Injectable({

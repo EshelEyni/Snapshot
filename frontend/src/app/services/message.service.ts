@@ -6,7 +6,7 @@ import { SocketService } from './socket.service';
 
 
 const BASE_URL = process.env['NODE_ENV'] === 'production'
-  ? '/api/'
+  ? '/api'
   : '//localhost:3030/api';
 
 

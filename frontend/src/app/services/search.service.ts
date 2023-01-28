@@ -7,7 +7,7 @@ import { UserService } from './user.service';
 import { Injectable, inject } from '@angular/core';
 
 const BASE_URL = process.env['NODE_ENV'] === 'production'
-  ? '/api/'
+  ? '/api'
   : '//localhost:3030/api';
 
 @Injectable({

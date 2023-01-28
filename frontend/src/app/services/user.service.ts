@@ -9,7 +9,7 @@ import { UserState } from '../store/reducers/user.reducer'
 import { LoadingUsers } from '../store/actions/user.actions'
 
 const BASE_URL = process.env['NODE_ENV'] === 'production'
-  ? '/api/'
+  ? '/api'
   : '//localhost:3030/api';
 
 
