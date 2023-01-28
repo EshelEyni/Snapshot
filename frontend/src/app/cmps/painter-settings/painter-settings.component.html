@@ -10,7 +10,7 @@
     </div>
 
     <div class="stroke-size-container">
-        <mat-slider [min]="1" [max]="inputMax" [step]="inputMin" [(ngModel)]="strokeSize" [vertical]="true"
+        <mat-slider [min]="inputMin" [max]="inputMax" [step]="stepSize" [(ngModel)]="strokeSize" [vertical]="true"
             (valueChange)="onChangeStrokeSize($event)">
             <input matSliderThumb>
         </mat-slider>

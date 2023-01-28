@@ -23,6 +23,7 @@ export class PainterSettingsComponent implements OnInit {
   shadowBlur = 0;
   inputMax = 30;
   inputMin = 1;
+  stepSize = 1;
 
   ngOnInit(): void {
   }
@@ -56,7 +57,18 @@ export class PainterSettingsComponent implements OnInit {
         this.strokeChange.emit({ key: 'size', value: this.strokeSize });
       }
     }
-    else { this.inputMax = 30; }
+    else if (type === 'eraser') {
+      this.strokeSize = 15;
+      this.inputMin = 15;
+
+      this.strokeChange.emit({ key: 'size', value: this.strokeSize });
+    }
+    else {
+      this.inputMax = 30;
+      this.inputMin = 1;
+      this.strokeSize = 1;
+      this.strokeChange.emit({ key: 'size', value: this.strokeSize });
+    }
 
     this.onChangeColorOpacity();
     this.onChangeShadowBlur();

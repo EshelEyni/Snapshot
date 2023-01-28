@@ -124,6 +124,8 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
   }
 
   setStroke(item: CanvasStroke, ctx: CanvasRenderingContext2D) {
+    if (item.strokeType === 'eraser') return;
+
     if (item.strokeType !== 'spray') {
       ctx.beginPath();
       ctx.moveTo(item.pos[0].x, item.pos[0].y);
@@ -160,6 +162,40 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
   }
 
 
+
+
+  @HostListener('mousedown', ['$event']) onMouseDown(event: MouseEvent) {
+    event.preventDefault();
+    if (this.isDefaultMode) {
+      this.dragPos = { x: event.offsetX, y: event.offsetY };
+      this.currStoryImg.items.forEach(item => {
+        if (this.getIsItemPos(item)) {
+          this.canvas.nativeElement.style.cursor = 'grabbing';
+          item.isDragging = true;
+          this.isDeleteAreaShown = true;
+        }
+      });
+    }
+    if (this.isEditMode.painter) {
+      if (this.dragPos.y > 50 && this.dragPos.x > 50 && this.dragPos.x < 475) this.onStartDraw();
+    }
+  }
+
+  @HostListener('touchstart', ['$event']) onTouchStart(event: TouchEvent) {
+    if (this.isDefaultMode) {
+      this.dragPos = { x: event.touches[0].clientX, y: event.touches[0].clientY };
+      this.currStoryImg.items.forEach(item => {
+        if (this.getIsItemPos(item)) {
+          item.isDragging = true;
+          this.isDeleteAreaShown = true;
+        }
+      });
+    }
+    if (this.isEditMode.painter) {
+      if (this.dragPos.y > 50 && this.dragPos.x > 50 && this.dragPos.x < 475) this.onStartDraw();
+    }
+  }
+
   @HostListener('mousemove', ['$event']) onMouseMove(event: MouseEvent) {
     event.preventDefault();
     this.dragPos = { x: event.offsetX, y: event.offsetY };
@@ -186,7 +222,8 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
     if (this.isEditMode.painter && this.isDrawing) this.onDraw();
   }
 
-  @HostListener('touchstart', ['$event']) onTouchStart(event: TouchEvent) {
+  @HostListener('touchmove', ['$event']) onTouchMove(event: TouchEvent) {
+    event.preventDefault();
     this.dragPos = { x: event.touches[0].clientX, y: event.touches[0].clientY };
     if (this.isDefaultMode) {
       if (!this.currStoryImg.items.length) return;
@@ -200,49 +237,11 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
               this.canvas.nativeElement.style.cursor = 'default';
             }
           }
-          else {
-            this.canvas.nativeElement.style.cursor = 'grab';
-          }
         }
-        else this.canvas.nativeElement.style.cursor = 'default';
       });
     }
 
     if (this.isEditMode.painter && this.isDrawing) this.onDraw();
-  }
-
-  @HostListener('mousedown', ['$event']) onMouseDown(event: MouseEvent) {
-    event.preventDefault();
-    if (this.isDefaultMode) {
-      this.dragPos = { x: event.offsetX, y: event.offsetY };
-      this.currStoryImg.items.forEach(item => {
-        if (this.getIsItemPos(item)) {
-          this.canvas.nativeElement.style.cursor = 'grabbing';
-          item.isDragging = true;
-          this.isDeleteAreaShown = true;
-        }
-      });
-    }
-    if (this.isEditMode.painter) {
-      if (this.dragPos.y > 50 && this.dragPos.x > 50 && this.dragPos.x < 475) this.onStartDraw();
-    }
-  }
-
-  @HostListener('touchmove', ['$event']) onTouchMove(event: TouchEvent) {
-    event.preventDefault();
-    if (this.isDefaultMode) {
-      this.dragPos = { x: event.touches[0].clientX, y: event.touches[0].clientY };
-      this.currStoryImg.items.forEach(item => {
-        if (this.getIsItemPos(item)) {
-          this.canvas.nativeElement.style.cursor = 'grabbing';
-          item.isDragging = true;
-          this.isDeleteAreaShown = true;
-        }
-      });
-    }
-    if (this.isEditMode.painter) {
-      if (this.dragPos.y > 50 && this.dragPos.x > 50 && this.dragPos.x < 475) this.onStartDraw();
-    }
   }
 
   @HostListener('mouseup', ['$event']) onMouseUp(event: MouseEvent) {
@@ -286,7 +285,6 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
         item.isDragging = false;
       });
       this.isDeleteAreaShown = false;
-      this.canvas.nativeElement.style.cursor = 'default';
       this.setCanvas();
     }
     if (this.isEditMode.painter) this.onStopDraw();
@@ -335,14 +333,18 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
 
   onStartDraw() {
     this.isDrawing = true;
-    this.ctx.beginPath();
-    this.ctx.moveTo(this.dragPos.x, this.dragPos.y);
+    if (this.stroke.strokeType !== 'eraser') {
+      this.ctx.beginPath();
+      this.ctx.moveTo(this.dragPos.x, this.dragPos.y);
+    } else {
+      this.onEraseDrawing();
+    }
     this.onSaveStrokePos();
   }
 
   onDraw() {
     if (this.isDrawing) {
-      if (this.stroke.strokeType !== 'spray') {
+      if (this.stroke.strokeType !== 'spray' && this.stroke.strokeType !== 'eraser') {
         this.ctx.lineTo(this.dragPos.x, this.dragPos.y);
         this.ctx.lineCap = 'round';
         this.ctx.lineJoin = 'round';
@@ -352,8 +354,9 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
       }
       this.ctx.strokeStyle = this.stroke.color;
 
+      if (this.stroke.strokeType === 'eraser') this.onEraseDrawing();
       if (this.stroke.strokeType === 'spray') this.onDrawSpray(this.dragPos.x, this.dragPos.y);
-      if (this.stroke.strokeType !== 'highlighter' && this.stroke.strokeType !== 'spray') this.ctx.stroke();
+      if (this.stroke.strokeType !== 'highlighter' && this.stroke.strokeType !== 'spray' && this.stroke.strokeType !== 'eraser') this.ctx.stroke();
 
       this.onSaveStrokePos();
     }
@@ -361,11 +364,14 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
 
   onStopDraw() {
     if (this.isDrawing) {
-      this.ctx.stroke();
-      this.ctx.closePath();
+      if (this.stroke.strokeType !== 'eraser') {
+        this.ctx.stroke();
+        this.ctx.closePath();
+      }
       this.isDrawing = false;
       this.onSaveStrokePos();
       if (this.stroke.strokeType === 'arrow') this.onDrawArrow(this.stroke.pos[this.stroke.pos.length - 5].x, this.stroke.pos[this.stroke.pos.length - 5].y, this.stroke.pos[this.stroke.pos.length - 1].x, this.stroke.pos[this.stroke.pos.length - 1].y);
+      if (this.stroke.strokeType === 'eraser') this.onEraseDrawing();
       this.currStoryImg.items = [...this.currStoryImg.items, { ...this.stroke }];
       this.stroke.pos = [];
     }
@@ -396,6 +402,30 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
       this.ctx.fill();
     }
     this.ctx.closePath();
+  }
+
+  onEraseDrawing() {
+    console.log('erase');
+    this.ctx.save();
+    this.ctx.globalCompositeOperation = "destination-out";
+    this.ctx.clearRect(this.dragPos.x - this.stroke.size / 2, this.dragPos.y - this.stroke.size / 2, this.stroke.size, this.stroke.size);
+    this.ctx.restore();
+    this.currStoryImg.items.forEach((item, idx) => {
+      if (item.type === 'stroke' && item.strokeType !== 'eraser') {
+        item.pos.forEach((pos: { x: number; y: number; }, posIdx: number) => {
+          if (pos.x > this.dragPos.x - this.stroke.size / 2
+            && pos.x < this.dragPos.x + this.stroke.size / 2
+            && pos.y > this.dragPos.y - this.stroke.size / 2
+            && pos.y < this.dragPos.y + this.stroke.size / 2) {
+            console.log('erase pos');
+            item.pos.splice(posIdx, 1);
+          }
+          if(!item.pos.length) this.currStoryImg.items.splice(idx, 1);
+        })
+      }
+    })
+
+    this.setCanvas();
   }
 
   onSaveStrokePos() {
