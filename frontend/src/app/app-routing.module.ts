@@ -1,3 +1,4 @@
+import { PostEditComponent } from './pages/post-edit/post-edit.component';
 import { FollowingComponent } from './pages/following/following.component';
 import { DiscoverPeopleComponent } from './pages/discover-people/discover-people.component';
 import { StoryEditComponent } from './cmps/story-edit/story-edit.component';
@@ -44,6 +45,7 @@ const routes: Routes = [
   { path: 'discover-people', component: DiscoverPeopleComponent, resolve: { user: UserResolver }, canActivate: [AuthGuard] },
   { path: 'following/:id', component: FollowingComponent, resolve: { user: UserResolver }, canActivate: [AuthGuard] },
   { path: 'followers/:id', component: FollowersComponent, resolve: { user: UserResolver }, canActivate: [AuthGuard] },
+  { path: 'post-edit', component: PostEditComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '' }
 ];
 

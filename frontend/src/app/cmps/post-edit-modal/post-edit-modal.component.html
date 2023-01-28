@@ -1,5 +1,5 @@
-<section class="post-edit" [class.edit-mode]="currEditMode && currEditMode !=='crop'">
-    <main class="main-container">
+<section class="post-edit-modal" [class.edit-mode]="currEditMode && currEditMode !=='crop'">
+    <main class="post-edit-modal-main-container" *ngIf="!isSaving; else loader">
         <header>
             <div class="title-container">
                 <fa-icon *ngIf="postImgs.length" [icon]="faArrowLeft" (click)="onGoBack()"></fa-icon>
@@ -17,13 +17,9 @@
 
             <ng-template #postImgContainer>
                 <post-canvas [postImgs]="postImgs" [currSettings]="currEditMode" [currFilter]="currFilter"
-                    *ngIf="currEditMode !=='edit' else imgContainer"></post-canvas>
-                <ng-template #imgContainer>
-                    <!-- <img-container [imgUrls]="imgUrls" [isEditPost]="true" [onGoBack]="onGoBack"></img-container> -->
-                </ng-template>
+                    *ngIf="currEditMode !=='edit'"></post-canvas>
             </ng-template>
 
-            <canvas #offScreenCanvas width="500" height="500" [style]="{'display':'none'}"></canvas>
 
             <div class="edit-mode-container" *ngIf="currEditMode !=='crop'">
                 <post-filter-picker *ngIf="currEditMode ==='filter'"
@@ -34,4 +30,12 @@
             </div>
         </div>
     </main>
+
+    <ng-template #loader>
+        <div class="loader-container">
+            <post-loader></post-loader>
+        </div>
+    </ng-template>
+
+    <canvas #offScreenCanvas width="500" height="500" [style]="{'display':'none'}"></canvas>
 </section>

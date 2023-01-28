@@ -1,0 +1,76 @@
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/mixins';
+
+::ng-deep .post-edit {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondary-bg);
+    z-index: 100;
+    overflow: scroll;
+    @include scrollbar-hidden;
+
+    .main-screen {
+        z-index: 110;
+    }
+
+    .post-edit-header {
+        @include mobile-header;
+
+        .next-btn {
+            color: var(--primary-button);
+            font-size: rem(16px);
+            cursor: pointer;
+        }
+    }
+   
+
+    .post-edit-main-container {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: rem(20px);
+
+        .input-file-container {
+            margin: auto 0;
+        }
+
+        .post-canvas {
+            .main-screen {
+                transform: translate(0, 0);
+            }
+
+            .zoom-modal,
+            .aspect-ratio-selector {
+                z-index: 120;
+            }
+        }
+
+        .post-edit-form {
+            position: relative;
+            background-color: var(--secondary-bg);
+            align-self: stretch;
+            width: 100%;
+            height: rem(750px);
+
+            .user-preview-container {
+                border: 1px solid var(--border-color);
+                border-bottom: none;
+            }
+
+            .post-edit-form-container {
+                border: 1px solid var(--border-color);
+                border-bottom: none;
+
+            }
+        }
+
+    }
+
+}

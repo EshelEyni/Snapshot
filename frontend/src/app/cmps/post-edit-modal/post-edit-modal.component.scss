@@ -2,111 +2,133 @@
 @import '../../../assets/styles/setup/functions';
 @import '../../../assets/styles/setup/mixins';
 
-::ng-deep .post-edit {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 20;
+::ng-deep .post-edit-modal {
+    display: none;
+
+    @include for-extra-large-layout {
 
 
-    .main-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         display: flex;
         flex-direction: column;
-        position: fixed;
-        background-color: var(--secondary-bg);
-        height: 875px;
-        width: 830px;
-
-        border-radius: 12px;
+        justify-content: center;
+        align-items: center;
         z-index: 20;
 
-        header {
-            height: 45px;
+
+        .post-edit-modal-main-container {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            position: fixed;
+            background-color: var(--secondary-bg);
+            height: 875px;
+            width: 830px;
 
-            .title-container {
+            border-radius: 12px;
+            z-index: 20;
+
+            header {
+                height: 45px;
                 display: flex;
-                justify-content: center;
-                align-items: center;
-                padding-top: 5px;
-                padding-bottom: 2.5px;
-                text-transform: capitalize;
+                flex-direction: column;
+                justify-content: space-between;
 
-                fa-icon {
-                    color: var(--primary-color);
-                    position: absolute;
-                    left: rem(20px);
-                    font-size: rem(24px);
-                }
-
-                .title {
-                    color: var(--primary-color);
-                    font-size: rem(16px);
-                    transform: translateY(20%);
-                }
-
-                .next-btn {
-                    color: var(--primary-button);
-                    position: absolute;
-                    right: rem(20px);
-                    font-size: rem(16px);
-                    cursor: pointer;
-                }
-            }
-        }
-
-        .content-container {
-            height: calc(100% - rem(45px));
-
-            .input-file-container {
-                height: 100%;
-                width: 100%;
-            }
-
-            .edit-img-container {
-
-
-
-                .files-svg-container {
-                    position: absolute;
-                    top: 85%;
-                    right: 2%;
+                .title-container {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    height: rem(32px);
-                    width: rem(32px);
-                    background-color: var(--primary-color);
-                    border-radius: 50%;
-                }
+                    padding-top: 5px;
+                    padding-bottom: 2.5px;
+                    text-transform: capitalize;
 
+                    fa-icon {
+                        color: var(--primary-color);
+                        position: absolute;
+                        left: rem(20px);
+                        font-size: rem(24px);
+                    }
+
+                    .title {
+                        color: var(--primary-color);
+                        font-size: rem(16px);
+                        transform: translateY(20%);
+                    }
+
+                    .next-btn {
+                        color: var(--primary-button);
+                        position: absolute;
+                        right: rem(20px);
+                        font-size: rem(16px);
+                        cursor: pointer;
+                    }
+                }
             }
 
+            .content-container {
+                height: calc(100% - rem(45px));
 
+                .input-file-container {
+                    height: 100%;
+                    width: 100%;
+                }
+
+                .edit-img-container {
+
+
+
+                    .files-svg-container {
+                        position: absolute;
+                        top: 85%;
+                        right: 2%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: rem(32px);
+                        width: rem(32px);
+                        background-color: var(--primary-color);
+                        border-radius: 50%;
+                    }
+
+                }
+
+
+            }
         }
+
     }
 
-   
+    .loader-container {
+        height: rem(830px);
+        width: rem(830px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--primary-bg);
+        border-radius: 12px;
+    }
 }
 
 
-.edit-mode {
+::ng-deep .edit-mode {
 
-    .main-container {
+    .post-edit-modal-main-container {
         width: 1130px;
 
         .content-container {
             display: flex;
 
-            .edit-img-container {
-                flex: 6;
+
+            post-canvas {
+                .post-canvas {
+                    .canvas-container {
+                        canvas {
+                            border-radius: 0;
+                        }
+                    }
+                }
             }
 
             .edit-mode-container {

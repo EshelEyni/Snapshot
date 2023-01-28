@@ -6,7 +6,6 @@ import { Observable, Subscription, map } from 'rxjs'
 import { State } from './../../store/store'
 import { Store } from '@ngrx/store'
 import { CommentService } from 'src/app/services/comment.service'
-import { UtilService } from './../../services/util.service'
 import { PostService } from 'src/app/services/post.service'
 import { UploadImgService } from './../../services/upload-img.service'
 import { Component, OnInit, inject, Output, EventEmitter, OnDestroy, ViewChild, ElementRef, } from '@angular/core'
@@ -17,23 +16,24 @@ import { Location } from 'src/app/models/post.model'
 @Component({
   selector: 'post-edit-modal',
   templateUrl: './post-edit-modal.component.html',
-  styleUrls: ['./post-edit-modal.component.scss']
+  styleUrls: ['./post-edit-modal.component.scss'],
+  outputs: ['togglePostEdit'],
 })
 export class PostEditModalComponent implements OnInit, OnDestroy {
 
-  @Output() togglePostEdit = new EventEmitter()
+  togglePostEdit = new EventEmitter()
   @ViewChild('offScreenCanvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
 
-  constructor(private store: Store<State>) {
+  constructor() {
     this.loggedinUser$ = this.store
       .select('userState')
       .pipe(map((x) => x.loggedinUser))
   }
 
+  store = inject(Store<State>)
   uploadImgService = inject(UploadImgService)
   userService = inject(UserService)
   postService = inject(PostService)
-  UtilService = inject(UtilService)
   commentService = inject(CommentService)
   tagService = inject(TagService)
 
@@ -88,6 +88,7 @@ export class PostEditModalComponent implements OnInit, OnDestroy {
   currEditMode: string = 'crop';
   btnTxt: string = 'next';
   currFilter!: string;
+  isSaving: boolean = false;
 
   ngOnInit() {
     this.sub = this.loggedinUser$.subscribe((user) => {
@@ -150,10 +151,11 @@ export class PostEditModalComponent implements OnInit, OnDestroy {
   }
 
   async savePost() {
+    this.isSaving = true;
     const postToSave = this.postService.getEmptyPost();
     const author = this.userService.getMiniUser(this.loggedinUser);
-    // await this.convertCanvasImgsToImgUrls(this.postImgs, postToSave.imgUrls);
-    postToSave.imgUrls = this.postImgs.map(img => img.url);
+    await this.convertCanvasImgsToImgUrls(this.postImgs, postToSave.imgUrls);
+    // postToSave.imgUrls = this.postImgs.map(img => img.url);
     postToSave.by = author;
     postToSave.location = this.location;
     postToSave.tags = this.tagService.detectTags(this.txt);
@@ -196,22 +198,23 @@ export class PostEditModalComponent implements OnInit, OnDestroy {
 
         img.onload = async () => {
 
+          const canvasSize = window.innerWidth > 1260 ? 830 : window.innerWidth;
           switch (canvasImg.aspectRatio) {
             case 'Original':
-              offScreenCanvas.width = 830;
-              offScreenCanvas.height = 830;
+              offScreenCanvas.width = canvasSize;
+              offScreenCanvas.height = canvasSize;
               break;
             case '1:1':
-              offScreenCanvas.width = 830;
-              offScreenCanvas.height = 830;
+              offScreenCanvas.width = canvasSize;
+              offScreenCanvas.height = canvasSize;
               break;
             case '4:5':
-              offScreenCanvas.width = 664;
-              offScreenCanvas.height = 830;
+              offScreenCanvas.width = canvasSize * .8;
+              offScreenCanvas.height = canvasSize;
               break;
             case '16:9':
-              offScreenCanvas.width = 830;
-              offScreenCanvas.height = 467;
+              offScreenCanvas.width = canvasSize;
+              offScreenCanvas.height = canvasSize * .5625;
               break;
             default:
               break;

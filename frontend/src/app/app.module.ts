@@ -117,6 +117,8 @@ import { ChatOptionsModalComponent } from './cmps/chat-options-modal/chat-option
 import { MessageListComponent } from './cmps/message-list/message-list.component';
 import { MessageComponent } from './cmps/message/message.component';
 import { PostEditModalComponent } from './cmps/post-edit-modal/post-edit-modal.component';
+import { PostEditComponent } from './pages/post-edit/post-edit.component';
+import { PostLoaderComponent } from './cmps/post-loader/post-loader.component';
 
 @NgModule({
   declarations: [
@@ -213,6 +215,8 @@ import { PostEditModalComponent } from './cmps/post-edit-modal/post-edit-modal.c
     MessageListComponent,
     MessageComponent,
     PostEditModalComponent,
+    PostEditComponent,
+    PostLoaderComponent,
   ],
   imports: [
     BrowserAnimationsModule,

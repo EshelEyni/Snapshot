@@ -1,6 +1,5 @@
 <section class="post-options-modal" *ngIf="!isConfirmDeleteMsgShown && isPostOwnedByUser">
     <button class="clean-btn delete-btn" (click)="onToggleConfirmDelete()">Delete</button>
-    <button class="clean-btn">Edit</button>
     <button class="clean-btn" (click)="onToggleLikeDisplay()">{{toggleLikeDisplayBtnTxt}}</button>
     <button class="clean-btn" (click)="onToggleCommentDisplay()">{{toggleCommentDisplayBtnTxt}}</button>
     <button class="clean-btn" (click)="onGoToPost()">Go to post</button>

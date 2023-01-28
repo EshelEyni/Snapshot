@@ -23,15 +23,15 @@ export class PostCanvasComponent implements OnInit, OnChanges {
   currSettings!: string;
   currFilter!: string;
   currAspectRatio: string = 'Original';
-
+  canvasSize: number = 830;
   currImgIdx = 0;
   isPaginationBtnShown = { left: false, right: false };
   isAspectRatioModalShown = false;
   isMainScreenShown = false;
   isZoomModalShown = false;
   isDragging = false;
-  mousePos = { x: 0, y: 0 };
-  initialMousePos = { x: 0, y: 0 };
+  dragPos = { x: 0, y: 0 };
+  initialDragPos = { x: 0, y: 0 };
 
   ngOnInit(): void {
     const canvas = this.canvas.nativeElement;
@@ -39,18 +39,34 @@ export class PostCanvasComponent implements OnInit, OnChanges {
     this.imgUrls = this.postImgs.map(img => img.url);
     this.currPostImg = this.postImgs[0];
 
-    this.currPostImg.width = canvas.width;
-    this.currPostImg.height = canvas.height;
+    this.postImgs.forEach(img => {
+      img.height = img.width = this.canvasSize;
+    })
+
     this.setCanvas();
     this.setPaginationBtns();
   }
 
   ngOnChanges() {
+    console.log('ngOnChanges');
     if (this.currSettings !== 'crop') {
       const canvas = this.canvas.nativeElement;
       canvas.style.cursor = 'default';
     }
+
+    this.setCanvasSize();
     if (this.currPostImg) this.setCanvas();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.setCanvasSize();
+    this.setCanvas();
+  }
+
+  setCanvasSize() {
+    if (window.innerWidth > 1260) return;
+    this.canvasSize = window.innerWidth;
   }
 
   setCanvas() {
@@ -169,7 +185,6 @@ export class PostCanvasComponent implements OnInit, OnChanges {
       this.currPostImg = this.postImgs[this.currImgIdx];
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(image, x, y, width, height);
-      console.log(this.currPostImg);
     }
   }
 
@@ -180,20 +195,48 @@ export class PostCanvasComponent implements OnInit, OnChanges {
     this.isDragging = true;
     if ((e.target as HTMLElement).tagName === 'CANVAS') {
       this.drawLines();
-      this.initialMousePos = { x: e.offsetX, y: e.offsetY };
+      this.initialDragPos = { x: e.offsetX, y: e.offsetY };
     }
   }
 
+  @HostListener('touchstart', ['$event']) onTouchStart(e: TouchEvent) {
+    if (this.currSettings !== 'crop') return;
+    const canvas = this.canvas.nativeElement;
+    canvas.style.cursor = 'grabbing';
+    this.isDragging = true;
+    if ((e.target as HTMLElement).tagName === 'CANVAS') {
+      this.drawLines();
+      this.initialDragPos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }
+  }
+
+
   @HostListener('mousemove', ['$event']) onMouseMove(e: MouseEvent) {
     if (this.currSettings !== 'crop') return;
-    this.mousePos = { x: e.offsetX, y: e.offsetY };
+    this.dragPos = { x: e.offsetX, y: e.offsetY };
     const isCanvas = (e.target as HTMLElement).tagName === 'CANVAS';
     const canvas = this.canvas.nativeElement;
     canvas.style.cursor = 'grab';
     let canvasRect = canvas.getBoundingClientRect();
     let x = e.clientX - canvasRect.left;
     let y = e.clientY - canvasRect.top;
-    this.mousePos = { x, y };
+    this.dragPos = { x, y };
+    if (this.isDragging && isCanvas) {
+      canvas.style.cursor = 'grabbing';
+      this.drawDraggedImg();
+    }
+  }
+
+  @HostListener('touchmove', ['$event']) onTouchMove(e: TouchEvent) {
+    if (this.currSettings !== 'crop') return;
+    this.dragPos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    const isCanvas = (e.target as HTMLElement).tagName === 'CANVAS';
+    const canvas = this.canvas.nativeElement;
+    canvas.style.cursor = 'grab';
+    let canvasRect = canvas.getBoundingClientRect();
+    let x = e.touches[0].clientX - canvasRect.left;
+    let y = e.touches[0].clientY - canvasRect.top;
+    this.dragPos = { x, y };
     if (this.isDragging && isCanvas) {
       canvas.style.cursor = 'grabbing';
       this.drawDraggedImg();
@@ -211,6 +254,20 @@ export class PostCanvasComponent implements OnInit, OnChanges {
       this.ctx.clearRect(0, 0, canvas.width, canvas.height);
       this.drawDraggedImg(true);
     }
+  }
+
+  @HostListener('touchend', ['$event']) onTouchEnd(e: TouchEvent) {
+    if (this.currSettings !== 'crop') return;
+    const isCanvas = (e.target as HTMLElement).tagName === 'CANVAS';
+    const canvas = this.canvas.nativeElement;
+    canvas.style.cursor = 'grab';
+    this.isDragging = false;
+    if (isCanvas) {
+
+      this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+      this.drawDraggedImg(true);
+    }
+
   }
 
   drawLines() {
@@ -250,15 +307,15 @@ export class PostCanvasComponent implements OnInit, OnChanges {
         width = canvas.width + (this.currPostImg.zoom * (canvas.width / canvas.height));
         height = canvas.height + this.currPostImg.zoom;
 
-        x = this.currPostImg.x + (this.initialMousePos.x - this.mousePos.x) * -1;
-        y = this.currPostImg.y + (this.initialMousePos.y - this.mousePos.y) * -1;
+        x = this.currPostImg.x + (this.initialDragPos.x - this.dragPos.x) * -1;
+        y = this.currPostImg.y + (this.initialDragPos.y - this.dragPos.y) * -1;
 
       }
       else {
         width = canvas.width;
         height = canvas.height;
-        x = (canvas.width / 2 - this.mousePos.x) * -1;
-        y = (canvas.height / 2 - this.mousePos.y) * -1;
+        x = (canvas.width / 2 - this.dragPos.x) * -1;
+        y = (canvas.height / 2 - this.dragPos.y) * -1;
       }
 
       this.ctx.drawImage(image, x, y, width, height);

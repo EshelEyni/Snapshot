@@ -1,7 +1,7 @@
 <main class="post-canvas">
     <div class="main-screen" (click)="onToggleModal('main-screen')" *ngIf="isMainScreenShown"></div>
     <div class="canvas-container">
-        <canvas #canvas height="830" width="830"></canvas>
+        <canvas #canvas [height]="canvasSize" [width]="canvasSize"></canvas>
         <img-dots *ngIf="imgUrls.length>1" [imgUrls]="imgUrls" [currImgUrl]="currPostImg.url"></img-dots>
     </div>
 

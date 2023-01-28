@@ -53,12 +53,12 @@
             .btn-share {
                 position: relative;
                 display: flex;
-                justify-content: center;
+                justify-content: flex-start;
                 align-items: center;
                 background-color: var(--primary-color);
                 color: white;
-                padding: rem(5px) rem(10px);
-                width: rem(200px);
+                padding: rem(5px) rem(10px) rem(5px) rem(20px);
+                width: rem(160px);
                 border-radius: 35px;
 
                 .user-preview {

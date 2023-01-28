@@ -56,7 +56,7 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
   canvasHeight: number = 0;
   canvasWidth: number = 0;
 
-  mousePos = { x: 0, y: 0 };
+  dragPos = { x: 0, y: 0 };
 
   currTxt !: CanvasTxt;
 
@@ -96,7 +96,6 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
     if (window.innerWidth > 1000 && this.canvasHeight === 900 && this.canvasWidth === 515) return;
     this.setCanvasSize();
     this.setCanvas();
-
   }
 
   setCanvas(canvas: HTMLCanvasElement = this.canvas.nativeElement, storyImg: StoryImg = this.currStoryImg, ctx: CanvasRenderingContext2D = this.ctx) {
@@ -121,7 +120,7 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
     ctx.strokeStyle = item.style.color;
     ctx.font = `${item.style['font-size']} ${item.style['font-family']}`;
     if (!item.isDragging) ctx.fillText(item.str, item.rect.x, item.rect.y, this.canvas.nativeElement.width);
-    else ctx.fillText(item.str, this.mousePos.x - item.rect.width / 2, this.mousePos.y + item.rect.height / 2, this.canvas.nativeElement.width);
+    else ctx.fillText(item.str, this.dragPos.x - item.rect.width / 2, this.dragPos.y + item.rect.height / 2, this.canvas.nativeElement.width);
   }
 
   setStroke(item: CanvasStroke, ctx: CanvasRenderingContext2D) {
@@ -156,14 +155,14 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
     image.src = item.url;
     image.crossOrigin = 'Anonymous';
     image.onload = () => {
-      ctx.drawImage(image, this.mousePos.x - item.rect.width / 2, this.mousePos.y - item.rect.height / 2, item.rect.width, item.rect.height);
+      ctx.drawImage(image, this.dragPos.x - item.rect.width / 2, this.dragPos.y - item.rect.height / 2, item.rect.width, item.rect.height);
     }
   }
 
 
   @HostListener('mousemove', ['$event']) onMouseMove(event: MouseEvent) {
     event.preventDefault();
-    this.mousePos = { x: event.offsetX, y: event.offsetY };
+    this.dragPos = { x: event.offsetX, y: event.offsetY };
     if (this.isDefaultMode) {
       if (!this.currStoryImg.items.length) return;
       this.currStoryImg.items.forEach(item => {
@@ -171,7 +170,32 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
           if (item.isDragging) {
             this.setCanvas();
             this.onDragItem(item);
-            if (this.isDeleteAreaShown && this.mousePos.y > 885) {
+            if (this.isDeleteAreaShown && this.dragPos.y > 885) {
+              this.onRemoveItem(item);
+              this.canvas.nativeElement.style.cursor = 'default';
+            }
+          }
+          else {
+            this.canvas.nativeElement.style.cursor = 'grab';
+          }
+        }
+        else this.canvas.nativeElement.style.cursor = 'default';
+      });
+    }
+
+    if (this.isEditMode.painter && this.isDrawing) this.onDraw();
+  }
+
+  @HostListener('touchstart', ['$event']) onTouchStart(event: TouchEvent) {
+    this.dragPos = { x: event.touches[0].clientX, y: event.touches[0].clientY };
+    if (this.isDefaultMode) {
+      if (!this.currStoryImg.items.length) return;
+      this.currStoryImg.items.forEach(item => {
+        if (this.getIsItemPos(item)) {
+          if (item.isDragging) {
+            this.setCanvas();
+            this.onDragItem(item);
+            if (this.isDeleteAreaShown && this.dragPos.y > 885) {
               this.onRemoveItem(item);
               this.canvas.nativeElement.style.cursor = 'default';
             }
@@ -190,7 +214,7 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
   @HostListener('mousedown', ['$event']) onMouseDown(event: MouseEvent) {
     event.preventDefault();
     if (this.isDefaultMode) {
-      this.mousePos = { x: event.offsetX, y: event.offsetY };
+      this.dragPos = { x: event.offsetX, y: event.offsetY };
       this.currStoryImg.items.forEach(item => {
         if (this.getIsItemPos(item)) {
           this.canvas.nativeElement.style.cursor = 'grabbing';
@@ -200,23 +224,62 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
       });
     }
     if (this.isEditMode.painter) {
-      if (this.mousePos.y > 50 && this.mousePos.x > 50 && this.mousePos.x < 475) this.onStartDraw();
+      if (this.dragPos.y > 50 && this.dragPos.x > 50 && this.dragPos.x < 475) this.onStartDraw();
     }
   }
 
+  @HostListener('touchmove', ['$event']) onTouchMove(event: TouchEvent) {
+    event.preventDefault();
+    if (this.isDefaultMode) {
+      this.dragPos = { x: event.touches[0].clientX, y: event.touches[0].clientY };
+      this.currStoryImg.items.forEach(item => {
+        if (this.getIsItemPos(item)) {
+          this.canvas.nativeElement.style.cursor = 'grabbing';
+          item.isDragging = true;
+          this.isDeleteAreaShown = true;
+        }
+      });
+    }
+    if (this.isEditMode.painter) {
+      if (this.dragPos.y > 50 && this.dragPos.x > 50 && this.dragPos.x < 475) this.onStartDraw();
+    }
+  }
 
   @HostListener('mouseup', ['$event']) onMouseUp(event: MouseEvent) {
     event.preventDefault();
     if (this.isDefaultMode) {
-      this.mousePos = { x: event.offsetX, y: event.offsetY };
+      this.dragPos = { x: event.offsetX, y: event.offsetY };
       const item = this.currStoryImg.items.find(item => item.isDragging);
       if (!item) return;
 
       if (item.type === 'txt') {
-        item.rect.x = this.mousePos.x - item.rect.width / 2;
-        item.rect.y = this.mousePos.y + item.rect.height / 2;
+        item.rect.x = this.dragPos.x - item.rect.width / 2;
+        item.rect.y = this.dragPos.y + item.rect.height / 2;
       }
-      if (this.isDeleteAreaShown && this.mousePos.y > 885) {
+      if (this.isDeleteAreaShown && this.dragPos.y > 885) {
+        this.onRemoveItem(item);
+      }
+      this.currStoryImg.items.forEach(item => {
+        item.isDragging = false;
+      });
+      this.isDeleteAreaShown = false;
+      this.canvas.nativeElement.style.cursor = 'default';
+      this.setCanvas();
+    }
+    if (this.isEditMode.painter) this.onStopDraw();
+  }
+
+  @HostListener('touchend', ['$event']) onTouchEnd(event: TouchEvent) {
+    if (this.isDefaultMode) {
+      this.dragPos = { x: event.changedTouches[0].clientX, y: event.changedTouches[0].clientY };
+      const item = this.currStoryImg.items.find(item => item.isDragging);
+      if (!item) return;
+
+      if (item.type === 'txt') {
+        item.rect.x = this.dragPos.x - item.rect.width / 2;
+        item.rect.y = this.dragPos.y + item.rect.height / 2;
+      }
+      if (this.isDeleteAreaShown && this.dragPos.y > 885) {
         this.onRemoveItem(item);
       }
       this.currStoryImg.items.forEach(item => {
@@ -231,7 +294,7 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
 
   @HostListener('dblclick', ['$event']) onMouseLeave(event: MouseEvent) {
     event.preventDefault();
-    this.mousePos = { x: event.offsetX, y: event.offsetY };
+    this.dragPos = { x: event.offsetX, y: event.offsetY };
 
     if (this.currStoryImg.items.length === 0) return;
     this.currStoryImg.items.forEach(item => {
@@ -246,25 +309,25 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
 
   getIsItemPos(item: { type: string; rect: { x: number; width: any; y: number; height: number; }; }): boolean | void {
     if (item.type === 'stroke') return false;
-    if (item.type === 'txt') return this.mousePos.x > item.rect.x && this.mousePos.x < item.rect.x + item.rect.width
-      && this.mousePos.y > item.rect.y - item.rect.height && this.mousePos.y < item.rect.y;
-    if (item.type === 'sticker') return this.mousePos.x > item.rect.x && this.mousePos.x < item.rect.x + item.rect.width
-      && this.mousePos.y > item.rect.y && this.mousePos.y < item.rect.y + item.rect.height;
+    if (item.type === 'txt') return this.dragPos.x > item.rect.x && this.dragPos.x < item.rect.x + item.rect.width
+      && this.dragPos.y > item.rect.y - item.rect.height && this.dragPos.y < item.rect.y;
+    if (item.type === 'sticker') return this.dragPos.x > item.rect.x && this.dragPos.x < item.rect.x + item.rect.width
+      && this.dragPos.y > item.rect.y && this.dragPos.y < item.rect.y + item.rect.height;
   }
 
   onDragItem(item: CanvasSticker | CanvasTxt) {
 
     if (item.type === 'txt') {
-      item.rect.x = this.mousePos.x - item.rect.width / 2;
-      item.rect.y = this.mousePos.y + item.rect.height / 2;
+      item.rect.x = this.dragPos.x - item.rect.width / 2;
+      item.rect.y = this.dragPos.y + item.rect.height / 2;
       if (item.rect.x < 0) item.rect.x = 0;
       if (item.rect.x > this.canvas.nativeElement.width - item.rect.width) item.rect.x = this.canvas.nativeElement.width - item.rect.width;
       if (item.rect.y < item.rect.height) item.rect.y = item.rect.height;
       if (item.rect.y > this.canvas.nativeElement.height) item.rect.y = this.canvas.nativeElement.height;
     }
     else if (item.type === 'sticker') {
-      item.rect.x = this.mousePos.x - item.rect.width / 2;
-      item.rect.y = this.mousePos.y - item.rect.height / 2;
+      item.rect.x = this.dragPos.x - item.rect.width / 2;
+      item.rect.y = this.dragPos.y - item.rect.height / 2;
       if (item.rect.x < 0) item.rect.x = 0;
       if (item.rect.y < 0) item.rect.y = 0;
     }
@@ -273,14 +336,14 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
   onStartDraw() {
     this.isDrawing = true;
     this.ctx.beginPath();
-    this.ctx.moveTo(this.mousePos.x, this.mousePos.y);
+    this.ctx.moveTo(this.dragPos.x, this.dragPos.y);
     this.onSaveStrokePos();
   }
 
   onDraw() {
     if (this.isDrawing) {
       if (this.stroke.strokeType !== 'spray') {
-        this.ctx.lineTo(this.mousePos.x, this.mousePos.y);
+        this.ctx.lineTo(this.dragPos.x, this.dragPos.y);
         this.ctx.lineCap = 'round';
         this.ctx.lineJoin = 'round';
         this.ctx.shadowColor = this.stroke.color;
@@ -289,7 +352,7 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
       }
       this.ctx.strokeStyle = this.stroke.color;
 
-      if (this.stroke.strokeType === 'spray') this.onDrawSpray(this.mousePos.x, this.mousePos.y);
+      if (this.stroke.strokeType === 'spray') this.onDrawSpray(this.dragPos.x, this.dragPos.y);
       if (this.stroke.strokeType !== 'highlighter' && this.stroke.strokeType !== 'spray') this.ctx.stroke();
 
       this.onSaveStrokePos();
@@ -336,7 +399,7 @@ export class StoryCanvasComponent implements OnInit, OnDestroy {
   }
 
   onSaveStrokePos() {
-    this.stroke.pos.push({ x: this.mousePos.x, y: this.mousePos.y });
+    this.stroke.pos.push({ x: this.dragPos.x, y: this.dragPos.y });
   }
 
   onUndoStroke() {

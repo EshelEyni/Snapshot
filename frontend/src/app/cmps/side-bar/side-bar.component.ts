@@ -45,7 +45,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
     })
   }
 
-  onModalContainerClick(e:Event){
+  onModalContainerClick(e: Event) {
     e.stopPropagation()
   }
 
@@ -85,18 +85,23 @@ export class SideBarComponent implements OnInit, OnDestroy {
 
   onTogglePostEdit(e: Event) {
     e?.stopPropagation()
-    this.isBtnClicked = {
-      search: false,
-      create: !this.isBtnClicked.create,
-      notification: false,
-      more: false
+    if (window.innerWidth < 1260) {
+      this.router.navigate(['/post-edit'])
+    } else {
+
+      this.isBtnClicked = {
+        search: false,
+        create: !this.isBtnClicked.create,
+        notification: false,
+        more: false
+      }
+
+      this.isMainScreen = !this.isMainScreen;
+
+      this.links.forEach(link => {
+        link.nativeElement.classList.remove('active')
+      })
     }
-
-    this.isMainScreen = !this.isMainScreen;
-
-    this.links.forEach(link => {
-      link.nativeElement.classList.remove('active')
-    })
   }
 
   onToggleSearch(e: Event) {

@@ -1,7 +1,8 @@
 @import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/mixins';
 
-::ng-deep post-canvas {
+::ng-deep .post-canvas {
     position: relative;
 
     .main-screen {
@@ -9,15 +10,11 @@
     }
 
     .canvas-container {
-        width: rem(830px);
-        height: rem(830px);
+        height: 100vw;
+        width: 100vw;
         display: flex;
         justify-content: center;
         align-items: center;
-
-        canvas {
-            border-radius: 0 0 12px 12px;
-        }
 
         .img-dots {
             .active {
@@ -69,5 +66,16 @@
         top: 50%;
         transform: translate(-50%);
     }
+    
 
+    @include for-extra-large-layout {
+        .canvas-container {
+            width: rem(830px);
+            height: rem(830px);
+
+            canvas {
+                border-radius: 0 0 12px 12px;
+            }
+        }
+    }
 }
