@@ -1,5 +1,6 @@
 @import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/functions';
+@import '../../../assets/styles/setup/mixins';
 
 ::ng-deep .post-edit {
     position: fixed;
@@ -12,19 +13,20 @@
     align-items: center;
     z-index: 20;
 
-    
+
     .main-container {
         display: flex;
         flex-direction: column;
         position: fixed;
         background-color: var(--secondary-bg);
-        height: rem(875px);
-        width: rem(830px);
+        height: 875px;
+        width: 830px;
+
         border-radius: 12px;
         z-index: 20;
 
         header {
-            height: rem(45px);
+            height: 45px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -70,7 +72,7 @@
 
             .edit-img-container {
 
-             
+
 
                 .files-svg-container {
                     position: absolute;
@@ -90,6 +92,8 @@
 
         }
     }
+
+   
 }
 
 

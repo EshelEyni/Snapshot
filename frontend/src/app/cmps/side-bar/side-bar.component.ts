@@ -26,7 +26,6 @@ export class SideBarComponent implements OnInit, OnDestroy {
 
   @ViewChildren('link') links!: QueryList<ElementRef>;
   @ViewChildren('svgIcon') icons!: QueryList<SvgIconComponent>;
-  isPostEdit: boolean = false;
   loggedinUser$: Observable<User | null>;
   loggedinUser!: User;
   isBtnClicked = { search: false, create: false, notification: false, more: false }
@@ -85,7 +84,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
   }
 
   onTogglePostEdit(e: Event) {
-    e.stopPropagation()
+    e?.stopPropagation()
     this.isBtnClicked = {
       search: false,
       create: !this.isBtnClicked.create,

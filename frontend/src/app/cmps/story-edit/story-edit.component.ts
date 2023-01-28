@@ -24,18 +24,18 @@ export class StoryEditComponent implements OnInit {
   userService = inject(UserService);
 
   storyImgs: StoryImg[] = [
-    // {
-    //   url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666727081/fpswmz9kgjouuoaj2va1.jpg',
-    //   items: []
-    // },
-    // {
-    //   url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg',
-    //   items: []
-    // },
-    // {
-    //   url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664739345/yqvuwzj1lp7ozm53fqps.jpg',
-    //   items: []
-    // },
+    {
+      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666727081/fpswmz9kgjouuoaj2va1.jpg',
+      items: []
+    },
+    {
+      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg',
+      items: []
+    },
+    {
+      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664739345/yqvuwzj1lp7ozm53fqps.jpg',
+      items: []
+    },
   ];
 
   loggedinUser!: User;

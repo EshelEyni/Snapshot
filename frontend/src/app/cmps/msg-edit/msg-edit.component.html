@@ -8,8 +8,7 @@
 
             <button class="btn-send clean-btn" *ngIf="text" (click)="onSendMsg(text,'text')">Send</button>
 
-            <file-input (uploadedImgUrls)="onSendImg($event)" [loggedinUser]="loggedinUser" [type]="'btn-img'"
-                *ngIf="!text"></file-input>
+            <file-input (uploadedImgUrls)="onSendImg($event)" [type]="'btn-img'" *ngIf="!text"></file-input>
 
             <button class="btn-add-like clean-btn" (click)="onSendMsg('','like')" *ngIf="!text">
                 <fa-icon [icon]="faHeart"></fa-icon>

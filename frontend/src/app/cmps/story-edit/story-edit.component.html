@@ -6,7 +6,7 @@
     </header>
 
     <div class="input-file-container" *ngIf="!storyImgs.length else canvasContainer">
-        <file-input (uploadedImgUrls)="onSetFiles($event)" [type]="'draggable'" [loggedinUser]="loggedinUser">
+        <file-input (uploadedImgUrls)="onSetFiles($event)" [type]="'draggable'">
         </file-input>
     </div>
 

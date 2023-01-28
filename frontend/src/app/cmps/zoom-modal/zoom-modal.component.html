@@ -1,3 +1,4 @@
 <section class="zoom-modal">
-    <mat-slider [min]="0" [max]="100" [step]="1" [value]="value" (change)="onSetZoom($event.value)"></mat-slider>
+    <mat-slider [min]="0" [max]="1000" [step]="1" [(ngModel)]="value" (valueChange)="onSetZoom($event)">
+        <input matSliderThumb></mat-slider>
 </section>

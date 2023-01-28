@@ -31,7 +31,6 @@ import { CommentListComponent } from './cmps/comment-list/comment-list.component
 import { LoginSignupComponent } from './pages/login-signup/login-signup.component';
 import { ShareModalComponent } from './cmps/share-modal/share-modal.component';
 import { UserListComponent } from './cmps/user-list/user-list.component';
-import { PostEditComponent } from './cmps/post-edit/post-edit.component';
 import { ImgContainerComponent } from './cmps/img-container/img-container.component';
 import { PostEditFormComponent } from './cmps/post-edit-form/post-edit-form.component';
 import { ExploreComponent } from './pages/explore/explore.component';
@@ -117,6 +116,7 @@ import { ChatSettingComponent } from './cmps/chat-setting/chat-setting.component
 import { ChatOptionsModalComponent } from './cmps/chat-options-modal/chat-options-modal.component';
 import { MessageListComponent } from './cmps/message-list/message-list.component';
 import { MessageComponent } from './cmps/message/message.component';
+import { PostEditModalComponent } from './cmps/post-edit-modal/post-edit-modal.component';
 
 @NgModule({
   declarations: [
@@ -132,7 +132,6 @@ import { MessageComponent } from './cmps/message/message.component';
     FormattedDatePipe,
     ShareModalComponent,
     UserListComponent,
-    PostEditComponent,
     ImgContainerComponent,
     PostEditFormComponent,
     ExploreComponent,
@@ -213,6 +212,7 @@ import { MessageComponent } from './cmps/message/message.component';
     ChatOptionsModalComponent,
     MessageListComponent,
     MessageComponent,
+    PostEditModalComponent,
   ],
   imports: [
     BrowserAnimationsModule,

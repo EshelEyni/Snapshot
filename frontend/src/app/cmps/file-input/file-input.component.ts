@@ -1,27 +1,31 @@
+import { Observable, Subscription, map } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { State } from './../../store/store';
 import { User } from './../../models/user.model';
 import { UploadImgService } from './../../services/upload-img.service';
-import { Component, OnInit, HostListener, inject, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, HostListener, inject, EventEmitter, ViewChild, OnDestroy } from '@angular/core';
 import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
   selector: 'file-input',
   templateUrl: './file-input.component.html',
   styleUrls: ['./file-input.component.scss'],
-  inputs: ['type', 'loggedinUser'],
+  inputs: ['type'],
   outputs: ['uploadedImgUrls']
 })
-export class FileInputComponent implements OnInit {
+export class FileInputComponent implements OnInit, OnDestroy {
 
   constructor() {
-
+    this.loggedinUser$ = this.store
+      .select('userState')
+      .pipe(map((x) => x.loggedinUser))
   }
 
   @ViewChild('svgIcon') icons!: SvgIconComponent;
-
   uploadImgService = inject(UploadImgService)
   store = inject(Store<State>)
+  sub: Subscription | null = null
+  loggedinUser$: Observable<User | null>
   type!: string;
   dragAreaClass!: string;
   imgUrls: string[] = [];
@@ -32,9 +36,12 @@ export class FileInputComponent implements OnInit {
   ngOnInit(): void {
     this.dragAreaClass = "dragarea";
 
-    setTimeout(() => {
-      this.setIconColor()
-    }, 0);
+    this.sub = this.loggedinUser$.subscribe((user) => {
+      if (user) {
+        this.loggedinUser = { ...user }
+        this.setIconColor()
+      }
+    })
   }
 
   setIconColor() {
@@ -88,5 +95,9 @@ export class FileInputComponent implements OnInit {
     }
 
     this.uploadedImgUrls.emit(this.imgUrls)
+  }
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe()
   }
 }

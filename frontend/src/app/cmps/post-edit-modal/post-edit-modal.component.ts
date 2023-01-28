@@ -15,12 +15,12 @@ import { UserService } from 'src/app/services/user.service'
 import { Location } from 'src/app/models/post.model'
 
 @Component({
-  selector: 'post-edit',
-  templateUrl: './post-edit.component.html',
-  styleUrls: ['./post-edit.component.scss'],
+  selector: 'post-edit-modal',
+  templateUrl: './post-edit-modal.component.html',
+  styleUrls: ['./post-edit-modal.component.scss']
 })
+export class PostEditModalComponent implements OnInit, OnDestroy {
 
-export class PostEditComponent implements OnInit, OnDestroy {
   @Output() togglePostEdit = new EventEmitter()
   @ViewChild('offScreenCanvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
 
@@ -46,16 +46,16 @@ export class PostEditComponent implements OnInit, OnDestroy {
   loggedinUser!: User
   currTitle: string = 'create new post'
   postImgs: PostCanvasImg[] = [
-    {
-      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666644422/joph3bb9hyyhjkdxnhc8.jpg',
-      x: 0,
-      y: 0,
-      width: 830,
-      height: 830,
-      aspectRatio: 'Original',
-      zoom: 0,
-      filter: 'normal',
-    },
+    // {
+    //   url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667001489/github-icon_2_ixseoz.png',
+    //   x: 0,
+    //   y: 0,
+    //   width: 830,
+    //   height: 830,
+    //   aspectRatio: 'Original',
+    //   zoom: 0,
+    //   filter: 'normal',
+    // },
     {
       url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664789187/jsywue9raehtraavttaw.jpg',
       x: 0,
@@ -92,10 +92,11 @@ export class PostEditComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.loggedinUser$.subscribe((user) => {
       if (user) {
-        this.loggedinUser = {...user}
+        this.loggedinUser = { ...user }
       }
     })
   }
+
 
   onSaveFiles(imgUrls: string[]) {
     this.postImgs = imgUrls.map((url) => {
@@ -123,7 +124,16 @@ export class PostEditComponent implements OnInit, OnDestroy {
   }
 
   onGoBack() {
-    this.postImgs = []
+    if (this.currEditMode === 'crop') this.onTogglePostEdit()
+    else if (this.currEditMode === 'filter') {
+      this.currEditMode = 'crop'
+      this.currTitle = 'create new post'
+    }
+    else if (this.currEditMode === 'txt-location') {
+      this.currEditMode = 'filter'
+      this.btnTxt = 'next'
+      this.currTitle = 'edit'
+    }
   }
 
   onNext() {
@@ -152,7 +162,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
 
 
     if (this.txt && typeof postId === 'number') {
-      // this.tagService.detectTags(this.txt);
+      this.tagService.detectTags(this.txt);
       const commentToAdd = this.commentService.getEmptyComment();
       commentToAdd.text = this.txt;
       commentToAdd.by = author;
@@ -172,7 +182,10 @@ export class PostEditComponent implements OnInit, OnDestroy {
 
     const offScreenCanvas = this.canvasRef.nativeElement;
     const offScreenCtx = offScreenCanvas.getContext('2d');
+
     if (!offScreenCtx) return
+
+
 
     return new Promise<void>((resolve, reject) => {
       let completed = 0;
@@ -244,6 +257,9 @@ export class PostEditComponent implements OnInit, OnDestroy {
               offScreenCtx.filter = 'none';
               break;
           }
+
+          offScreenCtx.fillStyle = 'rgba(38, 38, 38)';
+          offScreenCtx.fillRect(0, 0, offScreenCanvas.width, offScreenCanvas.height);
 
           offScreenCtx.drawImage(
             img,

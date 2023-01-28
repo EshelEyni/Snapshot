@@ -101,8 +101,8 @@
                         <button class="clean-btn btn-share-photo" *ngIf="isCurrUserLoggedInUser"
                             (click)="onToggleModal('post-edit')">Share your first
                             photo</button>
-                        <post-edit *ngIf="isPostEditModalShown && isCurrUserLoggedInUser"
-                            (togglePostEdit)="onToggleModal('post-edit')"></post-edit>
+                        <post-edit-modal *ngIf="isPostEditModalShown && isCurrUserLoggedInUser"
+                            (togglePostEdit)="onToggleModal('post-edit')"></post-edit-modal>
 
                     </div>
                     <div class="no-saved-posts-msg" *ngIf="filterBy.savedPosts">

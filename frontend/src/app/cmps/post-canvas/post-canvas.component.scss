@@ -4,6 +4,10 @@
 ::ng-deep post-canvas {
     position: relative;
 
+    .main-screen {
+        transform: translate(-50%, -50%);
+    }
+
     .canvas-container {
         width: rem(830px);
         height: rem(830px);

@@ -61,26 +61,14 @@ export class PostCanvasComponent implements OnInit, OnChanges {
       this.ctx.imageSmoothingQuality = "high";
       this.ctx.imageSmoothingEnabled = true;
       this.setFilter();
-      this.setImgForAspectRatio();
       this.ctx.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+      if (this.currSettings === 'txt-location') {
+        this.ctx.fillStyle = 'rgba(38, 38, 38)';
+        this.ctx.fillRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+      }
       const { x, y, width, height } = this.currPostImg;
       this.ctx.drawImage(img, x, y, width, height);
     }
-  }
-
-  setImgForAspectRatio() {
-    if (this.currPostImg.aspectRatio === 'Original' || this.currPostImg.aspectRatio === '1:1') {
-      this.currPostImg.x = 0;
-      this.currPostImg.y = 0;
-    } else if (this.currPostImg.aspectRatio === '4:5') {
-      this.currPostImg.x = -(this.canvas.nativeElement.width * .2);
-      this.currPostImg.y = 0;
-
-    } else if (this.currPostImg.aspectRatio === '16:9') {
-      this.currPostImg.x = 0;
-      this.currPostImg.y = -(this.canvas.nativeElement.height * .5625);
-    }
-
   }
 
   onSetCurrImg(num: number, isFromPaginationBtn: boolean = false) {
@@ -161,7 +149,7 @@ export class PostCanvasComponent implements OnInit, OnChanges {
   }
 
   async onSetZoom(zoom: number) {
-    this.currPostImg.zoom = zoom * 10;
+    this.currPostImg.zoom = zoom;
     const canvas = this.canvas.nativeElement;
     const ctx = this.ctx;
 
@@ -178,16 +166,11 @@ export class PostCanvasComponent implements OnInit, OnChanges {
       const y = canvas.height / 2 - height / 2
 
       this.postImgs[this.currImgIdx] = { ...this.postImgs[this.currImgIdx], x, y, width, height };
-
+      this.currPostImg = this.postImgs[this.currImgIdx];
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(image, x, y, width, height);
+      console.log(this.currPostImg);
     }
-
-    // const i = canvas.toDataURL();
-    // const r = await this.uploadImgService.uploadImg(i);
-    // console.log(i);
-    // console.log(r);
-
   }
 
   @HostListener('mousedown', ['$event']) onMouseDown(e: MouseEvent) {
@@ -267,10 +250,6 @@ export class PostCanvasComponent implements OnInit, OnChanges {
         width = canvas.width + (this.currPostImg.zoom * (canvas.width / canvas.height));
         height = canvas.height + this.currPostImg.zoom;
 
-
-        // x = this.mousePos.x - (width + Math.abs(this.imgPos.x)) / 2;
-        // y = this.mousePos.y - (height + Math.abs(this.imgPos.y)) / 2;
-
         x = this.currPostImg.x + (this.initialMousePos.x - this.mousePos.x) * -1;
         y = this.currPostImg.y + (this.initialMousePos.y - this.mousePos.y) * -1;
 
@@ -296,7 +275,10 @@ export class PostCanvasComponent implements OnInit, OnChanges {
           if (x + width < canvas.width) x = canvas.width - width;
           if (y + height < canvas.height) y = canvas.height - height;
         }
-        this.currPostImg = { ...this.currPostImg, x, y, width, height }
+
+        this.postImgs[this.currImgIdx] = { ...this.postImgs[this.currImgIdx], x, y, width, height };
+        this.currPostImg = this.postImgs[this.currImgIdx];
+        console.log(this.currPostImg);
         this.ctx.drawImage(image, x, y, width, height);
       }
       else {
