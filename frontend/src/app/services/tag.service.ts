@@ -6,6 +6,9 @@ import { BehaviorSubject, Observable, lastValueFrom, firstValueFrom } from 'rxjs
 import { Tag } from '../models/tag.model';
 import { Injectable, inject } from '@angular/core';
 
+const BASE_URL = process.env['NODE_ENV'] === 'production'
+  ? '/api/'
+  : '//localhost:3030/api';
 
 @Injectable({
   providedIn: 'root'
@@ -36,15 +39,15 @@ export class TagService {
       }
     }
 
-    return this.http.get<Tag[]>('http://localhost:3030/api/tag', options);
+    return this.http.get<Tag[]>(`${BASE_URL}/tag`, options);
   }
 
   public getByName(tagName: string): Observable<Tag> {
-    return this.http.get<Tag>(`http://localhost:3030/api/tag/${tagName}`);
+    return this.http.get<Tag>(`${BASE_URL}/tag/${tagName}`);
   }
 
   public remove(tagId: string) {
-    return this.http.delete(`http://localhost:3030/api/tag/${tagId}`);
+    return this.http.delete(`${BASE_URL}/tag/${tagId}`);
   }
 
   public save(tag: Tag) {
@@ -53,13 +56,13 @@ export class TagService {
 
   private async _update(tag: Tag) {
     return firstValueFrom(
-      this.http.put(`http://localhost:3030/api/tag/${tag.id}`, tag)
+      this.http.put(`${BASE_URL}/tag/${tag.id}`, tag)
     );
   }
 
   private async _add(tag: Tag): Promise<number | void> {
     const res = await firstValueFrom(
-      this.http.post(`http://localhost:3030/api/tag`, tag)
+      this.http.post(`${BASE_URL}/tag`, tag)
     ) as { msg: string, id: number }
 
     if (res.msg === 'Tag added') {
@@ -71,7 +74,7 @@ export class TagService {
 
   public async getfollowedTags(userId: number): Promise<Tag[]> {
     const tags = await lastValueFrom(
-      this.http.get<Tag[]>(`http://localhost:3030/api/tag/follow/${userId}`)
+      this.http.get<Tag[]>(`${BASE_URL}/tag/follow/${userId}`)
     );
     return tags;
   }
@@ -79,7 +82,7 @@ export class TagService {
 
   public async checkIsFollowing(userId: number, tagId: number): Promise<boolean> {
     const isFollowing = await lastValueFrom(
-      this.http.get(`http://localhost:3030/api/tag/follow/${userId}/${tagId}`)
+      this.http.get(`${BASE_URL}/tag/follow/${userId}/${tagId}`)
     ) as boolean;
 
     return isFollowing;
@@ -90,13 +93,13 @@ export class TagService {
 
     if (isFollowing) {
       await firstValueFrom(
-        this.http.delete(`http://localhost:3030/api/tag/follow/${userId}/${tagId}`)
+        this.http.delete(`${BASE_URL}/tag/follow/${userId}/${tagId}`)
       );
 
     }
     else {
       const res = await firstValueFrom(
-        this.http.post(`http://localhost:3030/api/tag/follow`, { userId, tagId })
+        this.http.post(`${BASE_URL}/tag/follow`, { userId, tagId })
       ) as { msg: string, id: number }
 
       if (res.msg === 'Tag followed') {

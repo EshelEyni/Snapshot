@@ -1,0 +1,52 @@
+:root {
+
+    // COLORS
+    --primary-icon-color: rgb(39, 101, 137);
+    --secondary-icon-color: rgb(146, 69, 114);
+
+    //bg
+    --primary-bg: rgb(250, 250, 250);
+    --secondary-bg: rgb(255, 255, 255);
+    --user-search-bg: rgb(224, 241, 255);
+
+    //color
+    --primary-color: rgb(38, 38, 38);
+    --secondary-color: rgb(142, 142, 142);
+    --tertiary-color: rgb(26, 26, 26);
+
+    //border
+    --border-color: rgb(219, 219, 219);
+
+    //button
+    --primary-button: rgb(0, 149, 246);
+    --button-hover: rgb(24, 119, 242);
+    --secondary-button: rgb(179, 223, 252);
+    --red-button: rgb(237, 73, 86);
+    --primary-pagination-button: rgba(252, 248, 239, 0.7);
+    --pagination-button-bgc: rgb(58, 52, 50);
+
+    //dots
+    --primary-dot: rgb(122, 116, 112);
+
+    // input
+    --input-bg-color: rgb(239, 239, 239);
+    --input-placeholder-color: rgb(158, 158, 158);
+    --input-placeholder-secondary-color: rgb(201, 201, 201);
+
+    // FONTS
+    --primary-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --secondary-font: pacifico;
+
+}
+
+// LAYOUT BREAKPOINTS
+$break-mobile-small: 300px;
+$break-mobile-medium: 450px;
+$break-mobile-large: 550px;
+
+$breakpoint-XS : 735px;
+$breakpoint-SM : 770px;
+$breakpoint-MD : 875px;
+$breakpoint-LG : 1000px;
+$breakpoint-XL : 1260px;
+$breakpoint-XXL : 1920px;

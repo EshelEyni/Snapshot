@@ -3,11 +3,14 @@ import { PostService } from 'src/app/services/post.service';
 import { MiniUser } from './../models/user.model';
 import { StorageService } from './storage.service';
 import { UserService } from 'src/app/services/user.service';
-import { UtilService } from './util.service';
 import { Comment } from './../models/comment.model';
 import { Injectable, inject } from '@angular/core';
 import { Observable, lastValueFrom, firstValueFrom } from 'rxjs';
 
+
+const BASE_URL = process.env['NODE_ENV'] === 'production'
+  ? '/api/'
+  : '//localhost:3030/api';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +20,6 @@ export class CommentService {
 
   constructor() { }
 
-  utilService = inject(UtilService);
   userSerivce = inject(UserService);
   storageService = inject(StorageService);
   postService = inject(PostService);
@@ -40,19 +42,19 @@ export class CommentService {
     }
 
     const comments = await lastValueFrom(
-      this.http.get<Comment[]>('http://localhost:3030/api/comment', options)
+      this.http.get<Comment[]>(`${BASE_URL}/comment`, options)
     )
 
     return comments
   }
 
   public getById(commentId: number): Observable<Comment> {
-    return this.http.get<Comment>(`http://localhost:3030/api/comment/${commentId}`)
+    return this.http.get<Comment>(`${BASE_URL}/comment/${commentId}`)
   }
 
   public async remove(commentId: number): Promise<{ msg: string } | void> {
     const res = await firstValueFrom(
-      this.http.delete(`http://localhost:3030/api/comment/${commentId}`)
+      this.http.delete(`${BASE_URL}/comment/${commentId}`)
     ) as { msg: string }
 
     return res
@@ -64,14 +66,15 @@ export class CommentService {
 
   private async _update(comment: Comment): Promise<{ msg: string, id: number } | void> {
     const res = await firstValueFrom(
-      this.http.put(`http://localhost:3030/api/comment/${comment.id}`, comment)
+      this.http.put(`${BASE_URL}/comment/${comment.id}`, comment)
+
     ) as { msg: string, id: number }
     return res
   }
 
   private async _add(comment: Comment): Promise<{ msg: string, id: number } | void> {
     const res = await firstValueFrom(
-      this.http.post('http://localhost:3030/api/comment', comment)
+      this.http.post(`${BASE_URL}/comment`, comment)
     ) as { msg: string, id: number }
 
     return res
@@ -98,7 +101,7 @@ export class CommentService {
     }
 
     const isLiked = await firstValueFrom(
-      this.http.get(`http://localhost:3030/api/like/comment`, options),
+      this.http.get(`${BASE_URL}/like/comment`, options),
     ) as Array<any>
 
     return isLiked.length > 0
@@ -108,13 +111,13 @@ export class CommentService {
 
     if (isLiked) {
       await firstValueFrom(
-        this.http.delete(`http://localhost:3030/api/like/comment`, {
+        this.http.delete(`${BASE_URL}/like/comment`, {
           body: { userId: details.user.id, commentId: details.comment.id }
         }),
       )
     } else {
       await firstValueFrom(
-        this.http.post(`http://localhost:3030/api/like/comment`,
+        this.http.post(`${BASE_URL}/like/comment`,
           { user: details.user, comment: details.comment }),
       )
     }

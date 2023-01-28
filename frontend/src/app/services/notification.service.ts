@@ -5,6 +5,9 @@ import { BehaviorSubject, lastValueFrom, firstValueFrom } from 'rxjs';
 import { Injectable, inject } from '@angular/core';
 import { Notification } from '../models/notification.model';
 
+const BASE_URL = process.env['NODE_ENV'] === 'production'
+  ? '/api/'
+  : '//localhost:3030/api';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +26,7 @@ export class NotificationService {
     let options = { params: { userId } }
 
     const notifications = await lastValueFrom(
-      this.http.get<Notification[]>('http://localhost:3030/api/notification', options),
+      this.http.get<Notification[]>(`${BASE_URL}/notification`, options),
     )
     this._notifications$.next(notifications)
   }

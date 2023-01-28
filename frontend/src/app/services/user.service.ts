@@ -1,23 +1,22 @@
 import { CommunicationService } from 'src/app/services/communication.service';
 import { HttpClient } from '@angular/common/http'
-import { UtilService } from './util.service'
 import { StorageService } from './storage.service'
 import { User, MiniUser } from './../models/user.model'
-import {
-  Observable,
-  of,
-  map,
-  lastValueFrom,
-  firstValueFrom,
-} from 'rxjs'
+import { Observable, of, map, lastValueFrom, firstValueFrom } from 'rxjs'
 import { Injectable } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { UserState } from '../store/reducers/user.reducer'
 import { LoadingUsers } from '../store/actions/user.actions'
 
+const BASE_URL = process.env['NODE_ENV'] === 'production'
+  ? '/api/'
+  : '//localhost:3030/api';
+
+
 @Injectable({
   providedIn: 'root',
 })
+
 export class UserService {
   constructor(
     private store: Store<UserState>,
@@ -50,7 +49,7 @@ export class UserService {
     }
 
     return this.http
-      .get(`http://localhost:3030/api/user`, options)
+      .get(`${BASE_URL}/user`, options)
       .pipe(
         map((users) => {
           return users as User[]
@@ -60,7 +59,7 @@ export class UserService {
 
   public getUsersBySearchTerm(searchTerm: string): Observable<User[]> {
     return this.http
-      .get(`http://localhost:3030/api/user/search?searchTerm=${searchTerm}`)
+      .get(`${BASE_URL}/user/search?searchTerm=${searchTerm}`)
       .pipe(
         map((users) => {
           return users as User[]
@@ -69,12 +68,12 @@ export class UserService {
   }
 
   public getById(userId: number): Observable<User | null> {
-    if (userId) return this.http.get<User>(`http://localhost:3030/api/user/id/${userId}`)
+    if (userId) return this.http.get<User>(`${BASE_URL}/user/id/${userId}`)
     else return of(null)
   }
 
   public remove(userId: number): Observable<boolean> {
-    return this.http.delete(`http://localhost:3030/api/user/${userId}`).pipe(
+    return this.http.delete(`${BASE_URL}/user/${userId}`).pipe(
       map((res) => {
         return true
       }),
@@ -82,14 +81,14 @@ export class UserService {
   }
 
   public update(user: User) {
-    return this.http.put(`http://localhost:3030/api/user`, user)
+    return this.http.put(`${BASE_URL}/user`, user)
   }
 
   public async login(userCred: { username: string; password: string }) {
     try {
 
       const user = await firstValueFrom(
-        this.http.post<User>(`http://localhost:3030/api/auth/login`, userCred),
+        this.http.post<User>(`${BASE_URL}/auth/login`, userCred),
       )
       if (!user) return
       this.storageService.saveToStorage('loggedinUser', {
@@ -114,7 +113,7 @@ export class UserService {
     try {
 
       const addedUser = await lastValueFrom(
-        this.http.post<User>(`http://localhost:3030/api/auth/signup`, userCred),
+        this.http.post<User>(`${BASE_URL}/auth/signup`, userCred),
       )
       this.storageService.saveToStorage('loggedinUser', {
         id: addedUser.id,
@@ -131,7 +130,7 @@ export class UserService {
 
   public async logout() {
     await firstValueFrom(
-      this.http.post(`http://localhost:3030/api/auth/logout`, {}),
+      this.http.post(`${BASE_URL}/auth/logout`, {}),
     )
     this.storageService.saveToStorage('loggedinUser', null)
   }
@@ -146,7 +145,7 @@ export class UserService {
     }
     const res: { hashedPassword: string } = await lastValueFrom(
       this.http.get<{ hashedPassword: string }>(
-        `http://localhost:3030/api/auth/check-password`, options
+        `${BASE_URL}/auth/check-password`, options
       )
     )
 
@@ -176,7 +175,7 @@ export class UserService {
     }
     return await lastValueFrom(
       this.http.get<MiniUser[]>(
-        `http://localhost:3030/api/followers`, options
+        `${BASE_URL}/followers`, options
       )
     )
   }
@@ -189,7 +188,7 @@ export class UserService {
     }
     return await lastValueFrom(
       this.http.get<MiniUser[]>(
-        `http://localhost:3030/api/following`, options
+        `${BASE_URL}/following`, options
       )
     )
   }
@@ -202,7 +201,7 @@ export class UserService {
       }
     }
     const isFollowing = await lastValueFrom(
-      this.http.get(`http://localhost:3030/api/following`, options)
+      this.http.get(`${BASE_URL}/following`, options)
     ) as Array<any>
     return isFollowing.length > 0
   }
@@ -211,15 +210,15 @@ export class UserService {
 
     if (isFollowing) {
       await firstValueFrom(
-        this.http.delete(`http://localhost:3030/api/following`, { body: { followerId: loggedinUser.id, userId: user.id } })
+        this.http.delete(`${BASE_URL}/following`, { body: { followerId: loggedinUser.id, userId: user.id } })
       )
       await firstValueFrom(
-        this.http.delete(`http://localhost:3030/api/followers`, { body: { followingId: user.id, userId: loggedinUser.id } })
+        this.http.delete(`${BASE_URL}/followers`, { body: { followingId: user.id, userId: loggedinUser.id } })
       )
 
     } else {
       await firstValueFrom(
-        this.http.post(`http://localhost:3030/api/following`, {
+        this.http.post(`${BASE_URL}/following`, {
           followerId: loggedinUser.id,
           userId: user.id,
           username: user.username,
@@ -229,7 +228,7 @@ export class UserService {
       )
 
       await firstValueFrom(
-        this.http.post(`http://localhost:3030/api/followers`, {
+        this.http.post(`${BASE_URL}/followers`, {
           followingId: user.id,
           userId: loggedinUser.id,
           username: loggedinUser.username,

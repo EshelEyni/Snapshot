@@ -6,6 +6,11 @@ import { BehaviorSubject, firstValueFrom, Observable, lastValueFrom } from 'rxjs
 import { Injectable, inject } from '@angular/core';
 import { MiniUser } from '../models/user.model';
 
+const BASE_URL = process.env['NODE_ENV'] === 'production'
+  ? '/api/'
+  : '//localhost:3030/api';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -31,7 +36,7 @@ export class StoryService {
     }
 
     const stories = await firstValueFrom(
-      this.http.get<Story[]>('http://localhost:3030/api/story', options),
+      this.http.get<Story[]>(`${BASE_URL}/story`, options),
     )
 
     if (filter.type !== 'profile-details') {
@@ -44,12 +49,12 @@ export class StoryService {
 
   public getById(storyId: number, type: string): Observable<Story> {
     let options = { params: { type } }
-    return this.http.get<Story>(`http://localhost:3030/api/story/${storyId}`, options)
+    return this.http.get<Story>(`${BASE_URL}/story/${storyId}`, options)
   }
 
   public async remove(storyId: number): Promise<boolean> {
     const res = await lastValueFrom(
-      this.http.delete<{ msg: string }>(`http://localhost:3030/api/story/${storyId}`)
+      this.http.delete<{ msg: string }>(`${BASE_URL}/story/${storyId}`)
     )
 
     if (res.msg === 'Story deleted') {
@@ -72,7 +77,7 @@ export class StoryService {
 
   private async _add(story: Story): Promise<number | void> {
     const res = await firstValueFrom(
-      this.http.post('http://localhost:3030/api/story', story),
+      this.http.post(`${BASE_URL}/story`, story),
     ) as { msg: string, id: number }
 
     if (res.msg === 'Story added') {
@@ -86,7 +91,7 @@ export class StoryService {
 
   private async _update(story: Story): Promise<void> {
     const res = await firstValueFrom(
-      this.http.put(`http://localhost:3030/api/story/${story.id}`, story),
+      this.http.put(`${BASE_URL}/story/${story.id}`, story),
     ) as { msg: string }
 
     if (res.msg === 'Story updated' && story.isSaved) {
@@ -114,9 +119,7 @@ export class StoryService {
 
   public async addStoryView(user: MiniUser, storyId: number) {
     await firstValueFrom(
-      this.http.put(`http://localhost:3030/api/story/views/${storyId}`, user),
+      this.http.put(`${BASE_URL}/story/views/${storyId}`, user),
     )
-
   }
-
 }

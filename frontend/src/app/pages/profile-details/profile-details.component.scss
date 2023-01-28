@@ -10,8 +10,6 @@
     width: 100%;
     background-color: var(--secondary-bg);
 
-
-
     .user-details {
         position: relative;
         display: grid;
@@ -229,7 +227,6 @@
                     top: -0.5px;
                     padding: rem(10px) 0;
 
-
                     &.active {
                         border-top: black 1.5px solid;
 
@@ -240,15 +237,11 @@
                         }
                     }
 
-
-
                     span {
                         display: none;
                     }
                 }
             }
-
-
         }
 
         .no-posts-msg-container {
@@ -416,8 +409,6 @@
 
         }
 
-
-
         .profile-details-post-list-container {
             padding: 0 rem(10px);
 
@@ -453,8 +444,6 @@
                 }
             }
         }
-
-
     }
 
     @include for-large-layout {

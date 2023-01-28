@@ -6,6 +6,10 @@ import { TagService } from './tag.service';
 import { UserService } from './user.service';
 import { Injectable, inject } from '@angular/core';
 
+const BASE_URL = process.env['NODE_ENV'] === 'production'
+  ? '/api/'
+  : '//localhost:3030/api';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -33,7 +37,7 @@ export class SearchService {
   public async getRecentSearches(userId: number): Promise<Array<User | Tag>> {
     const recentSearches = await lastValueFrom(
       this.http.get<Array<User | Tag>>(
-        `http://localhost:3030/api/search/${userId}`
+        `${BASE_URL}/search/${userId}`
       )
     );
     return recentSearches;
@@ -42,7 +46,7 @@ export class SearchService {
   public async saveRecentSearch(userId: number, searchItem: User | Tag) {
     await lastValueFrom(
       this.http.post(
-        `http://localhost:3030/api/search`,
+        `${BASE_URL}/search`,
         {
           userId,
           itemId: searchItem.id,
@@ -55,7 +59,7 @@ export class SearchService {
   public async removeRecentSearch(searchId: number) {
     await lastValueFrom(
       this.http.delete(
-        `http://localhost:3030/api/search/${searchId}`
+        `${BASE_URL}/search/${searchId}`
       )
     );
   }
@@ -63,7 +67,7 @@ export class SearchService {
   public async clearRecentSearches(userId: number) {
     await lastValueFrom(
       this.http.delete(
-        `http://localhost:3030/api/search/clear/${userId}`
+        `${BASE_URL}/search/clear/${userId}`
       )
     );
   }

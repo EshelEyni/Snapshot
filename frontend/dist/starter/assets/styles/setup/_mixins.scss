@@ -1,0 +1,303 @@
+@import '../../../assets/styles/setup/vars';
+@import '../../../assets/styles/setup/functions';
+
+// Media queries Breakpoint mixins
+
+
+@mixin for-mobile-narrow-layout {
+    @media (min-width: $break-mobile-small) {
+        @content;
+    }
+}
+
+@mixin for-mobile-normal-layout {
+    @media (min-width: $break-mobile-medium) {
+        @content;
+    }
+}
+
+@mixin for-mobile-wide-layout {
+    @media (min-width: $break-mobile-large) {
+        @content;
+    }
+}
+
+@mixin for-mobile-layout {
+    @media (max-width: $breakpoint-SM) {
+        @content;
+    }
+}
+
+@mixin for-extra-small-layout {
+    @media (min-width: $breakpoint-XS) {
+        @content;
+    }
+}
+
+@mixin for-small-layout {
+    @media (min-width: $breakpoint-SM) {
+        @content;
+    }
+}
+
+@mixin for-medium-layout {
+    @media (min-width: $breakpoint-MD) {
+        @content;
+    }
+}
+
+@mixin for-large-layout {
+    @media (min-width: $breakpoint-LG) {
+        @content;
+    }
+}
+
+@mixin for-extra-large-layout {
+    @media (min-width: $breakpoint-XL) {
+        @content;
+    }
+}
+
+@mixin for-extra-extra-large-layout {
+    @media (min-width: $breakpoint-XXL) {
+        @content;
+    }
+}
+
+// logo mixin
+
+@mixin logo {
+    font-size: rem(35px);
+    font-family: var(--secondary-font);
+}
+
+// Page mixin 
+@mixin page($width: 1, $height: 1) {
+    display: flex;
+    height: 100vh;
+
+    @include for-small-layout {
+        margin-inline-start: rem(75px);
+        width: calc(100vw - rem(75px));
+    }
+
+    @include for-extra-large-layout {
+        margin-inline-start: rem(245px);
+        width: calc(100vw - rem(245px));
+    }
+
+    @include for-extra-extra-large-layout {
+        margin-inline-start: rem(336px);
+        width: calc(100vw - rem(336px));
+    }
+}
+
+// story preview mixin
+@mixin story-aspect-ratio($height) {
+    height:#{$height};
+    width: calc(#{$height}/1.75);
+}
+
+//Aspect ratio mixin
+@mixin aspect-ratio($width: 1, $height: 1) {
+    position: relative;
+    overflow: hidden;
+
+    &:before {
+        content: "";
+        display: block;
+        width: 100%;
+        padding-top: calc($height / $width) * 100%;
+    }
+
+    >* {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    >img {
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+// Solid Heart mixin
+@mixin solid-heart {
+    color: var(--red-button);
+    animation: pulse 0.25s;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(.5, 0.05, 1, .5);
+    animation-iteration-count: 0.5s;
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            opacity: 0;
+        }
+
+        100% {
+            transform: scale(1.3);
+            opacity: 1;
+        }
+    }
+}
+
+// Story Circle Mixin
+
+@mixin unviewed-story-circle {
+    background: linear-gradient(white, white) padding-box,
+        linear-gradient(to bottom left, var(--primary-icon-color), var(--secondary-icon-color)) border-box;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    padding: rem(2px);
+}
+
+@mixin viewed-story-circle {
+    background: linear-gradient(white, white) padding-box,
+        linear-gradient(to bottom left, var(--border-color), var(--border-color)) border-box;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    padding: rem(2px);
+
+}
+
+// Modal mixin
+
+@mixin modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: rem(550px);
+    max-height: 65vh;
+    background-color: var(--secondary-bg);
+    z-index: 20;
+    border-radius: 10px;
+}
+
+@mixin options-modal {
+    display: flex;
+    flex-direction: column;
+    width: rem(260px);
+
+    >* {
+        height: rem(50px);
+        color: var(--primary-color);
+        font-size: rem(16px);
+        font-family: var(--primary-font);
+        letter-spacing: 0.5px;
+    }
+
+    .unfollow-btn,
+    .delete-btn {
+        color: var(--red-button);
+        font-weight: 700;
+    }
+
+    >*:not(:last-child) {
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    @include for-medium-layout {
+        width: rem(400px);
+    }
+}
+
+// mobile header mixin
+
+@mixin mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: rem(60px);
+    padding: 0 rem(20px);
+    background-color: var(--secondary-bg);
+    border-bottom: var(--border-color) solid 1px;
+    transition: all 0.5s ease-in-out;
+    z-index: 10;
+
+    h1 {
+        flex-basis: 0px;
+        flex-grow: 1;
+        flex-shrink: 1;
+        font-size: rem(20px);
+        font-weight: 600;
+        font-family: var(--primary-font);
+        text-align: center;
+        text-transform: capitalize;
+    }
+
+    fa-icon {
+        font-size: rem(25px);
+        flex-basis: rem(35px);
+        cursor: pointer;
+    }
+
+    div {
+        flex-basis: rem(35px);
+    }
+}
+
+// Main screen mixin
+@mixin main-screen($bgColor: rgba(0, 0, 0, 0)) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    cursor: pointer;
+    background-color: $bgColor;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .6s;
+    z-index: 10;
+}
+
+@mixin main-screen-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+// Scrollbar mixin
+
+@mixin scrollbar {
+    &::-webkit-scrollbar {
+        width: rem(10px);
+    }
+
+    &::-webkit-scrollbar-track {
+        background: var(--secondary-bg);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: rem(10px);
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: var(--border-color);
+    }
+}
+
+@mixin scrollbar-hidden {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    & {
+        scrollbar-width: none;
+    }
+
+    & {
+        -ms-overflow-style: none;
+    }
+
+    &::-webkit-scrollbar {
+        width: 0.2em;
+        background-color: transparent;
+    }
+}

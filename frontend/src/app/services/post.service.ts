@@ -6,6 +6,10 @@ import { Observable, BehaviorSubject, lastValueFrom, firstValueFrom } from 'rxjs
 import { Post } from '../models/post.model'
 import { UserService } from './user.service'
 
+const BASE_URL = process.env['NODE_ENV'] === 'production'
+  ? '/api/'
+  : '//localhost:3030/api';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -42,7 +46,7 @@ export class PostService {
     if (filterBy.username) options.params = { ...options.params, username: filterBy.username }
 
     const posts = await lastValueFrom(
-      this.http.get<Post[]>('http://localhost:3030/api/post', options),
+      this.http.get<Post[]>(`${BASE_URL}/post`, options),
     )
 
     switch (filterBy.type) {
@@ -69,12 +73,12 @@ export class PostService {
   }
 
   public getById(postId: number): Observable<Post> {
-    return this.http.get<Post>(`http://localhost:3030/api/post/${postId}`)
+    return this.http.get<Post>(`${BASE_URL}/post/${postId}`)
   }
 
   public async remove(postId: number) {
     const res = await firstValueFrom(
-      this.http.delete(`http://localhost:3030/api/post/${postId}`),
+      this.http.delete(`${BASE_URL}/post/${postId}`),
     ) as { msg: string }
 
     if (res.msg === 'Post deleted') {
@@ -95,7 +99,7 @@ export class PostService {
 
   private async _add(post: Post): Promise<number | void> {
     const res = await firstValueFrom(
-      this.http.post('http://localhost:3030/api/post', post),
+      this.http.post(`${BASE_URL}/post`, post),
     ) as { msg: string, id: number }
 
     if (res.msg === 'Post added') {
@@ -110,7 +114,7 @@ export class PostService {
 
   private _update(post: Post) {
     return firstValueFrom(
-      this.http.put(`http://localhost:3030/api/post/${post.id}`, post),
+      this.http.put(`${BASE_URL}/post/${post.id}`, post),
     )
   }
 
@@ -137,7 +141,7 @@ export class PostService {
     }
 
     const likes = await firstValueFrom(
-      this.http.get<MiniUser[]>(`http://localhost:3030/api/like/post/`, options),
+      this.http.get<MiniUser[]>(`${BASE_URL}/like/post/`, options),
     )
     return likes
   }
@@ -152,7 +156,7 @@ export class PostService {
     }
 
     const isLiked = await firstValueFrom(
-      this.http.get(`http://localhost:3030/api/like/post`, options),
+      this.http.get(`${BASE_URL}/like/post`, options),
     ) as Array<any>
     if (isLiked.length) return true
     return false
@@ -162,13 +166,13 @@ export class PostService {
 
     if (isLiked) {
       await firstValueFrom(
-        this.http.delete(`http://localhost:3030/api/like/post`, {
+        this.http.delete(`${BASE_URL}/like/post`, {
           body: { postId: details.post.id, userId: details.user.id }
         }),
       )
     } else {
       await firstValueFrom(
-        this.http.post(`http://localhost:3030/api/like/post`,
+        this.http.post(`${BASE_URL}/like/post`,
           { post: details.post, user: details.user }),
       )
     }
@@ -183,7 +187,7 @@ export class PostService {
     }
 
     const isSaved = await firstValueFrom(
-      this.http.get(`http://localhost:3030/api/save-post`, options),
+      this.http.get(`${BASE_URL}/save-post`, options),
     ) as Array<any>
     if (isSaved.length) return true
     return false
@@ -193,18 +197,18 @@ export class PostService {
 
     if (isSaved) {
       await firstValueFrom(
-        this.http.delete(`http://localhost:3030/api/save-post`, { body: filterBy }),
+        this.http.delete(`${BASE_URL}/save-post`, { body: filterBy }),
       )
     } else {
       await firstValueFrom(
-        this.http.post(`http://localhost:3030/api/save-post`, filterBy),
+        this.http.post(`${BASE_URL}/save-post`, filterBy),
       )
     }
   }
 
   public async addPostToTag(tagId: number, postId: number) {
     await firstValueFrom(
-      this.http.post(`http://localhost:3030/api/post/tag/`, { tagId, postId }),
+      this.http.post(`${BASE_URL}/post/tag/`, { tagId, postId }),
     )
   }
 
