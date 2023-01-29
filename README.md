@@ -142,7 +142,7 @@ The profile page contains the user posts, posts saved for later view, posts the 
 ### Some mobile!
 Just a taste of the mobile experience. We used different **mixins**, **conditional rendering**, and the **"mobile first"** approach. 
 
-<img src="screenshots/mobile-home-page.png" width="25%" style="float: left"/><img src="screenshots/mobile-message-page.png" width="25%" style="float: left;"/><img src="screenshots/mobile-story-page.png" width="25%" style="float: left;"/><img src="screenshots/mobile-profile-edit.png" width="25%" style="float: left;"/>
+<img src="screenshots/mobile-home-page.png" width="25%" style="float: left"/><img src="screenshots/mobile-message-page.png" width="25%" style="float: left;"/><img src="screenshots/mobile-post-page.png" width="25%" style="float: left;"/><img src="screenshots/mobile-profile-edit.png" width="25%" style="float: left;"/>
 
 ### Author
  - [Eshel Eyni](https://github.com/EshelEyni)

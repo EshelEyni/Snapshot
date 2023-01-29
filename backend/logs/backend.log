@@ -4643,3 +4643,4 @@
 29.1.2023, 2:51:26 - INFO - Removing socket.chatId for socket [id: lo5WQnjZfF2-7vQjAAAH] 
 29.1.2023, 3:30:35 - INFO - Socket disconnected [id: undefined] 
 29.1.2023, 3:30:36 - INFO - New connected socket [id: 6tsMjNlMFc6WkLeZAAAJ] 
+29.1.2023, 3:40:11 - INFO - Emiting event: chat msg-added to chat 2 for socket [id: 6tsMjNlMFc6WkLeZAAAJ] 
