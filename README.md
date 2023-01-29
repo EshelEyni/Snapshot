@@ -19,25 +19,30 @@
 - [Contributors](#contributors)
 
 ## Snapshot Description
-Snapshot is a picture-based social network app. In contrast to other social networks, the emphasis in Snapshot is on pictures - as the old saying goes, "one picture is worth a million words." This is the core concept that Snapshot is built around, with inspiration from Instagram.
-In Snapshot, you can upload a post, with at least one photo required to be attached to it. The photos can be customized with a crop tool and color filters. Other users can like or comment on your post, and your network grows with the engagement.
-Snapshot also supports Stories, meaning you can upload a picture, customize it with text, drawing, or stickers, and it will be uploaded and available for viewing on the site for 24 hours. After 24 hours, the story will be archived, but you can still attach it to your profile at your personal profile page, and it will be saved as a highlight to your profile.
-In Snapshot, the message page allows you to create chat rooms with one or more users. You can send private messages that will only be viewed by the other members of the chat room. This feature allows for a more personal and direct form of communication within the app. You can create a community or a small group of friends, or even establish a personal one-on-one chat room to connect with a specific user. The message page provides a platform for users to build relationships and engage with others within the app.
+Snapshot is a picture-based social network app. In contrast to other social networks, the emphasis in Snapshot is on pictures - as the old saying goes, "one picture is worth a million words." 
+This is the core concept that Snapshot is built around, with inspiration from Instagram.
+In Snapshot, you can upload a post, with at least one photo required to be attached to it. The photos can be customized with a crop tool and color filters. 
+Other users can like or comment on your post, and your network grows with the engagement.
+Snapshot also supports Stories, meaning you can upload a picture, customize it with text, drawing, or stickers, and it will be uploaded and available for viewing on the app for 24 hours. 
+After 24 hours, the story will be archived, but you can still attach it to your profile at your personal profile page, and it will be saved as a highlight to your profile.
+In Snapshot, the message page allows you to create chat rooms with one or more users. 
+You can send private messages that will only be viewed by the other members of the chat room. This feature allows for a more personal and direct form of communication within the app. 
+You can create a community or a small group of friends, or even establish a personal one-on-one chat room to connect with a specific user. 
 
 ## Application Features
- - Creating posts: Users can upload pictures and add captions to create new posts. Users are required to attach at least one photo to the post. The photos can be customized with a crop tool and color filters.
- - Commenting: Users can leave comments on other users' posts. This feature allows users to engage with the content and start conversations.
- - Likes: Users can like other users' posts. This feature allows users to show appreciation for the content and support for the user who posted it.
- - Hashtags: Users can add hashtags to their posts, making it easier for others to discover content related to a specific topic. Hashtags also make it easier for users to find and follow content that interests them.
- - Location tagging: Users can tag their location when posting a picture or story. This feature allows users to share where they are and what they are doing, and also allows other users to discover content from a specific location.
- - Stories: Users can upload a picture, customize it with text, drawing or stickers, and it will be uploaded and available for viewing on the site for 24 hours. After 24 hours the story will be archived, but you can still attach it to your profile at your personal profile page, and it will be saved as a highlight to your profile.
- - User profiles: Users can personalize their profiles by adding a bio, a profile picture, and a cover photo. This feature allows users to express themselves and showcase their personal brand.
- - Search function: Users can search for other users, hashtags, and specific posts. This feature makes it easy for users to find and follow content and people that interest them.
- - Push notifications: Users will receive notifications when someone likes, comments or messages them. This feature keeps users engaged and informed about the activity on their posts.
- - Message page: As a social network Snapshot has a message page where you can chat with other users online, and create personal relationships.
- - Direct messaging: Users can send private messages to other users. This feature enables users to communicate with each other in a more intimate setting.
- - Responsive design: The site is optimized for all screen sizes and devices, allowing users to access and use the app on any device.
- - Dark mode: The dark mode feature on Snapshot allows users to switch to a darker color scheme on the app, reducing eye strain and making it easier to use in low-light environments. It also provides a sleek and modern aesthetic for users who prefer a darker theme.
+ - *Creating posts*: Users can upload pictures and add captions to create new posts. Users are required to attach at least one photo to the post. The photos can be customized with a crop tool and color filters.
+ - *Commenting*: Users can leave comments on other users' posts. This feature allows users to engage with the content and start conversations.
+ - *Likes*: Users can like other users' posts. This feature allows users to show appreciation for the content and support for the user who posted it.
+ - *Hashtags*: Users can add hashtags to their posts, making it easier for others to discover content related to a specific topic. Hashtags also make it easier for users to find and follow content that interests them.
+ - *Location tagging*: Users can tag their location when posting a picture or story. This feature allows users to share where they are and what they are doing, and also allows other users to discover content from a specific location.
+ - *Stories*: Users can upload a picture, customize it with text, drawing or stickers, and it will be uploaded and available for viewing on the app for 24 hours. After 24 hours the story will be archived, but you can still attach it to your profile at your personal profile page, and it will be saved as a highlight to your profile.
+ - *User profiles*: Users can personalize their profiles by adding a bio, a profile picture, and a cover photo. This feature allows users to express themselves and showcase their personal brand.
+ - *Search function*: Users can search for other users and hashtags. This feature makes it easy for users to find and follow content and people that interest them.
+ - *Push notifications*: Users will receive notifications when someone likes, comments or messages them. This feature keeps users engaged and informed about the activity on their posts.
+ - *Message page*: As a social network Snapshot has a message page where you can chat with other users online, and create personal relationships.
+ - *Direct messaging*: Users can send private messages to other users. This feature enables users to communicate with each other in a more intimate setting.
+ - *Responsive design*: The app is optimized for all screen sizes and devices, allowing users to access and use the app on any device.
+ - *Dark mode*: The dark mode feature on Snapshot allows users to switch to a darker color scheme on the app, reducing eye strain and making it easier to use in low-light environments. It also provides a sleek and modern aesthetic for users who prefer a darker theme.
 
  
 ## Technologies
@@ -53,9 +58,11 @@ In Snapshot, the message page allows you to create chat rooms with one or more u
 * Clone the repository
 * Run the following commands to run the backend:
 
+```
     $ cd backend
     $ npm i
     $ npm run dev
+```
 
 * Run the following commands to run the frontend:
 
@@ -120,7 +127,7 @@ The profile page contains the user created posts, post he saved for later views,
 ### Some mobile!
 Just a taste of the mobile experience. We used different **mixins**, **conditional rendering**, and the **"mobile first"** approach. 
 
-<img src="screenshots/mobile-home-page" width="25%" style="float: left"/><img src="screenshots/mobile-message-page.png" width="25%" style="float: left;"/><img src="screenshots/mobile-story-page.png" width="25%" style="float: left;"/><img src="screenshots/mobile-profile-edit.png" width="25%" style="float: left;"/>
+<img src="screenshots/mobile-home-page.png" width="25%" style="float: left"/><img src="screenshots/mobile-message-page.png" width="25%" style="float: left;"/><img src="screenshots/mobile-story-page.png" width="25%" style="float: left;"/><img src="screenshots/mobile-profile-edit.png" width="25%" style="float: left;"/>
 
 ### Author
  - [Eshel Eyni](https://github.com/EshelEyni)
