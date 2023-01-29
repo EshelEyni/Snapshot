@@ -6,7 +6,7 @@
 
     <container-element [ngSwitch]="type">
 
-        <div class="full-view-container" *ngSwitchCase="'full-view'">
+        <div class="full-preview-container" *ngSwitchCase="'full-preview'">
             <img src={{currImgUrl}} alt="Avatar">
             <pagination-btns (prevItem)="onSwitchImg($event)" (nextItem)="onSwitchImg($event)"
                 [isPaginationBtnShown]="isPaginationBtnShown" [isEditIcon]="isEditPost"></pagination-btns>

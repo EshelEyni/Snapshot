@@ -22,6 +22,8 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
     this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
 
   }
+  
+  type!: string;
 
   loggedinUser$: Observable<User | null>
   loggedinUser!: User
@@ -29,7 +31,6 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
 
   users!: MiniUser[];
   selectedUsers!: MiniUser[];
-  type!: string;
   chat!: Chat;
   currUser!: MiniUser; // for chat options modal
   isLoggedinUserAdmin: boolean = false;
@@ -40,6 +41,7 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
   isChatOptionsModalShown: boolean = false;
   isMainScreenShown: boolean = false;
   isSelectUser: { idx: number, isSelected: boolean }[] = [];
+
   addUser = new EventEmitter<MiniUser>();
   removeUser = new EventEmitter<MiniUser>();
 

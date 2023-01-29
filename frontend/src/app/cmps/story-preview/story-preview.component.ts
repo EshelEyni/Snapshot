@@ -4,7 +4,7 @@ import { State } from './../../store/store';
 import { Store } from '@ngrx/store';
 import { UserService } from './../../services/user.service';
 import { Story } from './../../models/story.model';
-import { Component, EventEmitter, OnInit, OnChanges, inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, inject, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'story-preview',
@@ -17,33 +17,36 @@ export class StoryPreviewComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
+  };
 
-  }
   userService = inject(UserService);
   store = inject(Store<State>);
-  loggedinUser$: Observable<User | null>
-  loggedinUser!: User
+
+  type!: 'home-page' | 'profile-details' | 'story-details'
+    | 'highlight-story-picker' | 'chat-story-preview';
+
+  loggedinUser$: Observable<User | null>;
+  loggedinUser!: User;
   sub: Subscription | null = null;
   story!: Story;
-  type!: string;
+
   isLinkToStoryEdit!: boolean;
-  hightlightStoryPickerDate!: { day: string, month: string, year: string }
+  hightlightStoryPickerDate!: { day: string, month: string, year: string };
 
   ngOnInit(): void {
 
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) {
-        this.loggedinUser = { ...user }
-      }
-    })
+        this.loggedinUser = { ...user };
+      };
+    });
 
     if (this.type === 'highlight-story-picker') {
-      this.setHightlightStoryPickerDate(this.story.createdAt);
-    }
-  }
+      this.setDateForHighlightStoryPicker(this.story.createdAt);
+    };
+  };
 
-
-  setHightlightStoryPickerDate(timeStamp: Date) {
+  setDateForHighlightStoryPicker(timeStamp: Date): void {
     const date = new Date(timeStamp);
     const monthNames = [
       "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
@@ -52,13 +55,11 @@ export class StoryPreviewComponent implements OnInit, OnDestroy {
       day: date.getDate().toString(),
       month: monthNames[date.getMonth()],
       year: date.getFullYear().toString()
-    }
+    };
+  };
 
-  }
-
-
-
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.sub?.unsubscribe();
-  }
-}
+  };
+
+};

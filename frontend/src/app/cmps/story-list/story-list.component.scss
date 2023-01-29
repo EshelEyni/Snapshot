@@ -1,5 +1,4 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
 ::ng-deep .home-page-story-list-container {
@@ -30,7 +29,6 @@
                     }
                 }
             }
-
         }
 
         .user-preview {
@@ -76,7 +74,6 @@
         height: rem(60px);
         width: rem(60px);
     }
-
 
     .pre-story-list,
     .post-story-list {
@@ -129,7 +126,6 @@
         }
     }
 }
-
 
 .highlight-story-picker-list {
 

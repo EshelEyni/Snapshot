@@ -1,7 +1,5 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
-
 
 .user-preview {
     position: relative;
@@ -72,7 +70,6 @@
         .img-container {
             height: rem(60px);
             width: rem(60px);
-
             border: 1px solid transparent;
 
             .plus-circle-container {

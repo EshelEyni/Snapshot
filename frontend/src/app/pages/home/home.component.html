@@ -3,7 +3,7 @@
     <main class="post-app">
         <div class="main-container">
             <story-list [type]="'home-page'"></story-list>
-            <post-list [posts]="(posts$|async)!" [type]="'full-view'"></post-list>
+            <post-list [posts]="(posts$|async)!" [type]="'full-preview'"></post-list>
         </div>
         <div class="user-list-container">
                 <user-preview [user]="userService.getMiniUser(loggedinUser)" [type]="'suggestion-list'"

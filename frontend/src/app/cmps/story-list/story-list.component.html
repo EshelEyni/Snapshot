@@ -1,6 +1,5 @@
 <container-element [ngSwitch]="type">
 
-
     <div class="home-page-story-list-container" *ngSwitchCase="'home-page'">
         <ul class="story-list" [style.left]="listPosition">
             <li *ngIf="isLinkToStoryEdit">
@@ -10,8 +9,8 @@
                 <story-preview [story]="story" [type]="type"></story-preview>
             </li>
         </ul>
-        <pagination-btns [isPaginationBtnShown]="isPaginationBtnShown" (prevItem)="onScrollStory($event)"
-            (nextItem)="onScrollStory($event)"></pagination-btns>
+        <pagination-btns [isPaginationBtnShown]="isPaginationBtnShown" (prevItem)="onScrollStoryList($event)"
+            (nextItem)="onScrollStoryList($event)"></pagination-btns>
     </div>
 
     <div class="details-story-list" *ngSwitchCase="'story-details'">
@@ -23,7 +22,7 @@
 
         <story [story]="currStory" [nextStory]="postCurrStoryList[0]" [isCurrStory]="true"
             [isPaginationBtnShown]="isPaginationBtnShown" (setPrevStory)="onSetCurrStory($event)"
-            (setNextStory)="onSetCurrStory($event)" (imgChange)="onSetCurrStroyImg($event)"></story>
+            (setNextStory)="onSetCurrStory($event)" (imgChange)="onSetCurrStoryImgIdx($event)"></story>
 
         <ul class="post-story-list">
             <li *ngFor="let story of postCurrStoryList">

@@ -17,7 +17,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.loggedinUser$ = this.store.select('userState').pipe(map((x => x.loggedinUser)));
-  }
+  };
+
   userService = inject(UserService);
   store = inject(Store<State>);
   socketService = inject(SocketService);
@@ -25,23 +26,24 @@ export class AppComponent implements OnInit, OnDestroy {
   loggedinUser$: Observable<User | null>;
   loggedinUser!: User;
   subLoggedinUSer: Subscription | null = null;
+  
   isDarkMode!: boolean;
 
   async ngOnInit() {
     this.socketService.setup();
-    const loggedinUser = this.userService.getLoggedinUser()
+    const loggedinUser = this.userService.getLoggedinUser();
     if (loggedinUser) {
       this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
-    }
+    };
 
     this.subLoggedinUSer = this.loggedinUser$.subscribe(user => {
       if (user) {
         this.loggedinUser = {...user};
         this.isDarkMode = this.loggedinUser.isDarkMode;
         this.setDarkMode();
-      }
+      };
     });
-  }
+  };
 
   setDarkMode() {
     if (this.isDarkMode) {
@@ -54,11 +56,11 @@ export class AppComponent implements OnInit, OnDestroy {
       document.documentElement.style.setProperty('--secondary-bg', 'rgb(255, 255, 255)');
       document.documentElement.style.setProperty('--primary-color', 'rgb(38, 38, 38)');
     }
-  }
+  };
 
   ngOnDestroy(): void {
     this.subLoggedinUSer?.unsubscribe();
     this.socketService.terminate();
-  }
+  };
 
-}
+};

@@ -9,13 +9,12 @@ import { Post } from 'src/app/models/post.model';
 })
 export class PostListComponent implements OnInit {
 
-  posts!: Post[]
-  type!: string;
+  posts!: Post[];
+  type!: 'full-preview' | 'mini-preview';
   isPostDetailsNestedRoute!: boolean;
 
-  constructor() { }
+  constructor() { };
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {  };
 
 }

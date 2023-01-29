@@ -16,55 +16,55 @@ export class HomePageHeaderComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
-
   }
 
   userService = inject(UserService);
   searchService = inject(SearchService);
   store = inject(Store<State>);
 
-  loggedinUser$: Observable<User | null>
-  loggedinUser!: User
   sub: Subscription | null = null;
-  searchResults: any[] = []
-  recentSearches: any[] = []
-  isSearchModalShown = false
-  isRecentSearchShown = true
-  isNoResults = false
+
+  loggedinUser$: Observable<User | null>;
+  loggedinUser!: User;
+  searchResults: any[] = [];
+  recentSearches: any[] = [];
+
+  isSearchModalShown = false;
+  isRecentSearchShown = true;
+  isNoResults = false;
 
 
   ngOnInit(): void {
     this.sub = this.loggedinUser$.subscribe(async user => {
       if (user) {
-        this.loggedinUser = {...user}
-        this.recentSearches = await this.searchService.getRecentSearches(this.loggedinUser.id)
-      }
-    })
-  }
+        this.loggedinUser = { ...user };
+        this.recentSearches = await this.searchService.getRecentSearches(this.loggedinUser.id);
+      };
+    });
+  };
 
   onSearchFinished(res: { searchResult: { users: User[], tags: Tag[] }, isClearSearch: boolean }) {
     if (res.isClearSearch) {
-      this.searchResults = []
-      this.isRecentSearchShown = true
-      this.isNoResults = false
-      return
-    }
-    const searchResults = res.searchResult
-    this.searchResults = [...searchResults.users, ...searchResults.tags]
-    this.isRecentSearchShown = false
-    this.isNoResults = this.searchResults.length === 0
-  }
+      this.searchResults = [];
+      this.isRecentSearchShown = true;
+      this.isNoResults = false;
+      return;
+    };
+    const searchResults = res.searchResult;
+    this.searchResults = [...searchResults.users, ...searchResults.tags];
+    this.isRecentSearchShown = false;
+    this.isNoResults = this.searchResults.length === 0;
+  };
 
   onOpenModal() {
-    this.isSearchModalShown = true
-  }
+    this.isSearchModalShown = true;
+  };
 
   onCloseModal() {
-    this.isSearchModalShown = false
-  }
+    this.isSearchModalShown = false;
+  };
 
   ngOnDestroy(): void {
-    this.sub?.unsubscribe()
-  }
-
-}
+    this.sub?.unsubscribe();
+  };
+};

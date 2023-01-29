@@ -231,7 +231,7 @@
                     padding: rem(10px) 0;
 
                     &.active {
-                        border-top: black 1.5px solid;
+                        border-top: var(--primary-color) 1.5px solid;
 
                         span {
                             color: var(--primary-color);
