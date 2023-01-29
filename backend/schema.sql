@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS "commentsLikedBy"(
 CREATE TABLE IF NOT EXISTS "followers" (
     "id" INTEGER NOT NULL UNIQUE,
     "followingId" INTEGER NOT NULL,
-    "userId" INTEGER NOT NULL UNIQUE,
+    "userId" INTEGER NOT NULL,
     "username" TEXT NOT NULL,
     "fullname" TEXT NOT NULL,
     "imgUrl" TEXT NOT NULL,
@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS "notifications" (
     "type" TEXT NOT NULL,
     "byUserId" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
-    "entityTypeId" INTEGER NOT NULL,
+    "entityId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP NOT NULL,
     "postId" INTEGER,
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("userId") references "users"("id") foreign key ("byUserId") references "users"("id")
@@ -165,16 +165,6 @@ CREATE TABLE IF NOT EXISTS "storyViews" (
     "id" INTEGER NOT NULL UNIQUE,
     "storyId" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
-    "username" TEXT NOT NULL,
-    "fullname" TEXT NOT NULL,
-    "imgUrl" TEXT NOT NULL,
-    PRIMARY KEY("id" AUTOINCREMENT) foreign key ("storyId") references "stories"("id") foreign key ("userId") references "users"("id")
-);
-
-CREATE TABLE IF NOT EXISTS "storiesLikedBy"(
-    "id" INTEGER NOT NULL UNIQUE,
-    "storyId" INTEGER NOT NULL,
-    "userId" INTEGER NOT NULL UNIQUE,
     "username" TEXT NOT NULL,
     "fullname" TEXT NOT NULL,
     "imgUrl" TEXT NOT NULL,

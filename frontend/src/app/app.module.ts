@@ -118,7 +118,7 @@ import { MessageListComponent } from './cmps/message-list/message-list.component
 import { MessageComponent } from './cmps/message/message.component';
 import { PostEditModalComponent } from './cmps/post-edit-modal/post-edit-modal.component';
 import { PostEditComponent } from './pages/post-edit/post-edit.component';
-import { PostLoaderComponent } from './cmps/post-loader/post-loader.component';
+import { ContentLoaderComponent } from './cmps/content-loader/content-loader.component';
 
 @NgModule({
   declarations: [
@@ -216,7 +216,7 @@ import { PostLoaderComponent } from './cmps/post-loader/post-loader.component';
     MessageComponent,
     PostEditModalComponent,
     PostEditComponent,
-    PostLoaderComponent,
+    ContentLoaderComponent,
   ],
   imports: [
     BrowserAnimationsModule,

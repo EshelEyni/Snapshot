@@ -14,7 +14,7 @@ import { Store } from '@ngrx/store';
 })
 export class StoryEditComponent implements OnInit {
 
-  constructor() { 
+  constructor() {
     this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
 
   }
@@ -23,20 +23,7 @@ export class StoryEditComponent implements OnInit {
   store = inject(Store<State>);
   userService = inject(UserService);
 
-  storyImgs: StoryImg[] = [
-    {
-      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1666727081/fpswmz9kgjouuoaj2va1.jpg',
-      items: []
-    },
-    {
-      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664955076/ifizwgsan7hjjovf2xtn.jpg',
-      items: []
-    },
-    {
-      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664739345/yqvuwzj1lp7ozm53fqps.jpg',
-      items: []
-    },
-  ];
+  storyImgs: StoryImg[] = [];
 
   loggedinUser!: User;
   sub!: Subscription;
@@ -50,7 +37,7 @@ export class StoryEditComponent implements OnInit {
     })
   }
 
-  
+
 
   onSetFiles(imgUrls: string[]) {
     this.storyImgs = imgUrls.map(imgUrl => ({ url: imgUrl, items: [] }));

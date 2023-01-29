@@ -236,11 +236,12 @@ async function add(post) {
         return await db.txn(async () => {
             const id = await db.exec(
                 `insert into posts (userId, createdAt, isLikeShown, isCommentShown, likeSum, commentSum, locationId) 
-                 values ($userId, $createdAt, true, true, 0, 0, $locationId)`,
+                 values ($userId, $createdAt, true, true, 0, $commentSum, $locationId)`,
                 {
                     $userId: post.by.id,
                     $createdAt: Date.now(),
-                    $locationId: post.location.id === 0 ? null : post.location.id
+                    $locationId: post.location.id === 0 ? null : post.location.id,
+                    $commentSum: post.commentSum
                 });
             for (const i in post.imgUrls) {
                 await db.exec(`insert into postsImgs (postId, imgUrl, imgOrder) values ($postId, $imgUrl, $imgOrder)`, {

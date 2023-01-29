@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostLoaderComponent } from './post-loader.component';
+import { ContentLoaderComponent } from './content-loader.component';
 
-describe('PostLoaderComponent', () => {
-  let component: PostLoaderComponent;
-  let fixture: ComponentFixture<PostLoaderComponent>;
+describe('ContentLoaderComponent', () => {
+  let component: ContentLoaderComponent;
+  let fixture: ComponentFixture<ContentLoaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PostLoaderComponent ]
+      declarations: [ ContentLoaderComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PostLoaderComponent);
+    fixture = TestBed.createComponent(ContentLoaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

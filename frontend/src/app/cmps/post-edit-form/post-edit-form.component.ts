@@ -47,6 +47,8 @@ export class PostEditFormComponent implements OnInit {
       this.isLocationModalShown = true
       this.isMainScreenShown = true
     }
+    this.postChanged.emit({ txt: this.txt, location: this.location })
+
   }
 
   onToggleModal(modalName: string) {
@@ -69,6 +71,7 @@ export class PostEditFormComponent implements OnInit {
   onAddEmoji(emoji: any) {
     if (typeof emoji.emoji !== 'string') this.txt += emoji.emoji.native
     else this.txt += emoji.emoji
+    this.postChanged.emit({ txt: this.txt, location: this.location })
 
   }
 

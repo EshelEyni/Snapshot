@@ -69,13 +69,16 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
         this.post = data['post']
         await this.setPostClassName(this.post.imgUrls[0])
 
-        this.comments = await this.commentService.loadComments(
-          {
-            postId: this.post.id,
-            userId: null,
-            type: 'post-details'
-          }
-        )
+        if (!this.comments) {
+          this.comments = await this.commentService.loadComments(
+            {
+              postId: this.post.id,
+              userId: null,
+              type: 'post-details'
+            }
+          )
+          console.log('this.comments', this.comments);
+        }
 
         if (!this.isNested) {
           this.postService.loadPosts(

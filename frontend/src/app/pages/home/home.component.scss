@@ -59,25 +59,28 @@
                 gap: rem(25px);
                 padding-top: rem(100px);
                 min-width: rem(320px);
-
+                
                 .user-preview {
                     gap: rem(15px);
-
+                    
                     .img-container {
                         width: rem(50px);
                         height: rem(50px);
                     }
-
+                    
                     .user-info {
-                        width: rem(70px);
+                        width: rem(250px);
                         line-height: 1;
-
+                        
                         span {
                             font-weight: 600;
                         }
                     }
                 }
+                user-list{
 
+                    min-height: rem(350px);
+                }
             }
         }
 

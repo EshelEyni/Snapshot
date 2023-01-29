@@ -36,16 +36,7 @@ export class HomeComponent implements OnInit {
   async ngOnInit() {
     const loggedinUser = this.userService.getLoggedinUser()
     if (loggedinUser) {
-      
-      this.postService.loadPosts(
-        {
-          userId: loggedinUser.id,
-          type: 'homepagePosts',
-          limit: 1000,
-        }
-      );
-
-      this.posts$ = this.postService.posts$;
+      this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
 
       this.store.dispatch(new LoadUsers({
         userId: loggedinUser.id,
@@ -57,6 +48,15 @@ export class HomeComponent implements OnInit {
     this.subLoggedinUser = this.loggedinUser$.subscribe(user => {
       if (user){
         this.loggedinUser = {...user};
+        this.postService.loadPosts(
+          {
+            userId: this.loggedinUser.id,
+            type: 'homepagePosts',
+            limit: 1000,
+          }
+        );
+  
+        this.posts$ = this.postService.posts$;
       }
     });
 

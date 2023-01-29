@@ -76,17 +76,17 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
   async onImgSelected(ev: any) {
     const img = ev.target.files[0]
     const url = await this.uploadImgService.uploadImg(img)
-    this.user.imgUrl = url
+    const user = { ...this.user, imgUrl: url}
     this.userImgUrl = url
-    await this.store.dispatch(new SaveUser(this.user))
+    await this.store.dispatch(new SaveUser(user))
     this.isImgSettingModalOpen = false
     this.communicationService.setUserMsg('Profile photo added.')
   }
 
   async onRemoveImg() {
-    this.user.imgUrl = this.userService.getDefaultUserImgUrl()
+    const user = { ...this.user, imgUrl: this.userService.getDefaultUserImgUrl()}
     this.userImgUrl = this.userService.getDefaultUserImgUrl()
-    await this.store.dispatch(new SaveUser(this.user))
+    await this.store.dispatch(new SaveUser(user))
     this.isImgSettingModalOpen = false
     this.communicationService.setUserMsg('Profile photo removed.')
   }

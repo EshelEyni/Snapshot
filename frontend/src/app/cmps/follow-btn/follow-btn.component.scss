@@ -10,16 +10,17 @@
         padding: rem(7.5px) rem(15px);
         font-weight: 600;
         cursor: pointer;
-
+        
         &:hover {
             background-color: var(--button-hover);
         }
     }
-
-
+    
+    
     .btn-unfollow {
         border: 1px solid var(--border-color);
         border-radius: 5px;
+        color: var(--primary-color);
         padding: rem(7.5px) rem(15px);
         font-weight: 600;
         cursor: pointer;

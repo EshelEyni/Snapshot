@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { State } from './../../store/store';
 import { User } from './../../models/user.model';
 import { UploadImgService } from './../../services/upload-img.service';
-import { Component, OnInit, HostListener, inject, EventEmitter, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, HostListener, inject, EventEmitter, ViewChild, OnDestroy, ViewChildren, QueryList } from '@angular/core';
 import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
@@ -11,7 +11,7 @@ import { SvgIconComponent } from 'angular-svg-icon';
   templateUrl: './file-input.component.html',
   styleUrls: ['./file-input.component.scss'],
   inputs: ['type'],
-  outputs: ['uploadedImgUrls']
+  outputs: ['uploadedImgUrls', 'isUploading']
 })
 export class FileInputComponent implements OnInit, OnDestroy {
 
@@ -21,7 +21,7 @@ export class FileInputComponent implements OnInit, OnDestroy {
       .pipe(map((x) => x.loggedinUser))
   }
 
-  @ViewChild('svgIcon') icons!: SvgIconComponent;
+  @ViewChildren('svgIcon') icons!: QueryList<SvgIconComponent>;
   uploadImgService = inject(UploadImgService)
   store = inject(Store<State>)
   sub: Subscription | null = null
@@ -30,6 +30,7 @@ export class FileInputComponent implements OnInit, OnDestroy {
   dragAreaClass!: string;
   imgUrls: string[] = [];
   uploadedImgUrls = new EventEmitter<string[]>();
+  isUploading = new EventEmitter();
   iconColor: string = 'var(--tertiary-color)'
   loggedinUser!: User;
 
@@ -39,14 +40,19 @@ export class FileInputComponent implements OnInit, OnDestroy {
     this.sub = this.loggedinUser$.subscribe((user) => {
       if (user) {
         this.loggedinUser = { ...user }
-        this.setIconColor()
       }
     })
+
+    setTimeout(() => {
+      this.setIconColor();
+    }, 0)
   }
 
   setIconColor() {
     this.iconColor = this.loggedinUser.isDarkMode ? 'var(--primary-color)' : 'var(--tertiary-color)'
-    this.icons.svgStyle = { color: this.iconColor, fill: this.iconColor }
+    this.icons.forEach(icon => {
+      icon.svgStyle = { color: this.iconColor, fill: this.iconColor }
+    })
   }
 
 
@@ -82,7 +88,7 @@ export class FileInputComponent implements OnInit, OnDestroy {
   }
 
   async saveFiles(files: FileList) {
-
+    this.isUploading.emit()
     for (let i = 0; i < files.length; i++) {
       try {
         const url = await this.uploadImgService.uploadImg(files[i])
@@ -93,7 +99,7 @@ export class FileInputComponent implements OnInit, OnDestroy {
       }
 
     }
-
+    this.isUploading.emit()
     this.uploadedImgUrls.emit(this.imgUrls)
   }
 

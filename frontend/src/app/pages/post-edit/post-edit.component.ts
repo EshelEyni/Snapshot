@@ -42,38 +42,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
   sub: Subscription | null = null
   loggedinUser$: Observable<User | null>
   loggedinUser!: User
-  postImgs: PostCanvasImg[] = [
-    // {
-    //   url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667001489/github-icon_2_ixseoz.png',
-    //   x: 0,
-    //   y: 0,
-    //   width: 830,
-    //   height: 830,
-    //   aspectRatio: 'Original',
-    //   zoom: 0,
-    //   filter: 'normal',
-    // },
-    {
-      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664789187/jsywue9raehtraavttaw.jpg',
-      x: 0,
-      y: 0,
-      width: 830,
-      height: 830,
-      aspectRatio: 'Original',
-      zoom: 0,
-      filter: 'normal',
-    },
-    {
-      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664328265/ubgpmrhtkoi4syzj5w0r.jpg',
-      x: 0,
-      y: 0,
-      width: 830,
-      height: 830,
-      aspectRatio: 'Original',
-      zoom: 0,
-      filter: 'normal',
-    },
-  ];
+  postImgs: PostCanvasImg[] = [];
   txt: string = '';
   location: postLocation = {
     id: 0,
@@ -86,7 +55,8 @@ export class PostEditComponent implements OnInit, OnDestroy {
   currFilter!: string;
   isSaving: boolean = false;
   canvasSize: number = 830;
-  
+  isUploading: boolean = false;
+
   ngOnInit(): void {
 
     this.sub = this.loggedinUser$.subscribe((user) => {
@@ -96,7 +66,9 @@ export class PostEditComponent implements OnInit, OnDestroy {
     })
   }
 
-
+  onToggleIsUploading() {
+    this.isUploading = !this.isUploading
+  }
 
 
   onSaveFiles(imgUrls: string[]) {
@@ -161,7 +133,6 @@ export class PostEditComponent implements OnInit, OnDestroy {
     const postToSave = this.postService.getEmptyPost();
     const author = this.userService.getMiniUser(this.loggedinUser);
     await this.convertCanvasImgsToImgUrls(this.postImgs, postToSave.imgUrls);
-    // postToSave.imgUrls = this.postImgs.map(img => img.url);
     postToSave.by = author;
     postToSave.location = this.location;
     postToSave.tags = this.tagService.detectTags(this.txt);

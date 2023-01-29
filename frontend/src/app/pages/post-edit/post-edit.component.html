@@ -11,8 +11,11 @@
 
     <main class="post-edit-main-container">
         <div class="input-file-container" *ngIf="!postImgs.length else postImgContainer">
-            <file-input (uploadedImgUrls)="onSaveFiles($event)" [type]="'draggable'">
+            <file-input (uploadedImgUrls)="onSaveFiles($event)" [type]="'draggable'"
+                (isUploading)="onToggleIsUploading()" [class.display-none]="isUploading">
             </file-input>
+            <content-loader *ngIf="isUploading"></content-loader>
+
         </div>
 
         <ng-template #postImgContainer>
@@ -32,5 +35,5 @@
 </section>
 <canvas #offScreenCanvas [width]="canvasSize" [height]="canvasSize" [style]="{'display':'none'}"></canvas>
 <ng-template #loader>
-    <post-loader></post-loader>
+    <content-loader></content-loader>
 </ng-template>

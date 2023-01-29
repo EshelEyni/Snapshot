@@ -4343,3 +4343,301 @@
 28.1.2023, 20:38:46 - INFO - Server is running on port: 3030 
 28.1.2023, 20:38:47 - INFO - New connected socket [id: 0-A9KQ7YWFj5nU6GAAAB] 
 28.1.2023, 20:38:47 - INFO - New connected socket [id: cDsEghPizVbKTyp7AAAD] 
+28.1.2023, 20:40:11 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 20:56:17 - INFO - Server is running on port: 3030 
+28.1.2023, 20:56:18 - INFO - New connected socket [id: D4qLaoBOgFAHEqd6AAAB] 
+28.1.2023, 20:56:21 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:15:42 - INFO - Server is running on port: 3030 
+28.1.2023, 22:17:25 - INFO - New connected socket [id: e0gvJznLq-fZ6uEEAAAB] 
+28.1.2023, 22:18:34 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:18:36 - INFO - New connected socket [id: vdGmIiUMA1o_v2-EAAAD] 
+28.1.2023, 22:20:55 - INFO - Server is running on port: 3030 
+28.1.2023, 22:20:56 - INFO - New connected socket [id: Sw7GMMGq3hwxtfV7AAAB] 
+28.1.2023, 22:21:21 - DEBUG - auth.service - signup with username: Eshel, fullname: Eshel Eyni 
+28.1.2023, 22:21:21 - DEBUG - auth.route - new account created: "Eshel" 
+28.1.2023, 22:21:21 - DEBUG - auth.service - login with username: Eshel 
+28.1.2023, 22:21:21 - INFO - User login:  | {"id":1,"username":"Eshel","fullname":"Eshel Eyni","email":"esheleyni@gmail.com","password":"$2b$10$dJ8gm/.PmD5VIENDuRVojOoNMLt6Ri5FAHvb5B3itnbLEAZAT7SUq","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"isDarkMode":false,"storySum":0,"currStoryId":null} 
+28.1.2023, 22:22:03 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:22:06 - INFO - New connected socket [id: t8TCSaCmu_nLxb-mAAAD] 
+28.1.2023, 22:22:08 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:22:09 - INFO - New connected socket [id: FlGHpKAuUuHuGFndAAAF] 
+28.1.2023, 22:22:21 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:22:22 - INFO - New connected socket [id: YWOrOlUKctV04kfXAAAH] 
+28.1.2023, 22:22:28 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:22:29 - INFO - New connected socket [id: 3b--Gs9OoGfAcxJWAAAJ] 
+28.1.2023, 22:24:56 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:24:57 - INFO - New connected socket [id: wIWkzlsVE_CNSdz3AAAL] 
+28.1.2023, 22:26:11 - INFO - Server is running on port: 3030 
+28.1.2023, 22:26:13 - INFO - New connected socket [id: uHMv4Dj1reyqpsEYAAAB] 
+28.1.2023, 22:26:35 - INFO - Server is running on port: 3030 
+28.1.2023, 22:26:36 - INFO - New connected socket [id: 3ShNLh_4wX--Vg8OAAAB] 
+28.1.2023, 22:26:39 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:26:39 - INFO - New connected socket [id: FeYuOo1f_H8CvSCVAAAD] 
+28.1.2023, 22:26:42 - ERROR - cannot delete like | Failed to commit transaction: Error: SQLITE_ERROR: no such column: entityId 
+28.1.2023, 22:26:42 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:26:44 - INFO - New connected socket [id: oLaTOuUvnt8rOzpQAAAF] 
+28.1.2023, 22:28:17 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:28:18 - INFO - New connected socket [id: eqVN3Ckh9FGA8jvmAAAH] 
+28.1.2023, 22:29:05 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:29:07 - INFO - New connected socket [id: lipDyGX80wNJxS5GAAAJ] 
+28.1.2023, 22:30:05 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:30:08 - INFO - New connected socket [id: H044oVhIxUO1T6qzAAAL] 
+28.1.2023, 22:45:00 - DEBUG - auth.service - signup with username: cake, fullname: cake 
+28.1.2023, 22:45:00 - DEBUG - auth.route - new account created: "cake" 
+28.1.2023, 22:45:00 - DEBUG - auth.service - login with username: cake 
+28.1.2023, 22:45:00 - INFO - User login:  | {"id":2,"username":"cake","fullname":"cake","email":"cake@gmail.com","password":"$2b$10$fHINLoXinjqicM9gf9gxJ.K3X./a8X/PkucrWHbfgRdbgNHxFBCGa","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"isDarkMode":false,"storySum":0,"currStoryId":null} 
+28.1.2023, 22:49:24 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:49:26 - INFO - New connected socket [id: W2moURwAokhx375eAAAN] 
+28.1.2023, 22:50:29 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:50:31 - INFO - New connected socket [id: 64luBe9NjPKL8WjaAAAP] 
+28.1.2023, 22:50:51 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:50:52 - INFO - New connected socket [id: wiyL59I65mc3ILCMAAAR] 
+28.1.2023, 22:51:22 - DEBUG - auth.service - login with username: cake 
+28.1.2023, 22:51:22 - INFO - User login:  | {"id":2,"username":"cake","fullname":"cake","email":"cake@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"isDarkMode":0,"storySum":0} | 845fc09d9b765505cf0dd03e23c3aade59f34d4f36b384bba3c1803fb3360322a4757acd58b4b045d12f7185d216e6b2060d6290dece496920b4916606287a7072ca3873cecec2266762aa200610dfbfe628e4d9f89d7d9b7b476e1c30428fb28d 
+28.1.2023, 22:51:31 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:51:32 - INFO - New connected socket [id: 23yckbtF_CsbHiy8AAAT] 
+28.1.2023, 22:52:55 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:52:57 - INFO - New connected socket [id: y_SEQHu4ZK7-mvg8AAAV] 
+28.1.2023, 22:53:08 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:53:09 - INFO - New connected socket [id: Hy_LA8P6ummt4B4wAAAX] 
+28.1.2023, 22:54:25 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:54:27 - INFO - New connected socket [id: vbf4hkmm3boM3SSVAAAZ] 
+28.1.2023, 22:54:50 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:54:51 - INFO - New connected socket [id: boV4VvLqZ4Q6i1wPAAAb] 
+28.1.2023, 22:55:22 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:55:23 - INFO - New connected socket [id: 42dr2EsRnRxCSX_qAAAd] 
+28.1.2023, 22:57:36 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:57:38 - INFO - New connected socket [id: 3ZZ2BSV_HNMFeuZAAAAf] 
+28.1.2023, 22:58:38 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:58:40 - INFO - New connected socket [id: 3lypCZt9UphSJzltAAAh] 
+28.1.2023, 22:59:56 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 22:59:58 - INFO - New connected socket [id: ZcuvwvGE6xSC9lxUAAAj] 
+28.1.2023, 23:00:54 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:00:54 - INFO - New connected socket [id: BsSreaNDQb68C_hDAAAl] 
+28.1.2023, 23:02:02 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:02:03 - INFO - New connected socket [id: BxsUh5mP7OomAmLgAAAn] 
+28.1.2023, 23:03:02 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:03:03 - INFO - New connected socket [id: EuBDZT161zL_CkEuAAAp] 
+28.1.2023, 23:05:01 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:05:02 - INFO - New connected socket [id: Mf0HW8fPVfe_e_NdAAAr] 
+28.1.2023, 23:05:19 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:05:20 - INFO - New connected socket [id: sRkOXC9OO4B6HFPkAAAt] 
+28.1.2023, 23:05:55 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:05:56 - INFO - New connected socket [id: y0GKr23u8OCPfHPlAAAv] 
+28.1.2023, 23:07:05 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:07:06 - INFO - New connected socket [id: jJjIb5kSZ57vqxWYAAAx] 
+28.1.2023, 23:07:32 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:07:33 - INFO - New connected socket [id: Sv8ByOxNfybEK_oXAAAz] 
+28.1.2023, 23:10:05 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:10:06 - INFO - New connected socket [id: HfE1L8FZqU0rI-bLAAA1] 
+28.1.2023, 23:10:49 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:10:50 - INFO - New connected socket [id: YHP_C6vys2w7zs32AAA3] 
+28.1.2023, 23:10:59 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:11:01 - INFO - New connected socket [id: csz_lirXJBUegIzjAAA5] 
+28.1.2023, 23:11:38 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:11:39 - INFO - New connected socket [id: u0IQte3aFbizl85kAAA7] 
+28.1.2023, 23:11:47 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:11:48 - INFO - New connected socket [id: B9UMrZYZwylYcov0AAA9] 
+28.1.2023, 23:12:17 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:12:18 - INFO - New connected socket [id: DOVtgq1j2ZGpLHhGAAA_] 
+28.1.2023, 23:12:47 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:12:48 - INFO - New connected socket [id: HztGrNSEkLSpSSFaAABB] 
+28.1.2023, 23:13:01 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:13:02 - INFO - New connected socket [id: FL0au8MaaZnM1nn_AABD] 
+28.1.2023, 23:13:12 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:13:13 - INFO - New connected socket [id: TaXKaOo2SHqVnFbHAABF] 
+28.1.2023, 23:13:58 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:13:59 - INFO - New connected socket [id: KXtHY-srZEZGqX0SAABH] 
+28.1.2023, 23:14:25 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:14:26 - INFO - New connected socket [id: GHTj4hWH4OIkA96mAABJ] 
+28.1.2023, 23:14:41 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:14:43 - INFO - New connected socket [id: P1Dvm8BmzpT_hJH3AABL] 
+28.1.2023, 23:15:37 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:15:38 - INFO - New connected socket [id: mwV3KB3FS0AD-RB2AABN] 
+28.1.2023, 23:16:06 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:16:07 - INFO - New connected socket [id: B3cS7Q2F8jExVusuAABP] 
+28.1.2023, 23:19:42 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:19:46 - INFO - New connected socket [id: utb34ze4_Lkc01abAABR] 
+28.1.2023, 23:19:56 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:19:57 - INFO - New connected socket [id: eS0SSsNdUPn3XBwuAABT] 
+28.1.2023, 23:20:18 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:20:20 - INFO - New connected socket [id: 17QuNVFVJicqFOxiAABV] 
+28.1.2023, 23:20:50 - DEBUG - auth.service - signup with username: tattokate, fullname: tattokate 
+28.1.2023, 23:20:51 - DEBUG - auth.route - new account created: "tattokate" 
+28.1.2023, 23:20:51 - DEBUG - auth.service - login with username: tattokate 
+28.1.2023, 23:20:51 - INFO - User login:  | {"id":3,"username":"tattokate","fullname":"tattokate","email":"tattokate@gmail.com","password":"$2b$10$TWahfe9dNXUu1XUCd5SzAePGl84o58S9HkcnQRTLH5e1ahP5yQKia","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"isDarkMode":false,"storySum":0,"currStoryId":null} 
+28.1.2023, 23:21:12 - DEBUG - auth.service - login with username: tattokate 
+28.1.2023, 23:21:12 - INFO - User login:  | {"id":3,"username":"tattokate","fullname":"tattokate","email":"tattokate@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"isDarkMode":0,"storySum":0} | dbcb15579295268ee27de82e1b54a51f854d58b33c4d9e0763c90fd8dd163dda45d529561d377a4c6c77485d77f4b592233043c64514707902e055e0bbd35fe073dfa4f8aae1df6487d5e0eed94bbf31fa11fd4033b74b7eba7ba816f0f6ae2450 
+28.1.2023, 23:22:46 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:22:47 - INFO - New connected socket [id: 08RqAsaujdpwDSJPAABX] 
+28.1.2023, 23:23:10 - INFO - New connected socket [id: ZP4u74Z_Tlm4RlkOAABZ] 
+28.1.2023, 23:23:32 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:24:40 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:24:41 - INFO - New connected socket [id: GCYlvdlEnIcT_47YAABb] 
+28.1.2023, 23:25:16 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:25:17 - INFO - New connected socket [id: 6S0Ac4hcd8sKcMGLAABd] 
+28.1.2023, 23:25:30 - DEBUG - auth.service - login with username: tatookate 
+28.1.2023, 23:25:30 - ERROR - while finding user tatookate | user with name tatookate was not found 
+28.1.2023, 23:25:30 - ERROR - Failed to Login user with name tatookate was not found 
+28.1.2023, 23:25:46 - DEBUG - auth.service - login with username: tattokate 
+28.1.2023, 23:25:46 - ERROR - Failed to Login Invalid username or password 
+28.1.2023, 23:26:21 - DEBUG - auth.service - signup with username: tatookate, fullname: tatookate 
+28.1.2023, 23:26:21 - DEBUG - auth.route - new account created: "tatookate" 
+28.1.2023, 23:26:21 - DEBUG - auth.service - login with username: tatookate 
+28.1.2023, 23:26:21 - INFO - User login:  | {"id":4,"username":"tatookate","fullname":"tatookate","email":"tatookate@gmail.com","password":"$2b$10$GUt.6v0nlHK/8Jkl.rj8xeoLFH/XkNblCNEVAYWcEdoKDrQsRf.2e","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"isDarkMode":false,"storySum":0,"currStoryId":null} 
+28.1.2023, 23:27:14 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:27:15 - INFO - New connected socket [id: yST9a1Vu0NN9awOKAABf] 
+28.1.2023, 23:27:26 - DEBUG - auth.service - login with username: tatookate 
+28.1.2023, 23:27:26 - INFO - User login:  | {"id":4,"username":"tatookate","fullname":"tatookate","email":"tatookate@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"isDarkMode":0,"storySum":0} | 92d19735099dab7f01596ba6c6ed7a7a94590d42d7263e8bef6de80b57d72933883280b715454b365d947a0701c9e8f8464861bf9a3b2cad411bfe1f165ff4d10bdbfacdaa702be908df57435f1c666784395034dbde880d53e0181cf39eadf70a 
+28.1.2023, 23:31:53 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:31:54 - INFO - New connected socket [id: _ek41USaaOeTD6vWAABh] 
+28.1.2023, 23:32:38 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:32:39 - INFO - New connected socket [id: aRaHWdyNVCdUaaRkAABj] 
+28.1.2023, 23:32:59 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:33:00 - INFO - New connected socket [id: R-r5YaixKkMDkiD0AABl] 
+28.1.2023, 23:36:08 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:36:10 - INFO - New connected socket [id: wtm7-NxSPEzmpHimAABn] 
+28.1.2023, 23:40:34 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:40:35 - INFO - New connected socket [id: ZBMKEgPaRSaLO1bxAABp] 
+28.1.2023, 23:41:35 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:41:36 - INFO - New connected socket [id: TUFPnn9DWn5usRibAABr] 
+28.1.2023, 23:41:46 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:41:46 - INFO - New connected socket [id: DOqkSUOwoqzGkDyJAABt] 
+28.1.2023, 23:42:11 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:42:12 - INFO - New connected socket [id: vR77eH5XetUtEZmRAABv] 
+28.1.2023, 23:42:50 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:42:51 - INFO - New connected socket [id: RBuF6ESvRsaMLy1cAABx] 
+28.1.2023, 23:44:17 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:44:19 - INFO - New connected socket [id: rnEx8zoNw2nNI0zJAABz] 
+28.1.2023, 23:45:29 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:45:30 - INFO - New connected socket [id: rkLA6fVpmGEhdzMvAAB1] 
+28.1.2023, 23:48:05 - INFO - Server is running on port: 3030 
+28.1.2023, 23:48:05 - INFO - New connected socket [id: qL-CI2AzSvsGCmNeAAAB] 
+28.1.2023, 23:52:07 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:52:09 - INFO - New connected socket [id: AVfSQIYwxyVTObDSAAAD] 
+28.1.2023, 23:52:58 - INFO - Socket disconnected [id: undefined] 
+28.1.2023, 23:52:59 - INFO - New connected socket [id: wiXmWau5-wuwvUdGAAAF] 
+28.1.2023, 23:54:16 - DEBUG - auth.service - signup with username: UFC, fullname: UFC 
+28.1.2023, 23:54:16 - DEBUG - auth.route - new account created: "UFC" 
+28.1.2023, 23:54:16 - DEBUG - auth.service - login with username: UFC 
+28.1.2023, 23:54:16 - INFO - User login:  | {"id":5,"username":"UFC","fullname":"UFC","email":"ufc@gmail.com","password":"$2b$10$MgcQ7qgLRGdUYdGrNr4JOOuWro8tWsQktubF3zYLBh0KE07G38cs6","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"isDarkMode":false,"storySum":0,"currStoryId":null} 
+29.1.2023, 0:01:53 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 0:01:56 - INFO - New connected socket [id: DnilIIqCiK73JduZAAAH] 
+29.1.2023, 0:02:07 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 0:02:08 - INFO - New connected socket [id: Z4MWC_ldRrvWzAs5AAAJ] 
+29.1.2023, 0:05:37 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 0:05:38 - INFO - New connected socket [id: O_l408VOENxkZW3pAAAL] 
+29.1.2023, 0:07:54 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 0:07:55 - INFO - New connected socket [id: b1_9fh5lPlKiBF8IAAAN] 
+29.1.2023, 0:17:13 - DEBUG - auth.service - signup with username: DBG, fullname: David Ben Gurion 
+29.1.2023, 0:17:13 - DEBUG - auth.route - new account created: "DBG" 
+29.1.2023, 0:17:13 - DEBUG - auth.service - login with username: DBG 
+29.1.2023, 0:17:13 - INFO - User login:  | {"id":6,"username":"DBG","fullname":"David Ben Gurion","email":"dbg@gmail.com","password":"$2b$10$7oKk0iz7Vj5XWSp/Sexs0.9CMTX6bUpzlQB0Wa943xO3BK65hHC/G","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"isDarkMode":false,"storySum":0,"currStoryId":null} 
+29.1.2023, 0:27:28 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 0:27:29 - INFO - New connected socket [id: nzsrzLuRKFI3IMqVAAAP] 
+29.1.2023, 0:27:59 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 0:28:00 - INFO - New connected socket [id: F_hCkLo8kS6ZySuJAAAR] 
+29.1.2023, 0:28:29 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 0:28:30 - INFO - New connected socket [id: JuFwXkh4KlA5emLxAAAT] 
+29.1.2023, 0:28:53 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 0:28:54 - INFO - New connected socket [id: QLcSHuDdjY5HTsSNAAAV] 
+29.1.2023, 0:30:00 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 0:30:01 - INFO - New connected socket [id: q3Cv4oQa9sOvWoGpAAAX] 
+29.1.2023, 0:30:28 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 0:30:29 - INFO - New connected socket [id: nePwLUbIOcLLqR8LAAAZ] 
+29.1.2023, 0:32:36 - DEBUG - auth.service - signup with username: miley, fullname: Miley Cyrus 
+29.1.2023, 0:32:36 - DEBUG - auth.route - new account created: "miley" 
+29.1.2023, 0:32:36 - DEBUG - auth.service - login with username: miley 
+29.1.2023, 0:32:37 - INFO - User login:  | {"id":7,"username":"miley","fullname":"Miley Cyrus","email":"miley@fmail.com","password":"$2b$10$xCAxayDfKIJNI9x2goFLM.l.Nz13RNSr3CJ0wm/RxnNa1ZhEHmB7i","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"isDarkMode":false,"storySum":0,"currStoryId":null} 
+29.1.2023, 0:34:34 - ERROR - cannot insert notification undefined | Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:34:34 - ERROR - cannot add like | Failed to commit transaction: Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:34:43 - ERROR - cannot insert notification undefined | Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:34:43 - ERROR - cannot add like | Failed to commit transaction: Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:34:45 - ERROR - cannot insert notification undefined | Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:34:45 - ERROR - cannot add like | Failed to commit transaction: Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:34:46 - ERROR - cannot insert notification undefined | Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:34:46 - ERROR - cannot add like | Failed to commit transaction: Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:34:47 - ERROR - cannot insert notification undefined | Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:34:47 - ERROR - cannot add like | Failed to commit transaction: Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:35:02 - ERROR - cannot insert notification undefined | Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:35:02 - ERROR - Failed to add comment | Failed to commit transaction: Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:35:02 - ERROR - cannot insert comment | Failed to commit transaction: Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:35:44 - ERROR - cannot insert notification undefined | Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:35:44 - ERROR - cannot insert comment | Failed to commit transaction: Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:35:44 - ERROR - Failed to add comment | Failed to commit transaction: Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:35:59 - ERROR - cannot insert notification undefined | Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:35:59 - ERROR - cannot insert comment | Failed to commit transaction: Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:35:59 - ERROR - Failed to add comment | Failed to commit transaction: Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:37:27 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 0:37:28 - INFO - New connected socket [id: gAik__p4APeMgbU4AAAb] 
+29.1.2023, 0:37:34 - ERROR - cannot insert notification undefined | Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:37:34 - ERROR - cannot insert comment | Failed to commit transaction: Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:37:34 - ERROR - Failed to add comment | Failed to commit transaction: Error: SQLITE_ERROR: table notifications has no column named entityId 
+29.1.2023, 0:39:20 - DEBUG - auth.service - signup with username: nike, fullname: nike 
+29.1.2023, 0:39:20 - DEBUG - auth.route - new account created: "nike" 
+29.1.2023, 0:39:20 - DEBUG - auth.service - login with username: nike 
+29.1.2023, 0:39:20 - INFO - User login:  | {"id":8,"username":"nike","fullname":"nike","email":"nike@nike.com","password":"$2b$10$JTK7el8pQ5ucMVbPn/xUYetHa9NfVNuTNLy1sbGcjPEK9wT7Z2ddu","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"isDarkMode":false,"storySum":0,"currStoryId":null} 
+29.1.2023, 0:42:05 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 0:42:06 - INFO - New connected socket [id: JYAPEjumSI9XOb2qAAAd] 
+29.1.2023, 0:42:17 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 0:42:18 - INFO - New connected socket [id: s40PqF2uD0MtK96MAAAf] 
+29.1.2023, 0:43:10 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 0:43:12 - INFO - New connected socket [id: OLpXR7yH73u-1u8qAAAh] 
+29.1.2023, 0:49:23 - DEBUG - auth.service - login with username: UFC 
+29.1.2023, 0:49:23 - INFO - User login:  | {"id":5,"username":"UFC","fullname":"UFC","email":"ufc@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":6,"isDarkMode":0,"storySum":0} | dad13f7829db06c30f4fb93864e154dc7525e95a91a37c8ee6a22c9dce06fc662c0421a52b970f154a0dc565126f83e2d257eab0edb9a05f6f8057978347297653ac2be16d2fcdf084916d013f27f10cfec796eb86736c2281902c0f7603edaa34 
+29.1.2023, 0:54:09 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 0:54:10 - INFO - New connected socket [id: GhVXaf3qKO9BoOEtAAAj] 
+29.1.2023, 0:54:43 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 0:54:44 - INFO - New connected socket [id: xaLZPtCejrWZwjNKAAAl] 
+29.1.2023, 0:57:47 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 0:57:48 - INFO - New connected socket [id: CS6I9bxuODRxz1n2AAAn] 
+29.1.2023, 0:58:03 - DEBUG - auth.service - login with username: cake 
+29.1.2023, 0:58:03 - INFO - User login:  | {"id":2,"username":"cake","fullname":"cake","email":"cake@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":3,"isDarkMode":0,"storySum":0} | 451102117a3d622b06c07dd30fea115a831281b01586eb14139062e70551a1e6096257978cf2a52e6fe7e1320264fb7dc3e5d6ff6b548c063387c5f2c1f269d27d642477007d73cec6cefa8ce62be2c275290887a3cc8f987a1f4b5f2a49335a70 
+29.1.2023, 1:01:00 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 1:01:01 - INFO - New connected socket [id: o_ZnMR7QmYyviAMoAAAp] 
+29.1.2023, 1:01:52 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 1:01:53 - INFO - New connected socket [id: m9ggcpURBYPllaSDAAAr] 
+29.1.2023, 1:02:28 - DEBUG - auth.service - login with username: Eshel 
+29.1.2023, 1:02:28 - ERROR - Failed to Login Invalid username or password 
+29.1.2023, 1:02:34 - DEBUG - auth.service - login with username: Eshel 
+29.1.2023, 1:02:34 - INFO - User login:  | {"id":1,"username":"Eshel","fullname":"Eshel Eyni","email":"esheleyni@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":2,"isDarkMode":0,"storySum":0} | 292cd63bd9cbed7dda1d3fbd4645984328568d06eb1329f943ded6b6d378134938f073ae1d8346b828c7e14770b48a226fdc15bbbc5e30300bb706b5fd4ce832117f8c714490ad7ffeac651ceea2afcb89213e55e566b3738cd47136a4c19c4d0a 
+29.1.2023, 1:02:41 - ERROR - cannot insert follower | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: followers.userId 
+29.1.2023, 1:02:41 - ERROR - Failed to add follower | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: followers.userId 
+29.1.2023, 1:02:46 - ERROR - Failed to add follower | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: followers.userId 
+29.1.2023, 1:02:46 - ERROR - cannot insert follower | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: followers.userId 
+29.1.2023, 1:03:42 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 1:03:43 - INFO - New connected socket [id: 5wHlK_GlpYYv6lPqAAAt] 
+29.1.2023, 1:03:45 - ERROR - cannot insert follower | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: followers.userId 
+29.1.2023, 1:03:45 - ERROR - Failed to add follower | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: followers.userId 
+29.1.2023, 1:08:10 - INFO - Server is running on port: 3030 
+29.1.2023, 1:08:11 - INFO - New connected socket [id: OkVrZhrodn5CJm5BAAAB] 
+29.1.2023, 1:08:23 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 1:08:24 - INFO - New connected socket [id: AGMlyGlSBBahjYLYAAAD] 
+29.1.2023, 1:08:35 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 1:08:36 - INFO - New connected socket [id: fAhdff3qNKFsuvEtAAAF] 
+29.1.2023, 2:31:26 - INFO - Socket disconnected [id: undefined] 
+29.1.2023, 2:31:28 - INFO - New connected socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:38:38 - INFO - Removing socket.chatId for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:38:38 - INFO - Setting socket.chatId = 1 for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:38:38 - INFO - Setting socket.chatId = 1 for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:38:38 - INFO - Removing socket.chatId for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:38:38 - INFO - Setting socket.chatId = 1 for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:38:38 - INFO - Setting socket.chatId = 1 for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:40:14 - INFO - Emiting event: chat msg-added to chat 1 for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:40:21 - INFO - Emiting event: chat msg-added to chat 1 for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:40:27 - INFO - Emiting event: chat msg-added to chat 1 for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:40:37 - INFO - Emiting event: chat msg-added to chat 1 for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:40:58 - INFO - Emiting event: chat msg-added to chat 1 for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:41:47 - INFO - Removing socket.chatId for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:41:47 - INFO - Removing socket.chatId for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:42:21 - DEBUG - auth.service - login with username: tattookate 
+29.1.2023, 2:42:21 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1674941826/eknfiiu6khosuipctwaq.png","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":4,"isDarkMode":0,"storySum":0} | 0312d876e54958808a76e6d97d2976ef31be6b8f2e574c54e6c92890c7decb29308322268084ce3f2cd10ca3e22b324917457a9dff0290206731ceccf67ae9583a15af50e02b1f2c3a3f9f526fc60c1eab08174b296c34136e11b08a8d30f13ab4 
+29.1.2023, 2:49:26 - INFO - Removing socket.chatId for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:49:26 - INFO - Setting socket.chatId = 1 for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:49:26 - INFO - Setting socket.chatId = 1 for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:49:26 - INFO - Removing socket.chatId for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:49:26 - INFO - Setting socket.chatId = 1 for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:49:26 - INFO - Setting socket.chatId = 1 for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:50:02 - INFO - Emiting event: chat msg-added to chat 1 for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:51:26 - INFO - Removing socket.chatId for socket [id: lo5WQnjZfF2-7vQjAAAH] 
+29.1.2023, 2:51:26 - INFO - Removing socket.chatId for socket [id: lo5WQnjZfF2-7vQjAAAH] 

@@ -61,6 +61,7 @@ export class CommentEditComponent implements OnInit, OnDestroy {
   }
 
   async onAddComment() {
+    console.log('onAddComment');
     this.isEmojiPickerShown = false
     const commentToAdd = this.commentService.getEmptyComment()
     commentToAdd.text = this.commentText

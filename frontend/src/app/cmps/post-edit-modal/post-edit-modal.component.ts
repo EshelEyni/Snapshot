@@ -45,38 +45,7 @@ export class PostEditModalComponent implements OnInit, OnDestroy {
   loggedinUser$: Observable<User | null>
   loggedinUser!: User
   currTitle: string = 'create new post'
-  postImgs: PostCanvasImg[] = [
-    // {
-    //   url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1667001489/github-icon_2_ixseoz.png',
-    //   x: 0,
-    //   y: 0,
-    //   width: 830,
-    //   height: 830,
-    //   aspectRatio: 'Original',
-    //   zoom: 0,
-    //   filter: 'normal',
-    // },
-    {
-      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664789187/jsywue9raehtraavttaw.jpg',
-      x: 0,
-      y: 0,
-      width: 830,
-      height: 830,
-      aspectRatio: 'Original',
-      zoom: 0,
-      filter: 'normal',
-    },
-    {
-      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1664328265/ubgpmrhtkoi4syzj5w0r.jpg',
-      x: 0,
-      y: 0,
-      width: 830,
-      height: 830,
-      aspectRatio: 'Original',
-      zoom: 0,
-      filter: 'normal',
-    },
-  ];
+  postImgs: PostCanvasImg[] = [];
   txt: string = '';
   location: Location = {
     id: 0,
@@ -89,6 +58,7 @@ export class PostEditModalComponent implements OnInit, OnDestroy {
   btnTxt: string = 'next';
   currFilter!: string;
   isSaving: boolean = false;
+  isUploading: boolean = false;
 
   ngOnInit() {
     this.sub = this.loggedinUser$.subscribe((user) => {
@@ -122,6 +92,10 @@ export class PostEditModalComponent implements OnInit, OnDestroy {
 
   onSetFilter(filter: string) {
     this.currFilter = filter
+  }
+
+  onToggleIsUploading() {
+    this.isUploading = !this.isUploading
   }
 
   onGoBack() {
@@ -159,6 +133,7 @@ export class PostEditModalComponent implements OnInit, OnDestroy {
     postToSave.by = author;
     postToSave.location = this.location;
     postToSave.tags = this.tagService.detectTags(this.txt);
+    console.log('isEmojiTxt', this.txt)
     if (this.txt) postToSave.commentSum = 1;
     const postId = await this.postService.save(postToSave);
 

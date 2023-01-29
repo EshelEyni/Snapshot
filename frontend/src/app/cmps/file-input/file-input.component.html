@@ -9,7 +9,7 @@
 
 <div class="btn-plus" *ngIf="type==='btn-plus'">
     <a href="javascript:void(0)" (click)="file.click()">
-        <svg-icon src="../../../assets/svgs/plus.svg" [svgStyle]="{ 'display':'flex'}"></svg-icon>
+        <svg-icon src="../../../assets/svgs/plus.svg" [svgStyle]="{ 'display':'flex'}" #svgIcon></svg-icon>
     </a>
     <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
 </div>

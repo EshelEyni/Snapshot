@@ -8,6 +8,7 @@
     align-items: center;
     position: relative;
     width: 100%;
+   min-height: 100%;
     background-color: var(--secondary-bg);
 
     .user-details {
@@ -26,6 +27,7 @@
             width: rem(80px);
             height: rem(80px);
             margin: rem(20px) 0 rem(20px) rem(15px);
+            cursor: pointer;
 
             img {
                 border-radius: 50%;
@@ -132,8 +134,9 @@
             // @include scrollbar-hidden;
 
             &::-webkit-scrollbar {
-                width: 0; /* Set the width to 0 to hide the scrollbar */
-              }
+                width: 0;
+                /* Set the width to 0 to hide the scrollbar */
+            }
 
 
             .btn-highlights-container {
@@ -159,7 +162,7 @@
                 }
             }
 
-          
+
         }
 
         .profile-details-user-stats {
@@ -174,7 +177,7 @@
             padding: rem(12px) 0;
             width: 100%;
 
-            &>*:not(:first-child){
+            &>*:not(:first-child) {
                 cursor: pointer;
             }
 
