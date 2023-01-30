@@ -43,7 +43,6 @@ if (process.env.NODE_ENV === 'production') {
     app.use(cors(corsOptions))
 }
 
-
 app.use('/api/user', userRoutes)
 app.use('/api/post', postRoutes)
 app.use('/api/auth', authRoutes)
