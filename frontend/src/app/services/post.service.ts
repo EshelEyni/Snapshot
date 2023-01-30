@@ -1,14 +1,11 @@
-import { NotificationService } from './notification.service';
 import { HttpClient } from '@angular/common/http'
 import { MiniUser } from './../models/user.model'
-import { Injectable } from '@angular/core'
+import { inject, Injectable } from '@angular/core'
 import { Observable, BehaviorSubject, lastValueFrom, firstValueFrom } from 'rxjs'
-import { Post } from '../models/post.model'
+import { Post, PostCanvasImg } from '../models/post.model'
 import { UserService } from './user.service'
-
-const BASE_URL = process.env['NODE_ENV'] === 'production'
-  ? '/api'
-  : '//localhost:3030/api';
+import { UploadImgService } from './upload-img.service';
+import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +20,12 @@ export class PostService {
   constructor(
     private userService: UserService,
     private http: HttpClient,
+    private uploadImgService: UploadImgService,
   ) { }
+
+  httpService = inject(HttpService);
+
+  baseUrl = this.httpService.getBaseUrl();
 
   public async loadPosts(
     filterBy: {
@@ -33,21 +35,21 @@ export class PostService {
       currPostId?: number,
       username?: string,
     }
-  ) {
-    let options = { params: {} }
+  ): Promise<void> {
+    let options = { params: {} };
 
     options.params = {
       userId: filterBy.userId,
       type: filterBy.type,
       limit: filterBy.limit,
-    }
+    };
 
-    if (filterBy.currPostId) options.params = { ...options.params, currPostId: filterBy.currPostId }
-    if (filterBy.username) options.params = { ...options.params, username: filterBy.username }
+    if (filterBy.currPostId) options.params = { ...options.params, currPostId: filterBy.currPostId };
+    if (filterBy.username) options.params = { ...options.params, username: filterBy.username };
 
     const posts = await lastValueFrom(
-      this.http.get<Post[]>(`${BASE_URL}/post`, options),
-    )
+      this.http.get<Post[]>(`${this.baseUrl}/post`, options),
+    );
 
     switch (filterBy.type) {
       case 'homepagePosts':
@@ -66,57 +68,54 @@ export class PostService {
       case 'explorePagePosts':
         this._posts$.next(posts)
         break
-      default:
-        break
-    }
-
-  }
+    };
+  };
 
   public getById(postId: number): Observable<Post> {
-    return this.http.get<Post>(`${BASE_URL}/post/${postId}`)
-  }
+    return this.http.get<Post>(`${this.baseUrl}/post/${postId}`)
+  };
 
-  public async remove(postId: number) {
+  public async remove(postId: number): Promise<void> {
     const res = await firstValueFrom(
-      this.http.delete(`${BASE_URL}/post/${postId}`),
-    ) as { msg: string }
+      this.http.delete(`${this.baseUrl}/post/${postId}`),
+    ) as { msg: string };
 
     if (res.msg === 'Post deleted') {
-      const posts = this._posts$.getValue()
-      const idx = posts.findIndex((post) => post.id === postId)
-      posts.splice(idx, 1)
-      this._posts$.next(posts)
-    }
-  }
+      const posts = this._posts$.getValue();
+      const idx = posts.findIndex((post) => post.id === postId);
+      posts.splice(idx, 1);
+      this._posts$.next(posts);
+    };
+  };
 
-  public save(post: Post) {
+  public save(post: Post): Promise<number | void> | Observable<Post> {
     if (post.id) {
-      return this._update(post)
+      return this._update(post);
     } else {
-      return this._add(post)
-    }
-  }
+      return this._add(post);
+    };
+  };
 
   private async _add(post: Post): Promise<number | void> {
     const res = await firstValueFrom(
-      this.http.post(`${BASE_URL}/post`, post),
-    ) as { msg: string, id: number }
+      this.http.post(`${this.baseUrl}/post`, post),
+    ) as { msg: string, id: number };
 
     if (res.msg === 'Post added') {
-      const posts = this._posts$.getValue()
-      post.id = res.id
-      posts.unshift(post)
-      this._posts$.next(posts)
+      const posts = this._posts$.getValue();
+      post.id = res.id;
+      posts.unshift(post);
+      this._posts$.next(posts);
 
-      return res.id
-    }
-  }
+      return res.id;
+    };
+  };
 
-  private _update(post: Post) {
+  private _update(post: Post): Observable<Post> {
     return firstValueFrom(
-      this.http.put(`${BASE_URL}/post/${post.id}`, post),
-    )
-  }
+      this.http.put(`${this.baseUrl}/post/${post.id}`, post),
+    ) as unknown as Observable<Post>;
+  };
 
   public getEmptyPost(): Post {
     return {
@@ -129,22 +128,22 @@ export class PostService {
       likeSum: 0,
       commentSum: 0,
       createdAt: new Date(),
-      tags: [],
-    }
-  }
+      tags: []
+    };
+  };
 
   public async getUsersWhoLiked(postId: number): Promise<MiniUser[]> {
     const options = {
       params: {
         postId,
       }
-    }
+    };
 
     const likes = await firstValueFrom(
-      this.http.get<MiniUser[]>(`${BASE_URL}/like/post/`, options),
-    )
-    return likes
-  }
+      this.http.get<MiniUser[]>(`${this.baseUrl}/like/post/`, options),
+    );
+    return likes;
+  };
 
 
   public async checkIsLiked(filterBy: { userId: number, postId: number }): Promise<boolean> {
@@ -153,30 +152,30 @@ export class PostService {
         userId: filterBy.userId,
         postId: filterBy.postId,
       }
-    }
+    };
 
     const isLiked = await firstValueFrom(
-      this.http.get(`${BASE_URL}/like/post`, options),
-    ) as Array<any>
-    if (isLiked.length) return true
-    return false
-  }
+      this.http.get(`${this.baseUrl}/like/post`, options),
+    ) as Array<any>;
+    if (isLiked.length) return true;
+    return false;
+  };
 
-  public async toggleLike(isLiked: boolean, details: { user: MiniUser, post: Post }) {
+  public async toggleLike(isLiked: boolean, details: { user: MiniUser, post: Post }): Promise<void> {
 
     if (isLiked) {
       await firstValueFrom(
-        this.http.delete(`${BASE_URL}/like/post`, {
+        this.http.delete(`${this.baseUrl}/like/post`, {
           body: { postId: details.post.id, userId: details.user.id }
         }),
-      )
+      );
     } else {
       await firstValueFrom(
-        this.http.post(`${BASE_URL}/like/post`,
+        this.http.post(`${this.baseUrl}/like/post`,
           { post: details.post, user: details.user }),
-      )
-    }
-  }
+      );
+    };
+  };
 
   public async checkIsSaved(filterBy: { userId: number, postId: number }): Promise<boolean> {
     const options = {
@@ -184,32 +183,131 @@ export class PostService {
         userId: filterBy.userId,
         postId: filterBy.postId,
       }
-    }
+    };
 
     const isSaved = await firstValueFrom(
-      this.http.get(`${BASE_URL}/save-post`, options),
-    ) as Array<any>
-    if (isSaved.length) return true
-    return false
-  }
+      this.http.get(`${this.baseUrl}/save-post`, options),
+    ) as Array<any>;
+    if (isSaved.length) return true;
+    return false;
+  };
 
-  public async toggleSave(isSaved: boolean, filterBy: { userId: number, postId: number }) {
+  public async toggleSave(isSaved: boolean, filterBy: { userId: number, postId: number }): Promise<void> {
 
     if (isSaved) {
       await firstValueFrom(
-        this.http.delete(`${BASE_URL}/save-post`, { body: filterBy }),
-      )
+        this.http.delete(`${this.baseUrl}/save-post`, { body: filterBy }),
+      );
     } else {
       await firstValueFrom(
-        this.http.post(`${BASE_URL}/save-post`, filterBy),
-      )
-    }
-  }
+        this.http.post(`${this.baseUrl}/save-post`, filterBy),
+      );
+    };
+  };
 
-  public async addPostToTag(tagId: number, postId: number) {
+  public async addPostToTag(tagId: number, postId: number): Promise<void> {
     await firstValueFrom(
-      this.http.post(`${BASE_URL}/post/tag/`, { tagId, postId }),
-    )
-  }
+      this.http.post(`${this.baseUrl}/post/tag/`, { tagId, postId }),
+    );
+  };
 
-}
+  public async convertCanvasImgsToImgUrls(offScreenCanvas: HTMLCanvasElement, canvasImgs: PostCanvasImg[], postImgUrls: string[]) {
+
+    const offScreenCtx = offScreenCanvas.getContext('2d');
+    if (!offScreenCtx) return;
+
+    return new Promise<void>((resolve, reject) => {
+      let completed = 0;
+      canvasImgs.forEach(canvasImg => {
+        const img = new Image();
+        img.src = canvasImg.url;
+        img.crossOrigin = "Anonymous";
+
+        img.onload = async () => {
+
+          const canvasSize = window.innerWidth > 1260 ? 830 : window.innerWidth;
+          switch (canvasImg.aspectRatio) {
+            case 'Original':
+              offScreenCanvas.width = canvasSize;
+              offScreenCanvas.height = canvasSize;
+              break;
+            case '1:1':
+              offScreenCanvas.width = canvasSize;
+              offScreenCanvas.height = canvasSize;
+              break;
+            case '4:5':
+              offScreenCanvas.width = canvasSize * .8;
+              offScreenCanvas.height = canvasSize;
+              break;
+            case '16:9':
+              offScreenCanvas.width = canvasSize;
+              offScreenCanvas.height = canvasSize * .5625;
+              break;
+            default:
+              break;
+          };
+
+          if (canvasImg.zoom) {
+            const width = offScreenCanvas.width + (canvasImg.zoom * (offScreenCanvas.width / offScreenCanvas.height));
+            const height = offScreenCanvas.height + canvasImg.zoom;
+            const x = offScreenCanvas.width / 2 - width / 2;
+            const y = offScreenCanvas.height / 2 - height / 2;
+            canvasImg = { ...canvasImg, x, y, width, height };
+          };
+
+          switch (canvasImg.filter) {
+            case 'clarendon':
+              offScreenCtx.filter = 'saturate(1.6) contrast(1.5) brightness(1.1)';
+              break;
+            case 'gingham':
+              offScreenCtx.filter = 'sepia(1) brightness(1.1) hue-rotate(50deg)';
+              break;
+            case 'moon':
+              offScreenCtx.filter = 'grayscale(1) brightness(0.9) contrast(1.1)';
+              break;
+            case 'lark':
+              offScreenCtx.filter = 'brightness(1.2) contrast(1.1) saturate(1.5)';
+              break;
+            case 'reyes':
+              offScreenCtx.filter = 'brightness(1.1) contrast(1.1) saturate(1.5)';
+              break;
+            case 'juno':
+              offScreenCtx.filter = 'brightness(1.1) contrast(1.1) saturate(1.3)';
+              break;
+            case 'slumber':
+              offScreenCtx.filter = 'brightness(0.9) contrast(1.1) saturate(1.3)';
+              break;
+            case 'crema':
+              offScreenCtx.filter = 'brightness(1.1) contrast(1.1) saturate(1.1)';
+              break;
+            case 'normal':
+              offScreenCtx.filter = 'none';
+              break;
+            default:
+              offScreenCtx.filter = 'none';
+              break;
+          };
+
+          offScreenCtx.fillStyle = 'rgba(38, 38, 38)';
+          offScreenCtx.fillRect(0, 0, offScreenCanvas.width, offScreenCanvas.height);
+
+          offScreenCtx.drawImage(
+            img,
+            canvasImg.x,
+            canvasImg.y,
+            canvasImg.width,
+            canvasImg.height
+          );
+          const imgData = offScreenCanvas.toDataURL();
+          const res = await this.uploadImgService.uploadImg(imgData);
+          postImgUrls.push(res);
+          completed += 1;
+          if (completed === canvasImgs.length) {
+            resolve();
+          };
+        };
+      });
+    });
+  };
+
+};

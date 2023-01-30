@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'checkbox',
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
-  inputs: ['isChecked','type'],
+  inputs: ['isChecked', 'type'],
 })
 export class CheckboxComponent implements OnInit {
 
@@ -13,7 +13,6 @@ export class CheckboxComponent implements OnInit {
   isChecked!: boolean;
   type!: string;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { };
 
-}
+};

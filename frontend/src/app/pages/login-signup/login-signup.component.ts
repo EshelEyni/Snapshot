@@ -9,13 +9,6 @@ import { FormBuilder, FormGroup } from '@angular/forms'
   styleUrls: ['./login-signup.component.scss'],
 })
 export class LoginSignupComponent implements OnInit, OnDestroy {
-  intervalId!: number
-  routerUrl: string = this.router.url.slice(1)
-  btnTxt: string = this.routerUrl === 'login' ? 'Login' : 'Signup'
-  imgCounter: number = 2
-  selectedAnimationImg: string = `../../../assets/imgs/animation-img-1.png`
-  form!: FormGroup
-
   constructor(
     private router: Router,
     private userService: UserService,
@@ -26,8 +19,17 @@ export class LoginSignupComponent implements OnInit, OnDestroy {
       fullname: [''],
       username: [''],
       password: [''],
-    })
-  }
+    });
+  };
+
+  form!: FormGroup
+  routerUrl: string = this.router.url.slice(1)
+  btnTxt: string = this.routerUrl === 'login' ? 'Login' : 'Signup'
+  
+  selectedAnimationImg: string = `../../../assets/imgs/animation-img-1.png`
+  intervalId!: number
+  imgCounter: number = 2
+
 
   ngOnInit(): void {
     this.intervalId = window.setInterval(() => {
@@ -37,23 +39,23 @@ export class LoginSignupComponent implements OnInit, OnDestroy {
     }, 2000)
   }
 
-  async onLogin() {
-    const userCred = this.form.value
+  async onLogin() : Promise<void>{
+    const userCred = this.form.value;
     if (this.routerUrl === 'login') {
       const res = await this.userService.login({
         username: userCred.username,
         password: userCred.password,
       })
-      if (!res) return
+      if (!res) return;
     } else {
-      const res = await this.userService.signup(userCred)
-      if (!res) return
-    }
-    this.form.reset()
-    this.router.navigate(['/'])
-  }
+      const res = await this.userService.signup(userCred);
+      if (!res) return;
+    };
+    this.form.reset();
+    this.router.navigate(['/']);
+  };
 
   ngOnDestroy(): void {
-    clearInterval(this.intervalId!)
-  }
-}
+    clearInterval(this.intervalId!);
+  };
+};

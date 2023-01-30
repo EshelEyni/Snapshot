@@ -1,5 +1,4 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
 ::ng-deep .recent-searches-container {
@@ -29,7 +28,6 @@
             color: var(--primary-button);
             padding: 0;
             font-weight: 600;
-            font-family: var(--primary-font);
             cursor: pointer;
         }
     }

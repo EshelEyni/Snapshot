@@ -26,68 +26,68 @@ export class SideBarComponent implements OnInit, OnDestroy {
 
   @ViewChildren('link') links!: QueryList<ElementRef>;
   @ViewChildren('svgIcon') icons!: QueryList<SvgIconComponent>;
-  
+
+  faX = faX;
+
+  sub: Subscription | null = null;
   loggedinUser$: Observable<User | null>;
   loggedinUser!: User;
+
   isBtnClicked = { search: false, create: false, notification: false, more: false }
   isMainScreen: boolean = false;
-  sub: Subscription | null = null;
-  iconColor: string = 'var(--tertiary-color)'
 
-  faX = faX
-
+  iconColor: string = 'var(--tertiary-color)';
 
   async ngOnInit(): Promise<void> {
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) {
-        this.loggedinUser = { ...user }
+        this.loggedinUser = { ...user };
         this.setIconColor();
-      }
-    })
-  }
+      };
+    });
+  };
 
-  onModalContainerClick(e: Event) {
-    e.stopPropagation()
-  }
-
-  setIconColor() {
-    this.iconColor = this.loggedinUser.isDarkMode ? 'var(--primary-color)' : 'var(--tertiary-color)'
+  setIconColor(): void {
+    this.iconColor = this.loggedinUser.isDarkMode ? 'var(--primary-color)' : 'var(--tertiary-color)';
     this.icons.forEach(icon => {
-      icon.svgStyle = { color: this.iconColor, fill: this.iconColor }
-    })
-  }
+      icon.svgStyle = { color: this.iconColor, fill: this.iconColor };
+    });
+  };
 
-  get isLoginSignupPath() {
-    return !(this.router.url === '/login' || this.router.url === '/signup')
-  }
+  get isLoginSignupPath(): boolean {
+    return !(this.router.url === '/login' || this.router.url === '/signup');
+  };
 
-  onCloseModal() {
+  onModalContainerClick(e: Event): void {
+    e.stopPropagation();
+  };
+
+  onCloseModal(): void {
     if (!this.isMainScreen) return;
 
     switch (this.router.url) {
       case '/':
-        this.links.get(0)?.nativeElement.classList.add('active')
+        this.links.get(0)?.nativeElement.classList.add('active');
         break;
       case '/explore':
-        this.links.get(1)?.nativeElement.classList.add('active')
+        this.links.get(1)?.nativeElement.classList.add('active');
         break;
       case '/inbox':
-        this.links.get(2)?.nativeElement.classList.add('active')
+        this.links.get(2)?.nativeElement.classList.add('active');
         break;
       case `/profile/${this.loggedinUser.id}`:
-        this.links.get(3)?.nativeElement.classList.add('active')
+        this.links.get(3)?.nativeElement.classList.add('active');
         break;
-    }
+    };
 
-    this.isBtnClicked = { search: false, create: false, notification: false, more: false }
+    this.isBtnClicked = { search: false, create: false, notification: false, more: false };
     this.isMainScreen = false;
+  };
 
-  }
-
-  onTogglePostEdit(e: Event) {
-    e?.stopPropagation()
+  onTogglePostEdit(e: Event): void {
+    e?.stopPropagation();
     if (window.innerWidth < 1260) {
-      this.router.navigate(['/post-edit'])
+      this.router.navigate(['/post-edit']);
     } else {
 
       this.isBtnClicked = {
@@ -95,66 +95,66 @@ export class SideBarComponent implements OnInit, OnDestroy {
         create: !this.isBtnClicked.create,
         notification: false,
         more: false
-      }
+      };
 
       this.isMainScreen = !this.isMainScreen;
 
       this.links.forEach(link => {
-        link.nativeElement.classList.remove('active')
-      })
-    }
-  }
+        link.nativeElement.classList.remove('active');
+      });
+    };
+  };
 
-  onToggleSearch(e: Event) {
-    e.stopPropagation()
+  onToggleSearch(e: Event): void {
+    e.stopPropagation();
     this.isBtnClicked = {
       search: !this.isBtnClicked.search,
       create: false,
       notification: false,
       more: false
-    }
+    };
 
-    this.onToggleBtnClicked(this.isBtnClicked.search)
-  }
+    this.onToggleBtnClicked(this.isBtnClicked.search);
+  };
 
-  onToggleNotifications(e: Event) {
-    e.stopPropagation()
+  onToggleNotifications(e: Event): void {
+    e.stopPropagation();
     this.isBtnClicked = {
       search: false,
       create: false,
       notification: !this.isBtnClicked.notification,
       more: false
-    }
+    };
 
-    this.onToggleBtnClicked(this.isBtnClicked.notification)
-  }
+    this.onToggleBtnClicked(this.isBtnClicked.notification);
+  };
 
-  onToggleMoreOptionsModal(e: Event) {
-    e.stopPropagation()
+  onToggleMoreOptionsModal(e: Event): void {
+    e.stopPropagation();
     this.isBtnClicked = {
       search: false,
       create: false,
       notification: false,
       more: !this.isBtnClicked.more
-    }
+    };
 
-    this.onToggleBtnClicked(this.isBtnClicked.more)
-  }
+    this.onToggleBtnClicked(this.isBtnClicked.more);
+  };
 
-  onToggleBtnClicked(isBtnClicked: boolean) {
+  onToggleBtnClicked(isBtnClicked: boolean): void {
 
     this.isMainScreen = !this.isMainScreen;
 
     if (isBtnClicked) {
       this.links.forEach(link => {
-        link.nativeElement.classList.remove('active')
-      })
+        link.nativeElement.classList.remove('active');
+      });
     } else {
-      this.onCloseModal()
-    }
-  }
+      this.onCloseModal();
+    };
+  };
 
-  ngOnDestroy() {
-    this.sub?.unsubscribe()
-  }
-}
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
+  };
+};

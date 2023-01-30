@@ -11,26 +11,23 @@ import { Notification, NotificationsByDate } from 'src/app/models/notification.m
 
 export class NotificationListComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  constructor() { };
 
   notifications!: Notification[];
   notificationsByDate!: NotificationsByDate;
   keys: (keyof NotificationsByDate)[] = [];
 
-
   close = new EventEmitter();
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { };
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     if (this.notifications) {
       this.notifications = this.reduceDuplicatedMessageNotifications(this.notifications);
       this.notificationsByDate = this.reduceByDate(this.notifications);
-
       this.keys = Object.keys(this.notificationsByDate) as (keyof NotificationsByDate)[];
-    }
-  }
+    };
+  };
 
   reduceDuplicatedMessageNotifications(notifications: Notification[]): Notification[] {
     return notifications.reduce((acc, notification) => {
@@ -40,13 +37,12 @@ export class NotificationListComponent implements OnInit, OnChanges {
           && lastNotification.by.id === notification.by.id) {
           lastNotification.msgCount = (lastNotification.msgCount || 1) + 1;
           return acc;
-        }
-      }
+        };
+      };
       acc.push(notification);
       return acc;
     }, [] as Notification[]);
-  }
-
+  };
 
   reduceByDate(notifications: Notification[]): NotificationsByDate {
     return notifications.reduce((acc, notification) => {
@@ -55,11 +51,11 @@ export class NotificationListComponent implements OnInit, OnChanges {
       const label = this.getLabel(key);
       if (!acc[key]) {
         acc[key] = { label, notifications: [] as Notification[] };
-      }
+      };
       acc[key].notifications.push(notification);
       return acc;
     }, {} as NotificationsByDate);
-  }
+  };
 
   getDateKey(date: Date): 'today' | 'yesterday' | 'thisWeek' | 'lastWeek' | 'thisMonth' | 'earlier' {
     const today = new Date();
@@ -84,8 +80,8 @@ export class NotificationListComponent implements OnInit, OnChanges {
       return 'thisMonth';
     } else {
       return 'earlier';
-    }
-  }
+    };
+  };
 
   getLabel(key: string): 'Today' | 'Yesterday' | 'This Week' | 'Last Week' | 'This Month' | 'Earlier' {
     switch (key) {
@@ -103,10 +99,10 @@ export class NotificationListComponent implements OnInit, OnChanges {
         return 'Earlier';
       default:
         return 'Earlier';
-    }
-  }
+    };
+  };
 
   closeModal() {
-    this.close.emit()
-  }
-}
+    this.close.emit();
+  };
+};

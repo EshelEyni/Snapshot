@@ -13,19 +13,22 @@ import { UserService } from 'src/app/services/user.service';
 
 export class FollowersModalComponent implements OnInit {
 
-  constructor() { }
+  constructor() { };
 
   userService = inject(UserService);
-  close = new EventEmitter();
+  
+  faX = faX;
+  
   user!: User;
   users: MiniUser[] = [];
-  faX = faX;
-
-  async ngOnInit() {
+  
+  close = new EventEmitter();
+  
+  async ngOnInit(): Promise<void> {
     this.users = await this.userService.getFollowers(this.user.id);
-  }
+  };
 
-  onCloseModal() {
+  onCloseModal() : void{
     this.close.emit();
-  }
-}
+  };
+};

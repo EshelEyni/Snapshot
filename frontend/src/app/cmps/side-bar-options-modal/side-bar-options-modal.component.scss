@@ -1,5 +1,4 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
 .side-bar-options-modal {
@@ -40,7 +39,6 @@
             padding: 0 rem(25px);
             border-bottom: 1px solid var(--border-color);
             background-color: var(--secondary-bg);
-            font-family: var(--primary-font);
             cursor: pointer;
 
             @include for-extra-extra-large-layout {
@@ -50,7 +48,6 @@
             &:hover {
                 background-color: var(--primary-bg);
             }
-
         }
 
         &>div:first-child {

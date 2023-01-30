@@ -15,20 +15,25 @@ import { SocketService } from 'src/app/services/socket.service';
 })
 export class ChatDetailsComponent implements OnInit, OnChanges, OnDestroy {
 
-  constructor() { }
+  constructor() { };
+
   socketService = inject(SocketService);
-  messageService = inject(MessageService)
-  messages$ = this.messageService.messages$;
-  messages: Message[] = [];
-  clearChat = new EventEmitter();
-  loggedinUser!: User;
-  chat!: Chat;
-  imgUrlList!: string[];
-  memberNameList!: string[];
-  isSettingShown = false;
-  msgSub!: Subscription;
+  messageService = inject(MessageService);
 
   faChevronLeft = faChevronLeft;
+
+  msgSub!: Subscription;
+  messages$ = this.messageService.messages$;
+  messages: Message[] = [];
+  loggedinUser!: User;
+  chat!: Chat;
+  
+  imgUrlList!: string[];
+  memberNameList!: string[];
+  
+  isSettingShown = false;
+  
+  clearChat = new EventEmitter();
 
   ngOnInit(): void {
     const { members } = this.chat;
@@ -38,8 +43,8 @@ export class ChatDetailsComponent implements OnInit, OnChanges, OnDestroy {
     this.socketService.emit('set-chat', this.chat.id);
     this.socketService.on('msg-added', (msg: Message) => {
       this.messageService.addMsgFromSocket(msg);
-    })
-  }
+    });
+  };
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['chat']) {
@@ -48,8 +53,8 @@ export class ChatDetailsComponent implements OnInit, OnChanges, OnDestroy {
       if (currChatId !== prevChatId) {
         this.socketService.emit('unset-chat', prevChatId);
         this.socketService.emit('set-chat', currChatId);
-      }
-    }
+      };
+    };
 
     let isMsgLoaded = false;
     this.msgSub = this.messages$.subscribe(messages => {
@@ -58,26 +63,26 @@ export class ChatDetailsComponent implements OnInit, OnChanges, OnDestroy {
       if (!isMsgLoaded && !isChatMsg) {
         this.messageService.loadMessages(this.chat.id);
         isMsgLoaded = true;
-      }
+      };
 
       this.messages = messages;
-    })
-  }
+    });
+  };
 
   onGoBack() {
     this.clearChat.emit();
-  }
+  };
 
   onToggleSetting() {
     this.isSettingShown = !this.isSettingShown;
-  }
+  };
 
   onDeleteChat() {
     this.clearChat.emit();
-  }
+  };
 
   ngOnDestroy() {
     this.msgSub.unsubscribe();
     this.socketService.emit('unset-chat', this.chat.id);
-  }
-}
+  };
+};

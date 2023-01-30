@@ -15,47 +15,49 @@ import { Tag } from 'src/app/models/tag.model';
 })
 export class FollowingComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  constructor() { };
   $location = inject(Location);
-  route = inject(ActivatedRoute)
+  route = inject(ActivatedRoute);
   userService = inject(UserService);
   tagService = inject(TagService);
 
   faChevronLeft = faChevronLeft;
+
+  userSub!: Subscription;
   users: MiniUser[] = [];
   tags: Tag[] = [];
-  sub!: Subscription;
+
   filterBy = { usersShown: true, tagsShown: false }
   isNoFollowingMsgShown = false;
 
   ngOnInit(): void {
-    this.sub = this.route.data.subscribe(async data => {
-      const user = data['user']
+    this.userSub = this.route.data.subscribe(async data => {
+      const user = data['user'];
       if (user) {
         this.users = await this.userService.getFollowings(user.id);
         this.tags = await this.tagService.getfollowedTags(user.id);
         if (this.users.length === 0) {
           this.isNoFollowingMsgShown = true;
-        }
-      }
-    })
-  }
+        };
+      };
+    });
+  };
 
-  onSetFilter(filterBy: string) {
+  onSetFilter(filterBy: string): void {
     if (filterBy === 'people') {
       this.filterBy = { usersShown: true, tagsShown: false }
       this.isNoFollowingMsgShown = this.users.length === 0;
     } else {
       this.filterBy = { usersShown: false, tagsShown: true }
       this.isNoFollowingMsgShown = this.tags.length === 0;
-    }
-  }
+    };
+  };
 
-  onGoBack() {
-    this.$location.back()
-  }
+  onGoBack(): void {
+    this.$location.back();
+  };
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
-  }
-}
+    this.userSub.unsubscribe();
+  };
+};

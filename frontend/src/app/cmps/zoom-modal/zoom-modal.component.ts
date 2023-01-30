@@ -9,17 +9,15 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 })
 export class ZoomModalComponent implements OnInit {
 
-  constructor() { }
+  constructor() { };
 
   zoomSelected = new EventEmitter<number>();
   value!: number;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { };
 
-  onSetZoom(zoom: number | null) {
+  onSetZoom(zoom: number | null): void {
     if (zoom === null) return;
     this.zoomSelected.emit(zoom);
-  }
-
-}
+  };
+};

@@ -1,9 +1,6 @@
 @import '../../../assets/styles/setup/functions';
 @import '../../../assets/styles/setup/mixins';
-@import '../../../assets/styles/setup/vars';
 @import './post-details-mixin.scss';
-
-
 
 ::ng-deep .post-details {
     @include page;
@@ -37,7 +34,6 @@
             height: rem(60px);
             padding: rem(20px);
             background-color: var(--primary-bg);
-
 
             .user-preview {
 
@@ -82,7 +78,6 @@
                     &.next {
                         left: 90%;
                     }
-
                 }
 
                 .img-dots {
@@ -105,8 +100,6 @@
             gap: rem(10px);
 
             .likes-container {
-                font-family: var(--primary-font);
-
                 .likes {
                     font-weight: 600;
                 }
@@ -115,7 +108,6 @@
                     font-weight: 600;
                 }
             }
-
         }
 
         .date-container {
@@ -125,7 +117,6 @@
 
             .date-added {
                 font-size: rem(12px);
-                font-family: var(--primary-font);
                 text-transform: uppercase;
                 color: var(--secondary-color);
             }
@@ -134,10 +125,7 @@
         .comment-edit-container {
             display: none;
         }
-
-
     }
-
 
     .post-list-container {
         display: flex;
@@ -156,11 +144,9 @@
             span {
                 color: var(--primary-color);
                 font-weight: 500;
-
             }
         }
     }
-
 
     &.for-nested-display {
         position: fixed;
@@ -185,6 +171,9 @@
 
         .date-container {
             padding-bottom: rem(20px);
+            p{
+                cursor: pointer;
+            }
         }
 
         .post-details-header {
@@ -198,9 +187,6 @@
             .post-creator {
                 border-radius: 5px 5px 0 0;
             }
-
-
-
         }
     }
 
@@ -225,7 +211,6 @@
                     justify-content: center;
                     width: 100%;
                     height: 100%;
-                    font-family: var(--primary-font);
 
                     p {
                         font-weight: 100;
@@ -328,7 +313,6 @@
         }
 
         .post {
-            // grid-template-columns: 1fr;
             margin-top: 0;
 
             .post-img-container {
@@ -348,8 +332,6 @@
                 }
             }
         }
-
-
     }
 
     @include for-medium-layout {

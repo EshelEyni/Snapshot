@@ -10,11 +10,13 @@ import { Component, OnInit, EventEmitter, OnChanges } from '@angular/core';
 })
 export class AspectRatioModalComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  constructor() { };
+
   aspectRatioSelected = new EventEmitter<string>();
+
   currAspectRatio!: string;
 
-  btns = [
+  btns: { aspectRatio: string, isActive: boolean, text: string, icon: string }[] = [
     {
       aspectRatio: 'Original',
       isActive: false,
@@ -41,21 +43,20 @@ export class AspectRatioModalComponent implements OnInit, OnChanges {
     },
   ]
 
-  ngOnInit(): void { }
+  ngOnInit(): void { };
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     this.btns.forEach(btn => {
       if (btn.aspectRatio === this.currAspectRatio) btn.isActive = true;
       else btn.isActive = false;
-    })
-  }
+    });
+  };
 
-  onSetAspectRatio(aspectRatio: string) {
+  onSetAspectRatio(aspectRatio: string): void {
     this.btns.forEach(btn => {
       if (btn.aspectRatio === aspectRatio) btn.isActive = true;
       else btn.isActive = false;
-    })
+    });
     this.aspectRatioSelected.emit(aspectRatio);
-  }
-
-}
+  };
+};

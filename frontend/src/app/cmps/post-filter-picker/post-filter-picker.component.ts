@@ -8,11 +8,11 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 })
 export class PostFilterPickerComponent implements OnInit {
 
-  constructor() { }
+  constructor() { };
 
   filterSelected = new EventEmitter<string>();
 
-  filters = [
+  filters: { name: string, value: string, imgUrl: string, isSelected: boolean }[] = [
     { name: 'Original', value: 'normal', imgUrl: '../../../assets/imgs/filter-img/Normal.jpg', isSelected: true },
     { name: 'Clarendon', value: 'clarendon', imgUrl: '../../../assets/imgs/filter-img/Clarendon.jpg', isSelected: false },
     { name: 'Gingham', value: 'gingham', imgUrl: '../../../assets/imgs/filter-img/Gingham.jpg', isSelected: false },
@@ -24,13 +24,11 @@ export class PostFilterPickerComponent implements OnInit {
     { name: 'Crema', value: 'crema', imgUrl: '../../../assets/imgs/filter-img/Crema.jpg', isSelected: false },
   ]
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { };
 
-  onSelectFilter(filter: any) {
-    this.filters.forEach(f => f.isSelected = false)
-    filter.isSelected = true
-
-    this.filterSelected.emit(filter.value)
-  }
-}
+  onSelectFilter(filter: any): void {
+    this.filters.forEach(f => f.isSelected = false);
+    filter.isSelected = true;
+    this.filterSelected.emit(filter.value);
+  };
+};

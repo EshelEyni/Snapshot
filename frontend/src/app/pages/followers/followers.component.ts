@@ -13,29 +13,31 @@ import { MiniUser } from 'src/app/models/user.model';
 })
 export class FollowersComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  constructor() { };
+
   $location = inject(Location);
   route = inject(ActivatedRoute)
   userService = inject(UserService);
+
   faChevronLeft = faChevronLeft;
+
+  userSub!: Subscription;
   users: MiniUser[] = [];
-  sub!: Subscription;
 
   ngOnInit(): void {
-    this.sub = this.route.data.subscribe(async data => {
-      const user = data['user']
+    this.userSub = this.route.data.subscribe(async data => {
+      const user = data['user'];
       if (user) {
         this.users = await this.userService.getFollowers(user.id);
-      }
-    })
+      };
+    });
+  };
 
-  }
-
-  onGoBack() {
-    this.$location.back()
-  }
+  onGoBack(): void {
+    this.$location.back();
+  };
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
-  }
-}
+    this.userSub.unsubscribe();
+  };
+};

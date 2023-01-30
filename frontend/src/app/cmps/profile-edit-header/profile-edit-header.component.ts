@@ -9,12 +9,14 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 })
 export class ProfileEditHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor() { };
+
   $location = inject(Location);
   faChevronLeft = faChevronLeft;
-  ngOnInit(): void {
-  }
-  onGoBack() {
-    this.$location.back()
-  }
-}
+
+  ngOnInit(): void { };
+
+  onGoBack(): void {
+    this.$location.back();
+  };
+};

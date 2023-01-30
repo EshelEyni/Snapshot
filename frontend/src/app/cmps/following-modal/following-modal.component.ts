@@ -12,19 +12,22 @@ import { faX } from '@fortawesome/free-solid-svg-icons';
 })
 export class FollowingModalComponent implements OnInit {
 
-  constructor() { }
+  constructor() { };
 
   userService = inject(UserService);
-  close = new EventEmitter();
+  
+  faX = faX;
+  
   user!: User;
   users: MiniUser[] = [];
-  faX = faX;
+
+  close = new EventEmitter();
 
   async ngOnInit() {
     this.users = await this.userService.getFollowings(this.user.id);
-  }
+  };
 
-  onCloseModal() {
+  onCloseModal(): void {
     this.close.emit();
-  }
-}
+  };
+};

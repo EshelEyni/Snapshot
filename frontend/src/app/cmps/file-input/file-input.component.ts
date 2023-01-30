@@ -18,8 +18,8 @@ export class FileInputComponent implements OnInit, OnDestroy {
   constructor() {
     this.loggedinUser$ = this.store
       .select('userState')
-      .pipe(map((x) => x.loggedinUser))
-  }
+      .pipe(map((x) => x.loggedinUser));
+  };
 
   @ViewChildren('svgIcon') icons!: QueryList<SvgIconComponent>;
 

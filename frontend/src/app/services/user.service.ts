@@ -7,10 +7,7 @@ import { Injectable } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { UserState } from '../store/reducers/user.reducer'
 import { LoadingUsers } from '../store/actions/user.actions'
-
-const BASE_URL = process.env['NODE_ENV'] === 'production'
-  ? '/api'
-  : '//localhost:3030/api';
+import { HttpService } from './http.service';
 
 
 @Injectable({
@@ -18,23 +15,27 @@ const BASE_URL = process.env['NODE_ENV'] === 'production'
 })
 
 export class UserService {
+
   constructor(
     private store: Store<UserState>,
     private storageService: StorageService,
     private communicationService: CommunicationService,
     private http: HttpClient,
-  ) { }
+    private httpService: HttpService,
+  ) { };
+
+  baseUrl: '/api' | '//localhost:3030/api' = this.httpService.getBaseUrl();
 
   public getLoggedinUser(): MiniUser | null {
     const loggedinUser =
-      this.storageService.loadFromStorage('loggedinUser') || null
-    return loggedinUser
-  }
+      this.storageService.loadFromStorage('loggedinUser') || null;
+    return loggedinUser;
+  };
 
   public loadUsers(filterBy: { userId: number, type: string, limit: number }): Observable<User[]> {
-    this.store.dispatch(new LoadingUsers())
-    return this.getUsers(filterBy)
-  }
+    this.store.dispatch(new LoadingUsers());
+    return this.getUsers(filterBy);
+  };
 
   public getUsers(filterBy: { userId: number, type: string, limit: number }): Observable<User[]> {
     let options = {}
@@ -45,200 +46,191 @@ export class UserService {
           limit: filterBy.limit,
           userId: filterBy.userId
         }
-      }
-    }
+      };
+    };
 
     return this.http
-      .get(`${BASE_URL}/user`, options)
+      .get(`${this.baseUrl}/user`, options)
       .pipe(
         map((users) => {
-          return users as User[]
+          return users as User[];
         }),
-      )
-  }
+      );
+  };
 
   public getUsersBySearchTerm(searchTerm: string): Observable<User[]> {
     return this.http
-      .get(`${BASE_URL}/user/search?searchTerm=${searchTerm}`)
+      .get(`${this.baseUrl}/user/search?searchTerm=${searchTerm}`)
       .pipe(
         map((users) => {
           return users as User[]
         }),
-      )
-  }
+      );
+  };
 
   public getById(userId: number): Observable<User | null> {
-    if (userId) return this.http.get<User>(`${BASE_URL}/user/id/${userId}`)
-    else return of(null)
-  }
+    if (userId) return this.http.get<User>(`${this.baseUrl}/user/id/${userId}`);
+    else return of(null);
+  };
 
   public remove(userId: number): Observable<boolean> {
-    return this.http.delete(`${BASE_URL}/user/${userId}`).pipe(
+    return this.http.delete(`${this.baseUrl}/user/${userId}`).pipe(
       map((res) => {
-        return true
+        return true;
       }),
-    )
-  }
+    );
+  };
 
-  public update(user: User) {
-    return this.http.put(`${BASE_URL}/user`, user)
-  }
+  public update(user: User): Observable<User> {
+    return this.http.put(`${this.baseUrl}/user`, user) as unknown as Observable<User>;
+  };
 
-  public async login(userCred: { username: string; password: string }) {
+  public async login(userCred: { username: string; password: string }): Promise<string | null | void> {
     try {
-
       const user = await firstValueFrom(
-        this.http.post<User>(`${BASE_URL}/auth/login`, userCred),
-      )
-      if (!user) return
+        this.http.post<User>(`${this.baseUrl}/auth/login`, userCred),
+      );
+      if (!user) return;
       this.storageService.saveToStorage('loggedinUser', {
         id: user.id,
         fullname: user.fullname,
         username: user.username,
         imgUrl: user.imgUrl,
-      })
-      return 'User logged in successfully'
+      });
+      return 'User logged in successfully';
     } catch (error) {
-      this.communicationService.setUserMsg('Invalid username or password')
+      this.communicationService.setUserMsg('Invalid username or password');
       return null;
-    }
-  }
+    };
+  };
 
   public async signup(userCred: {
     email: string
     fullname: string
     username: string
     password: string
-  }) {
+  }): Promise<string | null | void> {
+    userCred.username = userCred.username.trim();
     try {
 
       const addedUser = await lastValueFrom(
-        this.http.post<User>(`${BASE_URL}/auth/signup`, userCred),
-      )
+        this.http.post<User>(`${this.baseUrl}/auth/signup`, userCred),
+      );
+
       this.storageService.saveToStorage('loggedinUser', {
         id: addedUser.id,
         fullname: addedUser.fullname,
         username: addedUser.username,
         imgUrl: this.getDefaultUserImgUrl(),
-      })
-      return 'User added successfully'
+      });
+
+      return 'User added successfully';
     } catch (error) {
-      this.communicationService.setUserMsg(`Username ${userCred.username} already exists!`)
+      this.communicationService.setUserMsg(`Username ${userCred.username} already exists!`);
       return null;
-    }
-  }
+    };
+  };
 
-  public async logout() {
+  public async logout(): Promise<void> {
     await firstValueFrom(
-      this.http.post(`${BASE_URL}/auth/logout`, {}),
-    )
-    this.storageService.saveToStorage('loggedinUser', null)
-  }
+      this.http.post(`${this.baseUrl}/auth/logout`, {}),
+    );
+    this.storageService.saveToStorage('loggedinUser', null);
+  };
 
-  public async checkPassword(newPassword: string, password: string, username: string): Promise<string> {
+  public async checkPassword(newPassword: string, password: string, userId: number): Promise<string> {
     const options = {
       params: {
         newPassword,
         password,
-        username
+        userId
       }
-    }
+    };
     const res: { hashedPassword: string } = await lastValueFrom(
       this.http.get<{ hashedPassword: string }>(
-        `${BASE_URL}/auth/check-password`, options
+        `${this.baseUrl}/auth/check-password`, options
       )
-    )
+    );
+    return res.hashedPassword;
+  };
 
-    return res.hashedPassword
-
-  }
-
+  public async checkIfUsernameTaken(username: string): Promise<boolean> {
+    const options = { params: { username: username.trim() } };
+    const res: { chekIfUsernameTaken: boolean } = await lastValueFrom(
+      this.http.get<{ chekIfUsernameTaken: boolean }>(
+        `${this.baseUrl}/auth/check-username`, options
+      )
+    );
+    return res.chekIfUsernameTaken;
+  };
 
   public getMiniUser(user: User): MiniUser {
-    const { id, fullname, username, imgUrl } = user
-    return { id, fullname, username, imgUrl }
-  }
+    const { id, fullname, username, imgUrl } = user;
+    return { id, fullname, username, imgUrl };
+  };
 
   public getEmptyMiniUser(): MiniUser {
-    return { id: 0, fullname: '', username: '', imgUrl: '' }
-  }
+    return { id: 0, fullname: '', username: '', imgUrl: '' };
+  };
 
   public getDefaultUserImgUrl(): string {
-    return 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg'
+    return 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg';
   }
 
   public async getFollowers(followingId: number): Promise<MiniUser[] | []> {
-    const options = {
-      params: {
-        followingId
-      }
-    }
+    const options = { params: { followingId } };
+
     return await lastValueFrom(
-      this.http.get<MiniUser[]>(
-        `${BASE_URL}/followers`, options
-      )
-    )
-  }
+      this.http.get<MiniUser[]>(`${this.baseUrl}/followers`, options)
+    );
+  };
 
   public async getFollowings(followerId: number): Promise<MiniUser[]> {
-    const options = {
-      params: {
-        followerId
-      }
-    }
+    const options = { params: { followerId } };
+
     return await lastValueFrom(
-      this.http.get<MiniUser[]>(
-        `${BASE_URL}/following`, options
-      )
-    )
-  }
+      this.http.get<MiniUser[]>(`${this.baseUrl}/following`, options)
+    );
+  };
 
   public async checkIsFollowing(loggedinUserId: number, userToCheckId: number): Promise<boolean> {
-    const options = {
-      params: {
-        followerId: loggedinUserId,
-        userToCheckId
-      }
-    }
+    const options = { params: { followerId: loggedinUserId, userToCheckId } };
+
     const isFollowing = await lastValueFrom(
-      this.http.get(`${BASE_URL}/following`, options)
-    ) as Array<any>
-    return isFollowing.length > 0
-  }
+      this.http.get(`${this.baseUrl}/following`, options)
+    ) as Array<any>;
+    return isFollowing.length > 0;
+  };
 
-  public async toggleFollow(isFollowing: boolean, loggedinUser: MiniUser, user: MiniUser) {
-
+  public async toggleFollow(isFollowing: boolean, loggedinUser: MiniUser, user: MiniUser): Promise<void> {
     if (isFollowing) {
       await firstValueFrom(
-        this.http.delete(`${BASE_URL}/following`, { body: { followerId: loggedinUser.id, userId: user.id } })
-      )
+        this.http.delete(`${this.baseUrl}/following`, { body: { followerId: loggedinUser.id, userId: user.id } })
+      );
       await firstValueFrom(
-        this.http.delete(`${BASE_URL}/followers`, { body: { followingId: user.id, userId: loggedinUser.id } })
-      )
+        this.http.delete(`${this.baseUrl}/followers`, { body: { followingId: user.id, userId: loggedinUser.id } })
+      );
 
     } else {
-      await firstValueFrom(
-        this.http.post(`${BASE_URL}/following`, {
-          followerId: loggedinUser.id,
-          userId: user.id,
-          username: user.username,
-          fullname: user.fullname,
-          imgUrl: user.imgUrl,
-        })
-      )
+      const following = {
+        followerId: loggedinUser.id,
+        userId: user.id,
+        username: user.username,
+        fullname: user.fullname,
+        imgUrl: user.imgUrl,
+      }
 
-      await firstValueFrom(
-        this.http.post(`${BASE_URL}/followers`, {
-          followingId: user.id,
-          userId: loggedinUser.id,
-          username: loggedinUser.username,
-          fullname: loggedinUser.fullname,
-          imgUrl: loggedinUser.imgUrl,
-        })
-      )
-    }
+      await firstValueFrom(this.http.post(`${this.baseUrl}/following`, following));
 
-  }
+      const follower = {
+        followingId: user.id,
+        userId: loggedinUser.id,
+        username: loggedinUser.username,
+        fullname: loggedinUser.fullname,
+        imgUrl: loggedinUser.imgUrl,
+      }
 
-
-}
+      await firstValueFrom(this.http.post(`${this.baseUrl}/followers`, follower));
+    };
+  };
+};

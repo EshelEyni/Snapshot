@@ -12,28 +12,30 @@ import { Story } from 'src/app/models/story.model';
 })
 export class HighlightsModalComponent implements OnInit {
 
-  constructor() { }
-  close = new EventEmitter();
+  constructor() { };
 
   storyService = inject(StoryService);
+
   loggedinUser!: User;
+  story!: Story;
+  cover!: number;
   highlightName = '';
+
   isHighlightNameEdit: boolean = true;
   isStoryPicker: boolean = false;
   isCoverPicker: boolean = false;
-  story!: Story;
-  cover!: number;
 
-  ngOnInit(): void {
-  }
+  close = new EventEmitter();
 
-  onAddHighlightName(name: string) {
+  ngOnInit(): void { };
+
+  onAddHighlightName(name: string): void {
     this.highlightName = name;
     this.isHighlightNameEdit = false;
     this.isStoryPicker = true;
-  }
+  };
 
-  onGoBack() {
+  onGoBack(): void {
     if (this.isCoverPicker) {
       this.isCoverPicker = false;
       this.isStoryPicker = true;
@@ -41,31 +43,30 @@ export class HighlightsModalComponent implements OnInit {
     else if (this.isStoryPicker) {
       this.isStoryPicker = false;
       this.isHighlightNameEdit = true;
-    }
-  }
+    };
+  };
 
-  onStorySelected(story: Story) {
+  onStorySelected(story: Story): void {
     this.story = story;
     this.isStoryPicker = false;
     this.isCoverPicker = true;
   }
 
-  onCoverSelected(cover: number) {
+  onCoverSelected(cover: number): void {
     this.cover = cover;
     this.onSaveHighlight();
-  }
-  
-  onSaveHighlight() {
-    const story = {...this.story};
+  };
+
+  onSaveHighlight(): void {
+    const story = { ...this.story };
     story.isSaved = true;
     story.highlightTitle = this.highlightName;
     story.highlightCover = this.cover;
-    
     this.storyService.save(story);
     this.onCloseModal();
-  }
+  };
 
-  onCloseModal() {
+  onCloseModal(): void {
     this.close.emit();
-  }
-}
+  };
+};

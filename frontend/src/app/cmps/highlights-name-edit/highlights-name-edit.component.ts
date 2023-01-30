@@ -10,23 +10,22 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 })
 export class HighlightsNameEditComponent implements OnInit {
 
-  constructor() { }
+  constructor() { };
 
   faX = faX;
-  closeModal = new EventEmitter();
-  addHightlightName = new EventEmitter<string>();
+
   highlightName: string = '';
 
-  ngOnInit(): void {
-  }
+  closeModal = new EventEmitter();
+  addHightlightName = new EventEmitter<string>();
 
+  ngOnInit(): void { };
 
-  onAddHighlightName() {
+  onAddHighlightName(): void {
     this.addHightlightName.emit(this.highlightName);
-  }
+  };
 
-  onCloseModal() {
+  onCloseModal(): void {
     this.closeModal.emit();
-  }
-
-}
+  };
+};

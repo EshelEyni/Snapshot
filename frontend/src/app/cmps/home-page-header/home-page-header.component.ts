@@ -43,7 +43,7 @@ export class HomePageHeaderComponent implements OnInit, OnDestroy {
     });
   };
 
-  onSearchFinished(res: { searchResult: { users: User[], tags: Tag[] }, isClearSearch: boolean }) {
+  onSearchFinished(res: { searchResult: { users: User[], tags: Tag[] }, isClearSearch: boolean }): void {
     if (res.isClearSearch) {
       this.searchResults = [];
       this.isRecentSearchShown = true;
@@ -56,11 +56,11 @@ export class HomePageHeaderComponent implements OnInit, OnDestroy {
     this.isNoResults = this.searchResults.length === 0;
   };
 
-  onOpenModal() {
+  onOpenModal(): void {
     this.isSearchModalShown = true;
   };
 
-  onCloseModal() {
+  onCloseModal(): void {
     this.isSearchModalShown = false;
   };
 

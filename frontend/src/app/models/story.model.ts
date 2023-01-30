@@ -10,9 +10,9 @@ export interface Story {
     isSaved: boolean;
     highlightTitle: string | null;
     highlightCover: number | null;
-}
+};
 
 export interface StoryImg {
     url: string;
     items: any[];
-}
+};

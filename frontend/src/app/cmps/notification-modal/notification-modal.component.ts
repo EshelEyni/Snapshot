@@ -13,19 +13,21 @@ import { User } from 'src/app/models/user.model';
 })
 export class NotificationModalComponent implements OnInit {
 
-  constructor() { }
+  constructor() { };
 
   notificationService = inject(NotificationService);
   notifications$!: Observable<Notification[]>;
-  onClose = new EventEmitter();
+
   loggedinUser!: User;
+
+  onClose = new EventEmitter();
 
   ngOnInit(): void {
     this.notificationService.loadNotifications(this.loggedinUser.id);
     this.notifications$ = this.notificationService.notifications$;
-  }
+  };
 
-  onCloseModal() {
-    this.onClose.emit()
-  }
-}
+  onCloseModal(): void {
+    this.onClose.emit();
+  };
+};

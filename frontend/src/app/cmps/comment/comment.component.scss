@@ -1,5 +1,4 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/vars';
 
 ::ng-deep .comment {
     display: flex;
@@ -90,7 +89,6 @@
                     .username {
                         font-weight: 600;
                         cursor: pointer;
-                        font-family: var(--primary-font);
                     }
 
                     p {
@@ -110,9 +108,7 @@
                 height: rem(25px);
 
                 >* {
-                    font-family: var(--primary-font);
                     color: var(--secondary-color);
-
                 }
 
                 .comment-like-count {

@@ -13,14 +13,13 @@ export class CommentOptionsModalComponent implements OnInit {
   remove = new EventEmitter();
   close = new EventEmitter();
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { };
 
-  onRemove() {
+  onRemove(): void {
     this.remove.emit();
-  }
+  };
 
-  onClose() {
+  onClose(): void {
     this.close.emit();
-  }
-}
+  };
+};

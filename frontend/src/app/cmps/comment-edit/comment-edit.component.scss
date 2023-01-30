@@ -1,5 +1,4 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
 .comment-form {
@@ -23,8 +22,8 @@
         width: 100%;
         border: none;
         outline: none;
+        color: var(--primary-color);
         background-color: var(--primary-bg);
-
     }
 
     ::placeholder {
@@ -49,6 +48,4 @@
             color: var(--primary-button);
         }
     }
-
-
 }

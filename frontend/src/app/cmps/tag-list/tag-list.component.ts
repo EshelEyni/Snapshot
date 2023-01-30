@@ -9,10 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TagListComponent implements OnInit {
 
-  constructor() { }
+  constructor() { };
   tags!: Tag[];
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { };
 
-}
+};

@@ -16,48 +16,47 @@ import { lastValueFrom } from 'rxjs';
 })
 export class StoryOptionsModalComponent implements OnInit {
 
-  constructor() { }
+  constructor() { };
 
   communicationService = inject(CommunicationService);
   storyService = inject(StoryService);
   userService = inject(UserService);
   router = inject(Router);
-  closeModal = new EventEmitter();
+
   story!: Story;
   loggedinUser!: User;
   isConfirmDeleteMsgShown: boolean = false;
 
-  ngOnInit(): void {
-  }
+  closeModal = new EventEmitter();
 
-  onToggleConfirmDelete() {
+  ngOnInit(): void { };
+
+  onToggleConfirmDelete(): void {
     this.isConfirmDeleteMsgShown = !this.isConfirmDeleteMsgShown;
-  }
+  };
 
-  async onDeleteStory() {
+  async onDeleteStory(): Promise<void> {
     const res = await this.storyService.remove(this.story.id);
     const user = { ...this.loggedinUser };
     user.storySum--;
     const updatedUser = await lastValueFrom(this.userService.update(user));
     if (res && updatedUser) {
-      this.communicationService.setUserMsg('Story Deleted.')
+      this.communicationService.setUserMsg('Story Deleted.');
       this.router.navigate(['/']);
-    }
-  }
+    };
+  };
 
-  async onRemoveStoryFromProfile() {
-
+  async onRemoveStoryFromProfile(): Promise<void> {
     const story = { ...this.story };
     story.isSaved = false;
     story.highlightTitle = '';
     story.highlightCover = 0;
-
     await this.storyService.save(story);
     this.communicationService.setUserMsg('Story removed from profile.')
     this.closeModal.emit();
-  }
+  };
 
-  onCloseModal() {
+  onCloseModal(): void {
     this.closeModal.emit();
-  }
-}
+  };
+};

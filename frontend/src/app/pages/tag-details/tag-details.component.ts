@@ -21,7 +21,7 @@ export class TagDetailsComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.loggedinUser$ = this.store.select('userState').pipe(map((x => x.loggedinUser)));
-  }
+  };
 
   $location = inject(Location);
   postService = inject(PostService);
@@ -30,39 +30,40 @@ export class TagDetailsComponent implements OnInit, OnDestroy {
   route = inject(ActivatedRoute);
   store = inject(Store<State>);
 
+  faChevronLeft = faChevronLeft;
+
+  paramsSubscription!: Subscription;
   tag!: Tag;
   posts: Post[] = [];
-  paramsSubscription!: Subscription;
-  loggedinUser$: Observable<User | null>
-  loggedinUser!: User
-  sub: Subscription | null = null;
-  faChevronLeft = faChevronLeft;
+
+  userSub: Subscription | null = null;
+  loggedinUser$: Observable<User | null>;
+  loggedinUser!: User;
 
   ngOnInit(): void {
 
-    this.sub = this.loggedinUser$.subscribe(user => {
+    this.userSub = this.loggedinUser$.subscribe(user => {
       if (user) this.loggedinUser = { ...user };
-    })
+    });
 
     this.paramsSubscription = this.route.data.subscribe(data => {
-      const tag = data['tag']
+      const tag = data['tag'];
       if (tag) {
         this.tag = tag
         tag.postIds.forEach(async (postId: number) => {
-          const post = await lastValueFrom(this.postService.getById(postId))
-          this.posts.push({ ...post })
-        })
-      }
-    })
-  }
+          const post = await lastValueFrom(this.postService.getById(postId));
+          this.posts.push({ ...post });
+        });
+      };
+    });
+  };
 
-  onGoBack() {
-    this.$location.back()
-  }
+  onGoBack(): void {
+    this.$location.back();
+  };
 
   ngOnDestroy(): void {
     if (this.paramsSubscription) this.paramsSubscription.unsubscribe();
-    if (this.sub) this.sub.unsubscribe();
-  }
-
-}
+    if (this.userSub) this.userSub.unsubscribe();
+  };
+};

@@ -2,13 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { Message } from '../models/chat.model';
+import { HttpService } from './http.service';
 import { SocketService } from './socket.service';
-
-
-const BASE_URL = process.env['NODE_ENV'] === 'production'
-  ? '/api'
-  : '//localhost:3030/api';
-
 
 @Injectable({
   providedIn: 'root'
@@ -23,18 +18,21 @@ export class MessageService {
 
   http = inject(HttpClient);
   socketService = inject(SocketService);
+  httpService = inject(HttpService);
 
-  public async loadMessages(chatId: number) {
+  baseUrl = this.httpService.getBaseUrl();
+
+  public async loadMessages(chatId: number): Promise<void> {
     let messages = await firstValueFrom(
-      this.http.get(`${BASE_URL}/message/chat/${chatId}`)
+      this.http.get(`${this.baseUrl}/message/chat/${chatId}`)
     ) as Message[];
 
     this._messages$.next(messages);
-  }
+  };
 
-  public async addMessage(msg: Message) {
+  public async addMessage(msg: Message): Promise<void> {
     const res = await firstValueFrom(
-      this.http.post(`${BASE_URL}/message`, msg)
+      this.http.post(`${this.baseUrl}/message`, msg)
     ) as { msg: string, id: number };
 
     if (res.msg === 'Message added') {
@@ -43,17 +41,17 @@ export class MessageService {
       messages.push(msg);
       this._messages$.next(messages);
       this.socketService.emit('msg-added', msg);
-    }
-  }
+    };
+  };
 
-  public addMsgFromSocket(msg: Message) {
+  public addMsgFromSocket(msg: Message): void {
     let messages = this._messages$.getValue();
     messages.push(msg);
     this._messages$.next(messages);
-  }
+  };
 
 
-  public getEmptyMessage() {
+  public getEmptyMessage(): Message {
     const newMsg = {
       id: 0,
       type: '',
@@ -69,9 +67,8 @@ export class MessageService {
       postId: 0,
       storyId: 0,
       imgUrl: ''
-    }
+    };
 
     return newMsg;
-  }
-
-}
+  };
+};

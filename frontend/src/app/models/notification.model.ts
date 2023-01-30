@@ -10,7 +10,7 @@ export interface Notification {
     createdAt: Date;
     post?: Post;
     msgCount?: number;
-}
+};
 
 export interface NotificationsByDate {
     today: { label: string, notifications: Notification[] };
@@ -19,4 +19,4 @@ export interface NotificationsByDate {
     lastWeek: { label: string, notifications: Notification[] };
     thisMonth: { label: string, notifications: Notification[] };
     earlier: { label: string, notifications: Notification[] };
-}
+};

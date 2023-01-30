@@ -1,13 +1,11 @@
 @import '../../../assets/styles/setup/functions';
 @import '../../../assets/styles/setup/mixins';
-@import '../../../assets/styles/setup/vars';
 
 .notifications {
     @include page;
     position: relative;
     flex-direction: column;
     align-items: center;
-
     width: 100%;
 
     .notifications-header {
@@ -36,7 +34,6 @@
                 height: 100%;
                 font-size: rem(20px);
                 font-weight: 600;
-                font-family: var(--primary-font);
                 color: var(--secondary-color);
                 text-align: center;
             }

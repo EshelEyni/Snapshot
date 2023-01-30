@@ -22,73 +22,74 @@ import { Comment } from 'src/app/models/comment.model';
 })
 
 export class CommentEditComponent implements OnInit, OnDestroy {
-  constructor() { }
+
+  constructor() { };
 
   @ViewChild('commentInput', { static: true }) commentInput!: ElementRef;
 
-  // toggleModal = new EventEmitter<string>()
-  commentAdded = new EventEmitter<Comment>()
+  userService = inject(UserService);
+  commentService = inject(CommentService);
+  postService = inject(PostService);
+  tagService = inject(TagService);
+  communicationService = inject(CommunicationService);
+  router = inject(Router);
 
-  userService = inject(UserService)
-  commentService = inject(CommentService)
-  postService = inject(PostService)
-  tagService = inject(TagService)
-  communicationService = inject(CommunicationService)
-  router = inject(Router)
-
-  loggedinUser!: User;
-  faFaceSmile = faFaceSmile
-  isEmojiPickerShown: boolean = false
-  isMainScreen: boolean = false
-  commentText: string = ''
-  post!: Post
-  isPostDetails!: boolean;
+  faFaceSmile = faFaceSmile;
 
   sub: Subscription | null = null;
+  loggedinUser!: User;
+  post!: Post;
+
+  commentText: string = '';
+
+  isPostDetails!: boolean;
+  isEmojiPickerShown: boolean = false;
+  isMainScreen: boolean = false;
+
+  commentAdded = new EventEmitter<Comment>();
 
   ngOnInit(): void {
     if (this.isPostDetails) {
       this.sub = this.communicationService.focusEmitter.subscribe(() => {
         this.commentInput.nativeElement.focus();
-      })
-    }
-  }
+      });
+    };
+  };
 
-  onAddEmoji(emoji: Emoji) {
-    if (typeof emoji.emoji !== 'string') this.commentText += emoji.emoji.native
-    else this.commentText += emoji.emoji
+  onAddEmoji(emoji: Emoji): void {
+    if (typeof emoji.emoji !== 'string') this.commentText += emoji.emoji.native;
+    else this.commentText += emoji.emoji;
+  };
 
-  }
-
-  async onAddComment() {
-    this.isEmojiPickerShown = false
-    const commentToAdd = this.commentService.getEmptyComment()
-    commentToAdd.text = this.commentText
-    this.commentText = ''
-    commentToAdd.by = this.userService.getMiniUser(this.loggedinUser)
-    commentToAdd.postId = this.post.id
-    const res = await this.commentService.save(commentToAdd)
+  async onAddComment(): Promise<void> {
+    this.isEmojiPickerShown = false;
+    const commentToAdd = this.commentService.getEmptyComment();
+    commentToAdd.text = this.commentText;
+    this.commentText = '';
+    commentToAdd.by = this.userService.getMiniUser(this.loggedinUser);
+    commentToAdd.postId = this.post.id;
+    const res = await this.commentService.save(commentToAdd);
     if (res && res.msg === 'Comment added') {
-      commentToAdd.id = res.id
-      this.commentAdded.emit(commentToAdd)
-    }
-    this.post.commentSum++
-    await this.postService.save(this.post)
-    const tags = this.tagService.detectTags(commentToAdd.text)
+      commentToAdd.id = res.id;
+      this.commentAdded.emit(commentToAdd);
+    };
+    this.post.commentSum++;
+    await this.postService.save(this.post);
+    const tags = this.tagService.detectTags(commentToAdd.text);
     if (tags.length) tags.forEach(async (tageName) => {
-      const tag = { name: tageName }
-      const id = await this.tagService.save(tag as Tag)
+      const tag = { name: tageName };
+      const id = await this.tagService.save(tag as Tag);
       if (typeof id === 'number')
-        await this.postService.addPostToTag(id, this.post.id)
-    })
-  }
+        await this.postService.addPostToTag(id, this.post.id);
+    });
+  };
 
-  onToggleEmojiPicker() {
-    this.isEmojiPickerShown = !this.isEmojiPickerShown
-    this.isMainScreen = !this.isMainScreen
-  }
+  onToggleEmojiPicker(): void {
+    this.isEmojiPickerShown = !this.isEmojiPickerShown;
+    this.isMainScreen = !this.isMainScreen;
+  };
 
   ngOnDestroy(): void {
-    this.sub?.unsubscribe();
-  }
-}
+    this.sub?.unsubscribe();;
+  };
+};

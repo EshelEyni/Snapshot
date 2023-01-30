@@ -1,4 +1,3 @@
-@import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/functions';
 
 .aspect-ratio-selector {
@@ -22,9 +21,7 @@
         align-items: center;
         cursor: pointer;
         gap: rem(10px);
-        font-family: var(--primary-font);
         color: var(--secondary-color);
-
 
         svg-icon {
             position: static;
@@ -38,5 +35,4 @@
     >*:not(:last-child) {
         border-bottom: 1px solid white;
     }
-
 }

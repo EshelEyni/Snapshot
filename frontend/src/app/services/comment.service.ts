@@ -6,11 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Comment } from './../models/comment.model';
 import { Injectable, inject } from '@angular/core';
 import { Observable, lastValueFrom, firstValueFrom } from 'rxjs';
-
-
-const BASE_URL = process.env['NODE_ENV'] === 'production'
-  ? '/api'
-  : '//localhost:3030/api';
+import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +20,9 @@ export class CommentService {
   storageService = inject(StorageService);
   postService = inject(PostService);
   http = inject(HttpClient);
+  httpService = inject(HttpService);
+
+  baseUrl = this.httpService.getBaseUrl();
 
   public async loadComments(
     filterBy: {
@@ -31,54 +30,53 @@ export class CommentService {
       userId: number | null
       , type: string
     }
-  ) {
-    let options = { params: {} }
+  ): Promise<Comment[]> {
+    let options = { params: {} };
     if (filterBy) {
       options.params = {
         postId: filterBy.postId,
         userId: filterBy.userId,
         type: filterBy.type,
       }
-    }
+    };
 
     const comments = await lastValueFrom(
-      this.http.get<Comment[]>(`${BASE_URL}/comment`, options)
-    )
+      this.http.get<Comment[]>(`${this.baseUrl}/comment`, options)
+    );
 
-    return comments
-  }
+    return comments;
+  };
 
   public getById(commentId: number): Observable<Comment> {
-    return this.http.get<Comment>(`${BASE_URL}/comment/${commentId}`)
-  }
+    return this.http.get<Comment>(`${this.baseUrl}/comment/${commentId}`);
+  };
 
   public async remove(commentId: number): Promise<{ msg: string } | void> {
     const res = await firstValueFrom(
-      this.http.delete(`${BASE_URL}/comment/${commentId}`)
-    ) as { msg: string }
+      this.http.delete(`${this.baseUrl}/comment/${commentId}`)
+    ) as { msg: string };
 
-    return res
-  }
+    return res;
+  };
 
   public save(comment: Comment): Promise<{ msg: string, id: number } | void> {
-    return comment.id ? this._update(comment) : this._add(comment)
-  }
+    return comment.id ? this._update(comment) : this._add(comment);
+  };
 
   private async _update(comment: Comment): Promise<{ msg: string, id: number } | void> {
     const res = await firstValueFrom(
-      this.http.put(`${BASE_URL}/comment/${comment.id}`, comment)
-
-    ) as { msg: string, id: number }
-    return res
-  }
+      this.http.put(`${this.baseUrl}/comment/${comment.id}`, comment)
+    ) as { msg: string, id: number };
+    return res;
+  };
 
   private async _add(comment: Comment): Promise<{ msg: string, id: number } | void> {
     const res = await firstValueFrom(
-      this.http.post(`${BASE_URL}/comment`, comment)
-    ) as { msg: string, id: number }
+      this.http.post(`${this.baseUrl}/comment`, comment)
+    ) as { msg: string, id: number };
 
-    return res
-  }
+    return res;
+  };
 
   public getEmptyComment(): Comment {
     return {
@@ -89,37 +87,32 @@ export class CommentService {
       createdAt: new Date(),
       isOriginalText: false,
       likeSum: 0,
-    }
-  }
+    };
+  };
 
   public async checkIsLiked(userId: number, commentId: number): Promise<boolean> {
-    const options = {
-      params: {
-        userId,
-        commentId,
-      }
-    }
+    const options = { params: { userId, commentId, } };
 
     const isLiked = await firstValueFrom(
-      this.http.get(`${BASE_URL}/like/comment`, options),
-    ) as Array<any>
+      this.http.get(`${this.baseUrl}/like/comment`, options),
+    ) as Array<any>;
 
-    return isLiked.length > 0
-  }
+    return isLiked.length > 0;
+  };
 
-  public async toggleLike(isLiked: boolean, details: { user: MiniUser, comment: Comment }) {
+  public async toggleLike(isLiked: boolean, details: { user: MiniUser, comment: Comment }): Promise<void> {
 
     if (isLiked) {
       await firstValueFrom(
-        this.http.delete(`${BASE_URL}/like/comment`, {
+        this.http.delete(`${this.baseUrl}/like/comment`, {
           body: { userId: details.user.id, commentId: details.comment.id }
         }),
-      )
+      );
     } else {
       await firstValueFrom(
-        this.http.post(`${BASE_URL}/like/comment`,
+        this.http.post(`${this.baseUrl}/like/comment`,
           { user: details.user, comment: details.comment }),
-      )
-    }
-  }
-}
+      );
+    };
+  };
+};

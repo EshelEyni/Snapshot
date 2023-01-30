@@ -1,5 +1,4 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
 
@@ -62,7 +61,6 @@
 
             >input {
                 font-size: rem(14px);
-                font-family: var(--primary-font);
                 line-height: rem(36px);
                 color: var(--secondary-color);
                 background-color: var(--primary-bg);
@@ -74,7 +72,6 @@
 
             .btn-login {
                 font-size: rem(15px);
-                font-family: var(--primary-font);
                 font-weight: 500;
                 text-align: center;
                 line-height: rem(18px);

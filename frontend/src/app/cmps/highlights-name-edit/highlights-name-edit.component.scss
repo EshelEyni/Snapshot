@@ -1,6 +1,5 @@
 @import '../../../assets/styles/setup/functions';
 @import '../../../assets/styles/setup/mixins';
-@import '../../../assets/styles/setup/vars';
 
 .highlights-name-edit {
     position: absolute;
@@ -30,7 +29,6 @@
             flex-shrink: 1;
             font-weight: 600;
             font-size: rem(16px);
-            font-family: var(--primary-font);
             text-align: center;
             text-transform: capitalize;
         }
@@ -70,7 +68,6 @@
                 height: rem(40px);
                 padding: 0 rem(15px);
                 font-size: rem(16px);
-                font-family: var(--primary-font);
                 border: var(--border-color) solid 1px;
                 border-radius: 10px;
                 outline: none;
@@ -92,7 +89,6 @@
             align-items: center;
             font-size: rem(16px);
             font-weight: 700;
-            font-family: var(--primary-font);
             text-transform: capitalize;
             height: rem(40px);
             color: var(--secondary-color);

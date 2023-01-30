@@ -31,14 +31,12 @@
                 letter-spacing: 0.5px;
                 position: absolute;
                 top: 15%;
-                font-family: var(--primary-font);
                 font-weight: 100;
             }
 
             &.focused {
                 padding: rem(5px) 0 rem(5px) rem(15px);
             }
-
 
             @include for-mobile-narrow-layout {
                 width: rem(150px);
@@ -68,7 +66,6 @@
         flex-wrap: wrap;
         gap: rem(16px);
         width: 100%;
-        font-family: var(--primary-font);
 
         label {
             font-size: rem(16px);
@@ -86,6 +83,7 @@
             font-size: rem(14px);
             letter-spacing: 0.5px;
             padding: 0 rem(16px);
+            background-color: var(--input-bg-color);
 
             &::placeholder {
                 color: var(--input-placeholder-secondary-color);

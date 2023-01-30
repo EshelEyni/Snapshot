@@ -12,9 +12,9 @@ import { PostService } from '../services/post.service';
   providedIn: 'root'
 })
 export class PostResolver implements Resolve<Observable<void | Post>>{
-  postService = inject(PostService)
+  postService = inject(PostService);
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const id = route.params['id']
-    return this.postService.getById(id)
-  }
-}
+    const id = route.params['id'];
+    return this.postService.getById(id);
+  };
+};

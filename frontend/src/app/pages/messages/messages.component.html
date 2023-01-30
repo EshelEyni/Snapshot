@@ -3,7 +3,7 @@
         <fa-icon [icon]="faChevronLeft" (click)="onGoBack()"></fa-icon>
         <h1>{{loggedinUser.username}}</h1>
         <div>
-            <svg-icon src="../../../assets/svgs/pencil-rect.svg" (click)="onToggleShareModal()"></svg-icon>
+            <svg-icon src="../../../assets/svgs/pencil-rect.svg" (click)="onToggleShareModal()" #svgIcon></svg-icon>
         </div>
     </header>
 
@@ -23,7 +23,7 @@
         <div class="messages-chat-list-container">
             <div class="messages-chat-list-header">
                 <h1>{{loggedinUser.username}}</h1>
-                <svg-icon src="../../../assets/svgs/pencil-rect.svg" (click)="onToggleShareModal()"></svg-icon>
+                <svg-icon src="../../../assets/svgs/pencil-rect.svg" (click)="onToggleShareModal()" #svgIcon></svg-icon>
             </div>
             <chat-list [chats]="(chats$|async)!" [loggedinUser]="loggedinUser"
                 (chatSelected)="onSelectChat($event)"></chat-list>
@@ -33,7 +33,7 @@
                 *ngIf="currActiveChat; else noActiveChatMsg" (clearChat)="onClearChat()"></chat-details>
             <ng-template #noActiveChatMsg>
                 <div class="no-active-chat-msg">
-                    <svg-icon src="../../../assets/svgs/paper-airplane-circle.svg"></svg-icon>
+                    <svg-icon src="../../../assets/svgs/paper-airplane-circle.svg" #svgIcon></svg-icon>
                     <h1>your messages</h1>
                     <p>Send private photos and messages to a friend or group.</p>
                     <button class="clean-btn btn-send" (click)="onToggleShareModal()">send message</button>

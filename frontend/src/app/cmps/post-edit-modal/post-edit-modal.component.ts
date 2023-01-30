@@ -19,43 +19,32 @@ import { Location } from 'src/app/models/post.model'
   styleUrls: ['./post-edit-modal.component.scss'],
   outputs: ['togglePostEdit'],
 })
+
 export class PostEditModalComponent implements OnInit, OnDestroy {
-
-  togglePostEdit = new EventEmitter()
-  @ViewChild('offScreenCanvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
-
   constructor() {
     this.loggedinUser$ = this.store
       .select('userState')
-      .pipe(map((x) => x.loggedinUser))
-  }
+      .pipe(map((x) => x.loggedinUser));
+  };
 
-  store = inject(Store<State>)
-  uploadImgService = inject(UploadImgService)
-  userService = inject(UserService)
-  postService = inject(PostService)
-  commentService = inject(CommentService)
-  tagService = inject(TagService)
+  @ViewChild('offScreenCanvas', { static: true }) offScreenCanvas!: ElementRef<HTMLCanvasElement>;
+
+  store = inject(Store<State>);
+  uploadImgService = inject(UploadImgService);
+  userService = inject(UserService);
+  postService = inject(PostService);
+  commentService = inject(CommentService);
+  tagService = inject(TagService);
 
   // Icons
-  faX = faX
-  faArrowLeft = faArrowLeft
+  faX = faX;
+  faArrowLeft = faArrowLeft;
 
-  sub: Subscription | null = null
-  loggedinUser$: Observable<User | null>
-  loggedinUser!: User
-  currTitle: string = 'create new post'
-  postImgs: PostCanvasImg[] = [{
-    url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1675034428/vvtemqpbyrq2mr4x2l9o.jpg',
-    x: 0,
-    y: 0,
-    width: 830,
-    height: 830,
-    aspectRatio: 'Original',
-    zoom: 0,
-    filter: 'normal',
+  sub: Subscription | null = null;
+  loggedinUser$: Observable<User | null>;
+  loggedinUser!: User;
+  postImgs: PostCanvasImg[] = [];
 
-  }];
   txt: string = '';
   location: Location = {
     id: 0,
@@ -65,21 +54,25 @@ export class PostEditModalComponent implements OnInit, OnDestroy {
   };
 
   currEditMode: string = 'crop';
+  currTitle: string = 'create new post'
   btnTxt: string = 'next';
   currFilter!: string;
+
   isSaving: boolean = false;
   isUploading: boolean = false;
 
-  ngOnInit() {
+  togglePostEdit = new EventEmitter()
+
+  ngOnInit(): void {
     this.sub = this.loggedinUser$.subscribe((user) => {
       if (user) {
-        this.loggedinUser = { ...user }
-      }
-    })
-  }
+        this.loggedinUser = { ...user };
+      };
+    });
+  };
 
 
-  onSaveFiles(imgUrls: string[]) {
+  onSaveFiles(imgUrls: string[]): void {
     this.postImgs = imgUrls.map((url) => {
       return {
         url,
@@ -90,62 +83,60 @@ export class PostEditModalComponent implements OnInit, OnDestroy {
         aspectRatio: 'Original',
         zoom: 0,
         filter: 'normal',
-      }
-    })
-    this.currEditMode = 'crop'
-    this.currTitle = 'crop'
-  }
+      };
+    });
+    this.currEditMode = 'crop';
+    this.currTitle = 'crop';
+  };
 
-  onTogglePostEdit() {
-    this.togglePostEdit.emit()
-  }
+  onTogglePostEdit(): void {
+    this.togglePostEdit.emit();
+  };
 
-  onSetFilter(filter: string) {
-    this.currFilter = filter
-  }
+  onSetFilter(filter: string): void {
+    this.currFilter = filter;
+  };
 
-  onToggleIsUploading() {
-    this.isUploading = !this.isUploading
-  }
+  onToggleIsUploading(): void {
+    this.isUploading = !this.isUploading;
+  };
 
-  onGoBack() {
-    if (this.currEditMode === 'crop') this.onTogglePostEdit()
+  onGoBack(): void {
+    if (this.currEditMode === 'crop') this.onTogglePostEdit();
     else if (this.currEditMode === 'filter') {
-      this.currEditMode = 'crop'
-      this.currTitle = 'create new post'
+      this.currEditMode = 'crop';
+      this.currTitle = 'create new post';
     }
     else if (this.currEditMode === 'txt-location') {
-      this.currEditMode = 'filter'
-      this.btnTxt = 'next'
-      this.currTitle = 'edit'
-    }
-  }
+      this.currEditMode = 'filter';
+      this.btnTxt = 'next';
+      this.currTitle = 'edit';
+    };
+  };
 
-  onNext() {
+  onNext(): void {
     if (this.currEditMode === 'crop') {
-      this.currEditMode = 'filter'
-      this.currTitle = 'edit'
+      this.currEditMode = 'filter';
+      this.currTitle = 'edit';
     }
     else if (this.currEditMode === 'filter') {
-      this.currEditMode = 'txt-location'
-      this.btnTxt = 'share'
-      this.currTitle = 'create new post'
+      this.currEditMode = 'txt-location';
+      this.btnTxt = 'share';
+      this.currTitle = 'create new post';
     }
-    else if (this.currEditMode === 'txt-location') this.savePost()
-  }
+    else if (this.currEditMode === 'txt-location') this.savePost();
+  };
 
-  async savePost() {
+  async savePost(): Promise<void> {
     this.isSaving = true;
     const postToSave = this.postService.getEmptyPost();
     const author = this.userService.getMiniUser(this.loggedinUser);
-    await this.convertCanvasImgsToImgUrls(this.postImgs, postToSave.imgUrls);
-    // postToSave.imgUrls = this.postImgs.map(img => img.url);
+    await this.postService.convertCanvasImgsToImgUrls(this.offScreenCanvas.nativeElement, this.postImgs, postToSave.imgUrls);
     postToSave.by = author;
     postToSave.location = this.location;
     postToSave.tags = this.tagService.detectTags(this.txt);
     if (this.txt) postToSave.commentSum = 1;
     const postId = await this.postService.save(postToSave);
-
 
     if (this.txt && typeof postId === 'number') {
       this.tagService.detectTags(this.txt);
@@ -155,128 +146,24 @@ export class PostEditModalComponent implements OnInit, OnDestroy {
       commentToAdd.postId = postId;
       commentToAdd.isOriginalText = true;
       await this.commentService.save(commentToAdd);
-    }
+    };
 
     this.loggedinUser.postSum++;
     this.store.dispatch(new SaveUser(this.loggedinUser));
+    this.onTogglePostEdit();
+  };
 
 
-    this.onTogglePostEdit()
-  }
+  onToggleEditSettings(currSetting: string): void {
+    this.currEditMode = currSetting;
+  };
 
-  async convertCanvasImgsToImgUrls(canvasImgs: PostCanvasImg[], postImgUrls: string[]) {
+  onChangePost(ev: { txt: string; location: Location }): void {
+    this.txt = ev.txt;
+    this.location = ev.location;
+  };
 
-    const offScreenCanvas = this.canvasRef.nativeElement;
-    const offScreenCtx = offScreenCanvas.getContext('2d');
-
-    if (!offScreenCtx) return
-
-
-
-    return new Promise<void>((resolve, reject) => {
-      let completed = 0;
-      canvasImgs.forEach(canvasImg => {
-        const img = new Image()
-        img.src = canvasImg.url
-        img.crossOrigin = "Anonymous";
-
-        img.onload = async () => {
-
-          const canvasSize = window.innerWidth > 1260 ? 830 : window.innerWidth;
-          switch (canvasImg.aspectRatio) {
-            case 'Original':
-              offScreenCanvas.width = canvasSize;
-              offScreenCanvas.height = canvasSize;
-              break;
-            case '1:1':
-              offScreenCanvas.width = canvasSize;
-              offScreenCanvas.height = canvasSize;
-              break;
-            case '4:5':
-              offScreenCanvas.width = canvasSize * .8;
-              offScreenCanvas.height = canvasSize;
-              break;
-            case '16:9':
-              offScreenCanvas.width = canvasSize;
-              offScreenCanvas.height = canvasSize * .5625;
-              break;
-            default:
-              break;
-          }
-
-          if (canvasImg.zoom) {
-            const width = offScreenCanvas.width + (canvasImg.zoom * (offScreenCanvas.width / offScreenCanvas.height))
-            const height = offScreenCanvas.height + canvasImg.zoom
-            const x = offScreenCanvas.width / 2 - width / 2
-            const y = offScreenCanvas.height / 2 - height / 2
-            canvasImg = { ...canvasImg, x, y, width, height }
-          }
-
-          switch (canvasImg.filter) {
-            case 'clarendon':
-              offScreenCtx.filter = 'saturate(1.6) contrast(1.5) brightness(1.1)';
-              break;
-            case 'gingham':
-              offScreenCtx.filter = 'sepia(1) brightness(1.1) hue-rotate(50deg)';
-              break;
-            case 'moon':
-              offScreenCtx.filter = 'grayscale(1) brightness(0.9) contrast(1.1)';
-              break;
-            case 'lark':
-              offScreenCtx.filter = 'brightness(1.2) contrast(1.1) saturate(1.5)';
-              break;
-            case 'reyes':
-              offScreenCtx.filter = 'brightness(1.1) contrast(1.1) saturate(1.5)';
-              break;
-            case 'juno':
-              offScreenCtx.filter = 'brightness(1.1) contrast(1.1) saturate(1.3)';
-              break;
-            case 'slumber':
-              offScreenCtx.filter = 'brightness(0.9) contrast(1.1) saturate(1.3)';
-              break;
-            case 'crema':
-              offScreenCtx.filter = 'brightness(1.1) contrast(1.1) saturate(1.1)';
-              break;
-            case 'normal':
-              offScreenCtx.filter = 'none';
-              break;
-            default:
-              offScreenCtx.filter = 'none';
-              break;
-          }
-
-          offScreenCtx.fillStyle = 'rgba(38, 38, 38)';
-          offScreenCtx.fillRect(0, 0, offScreenCanvas.width, offScreenCanvas.height);
-
-          offScreenCtx.drawImage(
-            img,
-            canvasImg.x,
-            canvasImg.y,
-            canvasImg.width,
-            canvasImg.height
-          )
-          const imgData = offScreenCanvas.toDataURL();
-          const res = await this.uploadImgService.uploadImg(imgData);
-          postImgUrls.push(res)
-          completed += 1;
-          if (completed === canvasImgs.length) {
-            resolve();
-          }
-        }
-      })
-    });
-  }
-
-  onToggleEditSettings(currSetting: string) {
-    this.currEditMode = currSetting
-  }
-
-  onChangePost(ev: { txt: string; location: Location }) {
-    this.txt = ev.txt
-    this.location = ev.location
-  }
-
-  ngOnDestroy() {
-    this.sub?.unsubscribe()
-  }
-}
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
+  };
+};

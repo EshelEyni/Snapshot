@@ -21,44 +21,49 @@ export class ProfileOptionsModalComponent implements OnInit {
   router = inject(Router)
   store = inject(Store<State>)
   userService = inject(UserService)
-  loggedinUser!: User;
+  
   faChevronLeft = faChevronLeft;
-  close = new EventEmitter();
+  
+  loggedinUser!: User;
+  
   isDarkMode!: boolean;
+  
+  close = new EventEmitter();
 
   ngOnInit(): void {
     this.isDarkMode = this.loggedinUser.isDarkMode;
+  };
 
-  }
+  onCloseModal(): void {
+    this.close.emit();
+  };
 
-  onCloseModal() {
-    this.close.emit()
-  }
+  onGoToProfileEdit(): void {
+    this.router.navigate(['/profile-edit/', this.loggedinUser.id]);
+  };
 
-  onGoToProfileEdit() {
-    this.router.navigate(['/profile-edit/', this.loggedinUser.id])
-  }
-
-  onToggleDarkMode() {
+  onToggleDarkMode(): void {
     this.isDarkMode = !this.isDarkMode;
 
     if (this.isDarkMode) {
       document.documentElement.style.setProperty('--primary-bg', 'rgb(18, 18, 18)');
       document.documentElement.style.setProperty('--secondary-bg', 'rgb(0, 0, 0)');
       document.documentElement.style.setProperty('--primary-color', 'rgb(250, 250, 250)');
+      document.documentElement.style.setProperty('--input-bg-color', 'rgb(38, 38, 38)');
     }
     else {
       document.documentElement.style.setProperty('--primary-bg', 'rgb(250, 250, 250)');
       document.documentElement.style.setProperty('--secondary-bg', 'rgb(255, 255, 255)');
       document.documentElement.style.setProperty('--primary-color', 'rgb(38, 38, 38)');
-    }
+      document.documentElement.style.setProperty('--input-bg-color', 'rgb(239, 239, 239)');
+    };
 
-    this.store.dispatch(new SaveUser({...this.loggedinUser, isDarkMode: this.isDarkMode}));
-  }
+    this.store.dispatch(new SaveUser({ ...this.loggedinUser, isDarkMode: this.isDarkMode }));
+  };
 
-  onLogout() {
+  onLogout(): void {
     this.store.dispatch(new LoadLoggedInUser(0));
-    this.userService.logout()
-    this.router.navigate(['/login'])
-  }
-}
+    this.userService.logout();
+    this.router.navigate(['/login']);
+  };
+};

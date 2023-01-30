@@ -20,32 +20,42 @@ import { reducers, metaReducers } from './store/store';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { AngularDraggableModule } from 'angular2-draggable';
 
-// Components
+
+// Root Component
 import { AppComponent } from './app-root/app.component';
+
+// Pages
+import { DiscoverPeopleComponent } from './pages/discover-people/discover-people.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { FollowingComponent } from './pages/following/following.component';
+import { FollowersComponent } from './pages/followers/followers.component';
+import { PostEditComponent } from './pages/post-edit/post-edit.component';
 import { HomeComponent } from './pages/home/home.component';
+import { LoginSignupComponent } from './pages/login-signup/login-signup.component';
+import { ExploreComponent } from './pages/explore/explore.component';
+import { MessagesComponent } from './pages/messages/messages.component';
+import { PostDetailsComponent } from './pages/post-details/post-details.component';
+import { ProfileDetailsComponent } from './pages/profile-details/profile-details.component';
+import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
+import { TagDetailsComponent } from './pages/tag-details/tag-details.component';
+
+// Components
 import { PostListComponent } from './cmps/post-list/post-list.component';
 import { PostPreviewComponent } from './cmps/post-preview/post-preview.component';
 import { SideBarComponent } from './cmps/side-bar/side-bar.component';
 import { CommentComponent } from './cmps/comment/comment.component';
 import { CommentListComponent } from './cmps/comment-list/comment-list.component';
-import { LoginSignupComponent } from './pages/login-signup/login-signup.component';
 import { ShareModalComponent } from './cmps/share-modal/share-modal.component';
 import { UserListComponent } from './cmps/user-list/user-list.component';
 import { ImgContainerComponent } from './cmps/img-container/img-container.component';
 import { PostEditFormComponent } from './cmps/post-edit-form/post-edit-form.component';
-import { ExploreComponent } from './pages/explore/explore.component';
-import { MessagesComponent } from './pages/messages/messages.component';
-import { PostDetailsComponent } from './pages/post-details/post-details.component';
-import { ProfileDetailsComponent } from './pages/profile-details/profile-details.component';
 import { UserPreviewComponent } from './cmps/user-preview/user-preview.component';
 import { EllipsisComponent } from './cmps/ellipsis/ellipsis.component';
 import { PostActionsComponent } from './cmps/post-actions/post-actions.component';
 import { CommentEditComponent } from './cmps/comment-edit/comment-edit.component';
-import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
 import { SearchBarComponent } from './cmps/search-bar/search-bar.component';
 import { SearchModalComponent } from './cmps/search-modal/search-modal.component';
 import { TagPreviewComponent } from './cmps/tag-preview/tag-preview.component';
-import { TagDetailsComponent } from './pages/tag-details/tag-details.component';
 import { NotificationModalComponent } from './cmps/notification-modal/notification-modal.component';
 import { NotificationComponent } from './cmps/notification/notification.component';
 import { NotificationListComponent } from './cmps/notification-list/notification-list.component';
@@ -78,12 +88,6 @@ import { ImgDotsComponent } from './cmps/img-dots/img-dots.component';
 import { AspectRatioModalComponent } from './cmps/aspect-ratio-modal/aspect-ratio-modal.component';
 import { ZoomModalComponent } from './cmps/zoom-modal/zoom-modal.component';
 import { PostFilterPickerComponent } from './cmps/post-filter-picker/post-filter-picker.component';
-
-
-// Pipes
-import { FormattedDatePipe } from './pipes/formatted-date.pipe';
-import { ShortTxtPipe } from './pipes/short-txt.pipe';
-import { TagPipe } from './pipes/tag.pipe';
 import { HomePageHeaderComponent } from './cmps/home-page-header/home-page-header.component';
 import { SearchResultsListComponent } from './cmps/search-results-list/search-results-list.component';
 import { RecentSearchListComponent } from './cmps/recent-search-list/recent-search-list.component';
@@ -94,7 +98,6 @@ import { PaginationBtnPrevComponent } from './cmps/pagination-btn-prev/paginatio
 import { PaginationBtnNextComponent } from './cmps/pagination-btn-next/pagination-btn-next.component';
 import { ProfileDetailsHeaderComponent } from './cmps/profile-details-header/profile-details-header.component';
 import { ProfileOptionsModalComponent } from './cmps/profile-options-modal/profile-options-modal.component';
-import { DiscoverPeopleComponent } from './pages/discover-people/discover-people.component';
 import { HighlightsModalComponent } from './cmps/highlights-modal/highlights-modal.component';
 import { HighlightsNameEditComponent } from './cmps/highlights-name-edit/highlights-name-edit.component';
 import { HightlightsStoryPickerComponent } from './cmps/hightlights-story-picker/hightlights-story-picker.component';
@@ -102,12 +105,8 @@ import { HightlightsCoverPickerComponent } from './cmps/hightlights-cover-picker
 import { ProfileImgSettingModalComponent } from './cmps/profile-img-setting-modal/profile-img-setting-modal.component';
 import { ProfileEditHeaderComponent } from './cmps/profile-edit-header/profile-edit-header.component';
 import { StoryOptionsModalComponent } from './cmps/story-options-modal/story-options-modal.component';
-import { MentionPipe } from './pipes/mention.pipe';
-import { NotificationsComponent } from './pages/notifications/notifications.component';
 import { FollowersModalComponent } from './cmps/followers-modal/followers-modal.component';
 import { FollowingModalComponent } from './cmps/following-modal/following-modal.component';
-import { FollowingComponent } from './pages/following/following.component';
-import { FollowersComponent } from './pages/followers/followers.component';
 import { TagListComponent } from './cmps/tag-list/tag-list.component';
 import { ChatPreviewComponent } from './cmps/chat-preview/chat-preview.component';
 import { ChatListComponent } from './cmps/chat-list/chat-list.component';
@@ -117,8 +116,14 @@ import { ChatOptionsModalComponent } from './cmps/chat-options-modal/chat-option
 import { MessageListComponent } from './cmps/message-list/message-list.component';
 import { MessageComponent } from './cmps/message/message.component';
 import { PostEditModalComponent } from './cmps/post-edit-modal/post-edit-modal.component';
-import { PostEditComponent } from './pages/post-edit/post-edit.component';
 import { ContentLoaderComponent } from './cmps/content-loader/content-loader.component';
+
+
+// Pipes
+import { FormattedDatePipe } from './pipes/formatted-date.pipe';
+import { ShortTxtPipe } from './pipes/short-txt.pipe';
+import { TagPipe } from './pipes/tag.pipe';
+import { MentionPipe } from './pipes/mention.pipe';
 
 @NgModule({
   declarations: [
@@ -250,4 +255,4 @@ import { ContentLoaderComponent } from './cmps/content-loader/content-loader.com
   bootstrap: [AppComponent],
   schemas: []
 })
-export class AppModule { }
+export class AppModule { };

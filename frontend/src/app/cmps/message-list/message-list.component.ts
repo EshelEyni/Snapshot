@@ -10,27 +10,25 @@ import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, AfterViewCheck
 })
 export class MessageListComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
-  @ViewChild('msgList') msgList!: ElementRef<HTMLDivElement>;
+  constructor() { };
 
-  constructor() { }
+  @ViewChild('msgList') msgList!: ElementRef<HTMLDivElement>;
 
   messages!: Message[];
   loggedinUser!: User;
-  
-  ngOnInit(): void {
-  }
 
-  ngAfterViewInit() {
+  ngOnInit(): void { };
+
+  ngAfterViewInit(): void {
     this.scrollToBottom();
-  }
+  };
 
-  ngAfterViewChecked() {
+  ngAfterViewChecked(): void {
     this.scrollToBottom();
-  }
+  };
 
-  scrollToBottom() {
+  scrollToBottom(): void {
     const el: HTMLDivElement = this.msgList.nativeElement;
     el.scrollTop = el.scrollHeight;
-    // el.scrollTop = Math.max(0, el.scrollHeight - el.offsetHeight);
-  }
-}
+  };
+};

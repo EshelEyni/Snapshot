@@ -1,7 +1,5 @@
 @import '../../../assets/styles/setup/functions';
 @import '../../../assets/styles/setup/mixins';
-@import '../../../assets/styles/setup/vars';
-
 
 @mixin horizontal-view {
     grid-template-columns: 3fr 2fr;

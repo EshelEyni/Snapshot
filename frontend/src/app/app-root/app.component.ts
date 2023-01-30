@@ -50,11 +50,13 @@ export class AppComponent implements OnInit, OnDestroy {
       document.documentElement.style.setProperty('--primary-bg', 'rgb(18, 18, 18)');
       document.documentElement.style.setProperty('--secondary-bg', 'rgb(0, 0, 0)');
       document.documentElement.style.setProperty('--primary-color', 'rgb(250, 250, 250)');
+      document.documentElement.style.setProperty('--input-bg-color', 'rgb(38, 38, 38)');
     }
     else {
       document.documentElement.style.setProperty('--primary-bg', 'rgb(250, 250, 250)');
       document.documentElement.style.setProperty('--secondary-bg', 'rgb(255, 255, 255)');
       document.documentElement.style.setProperty('--primary-color', 'rgb(38, 38, 38)');
+      document.documentElement.style.setProperty('--input-bg-color', 'rgb(239, 239, 239)');
     }
   };
 

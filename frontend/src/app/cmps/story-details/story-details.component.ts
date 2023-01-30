@@ -14,37 +14,33 @@ import { Component, OnInit, inject } from '@angular/core';
 })
 export class StoryDetailsComponent implements OnInit {
 
-  constructor(
-    private route: ActivatedRoute,
-    private navigation: NavigationService
-  ) { }
+  constructor() { };
+
   userService = inject(UserService);
   storyService = inject(StoryService);
+  navigation = inject(NavigationService);
+  route = inject(ActivatedRoute);
 
-  story!: Story;
   paramsSubscription!: Subscription;
+  story!: Story;
 
   ngOnInit(): void {
-
     this.paramsSubscription = this.route.data.subscribe(data => {
-      const story = data['story']
+      const story = data['story'];
       if (story) {
-        this.story = story
-
-        const loggedinUser = this.userService.getLoggedinUser()
-        if(!loggedinUser) return
-
-        const isViewedByUser = this.story.viewedBy.some(viewedBy => viewedBy.id === loggedinUser.id)
+        this.story = story;
+        const loggedinUser = this.userService.getLoggedinUser();
+        if (!loggedinUser) return;
+        const isViewedByUser = this.story.viewedBy.some(viewedBy => viewedBy.id === loggedinUser.id);
         if (!isViewedByUser) {
-          this.story.viewedBy.push(this.story.by)
-          this.storyService.addStoryView(loggedinUser, this.story.id)
-        }
+          this.story.viewedBy.push(this.story.by);
+          this.storyService.addStoryView(loggedinUser, this.story.id);
+        };
+      };
+    });
+  };
 
-      }
-    })
-  }
-
-  onGoBack() {
-    this.navigation.storyDetailsGoBack()
-  }
-}
+  onGoBack(): void {
+    this.navigation.storyDetailsGoBack();
+  };
+};

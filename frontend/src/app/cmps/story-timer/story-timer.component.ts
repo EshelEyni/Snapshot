@@ -1,4 +1,4 @@
-import { Story, StoryImg } from './../../models/story.model';
+import { Story } from './../../models/story.model';
 import { Router } from '@angular/router';
 import { Component, OnInit, inject, OnChanges, OnDestroy, EventEmitter } from '@angular/core';
 
@@ -13,58 +13,62 @@ export class StoryTimerComponent implements OnInit, OnDestroy, OnChanges {
 
 
   constructor() { }
+
   router = inject(Router);
-  onSetImgUrl = new EventEmitter<number>();
+
   imgUrls!: string[];
   values!: number[];
+
   intervalId!: any;
-  currImgIdx!: number;
-  idx = 0;
   currStory!: Story;
   nextStory!: Story;
-  isPlaying!: boolean;
-  isUserStory!: boolean;
+  currImgIdx!: number;
+  idx = 0;
+
   userPreviewType: 'story-timer' | 'user-story-timer' = 'story-timer';
 
+  isPlaying!: boolean;
+  isUserStory!: boolean;
 
-  ngOnInit(): void {
-  }
+  onSetImgUrl = new EventEmitter<number>();
 
-  ngOnChanges() {
+  ngOnInit(): void { };
+
+  ngOnChanges(): void {
     this.userPreviewType = this.isUserStory ? 'user-story-timer' : 'story-timer';
     this.imgUrls = this.currStory.imgUrls;
-    this.values = this.imgUrls.map((imgUrl, idx) => {
+    this.values = this.imgUrls.map((url, idx) => {
       if (idx < this.currImgIdx) return 100;
-      return 0
+      return 0;
     });
     this.idx = this.currImgIdx;
     clearInterval(this.intervalId);
     if (this.isPlaying) this.playStory();
-  }
+  };
 
-  onTogglePlayStory() {
+  onTogglePlayStory(): void {
     this.isPlaying = !this.isPlaying;
     if (this.isPlaying) this.playStory();
     else clearInterval(this.intervalId);
+  };
 
-  }
-
-  playStory() {
+  playStory(): void {
     this.intervalId = setInterval(() => {
       this.values[this.idx] = this.values[this.idx] + 2.5;
+
       if (this.values[this.idx] === 100) {
         this.idx = this.idx + 1;
         if (this.idx < this.values.length) this.onSetImgUrl.emit(1);
-      }
+      };
+
       if (this.idx > this.values.length - 1) {
         clearInterval(this.intervalId);
         if (this.nextStory) this.router.navigate(['/story/', this.nextStory.id]);
-      }
+      };
     }, 100);
-  }
+  };
 
   ngOnDestroy(): void {
     clearInterval(this.intervalId);
-  }
-
-}
+  };
+};

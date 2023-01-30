@@ -9,4 +9,4 @@ export interface Comment {
     isOriginalText: boolean;
     likeSum: number;
     mentions?: { userId: number, username: string }[];
-}
+};

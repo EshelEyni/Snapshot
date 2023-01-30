@@ -12,10 +12,9 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class TagResolver implements Resolve<Observable<void | Tag>> {
-  tagService = inject(TagService)
+  tagService = inject(TagService);
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-
-    const tagName = route.params['name']
-    return this.tagService.getByName(tagName)
-  }
-}
+    const tagName = route.params['name'];
+    return this.tagService.getByName(tagName);
+  };
+};

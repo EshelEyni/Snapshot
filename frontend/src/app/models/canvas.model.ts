@@ -15,8 +15,7 @@ export interface CanvasTxt {
     };
     type: string;
     isDragging: boolean;
-
-}
+};
 
 export interface CanvasStroke {
     color: string;
@@ -25,7 +24,7 @@ export interface CanvasStroke {
     pos: Position[];
     type: string;
     strokeType: string;
-}
+};
 
 export interface CanvasSticker {
     url: string;
@@ -36,21 +35,20 @@ export interface CanvasSticker {
         width: number;
     };
     type: string;
-}
+};
 
 export interface Position {
     x: number;
     y: number;
-}
+};
 
 export interface StrokeType {
     icon: IconDefinition;
     type: string;
     isSelected: boolean;
-}
+};
+
 export interface FontType {
     value: string;
     isSelected: boolean;
-}
-
-export interface CanvasSticker { }
+};

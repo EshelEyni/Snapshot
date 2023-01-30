@@ -18,44 +18,43 @@ export class SearchResultsListComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
-
-  }
+  };
 
   userService = inject(UserService);
   searchService = inject(SearchService);
   store = inject(Store<State>);
 
-  loggedinUser$: Observable<User | null>
-  loggedinUser!: User
   sub: Subscription | null = null;
+  loggedinUser$: Observable<User | null>;
+  loggedinUser!: User;
 
-  close = new EventEmitter();
   searchResults!: any[];
   recentSearches!: any[];
+
   isRecentSearchShown!: boolean;
   isNoResults!: boolean;
-
+  
+  close = new EventEmitter();
 
   ngOnInit(): void {
     this.sub = this.loggedinUser$.subscribe(async user => {
       if (user) {
-        this.loggedinUser = {...user}
-      }
-    })
-  }
+        this.loggedinUser = { ...user };
+      };
+    });
+  };
 
-  onSaveSearch(content: User | Tag) {
-    this.onCloseModal()
-    if (this.recentSearches.some(x => x.id === content.id)) return
-    this.searchService.saveRecentSearch(this.loggedinUser.id, content)
-  }
+  onSaveSearch(content: User | Tag): void {
+    this.onCloseModal();
+    if (this.recentSearches.some(x => x.id === content.id)) return;
+    this.searchService.saveRecentSearch(this.loggedinUser.id, content);
+  };
 
-  onCloseModal() {
-    this.close.emit()
-  }
+  onCloseModal(): void {
+    this.close.emit();
+  };
 
   ngOnDestroy(): void {
-    this.sub?.unsubscribe()
-  }
-
-}
+    this.sub?.unsubscribe();
+  };
+};

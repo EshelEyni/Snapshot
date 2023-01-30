@@ -7,42 +7,40 @@ export class FormattedDatePipe implements PipeTransform {
 
   transform(value: number | Date, format: 'short' | 'long' = 'long'): string {
     if (!value) return '';
-    if (typeof value === 'string') value = new Date(value)
-    if (typeof value !== 'number') value = value.getTime()
-    const formattedTimeStamp = +((Date.now() - value) / 1000).toFixed()
-    const minute = 60
-    const hour = 60 * minute
-    const day = 24 * hour
-    const week = 7 * day
+    if (typeof value !== 'number') value = value.getTime();
+
+    const formattedTimestamp = Math.floor(((Date.now() - value) / 1000));
+    const minute = 60;
+    const hour = 60 * minute;
+    const day = 24 * hour;
+    const week = 7 * day;
 
     let timeStr!: string
-    if (formattedTimeStamp < minute) {
-      const str = format === 'long' ? ' seconds ago' : 's'
-      timeStr = formattedTimeStamp + str
+    if (formattedTimestamp < minute) {
+      const str = format === 'long' ? ' seconds ago' : 's';
+      timeStr = Math.floor(formattedTimestamp / 1000) + str;
     }
-    if (formattedTimeStamp > minute) {
-      const str = format === 'long' ? ' minutes ago' : 'm'
-      timeStr = (formattedTimeStamp / minute).toFixed() + str
+    else if (formattedTimestamp < hour) {
+      const str = format === 'long' ? ' minutes ago' : 'm';
+      timeStr = Math.floor(formattedTimestamp / minute) + str;
     }
-    if (formattedTimeStamp > hour) {
-      const str = format === 'long' ? ' hours ago' : 'h'
-      timeStr = (formattedTimeStamp / hour).toFixed() + str
+    else if (formattedTimestamp < day) {
+      const str = format === 'long' ? ' hours ago' : 'h';
+      timeStr = Math.floor(formattedTimestamp / hour) + str;
     }
-    if (formattedTimeStamp > day) {
-      const str = format === 'long' ? ' days ago' : 'd'
-      timeStr = (formattedTimeStamp / day).toFixed() + str
+    else if (formattedTimestamp < week) {
+      const str = format === 'long' ? ' days ago' : 'd';
+      timeStr = Math.floor(formattedTimestamp / day) + str;
     }
-    if (formattedTimeStamp > week) {
+    else {
       if (format === 'long') {
-        const date = new Date(value)
-        const month = date.toLocaleString('default', { month: 'long' })
-        timeStr = `${month} ${date.getDate()}, ${date.getFullYear()}`
+        const date = new Date(value);
+        const month = date.toLocaleString('default', { month: 'long' });
+        timeStr = `${month} ${date.getDate()}, ${date.getFullYear()}`;
       } else {
-        timeStr = (formattedTimeStamp / week).toFixed() + 'w'
-      }
-    }
-
-    return timeStr
-  }
-
-}
+        timeStr = Math.floor(formattedTimestamp / week) + 'w';
+      };
+    };
+    return timeStr;
+  };
+};

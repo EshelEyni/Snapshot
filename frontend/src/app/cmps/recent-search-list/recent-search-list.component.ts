@@ -17,47 +17,46 @@ export class RecentSearchListComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
-
-  }
-
-  loggedinUser$: Observable<User | null>
-  loggedinUser!: User
-  sub: Subscription | null = null;
+  };
 
   searchService = inject(SearchService);
   store = inject(Store<State>);
 
-  close = new EventEmitter();
+  faX = faX;
+
+  sub: Subscription | null = null;
+  loggedinUser$: Observable<User | null>;
+  loggedinUser!: User;
   recentSearches!: any[];
+
   isRecentSearchShown!: boolean;
   isNoResults!: boolean;
 
-  faX = faX
-
+  close = new EventEmitter();
 
   ngOnInit(): void {
     this.sub = this.loggedinUser$.subscribe(async user => {
       if (user) {
-        this.loggedinUser = {...user}
-      }
-    })
-  }
+        this.loggedinUser = { ...user };
+      };
+    });
+  };
 
-  onRemoveSearch(searchId: number) {
-    this.recentSearches = this.recentSearches.filter(x => x.id !== searchId)
-    this.searchService.removeRecentSearch(searchId)
-  }
+  onRemoveSearch(searchId: number): void {
+    this.recentSearches = this.recentSearches.filter(x => x.id !== searchId);
+    this.searchService.removeRecentSearch(searchId);
+  };
 
-  onClearSearches() {
-    this.recentSearches = []
-    this.searchService.clearRecentSearches(this.loggedinUser.id)
-  }
+  onClearSearches(): void {
+    this.recentSearches = [];
+    this.searchService.clearRecentSearches(this.loggedinUser.id);
+  };
 
-  onCloseModal() {
-    this.close.emit()
-  }
+  onCloseModal(): void {
+    this.close.emit();
+  };
 
   ngOnDestroy(): void {
-    this.sub?.unsubscribe()
-  }
-}
+    this.sub?.unsubscribe();
+  };
+};

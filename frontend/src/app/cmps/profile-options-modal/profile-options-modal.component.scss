@@ -1,6 +1,5 @@
 @import '../../../assets/styles/setup/functions';
 @import '../../../assets/styles/setup/mixins';
-@import '../../../assets/styles/setup/vars';
 
 .profile-options-modal {
     position: fixed;
@@ -31,7 +30,6 @@
             flex-shrink: 1;
             font-size: rem(20px);
             font-weight: 600;
-            font-family: var(--primary-font);
             text-align: center;
             text-transform: capitalize;
         }
@@ -61,8 +59,6 @@
             font-size: rem(18px);
             border-bottom: 1px solid var(--border-color);
             padding: 0 rem(15px);
-            font-family: var(--primary-font);
-
         }
 
         >*:last-child {
@@ -72,8 +68,6 @@
         >*:hover {
             background-color: var(--primary-bg);
         }
-
-
     }
 
     @include for-small-layout {

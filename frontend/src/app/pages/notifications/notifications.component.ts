@@ -18,37 +18,35 @@ export class NotificationsComponent implements OnInit {
 
   constructor() {
     this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
+  };
 
-  }
-
-  store = inject(Store<State>)
+  store = inject(Store<State>);
   notificationService = inject(NotificationService);
   $location = inject(Location);
 
-  notifications$!: Observable<Notification[]>;
+  faChevronLeft = faChevronLeft;
+
+  sub!: Subscription;
   loggedinUser$: Observable<User | null>;
   loggedinUser!: User;
-  sub!: Subscription;
-
-  faChevronLeft = faChevronLeft;
+  notifications$!: Observable<Notification[]>;
 
   ngOnInit(): void {
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) {
-        this.loggedinUser = { ...user }
+        this.loggedinUser = { ...user };
         this.notificationService.loadNotifications(this.loggedinUser.id);
         this.notifications$ = this.notificationService.notifications$;
-      }
-    })
-  }
+      };
+    });
+  };
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
-  }
+  };
 
-  
-  onGoBack() {
-    this.$location.back()
-  }
 
-}
+  onGoBack(): void {
+    this.$location.back();
+  };
+};

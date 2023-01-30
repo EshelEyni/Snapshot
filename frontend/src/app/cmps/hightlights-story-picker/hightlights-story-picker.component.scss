@@ -1,6 +1,5 @@
 @import '../../../assets/styles/setup/functions';
 @import '../../../assets/styles/setup/mixins';
-@import '../../../assets/styles/setup/vars';
 
 ::ng-deep .highlights-story-picker {
     position: absolute;
@@ -30,7 +29,6 @@
             flex-shrink: 1;
             font-weight: 600;
             font-size: rem(16px);
-            font-family: var(--primary-font);
             text-align: center;
             text-transform: capitalize;
         }
@@ -60,7 +58,6 @@
         align-items: center;
         width: 100%;
         
-        
         .highlights-story-picker-list-container {
             position: relative;
             display: flex;
@@ -80,7 +77,6 @@
             align-items: center;
             font-size: rem(16px);
             font-weight: 700;
-            font-family: var(--primary-font);
             text-transform: capitalize;
             height: rem(40px);
             color: var(--secondary-color);
@@ -95,5 +91,4 @@
     @include for-mobile-wide-layout {
         width: rem(445px);
     }
-
 }

@@ -25,101 +25,105 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
     private store: Store<State>,
   ) {
     this.loggedinUser$ = this.store.select('userState').pipe(map((x => x.loggedinUser)));
-  }
+  };
 
-  queryParamsSubscription!: Subscription;
+  faCamera = faCamera;
+  faHashtag = faHashtag;
+
+
   userSub!: Subscription;
-  postSub!: Subscription;
+  user!: User;
   loggedinUser$: Observable<User | null>;
   loggedinUser!: User;
   isCurrUserLoggedInUser!: boolean;
-  user!: User;
+  queryParamsSubscription!: Subscription;
+
+  postSub!: Subscription;
   posts: Post[] = [];
-  isOptionsModalShown = false;
-  filterBy = { createdPosts: true, savedPosts: false, taggedPosts: false }
+
   highlightsIconSize = window.innerWidth < 735 ? 30 : 45;
   postFilterIconSize = window.innerWidth < 735 ? 24 : 12;
-  isHighlightsModalShown: boolean = false;
-  isMainScreenShown: boolean = false;
+
   listPosition: string = '0';
   highlightIdx: number = 0;
   userImgClass: string = '';
+
+  isOptionsModalShown = false;
+  filterBy = { createdPosts: true, savedPosts: false, taggedPosts: false }
+  isPaginationBtnShown = { left: false, right: false };
+  isHighlightsModalShown: boolean = false;
+  isMainScreenShown: boolean = false;
   isStoryViewed: boolean = false;
   isPostEditModalShown: boolean = false;
   isFollowersModalShown: boolean = false;
   isFollowingModalShown: boolean = false;
-  faCamera = faCamera;
-  faHashtag = faHashtag;
-  isPaginationBtnShown = { left: false, right: false };
 
   ngOnInit(): void {
-
     this.userSub = this.route.data.pipe(
       switchMap(data => {
-        const user = data['user']
+        const user = data['user'];
         if (user) {
-          this.user = user
+          this.user = user;
           this.postService.loadPosts(
             {
               userId: this.user.id,
               type: 'createdPosts',
               limit: 100,
             }
-          )
+          );
           this.postSub = this.postService.posts$.subscribe(posts => {
-            this.posts = posts
+            this.posts = posts;
           });
-
-        }
-        return this.loggedinUser$
+        };
+        return this.loggedinUser$;
       }
       )).subscribe(async user => {
         if (user) {
-          this.loggedinUser = user
-          this.isCurrUserLoggedInUser = this.user.id === this.loggedinUser.id
+          this.loggedinUser = user;
+          this.isCurrUserLoggedInUser = this.user.id === this.loggedinUser.id;
           if (this.user.currStoryId) {
             const story = await lastValueFrom(
               this.storyService.getById(this.user.currStoryId, 'user-preview'),
-            )
-            this.isStoryViewed = story.viewedBy.some(u => u.id === this.loggedinUser.id)
-            this.userImgClass = this.isStoryViewed ? 'story-viewed' : 'story-not-viewed'
+            );
+            this.isStoryViewed = story.viewedBy.some(u => u.id === this.loggedinUser.id);
+            this.userImgClass = this.isStoryViewed ? 'story-viewed' : 'story-not-viewed';
           }
           else {
-            this.userImgClass = ''
-          }
-        }
-      })
+            this.userImgClass = '';
+          };
+        };
+      });
 
     this.queryParamsSubscription = this.route.queryParams.subscribe(data => {
       const filterByQueryParams: 'createdPosts' | 'savedPosts' | 'taggedPosts' = data['filterBy'];
-      if (filterByQueryParams) this.onSetFilter(filterByQueryParams)
-      else this.onSetFilter('createdPosts')
+      if (filterByQueryParams) this.onSetFilter(filterByQueryParams);
+      else this.onSetFilter('createdPosts');
     });
-  }
+  };
 
   @HostListener('window:resize', ['$event'])
-  onResize() {
+  onResize(): void {
     if ((window.innerWidth < 735 && this.highlightsIconSize !== 30)
       || (window.innerWidth >= 735 && this.highlightsIconSize !== 45)) {
       this.highlightsIconSize = window.innerWidth < 735 ? 30 : 45;
       this.postFilterIconSize = window.innerWidth < 735 ? 24 : 12;
-    }
-  }
+    };
+  };
 
-  onSetFilter(filterBy: string) {
+  onSetFilter(filterBy: string): void {
     switch (filterBy) {
       case 'createdPosts':
-        this.filterBy = { createdPosts: true, savedPosts: false, taggedPosts: false }
+        this.filterBy = { createdPosts: true, savedPosts: false, taggedPosts: false };
         this.postService.loadPosts(
           {
             userId: this.user.id,
             type: 'createdPosts',
             limit: 100,
           }
-        )
+        );
         break;
       case 'savedPosts':
-        this.filterBy = { createdPosts: false, savedPosts: true, taggedPosts: false }
+        this.filterBy = { createdPosts: false, savedPosts: true, taggedPosts: false };
         this.postService.loadPosts(
           {
             userId: this.user.id,
@@ -129,7 +133,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
         );
         break;
       case 'taggedPosts':
-        this.filterBy = { createdPosts: false, savedPosts: false, taggedPosts: true }
+        this.filterBy = { createdPosts: false, savedPosts: false, taggedPosts: true };
         this.postService.loadPosts(
           {
             userId: this.user.id,
@@ -139,27 +143,27 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
           }
         );
         break;
-    }
-  }
+    };
+  };
 
-  onClickFollowing() {
+  onClickFollowing(): void {
     if (window.innerWidth < 735) {
-      this.router.navigate(['/following/', this.user.id])
+      this.router.navigate(['/following/', this.user.id]);
     } else {
-      this.onToggleModal('following')
-    }
-  }
+      this.onToggleModal('following');
+    };
+  };
 
-  onClickFollowers() {
+  onClickFollowers(): void {
     if (window.innerWidth < 735) {
-      this.router.navigate(['/followers/', this.user.id])
+      this.router.navigate(['/followers/', this.user.id]);
     } else {
-      this.onToggleModal('followers')
-    }
-  }
+      this.onToggleModal('followers');
+    };
+  };
 
 
-  onToggleModal(el: string) {
+  onToggleModal(el: string): void {
 
     switch (el) {
       case 'highlights':
@@ -184,17 +188,17 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
         if (this.isHighlightsModalShown) this.isHighlightsModalShown = false;
         if (this.isPostEditModalShown) this.isPostEditModalShown = false;
         break;
-    }
+    };
     this.isMainScreenShown = !this.isMainScreenShown;
-  }
+  };
 
-  onGoToStory() {
-    this.router.navigate(['/story/', this.user.currStoryId])
-  }
+  onGoToStory(): void {
+    this.router.navigate(['/story/', this.user.currStoryId]);
+  };
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.userSub?.unsubscribe();
     this.queryParamsSubscription.unsubscribe();
     this.postSub?.unsubscribe();
-  }
-}
+  };
+};

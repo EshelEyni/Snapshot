@@ -1,7 +1,5 @@
 @import '../../../assets/styles/setup/functions';
 @import '../../../assets/styles/setup/mixins';
-@import '../../../assets/styles/setup/vars';
-
 
 ::ng-deep .following-page {
     display: flex;
@@ -53,7 +51,6 @@
             }
 
             .default-list {
-
                 background-color: var(--secondary-bg);
                 border-radius: 5px;
                 padding: rem(10px) rem(20px);
@@ -92,6 +89,5 @@
         .following-header {
             display: none;
         }
-
     }
 }

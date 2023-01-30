@@ -3,7 +3,7 @@
         <section class="msg-edit">
             <fa-icon (click)="onToggleEmojiPicker()" class="smiley-icon" [icon]="faFaceSmile"></fa-icon>
 
-            <input class="clean-input" autocomplete="off" [(ngModel)]="text" [placeholder]="placeHolderStr"
+            <input class="clean-input txt-input" autocomplete="off" [(ngModel)]="text" [placeholder]="placeHolderStr"
                 (keyup.enter)="onSendMsg(text,'text')">
 
             <button class="btn-send clean-btn" *ngIf="text" (click)="onSendMsg(text,'text')">Send</button>
@@ -11,7 +11,8 @@
             <file-input (uploadedImgUrls)="onSendImg($event)" [type]="'btn-img'" *ngIf="!text"></file-input>
 
             <button class="btn-add-like clean-btn" (click)="onSendMsg('','like')" *ngIf="!text">
-                <fa-icon [icon]="faHeart"></fa-icon>
+                <fa-icon [icon]="faHeart"
+                    [style.color]="loggedinUser.isDarkMode ? 'var(--primary-color)' : 'var(--tertiary-color)'"></fa-icon>
             </button>
 
         </section>
@@ -28,11 +29,9 @@
             [loggedinUser]="loggedinUser" [story]="story"></share-modal>
 
         <section class="story-reply">
-
             <div class="quick-reactions-container" *ngIf="isQuickReactionShown && !text">
                 <quick-reaction (reactionSubmit)="onSendMsg($event,'quick-reaction')"></quick-reaction>
             </div>
-
             <div class="reply-actions">
                 <div class="input-container">
                     <input class="clean-input" required autocomplete="off" [placeholder]="placeHolderStr"
@@ -48,5 +47,4 @@
             </div>
         </section>
     </ng-template>
-
 </div>

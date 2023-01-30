@@ -8,18 +8,17 @@ import { UserService } from '../services/user.service';
 })
 export class AuthGuard implements CanActivate {
 
-  userService = inject(UserService)
-  route = inject(Router)
+  userService = inject(UserService);
+  route = inject(Router);
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> {
-    const loggedinUser = this.userService.getLoggedinUser()
+    const loggedinUser = this.userService.getLoggedinUser();
     if (!loggedinUser) {
-      this.route.navigateByUrl('/login')
-      return of(false)
+      this.route.navigateByUrl('/login');
+      return of(false);
     }
-    return of(true)
-  }
-
-}
+    return of(true);
+  };
+};

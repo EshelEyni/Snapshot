@@ -1,5 +1,4 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
 .side-bar {
@@ -158,6 +157,7 @@
 
             .profile {
                 padding: rem(10px);
+
                 .user-img-container {
                     height: rem(30px);
                     width: rem(30px);
@@ -188,7 +188,6 @@
 
             .btn-create {
                 color: var(--primary-color);
-                font-family: var(--primary-font);
             }
         }
 
@@ -276,8 +275,6 @@
     @include for-extra-extra-large-layout {
         width: rem(336px);
     }
-
-
 }
 
 .post-edit-container {

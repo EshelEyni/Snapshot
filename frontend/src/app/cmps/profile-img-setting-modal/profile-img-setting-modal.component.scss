@@ -1,15 +1,12 @@
 @import '../../../assets/styles/setup/functions';
 @import '../../../assets/styles/setup/mixins';
-@import '../../../assets/styles/setup/vars';
 
 .profile-img-setting-modal {
     @include modal;
 
     display: flex;
     flex-direction: column;
-
     align-items: center;
-    // justify-content: space-between;
     width: rem(400px);
     height: rem(225px);
     border-radius: 15px;
@@ -38,7 +35,6 @@
             padding: rem(10px);
             font-size: rem(16px);
             font-weight: 600;
-            font-family: var(--primary-font);
         }
 
         .btn-upload {

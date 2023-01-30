@@ -45,11 +45,21 @@ async function logout(req, res) {
 
 async function checkPassword(req, res) {
     try {
-        const { newPassword, password, username } = req.query;
-        const hashedPassword = await authService.checkPassword(username, password, newPassword)
+        const { newPassword, password, userId } = req.query;
+        const hashedPassword = await authService.checkPassword(userId, password, newPassword)
         res.send({ hashedPassword })
     } catch (err) {
         res.status(500).send({ err: 'Failed to check password' })
+    }
+}
+
+async function chekIfUsernameTaken(req, res) {
+    try {
+        const { username } = req.query;
+        const chekIfUsernameTaken = await authService.chekIfUsernameTaken(username)
+        res.send({ chekIfUsernameTaken })
+    } catch (err) {
+        res.status(500).send({ err: 'Failed to check if user exists' })
     }
 }
 
@@ -58,5 +68,6 @@ module.exports = {
     login,
     signup,
     logout,
-    checkPassword
+    checkPassword,
+    chekIfUsernameTaken
 }

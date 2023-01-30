@@ -1,5 +1,4 @@
 import { faX, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Story } from 'src/app/models/story.model';
 
@@ -11,31 +10,33 @@ import { Story } from 'src/app/models/story.model';
 })
 export class HightlightsStoryPickerComponent implements OnInit {
 
-  constructor() { }
+  constructor() { };
+
+  faX = faX;
+  faChevronLeft = faChevronLeft;
+
+  story!: Story | null;
 
   storySelected = new EventEmitter<Story>();
   closeModal = new EventEmitter();
   goBack = new EventEmitter();
-  story!: Story | null;
-  faX = faX;
-  faChevronLeft = faChevronLeft;
-  ngOnInit(): void {
-  }
 
-  onStorySelected() {
-    if(!this.story) return;
+  ngOnInit(): void { };
+
+  onStorySelected(): void {
+    if (!this.story) return;
     this.storySelected.emit(this.story);
-  }
+  };
 
-  onStoryChecked(story: Story | null) {
+  onStoryChecked(story: Story | null): void {
     this.story = story;
-  }
+  };
 
-  onCloseModal() {
+  onCloseModal(): void {
     this.closeModal.emit();
-  }
+  };
 
-  onGoBack() {
+  onGoBack(): void {
     this.goBack.emit();
-  }
-}
+  };
+};

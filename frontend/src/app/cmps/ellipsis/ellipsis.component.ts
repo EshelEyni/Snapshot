@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  faCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'ellipsis',
@@ -8,10 +8,10 @@ import {  faCircle } from '@fortawesome/free-solid-svg-icons';
 })
 export class EllipsisComponent implements OnInit {
 
-  constructor() { }
+  constructor() { };
+
   faCircle = faCircle;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { };
 
-}
+};

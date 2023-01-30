@@ -2,7 +2,6 @@ import { Observable, Subscription, map } from 'rxjs';
 import { User } from './../../models/user.model';
 import { Store } from '@ngrx/store';
 import { State } from './../../store/store';
-
 import { Story } from './../../models/story.model';
 import { Component, OnInit, EventEmitter, OnChanges, OnDestroy, inject } from '@angular/core';
 
@@ -11,50 +10,55 @@ import { Component, OnInit, EventEmitter, OnChanges, OnDestroy, inject } from '@
   templateUrl: './story.component.html',
   styleUrls: ['./story.component.scss'],
   inputs: ['story', 'isCurrStory', 'nextStory', 'isPaginationBtnShown', 'isLinkToStoryEdit'],
-  outputs: ['setPrevStory', 'setNextStory','imgChange']
+  outputs: ['setPrevStory', 'setNextStory', 'imgChange']
 })
 export class StoryComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor() {
     this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
-
   }
 
   store = inject(Store<State>);
+
+  userSub: Subscription | null = null;
   loggedinUser$: Observable<User | null>
   loggedinUser!: User
-  sub: Subscription | null = null;
-  setPrevStory = new EventEmitter<number>();
-  setNextStory = new EventEmitter<number>();
-  imgChange = new EventEmitter<number>();
+
   story!: Story;
   nextStory!: Story;
-  isCurrStory!: boolean;
+
   currImgUrl = '';
   currImgIdx = 0;
+  
+  isCurrStory!: boolean;
   isUserStory!: boolean;
   isPaginationBtnShown!: { left: boolean, right: boolean };
   isPlaying: boolean = true;
   isOptionsModalShown: boolean = false;
   isSentMsgShown: boolean = false;
 
+  setPrevStory = new EventEmitter<number>();
+  setNextStory = new EventEmitter<number>();
+  imgChange = new EventEmitter<number>();
+
   ngOnInit(): void {
-    this.sub = this.loggedinUser$.subscribe(user => {
+    this.userSub = this.loggedinUser$.subscribe(user => {
       if (user) {
         this.loggedinUser = { ...user }
-        if (this.story) this.isUserStory = this.loggedinUser.id === this.story.by.id
-      }
-    })
-  }
+        if (this.story) this.isUserStory = this.loggedinUser.id === this.story.by.id;
+      };
+    });
+  };
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     if (this.story) {
-      if (this.loggedinUser) this.isUserStory = this.loggedinUser.id === this.story.by.id
+      if (this.loggedinUser) this.isUserStory = this.loggedinUser.id === this.story.by.id;
       this.currImgIdx = 0;
       this.currImgUrl = this.story.imgUrls.length ? this.story.imgUrls[this.currImgIdx] : '';
-    }
-  }
-  onSetCurrImgUrl(num: number) {
+    };
+  };
+
+  onSetCurrImgUrl(num: number): void {
     this.currImgIdx = this.currImgIdx + num;
     this.imgChange.emit(this.currImgIdx)
     if (this.currImgIdx < 0) {
@@ -64,27 +68,27 @@ export class StoryComponent implements OnInit, OnChanges, OnDestroy {
     if (this.currImgIdx > this.story.imgUrls.length - 1) {
       this.setNextStory.emit(1);
       return;
-    }
+    };
     this.currImgUrl = this.story.imgUrls[this.currImgIdx];
-  }
+  };
 
-  onToggleOptionsModal() {
+  onToggleOptionsModal(): void {
     this.isOptionsModalShown = !this.isOptionsModalShown;
     this.onToggleIsPlaying();
-  }
+  };
 
-  onSetSentMsg() {
-    this.isSentMsgShown = true
+  onSetSentMsg(): void {
+    this.isSentMsgShown = true;
     setTimeout(() => {
       this.isSentMsgShown = false;
     }, 1000);
-  }
+  };
 
-  onToggleIsPlaying() {
+  onToggleIsPlaying(): void {
     this.isPlaying = !this.isPlaying;
-  }
+  };
 
-  ngOnDestroy() {
-    this.sub?.unsubscribe()
-  }
-}
+  ngOnDestroy(): void {
+    this.userSub?.unsubscribe();
+  };
+};

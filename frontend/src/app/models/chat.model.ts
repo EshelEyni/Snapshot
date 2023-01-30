@@ -1,7 +1,7 @@
 import { MiniUser } from './user.model';
 
 export interface Chat {
-    id: number
+    id: number;
     name: string | null;
     admins: MiniUser[];
     members: MiniUser[];
@@ -9,10 +9,10 @@ export interface Chat {
     isGroup: boolean;
     isBlocked: boolean;
     isMuted: boolean;
-}
+};
 
 export interface Message {
-    id: number
+    id: number;
     chatId: number;
     sender: MiniUser;
     type: string;
@@ -21,4 +21,4 @@ export interface Message {
     postId?: number;
     storyId?: number;
     imgUrl?: string;
-}
+};

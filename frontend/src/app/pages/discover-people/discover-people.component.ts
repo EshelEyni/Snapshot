@@ -16,18 +16,20 @@ export class DiscoverPeopleComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.users$ = this.store.select('userState').pipe(map((x => x.users)));
-  }
+  };
 
   $location = inject(Location);
   store = inject(Store<State>);
   userService = inject(UserService);
+
   faChevronLeft = faChevronLeft;
-  users$: Observable<MiniUser[]>;
+
   subUsers: Subscription | null = null;
+  users$: Observable<MiniUser[]>;
   users: MiniUser[] = [];
 
   ngOnInit(): void {
-    const loggedinUser = this.userService.getLoggedinUser()
+    const loggedinUser = this.userService.getLoggedinUser();
     if (loggedinUser) {
 
       this.store.dispatch(new LoadLoggedInUser(loggedinUser.id));
@@ -37,19 +39,18 @@ export class DiscoverPeopleComponent implements OnInit, OnDestroy {
         type:'suggested',
         limit: 100,
       })); 
-    }
+    };
       
     this.subUsers = this.users$.subscribe(users => {
       if (users) this.users = [...users];
     });
-  }
+  };
 
-  onGoBack() {
+  onGoBack(): void {
     this.$location.back()
-  }
+  };
 
   ngOnDestroy(): void {
     this.subUsers?.unsubscribe();
-  }
-
-}
+  };
+};

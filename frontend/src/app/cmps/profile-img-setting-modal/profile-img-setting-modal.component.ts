@@ -9,20 +9,20 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 })
 export class ProfileImgSettingModalComponent implements OnInit {
 
-  constructor() { }
+  constructor() { };
+
+  onImgSelected!: Function;
 
   closeModal = new EventEmitter();
   removeImg = new EventEmitter();
-  onImgSelected!: Function;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { };
 
-  onRemoveImg() {
-    this.removeImg.emit()
-  }
+  onRemoveImg(): void {
+    this.removeImg.emit();
+  };
 
-  onCloseModal() {
-    this.closeModal.emit()
-  }
-}
+  onCloseModal(): void {
+    this.closeModal.emit();
+  };
+};

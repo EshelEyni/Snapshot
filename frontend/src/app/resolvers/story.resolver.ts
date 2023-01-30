@@ -12,9 +12,9 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class StoryResolver implements Resolve<Observable<void | Story>> {
-  storyService = inject(StoryService)
+  storyService = inject(StoryService);
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const id = route.params['id']
-    return this.storyService.getById(id, 'story-details')
-  }
-}
+    const id = route.params['id'];
+    return this.storyService.getById(id, 'story-details');
+  };
+};

@@ -72,7 +72,6 @@
                         flex-grow: 1;
                         font-size: rem(20px);
                         font-weight: 600;
-                        font-family: var(--primary-font);
                         text-align: center;
                     }
                 }
@@ -106,7 +105,6 @@
 
                     p {
                         font-size: rem(14px);
-                        font-family: var(--primary-font);
                         color: var(--secondary-color);
                     }
 
@@ -117,7 +115,6 @@
                         background-color: var(--primary-button);
                         color: white;
                         font-size: rem(14px);
-                        font-family: var(--primary-font);
                         font-weight: 600;
                         text-transform: capitalize;
                         border-radius: 5px;

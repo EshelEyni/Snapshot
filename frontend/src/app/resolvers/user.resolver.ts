@@ -12,9 +12,9 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class UserResolver implements Resolve<Observable<void | null | User>> {
-  userService = inject(UserService)
+  userService = inject(UserService);
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const id = route.params['id']
-    return this.userService.getById(id)
-  }
-}
+    const id = route.params['id'];
+    return this.userService.getById(id);
+  };
+};

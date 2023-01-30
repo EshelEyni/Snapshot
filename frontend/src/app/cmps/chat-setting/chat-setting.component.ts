@@ -13,47 +13,48 @@ import { Component, OnInit, OnChanges, inject, EventEmitter } from '@angular/cor
 })
 export class ChatSettingComponent implements OnInit, OnChanges {
 
-  constructor() { }
-  clearChat = new EventEmitter();
+  constructor() { };
+
   chatService = inject(ChatService);
-  chat!: Chat;
+
   loggedinUser!: User;
+  chat!: Chat;
   chatName!: string;
+
   isMuteMsg = false;
   isLoggedinUserAdmin = false;
 
-  ngOnInit(): void {
-    // this.chatName = this.chat.name ? this.chat.name : '';
-    // this.isMuteMsg = this.chat.isMuted;
-  }
+  clearChat = new EventEmitter();
 
-  ngOnChanges() {
+  ngOnInit(): void { };
+
+  ngOnChanges(): void {
     this.chatName = this.chat.name ? this.chat.name : '';
     this.isMuteMsg = this.chat.isMuted;
     this.isLoggedinUserAdmin = this.chat.admins.some(a => a.id === this.loggedinUser.id);
-  }
+  };
 
-  async onChangeChatName() {
-    const chat = { ...this.chat, name: this.chatName }
+  async onChangeChatName(): Promise<void> {
+    const chat = { ...this.chat, name: this.chatName };
     await this.chatService.updateChat(chat, this.loggedinUser.id);
     this.chat = chat;
-  }
+  };
 
-  async onLeaveChat() {
+  async onLeaveChat(): Promise<void> {
     this.chat.members = this.chat.members.filter(m => m.id !== this.loggedinUser.id);
     this.chat.admins = this.chat.admins.filter(a => a.id !== this.loggedinUser.id);
     await this.chatService.updateChat(this.chat, this.loggedinUser.id);
     this.clearChat.emit();
-  }
+  };
 
-  async onToggleMute() {
-    const chat = { ...this.chat, isMuted: !this.chat.isMuted }
+  async onToggleMute(): Promise<void> {
+    const chat = { ...this.chat, isMuted: !this.chat.isMuted };
     await this.chatService.updateChat(chat, this.loggedinUser.id);
     this.chat = chat;
-  }
+  };
 
-  async onDeleteChat() {
+  async onDeleteChat(): Promise<void> {
     await this.chatService.deleteChat(this.chat.id, this.loggedinUser.id);
     this.clearChat.emit();
-  }
-}
+  };
+};

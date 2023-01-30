@@ -10,11 +10,11 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 })
 export class LikeIconComponent implements OnInit {
 
-  constructor() { }
-  isLiked!: boolean;
+  constructor() { };
+
   faHeart = faHeart;
   faHeartSolid = faHeartSolid;
-  ngOnInit(): void {
-  }
+  isLiked!: boolean;
 
-}
+  ngOnInit(): void { };
+};

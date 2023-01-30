@@ -1,8 +1,6 @@
 <section class="profile-details" *ngIf="user">
-
     <profile-details-header [user]="user" [isCurrUserLoggedInUser]="isCurrUserLoggedInUser"
         (openModal)="onToggleModal('options')"> </profile-details-header>
-
 
     <div class="user-details">
         <div class="img-container" [ngClass]="userImgClass" (click)="onGoToStory()"
@@ -61,7 +59,6 @@
     </div>
 
     <section class="profile-details-post-list-container">
-
         <section class="post-filter">
             <div class="btns-container">
                 <button class="clean-btn" [class.active]="filterBy.createdPosts" (click)="onSetFilter('createdPosts')">

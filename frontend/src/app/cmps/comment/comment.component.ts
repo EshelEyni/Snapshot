@@ -27,32 +27,32 @@ export class CommentComponent implements OnInit {
   isUserComment: boolean = false;
   isCommentModalShown: boolean = false;
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     this.isLongTxt = this.comment.text.length > 100;
     this.isLiked = await this.commentService.checkIsLiked(this.loggedinUser.id, this.comment.id);
     this.isUserComment = this.loggedinUser.id === this.comment.by.id;
-  }
+  };
 
-  async onToggleLike() {
+  async onToggleLike(): Promise<void> {
     this.commentService.toggleLike(this.isLiked, { user: this.loggedinUser, comment: this.comment });
     this.isLiked = !this.isLiked;
     this.comment.likeSum = this.isLiked ? this.comment.likeSum + 1 : this.comment.likeSum - 1;
     this.commentService.save(this.comment);
-  }
+  };
 
-  onToggleCommentModal() {
+  onToggleCommentModal(): void {
     this.isCommentModalShown = !this.isCommentModalShown;
-  }
+  };
 
-  async onRemoveComment() {
+  async onRemoveComment(): Promise<void> {
     const res = await this.commentService.remove(this.comment.id);
     if (res && res.msg === 'Comment deleted') {
       this.commentRemoved.emit(this.comment.id);
-    }
+    };
     this.onToggleCommentModal();
-  }
+  };
 
-  onExpandTxt() {
+  onExpandTxt(): void {
     this.isExpandTxt = true;
-  }
-}
+  };
+};

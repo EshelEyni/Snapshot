@@ -15,19 +15,20 @@ import { Notification } from 'src/app/models/notification.model';
 })
 export class NotificationComponent implements OnInit {
 
-  constructor() { }
+  constructor() { };
+
   router = inject(Router);
-  loggedinUser!: User
+
   sub: Subscription | null = null;
-
-
+  loggedinUser!: User;
+  post!: Post;
   notification!: Notification;
+
   txt: string = '';
   isFollowedBtnShown: boolean = false;
   isPostImgShown: boolean = false;
-  post!: Post;
-  close = new EventEmitter();
 
+  close = new EventEmitter();
 
   ngOnInit(): void {
     if (this.notification.post) this.post = this.notification.post;
@@ -58,19 +59,17 @@ export class NotificationComponent implements OnInit {
           `sent you ${this.notification.msgCount} messages.`
           : 'sent you a message.';
         break;
-
     };
-  }
+  };
 
-  onClickNotification() {
+  onClickNotification(): void {
     if (this.post) this.router.navigate(['/post', this.post.id]);
     if (this.notification.type === 'message') this.router.navigate(['/inbox/'], { queryParams: { chatId: this.notification.entityId } });
     else this.router.navigate(['/profile', this.notification.userId]);
-    this.close.emit()
-  }
+    this.close.emit();
+  };
 
-  onClickFollowBtn(e: Event) {
+  onClickFollowBtn(e: Event): void {
     e.stopPropagation();
-  }
-
-}
+  };
+};

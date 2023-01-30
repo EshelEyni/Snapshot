@@ -8,15 +8,15 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 })
 export class QuickReactionComponent implements OnInit {
 
-  constructor() { }
+  constructor() { };
+
+  reactions: string[] = ['😂', '😮', '😍', '😢', '👏', '🔥', '🎉', '💯']
 
   reactionSubmit = new EventEmitter<string>();
-  reactions = ['😂', '😮', '😍', '😢', '👏', '🔥', '🎉', '💯']
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { };
 
-  onSubmit(reaction: string) {
-    this.reactionSubmit.emit(reaction)
-  }
-}
+  onSubmit(reaction: string): void {
+    this.reactionSubmit.emit(reaction);
+  };
+};

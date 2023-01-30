@@ -1,5 +1,4 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
 ::ng-deep .msg-edit-main-container {
@@ -31,13 +30,13 @@
                 position: absolute;
                 left: rem(32px);
                 font-size: rem(20px);
-
             }
 
-            input {
+            .txt-input {
                 position: relative;
                 width: 100%;
                 z-index: 1;
+                background-color: var(--secondary-bg);
             }
 
             .btn-send {
@@ -56,7 +55,7 @@
             }
         }
 
-        .emoji-picker-container{
+        .emoji-picker-container {
             position: absolute;
             top: -500%;
             left: 5%;
@@ -114,8 +113,6 @@
             }
 
             .btn-container {
-                // flex: 1;
-
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -124,7 +121,6 @@
                 fa-icon {
                     font-size: rem(24px);
                 }
-
             }
         }
     }

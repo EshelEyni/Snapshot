@@ -26,8 +26,8 @@ async function signup(username, password, fullname, email) {
     logger.debug(`auth.service - signup with username: ${username}, fullname: ${fullname}`)
     if (!username || !password || !fullname || !email) return Promise.reject('fullname, username and password are required!')
 
-    const isUserExists = await _checkIfUserExists(username)
-    if (!isUserExists) return Promise.reject(`Username ${username} already exists!`)
+    const isUserExists = await chekIfUsernameTaken(username)
+    if (isUserExists) return Promise.reject(`Username ${username} already exists!`)
 
     const hash = await bcrypt.hash(password, saltRounds)
     const user = { username, password: hash, fullname, email }
@@ -50,22 +50,22 @@ async function validateToken(loginToken) {
     return null
 }
 
-async function _checkIfUserExists(username) {
+async function chekIfUsernameTaken(username) {
     try {
         const users = await db.query(`select * from users where username = $username`, { $username: username });
-        return users.length === 0
+        return users.length > 0
     } catch (err) {
         logger.error(`while finding user ${username}`, err)
         throw err
     }
 }
 
-async function checkPassword(username, password, newPassword) {
+async function checkPassword(userId, password, newPassword) {
     try {
 
-        const users = await db.query(`select * from users where username = $username`, { $username: username });
+        const users = await db.query(`select * from users where id = $userId`, { $userId: userId });
         if (!users.length) {
-            throw 'user with name ' + username + ' was not found';
+            throw 'user with id ' + userId + ' was not found';
         }
         const user = users[0];
         const isMatch = password === user.password;
@@ -76,7 +76,7 @@ async function checkPassword(username, password, newPassword) {
         const hashedPassword = await bcrypt.hash(newPassword, saltRounds)
         return hashedPassword;
     } catch (err) {
-        logger.error(`while checking user ${username} password`, err)
+        logger.error(`while checking user with ${userId} password`, err)
         throw err
     }
 }
@@ -86,5 +86,6 @@ module.exports = {
     login,
     getLoginToken,
     validateToken,
+    chekIfUsernameTaken,
     checkPassword
 }

@@ -1,10 +1,7 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
-
 ::ng-deep .post-edit-form {
-
     .user-preview-container {
         display: flex;
         align-items: center;
@@ -19,8 +16,6 @@
                 height: rem(30px);
             }
         }
-
-
     }
 
     .post-edit-form-container {
@@ -33,42 +28,41 @@
             .input-container {
                 border-bottom: 1px solid var(--border-color);
             }
-
+            
             .input-container {
                 .txt-input-container {
                     padding: 0 rem(16px);
-
+                    
                     .txt-input {
                         height: rem(160px);
                         width: 100%;
                         border: none;
                         outline: none;
                         resize: none;
-                        font-family: var(--primary-font);
-
+                        background-color: var(--secondary-bg);
+                        color: var(--primary-color);
+                        
                         &::placeholder {
                             font-size: rem(16px);
-                            font-family: var(--primary-font);
                             color: var(--input-placeholder-secondary-color);
                         }
                     }
-
+                    
                     .toggle-emoji-txt-sum {
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
                         padding: rem(9px);
-
+                        
                         fa-icon {
                             font-size: rem(20px);
                             color: var(--input-placeholder-secondary-color);
                         }
-
+                        
                         p {
                             font-size: rem(12px);
                             color: var(--input-placeholder-secondary-color);
                         }
-
                     }
 
                     .emoji-picker-container {
@@ -77,7 +71,7 @@
                     }
                 }
             }
-
+            
             .input-container {
                 .location-input-container {
                     display: flex;
@@ -85,13 +79,13 @@
                     justify-content: space-between;
                     position: relative;
                     padding: rem(10px) rem(25px);
-
+                    
                     .location-input {
-                        font-family: var(--primary-font);
+                        background-color: var(--secondary-bg);
+                        color: var(--primary-color);
 
                         &::placeholder {
                             font-size: rem(16px);
-                            font-family: var(--primary-font);
                             color: var(--input-placeholder-secondary-color);
                         }
                     }

@@ -1,3 +1,4 @@
+import { HttpService } from './http.service';
 import { lastValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Tag } from '../models/tag.model';
@@ -6,9 +7,6 @@ import { TagService } from './tag.service';
 import { UserService } from './user.service';
 import { Injectable, inject } from '@angular/core';
 
-const BASE_URL = process.env['NODE_ENV'] === 'production'
-  ? '/api'
-  : '//localhost:3030/api';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +18,9 @@ export class SearchService {
   userService = inject(UserService);
   tagService = inject(TagService);
   http = inject(HttpClient);
+  httpService = inject(HttpService);
+
+  baseUrl = this.httpService.getBaseUrl();
 
 
   public async search(searchTerm: string): Promise<{ users: User[], tags: Tag[] }> {
@@ -37,16 +38,16 @@ export class SearchService {
   public async getRecentSearches(userId: number): Promise<Array<User | Tag>> {
     const recentSearches = await lastValueFrom(
       this.http.get<Array<User | Tag>>(
-        `${BASE_URL}/search/${userId}`
+        `${this.baseUrl}/search/${userId}`
       )
     );
     return recentSearches;
   }
 
-  public async saveRecentSearch(userId: number, searchItem: User | Tag) {
+  public async saveRecentSearch(userId: number, searchItem: User | Tag): Promise<void> {
     await lastValueFrom(
       this.http.post(
-        `${BASE_URL}/search`,
+        `${this.baseUrl}/search`,
         {
           userId,
           itemId: searchItem.id,
@@ -54,21 +55,21 @@ export class SearchService {
         }
       )
     );
-  }
+  };
 
-  public async removeRecentSearch(searchId: number) {
+  public async removeRecentSearch(searchId: number): Promise<void> {
     await lastValueFrom(
       this.http.delete(
-        `${BASE_URL}/search/${searchId}`
+        `${this.baseUrl}/search/${searchId}`
       )
     );
-  }
+  };
 
-  public async clearRecentSearches(userId: number) {
+  public async clearRecentSearches(userId: number): Promise<void> {
     await lastValueFrom(
       this.http.delete(
-        `${BASE_URL}/search/clear/${userId}`
+        `${this.baseUrl}/search/clear/${userId}`
       )
     );
-  }
-}
+  };
+};

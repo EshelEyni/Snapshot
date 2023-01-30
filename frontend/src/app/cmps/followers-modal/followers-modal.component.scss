@@ -1,7 +1,5 @@
 @import '../../../assets/styles/setup/functions';
 @import '../../../assets/styles/setup/mixins';
-@import '../../../assets/styles/setup/vars';
-
 
 ::ng-deep .followers {
     @include modal;
@@ -35,7 +33,6 @@
             font-size: rem(16px);
             cursor: pointer;
         }
-
     }
 
     .followers-main-container{

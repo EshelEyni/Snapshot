@@ -13,27 +13,30 @@ import { Router } from '@angular/router';
 })
 export class ProfileDetailsHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor() { };
+
   $location = inject(Location);
   router = inject(Router);
-  user!: User;
-  openModal = new EventEmitter();
-  isCurrUserLoggedInUser!: boolean;
+
   faChevronLeft = faChevronLeft;
 
-  ngOnInit(): void {
-  }
+  user!: User;
 
-  onOpenModal() {
-    this.openModal.emit()
-  }
+  isCurrUserLoggedInUser!: boolean;
 
-  onGoToDiscoverPeople() {
-    this.router.navigate(['/discover-people'])
-  }
+  openModal = new EventEmitter();
 
-  onGoBack() {
-    this.$location.back()
-  }
+  ngOnInit(): void { };
 
-}
+  onOpenModal(): void {
+    this.openModal.emit();
+  };
+
+  onGoToDiscoverPeople(): void {
+    this.router.navigate(['/discover-people']);
+  };
+
+  onGoBack(): void {
+    this.$location.back();
+  };
+};

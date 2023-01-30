@@ -1,6 +1,4 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/mixins';
-@import '../../../assets/styles/setup/vars';
 
 .tag-list {
     display: flex;
@@ -10,6 +8,4 @@
     gap: rem(15px);
     padding: rem(10px) rem(20px);
     margin-bottom: rem(80px);
-
-
 }

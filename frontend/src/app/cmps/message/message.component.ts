@@ -16,58 +16,58 @@ import { Story } from 'src/app/models/story.model';
 })
 export class MessageComponent implements OnInit {
 
-  constructor() { }
+  constructor() { };
+
   postService = inject(PostService);
   storyService = inject(StoryService);
+
   post!: Post;
   story!: Story;
   message!: Message;
   loggedinUser!: User;
+
+  storyReactionTitle: string = '';
+
+  isUserImgShown: boolean = true;
   isSenderLoggedinUser = false;
   faHeart = faHeart;
-  storyReactionTitle: string = '';
-  isUserImgShown: boolean = true;
 
   async ngOnInit() {
-    this.isSenderLoggedinUser = this.message.sender.id === this.loggedinUser.id
-
+    this.isSenderLoggedinUser = this.message.sender.id === this.loggedinUser.id;
 
     switch (this.message.type) {
       case 'post':
         if (this.message.postId)
-          this.post = await lastValueFrom(this.postService.getById(this.message.postId))
+          this.post = await lastValueFrom(this.postService.getById(this.message.postId));
         break;
       case 'story':
         if (this.message.storyId) {
-          this.story = await lastValueFrom(this.storyService.getById(this.message.storyId, 'chat'))
+          this.story = await lastValueFrom(this.storyService.getById(this.message.storyId, 'chat'));
           this.storyReactionTitle = this.isSenderLoggedinUser
             ? `You sent ${this.story.by.username} story`
-            : `${this.message.sender.username} sent ${this.story.by.username} story`
-
+            : `${this.message.sender.username} sent ${this.story.by.username} story`;
           this.isUserImgShown = false;
-        }
+        };
         break;
       case 'quick-reaction':
         this.storyReactionTitle = this.isSenderLoggedinUser
           ? `You reacted to their story: ${this.message.text}`
-          : `Reacted to your story: ${this.message.text}`
+          : `Reacted to your story: ${this.message.text}`;
         this.isUserImgShown = false;
         break;
 
       case 'story-reply':
         this.storyReactionTitle = this.isSenderLoggedinUser
           ? `You replied to their story`
-          : `Replied to your story`
+          : `Replied to your story`;
         this.isUserImgShown = false;
         break;
       case 'story-like':
         this.storyReactionTitle = this.isSenderLoggedinUser
           ? `You liked their story`
-          : `Liked your story`
+          : `Liked your story`;
         this.isUserImgShown = false;
         break;
-
-    }
-  }
-
-}
+    };
+  };
+};
