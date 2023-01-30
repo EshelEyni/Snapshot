@@ -187,7 +187,6 @@
         height: rem(50px);
         color: var(--primary-color);
         font-size: rem(16px);
-        font-family: var(--primary-font);
         letter-spacing: 0.5px;
     }
 
@@ -226,7 +225,6 @@
         flex-shrink: 1;
         font-size: rem(20px);
         font-weight: 600;
-        font-family: var(--primary-font);
         text-align: center;
         text-transform: capitalize;
     }

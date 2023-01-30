@@ -8,7 +8,7 @@
     align-items: center;
     position: relative;
     width: 100%;
-   min-height: 100%;
+    min-height: 100%;
     background-color: var(--secondary-bg);
 
     .user-details {
@@ -129,13 +129,22 @@
             margin-inline-start: rem(15px);
             overflow: scroll;
             padding-right: 5px;
-            // @include scrollbar-hidden;
 
+            /* for Chrome, Safari and Opera */
             &::-webkit-scrollbar {
                 width: 0;
-                /* Set the width to 0 to hide the scrollbar */
             }
 
+            /* for Firefox */
+            &scrollbar {
+                width: 0;
+            }
+
+            /* for Internet Explorer */
+            &scrollbar {
+                width: 0;
+                background: transparent;
+            }
 
             .btn-highlights-container {
                 display: flex;

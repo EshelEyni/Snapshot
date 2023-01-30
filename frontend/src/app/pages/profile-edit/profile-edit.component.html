@@ -4,7 +4,11 @@
     <form class="profile-edit-form" [formGroup]="form">
         <header class="profile-edit-form-header">
             <div class="img-container" (click)="onChangeImg()">
-                <img class="img" [src]="userImgUrl">
+                <div>
+                    <img class="img" [src]="userImgUrl">
+                    <svg-icon *ngIf="isUploading" src="../../../assets/svgs/loader.svg"
+                        [svgStyle]="{height:'35px',width:'35px',background:'transparent'}"></svg-icon>
+                </div>
             </div>
             <div class="user-name-img-change-container">
                 <h1>{{user.username}}</h1>
@@ -72,8 +76,8 @@
         </div>
     </form>
 
-    <profile-img-setting-modal *ngIf="isImgSettingModalOpen" [onImgSelected]="onImgSelected" (closeModal)="onToggleModal()"
-        (removeImg)="onRemoveImg()"></profile-img-setting-modal>
+    <profile-img-setting-modal *ngIf="isImgSettingModalOpen" (imgSelected)="onImgSelected($event)"
+        (closeModal)="onToggleModal()" (removeImg)="onRemoveImg()"></profile-img-setting-modal>
 
 
 </section>

@@ -44,10 +44,11 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
 
   paramsSubscription!: Subscription;
   user!: User;
-  
+
   userImgUrl: string = this.userService.getDefaultUserImgUrl();
 
-  isImgSettingModalOpen = false;
+  isImgSettingModalOpen: boolean = false;
+  isUploading: boolean = false;
 
   ngOnInit(): void {
     this.paramsSubscription = this.route.data.subscribe(data => {
@@ -75,12 +76,14 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
   };
 
   async onImgSelected(ev: any): Promise<void> {
+    this.isImgSettingModalOpen = false;
+    this.isUploading = true;
     const img = ev.target.files[0];
     const url = await this.uploadImgService.uploadImg(img);
     const user = { ...this.user, imgUrl: url };
     this.userImgUrl = url;
     await this.store.dispatch(new SaveUser(user));
-    this.isImgSettingModalOpen = false;
+    this.isUploading = false;
     this.communicationService.setUserMsg('Profile photo added.');
   };
 
