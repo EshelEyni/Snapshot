@@ -1,22 +1,24 @@
-<div draggable="true" class="img-input" ngClass="{{dragAreaClass}}" *ngIf="type==='draggable'">
-    <svg-icon src="../../../assets/svgs/add-icon.svg" [svgStyle]="{ 'width.px':300 }" #svgIcon></svg-icon>
-    <p>Drag photos and videos here</p>
-    <a href="javascript:void(0)" (click)="file.click()">
-        Select from computer
-    </a>
-    <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
-</div>
+<container-element [ngSwitch]="type">
+    <div draggable="true" class="img-input" ngClass="{{dragAreaClass}}" *ngSwitchCase="'draggable'">
+        <svg-icon src="../../../assets/svgs/add-icon.svg" [svgStyle]="{ 'width.px':300 }" #svgIcon></svg-icon>
+        <p>Drag photos and videos here</p>
+        <a href="javascript:void(0)" (click)="file.click()">
+            {{btnText}}
+        </a>
+        <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
+    </div>
 
-<div class="btn-plus" *ngIf="type==='btn-plus'">
-    <a href="javascript:void(0)" (click)="file.click()">
-        <svg-icon src="../../../assets/svgs/plus.svg" [svgStyle]="{ 'display':'flex'}" #svgIcon></svg-icon>
-    </a>
-    <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
-</div>
+    <div class="btn-plus" *ngSwitchCase="'btn-plus'">
+        <a href="javascript:void(0)" (click)="file.click()">
+            <svg-icon src="../../../assets/svgs/plus.svg" [svgStyle]="{ 'display':'flex'}"></svg-icon>
+        </a>
+        <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
+    </div>
 
-<div *ngIf="type==='btn-img'">
-    <a href="javascript:void(0)" (click)="file.click()">
-        <svg-icon src=".././../../assets/svgs/img-icon.svg" #svgIcon></svg-icon>
-    </a>
-    <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
-</div>
+    <div *ngSwitchCase="'btn-img'">
+        <a href="javascript:void(0)" (click)="file.click()">
+            <svg-icon src=".././../../assets/svgs/img-icon.svg" #svgIcon></svg-icon>
+        </a>
+        <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
+    </div>
+</container-element>

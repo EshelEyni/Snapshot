@@ -6,12 +6,13 @@ import { Component, inject, OnInit, OnDestroy } from '@angular/core';
   selector: 'user-msg',
   templateUrl: './user-msg.component.html',
   styleUrls: ['./user-msg.component.scss'],
-  inputs: [],
 })
 export class UserMsgComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  constructor() { };
+
   communicationService = inject(CommunicationService);
+  
   msg!: string | null;
   sub!: Subscription;
 
@@ -21,12 +22,11 @@ export class UserMsgComponent implements OnInit, OnDestroy {
       const timeOutId = setTimeout(() => {
         this.msg = null;
         clearTimeout(timeOutId);
-      }, 3000)
-    })
-  }
+      }, 3000);
+    });
+  };
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
-  }
-
-}
+  };
+};

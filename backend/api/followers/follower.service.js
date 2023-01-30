@@ -4,6 +4,10 @@ const db = require('../../database');
 async function query(followingId) {
     try {
         const followers = await db.query(`select * from followers where followingId = $followingId`, { $followingId: followingId });
+        followers.forEach(follower => {
+            follower.id = follower.userId;
+            delete follower.userId;
+        });
         return followers
     } catch (err) {
         logger.error('cannot find followers', err)

@@ -11,9 +11,7 @@ export class FontPickerComponent implements OnInit {
 
   constructor() { }
 
-  fontChange = new EventEmitter<string>();
-
-  fonts = [
+  fonts: { value: string, isSelected: boolean }[] = [
     { value: 'roboto', isSelected: true },
     { value: 'roboto-bold', isSelected: false },
     { value: 'pacifico', isSelected: false },
@@ -22,14 +20,15 @@ export class FontPickerComponent implements OnInit {
     { value: 'monoton', isSelected: false },
     { value: 'special-elite', isSelected: false },
     { value: 'titan-one', isSelected: false },
-  ]
+  ];
 
-  ngOnInit(): void {
-  }
+  fontChange = new EventEmitter<string>();
 
-  onFontChange(font: FontType) {
+  ngOnInit(): void { };
+
+  onFontChange(font: FontType): void {
     this.fonts.forEach(font => font.isSelected = false);
     font.isSelected = true;
     this.fontChange.emit(font.value);
-  }
-}
+  };
+};

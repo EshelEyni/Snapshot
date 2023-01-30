@@ -1,5 +1,4 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
 .chat-preview {
@@ -83,5 +82,4 @@
         align-items: center;
         gap: rem(2.5px);
     }
-
 }

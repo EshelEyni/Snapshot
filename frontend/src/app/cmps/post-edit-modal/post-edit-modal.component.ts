@@ -45,7 +45,17 @@ export class PostEditModalComponent implements OnInit, OnDestroy {
   loggedinUser$: Observable<User | null>
   loggedinUser!: User
   currTitle: string = 'create new post'
-  postImgs: PostCanvasImg[] = [];
+  postImgs: PostCanvasImg[] = [{
+    url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1675034428/vvtemqpbyrq2mr4x2l9o.jpg',
+    x: 0,
+    y: 0,
+    width: 830,
+    height: 830,
+    aspectRatio: 'Original',
+    zoom: 0,
+    filter: 'normal',
+
+  }];
   txt: string = '';
   location: Location = {
     id: 0,
@@ -133,7 +143,6 @@ export class PostEditModalComponent implements OnInit, OnDestroy {
     postToSave.by = author;
     postToSave.location = this.location;
     postToSave.tags = this.tagService.detectTags(this.txt);
-    console.log('isEmojiTxt', this.txt)
     if (this.txt) postToSave.commentSum = 1;
     const postId = await this.postService.save(postToSave);
 

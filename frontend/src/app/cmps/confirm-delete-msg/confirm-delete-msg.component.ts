@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, inject } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'confirm-delete-msg',
@@ -11,25 +11,24 @@ export class ConfirmDeleteMsgComponent implements OnInit {
 
   constructor() { };
 
-  close = new EventEmitter();
-  deleteEntity = new EventEmitter();
-
   entityType!: string;
   titleTxt!: string;
   bodyTxt!: string;
 
+  close = new EventEmitter();
+  deleteEntity = new EventEmitter();
+
   ngOnInit(): void {
     this.titleTxt = `Delete ${this.entityType}?`;
     this.bodyTxt = `Are you sure you want to delete this ${this.entityType}?`;
-  }
+  };
 
-  onClose() {
+  onClose(): void {
     this.close.emit();
-  }
+  };
 
-  onConfirmDelete() {
+  onConfirmDelete(): void {
     this.deleteEntity.emit();
     this.close.emit();
-  }
-
-}
+  };
+};

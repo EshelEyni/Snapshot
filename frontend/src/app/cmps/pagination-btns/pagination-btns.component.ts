@@ -9,21 +9,21 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 })
 export class PaginationBtnsComponent implements OnInit {
 
-  constructor() { }
+  constructor() { };
 
   isPaginationBtnShown = { left: false, right: false };
   isEditIcon!: boolean;
+
   nextItem = new EventEmitter<number>();
   prevItem = new EventEmitter<number>();
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { };
 
-  onNextItem() {
+  onNextItem(): void {
     this.nextItem.emit(1);
-  }
+  };
 
-  onPrevItem() {
+  onPrevItem(): void {
     this.prevItem.emit(-1);
-  }
-}
+  };
+};

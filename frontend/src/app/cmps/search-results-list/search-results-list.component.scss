@@ -1,5 +1,4 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
 ::ng-deep .search-results-list {
@@ -9,6 +8,7 @@
     height: 100%;
     padding: rem(12px) rem(24px) rem(8px);
     overflow-y: scroll;
+    @include scrollbar-hidden;
 
     .user-preview {
         .img-container {

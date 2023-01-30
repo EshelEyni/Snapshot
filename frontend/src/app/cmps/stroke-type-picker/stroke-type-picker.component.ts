@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { } from '@fortawesome/free-regular-svg-icons';
-import { faSprayCan, faEraser, faMagicWandSparkles, faHighlighter, faArrowUp, faMarker } from '@fortawesome/free-solid-svg-icons';
+import { faSprayCan, faEraser, faMagicWandSparkles, faHighlighter, faArrowUp, faMarker, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { StrokeType } from 'src/app/models/canvas.model';
 
 @Component({
@@ -13,8 +13,6 @@ export class StrokeTypePickerComponent implements OnInit {
 
   constructor() { }
 
-  strokeTypeChange = new EventEmitter<string>();
-
   faSprayCan = faSprayCan;
   faEraser = faEraser;
   faMagicWandSparkles = faMagicWandSparkles;
@@ -22,21 +20,22 @@ export class StrokeTypePickerComponent implements OnInit {
   faArrowUp = faArrowUp;
   faMarker = faMarker;
 
-  strokeTypes = [
+  strokeTypes: { icon: IconDefinition, type: string, isSelected: boolean }[] = [
     { icon: faSprayCan, type: 'spray', isSelected: false },
     { icon: faEraser, type: 'eraser', isSelected: false },
     { icon: faMagicWandSparkles, type: 'magic-wand', isSelected: false },
     { icon: faHighlighter, type: 'highlighter', isSelected: false },
     { icon: faArrowUp, type: 'arrow', isSelected: false },
     { icon: faMarker, type: 'pen', isSelected: true },
-  ]
+  ];
 
-  ngOnInit(): void {
-  }
+  strokeTypeChange = new EventEmitter<string>();
 
-  onStrokeTypeChange(strokeType: StrokeType) {
-    this.strokeTypes.forEach(t => t.isSelected = false)
+  ngOnInit(): void { };
+
+  onStrokeTypeChange(strokeType: StrokeType): void {
+    this.strokeTypes.forEach(t => t.isSelected = false);
     strokeType.isSelected = true;
-    this.strokeTypeChange.emit(strokeType.type)
-  }
-}
+    this.strokeTypeChange.emit(strokeType.type);
+  };
+};

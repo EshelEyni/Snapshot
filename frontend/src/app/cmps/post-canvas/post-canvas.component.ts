@@ -48,7 +48,6 @@ export class PostCanvasComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log('ngOnChanges');
     if (this.currSettings !== 'crop') {
       const canvas = this.canvas.nativeElement;
       canvas.style.cursor = 'default';
@@ -335,7 +334,6 @@ export class PostCanvasComponent implements OnInit, OnChanges {
 
         this.postImgs[this.currImgIdx] = { ...this.postImgs[this.currImgIdx], x, y, width, height };
         this.currPostImg = this.postImgs[this.currImgIdx];
-        console.log(this.currPostImg);
         this.ctx.drawImage(image, x, y, width, height);
       }
       else {

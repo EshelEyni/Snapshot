@@ -1,5 +1,4 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
 .actions {
@@ -10,7 +9,6 @@
     fa-icon {
         font-size: rem(24px);
     }
-
 
     .main-btn-container {
         display: flex;
@@ -25,8 +23,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-
-            
         }
         
         :hover {
@@ -46,6 +42,5 @@
                 color: var(--secondary-color);
             }  
         }
-
     }
 }

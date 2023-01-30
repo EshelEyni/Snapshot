@@ -9,9 +9,24 @@ async function query(followerId, userId) {
                 $followerId: followerId,
                 $userId: userId
             });
+
+            following.forEach(following => {
+                following.id = following.userId;
+                delete following.userId;
+            });
+
             return following
-        } else {
-            return await db.query(`select * from following where followerId = $followerId`, { $followerId: followerId });
+        }
+        else {
+
+            const following = await db.query(`select * from following where followerId = $followerId`, { $followerId: followerId });
+
+            following.forEach(following => {
+                following.id = following.userId;
+                delete following.userId;
+            });
+
+            return following;
         }
     } catch (err) {
         logger.error('cannot find following', err)

@@ -25,7 +25,7 @@ export class FollowingComponent implements OnInit, OnDestroy {
   users: MiniUser[] = [];
   tags: Tag[] = [];
   sub!: Subscription;
-  filterBy = { usersShown: false, tagsShown: true }
+  filterBy = { usersShown: true, tagsShown: false }
   isNoFollowingMsgShown = false;
 
   ngOnInit(): void {
@@ -34,7 +34,6 @@ export class FollowingComponent implements OnInit, OnDestroy {
       if (user) {
         this.users = await this.userService.getFollowings(user.id);
         this.tags = await this.tagService.getfollowedTags(user.id);
-        console.log(this.tags);
         if (this.users.length === 0) {
           this.isNoFollowingMsgShown = true;
         }
@@ -43,7 +42,6 @@ export class FollowingComponent implements OnInit, OnDestroy {
   }
 
   onSetFilter(filterBy: string) {
-    console.log(filterBy);
     if (filterBy === 'people') {
       this.filterBy = { usersShown: true, tagsShown: false }
       this.isNoFollowingMsgShown = this.users.length === 0;

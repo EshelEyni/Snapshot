@@ -1,5 +1,4 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
 ::ng-deep .share-modal {
@@ -39,7 +38,6 @@
             font-size: rem(24px);
             cursor: pointer;
         }
-
     }
 
     .share-modal-main-container {

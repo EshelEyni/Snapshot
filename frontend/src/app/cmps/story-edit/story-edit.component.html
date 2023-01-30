@@ -6,8 +6,10 @@
     </header>
 
     <div class="input-file-container" *ngIf="!storyImgs.length else canvasContainer">
-        <file-input (uploadedImgUrls)="onSetFiles($event)" [type]="'draggable'">
+        <file-input (uploadedImgUrls)="onSetFiles($event)" [type]="'draggable'" (isUploading)="onToggleIsUploading()"
+            [class.display-none]="isUploading">
         </file-input>
+        <content-loader *ngIf="isUploading"></content-loader>
     </div>
 
     <ng-template #canvasContainer>

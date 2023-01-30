@@ -6,7 +6,7 @@
             <post-list [posts]="(posts$|async)!" [type]="'full-preview'"></post-list>
         </div>
         <div class="user-list-container">
-                <user-preview [user]="userService.getMiniUser(loggedinUser)" [type]="'suggestion-list'"
+                <user-preview [user]="userService.getMiniUser(loggedinUser)" [type]="'home-page-logged-in-user-preview'"
                     *ngIf="loggedinUser"></user-preview>
 
 

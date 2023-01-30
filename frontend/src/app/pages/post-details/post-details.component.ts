@@ -77,7 +77,6 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
               type: 'post-details'
             }
           )
-          console.log('this.comments', this.comments);
         }
 
         if (!this.isNested) {

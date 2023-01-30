@@ -23,7 +23,6 @@
 
         h2 {
             text-transform: capitalize;
-            // margin-top: rem(6px);
         }
 
         .clear-btn {
@@ -40,6 +39,7 @@
         flex-direction: column;
         gap: rem(8px);
         overflow-y: scroll;
+        @include scrollbar-hidden;
 
         li {
             display: flex;

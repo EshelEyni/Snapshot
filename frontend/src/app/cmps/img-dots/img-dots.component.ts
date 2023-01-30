@@ -5,17 +5,16 @@ import { faCircle } from '@fortawesome/free-solid-svg-icons';
   selector: 'img-dots',
   templateUrl: './img-dots.component.html',
   styleUrls: ['./img-dots.component.scss'],
-  inputs: ['imgUrls','currImgUrl']
+  inputs: ['imgUrls', 'currImgUrl']
 })
 export class ImgDotsComponent implements OnInit {
 
-  constructor() { }
+  constructor() { };
 
-  // Icons
   faCircle = faCircle;
+  
   imgUrls: string[] = [];
   currImgUrl: string = '';
-  
-  ngOnInit(): void {
-  }
-}
+
+  ngOnInit(): void { };
+};

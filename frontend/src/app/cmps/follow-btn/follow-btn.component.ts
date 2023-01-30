@@ -12,43 +12,43 @@ import { SaveUser } from 'src/app/store/actions/user.actions';
   selector: 'follow-btn',
   templateUrl: './follow-btn.component.html',
   styleUrls: ['./follow-btn.component.scss'],
-  inputs: ['user', 'tag', 'type'],
+  inputs: ['user', 'tag'],
 })
 export class FollowBtnComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
-  }
-
-  loggedinUser$: Observable<User | null>
-  loggedinUser!: User
-  sub: Subscription | null = null;
+  };
 
   userService = inject(UserService);
   tagService = inject(TagService);
   store = inject(Store<State>);
 
-  isFollowed: boolean = false;
+  sub: Subscription | null = null;
+
+  loggedinUser$: Observable<User | null>;
+  loggedinUser!: User;
   user!: MiniUser;
   tag!: Tag;
-  type!: string;
 
-  async ngOnInit() {
+  isFollowed: boolean = false;
+
+  async ngOnInit(): Promise<void> {
 
     this.sub = this.loggedinUser$.subscribe(async user => {
       if (user) {
-        this.loggedinUser = { ...user }
+        this.loggedinUser = { ...user };
         if (this.user && !this.tag) {
           this.isFollowed = await this.userService.checkIsFollowing(this.loggedinUser.id, this.user.id);
-        }
+        };
         if (this.tag && !this.user) {
           this.isFollowed = await this.tagService.checkIsFollowing(this.loggedinUser.id, this.tag.id);
-        }
-      }
-    })
-  }
+        };
+      };
+    });
+  };
 
-  async onToggleFollow() {
+  async onToggleFollow(): Promise<void> {
 
     if (this.user && !this.tag) {
       this.userService.toggleFollow(this.isFollowed, this.loggedinUser, this.user);
@@ -58,16 +58,15 @@ export class FollowBtnComponent implements OnInit, OnDestroy {
       if (!fullUser) return;
       fullUser.followersSum = !this.isFollowed ? fullUser.followersSum + 1 : fullUser.followersSum - 1;
       this.store.dispatch(new SaveUser(fullUser));
-    }
+    };
 
     if (this.tag && !this.user) {
       this.tagService.toggleFollow(this.isFollowed, this.loggedinUser.id, this.tag.id);
       this.isFollowed = !this.isFollowed;
-    }
-  }
+    };
+  };
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.sub?.unsubscribe()
-  }
-
-}
+  };
+};

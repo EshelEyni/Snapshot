@@ -13,51 +13,53 @@ import { Component, OnInit, EventEmitter, OnChanges } from '@angular/core';
 export class ChatListComponent implements OnInit, OnChanges {
 
   constructor() { }
+
+  type!: 'share-modal' | 'search-bar-list';
+
+  loggedinUser!: User;
+  chats!: Chat[];
+  selectedChats!: Chat[];
+  currActiveChatId!: number;
+  isSelectChat: { [key: number]: boolean } = {};
+
   chatSelected = new EventEmitter<Chat>();
   addChat = new EventEmitter<Chat>();
   removeChat = new EventEmitter<Chat>();
-
-  chats!: Chat[];
-  selectedChats!: Chat[];
-  loggedinUser!: User;
-  currActiveChatId!: number;
-  type!: string;
-  isSelectChat: { [key: number]: boolean } = {};
 
   ngOnInit(): void {
     if (this.type === 'share-modal') {
       this.chats.forEach(chat => {
         this.isSelectChat[chat.id] = false;
-      })
-    }
-  }
+      });
+    };
+  };
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     if (this.type === 'share-modal') {
       this.chats.forEach(chat => {
         this.isSelectChat[chat.id] = this.selectedChats.some(selectedChat => selectedChat.id === chat.id);
-      })
-    }
-  }
+      });
+    };
+  };
 
-  setTitleForSearchBar(chat: Chat) {
+  setTitleForSearchBar(chat: Chat): string {
     if (chat.name) return chat.name;
     else {
       let title = chat.members.reduce((acc, user, idx) => {
         if (idx < 2) return acc + user.username + ', ';
         else if (idx === 2) return acc + 'and ' + user.username + ' ';
         else return acc;
-      }, '')
+      }, '');
       return title;
-    }
-  }
+    };
+  };
 
-  onRemoveChat(chat: Chat) {
+  onRemoveChat(chat: Chat): void {
     this.isSelectChat[chat.id] = false;
     this.removeChat.emit(chat);
-  }
+  };
 
-  onSelectChat(chat: Chat) {
+  onSelectChat(chat: Chat): void {
 
     if (this.type === 'share-modal') {
       this.isSelectChat[chat.id] = !this.isSelectChat[chat.id];
@@ -66,14 +68,11 @@ export class ChatListComponent implements OnInit, OnChanges {
       }
       else {
         this.removeChat.emit(chat);
-      }
+      };
     }
-
     else {
       this.currActiveChatId = chat.id;
       this.chatSelected.emit(chat);
-    }
-  }
-
-
-}
+    };
+  };
+};

@@ -1,6 +1,4 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/vars';
-@import '../../../assets/styles/setup/mixins';
 
 .font-picker {
     display: flex;
@@ -14,7 +12,6 @@
         text-transform: capitalize;
         background-color: rgb(38, 38, 38, 0.5);
         color: white;
-        // padding: rem(5px);
         height: rem(35px);
         width: rem(35px);
         border-radius: 50%;
@@ -25,7 +22,6 @@
         
         span {
             text-align: center;
-
         }
 
         &.selected {

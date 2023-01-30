@@ -15,14 +15,12 @@
                 (isUploading)="onToggleIsUploading()" [class.display-none]="isUploading">
             </file-input>
             <content-loader *ngIf="isUploading"></content-loader>
-
         </div>
 
         <ng-template #postImgContainer>
             <post-canvas [postImgs]="postImgs" [currSettings]="currEditMode" [currFilter]="currFilter"
                 *ngIf="currEditMode !=='edit'"></post-canvas>
         </ng-template>
-
 
         <div class="edit-mode-container" *ngIf="currEditMode !=='crop'">
             <post-filter-picker *ngIf="currEditMode ==='filter'"
@@ -33,7 +31,9 @@
         </div>
     </main>
 </section>
+
 <canvas #offScreenCanvas [width]="canvasSize" [height]="canvasSize" [style]="{'display':'none'}"></canvas>
+
 <ng-template #loader>
     <content-loader></content-loader>
 </ng-template>

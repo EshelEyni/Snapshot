@@ -45,7 +45,6 @@ export class CommentComponent implements OnInit {
   }
 
   async onRemoveComment() {
-    console.log('onRemoveComment');
     const res = await this.commentService.remove(this.comment.id);
     if (res && res.msg === 'Comment deleted') {
       this.commentRemoved.emit(this.comment.id);

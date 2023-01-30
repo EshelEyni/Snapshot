@@ -66,7 +66,6 @@ export class HighlightsModalComponent implements OnInit {
   }
 
   onCloseModal() {
-    console.log('close modal');
     this.close.emit();
   }
 }

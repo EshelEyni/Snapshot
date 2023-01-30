@@ -13,7 +13,6 @@ export class PaginationBtnNextComponent implements OnInit {
   faCircleChevronRight = faCircleChevronRight;
   isEditIcon!: boolean;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { };
 
-}
+};

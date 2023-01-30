@@ -1,8 +1,7 @@
 import { User } from 'src/app/models/user.model';
 import { CommentService } from 'src/app/services/comment.service';
-import { Component, Input, OnInit, inject, OnChanges, SimpleChanges, DoCheck } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Comment } from 'src/app/models/comment.model';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'comment-list',
@@ -10,19 +9,21 @@ import { Observable } from 'rxjs';
   styleUrls: ['./comment-list.component.scss'],
   inputs: ['comments', 'loggedinUser', 'type']
 })
+
 export class CommentListComponent implements OnInit {
-  constructor() { }
+
+  constructor() { };
 
   commentService = inject(CommentService);
 
+  type!: 'post-preview' | 'post-details' | 'chat-post-preview';
+
   loggedinUser!: User;
-  type!: string;
   comments!: Comment[];
 
-  ngOnInit() {
-  }
+  ngOnInit(): void { };
 
-  onRemoveComment(commentId: number) {
+  onRemoveComment(commentId: number): void {
     this.comments = this.comments.filter(c => c.id !== commentId);
-  }
-}
+  };
+};

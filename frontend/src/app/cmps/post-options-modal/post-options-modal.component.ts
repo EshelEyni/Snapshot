@@ -15,76 +15,77 @@ import { User } from 'src/app/models/user.model';
 })
 export class PostOptionsModalComponent implements OnInit {
 
-  constructor() { }
-  communicationService = inject(CommunicationService);
+  constructor() { };
 
   router = inject(Router);
   postService = inject(PostService);
   userService = inject(UserService);
+  communicationService = inject(CommunicationService);
+
   post!: Post;
-  close = new EventEmitter();
-  toggleCommentDisplay = new EventEmitter();
-  toggleLikeDisplay = new EventEmitter();
+  loggedinUser!: User;
 
   toggleCommentDisplayBtnTxt: string = 'Turn off commenting';
   toggleLikeDisplayBtnTxt: string = 'Hide like count';
 
   isConfirmDeleteMsgShown: boolean = false;
   isPostOwnedByUser!: boolean;
-  loggedinUser!: User;
   isFollowed: boolean = false;
 
-  async ngOnInit() {
+  close = new EventEmitter();
+  toggleCommentDisplay = new EventEmitter();
+  toggleLikeDisplay = new EventEmitter();
+
+  async ngOnInit(): Promise<void> {
     this.toggleCommentDisplayBtnTxt = this.post.isCommentShown ? 'Turn off commenting' : 'Turn on commenting';
     this.toggleLikeDisplayBtnTxt = this.post.isLikeShown ? 'Hide like count' : 'Unhide like count';
     if (!this.isPostOwnedByUser) {
       this.isFollowed = await this.userService.checkIsFollowing(this.loggedinUser.id, this.post.by.id);
-    }
-  }
+    };
+  };
 
-  onToggleConfirmDelete() {
+  onToggleConfirmDelete(): void {
     this.isConfirmDeleteMsgShown = !this.isConfirmDeleteMsgShown;
-  }
+  };
 
-  async onDeletePost() {
+  async onDeletePost(): Promise<void> {
     await this.postService.remove(this.post.id);
-    this.communicationService.setUserMsg('Post Deleted.')
+    this.communicationService.setUserMsg('Post Deleted.');
     this.router.navigate(['']);
     this.close.emit();
-  }
+  };
 
-  async onUnfollowUser() {
+  async onUnfollowUser(): Promise<void> {
     await this.userService.toggleFollow(true, this.loggedinUser, this.post.by);
     this.close.emit();
-  }
+  };
 
-  async onToggleLikeDisplay() {
+  async onToggleLikeDisplay(): Promise<void> {
     this.post.isLikeShown = !this.post.isLikeShown;
     await this.postService.save(this.post);
     this.toggleLikeDisplay.emit();
     this.close.emit();
-  }
+  };
 
-  async onToggleCommentDisplay() {
+  async onToggleCommentDisplay(): Promise<void> {
     this.post.isCommentShown = !this.post.isCommentShown;
     await this.postService.save(this.post);
     this.toggleCommentDisplay.emit();
     this.close.emit();
-  }
+  };
 
-  onGoToPost() {
+  onGoToPost(): void {
     this.router.navigate(['post', this.post.id]);
     this.close.emit();
-  }
+  };
 
-  onCopyLink() {
+  onCopyLink(): void {
     const link = window.location.href;
     navigator.clipboard.writeText(link + 'post/' + this.post.id);
     this.close.emit();
-  }
+  };
 
-  onCloseModal() {
+  onCloseModal(): void {
     this.close.emit();
-  }
-
-}
+  };
+};

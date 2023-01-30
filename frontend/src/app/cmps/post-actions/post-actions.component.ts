@@ -1,12 +1,10 @@
 import { Router } from '@angular/router';
 import { PostService } from 'src/app/services/post.service'
 import { Component, OnInit, EventEmitter, OnChanges, OnDestroy, HostListener, QueryList, ViewChildren } from '@angular/core'
-import { Store } from '@ngrx/store'
 import { Subscription } from 'rxjs'
 import { Post } from 'src/app/models/post.model'
 import { User } from 'src/app/models/user.model'
 import { UserService } from 'src/app/services/user.service'
-import { State } from 'src/app/store/store'
 import { CommunicationService } from 'src/app/services/communication.service';
 import { SvgIconComponent } from 'angular-svg-icon';
 
@@ -23,83 +21,87 @@ export class PostActionsComponent implements OnInit, OnChanges, OnDestroy {
     private userService: UserService,
     private router: Router,
     private communicationService: CommunicationService,
-    private store: Store<State>,
   ) { }
 
   @ViewChildren('svgIcon') icons!: QueryList<SvgIconComponent>;
 
+  type!: 'post-preview' | 'post-details';
+
   post!: Post;
-  loggedinUser!: User;
-  type!: string;
   sub: Subscription | null = null;
+  loggedinUser!: User;
+
   isLiked: boolean = false;
   isSaved: boolean = false;
   commentIconUnactiveMode: boolean = true;
   iconClicked: boolean = false;
-  toggleModal = new EventEmitter();
+
   iconColor: string = 'var(--tertiary-color)'
 
+  toggleModal = new EventEmitter();
+
+
   @HostListener("document:click", ["$event"])
-  onBodyClick() {
+  onBodyClick(): void {
     if (this.iconClicked) {
       this.commentIconUnactiveMode = false;
       this.iconClicked = false;
     } else {
       this.commentIconUnactiveMode = true;
-    }
-  }
+    };
+  };
 
-  ngOnInit() {
+  ngOnInit(): void {
     setTimeout(() => {
       this.setIconColor();
-    }, 0)
-  }
-  
-  setIconColor() {
-    this.iconColor = this.loggedinUser.isDarkMode ? 'var(--primary-color)' : 'var(--tertiary-color)'
+    }, 0);
+  };
+
+  setIconColor(): void {
+    this.iconColor = this.loggedinUser.isDarkMode ? 'var(--primary-color)' : 'var(--tertiary-color)';
     this.icons.forEach(icon => {
-      icon.svgStyle = { color: this.iconColor, fill: this.iconColor }
-    })
-  }
-  
-  async ngOnChanges() {
-    this.isLiked = await this.postService.checkIsLiked({ postId: this.post.id, userId: this.loggedinUser.id })
-    this.isSaved = await this.postService.checkIsSaved({ postId: this.post.id, userId: this.loggedinUser.id })
+      icon.svgStyle = { color: this.iconColor, fill: this.iconColor };
+    });
+  };
+
+  async ngOnChanges(): Promise<void> {
+    this.isLiked = await this.postService.checkIsLiked({ postId: this.post.id, userId: this.loggedinUser.id });
+    this.isSaved = await this.postService.checkIsSaved({ postId: this.post.id, userId: this.loggedinUser.id });
     setTimeout(() => {
       this.setIconColor();
-    }, 0)
-  }
+    }, 0);
+  };
 
-  onToggleLike() {
-    this.postService.toggleLike(this.isLiked, { post: this.post, user: this.userService.getMiniUser(this.loggedinUser) })
-    this.isLiked = !this.isLiked
+  onToggleLike(): void {
+    this.postService.toggleLike(this.isLiked, { post: this.post, user: this.userService.getMiniUser(this.loggedinUser) });
+    this.isLiked = !this.isLiked;
     this.post.likeSum = this.isLiked ? this.post.likeSum + 1 : this.post.likeSum - 1;
-    this.postService.save(this.post)
-  }
+    this.postService.save(this.post);
+  };
 
-  onToggleSave() {
-    this.postService.toggleSave(this.isSaved, { postId: this.post.id, userId: this.loggedinUser.id })
-    this.isSaved = !this.isSaved
-  }
+  onToggleSave(): void {
+    this.postService.toggleSave(this.isSaved, { postId: this.post.id, userId: this.loggedinUser.id });
+    this.isSaved = !this.isSaved;
+  };
 
-  onAddComment() {
+  onAddComment(): void {
     this.iconClicked = true;
     if (this.type === 'post-preview') {
-      this.router.navigate([`_/post/${this.post.id}`])
+      this.router.navigate([`_/post/${this.post.id}`]);
     } else if (this.type === 'post-details') {
       if (window.innerWidth < 770) {
-        this.router.navigate([`/post/${this.post.id}`])
+        this.router.navigate([`/post/${this.post.id}`]);
       } else {
-        this.communicationService.focusInput()
-      }
-    }
-  }
+        this.communicationService.focusInput();
+      };
+    };
+  };
 
-  onToggleModal() {
-    this.toggleModal.emit()
-  }
+  onToggleModal(): void {
+    this.toggleModal.emit();
+  };
 
-  ngOnDestroy() {
-    this.sub?.unsubscribe()
-  }
-}
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
+  };
+};

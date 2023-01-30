@@ -144,7 +144,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
 
   onClickFollowing() {
     if (window.innerWidth < 735) {
-      this.router.navigate(['/following/', this.loggedinUser.id])
+      this.router.navigate(['/following/', this.user.id])
     } else {
       this.onToggleModal('following')
     }
@@ -152,7 +152,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
 
   onClickFollowers() {
     if (window.innerWidth < 735) {
-      this.router.navigate(['/followers/', this.loggedinUser.id])
+      this.router.navigate(['/followers/', this.user.id])
     } else {
       this.onToggleModal('followers')
     }

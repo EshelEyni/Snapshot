@@ -9,13 +9,12 @@ import { CanvasSticker } from 'src/app/models/canvas.model';
   outputs: ['close', 'addSticker'],
 })
 export class StickerPickerComponent implements OnInit {
-  constructor() { }
 
-  close = new EventEmitter<string>();
-  addSticker = new EventEmitter();
+  constructor() { };
+
   faX = faX;
 
-  stickers = [
+  stickers: { name: string, url: string }[] = [
     { name: 'angel-wings', url: '../../../assets/stickers/angel-wings.png' },
     { name: 'banana-eyed-wide', url: '../../../assets/stickers/banana-eyed-wide.png' },
     { name: 'beard-1', url: '../../../assets/stickers/beard-1.png' },
@@ -40,37 +39,38 @@ export class StickerPickerComponent implements OnInit {
     { name: 'tiger-drawing-1', url: '../../../assets/stickers/tiger-drawing-1.png' },
     { name: 'tiger-drawing-2', url: '../../../assets/stickers/tiger-drawing-2.png' },
     { name: 'tupac', url: '../../../assets/stickers/tupac.png' },
-  ]
-  stickersForDisplay: { name: string, url: string }[] = []
+  ];
+
+  stickersForDisplay: { name: string, url: string }[] = [];
+
+  close = new EventEmitter<string>();
+  addSticker = new EventEmitter();
 
   ngOnInit(): void {
     const randomIdx = Math.floor(Math.random() * this.stickers.length);
     for (let i = 0; i < 12; i++) {
       this.stickersForDisplay.push(this.stickers[(randomIdx + i) % this.stickers.length]);
-    }
+    };
+  };
 
-  }
-
-  onClose() {
+  onClose(): void {
     this.close.emit('sticker');
-  }
+  };
 
-  setCanvasSticker(sticker: { name: string, url: string }) {
-    const rect = { x: 50, y: 20, width: 150, height: 150 }
+  setCanvasSticker(sticker: { name: string, url: string }): CanvasSticker {
+    const rect = { x: 50, y: 20, width: 150, height: 150 };
     const img = new Image();
     img.src = sticker.url;
     img.onload = () => {
       const imgRatio = img.width / img.height;
       rect.height = rect.width / imgRatio;
-
-    }
-    const s = { ...sticker, rect, type: 'sticker' }
+    };
+    const s = { ...sticker, rect, type: 'sticker' };
     return s as unknown as CanvasSticker;
-  }
+  };
 
-  onAddSticker(sticker: { name: string, url: string }) {
+  onAddSticker(sticker: { name: string, url: string }): void {
     const s = this.setCanvasSticker(sticker);
     this.addSticker.emit(s);
-  }
-
-}
+  };
+};

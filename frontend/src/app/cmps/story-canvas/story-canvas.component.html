@@ -31,8 +31,8 @@
                 <img-list [imgUrls]="imgUrls" (removeImg)="onRemoveStoryImg($event)"
                     (uploadedImgUrls)="onAddStoryImg($event)" (imgSelected)="onSetCurrStoryImg($event)"></img-list>
             </div>
-
         </div>
+
         <pagination-btns *ngIf="isPaginationBtnShown" [isPaginationBtnShown]="isPaginationBtnShown"
             (prevItem)="onSetCurrStoryImg($event,true)" (nextItem)="onSetCurrStoryImg($event,true)"
             [isEditIcon]="true"></pagination-btns>
@@ -41,5 +41,4 @@
         <fa-icon [icon]="faTrashCan"></fa-icon>
         <p>Drop here to delete</p>
     </div>
-
 </div>

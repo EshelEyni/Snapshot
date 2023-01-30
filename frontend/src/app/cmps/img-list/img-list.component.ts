@@ -9,39 +9,38 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 })
 export class ImgListComponent implements OnInit {
 
-  constructor() { }
+  constructor() { };
+
+  imgUrls: string[] = [];
 
   isImgSelect: boolean = false;
-  imgUrls: string[] = []
+
   uploadedImgUrls = new EventEmitter<string[]>();
   removeImg = new EventEmitter<number>();
   imgSelected = new EventEmitter<number>();
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { };
 
 
-  onToggleImgSelect() {
+  onToggleImgSelect(): void {
     this.isImgSelect = !this.isImgSelect;
-  }
+  };
 
-  onRemoveImg(url: string) {
+  onRemoveImg(url: string): void {
     const idx = this.imgUrls.indexOf(url);
     this.removeImg.emit(idx);
     if (!this.imgUrls.length) {
       this.isImgSelect = false;
-      return
-    }
-  }
+      return;
+    };
+  };
 
-  onImgSelected(idx: number) {
+  onImgSelected(idx: number): void {
     this.imgSelected.emit(idx);
-  }
+  };
 
-  onSaveFiles(imgUrls: string[]) {
-    console.log('imgUrls:', imgUrls);
+  onSaveFiles(imgUrls: string[]): void {
     this.imgUrls = [...this.imgUrls, ...imgUrls];
     this.uploadedImgUrls.emit(imgUrls);
-  }
-
-}
+  };
+};

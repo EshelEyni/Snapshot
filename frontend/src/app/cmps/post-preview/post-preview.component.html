@@ -1,53 +1,36 @@
 <article class="post-preview" *ngIf="loggedinUser">
-
   <div class="main-screen dark-mode" *ngIf="isMainScreen" (click)="onToggleModal('main-screen')"></div>
 
   <container-element [ngSwitch]="type">
 
-
     <div class="post-preview-container" *ngSwitchCase="'full-preview'">
-
       <section class="post-creator">
         <user-preview [user]="post.by" [location]="post.location" [type]="'post'"></user-preview>
         <ellipsis (click)="onToggleModal('post-options-modal')"></ellipsis>
       </section>
-
       <img-container [imgUrls]="post.imgUrls" [type]="type"></img-container>
-
       <div class="post-preview-main-container">
-
         <share-modal *ngIf="isShareModalShown" (close)="onToggleModal('share-modal')" [loggedinUser]="loggedinUser"
           [post]="post" [type]="'post'"></share-modal>
-
         <like-modal *ngIf="isLikeModalShown" [post]="post" (close)="onToggleModal('like-modal')"></like-modal>
-
         <post-options-modal *ngIf="isOptionsModalShown" [isPostOwnedByUser]="isPostOwnedByUser" [post]="post"
           [loggedinUser]="loggedinUser" (close)="onToggleModal('post-options-modal')"
           (toggleCommentDisplay)="onToggleCommentDisplay()"
           (toggleLikeDisplay)="onToggleLikeDisplay()"></post-options-modal>
-
         <post-actions [post]="post" [loggedinUser]="loggedinUser" [type]="'post-preview'"
           (toggleModal)="onToggleModal('share-modal')"></post-actions>
-
-
         <p class="likes" *ngIf="isLikeShown && post.likeSum" (click)="onToggleModal('like-modal')">{{ post.likeSum }}
           likes</p>
-
         <a class="view-all-link" [routerLink]="['_/post/', post.id]" *ngIf="isCommentShown && post.commentSum">View all
           {{post.commentSum}} comments</a>
-
         <comment-list *ngIf="isCommentShown && post.commentSum" [comments]="comments" [type]="'post-preview'"
           [loggedinUser]="loggedinUser"></comment-list>
-
         <div>
           <p class="date-added" [routerLink]="['/post/', post.id]">
             {{ post.createdAt | formattedDate }}
           </p>
         </div>
-
       </div>
-
-
       <div class="comment-edit-container">
         <comment-edit *ngIf="isCommentShown" [post]="post" [loggedinUser]="loggedinUser"
           (commentAdded)="onAddComment($event)"></comment-edit>
@@ -75,8 +58,7 @@
     </div>
 
     <div class="chat-post-preview" *ngSwitchCase="'chat-post-preview'">
-      <user-preview [user]="post.by" [type]="type"></user-preview>
-
+      <user-preview [user]="post.by" [type]="'chat-post-preview'"></user-preview>
       <img-container [type]="type" [imgUrls]="post.imgUrls" [routerLink]="['/post/',post.id]"></img-container>
       <comment-list [loggedinUser]="loggedinUser" [comments]="comments" [type]="'chat-post-preview'"></comment-list>
     </div>

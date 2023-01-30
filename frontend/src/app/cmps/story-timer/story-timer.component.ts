@@ -24,12 +24,12 @@ export class StoryTimerComponent implements OnInit, OnDestroy, OnChanges {
   nextStory!: Story;
   isPlaying!: boolean;
   isUserStory!: boolean;
-  userPreviewType: string = '';
+  userPreviewType: 'story-timer' | 'user-story-timer' = 'story-timer';
 
 
   ngOnInit(): void {
   }
-  
+
   ngOnChanges() {
     this.userPreviewType = this.isUserStory ? 'user-story-timer' : 'story-timer';
     this.imgUrls = this.currStory.imgUrls;

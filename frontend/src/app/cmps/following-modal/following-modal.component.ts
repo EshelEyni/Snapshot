@@ -7,7 +7,7 @@ import { faX } from '@fortawesome/free-solid-svg-icons';
   selector: 'following-modal',
   templateUrl: './following-modal.component.html',
   styleUrls: ['./following-modal.component.scss'],
-  inputs: ['loggedinUser'],
+  inputs: ['user'],
   outputs: ['close']
 })
 export class FollowingModalComponent implements OnInit {
@@ -16,13 +16,12 @@ export class FollowingModalComponent implements OnInit {
 
   userService = inject(UserService);
   close = new EventEmitter();
-  loggedinUser!: User;
+  user!: User;
   users: MiniUser[] = [];
   faX = faX;
 
   async ngOnInit() {
-    this.users = await this.userService.getFollowings(this.loggedinUser.id);
-
+    this.users = await this.userService.getFollowings(this.user.id);
   }
 
   onCloseModal() {

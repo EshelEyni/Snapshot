@@ -1,5 +1,4 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
 ::ng-deep .like-modal {
@@ -7,7 +6,6 @@
     display: grid;
     grid-template-rows: rem(50px) 1fr;
     width: rem(400px);
-
 
     .like-modal-header {
         grid-row: 1/2;
@@ -35,7 +33,6 @@
             font-size: rem(16px);
             cursor: pointer;
         }
-
     }
 
     .user-list {
@@ -57,6 +54,4 @@
             }
         }
     }
-
-
 }

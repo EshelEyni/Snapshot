@@ -20,7 +20,10 @@ export class UserPreviewComponent implements OnInit, OnChanges {
   userService = inject(UserService);
   storyService = inject(StoryService);
 
-  type!: string;
+  type!: 'home-page-list' | 'post' | 'home-page-logged-in-user-preview' | 'home-page-suggestion-list'
+    | 'story-timer' | 'user-story-timer' | 'story' | 'link-to-story-edit' | 'story-edit-page' | 'story-timer'
+    | 'chat-setting' | 'chat-post-preview' | 'share-modal' | 'search-modal' | 'followers-list' | 'following-list'
+    | 'like-modal' | 'discover-people-list';
 
   user!: MiniUser;
   story!: Story;
@@ -73,7 +76,7 @@ export class UserPreviewComponent implements OnInit, OnChanges {
       || this.type === 'user-story-timer'
       || this.type === 'story'
       || this.type === 'story-timer'
-      || this.type === 'suggestion-list'
+      || this.type === 'home-page-logged-in-user-preview'
       || this.type === 'home-page-suggestion-list'
       || this.type === 'share-modal'
       || this.type === 'following-list'
@@ -109,7 +112,7 @@ export class UserPreviewComponent implements OnInit, OnChanges {
         this.urlForTitle = `/profile/${this.user.id}`;
         if (this.desc) this.urlForDesc = `/location/${this.location?.name}`;
         break;
-      case 'suggestion-list':
+      case 'home-page-logged-in-user-preview':
         this.urlForImg = `/profile/${this.user.id}`;
         this.urlForTitle = `/profile/${this.user.id}`;
         break;
@@ -165,21 +168,17 @@ export class UserPreviewComponent implements OnInit, OnChanges {
       case 'post':
         this.desc = this.location ? this.location.name : '';
         break;
-      case 'suggestion-list':
-        this.desc = this.user.fullname;
-        break;
-      case 'home-page-suggestion-list':
-        this.desc = this.user.fullname;
-        break;
-      case 'search-modal':
-        this.desc = this.user.fullname;
-        break;
       case 'chat-setting':
         if (this.chat.admins.some(a => a.id === this.user.id)) this.desc = `Admin ‧ ${this.user.fullname}`;
         else this.desc = this.user.fullname;
         break;
+      case 'story-edit-page':
+        this.desc = '';
+        break;
+      default:
+        this.desc = this.user.fullname;
+        break;
     };
-
   };
 
   setWatchedStory(): void {

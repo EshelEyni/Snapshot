@@ -25,7 +25,7 @@ export class PostPreviewComponent implements OnInit, OnDestroy {
   commentService = inject(CommentService);
   userService = inject(UserService);
 
-  type!: string;
+  type!: 'full-preview' | 'mini-preview'|'chat-post-preview';
 
   faFaceSmile = faFaceSmile;
   

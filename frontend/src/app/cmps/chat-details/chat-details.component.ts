@@ -37,7 +37,6 @@ export class ChatDetailsComponent implements OnInit, OnChanges, OnDestroy {
 
     this.socketService.emit('set-chat', this.chat.id);
     this.socketService.on('msg-added', (msg: Message) => {
-      console.log('msg-added', `for user ${this.loggedinUser.fullname}`);
       this.messageService.addMsgFromSocket(msg);
     })
   }

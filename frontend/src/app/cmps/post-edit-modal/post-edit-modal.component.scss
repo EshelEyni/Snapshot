@@ -1,4 +1,3 @@
-@import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/functions';
 @import '../../../assets/styles/setup/mixins';
 
@@ -6,8 +5,6 @@
     display: none;
 
     @include for-extra-large-layout {
-
-
         position: fixed;
         top: 50%;
         left: 50%;
@@ -77,8 +74,6 @@
 
                 .edit-img-container {
 
-
-
                     .files-svg-container {
                         position: absolute;
                         top: 85%;
@@ -91,10 +86,7 @@
                         background-color: var(--primary-color);
                         border-radius: 50%;
                     }
-
                 }
-
-
             }
         }
 
@@ -111,15 +103,12 @@
     }
 }
 
-
 ::ng-deep .edit-mode {
-
     .post-edit-modal-main-container {
         width: 1130px;
 
         .content-container {
             display: flex;
-
 
             post-canvas {
                 .post-canvas {
@@ -134,7 +123,6 @@
             .edit-mode-container {
                 flex: 2;
             }
-
         }
     }
 }

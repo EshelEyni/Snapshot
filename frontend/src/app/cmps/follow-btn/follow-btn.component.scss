@@ -1,5 +1,4 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
 .btn-container {
@@ -16,7 +15,6 @@
         }
     }
     
-    
     .btn-unfollow {
         border: 1px solid var(--border-color);
         border-radius: 5px;
@@ -25,18 +23,4 @@
         font-weight: 600;
         cursor: pointer;
     }
-
-    &.suggestion-list {
-        .btn-follow {
-            background: none;
-            color: var(--primary-button);
-        }
-
-        .btn-unfollow {
-            background: none;
-            border: none;
-            color: var(--primary-color);
-        }
-    }
-
 }

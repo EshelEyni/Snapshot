@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit, OnChanges, EventEmitter } from '@angular/core';
+import { Component, inject, OnInit, OnChanges, EventEmitter } from '@angular/core';
 import { faCircle, faCircleChevronLeft, faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { UploadImgService } from 'src/app/services/upload-img.service';
 
@@ -6,7 +6,7 @@ import { UploadImgService } from 'src/app/services/upload-img.service';
   selector: 'img-container',
   templateUrl: './img-container.component.html',
   styleUrls: ['./img-container.component.scss'],
-  inputs: ['imgUrls', 'onGoBack', 'isEditPost', 'type'],
+  inputs: ['imgUrls', 'onGoBack', 'type'],
   outputs: ['uploadedImgUrls']
 })
 export class ImgContainerComponent implements OnInit, OnChanges {
@@ -15,7 +15,7 @@ export class ImgContainerComponent implements OnInit, OnChanges {
 
   uploadImgService = inject(UploadImgService);
 
-  type!: string;
+  type!: 'full-preview' | 'mini-preview' | 'chat-post-preview';
 
   faCircle = faCircle;
   faCircleChevronLeft = faCircleChevronLeft;
@@ -26,7 +26,6 @@ export class ImgContainerComponent implements OnInit, OnChanges {
   onGoBack!: Function;
 
   isPaginationBtnShown = { left: false, right: false };
-  isEditPost: boolean = false;
   isImgSelect: boolean = false;
 
   uploadedImgUrls = new EventEmitter<string[]>();
@@ -41,7 +40,7 @@ export class ImgContainerComponent implements OnInit, OnChanges {
     this.setPaginationBtns();
   };
 
-  setPaginationBtns() {
+  setPaginationBtns(): void {
     const currIdx = this.imgUrls.indexOf(this.currImgUrl);
     if (currIdx === 0) this.isPaginationBtnShown.left = false;
     else this.isPaginationBtnShown.left = true;

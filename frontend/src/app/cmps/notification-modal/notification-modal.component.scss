@@ -52,15 +52,10 @@
             align-items: center;
             flex-grow: 1;
 
-            .no-notifications-msg-container {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-                height: 100%;
-                font-size: rem(20px);
-                font-weight: 600;
-                color: var(--secondary-color);
+            h2 {
+                font-weight: 300;
+                font-size: rem(24px);
+                color: var(--primary-color);
             }
         }
     }

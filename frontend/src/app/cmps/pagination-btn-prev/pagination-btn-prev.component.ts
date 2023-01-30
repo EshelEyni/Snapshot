@@ -10,10 +10,9 @@ import { faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons';
 export class PaginationBtnPrevComponent implements OnInit {
 
   constructor() { }
-  isEditIcon!: boolean;
   faCircleChevronLeft = faCircleChevronLeft;
+  isEditIcon!: boolean;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { };
 
-}
+};

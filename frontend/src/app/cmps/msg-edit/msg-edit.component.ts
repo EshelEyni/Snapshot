@@ -50,7 +50,6 @@ export class MsgEditComponent implements OnInit {
 
     if (this.isStoryReply) {
       this.chat = await this.chatService.loadPersonalChat(this.loggedinUser.id, this.story.by.id)
-      console.log('this.chat', this.chat);
       if (!this.chat) {
         this.isLiked = false
       } else {
@@ -60,7 +59,6 @@ export class MsgEditComponent implements OnInit {
   }
 
   onToggleModal(el: string) {
-    console.log('el', el);
     switch (el) {
       case 'share-modal':
         this.isShareModalShown = !this.isShareModalShown;

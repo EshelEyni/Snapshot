@@ -3,7 +3,7 @@ import { Observable, Subscription, map } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { State } from './../../store/store';
 import { MiniUser } from './../../models/user.model';
-import { Component, OnInit, OnChanges, EventEmitter, SimpleChanges, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnChanges, EventEmitter, SimpleChanges, OnDestroy, inject } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 
 @Component({
@@ -15,32 +15,35 @@ import { User } from 'src/app/models/user.model';
 })
 export class UserListComponent implements OnInit, OnChanges, OnDestroy {
 
-  constructor(
-    private store: Store<State>
-
-  ) {
+  constructor() {
     this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
 
   }
-  
-  type!: string;
 
-  loggedinUser$: Observable<User | null>
-  loggedinUser!: User
+  store = inject(Store<State>);
+
+  type!: 'like-modal' | 'home-page-suggestion-list' | 'discover-people-list' | 'following-list'
+    | 'followers-list' | 'share-modal' | 'chat-setting' | 'search-bar-list';
+  title: string = '';
+
   sub: Subscription | null = null;
+
+  loggedinUser$: Observable<User | null>;
+  loggedinUser!: User;
 
   users!: MiniUser[];
   selectedUsers!: MiniUser[];
+  isSelectUser: { idx: number, isSelected: boolean }[] = [];
+
   chat!: Chat;
   currUser!: MiniUser; // for chat options modal
+
   isLoggedinUserAdmin: boolean = false;
   isTitle: boolean = true;
-  title: string = '';
   isFollowBtnShow: boolean = false;
   isShareModalShown: boolean = false;
   isChatOptionsModalShown: boolean = false;
   isMainScreenShown: boolean = false;
-  isSelectUser: { idx: number, isSelected: boolean }[] = [];
 
   addUser = new EventEmitter<MiniUser>();
   removeUser = new EventEmitter<MiniUser>();
@@ -49,8 +52,8 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) {
         this.loggedinUser = { ...user }
-      }
-    })
+      };
+    });
     this.setTitle();
 
     this.isFollowBtnShow = this.type === 'like-modal'
@@ -61,38 +64,38 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
 
     if (this.type === 'chat-setting') {
       this.isLoggedinUserAdmin = this.chat.admins.some(a => a.id === this.loggedinUser.id);
-    }
-  }
+    };
+  };
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
 
     if (this.type === 'share-modal') {
       this.setIsSelectUser();
-    }
+    };
 
     if (changes['selectedUsers']) {
       this.selectedUsers = this.selectedUsers;
-    }
-  }
+    };
+  };
 
   setIsSelectUser() {
     this.isSelectUser = this.users.map((user, idx) => {
       const isUserSelected = this.selectedUsers.some((userToSend) => userToSend.id === user.id);
       return { idx, isSelected: isUserSelected };
     });
-  }
+  };
 
-  onToggleSelectUser(idx: number) {
+  onToggleSelectUser(idx: number): void {
     if (this.type !== 'share-modal') return;
     this.isSelectUser[idx].isSelected = !this.isSelectUser[idx].isSelected;
     if (this.isSelectUser[idx].isSelected) {
       this.addUser.emit(this.users[idx]);
     } else {
       this.removeUser.emit(this.users[idx]);
-    }
-  }
+    };
+  };
 
-  onToggleModal(el: string, user?: MiniUser) {
+  onToggleModal(el: string, user?: MiniUser): void {
     switch (el) {
       case 'share-modal':
         this.isShareModalShown = !this.isShareModalShown;
@@ -105,20 +108,20 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
         if (this.isChatOptionsModalShown) this.isChatOptionsModalShown = false;
         if (this.isShareModalShown) this.isShareModalShown = false;
         break;
-    }
+    };
 
     this.isMainScreenShown = !this.isMainScreenShown;
-  }
+  };
 
-  onRemoveUser(idx: number) {
+  onRemoveUser(idx: number): void {
     this.removeUser.emit(this.users[idx]);
-  }
+  };
 
-  onAddChatMembers(chatMembers: MiniUser[]) {
+  onAddChatMembers(chatMembers: MiniUser[]): void {
     this.users = [...this.users, ...chatMembers];
-  }
+  };
 
-  setTitle() {
+  setTitle(): void {
     switch (this.type) {
       case 'home-page-suggestion-list':
         this.title = 'Suggestion For You';
@@ -141,20 +144,16 @@ export class UserListComponent implements OnInit, OnChanges, OnDestroy {
       case 'following-list':
         this.title = '';
         break;
-      case 'search-list':
-        this.title = 'Search Results';
-        break;
       case 'search-bar-list':
         this.isTitle = false;
         break;
       default:
         this.isTitle = false;
         break;
-    }
+    };
+  };
 
-  }
-
-  ngOnDestroy() {
-    this.sub?.unsubscribe()
-  }
-}
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
+  };
+};

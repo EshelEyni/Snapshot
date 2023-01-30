@@ -26,6 +26,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
 
   @ViewChildren('link') links!: QueryList<ElementRef>;
   @ViewChildren('svgIcon') icons!: QueryList<SvgIconComponent>;
+  
   loggedinUser$: Observable<User | null>;
   loggedinUser!: User;
   isBtnClicked = { search: false, create: false, notification: false, more: false }

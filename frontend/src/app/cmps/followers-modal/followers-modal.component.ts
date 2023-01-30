@@ -7,7 +7,7 @@ import { UserService } from 'src/app/services/user.service';
   selector: 'followers-modal',
   templateUrl: './followers-modal.component.html',
   styleUrls: ['./followers-modal.component.scss'],
-  inputs: ['loggedinUser'],
+  inputs: ['user'],
   outputs: ['close']
 })
 
@@ -17,12 +17,12 @@ export class FollowersModalComponent implements OnInit {
 
   userService = inject(UserService);
   close = new EventEmitter();
-  loggedinUser!: User;
+  user!: User;
   users: MiniUser[] = [];
   faX = faX;
 
   async ngOnInit() {
-    this.users = await this.userService.getFollowers(this.loggedinUser.id);
+    this.users = await this.userService.getFollowers(this.user.id);
   }
 
   onCloseModal() {

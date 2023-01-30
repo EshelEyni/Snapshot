@@ -1,5 +1,4 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
 ::ng-deep .user-list {
@@ -86,13 +85,10 @@
         left: 50%;
         transform: translate(-50%, -50%);
 
-
         p {
             font-size: rem(14px);
             color: var(--secondary-color);
             text-transform: capitalize;
         }
-
-
     }
 }

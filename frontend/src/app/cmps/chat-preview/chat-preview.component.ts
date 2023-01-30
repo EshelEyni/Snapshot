@@ -10,10 +10,10 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 })
 export class ChatPreviewComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  constructor() { };
 
-  chat!: Chat;
   loggedinUser!: User;
+  chat!: Chat;
   imgUrlList!: string[];
   memberNameList!: string[];
 
@@ -24,12 +24,10 @@ export class ChatPreviewComponent implements OnInit, OnChanges {
     this.memberNameList = filteredMembers.map(m => m.fullname);
   }
 
-  ngOnChanges() {
-    
+  ngOnChanges(): void {
     const { members } = this.chat;
     const filteredMembers = members.filter(m => m.id !== this.loggedinUser.id);
     this.imgUrlList = filteredMembers.map(m => m.imgUrl).slice(0, this.chat.isGroup ? 2 : 1);
     this.memberNameList = filteredMembers.map(m => m.fullname);
-  }
-
-}
+  };
+};

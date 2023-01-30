@@ -4,7 +4,6 @@ import { Post } from './../../models/post.model';
 import { Component, OnInit, inject, EventEmitter } from '@angular/core';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 
-
 @Component({
   selector: 'like-modal',
   templateUrl: './like-modal.component.html',
@@ -14,7 +13,7 @@ import { faX } from '@fortawesome/free-solid-svg-icons';
 })
 export class LikeModalComponent implements OnInit {
 
-  constructor() { }
+  constructor() { };
 
   faX = faX;
 
@@ -26,12 +25,11 @@ export class LikeModalComponent implements OnInit {
   close = new EventEmitter();
 
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     this.users = await this.postService.getUsersWhoLiked(this.post.id);
-  }
+  };
 
-  onCloseModal() {
+  onCloseModal(): void {
     this.close.emit();
-  }
-
-}
+  };
+};

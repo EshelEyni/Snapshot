@@ -1,5 +1,5 @@
 import { CanvasTxt } from './../../models/canvas.model';
-import { ViewChild, ElementRef, OnChanges, EventEmitter, AfterViewInit } from '@angular/core';
+import { ViewChild, ElementRef, EventEmitter, AfterViewInit } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,14 +11,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TxtInputComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  constructor() { };
   @ViewChild('txtInput') txtInput!: ElementRef;
 
-  close = new EventEmitter<string>();
-  addTxt = new EventEmitter<{}>();
-
-  fontSize: number = 35;
   txtToEdit!: CanvasTxt;
+  fontSize: number = 35;
 
   txt = {
     str: '',
@@ -32,47 +29,46 @@ export class TxtInputComponent implements OnInit, AfterViewInit {
     isDragging: false
   };
 
+  close = new EventEmitter<string>();
+  addTxt = new EventEmitter<{}>();
 
   ngOnInit(): void {
     if (this.txtToEdit) {
       this.txt = this.txtToEdit;
       this.fontSize = +this.txtToEdit.style['font-size'].slice(0, -2);
-    }
-  }
+    };
+  };
 
   ngAfterViewInit(): void {
     this.txtInput.nativeElement.focus();
-  }
+  };
 
-
-  onColorChange(color: string) {
+  onColorChange(color: string): void {
     this.txt.style.color = color;
     this.txtInput.nativeElement.focus();
-  }
+  };
 
-  onChangeFontSize(ev: number | null) {
+  onChangeFontSize(ev: number | null): void {
     if (!ev) return;
     this.fontSize += ev;
     this.txt.rect.height = this.fontSize;
     this.txt.style['font-size'] = this.fontSize + 'px';
-    // this.txtInput.nativeElement.focus();
-  }
+  };
 
-  onFontChange(font: string) {
+  onFontChange(font: string): void {
     this.txt.style['font-family'] = font;
     this.txtInput.nativeElement.focus();
-  }
+  };
 
-  onAddTxt() {
+  onAddTxt(): void {
     if (!this.txt.str) {
       this.close.emit('txt');
       return;
-    }
+    };
     this.addTxt.emit(this.txt);
-  }
+  };
 
-  onClose() {
+  onClose(): void {
     this.close.emit('txt');
-  }
-
-}
+  };
+};

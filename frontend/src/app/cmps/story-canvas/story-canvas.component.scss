@@ -1,16 +1,13 @@
 @import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/vars';
 @import '../../../assets/styles/setup/mixins';
 
 ::ng-deep .canvas {
     position: relative;
     display: flex;
-
     height: 100%;
     width: 100%;
 
     .main-container {
-
         .canvas-container {
             position: relative;
             width: 100%;
@@ -103,8 +100,6 @@
         align-items: center;
 
         .main-container {
-
-
             .canvas-container {
                 position: relative;
                 width: 515px;
