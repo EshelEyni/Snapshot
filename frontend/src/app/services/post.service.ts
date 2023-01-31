@@ -25,7 +25,7 @@ export class PostService {
 
   httpService = inject(HttpService);
 
-  baseUrl = this.httpService.getBaseUrl();
+  baseUrl: '/api' | '//localhost:3030/api' = this.httpService.getBaseUrl();
 
   public async loadPosts(
     filterBy: {

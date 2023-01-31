@@ -5,7 +5,6 @@ import { map, catchError, switchMap, tap } from 'rxjs/operators';
 import { UserService } from '../services/user.service';
 import { UserAction, SAVE_USER, ADDED_USER, UPDATED_USER, LOAD_USERS, LOADED_USERS, REMOVE_USER, REMOVED_USER, LOAD_USER, LOADED_USER, SET_ERROR, LOAD_LOGGEDIN_USER, LOADED_LOGGEDIN_USER } from './actions/user.actions';
 
-// Nice way to test error handling? localStorage.clear() after users are presented 
 @Injectable()
 export class AppEffects {
 

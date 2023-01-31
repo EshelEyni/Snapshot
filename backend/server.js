@@ -21,24 +21,26 @@ const followingRoutes = require('./api/following/following.routes')
 const searchRoutes = require('./api/search/search.routes')
 const chatRoutes = require('./api/chat/chat.routes.js')
 const messageRoutes = require('./api/message/message.routes.js')
+
 const storyArchiveService = require('./services/story-archive.service.js')
 const { setupSocketAPI } = require('./services/socket.service')
- 
+
 // Express App Config 
 app.use(cookieParser())
 app.use(express.json())
 app.use(express.static('public'))
 
+
+const setupAsyncLocalStorage = require('./middlewares/setupAls.middleware')
+app.all('*', setupAsyncLocalStorage)
+
 // cors
 if (process.env.NODE_ENV === 'production') {
-    // Express serve static files on production environment
     app.use(express.static(path.resolve(__dirname, 'public')))
 } else {
-    // Configuring CORS
     const corsOptions = {
-        // Make sure origin contains the url your frontend is running on
         origin: ['http://127.0.0.1:8080', 'http://localhost:8080', 'http://127.0.0.1:4200', 'http://localhost:4200'],
-        credentials: true
+        credentials: true,
     }
     app.use(cors(corsOptions))
 }

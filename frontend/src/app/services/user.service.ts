@@ -1,4 +1,3 @@
-import { CommunicationService } from 'src/app/services/communication.service';
 import { HttpClient } from '@angular/common/http'
 import { StorageService } from './storage.service'
 import { User, MiniUser } from './../models/user.model'
@@ -9,7 +8,6 @@ import { UserState } from '../store/reducers/user.reducer'
 import { LoadingUsers } from '../store/actions/user.actions'
 import { HttpService } from './http.service';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -19,7 +17,6 @@ export class UserService {
   constructor(
     private store: Store<UserState>,
     private storageService: StorageService,
-    private communicationService: CommunicationService,
     private http: HttpClient,
     private httpService: HttpService,
   ) { };
@@ -85,58 +82,6 @@ export class UserService {
     return this.http.put(`${this.baseUrl}/user`, user) as unknown as Observable<User>;
   };
 
-  public async login(userCred: { username: string; password: string }): Promise<string | null | void> {
-    try {
-      const user = await firstValueFrom(
-        this.http.post<User>(`${this.baseUrl}/auth/login`, userCred),
-      );
-      if (!user) return;
-      this.storageService.saveToStorage('loggedinUser', {
-        id: user.id,
-        fullname: user.fullname,
-        username: user.username,
-        imgUrl: user.imgUrl,
-      });
-      return 'User logged in successfully';
-    } catch (error) {
-      this.communicationService.setUserMsg('Invalid username or password');
-      return null;
-    };
-  };
-
-  public async signup(userCred: {
-    email: string
-    fullname: string
-    username: string
-    password: string
-  }): Promise<string | null | void> {
-    userCred.username = userCred.username.trim();
-    try {
-
-      const addedUser = await lastValueFrom(
-        this.http.post<User>(`${this.baseUrl}/auth/signup`, userCred),
-      );
-
-      this.storageService.saveToStorage('loggedinUser', {
-        id: addedUser.id,
-        fullname: addedUser.fullname,
-        username: addedUser.username,
-        imgUrl: this.getDefaultUserImgUrl(),
-      });
-
-      return 'User added successfully';
-    } catch (error) {
-      this.communicationService.setUserMsg(`Username ${userCred.username} already exists!`);
-      return null;
-    };
-  };
-
-  public async logout(): Promise<void> {
-    await firstValueFrom(
-      this.http.post(`${this.baseUrl}/auth/logout`, {}),
-    );
-    this.storageService.saveToStorage('loggedinUser', null);
-  };
 
   public async checkPassword(newPassword: string, password: string, userId: number): Promise<string> {
     const options = {
@@ -148,17 +93,18 @@ export class UserService {
     };
     const res: { hashedPassword: string } = await lastValueFrom(
       this.http.get<{ hashedPassword: string }>(
-        `${this.baseUrl}/auth/check-password`, options
+        `${this.baseUrl}/user/check-password`, options
       )
     );
     return res.hashedPassword;
   };
 
   public async checkIfUsernameTaken(username: string): Promise<boolean> {
-    const options = { params: { username: username.trim() } };
+    const options = { withCredentials: true };
+    const trimmedUsername = username.trim();
     const res: { chekIfUsernameTaken: boolean } = await lastValueFrom(
       this.http.get<{ chekIfUsernameTaken: boolean }>(
-        `${this.baseUrl}/auth/check-username`, options
+        `${this.baseUrl}/user/check-username/${trimmedUsername}`, options
       )
     );
     return res.chekIfUsernameTaken;

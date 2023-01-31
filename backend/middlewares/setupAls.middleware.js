@@ -4,11 +4,10 @@ const asyncLocalStorage = require('../services/als.service')
 async function setupAsyncLocalStorage(req, res, next) {
   const storage = {}
   asyncLocalStorage.run(storage, async () => {
-    if (!req.cookies) return await next()
+    const alsStore = asyncLocalStorage.getStore()
+    if (!req.cookies.loginToken) return await next()
     const loggedinUser = await authService.validateToken(req.cookies.loginToken)
-
     if (loggedinUser) {
-      const alsStore = asyncLocalStorage.getStore()
       alsStore.loggedinUser = loggedinUser
     }
     await next()
@@ -16,4 +15,3 @@ async function setupAsyncLocalStorage(req, res, next) {
 }
 
 module.exports = setupAsyncLocalStorage
-

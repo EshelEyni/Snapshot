@@ -34,7 +34,6 @@ export function reducer(state: UserState = initialState, action: any): UserState
     case LOADED_USER: {
       const { user } = action;
       return { ...state, user, error: '' };
-
     }
     case LOADED_LOGGEDIN_USER: {
       const { user } = action;
@@ -44,7 +43,6 @@ export function reducer(state: UserState = initialState, action: any): UserState
       const { userId } = action;
       const users = state.users.filter(user => user.id !== userId)
       return { ...state, users, error: '' };
-
     }
     case ADDED_USER: {
       const { user } = action;

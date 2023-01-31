@@ -14,7 +14,7 @@ export class LocationService {
   http = inject(HttpClient)
   httpService = inject(HttpService);
 
-  baseUrl = this.httpService.getBaseUrl();
+  baseUrl: '/api' | '//localhost:3030/api' = this.httpService.getBaseUrl();
 
   async getLocations(searchTerm?: string): Promise<Location[]> {
     const locations = await lastValueFrom(

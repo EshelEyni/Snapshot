@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { HttpClient } from '@angular/common/http';
 import { PostService } from 'src/app/services/post.service';
 import { MiniUser } from './../models/user.model';
@@ -21,6 +22,7 @@ export class CommentService {
   postService = inject(PostService);
   http = inject(HttpClient);
   httpService = inject(HttpService);
+  cookieService = inject(CookieService);
 
   baseUrl = this.httpService.getBaseUrl();
 
@@ -52,9 +54,15 @@ export class CommentService {
   };
 
   public async remove(commentId: number): Promise<{ msg: string } | void> {
+    const options = {
+      withCredentials: true,
+      headers: {
+        'loginToken': this.cookieService.get('loginToken'),
+      }
+    }
     const res = await firstValueFrom(
-      this.http.delete(`${this.baseUrl}/comment/${commentId}`)
-    ) as { msg: string };
+      this.http.delete(`${this.baseUrl}/comment/${commentId}`, options)
+    ) as unknown as { msg: string };
 
     return res;
   };

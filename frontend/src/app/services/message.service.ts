@@ -20,7 +20,7 @@ export class MessageService {
   socketService = inject(SocketService);
   httpService = inject(HttpService);
 
-  baseUrl = this.httpService.getBaseUrl();
+  baseUrl: '/api' | '//localhost:3030/api' = this.httpService.getBaseUrl();
 
   public async loadMessages(chatId: number): Promise<void> {
     let messages = await firstValueFrom(

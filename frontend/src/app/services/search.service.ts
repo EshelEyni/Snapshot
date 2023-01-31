@@ -20,7 +20,7 @@ export class SearchService {
   http = inject(HttpClient);
   httpService = inject(HttpService);
 
-  baseUrl = this.httpService.getBaseUrl();
+  baseUrl: '/api' | '//localhost:3030/api' = this.httpService.getBaseUrl();
 
 
   public async search(searchTerm: string): Promise<{ users: User[], tags: Tag[] }> {

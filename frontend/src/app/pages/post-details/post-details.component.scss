@@ -171,7 +171,8 @@
 
         .date-container {
             padding-bottom: rem(20px);
-            p{
+
+            p {
                 cursor: pointer;
             }
         }
@@ -186,6 +187,16 @@
 
             .post-creator {
                 border-radius: 5px 5px 0 0;
+            }
+
+            .btn-pagination {
+                top: 50%;
+                transform: translate(-50%);
+
+                fa-icon {
+                    font-size: rem(28px);
+                    color: white;
+                }
             }
         }
     }
@@ -291,7 +302,6 @@
                 }
 
                 .btn-pagination {
-
                     &.prev {
                         left: 5%;
                     }
@@ -366,6 +376,17 @@
             .post {
 
                 width: fit-content;
+
+
+                .btn-pagination {
+                    &.prev {
+                        left: 10%;
+                    }
+
+                    &.next {
+                        left: 90%;
+                    }
+                }
             }
         }
     }

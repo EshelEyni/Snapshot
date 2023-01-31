@@ -18,8 +18,9 @@ async function getComments(req, res) {
 }
 
 async function getComment(req, res) {
+    const commentId = req.params.id
     try {
-        const comment = await commentService.getById(req.params.id)
+        const comment = await commentService.getById(commentId)
         res.send(comment)
     } catch (err) {
         logger.error('Failed to get comment', err)
@@ -28,9 +29,9 @@ async function getComment(req, res) {
 }
 
 async function deleteComment(req, res) {
-    console.log('req.params.id', req.params.id)
+    const commentId = req.params.id
     try {
-        await commentService.remove(req.params.id)
+        await commentService.remove(commentId)
         res.send({ msg: 'Comment deleted' })
     } catch (err) {
         logger.error('Failed to delete comment', err)

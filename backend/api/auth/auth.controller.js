@@ -1,5 +1,4 @@
 const authService = require('./auth.service')
-const userService = require('../user/user.service')
 const logger = require('../../services/logger.service')
 
 async function login(req, res) {
@@ -9,7 +8,6 @@ async function login(req, res) {
         const loginToken = authService.getLoginToken(user)
         logger.info('User login: ', user, loginToken)
         res.cookie('loginToken', loginToken)
-
         res.json(user)
     } catch (err) {
         logger.error('Failed to Login ' + err)
@@ -20,10 +18,9 @@ async function login(req, res) {
 async function signup(req, res) {
     try {
         const { username, password, fullname, email } = req.body
-        const id = await authService.signup(username, password, fullname, email)
+        await authService.signup(username, password, fullname, email)
         logger.debug(`auth.route - new account created: ` + JSON.stringify(username, email))
-        await authService.login(username, password)
-        const user = await userService.getById(id)
+        const user = await authService.login(username, password)
         const loginToken = authService.getLoginToken(user)
         logger.info('User login: ', user)
         res.cookie('loginToken', loginToken)
@@ -43,31 +40,8 @@ async function logout(req, res) {
     }
 }
 
-async function checkPassword(req, res) {
-    try {
-        const { newPassword, password, userId } = req.query;
-        const hashedPassword = await authService.checkPassword(userId, password, newPassword)
-        res.send({ hashedPassword })
-    } catch (err) {
-        res.status(500).send({ err: 'Failed to check password' })
-    }
-}
-
-async function chekIfUsernameTaken(req, res) {
-    try {
-        const { username } = req.query;
-        const chekIfUsernameTaken = await authService.chekIfUsernameTaken(username)
-        res.send({ chekIfUsernameTaken })
-    } catch (err) {
-        res.status(500).send({ err: 'Failed to check if user exists' })
-    }
-}
-
-
 module.exports = {
     login,
     signup,
     logout,
-    checkPassword,
-    chekIfUsernameTaken
 }

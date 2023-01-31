@@ -50,7 +50,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
 
   comments!: Comment[];
 
-  classForPost = 'post';
+  classForPost:'post' | 'post for-wide-img' | 'post for-narrow-img' = 'post';
   currIdx: number = 0;
 
   isShareModalShown: boolean = false;
@@ -178,6 +178,13 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   onAddComment(comment: Comment): void {
     this.comments = [comment, ...this.comments]
   }
+
+  onRemoveComment(commentId: number): void {
+    this.comments = this.comments.filter(c => c.id !== commentId);
+    this.post.commentSum--;
+    // this.post = { ...this.post };
+    this.postService.save(this.post);
+  };
 
   onGoBack(): void {
     this.$location.back();

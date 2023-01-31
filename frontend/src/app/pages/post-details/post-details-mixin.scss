@@ -29,7 +29,7 @@
 
         border-left: var(--border-color) solid 1px;
         border-bottom: var(--border-color) solid 1px;
-        border-radius: 0 0 0 5px;
+        border-radius: 0;
     }
 
     .comment-list-container {
@@ -38,10 +38,8 @@
         display: inline-block;
         border-left: var(--border-color) solid 1px;
         border-bottom: var(--border-color) solid 1px;
-        border-radius: 5px 0 0 0;
+        border-radius: 0;
         position: relative;
-
-
 
         .comment-list {
             display: flex;
@@ -60,7 +58,7 @@
             @include scrollbar-hidden;
 
             >* {
-               width: 100%;
+                width: 100%;
 
                 &:hover {
                     .ellipsis {

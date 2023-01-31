@@ -1,5 +1,7 @@
 const logger = require('../../services/logger.service')
-const db = require('../../database');
+const asyncLocalStorage = require('../../services/als.service')
+const db = require('../../database')
+
 
 async function query(queryParams) {
     try {
@@ -11,10 +13,17 @@ async function query(queryParams) {
                     const followingIds = following.map(f => f.userId);
                     const suggestedByFollowing = await db.query(
                         `select * from users
-                    where id in (select userId from following where followerId in (${followingIds.join(',')}))
-                    and id != $id
-                    order by username`, { $id: userId });
-                    if (suggestedByFollowing.length > 0) return suggestedByFollowing;
+                         where id in (select userId from following where followerId in (${followingIds.join(',')}))
+                         and id != $id
+                         order by username`, { $id: userId });
+
+                    if (suggestedByFollowing.length > 0) {
+                        const users = suggestedByFollowing.map(u => {
+                            delete u.password;
+                            return u;
+                        });
+                        return users;
+                    }
                     else {
                         const randomUsers = await db.query(
                             `select * from users
@@ -24,10 +33,14 @@ async function query(queryParams) {
                             $id: userId,
                             $limit: limit
                         });
-                        return randomUsers;
+                        return randomUsers.map(u => {
+                            delete u.password
+                            return u
+                        })
                     }
                 });
             }
+
             return await db.query(`select * from users order by username`);
         }
         else {
@@ -77,7 +90,8 @@ async function getById(userId) {
             }
 
             const currStoryId = stories[0]
-            user.currStoryId = currStoryId.id;
+            user.currStoryId = currStoryId.id
+            delete user.password
             return user
         });
 
@@ -94,6 +108,24 @@ async function getByUsername(username) {
             throw 'user with name ' + username + ' was not found';
         }
         const user = users[0];
+        user.isDarkMode = !!user.isDarkMode;
+
+        const stories = await db.query(
+            `select * from stories 
+                where userId = $id 
+                and isArchived = 0
+                order by createdAt asc
+                limit 1 `, { $id: user.id })
+
+        if (!stories.length) {
+            user.currStoryId = null;
+            return user
+        }
+
+        const currStoryId = stories[0]
+        user.currStoryId = currStoryId.id
+        delete user.password
+
         return user
     } catch (err) {
         logger.error(`while finding user ${username}`, err)
@@ -188,6 +220,37 @@ async function add(user) {
     }
 }
 
+async function chekIfUsernameTaken(username) {
+    try {
+        const users = await db.query(`select * from users where username = $username`, { $username: username });
+        return users.length > 0
+    } catch (err) {
+        logger.error(`while finding user ${username}`, err)
+        throw err
+    }
+}
+
+async function checkPassword(userId, password, newPassword) {
+    try {
+
+        const users = await db.query(`select * from users where id = $userId`, { $userId: userId });
+        if (!users.length) {
+            throw 'user with id ' + userId + ' was not found';
+        }
+        const user = users[0];
+        const isMatch = password === user.password;
+        if (!isMatch) {
+            throw 'wrong password';
+        }
+        const saltRounds = 10
+        const hashedPassword = await bcrypt.hash(newPassword, saltRounds)
+        return hashedPassword;
+    } catch (err) {
+        logger.error(`while checking user with ${userId} password`, err)
+        throw err
+    }
+}
+
 
 module.exports = {
     query,
@@ -195,5 +258,7 @@ module.exports = {
     getByUsername,
     remove,
     update,
-    add
+    add,
+    chekIfUsernameTaken,
+    checkPassword
 }

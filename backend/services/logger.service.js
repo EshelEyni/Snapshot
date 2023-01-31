@@ -25,7 +25,7 @@ function doLog(level, ...args) {
 
     var line = strs.join(' | ')
     const store = asyncLocalStorage.getStore()
-    const userId = store?.loggedinUser?._id
+    const userId = store?.loggedinUser?.id
     const str = userId ? `(userId: ${userId})` : ''
     line = `${getTime()} - ${level} - ${line} ${str}\n`
 

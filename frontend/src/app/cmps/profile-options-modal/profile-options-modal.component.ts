@@ -1,4 +1,4 @@
-import { UserService } from './../../services/user.service';
+import { AuthService } from './../../services/auth.service';
 import { LoadLoggedInUser } from './../../store/actions/user.actions';
 import { Component, EventEmitter, OnInit, inject } from '@angular/core';
 import { User } from 'src/app/models/user.model';
@@ -20,7 +20,7 @@ export class ProfileOptionsModalComponent implements OnInit {
   constructor() { }
   router = inject(Router)
   store = inject(Store<State>)
-  userService = inject(UserService)
+  authService = inject(AuthService)
   
   faChevronLeft = faChevronLeft;
   
@@ -63,7 +63,7 @@ export class ProfileOptionsModalComponent implements OnInit {
 
   onLogout(): void {
     this.store.dispatch(new LoadLoggedInUser(0));
-    this.userService.logout();
+    this.authService.logout();
     this.router.navigate(['/login']);
   };
 };

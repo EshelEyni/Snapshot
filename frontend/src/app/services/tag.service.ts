@@ -24,7 +24,7 @@ export class TagService {
   http = inject(HttpClient);
   httpService = inject(HttpService);
 
-  baseUrl = this.httpService.getBaseUrl();
+  baseUrl: '/api' | '//localhost:3030/api' = this.httpService.getBaseUrl();
 
   public async loadTags(filterBy = { name: '' }): Promise<void> {
     const tags = await lastValueFrom(this.getTags(filterBy));

@@ -1,8 +1,8 @@
+import { AuthService } from './../../services/auth.service';
 import { SvgIconComponent } from 'angular-svg-icon';
 import { LoadLoggedInUser, SaveUser } from './../../store/actions/user.actions';
 import { Store } from '@ngrx/store';
 import { State } from './../../store/store';
-import { UserService } from './../../services/user.service';
 import { User } from './../../models/user.model';
 import { Router } from '@angular/router';
 import { Component, OnInit, inject, ViewChildren, QueryList } from '@angular/core';
@@ -20,7 +20,7 @@ export class SideBarOptionsModalComponent implements OnInit {
   @ViewChildren('svgIcon') icons!: QueryList<SvgIconComponent>;
 
   router = inject(Router);
-  userService = inject(UserService);
+  authService = inject(AuthService);
   store = inject(Store<State>);
 
   loggedinUser!: User;
@@ -73,7 +73,7 @@ export class SideBarOptionsModalComponent implements OnInit {
 
   onLogout(): void {
     this.store.dispatch(new LoadLoggedInUser(0));
-    this.userService.logout();
+    this.authService.logout();
     this.router.navigate(['/login']);
   };
 };

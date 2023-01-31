@@ -18,7 +18,7 @@ export class NotificationService {
 
   httpService = inject(HttpService);
 
-  baseUrl = this.httpService.getBaseUrl();
+  baseUrl: '/api' | '//localhost:3030/api' = this.httpService.getBaseUrl();
 
   userService = inject(UserService);
   http = inject(HttpClient);

@@ -25,7 +25,7 @@
 
     <div class="comment-list-container">
       <comment-list *ngIf="post.commentSum; else noComments" [comments]="comments" [loggedinUser]="loggedinUser"
-        [type]="'post-details'"></comment-list>
+        [type]="'post-details'"  (commentRemoved)="onRemoveComment($event)"></comment-list>
       <ng-template #noComments>
         <div class="no-comments-msg-container">
           <h2 class="no-comments">No comments yet.</h2>
