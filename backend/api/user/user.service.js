@@ -7,6 +7,20 @@ async function query(queryParams) {
         if (!queryParams.searchTerm) {
             const { userId, type, limit } = queryParams;
             if (type === 'suggested') {
+                /*
+select * from users 
+where id in (
+    select dst.toUserId 
+    from follow as src
+        join follow as dst 
+            on src.toUserId = dst.fromUserId
+    where src.fromUserId = 1
+) and id not in (
+    select toUserId 
+    from follow where fromUserId = 1 
+)
+order by username
+*/
                 return await db.txn(async () => {
                     const following = await db.query(`select * from following where followerId = $id`, { $id: userId });
                     const followingIds = following.map(f => f.userId);
@@ -43,20 +57,15 @@ async function query(queryParams) {
             return await db.query(`select * from users order by username`);
         }
         else {
-
             const users = await db.query(
                 `select * from users 
-             where username like $searchTerm
-             or email like $searchTerm 
-             or bio like $searchTerm
-             order by username`, { $searchTerm: queryParams.searchTerm + '%' });
-
-            // return await db.query(
-            //         `SELECT * FROM users 
-            // WHERE username REGEXP $searchTerm
-            // OR email REGEXP $searchTerm 
-            // OR bio REGEXP $searchTerm
-            // ORDER BY username`, '.*' + queryParams.searchTerm + '.*');
+                where username like $searchTerm
+                or email like $searchTerm 
+                or bio like $searchTerm
+                order by username`,
+                {
+                    $searchTerm: queryParams.searchTerm + '%'
+                });
 
             return users;
         }

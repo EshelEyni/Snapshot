@@ -34,7 +34,7 @@ async function query(filter) {
 
                 case 'taggedPosts':
                     const tags = await db.query(`select id from tags where name = $username`, { $username: filter.username });
-                    if(!tags.length) return Promise.resolve([]);
+                    if (!tags.length) return Promise.resolve([]);
                     const tagId = tags[0].id;
                     let taggedPostsIds = await db.query(
                         `select postId from postTags where tagId = $tagId`, {
@@ -174,6 +174,11 @@ async function remove(postId) {
             await db.exec(`delete from savedPosts where postId = $id`, { $id: postId });
             await db.exec(`delete from postTags where postId = $id`, { $id: postId });
             await db.exec(`delete from postsImgs where postId = $id`, { $id: postId });
+            /*
+            delete from commentsLikedBy where commentId in (
+                select id from comments where postId = $id
+            )
+            */
             const comments = await db.query(`select id from comments where postId = $id`, { $id: postId });
             for (const comment of comments) {
                 await db.exec(`delete from commentsLikedBy where commentId = $id`, { $id: comment.id });

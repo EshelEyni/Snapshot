@@ -614,3 +614,29 @@
 3.2.2023, 12:57:34 - ERROR - Failed to Login user with name eshel was not found 
 3.2.2023, 12:57:49 - DEBUG - auth.service - login with username: Eshel 
 3.2.2023, 12:57:49 - INFO - User login:  | {"id":1,"username":"Eshel","fullname":"Eshel Eyni","email":"esheleyni@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1674947349/iygilawrooz36soschcq.png","gender":"","phone":"","bio":"","website":"","followersSum":1,"followingSum":0,"postSum":2,"isDarkMode":false,"storySum":0,"currStoryId":null} | 975ca0b215d9618f7433cd679f1f5ff1be5ad6757eb91407591dc091ecdf5061f409f2ab812f04ea37e4f27f35fca47ae4643740231ca3dd77a9b8894ea142acf7f9d36a5e7cda9c0b48256404c60c1994bf08d6d88c2056983e81e2916b45fe74 
+3.2.2023, 13:57:26 - INFO - Server is running on port: 3030 
+3.2.2023, 13:57:27 - INFO - New connected socket [id: PMsIMDKfoEaviM6UAAAB] 
+3.2.2023, 13:57:40 - INFO - Server is running on port: 3030 
+3.2.2023, 13:57:42 - INFO - New connected socket [id: k9Kiaz7nG15FPI6dAAAB] 
+3.2.2023, 13:57:54 - INFO - Server is running on port: 3030 
+3.2.2023, 13:57:56 - INFO - New connected socket [id: qdtFkQwFeSr8K3DeAAAB] 
+3.2.2023, 13:59:27 - INFO - Server is running on port: 3030 
+3.2.2023, 13:59:28 - INFO - New connected socket [id: nQGFu0w86SCM84ZUAAAB] 
+3.2.2023, 13:59:30 - INFO - Server is running on port: 3030 
+3.2.2023, 13:59:31 - INFO - New connected socket [id: OLccFSCj1HT3FRlTAAAB] 
+3.2.2023, 13:59:49 - INFO - Server is running on port: 3030 
+3.2.2023, 13:59:51 - INFO - New connected socket [id: M3lCp1n2l5L57udwAAAB] 
+3.2.2023, 14:10:35 - INFO - Server is running on port: 3030 
+3.2.2023, 14:10:37 - INFO - New connected socket [id: UKcKibfn_zTRgaodAAAB] 
+3.2.2023, 14:13:07 - INFO - Server is running on port: 3030 
+3.2.2023, 14:13:09 - INFO - New connected socket [id: q3JIM8W9phPZq_UCAAAB] 
+3.2.2023, 14:13:39 - INFO - Server is running on port: 3030 
+3.2.2023, 14:13:40 - INFO - New connected socket [id: Ne4_vLsCf3COepulAAAB] 
+3.2.2023, 14:42:04 - INFO - Server is running on port: 3030 
+3.2.2023, 14:42:06 - INFO - New connected socket [id: ZweRT04Wen4VktmKAAAB] 
+3.2.2023, 14:42:08 - INFO - Server is running on port: 3030 
+3.2.2023, 14:42:10 - INFO - New connected socket [id: X2tge9kFWLK-ZM7VAAAB] 
+3.2.2023, 14:46:12 - INFO - Server is running on port: 3030 
+3.2.2023, 14:46:14 - INFO - New connected socket [id: JuCI3ppGu_dm5bmJAAAB] 
+3.2.2023, 14:48:08 - INFO - Server is running on port: 3030 
+3.2.2023, 14:48:09 - INFO - New connected socket [id: EtOwDSPoHUpKeP5uAAAB] 

@@ -149,9 +149,13 @@ async function updateChat(chat, userId) {
             const membersIdsToDelete = savedMembersIds.map(m => m.userId).filter(id => !membersIdsSet.has(id));
             if (membersIdsToDelete.length) {
                 console.log('membersIdsToDelete', membersIdsToDelete);
-                await db.exec(`delete from chatMembers where chatId = $chatId and userId in (${membersIdsToDelete.join(',')})`,
-                    { $chatId: id }
-                );
+                for (let i = 0; i < membersIdsToDelete.length; i++) {
+                    await db.exec("delete from chatMembers where chatId = $chatId and userId = $userId",
+                        {
+                            $chadId: id,
+                            $userId: membersIdsToDelete[i]
+                        });
+                }
             }
 
             const savedMembersIdsSet = new Set(savedMembersIds.map(m => m.userId));
@@ -280,7 +284,7 @@ async function addChat(members) {
         logger.error('cannot add chat', err)
         throw err
     }
-} 
+}
 
 
 module.exports = {
