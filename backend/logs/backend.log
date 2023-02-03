@@ -588,3 +588,29 @@
 31.1.2023, 21:20:22 - INFO - New connected socket [id: 4ajwTbZv4kSEj-tvAAAD] 
 31.1.2023, 21:20:38 - INFO - Socket disconnected [id: undefined] 
 31.1.2023, 21:20:39 - INFO - New connected socket [id: _KOmHov-kJQMfO1KAAAF] 
+3.2.2023, 12:25:45 - INFO - Server is running on port: 3030 
+3.2.2023, 12:27:44 - INFO - New connected socket [id: 175mi73Z4gs7ZuiYAAAB] 
+3.2.2023, 12:42:42 - INFO - Server is running on port: 3030 
+3.2.2023, 12:42:43 - INFO - New connected socket [id: cqjeb4gCjEbgO6ylAAAB] 
+3.2.2023, 12:42:45 - INFO - Server is running on port: 3030 
+3.2.2023, 12:42:46 - INFO - New connected socket [id: IXfE5AEohpO9NNt9AAAB] 
+3.2.2023, 12:51:24 - INFO - Server is running on port: 3030 
+3.2.2023, 12:51:29 - INFO - New connected socket [id: UlslBoV2PrOMstbvAAAB] 
+3.2.2023, 12:53:25 - INFO - Server is running on port: 3030 
+3.2.2023, 12:53:27 - INFO - New connected socket [id: gitBUs9ccTpGxEW7AAAB] 
+3.2.2023, 12:54:05 - INFO - Server is running on port: 3030 
+3.2.2023, 12:54:05 - INFO - New connected socket [id: 3F1Z1D7mmq6NazuZAAAB] 
+3.2.2023, 12:54:28 - INFO - Server is running on port: 3030 
+3.2.2023, 12:54:28 - INFO - New connected socket [id: uDKPO8DGGmib5kiHAAAB] 
+3.2.2023, 12:54:44 - INFO - Server is running on port: 3030 
+3.2.2023, 12:54:44 - INFO - New connected socket [id: utcyaUPoTTXiIt4bAAAB] 
+3.2.2023, 12:56:50 - INFO - Server is running on port: 3030 
+3.2.2023, 12:56:50 - INFO - New connected socket [id: YQreDauyfcfvYPjmAAAB] 
+3.2.2023, 12:56:52 - INFO - Socket disconnected [id: undefined] 
+3.2.2023, 12:56:53 - INFO - New connected socket [id: v1oVaFICGE6nNic3AAAD] 
+3.2.2023, 12:57:19 - WARN - Not Authenticated 
+3.2.2023, 12:57:34 - DEBUG - auth.service - login with username: eshel 
+3.2.2023, 12:57:34 - ERROR - while finding user eshel | user with name eshel was not found 
+3.2.2023, 12:57:34 - ERROR - Failed to Login user with name eshel was not found 
+3.2.2023, 12:57:49 - DEBUG - auth.service - login with username: Eshel 
+3.2.2023, 12:57:49 - INFO - User login:  | {"id":1,"username":"Eshel","fullname":"Eshel Eyni","email":"esheleyni@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1674947349/iygilawrooz36soschcq.png","gender":"","phone":"","bio":"","website":"","followersSum":1,"followingSum":0,"postSum":2,"isDarkMode":false,"storySum":0,"currStoryId":null} | 975ca0b215d9618f7433cd679f1f5ff1be5ad6757eb91407591dc091ecdf5061f409f2ab812f04ea37e4f27f35fca47ae4643740231ca3dd77a9b8894ea142acf7f9d36a5e7cda9c0b48256404c60c1994bf08d6d88c2056983e81e2916b45fe74 

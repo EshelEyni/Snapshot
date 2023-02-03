@@ -1,7 +1,6 @@
 const logger = require('../../services/logger.service')
 const db = require('../../database');
 const noitificationService = require('../notification/notification.service')
-const asyncLocalStorage = require('../../services/als.service')
 
 async function query({ postId, userId, type }) {
     try {
@@ -92,18 +91,25 @@ async function getById(commentId) {
     }
 }
 
-async function remove(commentId) {
-    const store = asyncLocalStorage.getStore()
-    const { loggedinUser } = store
+async function remove(loggedinUser, commentId) {
     console.log('loggedinUser', loggedinUser)
     try {
         await db.txn(async () => {
             await db.exec(`delete from commentsLikedBy where commentId = $id and userId = $loggedinUserId`,
-                { $id: commentId, $loggedinUserId: loggedinUser.id });
-            await db.exec(`delete from comments where id = $id`, { $id: commentId });
-            await db.exec(`delete from notifications where entityId = $entityId and type = 'comment'`, {
-                $entityId: commentId,
-            })
+                {
+                    $id: commentId,
+                    $loggedinUserId: loggedinUser.id
+                });
+            await db.exec(`delete from notifications where entityId = $entityId and byUserId = $loggedinUserId and type = 'comment'`,
+                {
+                    $entityId: commentId,
+                    $loggedinUserId: loggedinUser.id
+                });
+            await db.exec(`delete from comments where id = $id and userId = $loggedinUserId`,
+                {
+                    $id: commentId,
+                    $loggedinUserId: loggedinUser.id
+                });
         })
     } catch (err) {
         logger.error(`cannot remove comment ${commentId}`, err)
