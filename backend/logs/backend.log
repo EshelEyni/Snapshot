@@ -588,3 +588,9 @@
 31.1.2023, 21:20:22 - INFO - New connected socket [id: 4ajwTbZv4kSEj-tvAAAD] 
 31.1.2023, 21:20:38 - INFO - Socket disconnected [id: undefined] 
 31.1.2023, 21:20:39 - INFO - New connected socket [id: _KOmHov-kJQMfO1KAAAF] 
+31.1.2023, 21:24:38 - INFO - Socket disconnected [id: undefined] 
+31.1.2023, 21:24:42 - INFO - Server is running on port: 3030 
+4.2.2023, 10:04:24 - INFO - Server is running on port: 3030 
+4.2.2023, 10:06:22 - INFO - New connected socket [id: ewG8d56xom4mxsIlAAAB] 
+4.2.2023, 10:06:30 - DEBUG - auth.service - login with username: tattookate 
+4.2.2023, 10:06:31 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":true,"storySum":1,"currStoryId":null} | 66194a65889f8942f56e9e71245db276f7015b7fe06d7a5f8eb998c7990f049303e6e3aeb201e9fda67cc91a8fc303671442af91c82436d604352d903662052a5f6dd6688f997bce991e1f5a498560168f3f284e1747817beb3498f276b7aa055e 
