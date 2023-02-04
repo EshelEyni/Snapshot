@@ -54,12 +54,7 @@ export class CommentService {
   };
 
   public async remove(commentId: number): Promise<{ msg: string } | void> {
-    const options = {
-      withCredentials: true,
-      headers: {
-        'loginToken': this.cookieService.get('loginToken'),
-      }
-    }
+    const options = { withCredentials: true }
     const res = await firstValueFrom(
       this.http.delete(`${this.baseUrl}/comment/${commentId}`, options)
     ) as unknown as { msg: string };

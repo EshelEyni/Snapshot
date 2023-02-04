@@ -1,13 +1,22 @@
 const logger = require('../services/logger.service')
-
+const authService = require('../api/auth/auth.service')
 async function requireAuth(req, res, next) {
-  if (!req?.cookies?.loginToken) {
+  let loginToken = req?.cookies?.loginToken;
+  console.log('req', req.originalUrl);
+  console.log('req?.cookies', req?.cookies);
+  if (!loginToken) {
     logger.warn('Not Authenticated')
     return res.status(401).send('Not Authenticated')
   }
+  const loggedinUser = await authService.validateToken(req.cookies.loginToken)
+  if (!loggedinUser) {
+    logger.warn('Bad auth token')
+    return res.status(401).send('Bad auth token')
+  }
+  req.loggedinUser = loggedinUser
   next()
 }
 
 module.exports = {
   requireAuth,
-}
+} 

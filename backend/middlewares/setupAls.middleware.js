@@ -8,7 +8,7 @@ async function setupAsyncLocalStorage(req, res, next) {
     if (!req.cookies.loginToken) return await next()
     const loggedinUser = await authService.validateToken(req.cookies.loginToken)
     if (loggedinUser) {
-      alsStore.loggedinUser = loggedinUser
+      alsStore.loggedinUser = loggedinUser // we can now easily expose the current user in the log
     }
     await next()
   })

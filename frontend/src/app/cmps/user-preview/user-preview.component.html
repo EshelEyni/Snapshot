@@ -1,4 +1,4 @@
-<section class="user-preview" (click)="setWatchedStory()" [ngClass]="storyViewClass" [class.edit-story]="type==='link-to-story-edit'">
+<section class="user-preview" [ngClass]="storyViewClass" [class.edit-story]="type==='link-to-story-edit'">
     <div class="img-container" routerLink="{{urlForImg}}" [class.disabled]="isUrlsDisabled">
         <img src={{user.imgUrl}} alt="user-img">
         <div class="plus-circle-container" *ngIf="isBtnPlusShown">

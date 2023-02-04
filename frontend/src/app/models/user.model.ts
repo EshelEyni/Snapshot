@@ -13,7 +13,8 @@ export interface User {
     followingSum: number;
     postSum: number;
     storySum: number;
-    currStoryId: number;
+    currStoryId: number | null;
+    isStoryViewed: boolean;
     isDarkMode: boolean;
 };
 
@@ -22,6 +23,8 @@ export interface MiniUser {
     fullname: string;
     username: string;
     imgUrl: string;
+    currStoryId: number | null;
+    isStoryViewed: boolean;
 };
 
 

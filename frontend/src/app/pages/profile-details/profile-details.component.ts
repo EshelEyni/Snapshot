@@ -35,19 +35,18 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   user!: User;
   loggedinUser$: Observable<User | null>;
   loggedinUser!: User;
-  isCurrUserLoggedInUser!: boolean;
   queryParamsSubscription!: Subscription;
-
+  
   postSub!: Subscription;
   posts: Post[] = [];
-
+  
   highlightsIconSize = window.innerWidth < 735 ? 30 : 45;
   postFilterIconSize = window.innerWidth < 735 ? 24 : 12;
-
+  
   listPosition: string = '0';
   highlightIdx: number = 0;
   userImgClass: string = '';
-
+  
   isOptionsModalShown = false;
   filterBy = { createdPosts: true, savedPosts: false, taggedPosts: false }
   isPaginationBtnShown = { left: false, right: false };
@@ -57,7 +56,8 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   isPostEditModalShown: boolean = false;
   isFollowersModalShown: boolean = false;
   isFollowingModalShown: boolean = false;
-
+  isLoggedinUserProfile!: boolean;
+  
   ngOnInit(): void {
     this.userSub = this.route.data.pipe(
       switchMap(data => {
@@ -80,8 +80,10 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
       )).subscribe(async user => {
         if (user) {
           this.loggedinUser = user;
-          this.isCurrUserLoggedInUser = this.user.id === this.loggedinUser.id;
+          this.isLoggedinUserProfile = this.user.id === this.loggedinUser.id;
           if (this.user.currStoryId) {
+            console.log('user has story');
+            
             const story = await lastValueFrom(
               this.storyService.getById(this.user.currStoryId, 'user-preview'),
             );

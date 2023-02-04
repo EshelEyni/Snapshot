@@ -26,9 +26,9 @@ export class UserPreviewComponent implements OnInit, OnChanges {
     | 'like-modal' | 'discover-people-list';
 
   user!: MiniUser;
-  story!: Story;
   chat!: Chat;
   location!: Location | null;
+  // story!: Story;
 
   desc!: string;
   title = '';
@@ -45,27 +45,7 @@ export class UserPreviewComponent implements OnInit, OnChanges {
   storyViewClass: '' | 'story-viewed' | 'story-not-viewed' = '';
   plusBtnSize: number = 16;
 
-  async ngOnInit(): Promise<void> {
-
-    if (!this.isStoryDisabled) {
-      const user = await lastValueFrom(this.userService.getById(this.user.id));
-      if (user && user.currStoryId) {
-        const story = await lastValueFrom(
-          this.storyService.getById(user.currStoryId, 'user-preview'),
-        );
-
-        const loggedinUser = this.userService.getLoggedinUser();
-        if (loggedinUser) {
-          this.isStoryViewed = story.viewedBy.some(u => u.id === loggedinUser.id);
-          this.storyViewClass = this.isStoryViewed ? 'story-viewed' : 'story-not-viewed';
-        }
-        this.story = story;
-      }
-    }
-    this.title = this.setTitle();
-    this.setDesc();
-    this.setUrls();
-  };
+  ngOnInit(): void { };
 
   ngOnChanges(): void {
     this.isBtnPlusShown = this.type === 'user-story-timer'
@@ -85,6 +65,10 @@ export class UserPreviewComponent implements OnInit, OnChanges {
       || this.type === 'chat-post-preview';
 
     if (this.isStoryDisabled) this.storyViewClass = '';
+    else if (this.user.currStoryId) {
+      this.storyViewClass = this.user.isStoryViewed ? 'story-viewed' : 'story-not-viewed';
+    }
+
     if (this.type === 'user-story-timer') this.plusBtnSize = 14;
 
     this.title = this.setTitle();
@@ -104,11 +88,11 @@ export class UserPreviewComponent implements OnInit, OnChanges {
   setUrls(): void {
     switch (this.type) {
       case 'home-page-list':
-        this.urlForImg = `/story/${this.story?.id}`;
-        this.urlForTitle = `/story/${this.story?.id}`;
+        this.urlForImg = `/story/${this.user?.currStoryId}`;
+        this.urlForTitle = `/story/${this.user?.currStoryId}`;
         break;
       case 'post':
-        this.urlForImg = this.story ? `/story/${this.story.id}` : `/profile/${this.user.id}`;
+        this.urlForImg = this.user.currStoryId ? `/story/${this.user.currStoryId}` : `/profile/${this.user.id}`;
         this.urlForTitle = `/profile/${this.user.id}`;
         if (this.desc) this.urlForDesc = `/location/${this.location?.name}`;
         break;
@@ -150,7 +134,7 @@ export class UserPreviewComponent implements OnInit, OnChanges {
         this.isUrlsDisabled = true;
         break;
       case 'search-modal':
-        this.urlForImg = this.story ? `/story/${this.story.id}` : `/profile/${this.user.id}`;
+        this.urlForImg = this.user.currStoryId ? `/story/${this.user.currStoryId}` : `/profile/${this.user.id}`;
         this.urlForTitle = `/profile/${this.user.id}`;
         this.desc = this.user.fullname;
         this.urlForDesc = `/profile/${this.user.id}`;
@@ -181,10 +165,4 @@ export class UserPreviewComponent implements OnInit, OnChanges {
     };
   };
 
-  setWatchedStory(): void {
-    if (this.isStoryViewed || !this.story) return;
-    this.story.viewedBy.push(this.user);
-    this.storyService.save(this.story);
-    this.isStoryViewed = true;
-  };
 };

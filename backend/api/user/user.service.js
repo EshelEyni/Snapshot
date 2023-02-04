@@ -1,66 +1,95 @@
 const logger = require('../../services/logger.service')
-const asyncLocalStorage = require('../../services/als.service')
 const db = require('../../database')
 
 
 async function query(queryParams) {
     try {
-        if (!queryParams.searchTerm) {
-            const { userId, type, limit } = queryParams;
-            if (type === 'suggested') {
-                return await db.txn(async () => {
-                    const following = await db.query(`select * from following where followerId = $id`, { $id: userId });
-                    const followingIds = following.map(f => f.userId);
-                    const suggestedByFollowing = await db.query(
-                        `select * from users
-                         where id in (select userId from following where followerId in (${followingIds.join(',')}))
-                         and id != $id
-                         order by username`, { $id: userId });
 
-                    if (suggestedByFollowing.length > 0) {
-                        const users = suggestedByFollowing.map(u => {
-                            delete u.password;
-                            return u;
-                        });
-                        return users;
-                    }
-                    else {
-                        const randomUsers = await db.query(
-                            `select * from users
-                        where id != $id
-                        order by random()
-                        limit  $limit`, {
-                            $id: userId,
-                            $limit: limit
-                        });
-                        return randomUsers.map(u => {
-                            delete u.password
-                            return u
-                        })
-                    }
+        let users;
+        const { userId, type, limit, searchTerm } = queryParams;
+
+        return await db.txn(async () => {
+            if (searchTerm) {
+                users = await db.query(
+                    `SELECT id, username, fullname, imgUrl FROM users 
+                    WHERE username like $searchTerm
+                    or email like $searchTerm 
+                    or bio like $searchTerm
+                    order by username limit 100`,
+                    {
+                        $searchTerm: queryParams.searchTerm + '%'
+                    });
+            }
+            else if (type === 'suggested') {
+                users = await db.query(
+                    `WITH CTE AS (
+                        SELECT id, username, fullname, imgUrl
+                        FROM users
+                        WHERE id IN (
+                          SELECT dst.toUserId
+                          FROM follow AS src
+                            JOIN follow AS dst ON src.toUserId = dst.fromUserId
+                          WHERE src.fromUserId = $userId
+                        )
+                        AND id NOT IN (
+                          SELECT toUserId
+                          FROM follow WHERE fromUserId = $userId
+                        )
+                      )
+                      SELECT *
+                      FROM (
+                        SELECT * FROM CTE
+                        UNION ALL
+                        SELECT id, username, fullname, imgUrl
+                        FROM users
+                        WHERE (SELECT COUNT(*) FROM CTE) = 0
+                        AND id != $userId
+                        ) sub
+                      ORDER BY RANDOM() 
+                      LIMIT $limit
+                    `, {
+                    $userId: userId,
+                    $limit: limit
+                })
+            } else {
+                users = await db.query(
+                    `SELECT id, username, fullname, imgUrl FROM users
+                    order by username limit $limit`, {
+                    $limit: limit
                 });
             }
 
-            return await db.query(`select * from users order by username`);
-        }
-        else {
+            const StoryPrms = users.map(async user => {
+                const stories = await db.query(
+                    `SELECT * FROM stories
+                    WHERE userId = $id
+                    and isArchived = 0
+                    order by createdAt asc
+                    limit 1`, { $id: user.id })
 
-            const users = await db.query(
-                `select * from users 
-             where username like $searchTerm
-             or email like $searchTerm 
-             or bio like $searchTerm
-             order by username`, { $searchTerm: queryParams.searchTerm + '%' });
+                if (!stories.length) {
+                    user.currStoryId = null;
+                    return user
+                }
+            })
 
-            // return await db.query(
-            //         `SELECT * FROM users 
-            // WHERE username REGEXP $searchTerm
-            // OR email REGEXP $searchTerm 
-            // OR bio REGEXP $searchTerm
-            // ORDER BY username`, '.*' + queryParams.searchTerm + '.*');
+            await Promise.all(StoryPrms)
+
+            const storyViewPrms = users.map(async user => {
+                if (!user.currStoryId) return user.isStoryViewed = false
+                const storyViews = await db.query(
+                    `SELECT * FROM storyViews WHERE storyId = $storyId and userId = $userId`,
+                    { $storyId: user.currStoryId, $userId: userId }
+                )
+                user.isStoryViewed = storyViews.length > 0
+                return user
+            })
+
+            await Promise.all(storyViewPrms)
 
             return users;
-        }
+        });
+
     } catch (err) {
         logger.error('cannot find users', err)
         throw err
@@ -70,7 +99,7 @@ async function query(queryParams) {
 async function getById(userId) {
     try {
         return await db.txn(async () => {
-            const users = await db.query(`select * from users where id = $id`, { $id: userId });
+            const users = await db.query(`SELECT * FROM users WHERE id = $id`, { $id: userId });
             if (users.length === 0) {
                 throw 'user with id #' + userId + ' was not found'
             }
@@ -78,20 +107,30 @@ async function getById(userId) {
             user.isDarkMode = !!user.isDarkMode;
 
             const stories = await db.query(
-                `select * from stories 
-                    where userId = $id 
+                `SELECT * FROM stories 
+                    WHERE userId = $id 
                     and isArchived = 0
                     order by createdAt asc
                     limit 1 `, { $id: userId })
 
             if (!stories.length) {
                 user.currStoryId = null;
+                user.isStoryViewed = false;
                 return user
             }
 
+
             const currStoryId = stories[0]
+            
+            const storyViews = await db.query(
+                `SELECT * FROM storyViews WHERE storyId = $id and userId = $userId`,
+                { $id: currStoryId.id, $userId: userId }
+            );
+
             user.currStoryId = currStoryId.id
-            delete user.password
+            user.isStoryViewed = storyViews.length > 0;
+
+            // delete user.password
             return user
         });
 
@@ -103,7 +142,7 @@ async function getById(userId) {
 
 async function getByUsername(username) {
     try {
-        const users = await db.query(`select * from users where username = $username`, { $username: username });
+        const users = await db.query(`SELECT * FROM users WHERE username = $username`, { $username: username });
         if (users.length === 0) {
             throw 'user with name ' + username + ' was not found';
         }
@@ -111,8 +150,8 @@ async function getByUsername(username) {
         user.isDarkMode = !!user.isDarkMode;
 
         const stories = await db.query(
-            `select * from stories 
-                where userId = $id 
+            `SELECT * FROM stories 
+                WHERE userId = $id 
                 and isArchived = 0
                 order by createdAt asc
                 limit 1 `, { $id: user.id })
@@ -136,13 +175,13 @@ async function getByUsername(username) {
 
 async function remove(userId) {
     try {
-        await db.exec(`delete from followers where followingId = $id`, { $id: userId })
-        await db.exec(`delete from following where followerId = $id`, { $id: userId })
-        await db.exec(`delete from recentSearches where searcherId = $id`, { $id: userId })
-        await db.exec(`delete from savedPosts where userId = $id`, { $id: userId })
-        // await db.exec(`delete from postsImgs join posts where userId = $id`, { $id: userId })
+        await db.exec(`delete FROM followers WHERE followingId = $id`, { $id: userId })
+        await db.exec(`delete FROM following WHERE followerId = $id`, { $id: userId })
+        await db.exec(`delete FROM recentSearches WHERE searcherId = $id`, { $id: userId })
+        await db.exec(`delete FROM savedPosts WHERE userId = $id`, { $id: userId })
+        // await db.exec(`delete FROM postsImgs join posts WHERE userId = $id`, { $id: userId })
         // todo: delete posts with images and comments and likes and stories and storiesImgs and storiesLikes
-        await db.exec(`delete from users where id = $id`, { $id: userId })
+        await db.exec(`delete FROM users WHERE id = $id`, { $id: userId })
     } catch (err) {
         logger.error(`cannot remove user ${userId}`, err)
         throw err
@@ -167,7 +206,7 @@ async function update(user) {
              postSum = $postSum,
              isDarkMode = $isDarkMode,
              storySum = $storySum
-             where id = $id`, {
+             WHERE id = $id`, {
             $username: user.username,
             $fullname: user.fullname,
             $password: user.password,
@@ -222,7 +261,7 @@ async function add(user) {
 
 async function chekIfUsernameTaken(username) {
     try {
-        const users = await db.query(`select * from users where username = $username`, { $username: username });
+        const users = await db.query(`SELECT * FROM users WHERE username = $username`, { $username: username });
         return users.length > 0
     } catch (err) {
         logger.error(`while finding user ${username}`, err)
@@ -233,7 +272,7 @@ async function chekIfUsernameTaken(username) {
 async function checkPassword(userId, password, newPassword) {
     try {
 
-        const users = await db.query(`select * from users where id = $userId`, { $userId: userId });
+        const users = await db.query(`SELECT * FROM users WHERE id = $userId`, { $userId: userId });
         if (!users.length) {
             throw 'user with id ' + userId + ' was not found';
         }

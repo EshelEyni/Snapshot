@@ -42,12 +42,15 @@ export class SideBarComponent implements OnInit, OnDestroy {
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) {
         this.loggedinUser = { ...user };
-        this.setIconColor();
+        setTimeout(() => {
+          this.setIconColor();
+        }, 0);
       };
     });
   };
 
   setIconColor(): void {
+    console.log('set icon color');
     this.iconColor = this.loggedinUser.isDarkMode ? 'var(--primary-color)' : 'var(--tertiary-color)';
     this.icons.forEach(icon => {
       icon.svgStyle = { color: this.iconColor, fill: this.iconColor };

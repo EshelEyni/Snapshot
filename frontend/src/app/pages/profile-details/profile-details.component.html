@@ -1,5 +1,5 @@
 <section class="profile-details" *ngIf="user">
-    <profile-details-header [user]="user" [isCurrUserLoggedInUser]="isCurrUserLoggedInUser"
+    <profile-details-header [user]="user" [isLoggedinUserProfile]="isLoggedinUserProfile"
         (openModal)="onToggleModal('options')"> </profile-details-header>
 
     <div class="user-details">
@@ -11,26 +11,26 @@
         <div class="user-details-action-container">
             <p class="user-name">{{user.username}}</p>
             <button class="clean-btn btn-edit" [routerLink]="['/profile-edit/',user.id]"
-                *ngIf="isCurrUserLoggedInUser">Edit profile</button>
-            <svg-icon src="../../../assets/svgs/settings-icon.svg" class="btn-settings" *ngIf="isCurrUserLoggedInUser"
+                *ngIf="isLoggedinUserProfile">Edit profile</button>
+            <svg-icon src="../../../assets/svgs/settings-icon.svg" class="btn-settings" *ngIf="isLoggedinUserProfile"
                 (click)="onToggleModal('options')"></svg-icon>
 
-            <div class="btns-for-non-logged-in-user" *ngIf="!isCurrUserLoggedInUser">
+            <div class="btns-for-non-logged-in-user" *ngIf="!isLoggedinUserProfile">
                 <follow-btn [user]="user"></follow-btn>
                 <button class="clean-btn btn-msg">Message</button>
             </div>
         </div>
 
         <div class="profile-details-user-info">
-            <h4 class="user-full-name" *ngIf="isCurrUserLoggedInUser">{{user.fullname}}</h4>
+            <h4 class="user-full-name" *ngIf="isLoggedinUserProfile">{{user.fullname}}</h4>
             <p class="user-bio" [innerText]="user.bio"></p>
         </div>
 
-        <div class="hightlights-container" *ngIf="user.storySum">
+        <div class="hightlights-container" *ngIf="user.storySum && isLoggedinUserProfile">
             <story-list [type]="'profile-details'"></story-list>
             <div class="btn-highlights-container">
                 <button class="clean-btn btn-highlights" (click)="onToggleModal('highlights')"
-                    *ngIf="isCurrUserLoggedInUser">
+                    *ngIf="isLoggedinUserProfile">
                     <svg-icon src="../../../assets/svgs/plus.svg" [svgStyle]="{
                         height:highlightsIconSize,
                         width:highlightsIconSize,
@@ -67,7 +67,7 @@
                     </svg-icon>
                     <span>posts</span>
                 </button>
-                <button class="clean-btn" [class.active]="filterBy.savedPosts" *ngIf="isCurrUserLoggedInUser"
+                <button class="clean-btn" [class.active]="filterBy.savedPosts" *ngIf="isLoggedinUserProfile"
                     (click)="onSetFilter('savedPosts')">
                     <svg-icon src="../../../assets/svgs/bookmark-outline.svg"
                         [svgStyle]="{color: filterBy.savedPosts ? '#262626' : '#8e8e8e',height:postFilterIconSize,width:postFilterIconSize}">
@@ -92,13 +92,13 @@
                         <div class="icon-container">
                             <fa-icon [icon]="faCamera"></fa-icon>
                         </div>
-                        <h1 *ngIf="isCurrUserLoggedInUser">share photos</h1>
-                        <p *ngIf="isCurrUserLoggedInUser">When you share photos, they will appear on your profile.</p>
-                        <p *ngIf="!isCurrUserLoggedInUser">no photos.</p>
-                        <button class="clean-btn btn-share-photo" *ngIf="isCurrUserLoggedInUser"
+                        <h1 *ngIf="isLoggedinUserProfile">share photos</h1>
+                        <p *ngIf="isLoggedinUserProfile">When you share photos, they will appear on your profile.</p>
+                        <p *ngIf="!isLoggedinUserProfile">no photos.</p>
+                        <button class="clean-btn btn-share-photo" *ngIf="isLoggedinUserProfile"
                             (click)="onToggleModal('post-edit')">Share your first
                             photo</button>
-                        <post-edit-modal *ngIf="isPostEditModalShown && isCurrUserLoggedInUser"
+                        <post-edit-modal *ngIf="isPostEditModalShown && isLoggedinUserProfile"
                             (togglePostEdit)="onToggleModal('post-edit')"></post-edit-modal>
 
                     </div>
@@ -123,9 +123,9 @@
                         <div class="icon-container">
                             <fa-icon [icon]="faHashtag"></fa-icon>
                         </div>
-                        <h1 *ngIf="isCurrUserLoggedInUser">Photos of you </h1>
-                        <p *ngIf="isCurrUserLoggedInUser">When people tag you in photos, they'll appear here. </p>
-                        <p *ngIf="!isCurrUserLoggedInUser">no photos.</p>
+                        <h1 *ngIf="isLoggedinUserProfile">Photos of you </h1>
+                        <p *ngIf="isLoggedinUserProfile">When people tag you in photos, they'll appear here. </p>
+                        <p *ngIf="!isLoggedinUserProfile">no photos.</p>
                     </div>
                 </div>
             </ng-template>
@@ -134,7 +134,7 @@
 
 
 </section>
-<profile-options-modal *ngIf="isOptionsModalShown && isCurrUserLoggedInUser" [loggedinUser]="loggedinUser"
+<profile-options-modal *ngIf="isOptionsModalShown && isLoggedinUserProfile" [loggedinUser]="loggedinUser"
     (close)="onToggleModal('options')"></profile-options-modal>
 
 <highlights-modal *ngIf="isHighlightsModalShown" [loggedinUser]="loggedinUser"

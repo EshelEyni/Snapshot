@@ -1,3 +1,4 @@
+import { FollowService } from './../../services/follow.service';
 import { TagService } from './../../services/tag.service';
 import { UserService } from 'src/app/services/user.service';
 import { Subscription } from 'rxjs';
@@ -18,7 +19,7 @@ export class FollowingComponent implements OnInit, OnDestroy {
   constructor() { };
   $location = inject(Location);
   route = inject(ActivatedRoute);
-  userService = inject(UserService);
+  followService = inject(FollowService);
   tagService = inject(TagService);
 
   faChevronLeft = faChevronLeft;
@@ -34,7 +35,7 @@ export class FollowingComponent implements OnInit, OnDestroy {
     this.userSub = this.route.data.subscribe(async data => {
       const user = data['user'];
       if (user) {
-        this.users = await this.userService.getFollowings(user.id);
+        this.users = await this.followService.getFollowings(user.id);
         this.tags = await this.tagService.getfollowedTags(user.id);
         if (this.users.length === 0) {
           this.isNoFollowingMsgShown = true;

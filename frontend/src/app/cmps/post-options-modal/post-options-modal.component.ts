@@ -1,3 +1,4 @@
+import { FollowService } from './../../services/follow.service';
 import { CommunicationService } from 'src/app/services/communication.service';
 import { UserService } from 'src/app/services/user.service';
 import { PostService } from 'src/app/services/post.service';
@@ -19,7 +20,7 @@ export class PostOptionsModalComponent implements OnInit {
 
   router = inject(Router);
   postService = inject(PostService);
-  userService = inject(UserService);
+  followService = inject(FollowService);
   communicationService = inject(CommunicationService);
 
   post!: Post;
@@ -40,7 +41,7 @@ export class PostOptionsModalComponent implements OnInit {
     this.toggleCommentDisplayBtnTxt = this.post.isCommentShown ? 'Turn off commenting' : 'Turn on commenting';
     this.toggleLikeDisplayBtnTxt = this.post.isLikeShown ? 'Hide like count' : 'Unhide like count';
     if (!this.isPostOwnedByUser) {
-      this.isFollowed = await this.userService.checkIsFollowing(this.loggedinUser.id, this.post.by.id);
+      this.isFollowed = await this.followService.checkIsFollowing(this.loggedinUser.id, this.post.by.id);
     };
   };
 
@@ -56,7 +57,7 @@ export class PostOptionsModalComponent implements OnInit {
   };
 
   async onUnfollowUser(): Promise<void> {
-    await this.userService.toggleFollow(true, this.loggedinUser, this.post.by);
+    await this.followService.toggleFollow(true, this.post.by);
     this.close.emit();
   };
 

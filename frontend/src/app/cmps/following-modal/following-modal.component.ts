@@ -1,4 +1,4 @@
-import { UserService } from 'src/app/services/user.service';
+import { FollowService } from './../../services/follow.service';
 import { MiniUser, User } from 'src/app/models/user.model';
 import { Component, EventEmitter, OnInit, inject } from '@angular/core';
 import { faX } from '@fortawesome/free-solid-svg-icons';
@@ -14,7 +14,7 @@ export class FollowingModalComponent implements OnInit {
 
   constructor() { };
 
-  userService = inject(UserService);
+  followService = inject(FollowService);
   
   faX = faX;
   
@@ -24,7 +24,7 @@ export class FollowingModalComponent implements OnInit {
   close = new EventEmitter();
 
   async ngOnInit() {
-    this.users = await this.userService.getFollowings(this.user.id);
+    this.users = await this.followService.getFollowings(this.user.id);
   };
 
   onCloseModal(): void {

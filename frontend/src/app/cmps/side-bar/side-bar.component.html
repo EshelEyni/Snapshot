@@ -2,12 +2,15 @@
     <fa-icon [icon]="faX" *ngIf="isBtnClicked.create"></fa-icon>
 </div>
 
-<section class="side-bar" *ngIf="isLoginSignupPath"
-    [class.modal-state]="isBtnClicked.search || isBtnClicked.notification"  (click)="onCloseModal()">
+<section class="side-bar" *ngIf="isLoginSignupPath && loggedinUser"
+    [class.modal-state]="isBtnClicked.search || isBtnClicked.notification" (click)="onCloseModal()">
 
     <header>
         <a class="logo" routerLink="/">
-            <img src="../../../assets/imgs/logo.png" alt="logo">
+            <img src="../../../assets/imgs/logo.png" alt="logo" *ngIf="!loggedinUser.isDarkMode; else whiteIcon">
+            <ng-template #whiteIcon>
+                <img src="../../../assets/imgs/logo-white.png" alt="logo">
+            </ng-template>
             <span>Snapshot</span>
         </a>
     </header>
@@ -63,7 +66,8 @@
 
     <div class="modal-container" (click)="onModalContainerClick($event)">
         <search-modal *ngIf="isBtnClicked.search" (onClose)="onCloseModal()"></search-modal>
-        <notification-modal *ngIf="isBtnClicked.notification" [loggedinUser]="loggedinUser" (onClose)="onCloseModal()"></notification-modal>
+        <notification-modal *ngIf="isBtnClicked.notification" [loggedinUser]="loggedinUser"
+            (onClose)="onCloseModal()"></notification-modal>
     </div>
 
     <side-bar-options-modal *ngIf="isBtnClicked.more" [loggedinUser]="loggedinUser"></side-bar-options-modal>

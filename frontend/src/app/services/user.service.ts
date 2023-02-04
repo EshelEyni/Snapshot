@@ -1,182 +1,177 @@
 import { HttpClient } from '@angular/common/http'
 import { StorageService } from './storage.service'
 import { User, MiniUser } from './../models/user.model'
-import { Observable, of, map, lastValueFrom, firstValueFrom } from 'rxjs'
+import { Observable, of, map, lastValueFrom } from 'rxjs'
 import { Injectable } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { UserState } from '../store/reducers/user.reducer'
 import { LoadingUsers } from '../store/actions/user.actions'
-import { HttpService } from './http.service';
+import { HttpService } from './http.service'
+
+// class CacheItem {
+//   time: number
+//   user: User
+
+//   constructor(time: number, user: User) {
+//     this.time = time
+//     this.user = user
+//   }
+// }
 
 @Injectable({
   providedIn: 'root',
 })
-
 export class UserService {
-
   constructor(
     private store: Store<UserState>,
     private storageService: StorageService,
     private http: HttpClient,
     private httpService: HttpService,
-  ) { };
+  ) { }
 
-  baseUrl: '/api' | '//localhost:3030/api' = this.httpService.getBaseUrl();
+  baseUrl: '/api' | '//localhost:3030/api' = this.httpService.getBaseUrl()
+
+  //usersCache = new Map<number, CacheItem>()
 
   public getLoggedinUser(): MiniUser | null {
     const loggedinUser =
-      this.storageService.loadFromStorage('loggedinUser') || null;
-    return loggedinUser;
-  };
+      this.storageService.loadFromStorage('loggedinUser') || null
+    return loggedinUser
+  }
 
-  public loadUsers(filterBy: { userId: number, type: string, limit: number }): Observable<User[]> {
-    this.store.dispatch(new LoadingUsers());
-    return this.getUsers(filterBy);
-  };
+  public loadUsers(filterBy: {
+    userId: number
+    type: string
+    limit: number
+  }): Observable<User[]> {
+    this.store.dispatch(new LoadingUsers())
+    return this.getUsers(filterBy)
+  }
 
-  public getUsers(filterBy: { userId: number, type: string, limit: number }): Observable<User[]> {
-    let options = {}
-    if (filterBy) {
-      options = {
-        params: {
-          type: filterBy.type,
-          limit: filterBy.limit,
-          userId: filterBy.userId
-        }
-      };
-    };
+  public getUsers(filterBy: {
+    userId: number
+    type: string
+    limit: number
+  }): Observable<User[]> {
 
-    return this.http
-      .get(`${this.baseUrl}/user`, options)
-      .pipe(
-        map((users) => {
-          return users as User[];
-        }),
-      );
-  };
+    const options = {
+      withCredentials: true,
+      params: {
+        type: filterBy.type,
+        limit: filterBy.limit,
+        userId: filterBy.userId,
+      },
+    }
+
+    return this.http.get(`${this.baseUrl}/user`, options).pipe(
+      map((users) => {
+        return users as User[]
+      }),
+    )
+  }
 
   public getUsersBySearchTerm(searchTerm: string): Observable<User[]> {
+    const options = {
+      withCredentials: true,
+    }
     return this.http
-      .get(`${this.baseUrl}/user/search?searchTerm=${searchTerm}`)
+      .get(`${this.baseUrl}/user/search?searchTerm=${searchTerm}`, options)
       .pipe(
         map((users) => {
           return users as User[]
-        }),
-      );
-  };
+        })
+      )
+  }
 
   public getById(userId: number): Observable<User | null> {
-    if (userId) return this.http.get<User>(`${this.baseUrl}/user/id/${userId}`);
-    else return of(null);
-  };
+    const options = {
+      withCredentials: true,
+    }
+    if (userId) {
+      // let cached = this.usersCache.get(userId)
+      // if (cached && cached.time + 5 * 1000 < Date.now()) {
+      //   // cache for 5 sec
+      //   return of(cached.user)
+      // }
+
+      // let now = Date.now()
+      // let result = await firstValueFrom(
+      //   this.http.get<User>(`${this.baseUrl}/user/id/${userId}`),
+      // )
+      //this.usersCache.set(userId, new CacheItem(now, result))
+
+      //return of(result)
+      return this.http.get<User>(`${this.baseUrl}/user/id/${userId}`, options)
+    } else return of(null)
+  }
 
   public remove(userId: number): Observable<boolean> {
-    return this.http.delete(`${this.baseUrl}/user/${userId}`).pipe(
+    const options = {
+      withCredentials: true
+    }
+    return this.http.delete(`${this.baseUrl}/user/${userId}`, options).pipe(
       map((res) => {
-        return true;
+        return true
       }),
-    );
-  };
+    )
+  }
 
   public update(user: User): Observable<User> {
-    return this.http.put(`${this.baseUrl}/user`, user) as unknown as Observable<User>;
-  };
-
-
-  public async checkPassword(newPassword: string, password: string, userId: number): Promise<string> {
     const options = {
+      withCredentials: true
+    }
+
+    return (this.http.put(
+      `${this.baseUrl}/user`,
+      user, options,
+    ) as unknown) as Observable<User>
+  }
+
+  public async checkPassword(
+    newPassword: string,
+    password: string,
+    userId: number,
+  ): Promise<string> {
+    const options = {
+      withCredentials: true,
       params: {
         newPassword,
         password,
-        userId
-      }
-    };
+        userId,
+      },
+    }
     const res: { hashedPassword: string } = await lastValueFrom(
       this.http.get<{ hashedPassword: string }>(
-        `${this.baseUrl}/user/check-password`, options
-      )
-    );
-    return res.hashedPassword;
-  };
-
-  public async checkIfUsernameTaken(username: string): Promise<boolean> {
-    const options = { withCredentials: true };
-    const trimmedUsername = username.trim();
-    const res: { chekIfUsernameTaken: boolean } = await lastValueFrom(
-      this.http.get<{ chekIfUsernameTaken: boolean }>(
-        `${this.baseUrl}/user/check-username/${trimmedUsername}`, options
-      )
-    );
-    return res.chekIfUsernameTaken;
-  };
-
-  public getMiniUser(user: User): MiniUser {
-    const { id, fullname, username, imgUrl } = user;
-    return { id, fullname, username, imgUrl };
-  };
-
-  public getEmptyMiniUser(): MiniUser {
-    return { id: 0, fullname: '', username: '', imgUrl: '' };
-  };
-
-  public getDefaultUserImgUrl(): string {
-    return 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg';
+        `${this.baseUrl}/user/check-password`,
+        options,
+      ),
+    )
+    return res.hashedPassword
   }
 
-  public async getFollowers(followingId: number): Promise<MiniUser[] | []> {
-    const options = { params: { followingId } };
+  public async checkIfUsernameTaken(username: string): Promise<boolean> {
+    const options = { withCredentials: true }
+    const trimmedUsername = username.trim()
+    const res: { chekIfUsernameTaken: boolean } = await lastValueFrom(
+      this.http.get<{ chekIfUsernameTaken: boolean }>(
+        `${this.baseUrl}/user/check-username/${trimmedUsername}`,
+        options,
+      ),
+    )
+    return res.chekIfUsernameTaken
+  }
 
-    return await lastValueFrom(
-      this.http.get<MiniUser[]>(`${this.baseUrl}/followers`, options)
-    );
-  };
+  public getMiniUser(user: User): MiniUser {
+    const { id, fullname, username, imgUrl, currStoryId, isStoryViewed } = user
+    return { id, fullname, username, imgUrl, currStoryId, isStoryViewed }
+  }
 
-  public async getFollowings(followerId: number): Promise<MiniUser[]> {
-    const options = { params: { followerId } };
+  public getEmptyMiniUser(): MiniUser {
+    return { id: 0, fullname: '', username: '', imgUrl: '', currStoryId: 0, isStoryViewed: false }
+  }
 
-    return await lastValueFrom(
-      this.http.get<MiniUser[]>(`${this.baseUrl}/following`, options)
-    );
-  };
+  public getDefaultUserImgUrl(): string {
+    return 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg'
+  }
 
-  public async checkIsFollowing(loggedinUserId: number, userToCheckId: number): Promise<boolean> {
-    const options = { params: { followerId: loggedinUserId, userToCheckId } };
-
-    const isFollowing = await lastValueFrom(
-      this.http.get(`${this.baseUrl}/following`, options)
-    ) as Array<any>;
-    return isFollowing.length > 0;
-  };
-
-  public async toggleFollow(isFollowing: boolean, loggedinUser: MiniUser, user: MiniUser): Promise<void> {
-    if (isFollowing) {
-      await firstValueFrom(
-        this.http.delete(`${this.baseUrl}/following`, { body: { followerId: loggedinUser.id, userId: user.id } })
-      );
-      await firstValueFrom(
-        this.http.delete(`${this.baseUrl}/followers`, { body: { followingId: user.id, userId: loggedinUser.id } })
-      );
-
-    } else {
-      const following = {
-        followerId: loggedinUser.id,
-        userId: user.id,
-        username: user.username,
-        fullname: user.fullname,
-        imgUrl: user.imgUrl,
-      }
-
-      await firstValueFrom(this.http.post(`${this.baseUrl}/following`, following));
-
-      const follower = {
-        followingId: user.id,
-        userId: loggedinUser.id,
-        username: loggedinUser.username,
-        fullname: loggedinUser.fullname,
-        imgUrl: loggedinUser.imgUrl,
-      }
-
-      await firstValueFrom(this.http.post(`${this.baseUrl}/followers`, follower));
-    };
-  };
-};
+}

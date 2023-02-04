@@ -34,7 +34,7 @@ async function query(filter) {
 
                 case 'taggedPosts':
                     const tags = await db.query(`select id from tags where name = $username`, { $username: filter.username });
-                    if(!tags.length) return Promise.resolve([]);
+                    if (!tags.length) return Promise.resolve([]);
                     const tagId = tags[0].id;
                     let taggedPostsIds = await db.query(
                         `select postId from postTags where tagId = $tagId`, {
@@ -49,8 +49,8 @@ async function query(filter) {
 
                 case 'homepagePosts':
                     userIds = [filter.userId]
-                    followingIds = await db.query(`select userId from following where followerId = $id`, { $id: filter.userId });
-                    userIds = [...userIds, ...followingIds.map(following => following.userId)];
+                    followingIds = await db.query(`select toUserId from follow where fromUserId = $id`, { $id: filter.userId });
+                    userIds = [...userIds, ...followingIds.map(following => following.toUserId)];
 
                     if (followingIds.length > 0) {
                         posts = await db.query(
@@ -103,12 +103,26 @@ async function query(filter) {
                     $postId: post.id
                 });
                 post.tags = tags.map(tag => tag.name);
-                const users = await db.query(`select id, username, fullname, imgUrl from users where id = $id`, { $id: post.userId });
-
+                // const users = await db.query(`select id, username, fullname, imgUrl from users where id = $id`, { $id: post.userId });
+                const users = await db.query(`
+                SELECT 
+  users.id, 
+  users.username, 
+  users.fullname, 
+  users.imgUrl, 
+  stories.id AS currStoryId, 
+  storyViews.userId AS isStoryViewed
+FROM 
+  users 
+  LEFT JOIN stories ON users.id = stories.userId AND stories.isArchived = 0
+  LEFT JOIN storyViews ON stories.id = storyViews.storyId AND storyViews.userId = $loggedinUserId
+WHERE 
+  users.id = $userId`,{ $userId: post.userId, $loggedinUserId: filter.userId})
                 if (users.length === 0) throw new Error('user not found: ' + post.userId);
-
-                post.by = users[0];
-                delete post.userId;
+                const user = users[0]
+                post.by = user
+                post.by.isStoryViewed = !!user.isStoryViewed 
+                delete post.userId
             }
             return posts;
         });
@@ -174,6 +188,11 @@ async function remove(postId) {
             await db.exec(`delete from savedPosts where postId = $id`, { $id: postId });
             await db.exec(`delete from postTags where postId = $id`, { $id: postId });
             await db.exec(`delete from postsImgs where postId = $id`, { $id: postId });
+            /*
+            delete from commentsLikedBy where commentId in (
+                select id from comments where postId = $id
+            )
+            */
             const comments = await db.query(`select id from comments where postId = $id`, { $id: postId });
             for (const comment of comments) {
                 await db.exec(`delete from commentsLikedBy where commentId = $id`, { $id: comment.id });

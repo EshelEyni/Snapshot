@@ -60,7 +60,9 @@ export class MessageService {
         id: 0,
         username: '',
         fullname: '',
-        imgUrl: ''
+        imgUrl: '',
+        currStoryId: 0,
+        isStoryViewed: false,
       },
       createdAt: new Date(),
       text: '',

@@ -7,6 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 import { MiniUser, User } from './../../models/user.model';
 import { Component, OnInit, inject, OnDestroy } from '@angular/core';
 import { SaveUser } from 'src/app/store/actions/user.actions';
+import { FollowService } from 'src/app/services/follow.service';
 
 @Component({
   selector: 'follow-btn',
@@ -21,6 +22,7 @@ export class FollowBtnComponent implements OnInit, OnDestroy {
   };
 
   userService = inject(UserService);
+  followService = inject(FollowService);
   tagService = inject(TagService);
   store = inject(Store<State>);
 
@@ -39,7 +41,7 @@ export class FollowBtnComponent implements OnInit, OnDestroy {
       if (user) {
         this.loggedinUser = { ...user };
         if (this.user && !this.tag) {
-          this.isFollowed = await this.userService.checkIsFollowing(this.loggedinUser.id, this.user.id);
+          this.isFollowed = await this.followService.checkIsFollowing(this.loggedinUser.id, this.user.id);
         };
         if (this.tag && !this.user) {
           this.isFollowed = await this.tagService.checkIsFollowing(this.loggedinUser.id, this.tag.id);
@@ -51,7 +53,7 @@ export class FollowBtnComponent implements OnInit, OnDestroy {
   async onToggleFollow(): Promise<void> {
 
     if (this.user && !this.tag) {
-      this.userService.toggleFollow(this.isFollowed, this.loggedinUser, this.user);
+      await this.followService.toggleFollow(this.isFollowed, this.user);
       this.loggedinUser.followingSum = !this.isFollowed ? this.loggedinUser.followingSum + 1 : this.loggedinUser.followingSum - 1;
       this.store.dispatch(new SaveUser(this.loggedinUser));
       const fullUser = await lastValueFrom(this.userService.getById(this.user.id));

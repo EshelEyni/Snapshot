@@ -1,3 +1,4 @@
+import { FollowService } from './../../services/follow.service';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -17,7 +18,7 @@ export class FollowersComponent implements OnInit, OnDestroy {
 
   $location = inject(Location);
   route = inject(ActivatedRoute)
-  userService = inject(UserService);
+  followService = inject(FollowService);
 
   faChevronLeft = faChevronLeft;
 
@@ -28,7 +29,7 @@ export class FollowersComponent implements OnInit, OnDestroy {
     this.userSub = this.route.data.subscribe(async data => {
       const user = data['user'];
       if (user) {
-        this.users = await this.userService.getFollowers(user.id);
+        this.users = await this.followService.getFollowers(user.id);
       };
     });
   };

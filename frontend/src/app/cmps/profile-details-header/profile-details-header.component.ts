@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   selector: 'profile-details-header',
   templateUrl: './profile-details-header.component.html',
   styleUrls: ['./profile-details-header.component.scss'],
-  inputs: ['user', 'isCurrUserLoggedInUser'],
+  inputs: ['user', 'isLoggedinUserProfile'],
   outputs: ['openModal']
 })
 export class ProfileDetailsHeaderComponent implements OnInit {
@@ -22,7 +22,7 @@ export class ProfileDetailsHeaderComponent implements OnInit {
 
   user!: User;
 
-  isCurrUserLoggedInUser!: boolean;
+  isLoggedinUserProfile!: boolean;
 
   openModal = new EventEmitter();
 

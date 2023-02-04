@@ -31,7 +31,7 @@ async function getComment(req, res) {
 async function deleteComment(req, res) {
     const commentId = req.params.id
     try {
-        await commentService.remove(commentId)
+        await commentService.remove(req.loggedinUser, commentId)
         res.send({ msg: 'Comment deleted' })
     } catch (err) {
         logger.error('Failed to delete comment', err)
