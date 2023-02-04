@@ -1,6 +1,6 @@
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from './../../services/auth.service';
-import { LoadedLoggedInUser, LoadLoggedInUser } from './../../store/actions/user.actions';
+import { LoadLoggedInUser, RemoveUser } from './../../store/actions/user.actions';
 import { Component, EventEmitter, OnInit, inject } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
@@ -29,6 +29,7 @@ export class ProfileOptionsModalComponent implements OnInit {
   loggedinUser!: User;
 
   isDarkMode!: boolean;
+  isConfirmDeleteMsgShown: boolean = false;
 
   close = new EventEmitter();
 
@@ -40,10 +41,13 @@ export class ProfileOptionsModalComponent implements OnInit {
     this.close.emit();
   };
 
-  async onDeleteAccount(): Promise<void> {
-    // this.userService.remove(this.loggedinUser.id);
-    // this.store.dispatch(new LoadedLoggedInUser(null));
-    // this.router.navigate(['/']);
+  onToggleConfirmDelete(): void {
+    this.isConfirmDeleteMsgShown = !this.isConfirmDeleteMsgShown;
+  };
+
+  async onDeleteUser(): Promise<void> {
+    this.onLogout();
+    this.store.dispatch(new RemoveUser(this.loggedinUser.id));
   };
 
   onGoToProfileEdit(): void {

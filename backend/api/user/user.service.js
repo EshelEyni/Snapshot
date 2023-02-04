@@ -140,6 +140,7 @@ async function getById(userId, isWithPassword) {
     }
 }
 
+// For login 
 async function getByUsername(username) {
     try {
         const users = await db.query(`SELECT * FROM users WHERE username = $username`, { $username: username });
@@ -163,7 +164,6 @@ async function getByUsername(username) {
 
         const currStoryId = stories[0]
         user.currStoryId = currStoryId.id
-        delete user.password
 
         return user
     } catch (err) {
@@ -174,10 +174,11 @@ async function getByUsername(username) {
 
 
 async function remove(userId) {
+    console.log('removing user', userId)
     try {
         await db.txn(async () => {
             await db.exec(
-                `DELETE FROM postsImgs
+                `DELETE FROM postImg
              WHERE postId IN (
              SELECT id
              FROM posts
@@ -190,8 +191,9 @@ async function remove(userId) {
              SELECT id
              FROM posts
              WHERE userId = $id
-             )`, { $id: userId })
+            )`, { $id: userId })
 
+            await db.exec(`DELETE FROM postsLikedBy WHERE userId = $id`, { $id: userId })
 
             await db.exec(`
             DELETE FROM commentslikedby
@@ -243,32 +245,37 @@ async function remove(userId) {
                  WHERE storyId IN (
                  SELECT id
                  FROM stories
-                 WHERE userId = $id)
-                 AND userId = $id`, { $id: userId })
-
-            await db.exec(`DELETE FROM storyImgs WHERE storyId IN (SELECT id FROM stories WHERE userId = $id)`, { $id: userId })
+                 WHERE userId = $id)`, { $id: userId })
+            await db.exec(`DELETE FROM storyViews WHERE userId = $id`, { $id: userId })
+            await db.exec(`DELETE FROM storyImg WHERE storyId IN (SELECT id FROM stories WHERE userId = $id)`, { $id: userId })
             await db.exec(`DELETE FROM stories WHERE userId = $id`, { $id: userId })
 
-            await db.exec(`DELETE FROM followedTags WHERE toUserId = $id`, { $id: userId })
-            await db.exec(`DELETE FROM follow WHERE fromUserId = $id AND toUserId = $id`, { $id: userId })
-            await db.exec(`DELETE FROM notifications WHERE fromUserId = $id`, { $id: userId })
+            await db.exec(`DELETE FROM followedTags WHERE userId = $id`, { $id: userId })
+            await db.exec(`DELETE FROM follow WHERE fromUserId = $id`, { $id: userId })
+            await db.exec(`DELETE FROM follow WHERE toUserId = $id`, { $id: userId })
+            await db.exec(`DELETE FROM notifications WHERE userId = $id`, { $id: userId })
+            await db.exec(`DELETE FROM notifications WHERE byUserId = $id`, { $id: userId })
 
             await db.exec(`DELETE FROM recentSearches WHERE searcherId = $id`, { $id: userId })
 
-            await db.exec(`DELETE FROM chatMembers WHERE userId = $id`, { $id: userId })
-            await db.exec(`DELETE FROM chatMessages WHERE userId = $id`, { $id: userId })
-            const chatIds = await db.query(
+            let chatIds = await db.query(
                 `SELECT id FROM chats 
-            WHERE id IN (
-            SELECT chatId
-            FROM chatMembers
-            WHERE userId = $id
-            )`, { $id: userId })
+                WHERE id IN (
+                SELECT chatId
+                FROM chatMembers
+                WHERE userId = $id
+                )`, { $id: userId })
 
             chatIds = chatIds.map(chat => chat.id)
+
+            await db.exec(`DELETE FROM chatMessages WHERE userId = $id`, { $id: userId })
+            await db.exec(`DELETE FROM chatMembers WHERE userId = $id`, { $id: userId })
+
             for (const chatId of chatIds) {
                 const members = await db.query(`SELECT * FROM chatMembers WHERE chatId = $id`, { $id: chatId })
-                if (!members.length) {
+                if (members.length === 1) {
+                    await db.exec(`DELETE FROM chatMessages WHERE chatId = $id`, { $id: chatId })
+                    await db.exec(`DELETE FROM chatMembers WHERE chatId = $id`, { $id: chatId })
                     await db.exec(`DELETE FROM chats WHERE id = $id`, { $id: chatId })
                 }
             }

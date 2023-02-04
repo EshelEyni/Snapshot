@@ -7,9 +7,12 @@
 
     <main class="profile-options-modal-btns-container">
 
-        <button class="clean-btn delete-btn" (click)=" onDeleteAccount()">Delete profile</button>
+        <button class="clean-btn delete-btn" (click)=" onToggleConfirmDelete()">Delete profile</button>
         <button class="clean-btn" (click)=" onGoToProfileEdit()">Edit profile</button>
         <button class="clean-btn" (click)="onToggleDarkMode()">Change appearance</button>
         <button class="clean-btn" (click)="onLogout()">Logout</button>
     </main>
 </section>
+
+<confirm-delete-msg *ngIf="isConfirmDeleteMsgShown" [entityType]="'Account'"
+    (close)="onToggleConfirmDelete()" (deleteEntity)="onDeleteUser()"></confirm-delete-msg>

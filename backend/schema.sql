@@ -26,10 +26,10 @@ CREATE TABLE IF NOT EXISTS "posts" (
     "likeSum" INTEGER NOT NULL,
     "commentSum" INTEGER NOT NULL,
     "locationId" INTEGER NULL,
-    PRIMARY KEY("id" AUTOINCREMENT) foreign key("userId") references "users"("id") foreign key("locationId") references "locations"("id")
+    PRIMARY KEY("id" AUTOINCREMENT) foreign key ("userId") references "users"("id") foreign key("locationId") references "locations"("id")
 );
 
-CREATE TABLE IF NOT EXISTS "postsImgs" (
+CREATE TABLE IF NOT EXISTS "postImg" (
     "id" INTEGER NOT NULL UNIQUE,
     "postId" INTEGER NOT NULL,
     "imgUrl" TEXT NOT NULL,

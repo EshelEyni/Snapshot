@@ -405,3 +405,239 @@
 4.2.2023, 20:08:12 - INFO - New connected socket [id: ldPpaOPKZK66IqNuAAAb] 
 4.2.2023, 20:09:43 - INFO - Socket disconnected [id: undefined] 
 4.2.2023, 20:09:44 - INFO - New connected socket [id: uoVtlvWJPYGMuapPAAAd] 
+4.2.2023, 20:10:43 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 20:16:01 - INFO - Server is running on port: 3030 
+4.2.2023, 22:41:58 - INFO - Server is running on port: 3030 
+4.2.2023, 22:44:57 - WARN - Not Authenticated 
+4.2.2023, 22:44:57 - WARN - Not Authenticated 
+4.2.2023, 22:44:57 - INFO - New connected socket [id: aPftwL2UY1j41326AAAB] 
+4.2.2023, 22:45:00 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 22:45:00 - WARN - Not Authenticated 
+4.2.2023, 22:45:00 - WARN - Not Authenticated 
+4.2.2023, 22:45:00 - WARN - Not Authenticated 
+4.2.2023, 22:45:00 - INFO - New connected socket [id: ljb1w3CwoBpO9mFAAAAD] 
+4.2.2023, 22:46:08 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 22:46:09 - INFO - New connected socket [id: gliYqHunYHcFwWYNAAAF] 
+4.2.2023, 22:46:16 - DEBUG - auth.service - login with username: user 
+4.2.2023, 22:46:16 - ERROR - Failed to Login Error: data and hash arguments required 
+4.2.2023, 22:48:42 - DEBUG - auth.service - login with username: user 
+4.2.2023, 22:48:42 - ERROR - Failed to Login Error: data and hash arguments required 
+4.2.2023, 22:49:24 - DEBUG - auth.service - login with username: user 
+4.2.2023, 22:49:24 - ERROR - Failed to Login Error: data and hash arguments required 
+4.2.2023, 22:49:33 - DEBUG - auth.service - login with username: user 
+4.2.2023, 22:49:33 - ERROR - Failed to Login Error: data and hash arguments required 
+4.2.2023, 22:49:58 - INFO - Server is running on port: 3030 
+4.2.2023, 22:49:59 - INFO - New connected socket [id: RqvUcwJQoS0q6CBiAAAB] 
+4.2.2023, 22:50:01 - DEBUG - auth.service - login with username: user 
+4.2.2023, 22:50:01 - ERROR - Failed to Login Error: data and hash arguments required 
+4.2.2023, 23:00:25 - INFO - Server is running on port: 3030 
+4.2.2023, 23:00:26 - INFO - New connected socket [id: D7PN5r7ZZ1dP3dP7AAAB] 
+4.2.2023, 23:00:27 - DEBUG - auth.service - login with username: user 
+4.2.2023, 23:00:27 - ERROR - Failed to Login Error: data and hash arguments required 
+4.2.2023, 23:00:48 - INFO - Server is running on port: 3030 
+4.2.2023, 23:00:49 - INFO - New connected socket [id: -kwfj6azDNxmNvVZAAAB] 
+4.2.2023, 23:00:50 - DEBUG - auth.service - login with username: user 
+4.2.2023, 23:00:50 - ERROR - Failed to Login Error: data and hash arguments required 
+4.2.2023, 23:01:00 - INFO - Server is running on port: 3030 
+4.2.2023, 23:01:01 - INFO - New connected socket [id: VYmH_1RJf12nF91AAAAB] 
+4.2.2023, 23:01:05 - INFO - Server is running on port: 3030 
+4.2.2023, 23:01:05 - INFO - New connected socket [id: Pg8iTFbSM7nNScjoAAAB] 
+4.2.2023, 23:01:27 - INFO - Server is running on port: 3030 
+4.2.2023, 23:01:28 - INFO - New connected socket [id: uUZhYRVeslA1WRTgAAAB] 
+4.2.2023, 23:01:29 - DEBUG - auth.service - login with username: user 
+4.2.2023, 23:01:29 - ERROR - Failed to Login Error: data and hash arguments required 
+4.2.2023, 23:01:46 - INFO - Server is running on port: 3030 
+4.2.2023, 23:01:47 - INFO - New connected socket [id: CXTvWcVOQGC2-mvoAAAB] 
+4.2.2023, 23:02:03 - INFO - Server is running on port: 3030 
+4.2.2023, 23:02:03 - INFO - New connected socket [id: SegBLTyQUU9R2YeiAAAB] 
+4.2.2023, 23:02:05 - DEBUG - auth.service - login with username: user 
+4.2.2023, 23:02:05 - ERROR - Failed to Login Error: data and hash arguments required 
+4.2.2023, 23:02:16 - INFO - Server is running on port: 3030 
+4.2.2023, 23:02:17 - INFO - New connected socket [id: ASRuqxg9hqd7bVDDAAAB] 
+4.2.2023, 23:03:01 - INFO - Server is running on port: 3030 
+4.2.2023, 23:03:02 - INFO - New connected socket [id: EJMMiIVYu0Zbl-UPAAAB] 
+4.2.2023, 23:03:07 - DEBUG - auth.service - login with username: user 
+4.2.2023, 23:03:07 - ERROR - Failed to Login Invalid username or password 
+4.2.2023, 23:03:45 - INFO - Server is running on port: 3030 
+4.2.2023, 23:03:46 - INFO - New connected socket [id: _xWRE36jWj86ItdfAAAB] 
+4.2.2023, 23:04:15 - INFO - Server is running on port: 3030 
+4.2.2023, 23:04:16 - INFO - New connected socket [id: YgK6bizZWwW03gUKAAAB] 
+4.2.2023, 23:04:34 - INFO - Server is running on port: 3030 
+4.2.2023, 23:04:35 - INFO - New connected socket [id: 6YTkIfRq5l7BAfbIAAAB] 
+4.2.2023, 23:04:57 - INFO - Server is running on port: 3030 
+4.2.2023, 23:04:58 - INFO - New connected socket [id: E4CjGjotHRb8MAkHAAAB] 
+4.2.2023, 23:05:00 - DEBUG - auth.service - login with username: user 
+4.2.2023, 23:05:01 - INFO - User login:  | {"id":11,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":4,"postSum":1,"isDarkMode":false,"storySum":1,"currStoryId":5} | b03ee929aaeefdbf30599c36eda8756bf51e268187ca815b39264ec49353c2994176a67617a62486df329731ccbe0db5954e7a3ab8fe3e2209b3e37a3e91abe91f5adef5d8e7c5604175d0abca767c70125c6c75373da9c594ba482340326c71687b 
+4.2.2023, 23:09:00 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 23:09:02 - INFO - New connected socket [id: ltitKmXoVG5cFQHhAAAD] 
+4.2.2023, 23:09:38 - ERROR - while finding user 0 | Failed to commit transaction: user with id #0 was not found (userId: 11)
+4.2.2023, 23:09:38 - ERROR - Failed to get user | Failed to commit transaction: user with id #0 was not found (userId: 11)
+4.2.2023, 23:09:43 - DEBUG - auth.service - login with username: user (userId: 11)
+4.2.2023, 23:09:43 - INFO - User login:  | {"id":11,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":4,"postSum":1,"isDarkMode":false,"storySum":1,"currStoryId":5} | e4a6b6476278a8e851dc74081c4fd3e96408a72a16ee8026f4b012bd3a56d02bf41d39f7acac52e885b8e51dabef1828c02ff26215a9a9bae91ec59dfc80e141ae77ccb361d74691a2f5cc7ce5b3a40d84df382a312a17370afa93519bb7086e50f9 (userId: 11)
+4.2.2023, 23:13:20 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 23:13:21 - INFO - New connected socket [id: VvY8HAJYdPwXS5J9AAAF] 
+4.2.2023, 23:13:23 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 23:13:24 - INFO - New connected socket [id: zjhrgGIsFAhDKxPHAAAH] 
+4.2.2023, 23:16:16 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 23:16:17 - INFO - New connected socket [id: xsnhv_DCoOhxoUmUAAAJ] 
+4.2.2023, 23:16:23 - ERROR - while finding user 0 | Failed to commit transaction: user with id #0 was not found (userId: 11)
+4.2.2023, 23:16:23 - ERROR - Failed to get user | Failed to commit transaction: user with id #0 was not found (userId: 11)
+4.2.2023, 23:16:30 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 23:16:30 - INFO - New connected socket [id: hLEm0y_5SV0tUuPeAAAL] 
+4.2.2023, 23:17:43 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 23:17:44 - INFO - New connected socket [id: _Ohn5uMpHmeRn-ilAAAN] 
+4.2.2023, 23:19:13 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 23:19:14 - INFO - New connected socket [id: bUiKibJEdtorCvOuAAAP] 
+4.2.2023, 23:20:30 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 23:20:31 - INFO - New connected socket [id: MYN0nUk1H_LyW3vpAAAR] 
+4.2.2023, 23:20:33 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 23:20:33 - INFO - New connected socket [id: _NXRnnLGoIVHkt2TAAAT] 
+4.2.2023, 23:20:42 - INFO - Server is running on port: 3030 
+4.2.2023, 23:20:43 - INFO - New connected socket [id: I15qULKzVHrbEhWbAAAB] 
+4.2.2023, 23:21:07 - INFO - Server is running on port: 3030 
+4.2.2023, 23:21:07 - INFO - New connected socket [id: 0HZ5hdWaxJG-szJaAAAB] 
+4.2.2023, 23:22:06 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 23:22:07 - INFO - New connected socket [id: aAgsDFdDrPb6CrIQAAAD] 
+4.2.2023, 23:22:35 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 23:22:36 - INFO - New connected socket [id: N5B4zZIN2ZyX_jfmAAAF] 
+4.2.2023, 23:23:47 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 23:23:48 - INFO - New connected socket [id: TvJorIzatAOZp04iAAAH] 
+4.2.2023, 23:23:56 - ERROR - cannot remove user 11 | Failed to commit transaction: Error: SQLITE_ERROR: no such table: storyImgs (userId: 11)
+4.2.2023, 23:23:56 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_ERROR: no such table: storyImgs (userId: 11)
+4.2.2023, 23:24:58 - INFO - Server is running on port: 3030 
+4.2.2023, 23:24:59 - INFO - New connected socket [id: bNeIRNqDOhBzsQQnAAAB] 
+4.2.2023, 23:28:00 - INFO - Server is running on port: 3030 
+4.2.2023, 23:28:28 - INFO - Server is running on port: 3030 
+4.2.2023, 23:29:57 - INFO - Server is running on port: 3030 
+4.2.2023, 23:29:59 - INFO - New connected socket [id: z_j0vjDHJVunrl6dAAAB] 
+4.2.2023, 23:30:03 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 23:30:04 - INFO - New connected socket [id: Jdbmbw6JZijnY66FAAAD] 
+4.2.2023, 23:30:10 - ERROR - cannot remove user 11 | Failed to commit transaction: Error: SQLITE_ERROR: no such column: toUserId (userId: 11)
+4.2.2023, 23:30:10 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_ERROR: no such column: toUserId (userId: 11)
+4.2.2023, 23:32:51 - INFO - Server is running on port: 3030 
+4.2.2023, 23:32:52 - INFO - New connected socket [id: 5G3gSvtl882dmppMAAAB] 
+4.2.2023, 23:33:03 - INFO - Removing socket.chatId for socket [id: 5G3gSvtl882dmppMAAAB] 
+4.2.2023, 23:33:04 - INFO - Setting socket.chatId = 4 for socket [id: 5G3gSvtl882dmppMAAAB] 
+4.2.2023, 23:33:04 - INFO - Setting socket.chatId = 4 for socket [id: 5G3gSvtl882dmppMAAAB] 
+4.2.2023, 23:33:04 - INFO - Removing socket.chatId for socket [id: 5G3gSvtl882dmppMAAAB] 
+4.2.2023, 23:33:04 - INFO - Setting socket.chatId = 4 for socket [id: 5G3gSvtl882dmppMAAAB] 
+4.2.2023, 23:33:04 - INFO - Setting socket.chatId = 4 for socket [id: 5G3gSvtl882dmppMAAAB] 
+4.2.2023, 23:33:07 - INFO - Emiting event: chat msg-added to chat 4 for socket [id: 5G3gSvtl882dmppMAAAB] 
+4.2.2023, 23:33:10 - INFO - Removing socket.chatId for socket [id: 5G3gSvtl882dmppMAAAB] 
+4.2.2023, 23:33:10 - INFO - Removing socket.chatId for socket [id: 5G3gSvtl882dmppMAAAB] 
+4.2.2023, 23:33:14 - ERROR - cannot remove user 11 | Failed to commit transaction: Error: SQLITE_ERROR: no such column: fromUserId (userId: 11)
+4.2.2023, 23:33:14 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_ERROR: no such column: fromUserId (userId: 11)
+4.2.2023, 23:33:43 - INFO - Server is running on port: 3030 
+4.2.2023, 23:33:43 - INFO - New connected socket [id: uGmgzq_TG31Sr6YkAAAB] 
+4.2.2023, 23:33:58 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 23:33:59 - INFO - New connected socket [id: 8q_I4YC4XpreKpSpAAAD] 
+4.2.2023, 23:34:12 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 23:34:13 - INFO - New connected socket [id: x30P2WCdP0FwnkvXAAAF] 
+4.2.2023, 23:34:22 - ERROR - cannot remove user 11 | Failed to commit transaction: TypeError: Assignment to constant variable. (userId: 11)
+4.2.2023, 23:34:22 - ERROR - Failed to delete user | Failed to commit transaction: TypeError: Assignment to constant variable. (userId: 11)
+4.2.2023, 23:34:55 - INFO - Server is running on port: 3030 
+4.2.2023, 23:34:56 - INFO - New connected socket [id: _9MvwaZJmVXi4QmqAAAB] 
+4.2.2023, 23:34:59 - ERROR - cannot remove user 11 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+4.2.2023, 23:34:59 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+4.2.2023, 23:36:55 - INFO - Server is running on port: 3030 
+4.2.2023, 23:36:56 - INFO - New connected socket [id: 3Zbs3z8tdFhnrlD2AAAB] 
+4.2.2023, 23:37:31 - ERROR - cannot remove user 11 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+4.2.2023, 23:37:31 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+4.2.2023, 23:37:42 - INFO - Server is running on port: 3030 
+4.2.2023, 23:37:42 - INFO - New connected socket [id: dNpRYH8NyAsx0jOoAAAB] 
+4.2.2023, 23:37:44 - ERROR - cannot remove user 11 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+4.2.2023, 23:37:44 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+4.2.2023, 23:38:22 - INFO - Server is running on port: 3030 
+4.2.2023, 23:38:24 - INFO - New connected socket [id: uxdHc1_8i73X_Ex7AAAB] 
+4.2.2023, 23:39:09 - INFO - Server is running on port: 3030 
+4.2.2023, 23:39:09 - INFO - New connected socket [id: URrDT16-bGN0FYKFAAAB] 
+4.2.2023, 23:41:29 - INFO - Server is running on port: 3030 
+4.2.2023, 23:41:30 - INFO - New connected socket [id: xd1p-0xMZVy8tw6WAAAB] 
+4.2.2023, 23:41:33 - ERROR - cannot remove user 11 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+4.2.2023, 23:41:33 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+4.2.2023, 23:42:47 - INFO - Server is running on port: 3030 
+4.2.2023, 23:42:48 - INFO - New connected socket [id: ymV6fvNfwvlxA1LkAAAB] 
+4.2.2023, 23:42:54 - ERROR - cannot remove user 11 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+4.2.2023, 23:42:54 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+4.2.2023, 23:43:03 - INFO - Server is running on port: 3030 
+4.2.2023, 23:43:04 - INFO - New connected socket [id: CPu-xgodOv5OLtTOAAAB] 
+4.2.2023, 23:43:42 - INFO - Server is running on port: 3030 
+4.2.2023, 23:43:42 - INFO - New connected socket [id: AGlZHk0Y_ltmZJ9xAAAB] 
+4.2.2023, 23:43:45 - ERROR - cannot remove user 11 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+4.2.2023, 23:43:45 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+4.2.2023, 23:45:54 - INFO - Server is running on port: 3030 
+4.2.2023, 23:45:54 - INFO - New connected socket [id: tzd1cYF4ddQOJCmzAAAB] 
+4.2.2023, 23:45:59 - ERROR - cannot remove user 11 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+4.2.2023, 23:45:59 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+4.2.2023, 23:46:18 - INFO - Server is running on port: 3030 
+4.2.2023, 23:46:19 - INFO - New connected socket [id: Fgw7wlUV3A4JWutAAAAB] 
+4.2.2023, 23:49:10 - INFO - Server is running on port: 3030 
+4.2.2023, 23:49:11 - INFO - New connected socket [id: KE8ID7ChBufR37j9AAAB] 
+5.2.2023, 0:07:30 - INFO - Server is running on port: 3030 
+5.2.2023, 0:07:31 - INFO - New connected socket [id: uBOm4L28T8K54rrEAAAB] 
+5.2.2023, 0:09:17 - INFO - Server is running on port: 3030 
+5.2.2023, 0:09:18 - INFO - New connected socket [id: bBZTqmUQ6VWu_ewFAAAB] 
+5.2.2023, 0:09:30 - INFO - Socket disconnected [id: undefined] 
+5.2.2023, 0:09:31 - INFO - New connected socket [id: WswQTqsUi5XNBftxAAAD] 
+5.2.2023, 0:09:43 - INFO - Server is running on port: 3030 
+5.2.2023, 0:09:43 - INFO - New connected socket [id: UhUlKgV4ehKQSq02AAAB] 
+5.2.2023, 0:09:47 - ERROR - cannot remove user 11 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+5.2.2023, 0:09:47 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+5.2.2023, 0:10:00 - INFO - Server is running on port: 3030 
+5.2.2023, 0:10:00 - INFO - New connected socket [id: pOZXhTpcEmbrMZjhAAAB] 
+5.2.2023, 0:20:26 - INFO - Server is running on port: 3030 
+5.2.2023, 0:20:28 - INFO - New connected socket [id: SFI-LCa5Q_BpzCxSAAAB] 
+5.2.2023, 0:20:31 - INFO - Server is running on port: 3030 
+5.2.2023, 0:20:32 - INFO - New connected socket [id: vWGzmo2lkhmcAWRgAAAB] 
+5.2.2023, 0:20:36 - ERROR - cannot remove user 11 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+5.2.2023, 0:20:36 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+5.2.2023, 0:26:43 - INFO - Server is running on port: 3030 
+5.2.2023, 0:26:45 - INFO - New connected socket [id: yJROp6A1KbBJz2ZBAAAB] 
+5.2.2023, 0:26:47 - INFO - Server is running on port: 3030 
+5.2.2023, 0:26:48 - INFO - New connected socket [id: SY_EdqHpS7TeyonyAAAB] 
+5.2.2023, 0:27:04 - INFO - Server is running on port: 3030 
+5.2.2023, 0:27:05 - INFO - New connected socket [id: hHjk-84L2vBzKdRhAAAB] 
+5.2.2023, 0:27:11 - ERROR - cannot remove user 11 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+5.2.2023, 0:27:11 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+5.2.2023, 0:30:31 - INFO - Server is running on port: 3030 
+5.2.2023, 0:30:32 - INFO - New connected socket [id: CTKSDczWPDUMzk55AAAB] 
+5.2.2023, 0:30:35 - ERROR - cannot remove user 11 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+5.2.2023, 0:30:35 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+5.2.2023, 0:31:09 - INFO - Server is running on port: 3030 
+5.2.2023, 0:31:10 - INFO - New connected socket [id: QVapsacICTn3WjjvAAAB] 
+5.2.2023, 0:32:48 - INFO - Server is running on port: 3030 
+5.2.2023, 0:32:49 - INFO - New connected socket [id: RCRVHJiL4BOyc0BrAAAB] 
+5.2.2023, 0:33:13 - INFO - Server is running on port: 3030 
+5.2.2023, 0:33:14 - INFO - New connected socket [id: NIPjq69bjyKRL1PbAAAB] 
+5.2.2023, 0:33:16 - ERROR - cannot remove user 11 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+5.2.2023, 0:33:16 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+5.2.2023, 0:33:19 - ERROR - cannot remove user 11 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+5.2.2023, 0:33:19 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 11)
+5.2.2023, 0:36:23 - INFO - Server is running on port: 3030 
+5.2.2023, 0:36:24 - INFO - New connected socket [id: bxrqYElrJG9cZJRkAAAB] 
+5.2.2023, 0:36:28 - ERROR - cannot remove user 11 | Failed to commit transaction: Error: SQLITE_BUSY: database is locked (userId: 11)
+5.2.2023, 0:36:28 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_BUSY: database is locked (userId: 11)
+5.2.2023, 0:37:04 - INFO - Server is running on port: 3030 
+5.2.2023, 0:37:04 - INFO - New connected socket [id: 7nv7xsL7iFp_wwq9AAAB] 
+5.2.2023, 0:37:09 - ERROR - cannot remove user 11 | Failed to commit transaction: Error: SQLITE_BUSY: database is locked (userId: 11)
+5.2.2023, 0:37:09 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_BUSY: database is locked (userId: 11)
+5.2.2023, 0:38:22 - INFO - Server is running on port: 3030 
+5.2.2023, 0:38:22 - INFO - New connected socket [id: A6AoJTAsUwEy14hvAAAB] 
+5.2.2023, 0:38:49 - ERROR - while finding user 11 | Failed to commit transaction: user with id #11 was not found 
+5.2.2023, 0:38:49 - ERROR - while finding user 11 | Failed to commit transaction: user with id #11 was not found 
+5.2.2023, 0:38:49 - WARN - Bad auth token 
+5.2.2023, 0:48:37 - ERROR - while finding user 11 | Failed to commit transaction: user with id #11 was not found 
+5.2.2023, 0:48:37 - DEBUG - auth.service - signup with username: user, fullname: user 
+5.2.2023, 0:48:37 - DEBUG - auth.route - new account created: "user" 
+5.2.2023, 0:48:37 - DEBUG - auth.service - login with username: user 
+5.2.2023, 0:48:37 - INFO - User login:  | {"id":12,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"isDarkMode":false,"storySum":0,"currStoryId":null} 
+5.2.2023, 0:50:14 - ERROR - while finding user 0 | Failed to commit transaction: user with id #0 was not found (userId: 12)
+5.2.2023, 0:50:14 - ERROR - Failed to get user | Failed to commit transaction: user with id #0 was not found (userId: 12)
+5.2.2023, 0:51:24 - INFO - Server is running on port: 3030 
+5.2.2023, 0:51:25 - INFO - New connected socket [id: wiPzX8Xy9okUW83JAAAB] 
+5.2.2023, 0:52:55 - INFO - Socket disconnected [id: undefined] 
+5.2.2023, 0:52:57 - INFO - New connected socket [id: Zbtsi4QKGbgvmmFyAAAD] 
+5.2.2023, 0:52:59 - INFO - Socket disconnected [id: undefined] 
+5.2.2023, 0:53:00 - INFO - New connected socket [id: sFNd0OqBKoB0lJVWAAAF] 
+5.2.2023, 0:54:52 - INFO - Server is running on port: 3030 
+5.2.2023, 0:54:54 - INFO - New connected socket [id: V4SYza85pNoxuLM4AAAB] 

@@ -37,7 +37,6 @@ async function getFollowing(req, res) {
 }
 
 async function addFollow(req, res) {
-    console.log('req', req);
     const { loggedinUser } = req
     const followingId = req.params.id
     try {

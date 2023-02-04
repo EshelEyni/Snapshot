@@ -77,13 +77,15 @@ export class UserService {
     const options = {
       withCredentials: true,
     }
-      return this.http.get<User>(`${this.baseUrl}/user/id/${userId}`, options)
+    if(userId === 0) return of(null) // for logout
+    return this.http.get<User>(`${this.baseUrl}/user/id/${userId}`, options)
   }
 
   public remove(userId: number): Observable<boolean> {
     const options = {
       withCredentials: true
     }
+
     return this.http.delete(`${this.baseUrl}/user/${userId}`, options).pipe(
       map((res) => {
         return true

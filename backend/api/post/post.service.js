@@ -94,7 +94,7 @@ async function query(filter) {
                     post.location = null;
                 }
                 delete post.locationId;
-                const images = await db.query(`select * from postsImgs where postId = $postId order by imgOrder`, { $postId: post.id });
+                const images = await db.query(`select * from postImg where postId = $postId order by imgOrder`, { $postId: post.id });
                 post.imgUrls = images.map(img => img.imgUrl);
                 const tags = await db.query(
                     `select name from tags 
@@ -141,7 +141,7 @@ async function getById(postId) {
             return 'post not found';
         }
         const post = posts[0];
-        const images = await db.query(`select * from postsImgs where postId = $postId`, { $postId: postId });
+        const images = await db.query(`select * from postImg where postId = $postId`, { $postId: postId });
         post.imgUrls = images.map(img => img.imgUrl);
         const comments = await db.query(`select * from comments where postId = $postId`, { $postId: postId });
         post.comments = comments.map(comment => {
@@ -187,7 +187,7 @@ async function remove(postId) {
             await db.exec(`delete from postsLikedBy where postId = $id`, { $id: postId });
             await db.exec(`delete from savedPosts where postId = $id`, { $id: postId });
             await db.exec(`delete from postTags where postId = $id`, { $id: postId });
-            await db.exec(`delete from postsImgs where postId = $id`, { $id: postId });
+            await db.exec(`delete from postImg where postId = $id`, { $id: postId });
             /*
             delete from commentsLikedBy where commentId in (
                 select id from comments where postId = $id
@@ -219,9 +219,9 @@ async function update(post) {
                 $likeSum: post.likeSum,
                 $commentSum: post.commentSum
             });
-            await db.exec(`delete from postsImgs where postId = $id`, { $id: post.id });
+            await db.exec(`delete from postImg where postId = $id`, { $id: post.id });
             for (const i in post.imgUrls) {
-                await db.exec(`insert into postsImgs (postId, imgUrl, imgOrder) values ($postId, $imgUrl, $imgOrder)`, {
+                await db.exec(`insert into postImg (postId, imgUrl, imgOrder) values ($postId, $imgUrl, $imgOrder)`, {
                     $postId: post.id,
                     $imgUrl: post.imgUrls[i],
                     $imgOrder: i,
@@ -263,7 +263,7 @@ async function add(post) {
                     $commentSum: post.commentSum
                 });
             for (const i in post.imgUrls) {
-                await db.exec(`insert into postsImgs (postId, imgUrl, imgOrder) values ($postId, $imgUrl, $imgOrder)`, {
+                await db.exec(`insert into postImg (postId, imgUrl, imgOrder) values ($postId, $imgUrl, $imgOrder)`, {
                     $postId: id,
                     $imgUrl: post.imgUrls[i],
                     $imgOrder: i,

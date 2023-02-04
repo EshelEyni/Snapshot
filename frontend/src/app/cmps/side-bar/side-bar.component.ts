@@ -50,7 +50,6 @@ export class SideBarComponent implements OnInit, OnDestroy {
   };
 
   setIconColor(): void {
-    console.log('set icon color');
     this.iconColor = this.loggedinUser.isDarkMode ? 'var(--primary-color)' : 'var(--tertiary-color)';
     this.icons.forEach(icon => {
       icon.svgStyle = { color: this.iconColor, fill: this.iconColor };

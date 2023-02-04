@@ -82,8 +82,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
           this.loggedinUser = user;
           this.isLoggedinUserProfile = this.user.id === this.loggedinUser.id;
           if (this.user.currStoryId) {
-            console.log('user has story');
-            
+
             const story = await lastValueFrom(
               this.storyService.getById(this.user.currStoryId, 'user-preview'),
             );
