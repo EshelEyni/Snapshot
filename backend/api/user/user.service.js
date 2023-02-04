@@ -96,7 +96,7 @@ async function query(queryParams) {
     }
 }
 
-async function getById(userId) {
+async function getById(userId, isWithPassword) {
     try {
         return await db.txn(async () => {
             const users = await db.query(`SELECT * FROM users WHERE id = $id`, { $id: userId });
@@ -104,6 +104,7 @@ async function getById(userId) {
                 throw 'user with id #' + userId + ' was not found'
             }
             const user = users[0];
+            if (!isWithPassword) delete user.password
             user.isDarkMode = !!user.isDarkMode;
 
             const stories = await db.query(
@@ -121,7 +122,7 @@ async function getById(userId) {
 
 
             const currStoryId = stories[0]
-            
+
             const storyViews = await db.query(
                 `SELECT * FROM storyViews WHERE storyId = $id and userId = $userId`,
                 { $id: currStoryId.id, $userId: userId }
@@ -130,7 +131,6 @@ async function getById(userId) {
             user.currStoryId = currStoryId.id
             user.isStoryViewed = storyViews.length > 0;
 
-            // delete user.password
             return user
         });
 
@@ -175,13 +175,107 @@ async function getByUsername(username) {
 
 async function remove(userId) {
     try {
-        await db.exec(`delete FROM followers WHERE followingId = $id`, { $id: userId })
-        await db.exec(`delete FROM following WHERE followerId = $id`, { $id: userId })
-        await db.exec(`delete FROM recentSearches WHERE searcherId = $id`, { $id: userId })
-        await db.exec(`delete FROM savedPosts WHERE userId = $id`, { $id: userId })
-        // await db.exec(`delete FROM postsImgs join posts WHERE userId = $id`, { $id: userId })
-        // todo: delete posts with images and comments and likes and stories and storiesImgs and storiesLikes
-        await db.exec(`delete FROM users WHERE id = $id`, { $id: userId })
+        await db.txn(async () => {
+            await db.exec(
+                `DELETE FROM postsImgs
+             WHERE postId IN (
+             SELECT id
+             FROM posts
+             WHERE userId = $id
+             )`, { $id: userId })
+
+            await db.exec(
+                `DELETE FROM postsLikedBy
+             WHERE postId IN (
+             SELECT id
+             FROM posts
+             WHERE userId = $id
+             )`, { $id: userId })
+
+
+            await db.exec(`
+            DELETE FROM commentslikedby
+            WHERE commentId IN (
+            SELECT id
+            FROM comments
+            WHERE userId = $id
+            )`, { $id: userId })
+
+            await db.exec(`DELETE FROM comments WHERE userId = $id`, { $id: userId })
+
+            await db.exec(`
+            DELETE FROM savedPosts 
+            WHERE postId IN (
+            SELECT id
+            FROM posts
+            WHERE userId = $id
+            )
+            AND userId = $id`, { $id: userId })
+
+            let tagIds = await db.query(`SELECT tagId FROM postTags 
+            WHERE postId IN (
+            SELECT id
+            FROM posts
+            WHERE userId = $id
+            )`, { $id: userId })
+
+            tagIds = tagIds.map(tag => tag.tagId)
+
+            await db.exec(`DELETE FROM postTags 
+            WHERE postId IN (
+            SELECT id
+            FROM posts
+            WHERE userId = $id
+            )`, { $id: userId })
+
+            for (const tagId of tagIds) {
+                const postsWithTag = await db.query(`SELECT * FROM postTags WHERE tagId = $id`, { $id: tagId })
+                if (!postsWithTag.length) {
+                    await db.exec(`DELETE FROM tags WHERE id = $id`, { $id: tagId })
+                }
+            }
+
+            await db.exec(`DELETE FROM posts WHERE userId = $id`, { $id: userId })
+
+
+            await db.exec(
+                `DELETE FROM storyViews 
+                 WHERE storyId IN (
+                 SELECT id
+                 FROM stories
+                 WHERE userId = $id)
+                 AND userId = $id`, { $id: userId })
+
+            await db.exec(`DELETE FROM storyImgs WHERE storyId IN (SELECT id FROM stories WHERE userId = $id)`, { $id: userId })
+            await db.exec(`DELETE FROM stories WHERE userId = $id`, { $id: userId })
+
+            await db.exec(`DELETE FROM followedTags WHERE toUserId = $id`, { $id: userId })
+            await db.exec(`DELETE FROM follow WHERE fromUserId = $id AND toUserId = $id`, { $id: userId })
+            await db.exec(`DELETE FROM notifications WHERE fromUserId = $id`, { $id: userId })
+
+            await db.exec(`DELETE FROM recentSearches WHERE searcherId = $id`, { $id: userId })
+
+            await db.exec(`DELETE FROM chatMembers WHERE userId = $id`, { $id: userId })
+            await db.exec(`DELETE FROM chatMessages WHERE userId = $id`, { $id: userId })
+            const chatIds = await db.query(
+                `SELECT id FROM chats 
+            WHERE id IN (
+            SELECT chatId
+            FROM chatMembers
+            WHERE userId = $id
+            )`, { $id: userId })
+
+            chatIds = chatIds.map(chat => chat.id)
+            for (const chatId of chatIds) {
+                const members = await db.query(`SELECT * FROM chatMembers WHERE chatId = $id`, { $id: chatId })
+                if (!members.length) {
+                    await db.exec(`DELETE FROM chats WHERE id = $id`, { $id: chatId })
+                }
+            }
+
+            await db.exec(`DELETE FROM users WHERE id = $id`, { $id: userId })
+
+        })
     } catch (err) {
         logger.error(`cannot remove user ${userId}`, err)
         throw err
@@ -190,40 +284,52 @@ async function remove(userId) {
 
 async function update(user) {
     try {
-        await db.exec(
-            `update users set 
-             username = $username,
-             fullname = $fullname,
-             password = $password,
-             email = $email,
-             imgUrl = $imgUrl,
-             gender = $gender,
-             phone = $phone,
-             bio = $bio,
-             website = $website,
-             followersSum = $followersSum,
-             followingSum = $followingSum,
-             postSum = $postSum,
-             isDarkMode = $isDarkMode,
-             storySum = $storySum
-             WHERE id = $id`, {
-            $username: user.username,
-            $fullname: user.fullname,
-            $password: user.password,
-            $email: user.email,
-            $imgUrl: user.imgUrl,
-            $gender: user.gender,
-            $phone: user.phone,
-            $bio: user.bio,
-            $website: user.website,
-            $followersSum: user.followersSum,
-            $followingSum: user.followingSum,
-            $postSum: user.postSum,
-            $isDarkMode: user.isDarkMode ? 1 : 0,
-            $storySum: user.storySum,
-            $id: user.id
+        return await db.txn(async () => {
+
+            await db.exec(
+                `update users set 
+                 username = $username,
+                 fullname = $fullname,
+                 email = $email,
+                 imgUrl = $imgUrl,
+                 gender = $gender,
+                 phone = $phone,
+                 bio = $bio,
+                 website = $website,
+                 followersSum = $followersSum,
+                 followingSum = $followingSum,
+                 postSum = $postSum,
+                 isDarkMode = $isDarkMode,
+                 storySum = $storySum
+                 WHERE id = $id`, {
+                $username: user.username,
+                $fullname: user.fullname,
+                $email: user.email,
+                $imgUrl: user.imgUrl,
+                $gender: user.gender,
+                $phone: user.phone,
+                $bio: user.bio,
+                $website: user.website,
+                $followersSum: user.followersSum,
+                $followingSum: user.followingSum,
+                $postSum: user.postSum,
+                $isDarkMode: user.isDarkMode ? 1 : 0,
+                $storySum: user.storySum,
+                $id: user.id
+            })
+
+            if (user.password) {
+                await db.exec(
+                    `update users set 
+                     password = $password
+                     WHERE id = $id`, {
+                    $password: user.password,
+                    $id: user.id
+                })
+            }
+
+            return user
         })
-        return user
     } catch (err) {
         logger.error(`cannot update user ${user._id}`, err)
         throw err

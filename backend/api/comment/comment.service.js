@@ -7,8 +7,8 @@ async function query({ postId, userId, type }) {
 
         if (type === 'post-preview') {
             let userIds = [userId]
-            const followingIds = await db.query(`select id from following where followerId = $userId`, { $userId: userId });
-            userIds = userIds.concat(followingIds.map(following => following.id))
+            const followingIds = await db.query(`select toUserId from follow where fromUserId = $userId`, { $userId: userId });
+            userIds = userIds.concat(followingIds.map(following => following.toUserId))
             let commentIds = []
             for (let i = 0; i < userIds.length; i++) {
                 const currCommentIds = await db.query(

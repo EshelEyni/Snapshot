@@ -115,8 +115,8 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
     };
 
     if (this.user.username !== username) {
-      const checkIfUsernameTaken = await this.userService.checkIfUsernameTaken(username);
-      if (checkIfUsernameTaken) {
+      const isUsernameTaken = await this.userService.checkIfUsernameTaken(username);
+      if (isUsernameTaken) {
         this.communicationService.userMsgEmitter.emit('Username is taken.');
         return;
       };

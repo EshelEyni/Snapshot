@@ -8,15 +8,6 @@ import { UserState } from '../store/reducers/user.reducer'
 import { LoadingUsers } from '../store/actions/user.actions'
 import { HttpService } from './http.service'
 
-// class CacheItem {
-//   time: number
-//   user: User
-
-//   constructor(time: number, user: User) {
-//     this.time = time
-//     this.user = user
-//   }
-// }
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +22,6 @@ export class UserService {
 
   baseUrl: '/api' | '//localhost:3030/api' = this.httpService.getBaseUrl()
 
-  //usersCache = new Map<number, CacheItem>()
 
   public getLoggedinUser(): MiniUser | null {
     const loggedinUser =
@@ -87,22 +77,7 @@ export class UserService {
     const options = {
       withCredentials: true,
     }
-    if (userId) {
-      // let cached = this.usersCache.get(userId)
-      // if (cached && cached.time + 5 * 1000 < Date.now()) {
-      //   // cache for 5 sec
-      //   return of(cached.user)
-      // }
-
-      // let now = Date.now()
-      // let result = await firstValueFrom(
-      //   this.http.get<User>(`${this.baseUrl}/user/id/${userId}`),
-      // )
-      //this.usersCache.set(userId, new CacheItem(now, result))
-
-      //return of(result)
       return this.http.get<User>(`${this.baseUrl}/user/id/${userId}`, options)
-    } else return of(null)
   }
 
   public remove(userId: number): Observable<boolean> {

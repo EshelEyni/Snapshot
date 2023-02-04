@@ -9,8 +9,8 @@ async function query(userId, type) {
             if (type === 'home-page' || type === 'story-details') {
 
                 let userIds = [userId]
-                const followingIds = await db.query(`select userId from following where followerId = $id`, { $id: userId });
-                userIds = [...userIds, ...followingIds.map(following => following.userId)];
+                const followingIds = await db.query(`select toUserId from follow where fromUserId = $id`, { $id: userId });
+                userIds = [...userIds, ...followingIds.map(following => following.toUserId)];
 
                 const promises = userIds.map(async userId => {
                     let stories = [];

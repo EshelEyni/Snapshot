@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS "comments" (
     "createdAt" TIMESTAMP NOT NULL,
     "isOriginalText" BOOLEAN NOT NULL,
     "likeSum" INTEGER NOT NULL,
-    PRIMARY KEY("id" AUTOINCREMENT) foreign key ("postId") references "posts"("id") foreign key("userId") references "users"("id")
+    PRIMARY KEY("id" AUTOINCREMENT) foreign key ("postId") references "posts"("id") foreign key ("userId") references "users"("id")
 );
 
 CREATE TABLE IF NOT EXISTS "commentsLikedBy"(

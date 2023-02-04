@@ -14,9 +14,9 @@ async function queryUsers(req, res) {
 
 async function getUserById(req, res) {
     const userId = req.params.id
-    console.log('userId', userId);
+    const isWithPassword = req.query.withPassword
     try {
-        const user = await userService.getById(userId)
+        const user = await userService.getById(userId, isWithPassword)
         res.send(user)
     } catch (err) {
         logger.error('Failed to get user', err)

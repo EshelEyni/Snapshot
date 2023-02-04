@@ -1,1226 +1,407 @@
-31.1.2023, 12:26:40 - INFO - Server is running on port: 3030 
-31.1.2023, 12:26:52 - INFO - Server is running on port: 3030 
-31.1.2023, 12:26:58 - INFO - Server is running on port: 3030 
-31.1.2023, 12:40:56 - INFO - Server is running on port: 3030 
-31.1.2023, 13:02:10 - INFO - Server is running on port: 3030 
-31.1.2023, 13:02:15 - INFO - New connected socket [id: iaB1KMiJaLO_sjn3AAAB] 
-31.1.2023, 13:04:23 - INFO - Server is running on port: 3030 
-31.1.2023, 13:04:25 - INFO - New connected socket [id: OX93NabzWpsAD3jaAAAB] 
-31.1.2023, 13:09:48 - INFO - Server is running on port: 3030 
-31.1.2023, 13:09:50 - INFO - New connected socket [id: 9MZC2LPovpABTI2EAAAB] 
-31.1.2023, 13:17:06 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 13:17:06 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | b60199d0c884a1946e2476df90fa6c629f25856cbb0fb3134016a8f38924628a9eb86cacb2a5b068bf49c77406eaf35b4b722f4fef6ec9e813bea8b954b7c747429f726590d0b268f06b4d3167b8a536dc4eaedf02dce75ad2d8fc43a5c4d0c2a6 
-31.1.2023, 13:21:29 - INFO - Server is running on port: 3030 
-31.1.2023, 13:21:30 - INFO - New connected socket [id: 5ny-WkVmgLb_qRIwAAAB] 
-31.1.2023, 13:22:24 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 13:22:24 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 5f0dd88b4f9aa9ab43c3fd0cf048b101f19308e7cecdfc54734f716ac547a6713c2dd9b611c1a6479a9b976ee3589d394fd87e4d56282fc6353dcb0c387bf2ac54cd3ea7f72225ae650dbc2f2d0d69e5989201f1ce80cef28e8624baa4d00330a1 
-31.1.2023, 13:22:41 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 13:22:43 - INFO - New connected socket [id: Fry7GvIvPUh33XIjAAAD] 
-31.1.2023, 13:23:48 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 13:23:48 - INFO - New connected socket [id: 3MaORZBqTBwGR-0SAAAF] 
-31.1.2023, 13:24:01 - INFO - Server is running on port: 3030 
-31.1.2023, 13:24:01 - INFO - New connected socket [id: cv7dS8mVscK4U73FAAAB] 
-31.1.2023, 13:24:13 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 13:24:13 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 1d772717eb0eecf6c3febe5fa68d1ac962cce6e9bef25c9d2e865bd865c066e9c80b5facfaacf9ff7005b70b7d46e748484b9e2b1be828f1879c23dbc1da1a91e0779e4d8268e6ad0db40a6b568bd1d92ec130adac48c689f83bb7225d479697a3 
-31.1.2023, 13:25:04 - INFO - Server is running on port: 3030 
-31.1.2023, 13:25:05 - INFO - New connected socket [id: BxFlfNUiEAHEe6hGAAAB] 
-31.1.2023, 13:25:20 - INFO - Server is running on port: 3030 
-31.1.2023, 13:25:21 - INFO - New connected socket [id: y_nVFu0ZRw1fsFw3AAAB] 
-31.1.2023, 13:26:47 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 13:26:48 - INFO - New connected socket [id: yYMz5c2H5vd2BNj8AAAD] 
-31.1.2023, 13:27:05 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 13:27:05 - INFO - New connected socket [id: tqUXd8pRWLWK8LpZAAAF] 
-31.1.2023, 13:33:30 - INFO - Server is running on port: 3030 
-31.1.2023, 13:33:31 - INFO - New connected socket [id: YJEyC-d4cuNVfLpdAAAB] 
-31.1.2023, 13:34:12 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 13:34:12 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 929d67dda7ef731d9535be7d78ed00b158a8c7ba6ba307a4430f372905577e873fdf9e8ec80db8ae56cd7fe62cc4ebeebbc0286050a42266fa8a9eb16c1560fcd0560a5df859169e6c379d2b229e2f26c7b77417a61388d01762fb7bd4cc3a1986 
-31.1.2023, 13:34:49 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 13:34:49 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 3448de93b4bd3ad58ac6c2398baf89bad6f3bfba0eb0dea8cf2ee79b23fbae4fdbfcc390a2db22537313a8ebb364c56feeac6584f571c3f6253acb5bdc9f6a55fe8429eaf096a53e025bbe36a088dc29079647cc5a20c3b77613ccc0154fdc05f4 
-31.1.2023, 13:35:26 - INFO - New connected socket [id: vK3TQ06ujde9mCanAAAD] 
-31.1.2023, 13:35:30 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 13:46:36 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 13:46:36 - INFO - New connected socket [id: 3OisqYfVeNiQNrtxAAAF] 
-31.1.2023, 13:46:48 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 13:46:48 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 3fd1283222289242c8b99efb279eeb48fe30e296918da66f5f65e9a78629c78d8e37ad8ebd74daadca3867efd20ceafa4220d7cc00c89cdc5ffe35bf7e0573cea8db3cd0bf7f57775a885e634fe2fe0c05558f9824c8190dc76d9b665b608be0b2 
-31.1.2023, 13:50:37 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 13:50:39 - INFO - New connected socket [id: sLlOoma4OYL72ztSAAAH] 
-31.1.2023, 13:50:49 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 13:50:49 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 13:50:49 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 5f059d1985d3e7d1cd1e97038be183412b9cdb87809df6f6bfbbbf25340ec0d5bd95d2653b480a61c37218d6e4e698be115abeef6f8dbaa4a2ee173bf34fa57afad8b7afe1793e13d1ac7176261cdbe476081848dcd7f27fba3249005589cb9fe1 
-31.1.2023, 13:50:49 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | a2138dae572c57d9a2afce28b9764a18ae7ee1d7cee0a5264507e9e44b70b78609b4c160570e6266b0342222fd29b4f2b64b108d40535a1808c7f616601803733356c0459617a23a7736283522197e8bb34efd57f24cbf82ddc7474334e8b0def3 
-31.1.2023, 13:59:59 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 14:00:01 - INFO - New connected socket [id: l9WIbOIojPPvjFeyAAAJ] 
-31.1.2023, 14:01:03 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 14:01:05 - INFO - New connected socket [id: Aw6ARxk8YfzbsX3UAAAL] 
-31.1.2023, 14:01:14 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:01:14 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:01:14 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 469ff7d74c7b68569a59bb4739c6c828cf8fda8c22b1681bd10194dfccb89b94f6e8b09ee0a41e7ff3cbd9cdc2a47079c28c60bede2ba1796d8b18b58d989996956a002b9b2d43450d539332893dfff2e492142be042c2f360defb66f6b410a19c 
-31.1.2023, 14:01:14 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 540df1b3099d61c33ead759d7284aaa451dd99c8aa00929272643a951509ab7e9384c93adc65757576f7f25e7a3826bf613e17a784911304a66539b183abbad87418cfb40b034209670df62379e32a49bb6a07547ee733c32d91ff216eaffae065 
-31.1.2023, 14:03:33 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 14:03:34 - INFO - New connected socket [id: UiuozzYUztKmZQLgAAAN] 
-31.1.2023, 14:03:41 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:03:41 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:03:41 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 1cb7679dae3edd423b654a3eeccbaf2c5297b27979d6bc498d074d21684319d15b100305cf519202eb5ef0ab54d8418d2d2ac152abc96719cbe274196b0842b39d053faf46cac07ea10a172fab2c2d2f6caf1ef2ce4854e460118b1b7e014342be 
-31.1.2023, 14:03:41 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 1702729db0921788088f564065f163bda240cad88c2019fb93dd2783fc372f95d627d75c6b23e2577d8499a1a5e08a3ddcc75961eca4579f24b6ff2cd4a9044aac8856a6486bef33954abd194e0217af26d3381a1df6e8b870b4c8ca6f8c2b824e 
-31.1.2023, 14:07:07 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 14:07:08 - INFO - New connected socket [id: Ic1ylDTJs4zeEhN1AAAP] 
-31.1.2023, 14:07:15 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:07:15 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:07:15 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 91d51495d10d3f1f790a83d64ea4d8e1379f270d8176cc53471d96fdf5b1c93efabcf71913befd91bed0ff7b3ffecf20e0a2674c0b6ef3b868ccc81bf2bf13349e67127c3e74d5a09751ac853c919eca15763f661cec4530cef0d1d18a32775c94 
-31.1.2023, 14:07:15 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 7ad41657845614e9de7b168c583de677a0c4f62cc10adbedaac84468563235cb61dfebe18d3596d14474f5bf80c554ee59489dc3f77d3d9628dffc948e7cfcd39a6e21a68641ea54893be601368946d5315d53326a55d3395e9dfd6c99737a9c86 
-31.1.2023, 14:07:41 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 14:07:42 - INFO - New connected socket [id: V-frAR3UjhtfXBe0AAAR] 
-31.1.2023, 14:07:45 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:07:45 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:07:45 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 804fe026c5b3b38bcd1185ece8fca7426a25df35c3f084a05c6056d5f75fb410281db905f2c48b07618adb20295aaa5159fbbcc8ea97281e818000cef00f167aad49e983c7dbeda8fb9ac95db7cded6c6a58568bdef03b26ff88c6ec4cabbb44db 
-31.1.2023, 14:07:45 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 79542b9e900ac2a29f97b58f4634dfc93396a4e99075e34de58b8c575371077866de41425c29250b6d483306bc4f2dd9c5c28fb904aedb742164d852018bcb60fa781b57d5c1d1ee0e74f77a7244c2c15675cbbc234c230f0ab19a41813cf62606 
-31.1.2023, 14:09:29 - INFO - Server is running on port: 3030 
-31.1.2023, 14:09:30 - INFO - New connected socket [id: LsfgOdYWCKAi-_naAAAB] 
-31.1.2023, 14:09:35 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:09:35 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:09:35 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 6299cfc8f7e0afc492fd53a873af051166bac6a90cd3d814b0a6833f9763bd4a8f36e42a737336a9a76c999a320028f88691fd1602a6b5b49066ed5398a8d33a7e4d1240735ad1e13a90a0a755a360aef72b405c4bf89800f90e3f11e348aa0bf6 
-31.1.2023, 14:09:35 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 8c4bf93da4cd23ceee9dc3ed2ef4b1e773051d65f37161e74e6452015ad3fe2619ba9c4002c87ba94b1c23f98dc79b5aa26fdc8ae65bd392158b233ac17d715bd5d35b534a327c3896cab4bcfcbdd07fc3bc8ffb96fd7b1c20422ec4b9fb10ce23 
-31.1.2023, 14:09:46 - INFO - Server is running on port: 3030 
-31.1.2023, 14:09:46 - INFO - New connected socket [id: oU9NMqDfwYogi3ryAAAB] 
-31.1.2023, 14:39:29 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 14:39:31 - INFO - New connected socket [id: FQyaiD4q7_pulhVUAAAD] 
-31.1.2023, 14:41:24 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 14:41:25 - INFO - New connected socket [id: by_yfrdimsjTAXulAAAF] 
-31.1.2023, 14:41:39 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:41:39 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:41:39 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 0fb8060e7bdbd5909b9f78eacf1de2b217f05e7baf933845ef99530236806c6ecf332f1455403e2acce92553ba364b47c2a70ff71ef5937825056170cf2686bd13dbafd57bc53da047557cb34b7d6eaf0c7fe30ef6e007b60f6ec2e65333140a79 
-31.1.2023, 14:41:39 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | ccc785597d836a0574fed0dfe46fbdc9784e131c0c01ee0ee1d66fcffee1dd254af763f9329d2f159742dc8fdd0085647f2859e6bcc68516268a2f9c4ea3413105f90af79b7c041254e3f7a13dd7d8ae369f88bcd6e1cc4b1fae34870bd67120ed 
-31.1.2023, 14:42:53 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 14:42:56 - INFO - New connected socket [id: IfOe6Nqh5Gxv7ubpAAAH] 
-31.1.2023, 14:43:07 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:43:07 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | d4e89ae86259eb8825dfb6c1c701e6bd39f2c7585eee82021ef4d26b8d9950183cb5f984c5eab610ba26c3bddbafdc498c46e061c462ebb0bae7598bf933653fb02e416b6520f5d6411ad6e5bca2830f34f52025a4e10aa7677ef907c52f83be0c 
-31.1.2023, 14:43:56 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 14:43:58 - INFO - New connected socket [id: j_9qoTMH-kcjL7o9AAAJ] 
-31.1.2023, 14:44:04 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:44:04 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:44:04 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 118c717041857ba07d70f4b79e21da792e1e1a3551136725c24fb9ba9022e5587037dd54a4fc7a0b3b3a57337453b592341ce999affd26164400589904d1f72fa349c8bde7d2015ddcc3d51b0ffa4734274571acd8c29e3e1934a0c857f85aad42 
-31.1.2023, 14:44:04 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 5e2d4e4a97d3891e5d06290a5d93991fb0a4a411d741fd567167f6e2986bb9e4e7568850d9346a6aea56f3a539a9e6e0a0b7ae5955abba32ef47c4ee156df77d0b081731a00cc911a78317f712aff03397bbf831cbf486ab0d453734bb4b999142 
-31.1.2023, 14:44:24 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 14:44:25 - INFO - New connected socket [id: vuJPQjds3GZP4Oh_AAAL] 
-31.1.2023, 14:44:28 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:44:28 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:44:28 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | a0a00c59ed73c8c854d194266480efeec69d046fd9745b735f92a1ce859ec58877863bed256e80e1023ba5143d9b0d340f2b53ed3a96263e99c1b08fcb874f8fef75ec4cb053ea9471822f930979a8b2fc3ab601abe9c30b0c269e23ca7c65f0bc 
-31.1.2023, 14:44:28 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 14f8cf98dbc05bed59082823ad6a89f04f7c6977fda7713d34c92c5563fdb3476d5875da7633dfedafa0d5712155babd40f5bf2608bbad1b7c56708fd5fcea064313fdbeec6e2483c3073bf0e7ce5b73051e42e9bc3f9f67bee1af87f3d8cddc72 
-31.1.2023, 14:44:38 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 14:44:39 - INFO - New connected socket [id: UCwxmoxtD6vWUE6jAAAN] 
-31.1.2023, 14:44:42 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:44:42 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:44:42 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | cd1808858ed97f26c0ee3644224593763beeb889f14a89c36aaf28459eb740b6f9a0fa9f3638474d111c4f3861c698da52814ef27df258f9ac7b55bc37344e7c777e8cd078cbf4eb4e7240f8e413f7e1b33de5b7ce76192da58a1e70d173217ba1 
-31.1.2023, 14:44:42 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | fadb6a282e7c6febab054cdfb40783449e8de4b48c9d08ad2054c6a4a71cab5299910c5c9c3817e3cc485fd1160661852633038f182a09b0bb25d2d581dca7363715b969e2e30bb3b633ca09f25607926b25a47c7e83367a497ce12443073e2ce0 
-31.1.2023, 14:46:50 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 14:46:51 - INFO - New connected socket [id: 3C6X4_7wazNmIY0KAAAP] 
-31.1.2023, 14:47:03 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:47:03 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:47:03 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 7be1827861504c668a66a2c7f558b2eb8fbf92b1f58681da0e37b85a43748c5646f01881309fdccaafb6fcd9246c6187f60ad35fce7e262c0f313ff5f9285efdb874a77573c38a216d6317723492d896c2dffa081e5248468b3abdda3bb9bfd279 
-31.1.2023, 14:47:03 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 8b42b9a0f32acebf0ff183ffd4a7de714c85195e16205cd96c0521f7bf0d604221ed1bc388260ae43afcc2589628fc87952ad7cdffe526238b68e188493ce4900d56deea9d899abc53a7820a5c1e40285e1af9689cd70c0e7642c6df493c3fd917 
-31.1.2023, 14:47:44 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 14:47:45 - INFO - New connected socket [id: TszpeGFxVZC_lp_cAAAR] 
-31.1.2023, 14:47:48 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:47:48 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:47:48 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 0d4097c9bee6059862a924f2342c9356eda2331a891fa118297c605e43c9f0583384765a5c4278d226fd879cd091a8e5434ce61ff66c0f2c8a9481b1bbce3f9c229f97e4b94332a0ba916f38247ee96683432e792aab804dbea02d22957646e79b 
-31.1.2023, 14:47:48 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | b983713dd90d785cd24337c2ff8e9c6587b7121ce3a993d2e9fd09f41ff2a34ed54a0b73d10b22343899c98f88877f3dd60eed6bcc28ea2834e7679409b0563044d62fe30f9f29aa685be59fe49844a7cb3e6b2167b67a03ec96517ba6c659b9c5 
-31.1.2023, 14:49:16 - INFO - Server is running on port: 3030 
-31.1.2023, 14:49:16 - INFO - New connected socket [id: ug6sS9TAlhj3IRzRAAAB] 
-31.1.2023, 14:49:40 - INFO - Server is running on port: 3030 
-31.1.2023, 14:49:42 - INFO - New connected socket [id: _Lq2KpBDMYKsighsAAAB] 
-31.1.2023, 14:49:47 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 14:49:48 - INFO - New connected socket [id: dse6dWdbynugVCP2AAAD] 
-31.1.2023, 14:50:00 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:50:00 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 14:50:00 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 08e5aca4ab0f51c52f19a14c45620f4c8523101b95c33d35887dd3feb18c77790265cc8a1c0b0a449ee93a8715fee2caa62af4f325c42b31730e786fe380a52edea93ccbb7f7a422df5f040dcb42ff5910875091d6875d0a816737a0227b38a2ea 
-31.1.2023, 14:50:00 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 38fa85a8ef36d10f3312a137c2c4c33e9c9f1ef2dbc8c54b07897e3d2d14a5e8f546d5280257090639477b2d2e675aa25957ca9289abafde7a10bea7c0058b965eaa7602b4c7d89ae9e410ee5cacd1ef6032be238aaaf7af2ed9862208a8628a96 
-31.1.2023, 14:50:13 - INFO - Server is running on port: 3030 
-31.1.2023, 14:50:14 - INFO - New connected socket [id: yLkTorFUKdcsFoeBAAAB] 
-31.1.2023, 14:50:14 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 14:50:15 - INFO - New connected socket [id: NOulpHNKrppZ_aXxAAAD] 
-31.1.2023, 14:51:13 - INFO - Server is running on port: 3030 
-31.1.2023, 14:51:14 - INFO - New connected socket [id: HJieXWUJSa4fBfuEAAAB] 
-31.1.2023, 14:51:16 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 14:51:17 - INFO - New connected socket [id: 68j7hxGjAcFEbtttAAAD] 
-31.1.2023, 14:52:11 - INFO - Server is running on port: 3030 
-31.1.2023, 14:52:11 - INFO - New connected socket [id: Aa0IbcR0hGTN_OfrAAAB] 
-31.1.2023, 14:52:13 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 14:52:27 - INFO - Server is running on port: 3030 
-31.1.2023, 14:52:27 - INFO - New connected socket [id: JRoB2TPEPp88Q-hGAAAB] 
-31.1.2023, 14:52:28 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 14:52:59 - INFO - Server is running on port: 3030 
-31.1.2023, 14:53:01 - INFO - New connected socket [id: pZ35zjxhgr9UBW7TAAAB] 
-31.1.2023, 14:54:24 - INFO - Server is running on port: 3030 
-31.1.2023, 14:54:25 - INFO - New connected socket [id: w4nBpqaWJZ1ayjO6AAAB] 
-31.1.2023, 14:54:36 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 14:54:37 - INFO - New connected socket [id: PZTP8lti4Tb0tHriAAAD] 
-31.1.2023, 14:57:24 - INFO - Server is running on port: 3030 
-31.1.2023, 14:57:24 - INFO - New connected socket [id: wRk4JeBtM9Q8v8TOAAAB] 
-31.1.2023, 14:57:25 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 14:57:27 - INFO - New connected socket [id: 8fpnRk68FqWcVgczAAAD] 
-31.1.2023, 15:01:44 - INFO - Server is running on port: 3030 
-31.1.2023, 15:01:44 - INFO - New connected socket [id: TSBpfgd2iZrlh3o5AAAB] 
-31.1.2023, 15:01:48 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 15:01:49 - INFO - New connected socket [id: eTX9OOtE1OMgpQGLAAAD] 
-31.1.2023, 15:02:06 - INFO - Server is running on port: 3030 
-31.1.2023, 15:02:06 - INFO - New connected socket [id: _YRHIUG4eWnerZC4AAAB] 
-31.1.2023, 15:08:13 - INFO - Server is running on port: 3030 
-31.1.2023, 15:08:13 - INFO - New connected socket [id: fF7MtVTuVegCalDqAAAB] 
-31.1.2023, 15:20:45 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 15:20:46 - INFO - New connected socket [id: NaXganiTTBqw8KejAAAD] 
-31.1.2023, 15:21:00 - DEBUG - auth.service - login with username: tattookate (userId: 4)
-31.1.2023, 15:21:00 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 600c9da687bddf8a864d3f31896a168161f7b68cec73885ac6d6fdbe92df13072f659fa7d2d85409596be758aa675c3e7ecd6170239dfd7d36eb0e9820df6b99d9377952db5603d3e8995277f390e9760ed4fc4c3ff47e65c18c7571f98ec9e044 (userId: 4)
-31.1.2023, 15:21:09 - DEBUG - auth.service - login with username: tattookate (userId: 4)
-31.1.2023, 15:21:09 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 5e2a977f3d84a0340baefe25cfc48448d82ac78b51b0eefe79a5509d46e9a30ac581e00cd55132f4103d681fbe5d1d47575bb9fafcd982b7a8ee008908c2982a58634abcade60ec77bf63d76a0f6972cb850f5c84fbdbf4dc4baaa7e92788a99f1 (userId: 4)
-31.1.2023, 15:21:17 - DEBUG - auth.service - login with username: tattookate (userId: 4)
-31.1.2023, 15:21:17 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 865e33f9577e088ba07603103125367fa7c3f2d9b0b96c729aa47b00a4bc3ae44deb692892c6a58b611096abbb361711494bf45f172d6aa621ac690fea4a8ed5ea94be44495c4abd06fe904a12ecfb09584ddb3f628dc17c4842e829ec0eb69a01 (userId: 4)
-31.1.2023, 15:21:24 - DEBUG - auth.service - login with username: tattookate (userId: 4)
-31.1.2023, 15:21:24 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 7c8b9a1ea8bc4d3bf23d9111920eb4567a95b467984e399126bd7fc7c2a641e9be0010fd28b4fa30897a0e0ac0cab7d65ded1a8344f7de195b13daf220b9ec1f27ad33a5221f554b81e54784823b9b4a2eb2e5a8daf2cea12cc62f29c51875320b (userId: 4)
-31.1.2023, 15:21:44 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 15:21:46 - INFO - New connected socket [id: PzP9GvFd6Rvzr_wwAAAF] 
-31.1.2023, 15:22:00 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 15:22:00 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 9edc31e1c0da51e670cef4e33c68896fec5234b6bed4fa227acb130453d64be0f82175dcbef1f7afdeafba8a9f09a5d97a324b7e49f2a153f705754ab400afc0c30defc2fc0172a4c5aee0310e989c15ac4c13b01acd749abf055cc941b65f030f 
-31.1.2023, 15:22:22 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 15:22:24 - INFO - New connected socket [id: Ln7-LvKQS4WycOhhAAAH] 
-31.1.2023, 15:22:30 - DEBUG - auth.service - login with username: tattookate 
-31.1.2023, 15:22:31 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 09c42299f38c891be995fbf19d6a7c16d7388d541839ca0cc8545e5d96d91a2ee77a6332bc6248eb6d126cdaee8edb4fdea3842daeb2276fe4094f137b25b2093f970f79c999170e0a8819c38d900cc2e9b3dd9d89ddb86d3bd6371421fead6efd 
-31.1.2023, 15:26:03 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 15:26:04 - INFO - New connected socket [id: T2DwladKxVasNn0tAAAJ] 
-31.1.2023, 15:26:18 - DEBUG - auth.service - login with username: tattookate (userId: 4)
-31.1.2023, 15:26:18 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":1,"storySum":1} | 64e65560145955adaf47724d8f3b29968a824a174a54c02f18f9553e2734049fc8758cc53dfd4f7306a996b8829c0b2e29c31240e108414d993a09161a62453a20fa96f726067ed06221f3c4580983372b969ed55a3655958a3103befa819dd21f (userId: 4)
-31.1.2023, 15:29:47 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 15:29:48 - INFO - New connected socket [id: KQ2hMHOt0mB28L0sAAAL] 
-31.1.2023, 15:30:53 - INFO - Server is running on port: 3030 
-31.1.2023, 15:30:53 - INFO - New connected socket [id: OBHxyVoLR-JUSkG6AAAB] 
-31.1.2023, 15:39:12 - INFO - Server is running on port: 3030 
-31.1.2023, 15:39:13 - INFO - New connected socket [id: nDvQFvYHuelgXjJlAAAB] 
-31.1.2023, 15:40:07 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 15:40:08 - INFO - New connected socket [id: oT9a4GBihMpWkC3oAAAD] 
-31.1.2023, 15:40:37 - INFO - Server is running on port: 3030 
-31.1.2023, 15:40:37 - INFO - New connected socket [id: IOV4Bewr07ePvK2AAAAB] 
-31.1.2023, 15:41:15 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 15:41:15 - INFO - New connected socket [id: qnRDT76XQv-XQIq0AAAD] 
-31.1.2023, 15:41:18 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 15:41:22 - INFO - New connected socket [id: vzoPafMFUmT0zqS2AAAF] 
-31.1.2023, 15:41:41 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 15:41:42 - INFO - New connected socket [id: kaBwOHbpKi4OCRe_AAAH] 
-31.1.2023, 15:42:39 - INFO - Server is running on port: 3030 
-31.1.2023, 15:42:39 - INFO - New connected socket [id: 4Qw-RdieIEdWmKn8AAAB] 
-31.1.2023, 15:44:45 - INFO - Server is running on port: 3030 
-31.1.2023, 15:44:45 - INFO - New connected socket [id: mKcwVCiE1Gbs3aj7AAAB] 
-31.1.2023, 15:45:17 - INFO - Server is running on port: 3030 
-31.1.2023, 15:45:17 - INFO - New connected socket [id: FGLO8pxIGfzyWkChAAAB] 
-31.1.2023, 15:45:33 - INFO - Server is running on port: 3030 
-31.1.2023, 15:45:34 - INFO - New connected socket [id: Mhx_LxTqPQfnHkNWAAAB] 
-31.1.2023, 15:47:54 - INFO - Server is running on port: 3030 
-31.1.2023, 15:47:55 - INFO - New connected socket [id: T9zN8kviY7f6X0kyAAAB] 
-31.1.2023, 15:49:17 - INFO - Server is running on port: 3030 
-31.1.2023, 15:49:18 - INFO - New connected socket [id: nCmURNnPDI9Ad8GCAAAB] 
-31.1.2023, 15:49:25 - INFO - Server is running on port: 3030 
-31.1.2023, 15:49:26 - INFO - New connected socket [id: R3s8LLI6FYi7l-qoAAAB] 
-31.1.2023, 15:49:27 - INFO - Server is running on port: 3030 
-31.1.2023, 15:49:28 - INFO - New connected socket [id: DsIr4Fp3FXw5TZ3zAAAB] 
-31.1.2023, 15:49:31 - INFO - Server is running on port: 3030 
-31.1.2023, 15:49:32 - INFO - New connected socket [id: xgS7F75l1h1E-L--AAAB] 
-31.1.2023, 15:49:52 - INFO - Server is running on port: 3030 
-31.1.2023, 15:49:53 - INFO - New connected socket [id: FbZXTDKEUYO3NJsDAAAB] 
-31.1.2023, 15:53:05 - INFO - Server is running on port: 3030 
-31.1.2023, 15:53:06 - INFO - New connected socket [id: ISOvJCywsamvn44HAAAB] 
-31.1.2023, 15:53:17 - INFO - Server is running on port: 3030 
-31.1.2023, 15:53:18 - INFO - New connected socket [id: y8XtBWFvuvSZ8LuuAAAB] 
-31.1.2023, 15:53:50 - INFO - Server is running on port: 3030 
-31.1.2023, 15:53:50 - INFO - New connected socket [id: HJ_xp_Ybao7Z884BAAAB] 
-31.1.2023, 15:54:14 - INFO - Server is running on port: 3030 
-31.1.2023, 15:54:15 - INFO - New connected socket [id: gKUm8VopQcBRRnsYAAAB] 
-31.1.2023, 15:55:11 - INFO - Server is running on port: 3030 
-31.1.2023, 15:55:11 - INFO - New connected socket [id: BrwOMJmL1wwN1rVRAAAB] 
-31.1.2023, 15:55:26 - INFO - Server is running on port: 3030 
-31.1.2023, 15:55:28 - INFO - Server is running on port: 3030 
-31.1.2023, 15:55:28 - INFO - New connected socket [id: erSGQqpjregkB739AAAB] 
-31.1.2023, 15:56:47 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 15:56:48 - INFO - New connected socket [id: nui2vFiDxs48i0I5AAAD] 
-31.1.2023, 16:02:50 - INFO - Server is running on port: 3030 
-31.1.2023, 16:02:52 - INFO - New connected socket [id: ErCTl0_6c5HmBcXlAAAB] 
-31.1.2023, 16:03:12 - INFO - Server is running on port: 3030 
-31.1.2023, 16:03:13 - INFO - New connected socket [id: IsKQNFZpFp8fvfcQAAAB] 
-31.1.2023, 16:03:58 - INFO - Server is running on port: 3030 
-31.1.2023, 16:03:58 - INFO - New connected socket [id: oMy6ao5NsdH2M3I7AAAB] 
-31.1.2023, 16:07:51 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:07:52 - INFO - New connected socket [id: RYtkxLq3Xspd3q8bAAAD] 
-31.1.2023, 16:08:51 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:08:52 - INFO - New connected socket [id: VPTF16HLCtzN4u1TAAAF] 
-31.1.2023, 16:08:58 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:08:59 - INFO - New connected socket [id: mVIHM3UdqxlEJFa2AAAH] 
-31.1.2023, 16:09:11 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:09:12 - INFO - New connected socket [id: 1waiV5BKXEASrUWqAAAJ] 
-31.1.2023, 16:09:17 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:09:18 - INFO - New connected socket [id: bELiKea59U-66mseAAAL] 
-31.1.2023, 16:10:19 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:10:20 - INFO - New connected socket [id: zS2LxYnW52bk4NKBAAAN] 
-31.1.2023, 16:11:07 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:11:08 - INFO - New connected socket [id: wn2mBZ6WlQXHA7n_AAAP] 
-31.1.2023, 16:11:27 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:11:28 - INFO - New connected socket [id: ytKhdS57gVvSeeCpAAAR] 
-31.1.2023, 16:15:29 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:15:31 - INFO - New connected socket [id: zvwBxLOkc8A9yezKAAAT] 
-31.1.2023, 16:16:42 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:16:43 - INFO - New connected socket [id: AnkNaUpObjEW9ZsjAAAV] 
-31.1.2023, 16:17:31 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:17:32 - INFO - New connected socket [id: -GbtHwFWxhIL7KuTAAAX] 
-31.1.2023, 16:18:48 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:18:49 - INFO - New connected socket [id: AqqCAS12O2CbAZeyAAAZ] 
-31.1.2023, 16:19:01 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:19:02 - INFO - New connected socket [id: aXzQU5L-gpMB0Pj7AAAb] 
-31.1.2023, 16:19:51 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:19:52 - INFO - New connected socket [id: 5hx1oyuG47VsSIvGAAAd] 
-31.1.2023, 16:20:48 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:20:49 - INFO - New connected socket [id: qm6SlMEeUxGjb24NAAAf] 
-31.1.2023, 16:21:09 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:21:11 - INFO - New connected socket [id: Wy04iy9DKbBPHFOqAAAh] 
-31.1.2023, 16:22:04 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:22:05 - INFO - New connected socket [id: YBx6KLCjUbIlxhNqAAAj] 
-31.1.2023, 16:23:03 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:23:05 - INFO - New connected socket [id: HkKOpfxj_c6582XgAAAl] 
-31.1.2023, 16:24:23 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:24:24 - INFO - New connected socket [id: oxipWxtAquFEASwfAAAn] 
-31.1.2023, 16:25:15 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:25:16 - INFO - New connected socket [id: b_sJGBq4MAHaWok5AAAp] 
-31.1.2023, 16:25:48 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:25:49 - INFO - New connected socket [id: 4XQeHmUO5KnluYA9AAAr] 
-31.1.2023, 16:28:05 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:28:06 - INFO - New connected socket [id: yosxuCYr-L_v6J-rAAAt] 
-31.1.2023, 16:28:39 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:28:40 - INFO - New connected socket [id: JsvborTofyxxEz1qAAAv] 
-31.1.2023, 16:29:20 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:29:21 - INFO - New connected socket [id: gxvXp_pGYBtgUXtpAAAx] 
-31.1.2023, 16:30:25 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:30:26 - INFO - New connected socket [id: sbIJM_I6A4RLNwTWAAAz] 
-31.1.2023, 16:31:13 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:31:14 - INFO - New connected socket [id: fi2zBWafhouf7uMBAAA1] 
-31.1.2023, 16:31:32 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:31:33 - INFO - New connected socket [id: zWOFdQyd85ZrMbZPAAA3] 
-31.1.2023, 16:31:46 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:31:47 - INFO - New connected socket [id: 664gdXFzizGVbjIPAAA5] 
-31.1.2023, 16:32:34 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:32:35 - INFO - New connected socket [id: -_Z1PLdozZu6DgEpAAA7] 
-31.1.2023, 16:33:45 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:33:47 - INFO - New connected socket [id: DyuVdN7jnX98DO60AAA9] 
-31.1.2023, 16:34:47 - INFO - Server is running on port: 3030 
-31.1.2023, 16:34:48 - INFO - New connected socket [id: DVmMhnPTJ1SPWLiVAAAB] 
-31.1.2023, 16:35:39 - INFO - Server is running on port: 3030 
-31.1.2023, 16:35:39 - INFO - New connected socket [id: _h8cIbUcoRS5wmHVAAAB] 
-31.1.2023, 16:36:12 - INFO - Server is running on port: 3030 
-31.1.2023, 16:36:13 - INFO - New connected socket [id: 0E-GtUGkwQgOZAPmAAAB] 
-31.1.2023, 16:37:21 - INFO - Server is running on port: 3030 
-31.1.2023, 16:37:22 - INFO - New connected socket [id: _9PDaPysLBgzsQ6JAAAB] 
-31.1.2023, 16:37:39 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:37:40 - INFO - New connected socket [id: rgscHvk30MLOfm_AAAAD] 
-31.1.2023, 16:52:21 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 16:52:25 - INFO - New connected socket [id: F4_TNjzjqYHG27cEAAAF] 
-31.1.2023, 16:53:23 - INFO - Server is running on port: 3030 
-31.1.2023, 16:53:24 - INFO - New connected socket [id: oBmfvrWFzp46WDIZAAAB] 
-31.1.2023, 17:05:39 - INFO - Server is running on port: 3030 
-31.1.2023, 17:05:40 - INFO - New connected socket [id: P1LL1AseRS3xiZ9uAAAB] 
-31.1.2023, 17:11:47 - INFO - Server is running on port: 3030 
-31.1.2023, 17:11:49 - INFO - New connected socket [id: 47fRrVOqqpDLqIAhAAAB] 
-31.1.2023, 17:13:39 - INFO - Server is running on port: 3030 
-31.1.2023, 17:13:41 - INFO - New connected socket [id: tpLTXWvc1AmunmtVAAAB] 
-31.1.2023, 17:14:58 - INFO - Server is running on port: 3030 
-31.1.2023, 17:14:59 - INFO - New connected socket [id: vsMX79RejUpImtfkAAAB] 
-31.1.2023, 17:34:12 - INFO - Server is running on port: 3030 
-31.1.2023, 17:34:14 - INFO - New connected socket [id: kMHgFBCI6umcWyvXAAAB] 
-31.1.2023, 17:34:49 - INFO - Server is running on port: 3030 
-31.1.2023, 17:34:51 - INFO - New connected socket [id: qo5Wife3UmuYRDGqAAAB] 
-31.1.2023, 17:35:31 - INFO - Server is running on port: 3030 
-31.1.2023, 17:35:32 - INFO - New connected socket [id: HFoLcqFPfnxE7f8PAAAB] 
-31.1.2023, 17:35:58 - INFO - Server is running on port: 3030 
-31.1.2023, 17:35:59 - INFO - New connected socket [id: nYkh3fntqCQ-cqcuAAAB] 
-31.1.2023, 17:36:17 - INFO - Server is running on port: 3030 
-31.1.2023, 17:36:17 - INFO - New connected socket [id: t0CBS-LN7NTJwk0zAAAB] 
-31.1.2023, 17:54:58 - INFO - Server is running on port: 3030 
-31.1.2023, 17:54:59 - INFO - New connected socket [id: Jw4eNUgWhgkOwDBIAAAB] 
-31.1.2023, 17:55:30 - INFO - Server is running on port: 3030 
-31.1.2023, 17:55:35 - INFO - New connected socket [id: 8L3QrtSKAI9iFEjxAAAB] 
-31.1.2023, 17:55:38 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 17:55:40 - INFO - New connected socket [id: a9ehFpDEdhNpsUG1AAAD] 
-31.1.2023, 17:56:42 - INFO - Server is running on port: 3030 
-31.1.2023, 17:58:10 - INFO - Server is running on port: 3030 
-31.1.2023, 17:58:15 - INFO - New connected socket [id: zPzQwc5vXH6smla6AAAB] 
-31.1.2023, 17:58:43 - INFO - Server is running on port: 3030 
-31.1.2023, 17:58:43 - INFO - New connected socket [id: HyZ0p2_TZsKT1OzjAAAB] 
-31.1.2023, 17:59:49 - INFO - Server is running on port: 3030 
-31.1.2023, 17:59:50 - INFO - New connected socket [id: PVabpXUgBjY8xsDfAAAB] 
-31.1.2023, 18:01:04 - INFO - Server is running on port: 3030 
-31.1.2023, 18:01:04 - INFO - New connected socket [id: 1C_K_6El1u6I8gVlAAAB] 
-31.1.2023, 18:01:43 - INFO - Server is running on port: 3030 
-31.1.2023, 18:01:43 - INFO - New connected socket [id: WKwigRIKWwZGyY8oAAAB] 
-31.1.2023, 18:02:07 - INFO - Server is running on port: 3030 
-31.1.2023, 18:02:12 - INFO - New connected socket [id: tFwURnMB_Iuo8sD_AAAB] 
-31.1.2023, 18:02:14 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 18:02:15 - INFO - New connected socket [id: KIUYrXwt9bckj3rpAAAD] 
-31.1.2023, 18:03:15 - INFO - Server is running on port: 3030 
-31.1.2023, 18:03:16 - INFO - New connected socket [id: 87jAltC79Lem1wBiAAAB] 
-31.1.2023, 18:04:16 - INFO - Server is running on port: 3030 
-31.1.2023, 18:04:17 - INFO - New connected socket [id: ND9wbTq-UO5ZgPXNAAAB] 
-31.1.2023, 18:04:19 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 18:04:20 - INFO - New connected socket [id: t-A7mhrCHFzDcx4GAAAD] 
-31.1.2023, 18:05:18 - INFO - Server is running on port: 3030 
-31.1.2023, 18:05:18 - INFO - New connected socket [id: 84aELmPUQfKYvlw9AAAB] 
-31.1.2023, 18:05:19 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 18:05:19 - INFO - New connected socket [id: KKfDOPSmgxFsOTr5AAAD] 
-31.1.2023, 18:06:15 - INFO - Server is running on port: 3030 
-31.1.2023, 18:06:16 - INFO - New connected socket [id: u5YwL2awnse6p_zPAAAB] 
-31.1.2023, 18:06:17 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 18:06:18 - INFO - New connected socket [id: e0PcHESoNVJMIztfAAAD] 
-31.1.2023, 18:07:34 - INFO - Server is running on port: 3030 
-31.1.2023, 18:07:34 - INFO - New connected socket [id: EaFG5pQRiKH76iwXAAAB] 
-31.1.2023, 18:07:36 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 18:07:37 - INFO - New connected socket [id: uyS4bYY2yd-9ycR-AAAD] 
-31.1.2023, 18:07:56 - INFO - Server is running on port: 3030 
-31.1.2023, 18:07:57 - INFO - New connected socket [id: 0XwWZR2ibctOqKukAAAB] 
-31.1.2023, 18:09:00 - INFO - Server is running on port: 3030 
-31.1.2023, 18:09:01 - INFO - New connected socket [id: XZQlS2FIO_NLGuxCAAAB] 
-31.1.2023, 18:09:10 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 18:09:11 - INFO - New connected socket [id: 8wOuItUZHI9SdgBUAAAD] 
-31.1.2023, 18:09:54 - ERROR - Failed to delete comment | TypeError: Cannot destructure property 'loggedinUser' of 'store' as it is undefined. 
-31.1.2023, 18:11:03 - INFO - Server is running on port: 3030 
-31.1.2023, 18:11:03 - INFO - New connected socket [id: C8xVLBuEIhOlLSsjAAAB] 
-31.1.2023, 18:11:08 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 18:11:09 - INFO - New connected socket [id: wajrZU2BcciYMZZnAAAD] 
-31.1.2023, 18:11:26 - ERROR - cannot remove comment 30 | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
-31.1.2023, 18:11:26 - ERROR - Failed to delete comment | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
-31.1.2023, 18:12:54 - INFO - Server is running on port: 3030 
-31.1.2023, 18:12:54 - INFO - New connected socket [id: D2xyN8hqEaalDeDZAAAB] 
-31.1.2023, 18:12:56 - ERROR - cannot remove comment 30 | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
-31.1.2023, 18:12:56 - ERROR - Failed to delete comment | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
-31.1.2023, 18:13:49 - INFO - Server is running on port: 3030 
-31.1.2023, 18:13:50 - INFO - New connected socket [id: SPwFWy-ESFqqNpjLAAAB] 
-31.1.2023, 18:13:52 - ERROR - cannot remove comment 30 | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
-31.1.2023, 18:13:52 - ERROR - Failed to delete comment | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
-31.1.2023, 18:14:20 - INFO - Server is running on port: 3030 
-31.1.2023, 18:14:21 - INFO - New connected socket [id: 9jhuyZrumppZjCc6AAAB] 
-31.1.2023, 18:14:22 - ERROR - cannot remove comment 30 | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
-31.1.2023, 18:14:22 - ERROR - Failed to delete comment | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') 
-31.1.2023, 18:14:44 - INFO - Server is running on port: 3030 
-31.1.2023, 18:14:44 - INFO - New connected socket [id: EJJyuJFoFP6WKUJkAAAB] 
-31.1.2023, 18:16:13 - INFO - Server is running on port: 3030 
-31.1.2023, 18:16:13 - INFO - New connected socket [id: 8Hw1bHnH71BF8sQ3AAAB] 
-31.1.2023, 18:16:59 - INFO - Server is running on port: 3030 
-31.1.2023, 18:17:00 - INFO - New connected socket [id: 7VzadMCtRtrTIS4MAAAB] 
-31.1.2023, 18:17:43 - INFO - Server is running on port: 3030 
-31.1.2023, 18:17:44 - INFO - New connected socket [id: fbchkICkjKzJ-wZiAAAB] 
-31.1.2023, 18:46:00 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 18:46:03 - INFO - New connected socket [id: iAa8zvx11MUzUFhAAAAD] 
-31.1.2023, 18:56:02 - INFO - Server is running on port: 3030 
-31.1.2023, 18:56:03 - INFO - New connected socket [id: 1nNqfVdBg54dBND5AAAB] 
-31.1.2023, 18:56:08 - INFO - Server is running on port: 3030 
-31.1.2023, 18:56:09 - INFO - New connected socket [id: rxOIozpMB4Xf4zE_AAAB] 
-31.1.2023, 18:57:33 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 18:57:38 - INFO - New connected socket [id: MdsDrXs9eIyZUH4rAAAD] 
-31.1.2023, 19:00:35 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 19:00:36 - INFO - New connected socket [id: 5ad46p3WCWE_nQPjAAAF] 
-31.1.2023, 19:00:40 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 19:00:42 - INFO - New connected socket [id: 2lz3eVi3bQ9XBZnjAAAH] 
-31.1.2023, 19:00:45 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 19:00:46 - INFO - New connected socket [id: cHdv958644TXBJe-AAAJ] 
-31.1.2023, 19:00:49 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 19:00:50 - INFO - New connected socket [id: 1V4ht-dIlBRNOXm3AAAL] 
-31.1.2023, 19:00:59 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 19:01:00 - INFO - New connected socket [id: x4LsXDEg-m20w1SaAAAN] 
-31.1.2023, 19:01:09 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 19:01:10 - INFO - New connected socket [id: basNEkz_OCftnGJQAAAP] 
-31.1.2023, 19:01:25 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 19:01:26 - INFO - New connected socket [id: VoVCCoKbHQb5LlvrAAAR] 
-31.1.2023, 19:01:36 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 19:01:37 - INFO - New connected socket [id: QmRbWA7GouX2Q45QAAAT] 
-31.1.2023, 19:04:05 - INFO - Server is running on port: 3030 
-31.1.2023, 19:04:05 - INFO - New connected socket [id: Foc-3PZKdkAnZ9llAAAB] 
-31.1.2023, 19:06:39 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 19:06:40 - INFO - New connected socket [id: v6oOr261WAkgshrxAAAD] 
-31.1.2023, 19:07:37 - INFO - Server is running on port: 3030 
-31.1.2023, 19:07:38 - INFO - New connected socket [id: jWi_SfplAnPaJIb9AAAB] 
-31.1.2023, 19:08:06 - INFO - Server is running on port: 3030 
-31.1.2023, 19:08:06 - INFO - New connected socket [id: mOQxz6WC81XNHNA4AAAB] 
-31.1.2023, 19:09:24 - INFO - Server is running on port: 3030 
-31.1.2023, 19:09:25 - INFO - New connected socket [id: ry4zLfdWdZyeTzz4AAAB] 
-31.1.2023, 19:38:56 - INFO - Server is running on port: 3030 
-31.1.2023, 19:38:57 - INFO - New connected socket [id: L0qu8yFlr6i5sbYuAAAB] 
-31.1.2023, 19:49:09 - INFO - Server is running on port: 3030 
-31.1.2023, 19:49:10 - INFO - New connected socket [id: Pm0d9KjaCXK3urfHAAAB] 
-31.1.2023, 19:50:22 - INFO - Server is running on port: 3030 
-31.1.2023, 19:50:23 - INFO - New connected socket [id: uoh21GxTFx05NG4tAAAB] 
-31.1.2023, 19:50:36 - INFO - Server is running on port: 3030 
-31.1.2023, 19:50:37 - INFO - New connected socket [id: _0liFYiWowljaQTqAAAB] 
-31.1.2023, 19:50:47 - INFO - Server is running on port: 3030 
-31.1.2023, 19:50:48 - INFO - New connected socket [id: DY2K6fduZlXE1wl7AAAB] 
-31.1.2023, 19:51:22 - INFO - Server is running on port: 3030 
-31.1.2023, 19:51:24 - INFO - New connected socket [id: lrXhhBYsf6KfrfkTAAAB] 
-31.1.2023, 19:53:33 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 19:53:34 - ERROR - cannot find users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
-31.1.2023, 19:53:34 - ERROR - Failed to get users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
-31.1.2023, 19:53:34 - INFO - New connected socket [id: 9yy0Kz-YqMY-FTXsAAAD] 
-31.1.2023, 19:59:54 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 19:59:56 - ERROR - cannot find users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
-31.1.2023, 19:59:56 - ERROR - Failed to get users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
-31.1.2023, 19:59:56 - INFO - New connected socket [id: KWW77Tv1XIevv0LnAAAF] 
-31.1.2023, 20:01:31 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 20:01:32 - ERROR - cannot find users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
-31.1.2023, 20:01:32 - ERROR - Failed to get users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
-31.1.2023, 20:01:32 - INFO - New connected socket [id: q76kDoQUMfCFutNrAAAH] 
-31.1.2023, 20:01:36 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 20:01:37 - ERROR - cannot find users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
-31.1.2023, 20:01:37 - ERROR - Failed to get users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
-31.1.2023, 20:01:37 - INFO - New connected socket [id: CjzhTe9RhUj-TCV1AAAJ] 
-31.1.2023, 20:02:12 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 20:02:13 - ERROR - cannot find users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
-31.1.2023, 20:02:13 - ERROR - Failed to get users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
-31.1.2023, 20:02:13 - INFO - New connected socket [id: cLpwwOh2t9XJs29cAAAL] 
-31.1.2023, 20:02:26 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 20:02:27 - ERROR - cannot find users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
-31.1.2023, 20:02:27 - ERROR - Failed to get users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
-31.1.2023, 20:02:27 - INFO - New connected socket [id: AXWBlfD8RAni0sBQAAAN] 
-31.1.2023, 20:02:41 - DEBUG - auth.service - login with username: tattookate (userId: 4)
-31.1.2023, 20:02:41 - ERROR - while finding user tattookate | ReferenceError: userId is not defined (userId: 4)
-31.1.2023, 20:02:41 - ERROR - Failed to Login ReferenceError: userId is not defined (userId: 4)
-31.1.2023, 20:03:13 - INFO - Server is running on port: 3030 
-31.1.2023, 20:03:16 - INFO - New connected socket [id: yuzb0GLK_v2ZCAxsAAAB] 
-31.1.2023, 20:03:18 - DEBUG - auth.service - login with username: tattookate (userId: 4)
-31.1.2023, 20:03:18 - ERROR - while finding user tattookate | ReferenceError: userId is not defined (userId: 4)
-31.1.2023, 20:03:18 - ERROR - Failed to Login ReferenceError: userId is not defined (userId: 4)
-31.1.2023, 20:05:40 - INFO - Server is running on port: 3030 
-31.1.2023, 20:05:41 - INFO - New connected socket [id: 6t5HZMkYtGLc8Jg8AAAB] 
-31.1.2023, 20:05:42 - DEBUG - auth.service - login with username: tattookate (userId: 4)
-31.1.2023, 20:05:42 - ERROR - while finding user tattookate | Error: SQLITE_ERROR: no such column: username (userId: 4)
-31.1.2023, 20:05:42 - ERROR - Failed to Login Error: SQLITE_ERROR: no such column: username (userId: 4)
-31.1.2023, 20:06:14 - INFO - Server is running on port: 3030 
-31.1.2023, 20:06:14 - INFO - New connected socket [id: 9XMVNU_nkZE6TsO1AAAB] 
-31.1.2023, 20:06:17 - DEBUG - auth.service - login with username: tattookate (userId: 4)
-31.1.2023, 20:06:17 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":true,"storySum":1,"currStoryId":null} | 6c5a0d6387621ab475f9098bc3765f57d6f24fcc0ca8a044af4652f245e379ef0e90ca43a9d5fbe2745bf2880b58ec0df82d3b1a0e63917afb9ec2646cab121cdfb4d5d70de7244e977a06595e32206b73bed75fe0fcc8f21056e2e16c829829d6 (userId: 4)
-31.1.2023, 20:06:18 - ERROR - cannot find users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
-31.1.2023, 20:06:18 - ERROR - Failed to get users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
-31.1.2023, 20:06:33 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 20:06:34 - ERROR - cannot find users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
-31.1.2023, 20:06:34 - ERROR - Failed to get users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
-31.1.2023, 20:06:34 - INFO - New connected socket [id: EfxEd7XFOKYAofblAAAD] 
-31.1.2023, 20:06:58 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 20:07:00 - ERROR - cannot find users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
-31.1.2023, 20:07:00 - ERROR - Failed to get users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
-31.1.2023, 20:07:00 - INFO - New connected socket [id: ievvohc7sna9L6ZIAAAF] 
-31.1.2023, 20:07:04 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 20:07:05 - INFO - New connected socket [id: dY3xVOQvytdP6JgNAAAH] 
-31.1.2023, 20:07:15 - DEBUG - auth.service - login with username: tattookate (userId: 4)
-31.1.2023, 20:07:15 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":true,"storySum":1,"currStoryId":null} | e592c77a948b89952080f88083a1675f1630335341b5c94d4031673eb84b49f5f88dd746c91ebc604c629f2fe0d509717dd5ae0fce659609658c02c8ea36caafa7b248436234de54878268aba26383d58b2c4fdf7445e5d6850b6fc55c01a3c8bc (userId: 4)
-31.1.2023, 20:07:15 - ERROR - Failed to get users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
-31.1.2023, 20:07:15 - ERROR - cannot find users | TypeError: Cannot read properties of undefined (reading 'searchTerm') 
-31.1.2023, 20:08:28 - INFO - Server is running on port: 3030 
-31.1.2023, 20:08:29 - INFO - New connected socket [id: ufdZu7sg5uWB8QimAAAB] 
-31.1.2023, 20:08:43 - DEBUG - auth.service - login with username: tattookate (userId: 4)
-31.1.2023, 20:08:43 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":true,"storySum":1,"currStoryId":null} | 718976ace64d1f8cda714236717a9ab07cbab353ecb13cb70701fe243b10c91b12490fc7f5849b9891c35928ffd19adaf1503b3f8d30099132e069b3ca867322f222bc38c295ea9a3f688a0e7faab4d978d024e62b8a82689e83420ceeca516657 (userId: 4)
-31.1.2023, 20:08:55 - DEBUG - auth.service - login with username: tattookate (userId: 4)
-31.1.2023, 20:08:55 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":true,"storySum":1,"currStoryId":null} | 489564da752a9ef8366712397c9b8cd40295614e22628f829d104ad1ab0a55ca90f3743a334ea524d70fb1c9cebb88f0ea4859b182b5b1d064e9650a493d8d7a8f5005bfed261765e4585d43d2b33620a9986888432061d0f7d4e7b9b7114c41d0 (userId: 4)
-31.1.2023, 20:09:16 - INFO - Server is running on port: 3030 
-31.1.2023, 20:09:16 - INFO - New connected socket [id: BX5A_wjQxUaIQ1R2AAAB] 
-31.1.2023, 20:13:25 - DEBUG - auth.service - signup with username: undefined, fullname: undefined 
-31.1.2023, 20:13:25 - ERROR - Failed to signup fullname, username and password are required! 
-31.1.2023, 20:21:01 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 20:21:02 - INFO - New connected socket [id: _JDqbaA4pe4LIfsJAAAD] 
-31.1.2023, 20:24:19 - DEBUG - auth.service - signup with username: undefined, fullname: undefined 
-31.1.2023, 20:24:19 - ERROR - Failed to signup fullname, username and password are required! 
-31.1.2023, 20:25:20 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 20:25:21 - INFO - New connected socket [id: scwHVM9lvQXkHjegAAAF] 
-31.1.2023, 20:25:46 - DEBUG - auth.service - signup with username: Selena Gomez, fullname: Selena Gomez (userId: 4)
-31.1.2023, 20:25:46 - DEBUG - auth.route - new account created: "Selena Gomez" (userId: 4)
-31.1.2023, 20:25:46 - DEBUG - auth.service - login with username: Selena Gomez (userId: 4)
-31.1.2023, 20:25:46 - INFO - User login:  | {"id":10,"username":"Selena Gomez","fullname":"Selena Gomez","email":"selena@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"isDarkMode":false,"storySum":0,"currStoryId":null} (userId: 4)
-31.1.2023, 20:27:00 - INFO - Server is running on port: 3030 
-31.1.2023, 20:27:01 - INFO - New connected socket [id: S_DVlMjSNoSo3O9BAAAB] 
-31.1.2023, 20:27:15 - INFO - Server is running on port: 3030 
-31.1.2023, 20:27:16 - INFO - New connected socket [id: 3D7wmzAUYHxZOaaSAAAB] 
-31.1.2023, 20:28:36 - INFO - Server is running on port: 3030 
-31.1.2023, 20:28:36 - INFO - New connected socket [id: PvJutEXGd_cjfJdzAAAB] 
-31.1.2023, 20:28:45 - INFO - Server is running on port: 3030 
-31.1.2023, 20:28:46 - INFO - New connected socket [id: glMg0Wy2B4gZN7CkAAAB] 
-31.1.2023, 20:29:52 - INFO - Server is running on port: 3030 
-31.1.2023, 20:29:53 - INFO - Server is running on port: 3030 
-31.1.2023, 20:29:53 - INFO - New connected socket [id: 2N6Fcq0pKMBGs5DaAAAB] 
-31.1.2023, 20:29:54 - INFO - Server is running on port: 3030 
-31.1.2023, 20:29:55 - INFO - New connected socket [id: vQMdDBKbm4O0yj4FAAAB] 
-31.1.2023, 20:30:11 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 20:30:13 - INFO - New connected socket [id: -_USy30fHw_SGqG3AAAD] 
-31.1.2023, 20:31:40 - INFO - Server is running on port: 3030 
-31.1.2023, 20:31:41 - INFO - New connected socket [id: 7joTntiUbz8pX7LcAAAB] 
-31.1.2023, 20:51:12 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 20:51:14 - INFO - New connected socket [id: tU_64ntpH0L-SpY_AAAD] 
-31.1.2023, 20:52:01 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 20:52:02 - INFO - New connected socket [id: MTQ-WmQy6iOuuee-AAAF] 
-31.1.2023, 20:52:40 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 20:52:40 - INFO - New connected socket [id: wB_GEqxANKaPYKZiAAAH] 
-31.1.2023, 20:54:03 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 20:54:04 - INFO - New connected socket [id: J5ufrHcwCPxMQF4DAAAJ] 
-31.1.2023, 20:55:50 - INFO - Server is running on port: 3030 
-31.1.2023, 20:55:50 - INFO - New connected socket [id: UBb4Z1HnOOQyUbVuAAAB] 
-31.1.2023, 20:58:06 - INFO - Server is running on port: 3030 
-31.1.2023, 20:58:07 - INFO - New connected socket [id: 7bQsRLJ14SM2weKuAAAB] 
-31.1.2023, 21:02:38 - INFO - Server is running on port: 3030 
-31.1.2023, 21:02:38 - INFO - Server is running on port: 3030 
-31.1.2023, 21:02:38 - INFO - New connected socket [id: Gxz0WIxOXYOOBkXvAAAB] 
-31.1.2023, 21:03:24 - INFO - Server is running on port: 3030 
-31.1.2023, 21:03:24 - INFO - New connected socket [id: tRLsw23vWSIT6uZGAAAB] 
-31.1.2023, 21:10:37 - INFO - Server is running on port: 3030 
-31.1.2023, 21:10:39 - INFO - New connected socket [id: 6fh4gOMJgeySREZbAAAB] 
-31.1.2023, 21:10:52 - INFO - Server is running on port: 3030 
-31.1.2023, 21:10:53 - INFO - New connected socket [id: lU7eC5SR8B_PbiPrAAAB] 
-31.1.2023, 21:11:52 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 21:11:54 - INFO - New connected socket [id: fVq8g7Sh2m7xPpx0AAAD] 
-31.1.2023, 21:13:18 - INFO - Server is running on port: 3030 
-31.1.2023, 21:13:18 - INFO - New connected socket [id: KhlLudW4M2rII7FiAAAB] 
-31.1.2023, 21:13:44 - INFO - Server is running on port: 3030 
-31.1.2023, 21:13:45 - INFO - New connected socket [id: k9Y0HmCPOW32gH54AAAB] 
-31.1.2023, 21:14:14 - INFO - Server is running on port: 3030 
-31.1.2023, 21:14:14 - INFO - New connected socket [id: LnXTDQhXk2ty5ftpAAAB] 
-31.1.2023, 21:14:47 - INFO - Server is running on port: 3030 
-31.1.2023, 21:14:48 - INFO - New connected socket [id: 0VyC9lDxz2u17re9AAAB] 
-31.1.2023, 21:16:03 - INFO - Server is running on port: 3030 
-31.1.2023, 21:16:04 - INFO - New connected socket [id: OqvLGkmhpVj-0wCuAAAB] 
-31.1.2023, 21:16:33 - INFO - Server is running on port: 3030 
-31.1.2023, 21:16:34 - INFO - New connected socket [id: W86y-JyAoUyvihpkAAAB] 
-31.1.2023, 21:20:21 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 21:20:22 - INFO - New connected socket [id: 4ajwTbZv4kSEj-tvAAAD] 
-31.1.2023, 21:20:38 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 21:20:39 - INFO - New connected socket [id: _KOmHov-kJQMfO1KAAAF] 
-<<<<<<< HEAD
-31.1.2023, 21:24:38 - INFO - Socket disconnected [id: undefined] 
-31.1.2023, 21:24:42 - INFO - Server is running on port: 3030 
-4.2.2023, 10:04:24 - INFO - Server is running on port: 3030 
-4.2.2023, 10:06:22 - INFO - New connected socket [id: ewG8d56xom4mxsIlAAAB] 
-4.2.2023, 10:06:30 - DEBUG - auth.service - login with username: tattookate 
-4.2.2023, 10:06:31 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":1,"postSum":6,"isDarkMode":true,"storySum":1,"currStoryId":null} | 66194a65889f8942f56e9e71245db276f7015b7fe06d7a5f8eb998c7990f049303e6e3aeb201e9fda67cc91a8fc303671442af91c82436d604352d903662052a5f6dd6688f997bce991e1f5a498560168f3f284e1747817beb3498f276b7aa055e 
-=======
-3.2.2023, 12:25:45 - INFO - Server is running on port: 3030 
-3.2.2023, 12:27:44 - INFO - New connected socket [id: 175mi73Z4gs7ZuiYAAAB] 
-3.2.2023, 12:42:42 - INFO - Server is running on port: 3030 
-3.2.2023, 12:42:43 - INFO - New connected socket [id: cqjeb4gCjEbgO6ylAAAB] 
-3.2.2023, 12:42:45 - INFO - Server is running on port: 3030 
-3.2.2023, 12:42:46 - INFO - New connected socket [id: IXfE5AEohpO9NNt9AAAB] 
-3.2.2023, 12:51:24 - INFO - Server is running on port: 3030 
-3.2.2023, 12:51:29 - INFO - New connected socket [id: UlslBoV2PrOMstbvAAAB] 
-3.2.2023, 12:53:25 - INFO - Server is running on port: 3030 
-3.2.2023, 12:53:27 - INFO - New connected socket [id: gitBUs9ccTpGxEW7AAAB] 
-3.2.2023, 12:54:05 - INFO - Server is running on port: 3030 
-3.2.2023, 12:54:05 - INFO - New connected socket [id: 3F1Z1D7mmq6NazuZAAAB] 
-3.2.2023, 12:54:28 - INFO - Server is running on port: 3030 
-3.2.2023, 12:54:28 - INFO - New connected socket [id: uDKPO8DGGmib5kiHAAAB] 
-3.2.2023, 12:54:44 - INFO - Server is running on port: 3030 
-3.2.2023, 12:54:44 - INFO - New connected socket [id: utcyaUPoTTXiIt4bAAAB] 
-3.2.2023, 12:56:50 - INFO - Server is running on port: 3030 
-3.2.2023, 12:56:50 - INFO - New connected socket [id: YQreDauyfcfvYPjmAAAB] 
-3.2.2023, 12:56:52 - INFO - Socket disconnected [id: undefined] 
-3.2.2023, 12:56:53 - INFO - New connected socket [id: v1oVaFICGE6nNic3AAAD] 
-3.2.2023, 12:57:19 - WARN - Not Authenticated 
-3.2.2023, 12:57:34 - DEBUG - auth.service - login with username: eshel 
-3.2.2023, 12:57:34 - ERROR - while finding user eshel | user with name eshel was not found 
-3.2.2023, 12:57:34 - ERROR - Failed to Login user with name eshel was not found 
-3.2.2023, 12:57:49 - DEBUG - auth.service - login with username: Eshel 
-3.2.2023, 12:57:49 - INFO - User login:  | {"id":1,"username":"Eshel","fullname":"Eshel Eyni","email":"esheleyni@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1674947349/iygilawrooz36soschcq.png","gender":"","phone":"","bio":"","website":"","followersSum":1,"followingSum":0,"postSum":2,"isDarkMode":false,"storySum":0,"currStoryId":null} | 975ca0b215d9618f7433cd679f1f5ff1be5ad6757eb91407591dc091ecdf5061f409f2ab812f04ea37e4f27f35fca47ae4643740231ca3dd77a9b8894ea142acf7f9d36a5e7cda9c0b48256404c60c1994bf08d6d88c2056983e81e2916b45fe74 
-3.2.2023, 13:57:26 - INFO - Server is running on port: 3030 
-3.2.2023, 13:57:27 - INFO - New connected socket [id: PMsIMDKfoEaviM6UAAAB] 
-3.2.2023, 13:57:40 - INFO - Server is running on port: 3030 
-3.2.2023, 13:57:42 - INFO - New connected socket [id: k9Kiaz7nG15FPI6dAAAB] 
-3.2.2023, 13:57:54 - INFO - Server is running on port: 3030 
-3.2.2023, 13:57:56 - INFO - New connected socket [id: qdtFkQwFeSr8K3DeAAAB] 
-3.2.2023, 13:59:27 - INFO - Server is running on port: 3030 
-3.2.2023, 13:59:28 - INFO - New connected socket [id: nQGFu0w86SCM84ZUAAAB] 
-3.2.2023, 13:59:30 - INFO - Server is running on port: 3030 
-3.2.2023, 13:59:31 - INFO - New connected socket [id: OLccFSCj1HT3FRlTAAAB] 
-3.2.2023, 13:59:49 - INFO - Server is running on port: 3030 
-3.2.2023, 13:59:51 - INFO - New connected socket [id: M3lCp1n2l5L57udwAAAB] 
-3.2.2023, 14:10:35 - INFO - Server is running on port: 3030 
-3.2.2023, 14:10:37 - INFO - New connected socket [id: UKcKibfn_zTRgaodAAAB] 
-3.2.2023, 14:13:07 - INFO - Server is running on port: 3030 
-3.2.2023, 14:13:09 - INFO - New connected socket [id: q3JIM8W9phPZq_UCAAAB] 
-3.2.2023, 14:13:39 - INFO - Server is running on port: 3030 
-3.2.2023, 14:13:40 - INFO - New connected socket [id: Ne4_vLsCf3COepulAAAB] 
-3.2.2023, 14:42:04 - INFO - Server is running on port: 3030 
-3.2.2023, 14:42:06 - INFO - New connected socket [id: ZweRT04Wen4VktmKAAAB] 
-3.2.2023, 14:42:08 - INFO - Server is running on port: 3030 
-3.2.2023, 14:42:10 - INFO - New connected socket [id: X2tge9kFWLK-ZM7VAAAB] 
-3.2.2023, 14:46:12 - INFO - Server is running on port: 3030 
-3.2.2023, 14:46:14 - INFO - New connected socket [id: JuCI3ppGu_dm5bmJAAAB] 
-3.2.2023, 14:48:08 - INFO - Server is running on port: 3030 
-3.2.2023, 14:48:09 - INFO - New connected socket [id: EtOwDSPoHUpKeP5uAAAB] 
-3.2.2023, 16:26:40 - INFO - Server is running on port: 3030 
-3.2.2023, 16:26:46 - INFO - New connected socket [id: RuHid_JG-eF7UGmPAAAB] 
-3.2.2023, 16:27:16 - INFO - New connected socket [id: 2qNL6TgMeWADTe-6AAAD] 
-3.2.2023, 16:27:34 - INFO - Socket disconnected [id: undefined] 
-3.2.2023, 16:27:34 - INFO - New connected socket [id: ZC91j45adgQXZ-VGAAAF] 
->>>>>>> 50736b3e8cc185d49a89cedd6e4786543826bdb5
-4.2.2023, 10:10:26 - INFO - Server is running on port: 3030 
-4.2.2023, 10:10:28 - INFO - New connected socket [id: w8W3h0xwj8XU-CumAAAB] 
-4.2.2023, 10:10:31 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 10:10:32 - INFO - New connected socket [id: SQzsIhvkgd1inPe-AAAD] 
-4.2.2023, 10:13:04 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 10:13:06 - INFO - New connected socket [id: s389ijnFD5huzAADAAAF] 
-4.2.2023, 10:13:15 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 10:13:17 - INFO - New connected socket [id: yyr6DKw-9Wvt4CebAAAH] 
-4.2.2023, 10:13:32 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 10:13:34 - INFO - New connected socket [id: WFdqwAM2Qr3prghUAAAJ] 
-4.2.2023, 10:14:19 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 10:14:20 - INFO - New connected socket [id: PK2sFrCwknGzcTnbAAAL] 
-4.2.2023, 10:15:10 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 10:15:12 - INFO - New connected socket [id: -8kSAY0rSO6uEX3wAAAN] 
-4.2.2023, 10:15:42 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 10:15:43 - INFO - New connected socket [id: ygCqHVSBCn2PtV70AAAP] 
-4.2.2023, 10:16:56 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 10:16:59 - INFO - New connected socket [id: 36qBD7Es4sqsAnyPAAAR] 
-4.2.2023, 10:17:50 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 10:17:52 - INFO - New connected socket [id: qJubK00fPwSxdv22AAAT] 
-4.2.2023, 10:17:57 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 10:17:59 - INFO - New connected socket [id: vJX6oBUAwHG3wUQ7AAAV] 
-4.2.2023, 10:26:21 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 10:26:22 - INFO - New connected socket [id: bXkmOVmcQKphuytuAAAX] 
-4.2.2023, 10:27:37 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 10:27:38 - INFO - New connected socket [id: qyakqtjE1-Ib1-E0AAAZ] 
-4.2.2023, 10:28:40 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 10:28:41 - INFO - New connected socket [id: m_TUgXuMEGeN4zafAAAb] 
-4.2.2023, 10:28:44 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 10:28:45 - INFO - New connected socket [id: XHwT8mKt0fhpuekLAAAd] 
-4.2.2023, 10:36:52 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 10:36:53 - INFO - New connected socket [id: X3-nrc_tjfpGLxeeAAAf] 
-4.2.2023, 10:38:06 - INFO - Server is running on port: 3030 
-4.2.2023, 10:38:07 - INFO - New connected socket [id: d4yypTEBk_v_ajdVAAAB] 
-4.2.2023, 10:38:14 - INFO - Server is running on port: 3030 
-4.2.2023, 10:38:14 - INFO - New connected socket [id: 97i1oIaHK1D4brA4AAAB] 
-4.2.2023, 10:53:29 - INFO - Server is running on port: 3030 
-4.2.2023, 10:53:34 - INFO - New connected socket [id: hmAk8NVA9UpXCbdhAAAB] 
-4.2.2023, 10:53:37 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 10:53:38 - INFO - New connected socket [id: syIWn1Z1_ie--WimAAAD] 
-4.2.2023, 10:57:28 - INFO - Server is running on port: 3030 
-4.2.2023, 10:57:29 - INFO - Server is running on port: 3030 
-4.2.2023, 10:57:29 - INFO - New connected socket [id: rVae4cr8b7z842wrAAAB] 
-4.2.2023, 11:03:39 - INFO - Server is running on port: 3030 
-4.2.2023, 11:03:40 - INFO - New connected socket [id: YlwJG1Ac9NQam2qaAAAB] 
-4.2.2023, 11:07:16 - INFO - Server is running on port: 3030 
-4.2.2023, 11:07:17 - INFO - New connected socket [id: Y98bX9hkPkPUJonCAAAB] 
-4.2.2023, 11:07:22 - INFO - Server is running on port: 3030 
-4.2.2023, 11:07:23 - INFO - New connected socket [id: 5Tvb4PuRhxvTuZyzAAAB] 
-4.2.2023, 11:09:28 - INFO - Server is running on port: 3030 
-4.2.2023, 11:09:29 - INFO - New connected socket [id: GyHCuk8nohiw2rGAAAAB] 
-4.2.2023, 11:15:42 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:15:43 - INFO - New connected socket [id: Kny8LZ6D6qjpYyrwAAAD] 
-4.2.2023, 11:16:28 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:16:29 - INFO - New connected socket [id: nr98htVUp23jrpIqAAAF] 
-4.2.2023, 11:16:38 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:16:39 - INFO - New connected socket [id: D12YM7CqeA1NT1ueAAAH] 
-4.2.2023, 11:17:33 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:17:34 - INFO - New connected socket [id: jtwP57eNm5nH3gthAAAJ] 
-4.2.2023, 11:20:22 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:20:23 - INFO - New connected socket [id: yac4Z-gASPbAGbNpAAAL] 
-4.2.2023, 11:21:20 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:21:21 - INFO - New connected socket [id: 2Q6y1vah38BgqOp6AAAN] 
-4.2.2023, 11:22:08 - INFO - New connected socket [id: GEH9bf6JXm4GqnDaAAAP] 
-4.2.2023, 11:22:11 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:22:44 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:22:45 - INFO - New connected socket [id: iS4Oqo7ciOhNGbzeAAAR] 
-4.2.2023, 11:23:34 - INFO - Server is running on port: 3030 
-4.2.2023, 11:23:35 - INFO - New connected socket [id: zY54riioV2yjEjskAAAB] 
-4.2.2023, 11:23:36 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:23:37 - INFO - New connected socket [id: RhlE8YhE7BrVcxV5AAAD] 
-4.2.2023, 11:24:06 - INFO - Server is running on port: 3030 
-4.2.2023, 11:24:06 - INFO - New connected socket [id: rTD_bznndd2eTQMMAAAB] 
-4.2.2023, 11:24:08 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:24:09 - INFO - New connected socket [id: O6cF7NSejQWMZDmxAAAD] 
-4.2.2023, 11:25:11 - INFO - Server is running on port: 3030 
-4.2.2023, 11:25:12 - INFO - New connected socket [id: kLZtHA37k2W5uCJRAAAB] 
-4.2.2023, 11:25:15 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:25:17 - INFO - New connected socket [id: -VQHkCGlC3BGQXDsAAAD] 
-4.2.2023, 11:25:54 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:25:56 - INFO - New connected socket [id: JBHg8qewFQ9GKFKjAAAF] 
-4.2.2023, 11:26:41 - INFO - Server is running on port: 3030 
-4.2.2023, 11:26:42 - INFO - New connected socket [id: vWek13DOPVhCIM7YAAAB] 
-4.2.2023, 11:26:44 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:26:44 - INFO - New connected socket [id: 1Q1jyZTE3XvQa2ppAAAD] 
-4.2.2023, 11:29:09 - INFO - Server is running on port: 3030 
-4.2.2023, 11:29:10 - INFO - New connected socket [id: Ur9kixZeSzwnqo53AAAB] 
-4.2.2023, 11:29:11 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:29:12 - INFO - New connected socket [id: -wBVSNPAiCgd86apAAAD] 
-4.2.2023, 11:30:42 - INFO - Server is running on port: 3030 
-4.2.2023, 11:30:42 - INFO - New connected socket [id: G2Wi0XTG5txMdKGhAAAB] 
-4.2.2023, 11:30:45 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:30:46 - INFO - New connected socket [id: EYZ1VKwHKqJ3UC4eAAAD] 
-4.2.2023, 11:30:54 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:30:54 - INFO - New connected socket [id: 5Aomsr9FGp-w6hpAAAAF] 
-4.2.2023, 11:31:03 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:31:04 - INFO - New connected socket [id: h-IZeVQ4FdY98cE7AAAH] 
-4.2.2023, 11:31:36 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:31:38 - INFO - New connected socket [id: 0mC6Tn6LKSkOj_l0AAAJ] 
-4.2.2023, 11:32:08 - INFO - Server is running on port: 3030 
-4.2.2023, 11:32:08 - INFO - New connected socket [id: XN_CPW2uuJVYW7TqAAAB] 
-4.2.2023, 11:32:09 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:32:10 - INFO - New connected socket [id: 90eRBBZqtWRFCMtuAAAD] 
-4.2.2023, 11:32:58 - INFO - Server is running on port: 3030 
-4.2.2023, 11:32:58 - INFO - New connected socket [id: 9quc_mM3-MVJI49IAAAB] 
-4.2.2023, 11:33:13 - INFO - Server is running on port: 3030 
-4.2.2023, 11:33:14 - INFO - New connected socket [id: MfTpb1bwr548FgIaAAAB] 
-4.2.2023, 11:33:14 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:33:15 - INFO - New connected socket [id: JOMqDSR_oolyP7S3AAAD] 
-4.2.2023, 11:33:58 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:33:59 - INFO - New connected socket [id: iPJtXTJxb4RwjYVDAAAF] 
-4.2.2023, 11:34:15 - INFO - Server is running on port: 3030 
-4.2.2023, 11:34:16 - INFO - New connected socket [id: EsgaVseTM2581VgsAAAB] 
-4.2.2023, 11:34:17 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:34:18 - INFO - New connected socket [id: Ww66gNirIw1R6FbuAAAD] 
-4.2.2023, 11:35:19 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:35:20 - INFO - New connected socket [id: eCdL8Sop4loapNjVAAAF] 
-4.2.2023, 11:36:26 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:36:27 - INFO - New connected socket [id: MAm8Oh7fX_sLvKmCAAAH] 
-4.2.2023, 11:37:54 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:37:55 - INFO - New connected socket [id: 4QR3181Aa56yqZ_UAAAJ] 
-4.2.2023, 11:38:39 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:38:40 - INFO - New connected socket [id: FPoyS2FXeyEHFT91AAAL] 
-4.2.2023, 11:40:20 - INFO - Server is running on port: 3030 
-4.2.2023, 11:40:20 - INFO - New connected socket [id: kWKof9hL76THESvxAAAB] 
-4.2.2023, 11:40:22 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:40:23 - INFO - New connected socket [id: JysS_RXb1i1LrApWAAAD] 
-4.2.2023, 11:40:24 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:40:25 - INFO - New connected socket [id: 9Ck_DtJj0wIe6pLOAAAF] 
-4.2.2023, 11:40:27 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:40:27 - INFO - New connected socket [id: E-74_7HVep367SpiAAAH] 
-4.2.2023, 11:40:53 - INFO - Server is running on port: 3030 
-4.2.2023, 11:40:54 - INFO - New connected socket [id: yDRH8_moT7MUNE2tAAAB] 
-4.2.2023, 11:41:01 - INFO - Server is running on port: 3030 
-4.2.2023, 11:41:02 - INFO - New connected socket [id: oCrBOnIk0xBeQpkYAAAB] 
-4.2.2023, 11:41:02 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:41:03 - INFO - New connected socket [id: GG6Y3v_X8u_HiLUmAAAD] 
-4.2.2023, 11:41:05 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:41:06 - INFO - New connected socket [id: TY8S4TYSPljP_Z5RAAAF] 
-4.2.2023, 11:41:08 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:41:09 - INFO - New connected socket [id: 32igjaHWqIAt_eh6AAAH] 
-4.2.2023, 11:41:20 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:41:21 - INFO - New connected socket [id: H6pPCjb7OfbDU64BAAAJ] 
-4.2.2023, 11:41:22 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:41:23 - INFO - New connected socket [id: q2gSWfVA8myKO7HnAAAL] 
-4.2.2023, 11:41:43 - INFO - Server is running on port: 3030 
-4.2.2023, 11:41:43 - INFO - New connected socket [id: 0GqKb_SgzZ9uZAKTAAAB] 
-4.2.2023, 11:41:46 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:41:46 - INFO - New connected socket [id: AKMxXT1t7tNmnWcvAAAD] 
-4.2.2023, 11:42:45 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:42:46 - INFO - New connected socket [id: QnYOe5TeFdvPz_gsAAAF] 
-4.2.2023, 11:43:04 - INFO - Server is running on port: 3030 
-4.2.2023, 11:43:05 - INFO - New connected socket [id: Hpo_c4GExMRqUihjAAAB] 
-4.2.2023, 11:43:08 - INFO - Server is running on port: 3030 
-4.2.2023, 11:43:08 - INFO - New connected socket [id: uSD1Vri3995EHzsFAAAB] 
-4.2.2023, 11:43:09 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:43:10 - INFO - New connected socket [id: Ca6YuzLIqjpYt7gtAAAD] 
-4.2.2023, 11:45:25 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:45:26 - INFO - New connected socket [id: -vFfDQ3DjBfzjxMaAAAF] 
-4.2.2023, 11:45:27 - INFO - Server is running on port: 3030 
-4.2.2023, 11:45:28 - INFO - Server is running on port: 3030 
-4.2.2023, 11:45:29 - INFO - New connected socket [id: o4gp7ke6lAG4ekfLAAAB] 
-4.2.2023, 11:45:30 - INFO - Server is running on port: 3030 
-4.2.2023, 11:45:30 - INFO - New connected socket [id: wM-EaBgTmeepu0iFAAAB] 
-4.2.2023, 11:45:32 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:45:33 - INFO - New connected socket [id: 2KMzTUEfNLxsAHU1AAAD] 
-4.2.2023, 11:45:49 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:45:50 - INFO - New connected socket [id: Ohv2QkzsTmDQehciAAAF] 
-4.2.2023, 11:46:13 - INFO - Server is running on port: 3030 
-4.2.2023, 11:46:13 - INFO - New connected socket [id: V23A40NS7AYT4zMpAAAB] 
-4.2.2023, 11:46:15 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:46:15 - INFO - New connected socket [id: b1shdVj2VpIf-q2OAAAD] 
-4.2.2023, 11:46:28 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:46:29 - INFO - New connected socket [id: 9g86LWWav5n9BZrHAAAF] 
-4.2.2023, 11:47:05 - INFO - Server is running on port: 3030 
-4.2.2023, 11:47:05 - INFO - New connected socket [id: f73y0wL17y4AVVWGAAAB] 
-4.2.2023, 11:47:25 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 11:47:26 - INFO - New connected socket [id: R77q4ddqiIdHTgIxAAAD] 
-4.2.2023, 12:43:07 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 12:43:08 - INFO - New connected socket [id: SPj6TSkYp_Fev8wBAAAF] 
-4.2.2023, 12:45:35 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 12:45:37 - INFO - New connected socket [id: 5y61_j-4wVRRUK8YAAAH] 
-4.2.2023, 12:45:39 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 12:45:39 - INFO - New connected socket [id: 3joq2u2GEwDwteeTAAAJ] 
-4.2.2023, 12:47:11 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 12:47:12 - INFO - New connected socket [id: JBM3hgP11kQU6TiQAAAL] 
-4.2.2023, 12:47:51 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 12:47:52 - INFO - New connected socket [id: YTLQqsuhdOW4a_mXAAAN] 
-4.2.2023, 12:48:00 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 12:48:01 - INFO - New connected socket [id: D1aFBoWXziws4V1CAAAP] 
-4.2.2023, 12:48:19 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 12:48:20 - INFO - New connected socket [id: 6EGPwgA4dYsG1PhgAAAR] 
-4.2.2023, 12:48:36 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 12:48:37 - INFO - New connected socket [id: Qu9whvgkoaL5XCzHAAAT] 
-4.2.2023, 12:52:38 - INFO - Server is running on port: 3030 
-4.2.2023, 12:52:38 - INFO - New connected socket [id: F_kmzUH9FdLtph-xAAAB] 
-4.2.2023, 12:53:36 - INFO - Server is running on port: 3030 
-4.2.2023, 12:53:36 - INFO - New connected socket [id: Sdkl2hpk_qW6CyesAAAB] 
-4.2.2023, 12:57:20 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 12:57:21 - INFO - New connected socket [id: oNUoK5uIKC1JPao_AAAD] 
-4.2.2023, 13:03:00 - INFO - Server is running on port: 3030 
-4.2.2023, 13:03:01 - INFO - New connected socket [id: lTVnymUhVr99Kp1nAAAB] 
-4.2.2023, 13:06:13 - INFO - Server is running on port: 3030 
-4.2.2023, 13:06:14 - INFO - Server is running on port: 3030 
-4.2.2023, 13:06:14 - INFO - New connected socket [id: 80ZdWk1QDpG574NqAAAB] 
-4.2.2023, 13:09:00 - INFO - Server is running on port: 3030 
-4.2.2023, 13:09:01 - INFO - New connected socket [id: o6YKL4WDdmO9NCp7AAAB] 
-4.2.2023, 13:09:15 - INFO - Server is running on port: 3030 
-4.2.2023, 13:09:15 - INFO - New connected socket [id: knvhkzYJ8RsVJd5wAAAB] 
-4.2.2023, 13:10:24 - INFO - Server is running on port: 3030 
-4.2.2023, 13:10:25 - INFO - New connected socket [id: GZIsoTcjbE4EnyhXAAAB] 
-4.2.2023, 13:10:51 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 13:10:53 - WARN - Not Authenticated 
-4.2.2023, 13:10:53 - WARN - Not Authenticated 
-4.2.2023, 13:10:53 - WARN - Not Authenticated 
-4.2.2023, 13:10:53 - INFO - New connected socket [id: rAuW2AwpmXVlEySoAAAD] 
-4.2.2023, 13:17:04 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 13:17:06 - INFO - New connected socket [id: -MQ0ine7VyZvXEwnAAAF] 
-4.2.2023, 13:17:31 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 13:17:32 - INFO - New connected socket [id: xMWdnHPiKTGTI4oWAAAH] 
-4.2.2023, 13:17:58 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 13:17:59 - INFO - New connected socket [id: zAb8qbNduGgRYRRXAAAJ] 
-4.2.2023, 13:18:26 - INFO - Server is running on port: 3030 
-4.2.2023, 13:18:26 - INFO - New connected socket [id: CmxgQcHp8jmdDACPAAAB] 
-4.2.2023, 13:18:30 - INFO - Server is running on port: 3030 
-4.2.2023, 13:18:30 - INFO - New connected socket [id: JyCvYwdfZUElJ-IhAAAB] 
-4.2.2023, 13:18:32 - ERROR - while finding user 5 | Failed to commit transaction: ReferenceError: Cannot access 'currStoryId' before initialization (userId: 4)
-4.2.2023, 13:18:32 - ERROR - Failed to get user | Failed to commit transaction: ReferenceError: Cannot access 'currStoryId' before initialization (userId: 4)
-4.2.2023, 13:18:36 - ERROR - Failed to get user | Failed to commit transaction: ReferenceError: Cannot access 'currStoryId' before initialization (userId: 4)
-4.2.2023, 13:18:36 - ERROR - while finding user 8 | Failed to commit transaction: ReferenceError: Cannot access 'currStoryId' before initialization (userId: 4)
-4.2.2023, 13:19:11 - INFO - Server is running on port: 3030 
-4.2.2023, 13:19:12 - INFO - New connected socket [id: 7qb37dtvb9ZvYXvQAAAB] 
-4.2.2023, 13:20:15 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 13:20:16 - INFO - New connected socket [id: 7HLdoFFDGnpGH0cDAAAD] 
-4.2.2023, 13:20:25 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 13:20:26 - INFO - New connected socket [id: MDBV81cv5QGql63kAAAF] 
-4.2.2023, 13:24:59 - INFO - Server is running on port: 3030 
-4.2.2023, 13:25:00 - INFO - New connected socket [id: DsBrgOOJ0afXJxI9AAAB] 
-4.2.2023, 13:30:10 - INFO - Server is running on port: 3030 
-4.2.2023, 13:30:10 - INFO - New connected socket [id: Yp7EZoXhhHcwW-9JAAAB] 
-4.2.2023, 13:31:45 - INFO - Server is running on port: 3030 
-4.2.2023, 13:31:45 - INFO - New connected socket [id: 7Xx021qMbM-6ephMAAAB] 
-4.2.2023, 13:38:14 - INFO - Server is running on port: 3030 
-4.2.2023, 13:38:16 - INFO - New connected socket [id: -ihZA_zD4K_UWdr3AAAB] 
-4.2.2023, 14:12:12 - INFO - Server is running on port: 3030 
-4.2.2023, 14:12:13 - INFO - New connected socket [id: qoa9VAMcF0_3sN9aAAAB] 
-4.2.2023, 14:12:17 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:12:18 - INFO - New connected socket [id: LG2sFDQ4Qul7l2ajAAAD] 
-4.2.2023, 14:12:39 - INFO - Server is running on port: 3030 
-4.2.2023, 14:12:39 - INFO - New connected socket [id: 7rtNZ3BlkAsR8dENAAAB] 
-4.2.2023, 14:12:39 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:12:40 - INFO - New connected socket [id: 0vgS_6HdX0_INMFRAAAD] 
-4.2.2023, 14:13:24 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:13:25 - INFO - New connected socket [id: 9bjdwQ9iCyaQgD38AAAF] 
-4.2.2023, 14:13:31 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:13:32 - INFO - New connected socket [id: XnILSUityBB-ohJvAAAH] 
-4.2.2023, 14:14:52 - INFO - Server is running on port: 3030 
-4.2.2023, 14:14:52 - INFO - New connected socket [id: IzbqEzMmx_HYgUZ9AAAB] 
-4.2.2023, 14:14:53 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:14:54 - INFO - New connected socket [id: GAMPg-gMec6HPYv7AAAD] 
-4.2.2023, 14:14:55 - ERROR - cannot find users | Failed to commit transaction: Error: SQLITE_ERROR: near ",": syntax error (userId: 4)
-4.2.2023, 14:14:55 - ERROR - Failed to get users | Failed to commit transaction: Error: SQLITE_ERROR: near ",": syntax error (userId: 4)
-4.2.2023, 14:21:41 - INFO - Server is running on port: 3030 
-4.2.2023, 14:21:42 - INFO - New connected socket [id: S1VkWwTXuClfGDjuAAAB] 
-4.2.2023, 14:21:43 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:21:44 - INFO - New connected socket [id: a16tTRM8mIGQhP_cAAAD] 
-4.2.2023, 14:22:08 - INFO - Server is running on port: 3030 
-4.2.2023, 14:22:09 - INFO - New connected socket [id: t1juc6dJC9-JmuZIAAAB] 
-4.2.2023, 14:22:09 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:22:10 - INFO - New connected socket [id: c-dYwwg5W2fTjyJlAAAD] 
-4.2.2023, 14:23:21 - INFO - Server is running on port: 3030 
-4.2.2023, 14:23:22 - INFO - New connected socket [id: xN-ZPJOdaknf2JXwAAAB] 
-4.2.2023, 14:23:23 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:23:24 - INFO - New connected socket [id: lNg_SqHkD11_heZxAAAD] 
-4.2.2023, 14:23:28 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:23:29 - INFO - New connected socket [id: o8ECeFkDl_4kgURYAAAF] 
-4.2.2023, 14:26:18 - INFO - Server is running on port: 3030 
-4.2.2023, 14:26:19 - INFO - New connected socket [id: yjaxXOJVRPCru0X9AAAB] 
-4.2.2023, 14:26:20 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:26:21 - INFO - New connected socket [id: l9ig8Xnu3uEhkIw2AAAD] 
-4.2.2023, 14:26:51 - INFO - Server is running on port: 3030 
-4.2.2023, 14:26:52 - INFO - New connected socket [id: SRMmIbDV_ArCbz8iAAAB] 
-4.2.2023, 14:26:52 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:26:53 - INFO - New connected socket [id: ksgnOAufJfHWt_-6AAAD] 
-4.2.2023, 14:26:56 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:26:57 - INFO - New connected socket [id: KUYmRNguuatQlM8xAAAF] 
-4.2.2023, 14:27:16 - INFO - Server is running on port: 3030 
-4.2.2023, 14:27:17 - INFO - New connected socket [id: zwIYYPTLBstxxuIYAAAB] 
-4.2.2023, 14:27:17 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:27:18 - INFO - New connected socket [id: tHYuqm6Wrrm42gWhAAAD] 
-4.2.2023, 14:27:18 - ERROR - Failed to get users | Failed to commit transaction: Error: SQLITE_RANGE: column index out of range (userId: 4)
-4.2.2023, 14:27:18 - ERROR - cannot find users | Failed to commit transaction: Error: SQLITE_RANGE: column index out of range (userId: 4)
-4.2.2023, 14:27:38 - INFO - Server is running on port: 3030 
-4.2.2023, 14:27:39 - INFO - New connected socket [id: xhAwSorh0cV0goD3AAAB] 
-4.2.2023, 14:27:39 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:27:40 - INFO - New connected socket [id: R30TXa1qCxA6ZtlkAAAD] 
-4.2.2023, 14:27:50 - INFO - Server is running on port: 3030 
-4.2.2023, 14:27:50 - INFO - New connected socket [id: 6xCPeOi6nh1MzNU6AAAB] 
-4.2.2023, 14:27:51 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:27:52 - INFO - New connected socket [id: xELXX4Ng9_fN69-YAAAD] 
-4.2.2023, 14:27:52 - ERROR - cannot find users | Failed to commit transaction: Error: SQLITE_RANGE: column index out of range (userId: 4)
-4.2.2023, 14:27:52 - ERROR - Failed to get users | Failed to commit transaction: Error: SQLITE_RANGE: column index out of range (userId: 4)
-4.2.2023, 14:28:16 - INFO - Server is running on port: 3030 
-4.2.2023, 14:28:17 - INFO - New connected socket [id: AjGY4J-MRqiUg_FxAAAB] 
-4.2.2023, 14:28:46 - INFO - Server is running on port: 3030 
-4.2.2023, 14:28:47 - INFO - New connected socket [id: 5ez3rROl_5tlZUqDAAAB] 
-4.2.2023, 14:28:47 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:28:48 - INFO - New connected socket [id: MxuBvwrmKPMSb8scAAAD] 
-4.2.2023, 14:29:12 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:29:13 - INFO - New connected socket [id: U_U4leCAIAThICNUAAAF] 
-4.2.2023, 14:29:54 - INFO - Server is running on port: 3030 
-4.2.2023, 14:29:54 - INFO - New connected socket [id: 8f-ZUtTiJuXwpZbqAAAB] 
-4.2.2023, 14:29:57 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:29:57 - INFO - New connected socket [id: GPiYtDvWzZzJJigYAAAD] 
-4.2.2023, 14:30:56 - INFO - Server is running on port: 3030 
-4.2.2023, 14:30:56 - INFO - New connected socket [id: 5ZGgHzS08D5jcU3bAAAB] 
-4.2.2023, 14:30:57 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:30:57 - INFO - New connected socket [id: dnk1GgVfIWFaean1AAAD] 
-4.2.2023, 14:31:38 - INFO - Server is running on port: 3030 
-4.2.2023, 14:31:39 - INFO - New connected socket [id: -Yso6LgJsHuSJG9jAAAB] 
-4.2.2023, 14:43:17 - INFO - Server is running on port: 3030 
-4.2.2023, 14:43:19 - INFO - New connected socket [id: mwCnBU4UfqTP4eLkAAAB] 
-4.2.2023, 14:43:23 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:43:25 - INFO - New connected socket [id: Bc8q72QpGO1P-3z8AAAD] 
-4.2.2023, 14:43:25 - ERROR - cannot find posts | Failed to commit transaction: Error: user not found: 4 
-4.2.2023, 14:43:25 - ERROR - Failed to get posts | Failed to commit transaction: Error: user not found: 4 
-4.2.2023, 14:44:25 - INFO - Server is running on port: 3030 
-4.2.2023, 14:44:26 - INFO - New connected socket [id: m1sdPqy2FvbXI4LOAAAB] 
-4.2.2023, 14:44:27 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:44:28 - INFO - New connected socket [id: xJkfGWZw44_lN2ILAAAD] 
-4.2.2023, 14:46:15 - INFO - Server is running on port: 3030 
-4.2.2023, 14:46:16 - INFO - New connected socket [id: cqTWC91UukZsxCYYAAAB] 
-4.2.2023, 14:46:19 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:46:20 - INFO - New connected socket [id: JK35dUBBpxoyEBNvAAAD] 
-4.2.2023, 14:47:52 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:47:53 - INFO - New connected socket [id: BXJPT86_5chMEPhcAAAF] 
-4.2.2023, 14:48:38 - INFO - Server is running on port: 3030 
-4.2.2023, 14:48:38 - INFO - New connected socket [id: 2ROkMO_gUhGsPilnAAAB] 
-4.2.2023, 14:48:58 - INFO - Server is running on port: 3030 
-4.2.2023, 14:48:58 - INFO - New connected socket [id: k4nn-TdZcSa5qJ3wAAAB] 
-4.2.2023, 14:49:00 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:49:01 - INFO - New connected socket [id: bzd_tl_gJyfILBunAAAD] 
-4.2.2023, 14:49:30 - ERROR - while finding user 5 | Failed to commit transaction: ReferenceError: Cannot access 'currStoryId' before initialization (userId: 4)
-4.2.2023, 14:49:30 - ERROR - Failed to get user | Failed to commit transaction: ReferenceError: Cannot access 'currStoryId' before initialization (userId: 4)
-4.2.2023, 14:49:42 - ERROR - while finding user 5 | Failed to commit transaction: ReferenceError: Cannot access 'currStoryId' before initialization (userId: 4)
-4.2.2023, 14:49:42 - ERROR - Failed to get user | Failed to commit transaction: ReferenceError: Cannot access 'currStoryId' before initialization (userId: 4)
-4.2.2023, 14:51:11 - ERROR - while finding user 8 | Failed to commit transaction: ReferenceError: Cannot access 'currStoryId' before initialization (userId: 4)
-4.2.2023, 14:51:11 - ERROR - Failed to get user | Failed to commit transaction: ReferenceError: Cannot access 'currStoryId' before initialization (userId: 4)
-4.2.2023, 14:52:03 - INFO - Server is running on port: 3030 
-4.2.2023, 14:52:05 - INFO - New connected socket [id: sgUJT9MVflmyyvz9AAAB] 
-4.2.2023, 14:52:09 - INFO - Server is running on port: 3030 
-4.2.2023, 14:52:10 - INFO - New connected socket [id: biMp47RtGrTGvF8iAAAB] 
-4.2.2023, 14:52:25 - INFO - Server is running on port: 3030 
-4.2.2023, 14:52:25 - INFO - New connected socket [id: dBxu4vWEQvWtw-hBAAAB] 
-4.2.2023, 14:52:32 - ERROR - while finding user 8 | Failed to commit transaction: ReferenceError: Cannot access 'currStoryId' before initialization (userId: 4)
-4.2.2023, 14:52:32 - ERROR - Failed to get user | Failed to commit transaction: ReferenceError: Cannot access 'currStoryId' before initialization (userId: 4)
-4.2.2023, 14:55:10 - INFO - Server is running on port: 3030 
-4.2.2023, 14:55:11 - INFO - New connected socket [id: b1pH705qAAp42kCNAAAB] 
-4.2.2023, 14:59:58 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 14:59:59 - INFO - New connected socket [id: dz-9zMwwdKr1diaFAAAD] 
-4.2.2023, 15:00:17 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:00:18 - INFO - New connected socket [id: 1I-xh-SCxTPmE0ioAAAF] 
-4.2.2023, 15:01:17 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:01:17 - INFO - New connected socket [id: JypcPsgQCoGBCdShAAAH] 
-4.2.2023, 15:01:51 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:01:52 - INFO - New connected socket [id: nF-489AMRzBO8wSKAAAJ] 
-4.2.2023, 15:04:59 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:05:07 - INFO - New connected socket [id: FS8gCbl7weNgwgxuAAAL] 
-4.2.2023, 15:05:20 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:05:21 - INFO - New connected socket [id: j1vmXwd4V2Ne4WqNAAAN] 
-4.2.2023, 15:18:59 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:19:00 - INFO - New connected socket [id: H0_4av9oI2n4nctZAAAP] 
-4.2.2023, 15:22:48 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:22:49 - INFO - New connected socket [id: IMuY9moE09ZnAhTUAAAR] 
-4.2.2023, 15:23:53 - ERROR - Failed to update user | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.password (userId: 4)
-4.2.2023, 15:23:53 - ERROR - cannot update user undefined | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.password (userId: 4)
-4.2.2023, 15:24:39 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:24:40 - INFO - New connected socket [id: XdDzbpNPChntL5rKAAAT] 
-4.2.2023, 15:24:50 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:24:51 - INFO - New connected socket [id: 1Z1A5XmJlYIwzYnaAAAV] 
-4.2.2023, 15:24:53 - WARN - Not Authenticated 
-4.2.2023, 15:24:53 - ERROR - cannot update user undefined | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.password (userId: 4)
-4.2.2023, 15:24:53 - ERROR - Failed to update user | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.password (userId: 4)
-4.2.2023, 15:26:21 - INFO - Server is running on port: 3030 
-4.2.2023, 15:26:21 - INFO - New connected socket [id: q4pTwKN8baSRxQwvAAAB] 
-4.2.2023, 15:26:23 - WARN - Not Authenticated 
-4.2.2023, 15:26:23 - ERROR - cannot update user undefined | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.password (userId: 4)
-4.2.2023, 15:26:23 - ERROR - Failed to update user | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.password (userId: 4)
-4.2.2023, 15:27:21 - INFO - Server is running on port: 3030 
-4.2.2023, 15:27:23 - INFO - New connected socket [id: 3O-afGQivm4-k8omAAAB] 
-4.2.2023, 15:30:15 - INFO - Server is running on port: 3030 
-4.2.2023, 15:30:16 - INFO - New connected socket [id: cpKMg3zjY23sPLveAAAB] 
-4.2.2023, 15:30:16 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:30:17 - INFO - New connected socket [id: M9vlLBaOgTK5BOQsAAAD] 
-4.2.2023, 15:30:24 - WARN - Not Authenticated 
-4.2.2023, 15:30:24 - ERROR - cannot update user undefined | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.password (userId: 4)
-4.2.2023, 15:30:24 - ERROR - Failed to update user | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.password (userId: 4)
-4.2.2023, 15:30:35 - WARN - Not Authenticated 
-4.2.2023, 15:30:36 - ERROR - Failed to update user | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.password (userId: 4)
-4.2.2023, 15:30:36 - ERROR - cannot update user undefined | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.password (userId: 4)
-4.2.2023, 15:31:10 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:31:11 - INFO - New connected socket [id: iiZh5tP2o3jwczATAAAF] 
-4.2.2023, 15:31:19 - INFO - Server is running on port: 3030 
-4.2.2023, 15:31:19 - INFO - New connected socket [id: MK-JybzKOJwi1m8IAAAB] 
-4.2.2023, 15:31:22 - WARN - Not Authenticated 
-4.2.2023, 15:31:22 - ERROR - cannot update user undefined | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.password (userId: 4)
-4.2.2023, 15:31:22 - ERROR - Failed to update user | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: users.password (userId: 4)
-4.2.2023, 15:32:13 - INFO - Server is running on port: 3030 
-4.2.2023, 15:32:13 - INFO - New connected socket [id: cdjZQDQ9nYkwhkPWAAAB] 
-4.2.2023, 15:32:14 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:32:15 - INFO - New connected socket [id: FCIjtUNNm_xMTbQxAAAD] 
-4.2.2023, 15:32:17 - WARN - Not Authenticated 
-4.2.2023, 15:32:20 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:32:21 - INFO - New connected socket [id: fMHWAb9Yzfew3YuAAAAF] 
-4.2.2023, 15:32:23 - WARN - Not Authenticated 
-4.2.2023, 15:33:51 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:33:53 - INFO - New connected socket [id: mxPEvvnoLzHghteeAAAH] 
-4.2.2023, 15:34:33 - INFO - Server is running on port: 3030 
-4.2.2023, 15:34:35 - INFO - New connected socket [id: ctisFIZfNkADbwFZAAAB] 
-4.2.2023, 15:34:38 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:34:39 - INFO - New connected socket [id: LkHYrhcGHozNsBiPAAAD] 
-4.2.2023, 15:35:13 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:35:14 - INFO - New connected socket [id: RYRpvjwnEMx0fMF_AAAF] 
-4.2.2023, 15:35:17 - WARN - Not Authenticated 
-4.2.2023, 15:35:59 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:36:00 - INFO - New connected socket [id: 1jwV2i5p-onrNNfcAAAH] 
-4.2.2023, 15:36:42 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:36:43 - INFO - New connected socket [id: U3aMQj5I5IUm9JRkAAAJ] 
-4.2.2023, 15:37:23 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:37:24 - INFO - New connected socket [id: JhVWwupjIgDyYNN1AAAL] 
-4.2.2023, 15:38:09 - INFO - Server is running on port: 3030 
-4.2.2023, 15:38:10 - INFO - New connected socket [id: qRi4I6n3yLxGUTvJAAAB] 
-4.2.2023, 15:38:37 - INFO - Server is running on port: 3030 
-4.2.2023, 15:38:38 - INFO - New connected socket [id: hpG616QlItCQ1HMtAAAB] 
-4.2.2023, 15:39:04 - INFO - Server is running on port: 3030 
-4.2.2023, 15:39:06 - INFO - New connected socket [id: 4NJYpFEefUBn7spHAAAB] 
-4.2.2023, 15:39:22 - INFO - Server is running on port: 3030 
-4.2.2023, 15:39:23 - INFO - New connected socket [id: mSH22bpBBy6VkeYPAAAB] 
-4.2.2023, 15:40:52 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:40:53 - INFO - New connected socket [id: Yy3FaKrgQr4NiG3PAAAD] 
-4.2.2023, 15:40:58 - WARN - Not Authenticated 
-4.2.2023, 15:42:55 - WARN - Not Authenticated 
-4.2.2023, 15:43:05 - WARN - Not Authenticated 
-4.2.2023, 15:44:24 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:44:25 - INFO - New connected socket [id: -ZqZzVcfvpP30dxMAAAF] 
-4.2.2023, 15:44:44 - WARN - Not Authenticated 
-4.2.2023, 15:45:01 - ERROR - cannot find users | Failed to commit transaction: Error: SQLITE_MISMATCH: datatype mismatch (userId: 4)
-4.2.2023, 15:45:01 - ERROR - Failed to get users | Failed to commit transaction: Error: SQLITE_MISMATCH: datatype mismatch (userId: 4)
-4.2.2023, 15:46:03 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:46:04 - INFO - New connected socket [id: zw74p2mW6bNM38GWAAAH] 
-4.2.2023, 15:50:12 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 15:50:14 - INFO - New connected socket [id: BerwYrwazekwwv6bAAAJ] 
-4.2.2023, 16:06:08 - INFO - Server is running on port: 3030 
-4.2.2023, 16:06:08 - INFO - New connected socket [id: BXNRGphOl7jdVSQoAAAB] 
-4.2.2023, 16:06:11 - WARN - Not Authenticated 
-4.2.2023, 16:06:52 - INFO - Server is running on port: 3030 
-4.2.2023, 16:06:53 - INFO - New connected socket [id: 0C_PY4erzt1LkfSiAAAB] 
-4.2.2023, 16:06:56 - WARN - Not Authenticated 
-4.2.2023, 16:07:27 - INFO - Server is running on port: 3030 
-4.2.2023, 16:07:28 - INFO - New connected socket [id: -yR-UOrcvsHN7XfsAAAB] 
-4.2.2023, 16:07:31 - WARN - Not Authenticated 
-4.2.2023, 16:07:56 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:07:57 - INFO - New connected socket [id: pdjTbV5LIvYmhSIRAAAD] 
-4.2.2023, 16:08:02 - WARN - Not Authenticated 
-4.2.2023, 16:08:16 - INFO - Server is running on port: 3030 
-4.2.2023, 16:08:17 - INFO - New connected socket [id: NhQIgbdYiefuBpvJAAAB] 
-4.2.2023, 16:08:22 - WARN - Not Authenticated 
-4.2.2023, 16:09:51 - INFO - Server is running on port: 3030 
-4.2.2023, 16:09:52 - INFO - New connected socket [id: Mlxj4Vcs7AIIs-3kAAAB] 
-4.2.2023, 16:09:53 - WARN - Not Authenticated 
-4.2.2023, 16:10:29 - INFO - Server is running on port: 3030 
-4.2.2023, 16:10:29 - INFO - New connected socket [id: 1Nc4l5PAGgaRWtDOAAAB] 
-4.2.2023, 16:10:31 - INFO - Server is running on port: 3030 
-4.2.2023, 16:10:32 - INFO - New connected socket [id: pmSwk2ruxn5Id4xBAAAB] 
-4.2.2023, 16:10:35 - WARN - Not Authenticated 
-4.2.2023, 16:11:45 - INFO - Server is running on port: 3030 
-4.2.2023, 16:11:47 - INFO - New connected socket [id: Hrtuza10gf4nk2exAAAB] 
-4.2.2023, 16:12:23 - INFO - Server is running on port: 3030 
-4.2.2023, 16:12:25 - INFO - New connected socket [id: CH2R3hegfNlt4ttiAAAB] 
-4.2.2023, 16:12:27 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:12:28 - INFO - New connected socket [id: HDgmaNsoEAEg3UibAAAD] 
-4.2.2023, 16:12:31 - WARN - Not Authenticated 
-4.2.2023, 16:15:59 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:16:00 - INFO - New connected socket [id: 9QkgIbmacnU03qx9AAAF] 
-4.2.2023, 16:16:27 - INFO - Server is running on port: 3030 
-4.2.2023, 16:16:29 - INFO - New connected socket [id: zVUWLP0TDhk_oMf4AAAB] 
-4.2.2023, 16:16:32 - WARN - Not Authenticated 
-4.2.2023, 16:17:21 - INFO - Server is running on port: 3030 
-4.2.2023, 16:17:23 - INFO - New connected socket [id: yvq7ehMNuR03WgE5AAAB] 
-4.2.2023, 16:17:55 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:17:56 - INFO - New connected socket [id: j02nsQIXNWV9fKHGAAAD] 
-4.2.2023, 16:18:03 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:18:04 - INFO - New connected socket [id: XaKyZs3JzpsvTzZFAAAF] 
-4.2.2023, 16:18:06 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:18:07 - INFO - New connected socket [id: biwZ9XxZPCR7ppJIAAAH] 
-4.2.2023, 16:19:28 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:19:29 - INFO - New connected socket [id: Y7B-klC7Ql0_fd1CAAAJ] 
-4.2.2023, 16:19:42 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:19:43 - INFO - New connected socket [id: nLnfgLjgNYB3E7TOAAAL] 
-4.2.2023, 16:19:49 - INFO - Server is running on port: 3030 
-4.2.2023, 16:19:50 - INFO - New connected socket [id: JqiT1Rsd7BYn9ddaAAAB] 
-4.2.2023, 16:19:52 - WARN - Not Authenticated 
-4.2.2023, 16:20:52 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:20:53 - INFO - New connected socket [id: bPYvZsWzEOsqQZvAAAAD] 
-4.2.2023, 16:20:57 - INFO - Server is running on port: 3030 
-4.2.2023, 16:20:58 - INFO - New connected socket [id: VR1cR8eEgB4Si1MSAAAB] 
-4.2.2023, 16:21:47 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:21:48 - INFO - New connected socket [id: n264f69Psca-sP4fAAAD] 
-4.2.2023, 16:21:50 - WARN - Not Authenticated 
-4.2.2023, 16:22:08 - WARN - Not Authenticated 
-4.2.2023, 16:24:44 - INFO - Server is running on port: 3030 
-4.2.2023, 16:24:45 - INFO - New connected socket [id: wOWVXeA0hoz9q7OhAAAB] 
-4.2.2023, 16:24:49 - WARN - Not Authenticated 
-4.2.2023, 16:25:30 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:25:31 - INFO - New connected socket [id: mhZbejd3UVJf_a99AAAD] 
-4.2.2023, 16:25:33 - WARN - Not Authenticated 
-4.2.2023, 16:33:41 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:33:42 - INFO - New connected socket [id: zdKjePMHGX6squeuAAAF] 
-4.2.2023, 16:38:12 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:38:13 - INFO - New connected socket [id: QggROTv_JA47C0_UAAAH] 
-4.2.2023, 16:38:57 - WARN - Not Authenticated 
-4.2.2023, 16:40:31 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:40:33 - INFO - New connected socket [id: CZ2AgjmQNjHEGz7eAAAJ] 
-4.2.2023, 16:41:02 - WARN - Not Authenticated 
-4.2.2023, 16:41:45 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:41:47 - INFO - New connected socket [id: Z4PRY-qhQBy0OtCoAAAL] 
-4.2.2023, 16:42:05 - WARN - Not Authenticated 
-4.2.2023, 16:44:20 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:44:22 - INFO - New connected socket [id: TWG1Y1S1m1HpYu92AAAN] 
-4.2.2023, 16:44:28 - WARN - Not Authenticated 
-4.2.2023, 16:44:44 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:44:45 - INFO - New connected socket [id: q7vMtU9JlxNddpSzAAAP] 
-4.2.2023, 16:45:16 - WARN - Not Authenticated 
-4.2.2023, 16:51:10 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:51:12 - INFO - New connected socket [id: ibyi8UNKEFC9mhnvAAAR] 
-4.2.2023, 16:51:52 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:51:56 - INFO - New connected socket [id: cyZbgXRoiWy4AbvlAAAT] 
-4.2.2023, 16:52:02 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:52:04 - INFO - New connected socket [id: 0NaCx6My4IY9wO95AAAV] 
-4.2.2023, 16:53:23 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:53:24 - INFO - New connected socket [id: eFbTOMTjeXHdva_OAAAX] 
-4.2.2023, 16:53:31 - WARN - Not Authenticated 
-4.2.2023, 16:53:50 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 16:53:51 - INFO - New connected socket [id: iJDT8cYwIQaKePVSAAAZ] 
-4.2.2023, 16:54:55 - WARN - Not Authenticated 
-4.2.2023, 16:56:51 - WARN - Not Authenticated 
-4.2.2023, 16:58:51 - WARN - Not Authenticated 
-4.2.2023, 16:59:05 - WARN - Not Authenticated 
-4.2.2023, 17:03:09 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 17:03:11 - INFO - New connected socket [id: 5GFqmhRiqHkQKUciAAAb] 
-4.2.2023, 17:04:28 - INFO - Server is running on port: 3030 
-4.2.2023, 17:04:33 - INFO - New connected socket [id: Qbpddf_xrqmepeUsAAAB] 
-4.2.2023, 17:04:38 - INFO - Server is running on port: 3030 
-4.2.2023, 17:04:38 - INFO - New connected socket [id: QvJ1TMjb0ePNzsn7AAAB] 
-4.2.2023, 17:04:49 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 17:04:51 - INFO - New connected socket [id: rEIqFU-x-5yst8H2AAAD] 
-4.2.2023, 17:05:05 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 17:05:06 - INFO - New connected socket [id: 5XEQ29bLY-RaEfvXAAAF] 
-4.2.2023, 17:05:56 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 17:05:57 - INFO - New connected socket [id: HRilMmpo3wENQtt9AAAH] 
-4.2.2023, 17:07:11 - INFO - Server is running on port: 3030 
-4.2.2023, 17:07:11 - INFO - New connected socket [id: D9uogMlm7pt8nm6IAAAB] 
-4.2.2023, 17:07:15 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 17:07:16 - INFO - New connected socket [id: mfd3pJYKqJusOCLnAAAD] 
-4.2.2023, 17:07:50 - INFO - Server is running on port: 3030 
-4.2.2023, 17:07:51 - INFO - New connected socket [id: SSnjmfkxY6T8njPlAAAB] 
-4.2.2023, 17:07:52 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 17:07:53 - INFO - New connected socket [id: 1h5xYRc6XDjTJKULAAAD] 
-4.2.2023, 17:09:47 - INFO - Socket disconnected [id: undefined] 
-4.2.2023, 17:09:48 - INFO - New connected socket [id: GwnWqls5bAaRQ_6EAAAF] 
+4.2.2023, 17:26:01 - INFO - Server is running on port: 3030 
+4.2.2023, 17:26:43 - WARN - Not Authenticated 
+4.2.2023, 17:26:43 - WARN - Not Authenticated 
+4.2.2023, 17:26:43 - INFO - New connected socket [id: GUZzINc18cSp-AMxAAAB] 
+4.2.2023, 17:26:56 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 17:26:57 - WARN - Not Authenticated 
+4.2.2023, 17:26:57 - WARN - Not Authenticated 
+4.2.2023, 17:26:57 - WARN - Not Authenticated 
+4.2.2023, 17:26:57 - INFO - New connected socket [id: XLr2CRdM6gnNQSxOAAAD] 
+4.2.2023, 17:27:19 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 17:27:20 - INFO - New connected socket [id: _sOnREqrbQrrwOLrAAAF] 
+4.2.2023, 17:27:29 - DEBUG - auth.service - login with username: tattookate 
+4.2.2023, 17:27:29 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":0,"followingSum":40,"postSum":6,"isDarkMode":false,"storySum":1,"currStoryId":null} | 88ed88a435d136c52723c041954c1892adedcfc09df3b20b814a8b76b699f404d21a2658929185078343ac705b2849f370e97d279ee985b30becb6316d9a315e7c042e481ed0bf70a63e44d1b0c642c55f120798cfef20b0b99f53cf9da43e2a63 
+4.2.2023, 18:26:46 - INFO - Server is running on port: 3030 
+4.2.2023, 18:26:48 - INFO - New connected socket [id: 0-940ySo11nWRc-pAAAB] 
+4.2.2023, 18:26:56 - INFO - Server is running on port: 3030 
+4.2.2023, 18:26:57 - INFO - New connected socket [id: vLbyGYJr8uiNm2b5AAAB] 
+4.2.2023, 18:27:20 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 18:27:31 - INFO - New connected socket [id: DS2_hPovw1Pp2Q7jAAAD] 
+4.2.2023, 18:34:53 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 18:34:54 - INFO - New connected socket [id: WurfpwHh40swkZGSAAAF] 
+4.2.2023, 18:34:58 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 18:35:01 - INFO - New connected socket [id: xGr_LbEUZedcxTVjAAAH] 
+4.2.2023, 18:45:04 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 18:45:05 - INFO - New connected socket [id: YLVDeJEDa8mXmR7oAAAJ] 
+4.2.2023, 18:45:15 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 18:45:15 - INFO - New connected socket [id: ucmAGTKzw5ZuzRPSAAAL] 
+4.2.2023, 18:45:21 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 18:45:22 - INFO - New connected socket [id: xdzvtiJ8eotoIxJiAAAN] 
+4.2.2023, 18:46:09 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 18:46:09 - INFO - New connected socket [id: S3w_DRZQR1eZcVVAAAAP] 
+4.2.2023, 18:46:12 - INFO - Server is running on port: 3030 
+4.2.2023, 18:46:13 - INFO - New connected socket [id: clwPrW1TEnxFOe7bAAAB] 
+4.2.2023, 18:46:36 - INFO - Server is running on port: 3030 
+4.2.2023, 18:46:36 - INFO - New connected socket [id: qIaqmAv390UM0HZ0AAAB] 
+4.2.2023, 18:46:38 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 18:46:39 - INFO - New connected socket [id: yooDbDGxIQ5aapRiAAAD] 
+4.2.2023, 18:51:20 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 18:51:21 - INFO - New connected socket [id: b9qZgfBRUTeMNEMtAAAF] 
+4.2.2023, 18:53:25 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 18:53:26 - INFO - New connected socket [id: m4c9da5TIAvowWT9AAAH] 
+4.2.2023, 18:55:30 - INFO - Server is running on port: 3030 
+4.2.2023, 18:55:30 - INFO - New connected socket [id: n3QOCBaXeQZZHV6EAAAB] 
+4.2.2023, 19:39:41 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 19:39:42 - INFO - New connected socket [id: rrOvvS914l_-4xzTAAAD] 
+4.2.2023, 19:45:15 - INFO - Server is running on port: 3030 
+4.2.2023, 19:45:16 - INFO - New connected socket [id: Z4yEcvFSfrfX9ftjAAAB] 
+4.2.2023, 19:46:26 - ERROR - while finding user 0 | Failed to commit transaction: user with id #0 was not found (userId: 4)
+4.2.2023, 19:46:26 - ERROR - Failed to get user | Failed to commit transaction: user with id #0 was not found (userId: 4)
+4.2.2023, 19:46:43 - DEBUG - auth.service - signup with username: user, fullname: user (userId: 4)
+4.2.2023, 19:46:43 - DEBUG - auth.route - new account created: "user" (userId: 4)
+4.2.2023, 19:46:43 - DEBUG - auth.service - login with username: user (userId: 4)
+4.2.2023, 19:46:43 - INFO - User login:  | {"id":11,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"isDarkMode":false,"storySum":0,"currStoryId":null} (userId: 4)
+4.2.2023, 19:46:43 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - cannot find stories | Failed to commit transaction: Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - Failed to get stories | Failed to commit transaction: Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:43 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:44 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - cannot find stories | Failed to commit transaction: Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - Failed to get stories | Failed to commit transaction: Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:45 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:46 - ERROR - cannot find stories | Failed to commit transaction: Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:46 - ERROR - Failed to get stories | Failed to commit transaction: Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:46 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:46 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:46 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:46 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:47 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:46:48 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:48:09 - INFO - Server is running on port: 3030 
+4.2.2023, 19:48:10 - INFO - New connected socket [id: rYjNNDuNAzHBVHapAAAB] 
+4.2.2023, 19:48:10 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 19:48:15 - INFO - New connected socket [id: LMlOOXc9kWNPEQueAAAD] 
+4.2.2023, 19:48:16 - ERROR - cannot find stories | Failed to commit transaction: Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:48:16 - ERROR - Failed to get stories | Failed to commit transaction: Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:48:16 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:16 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:17 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:17 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:17 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:17 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:17 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:17 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:17 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:17 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:17 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:17 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:17 - ERROR - cannot find comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:17 - ERROR - Failed to get comments | Error: SQLITE_ERROR: no such column: id 
+4.2.2023, 19:48:50 - INFO - Server is running on port: 3030 
+4.2.2023, 19:48:50 - INFO - New connected socket [id: UFpTOTGprlk_Ut1EAAAB] 
+4.2.2023, 19:48:53 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 19:48:54 - INFO - New connected socket [id: DqZWOxU7fO_6_ADTAAAD] 
+4.2.2023, 19:48:55 - ERROR - Failed to get stories | Failed to commit transaction: Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:48:55 - ERROR - cannot find stories | Failed to commit transaction: Error: SQLITE_ERROR: no such table: following 
+4.2.2023, 19:49:29 - INFO - Server is running on port: 3030 
+4.2.2023, 19:49:29 - INFO - New connected socket [id: 3e1ZIBytxpdp8MiVAAAB] 
+4.2.2023, 19:49:30 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 19:49:31 - INFO - New connected socket [id: kq9nvuQQvxzDkeiEAAAD] 
+4.2.2023, 19:50:43 - INFO - Server is running on port: 3030 
+4.2.2023, 19:50:43 - INFO - New connected socket [id: 3bkx_82W8Oo6Xy1BAAAB] 
+4.2.2023, 19:50:47 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 19:50:48 - INFO - New connected socket [id: FKmuowyQoXJWJJ6qAAAD] 
+4.2.2023, 19:51:25 - INFO - Server is running on port: 3030 
+4.2.2023, 19:51:26 - INFO - Server is running on port: 3030 
+4.2.2023, 19:51:26 - INFO - New connected socket [id: CKjzRVbRNyj-uY4wAAAB] 
+4.2.2023, 19:51:29 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 19:51:29 - INFO - New connected socket [id: BvV2zy_T0R_BM3QsAAAD] 
+4.2.2023, 19:53:21 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 19:53:26 - INFO - New connected socket [id: T1hI289D8DvEvmArAAAF] 
+4.2.2023, 19:54:23 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 19:54:24 - INFO - New connected socket [id: jEPdwv0l7Kbvj0lzAAAH] 
+4.2.2023, 19:54:35 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 19:54:36 - INFO - New connected socket [id: _XmmeSZR5XguSkeCAAAJ] 
+4.2.2023, 20:00:35 - INFO - Removing socket.chatId for socket [id: _XmmeSZR5XguSkeCAAAJ] 
+4.2.2023, 20:00:35 - INFO - Setting socket.chatId = 3 for socket [id: _XmmeSZR5XguSkeCAAAJ] 
+4.2.2023, 20:00:35 - INFO - Setting socket.chatId = 3 for socket [id: _XmmeSZR5XguSkeCAAAJ] 
+4.2.2023, 20:00:35 - INFO - Removing socket.chatId for socket [id: _XmmeSZR5XguSkeCAAAJ] 
+4.2.2023, 20:00:35 - INFO - Setting socket.chatId = 3 for socket [id: _XmmeSZR5XguSkeCAAAJ] 
+4.2.2023, 20:00:35 - INFO - Setting socket.chatId = 3 for socket [id: _XmmeSZR5XguSkeCAAAJ] 
+4.2.2023, 20:00:38 - INFO - Emiting event: chat msg-added to chat 3 for socket [id: _XmmeSZR5XguSkeCAAAJ] 
+4.2.2023, 20:00:41 - INFO - Removing socket.chatId for socket [id: _XmmeSZR5XguSkeCAAAJ] 
+4.2.2023, 20:00:41 - INFO - Removing socket.chatId for socket [id: _XmmeSZR5XguSkeCAAAJ] 
+4.2.2023, 20:04:12 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 20:04:14 - INFO - New connected socket [id: fZg8TSLlAm3KIeA1AAAL] 
+4.2.2023, 20:04:53 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 20:04:54 - INFO - New connected socket [id: zb4Ml3YwpzkWzOwzAAAN] 
+4.2.2023, 20:05:05 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 20:05:06 - INFO - New connected socket [id: T4es0tO1y10x0CEMAAAP] 
+4.2.2023, 20:06:09 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 20:06:10 - INFO - New connected socket [id: BaCsDvoJrOtsaE-6AAAR] 
+4.2.2023, 20:06:16 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 20:06:16 - INFO - New connected socket [id: xhBil-QDRJaUKitbAAAT] 
+4.2.2023, 20:06:35 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 20:06:36 - INFO - New connected socket [id: xxESfSG5vfWAaYZMAAAV] 
+4.2.2023, 20:06:42 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 20:06:43 - INFO - New connected socket [id: 4_fYuu3WHEBiQeL6AAAX] 
+4.2.2023, 20:07:52 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 20:07:53 - INFO - New connected socket [id: T2GPe5DQBQ8Y6N2OAAAZ] 
+4.2.2023, 20:08:11 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 20:08:12 - INFO - New connected socket [id: ldPpaOPKZK66IqNuAAAb] 
+4.2.2023, 20:09:43 - INFO - Socket disconnected [id: undefined] 
+4.2.2023, 20:09:44 - INFO - New connected socket [id: uoVtlvWJPYGMuapPAAAd] 

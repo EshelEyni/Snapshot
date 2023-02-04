@@ -28,7 +28,6 @@ export class UserPreviewComponent implements OnInit, OnChanges {
   user!: MiniUser;
   chat!: Chat;
   location!: Location | null;
-  // story!: Story;
 
   desc!: string;
   title = '';

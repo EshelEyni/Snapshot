@@ -43,7 +43,7 @@ export class LoadedUser implements Action {
 }
 export class LoadedLoggedInUser implements Action {
   readonly type = LOADED_LOGGEDIN_USER;
-  constructor(public user: User) { }
+  constructor(public user: User | null) { }
 }
 export class RemovedUser implements Action {
   readonly type = REMOVED_USER;

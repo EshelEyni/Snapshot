@@ -1,5 +1,6 @@
+import { UserService } from 'src/app/services/user.service';
 import { AuthService } from './../../services/auth.service';
-import { LoadLoggedInUser } from './../../store/actions/user.actions';
+import { LoadedLoggedInUser, LoadLoggedInUser } from './../../store/actions/user.actions';
 import { Component, EventEmitter, OnInit, inject } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
@@ -21,13 +22,14 @@ export class ProfileOptionsModalComponent implements OnInit {
   router = inject(Router)
   store = inject(Store<State>)
   authService = inject(AuthService)
-  
+  userService = inject(UserService)
+
   faChevronLeft = faChevronLeft;
-  
+
   loggedinUser!: User;
-  
+
   isDarkMode!: boolean;
-  
+
   close = new EventEmitter();
 
   ngOnInit(): void {
@@ -36,6 +38,12 @@ export class ProfileOptionsModalComponent implements OnInit {
 
   onCloseModal(): void {
     this.close.emit();
+  };
+
+  async onDeleteAccount(): Promise<void> {
+    // this.userService.remove(this.loggedinUser.id);
+    // this.store.dispatch(new LoadedLoggedInUser(null));
+    // this.router.navigate(['/']);
   };
 
   onGoToProfileEdit(): void {
