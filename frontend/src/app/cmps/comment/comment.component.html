@@ -1,4 +1,4 @@
-<article class="comment">
+<article class="comment" *ngIf="comment">
     <div class="main-screen dark-mode" *ngIf="isCommentModalShown" (click)="onToggleCommentModal()"></div>
     <container-element [ngSwitch]="type">
 

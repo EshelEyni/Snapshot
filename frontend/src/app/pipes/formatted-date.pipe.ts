@@ -7,6 +7,7 @@ export class FormattedDatePipe implements PipeTransform {
 
   transform(value: number | Date, format: 'short' | 'long' = 'long'): string {
     if (!value) return '';
+    if(!(value instanceof Date)) value = new Date(value);
     if (typeof value !== 'number') value = value.getTime();
 
     const formattedTimestamp = Math.floor(((Date.now() - value) / 1000));

@@ -48,9 +48,11 @@ async function updateUser(req, res) {
 
 async function deleteUser(req, res) {
     try {
-        const userId = req.params.id
+        const userId = +req.params.id
         const { loggedinUser } = req
+
         if (loggedinUser.id !== userId) {
+            console.log('loggedinUser.id !== userId', loggedinUser.id !== userId);
             return res.status(401).send({ err: 'Unauthorized' })
         }
         await userService.remove(userId)

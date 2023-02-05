@@ -641,3 +641,390 @@
 5.2.2023, 0:53:00 - INFO - New connected socket [id: sFNd0OqBKoB0lJVWAAAF] 
 5.2.2023, 0:54:52 - INFO - Server is running on port: 3030 
 5.2.2023, 0:54:54 - INFO - New connected socket [id: V4SYza85pNoxuLM4AAAB] 
+5.2.2023, 1:17:51 - INFO - Socket disconnected [id: undefined] 
+5.2.2023, 1:18:02 - INFO - Server is running on port: 3030 
+5.2.2023, 23:42:15 - INFO - Server is running on port: 3030 
+5.2.2023, 23:43:52 - INFO - New connected socket [id: vu7u-TCdkaQyh9RYAAAB] 
+5.2.2023, 23:44:22 - INFO - Server is running on port: 3030 
+5.2.2023, 23:44:23 - INFO - New connected socket [id: jUmz0cku-dtqy6A8AAAB] 
+5.2.2023, 23:46:09 - DEBUG - auth.service - login with username: user 
+5.2.2023, 23:46:10 - INFO - User login:  | {"id":12,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":1,"postSum":1,"isDarkMode":false,"storySum":0,"currStoryId":null} | 9161adda6de2fed246dc2575f3111087ae64691dc902b271ca273ecb6a56259eea4812263f357f4004a71057be1f7edf1f76f287d837ecf9843c758ea6f8510f16055bfcab2996dd5b964845ecfce5317279ae67fec0a2ea2f31893bb1e28f7b980f 
+5.2.2023, 23:46:24 - INFO - Server is running on port: 3030 
+5.2.2023, 23:46:24 - INFO - New connected socket [id: 0zNeHD0GTS9G5-70AAAB] 
+5.2.2023, 23:48:27 - INFO - Socket disconnected [id: undefined] 
+5.2.2023, 23:48:28 - INFO - New connected socket [id: MBVzczIh0PyuTt_dAAAD] 
+5.2.2023, 23:49:55 - INFO - Socket disconnected [id: undefined] 
+5.2.2023, 23:49:56 - INFO - New connected socket [id: 3YQDinapoJNiKHlUAAAF] 
+5.2.2023, 23:50:35 - INFO - Socket disconnected [id: undefined] 
+5.2.2023, 23:50:36 - INFO - New connected socket [id: 3in__rmvNkurs-aZAAAH] 
+5.2.2023, 23:50:51 - INFO - Removing socket.chatId for socket [id: 3in__rmvNkurs-aZAAAH] 
+5.2.2023, 23:50:51 - INFO - Setting socket.chatId = 5 for socket [id: 3in__rmvNkurs-aZAAAH] 
+5.2.2023, 23:50:51 - INFO - Setting socket.chatId = 5 for socket [id: 3in__rmvNkurs-aZAAAH] 
+5.2.2023, 23:50:51 - INFO - Setting socket.chatId = 5 for socket [id: 3in__rmvNkurs-aZAAAH] 
+5.2.2023, 23:50:51 - INFO - Removing socket.chatId for socket [id: 3in__rmvNkurs-aZAAAH] 
+5.2.2023, 23:50:51 - INFO - Setting socket.chatId = 5 for socket [id: 3in__rmvNkurs-aZAAAH] 
+5.2.2023, 23:50:55 - INFO - Emiting event: chat msg-added to chat 5 for socket [id: 3in__rmvNkurs-aZAAAH] 
+5.2.2023, 23:50:55 - INFO - Emiting event: chat msg-added to chat 5 for socket [id: 3in__rmvNkurs-aZAAAH] 
+5.2.2023, 23:51:01 - INFO - Emiting event: chat msg-added to chat 5 for socket [id: 3in__rmvNkurs-aZAAAH] 
+5.2.2023, 23:51:04 - INFO - Emiting event: chat msg-added to chat 5 for socket [id: 3in__rmvNkurs-aZAAAH] 
+5.2.2023, 23:51:13 - INFO - Removing socket.chatId for socket [id: 3in__rmvNkurs-aZAAAH] 
+5.2.2023, 23:51:13 - INFO - Removing socket.chatId for socket [id: 3in__rmvNkurs-aZAAAH] 
+5.2.2023, 23:51:51 - WARN - Not Authenticated 
+5.2.2023, 23:51:51 - WARN - Not Authenticated 
+5.2.2023, 23:51:51 - WARN - Not Authenticated 
+5.2.2023, 23:51:51 - INFO - New connected socket [id: NGCNYRkxv9KPK3hXAAAJ] 
+5.2.2023, 23:58:21 - INFO - Socket disconnected [id: undefined] 
+5.2.2023, 23:58:21 - INFO - Socket disconnected [id: undefined] 
+5.2.2023, 23:58:22 - WARN - Not Authenticated 
+5.2.2023, 23:58:22 - WARN - Not Authenticated 
+5.2.2023, 23:58:22 - WARN - Not Authenticated 
+5.2.2023, 23:58:22 - INFO - New connected socket [id: dpuCuEyokaK498sUAAAL] 
+5.2.2023, 23:58:23 - INFO - New connected socket [id: rdW6IeGdelMbMI5bAAAN] 
+5.2.2023, 23:58:34 - INFO - Socket disconnected [id: undefined] 
+5.2.2023, 23:58:35 - INFO - New connected socket [id: XXs_h-s5R0moFqV_AAAP] 
+5.2.2023, 23:58:59 - DEBUG - auth.service - login with username: UFC 
+5.2.2023, 23:58:59 - INFO - User login:  | {"id":5,"username":"UFC","fullname":"UFC","email":"ufc@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1674946501/ej21tyskpky14jrcbl1x.png","gender":"","phone":"","bio":"","website":"","followersSum":13,"followingSum":0,"postSum":6,"isDarkMode":false,"storySum":1,"currStoryId":2} | 8cafb536d3d231692af41c80d14266a51730157329fd041eb69137d2d6a0969d711022b05f89e578a543f6e3e7854a47132669f533b4c4684fef84cbdf839e3c105305469f88ace0f6cbb3fd910cfc5a08de494cb960a0d5f2adb4fb9affbb7498 
+5.2.2023, 23:59:12 - INFO - Socket disconnected [id: undefined] 
+5.2.2023, 23:59:12 - WARN - Not Authenticated 
+5.2.2023, 23:59:13 - WARN - Not Authenticated 
+5.2.2023, 23:59:13 - WARN - Not Authenticated 
+5.2.2023, 23:59:13 - INFO - New connected socket [id: xyuroJL_3m4HjBH3AAAR] 
+5.2.2023, 23:59:26 - INFO - Socket disconnected [id: undefined] 
+5.2.2023, 23:59:27 - INFO - New connected socket [id: u2l8AdrQ6luIh7BRAAAT] 
+5.2.2023, 23:59:34 - DEBUG - auth.service - login with username: UFC 
+5.2.2023, 23:59:34 - INFO - User login:  | {"id":5,"username":"UFC","fullname":"UFC","email":"ufc@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1674946501/ej21tyskpky14jrcbl1x.png","gender":"","phone":"","bio":"","website":"","followersSum":13,"followingSum":0,"postSum":6,"isDarkMode":false,"storySum":1,"currStoryId":2} | 25e182bc13a7b9f29025b9aa7e1fc71097052fa4caf58c87c4b907fc66bad4f3d851b59484152b4027594d07c3c892b6fdc43a63626feeb593f1e62379da3247f0e9767a86ceeb85dad39aa3e99068942866c097c406db02aed373c09c9e1c79cd 
+6.2.2023, 0:00:08 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:00:08 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:00:11 - INFO - New connected socket [id: ZfG59n9QjiLf0bMWAAAV] 
+6.2.2023, 0:00:12 - INFO - New connected socket [id: Mx3uMll4tYFSAOMTAAAX] 
+6.2.2023, 0:00:23 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:00:23 - WARN - Not Authenticated 
+6.2.2023, 0:00:23 - WARN - Not Authenticated 
+6.2.2023, 0:00:23 - WARN - Not Authenticated 
+6.2.2023, 0:00:23 - INFO - New connected socket [id: RMOeEJ107dS1JjUNAAAZ] 
+6.2.2023, 0:00:57 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:00:57 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:00:59 - INFO - New connected socket [id: v9yuboeh0Yobqdg6AAAb] 
+6.2.2023, 0:01:00 - INFO - New connected socket [id: 1kRXrKKGiXTZ_RoaAAAd] 
+6.2.2023, 0:01:03 - DEBUG - auth.service - login with username: UFC 
+6.2.2023, 0:01:04 - INFO - User login:  | {"id":5,"username":"UFC","fullname":"UFC","email":"ufc@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1674946501/ej21tyskpky14jrcbl1x.png","gender":"","phone":"","bio":"","website":"","followersSum":13,"followingSum":0,"postSum":6,"isDarkMode":false,"storySum":1,"currStoryId":2} | c4b1d0919b1eee54096bac73e985e1a9df1b6155ea09329029f9414a7e337174b13bc93ccd3057a6fdc7be836b8be769337bc980705241471b508c1fc3591feb3c262d1208c422d9d43a1572d059d2a0e61c409f4af19cbe0348ec66fc906ed07d 
+6.2.2023, 0:01:14 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:01:15 - WARN - Not Authenticated 
+6.2.2023, 0:01:15 - WARN - Not Authenticated 
+6.2.2023, 0:01:15 - WARN - Not Authenticated 
+6.2.2023, 0:01:15 - INFO - New connected socket [id: Y96x_q1okz5fP5bQAAAf] 
+6.2.2023, 0:01:31 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:01:31 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:01:33 - INFO - New connected socket [id: rB2rHQqgv-mf8jUfAAAh] 
+6.2.2023, 0:01:34 - INFO - New connected socket [id: fjuCD8yyQvCkRvEWAAAj] 
+6.2.2023, 0:01:37 - DEBUG - auth.service - login with username: UFC 
+6.2.2023, 0:01:37 - INFO - User login:  | {"id":5,"username":"UFC","fullname":"UFC","email":"ufc@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1674946501/ej21tyskpky14jrcbl1x.png","gender":"","phone":"","bio":"","website":"","followersSum":13,"followingSum":0,"postSum":6,"isDarkMode":false,"storySum":1,"currStoryId":2} | 240528aaecad78983ed18b88710f6f89b0b9b13eca876042a47bfaea7bf4b16200475068a33c1122c6474fd1d5a7f23fd2caab3a62604292c0a2dd23f34c1bc39620ffc49773beaae185d5ab57581c4271e5bf9f967d8cb2cfcc8171c9a47cd2ac 
+6.2.2023, 0:01:45 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:01:46 - WARN - Not Authenticated 
+6.2.2023, 0:01:46 - WARN - Not Authenticated 
+6.2.2023, 0:01:46 - WARN - Not Authenticated 
+6.2.2023, 0:01:46 - INFO - New connected socket [id: 4fChoSDUoy5EreSkAAAl] 
+6.2.2023, 0:02:28 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:02:29 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:02:30 - INFO - New connected socket [id: CAf2KW0g4TyMUMo0AAAn] 
+6.2.2023, 0:02:31 - INFO - New connected socket [id: wbKs8FoO2nqPyT66AAAp] 
+6.2.2023, 0:02:35 - DEBUG - auth.service - login with username: UFC 
+6.2.2023, 0:02:35 - INFO - User login:  | {"id":5,"username":"UFC","fullname":"UFC","email":"ufc@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1674946501/ej21tyskpky14jrcbl1x.png","gender":"","phone":"","bio":"","website":"","followersSum":13,"followingSum":0,"postSum":6,"isDarkMode":false,"storySum":1,"currStoryId":2} | 56137fca6dcc87db10851ae21124e8a95dde26d6f4223be802e74e493d2514112eb28ea718fa17c6886eb769f554acbc38d2f0588ce2702a16e5a39507eef74da29a7881c4fb7089e68c28ad25cc610390c4aa7fdb1cac166f21b81398f803d744 
+6.2.2023, 0:02:44 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:02:45 - WARN - Not Authenticated 
+6.2.2023, 0:02:45 - WARN - Not Authenticated 
+6.2.2023, 0:02:45 - WARN - Not Authenticated 
+6.2.2023, 0:02:45 - INFO - New connected socket [id: NxvYKBtwIfyDZ9yFAAAr] 
+6.2.2023, 0:04:07 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:04:07 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:04:08 - INFO - New connected socket [id: UtrIsFKO6EZUJGR0AAAt] 
+6.2.2023, 0:04:08 - INFO - New connected socket [id: WyDf-MBk5UGF-75CAAAv] 
+6.2.2023, 0:04:12 - DEBUG - auth.service - login with username: UFC 
+6.2.2023, 0:04:12 - INFO - User login:  | {"id":5,"username":"UFC","fullname":"UFC","email":"ufc@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1674946501/ej21tyskpky14jrcbl1x.png","gender":"","phone":"","bio":"","website":"","followersSum":13,"followingSum":0,"postSum":6,"isDarkMode":false,"storySum":1,"currStoryId":2} | 1c0c2b5d1ae30b1f018558718e75f916f79f789db92eff61558037c56a4997bf8b899ff0fed4d42996e239a680caa4be24a4d1be44da2ef262634b12d95614b3231a907741282d84808f7f7c56bb1bad82e1674c331a89d3f46422778beee9cc22 
+6.2.2023, 0:04:22 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:04:23 - WARN - Not Authenticated 
+6.2.2023, 0:04:23 - WARN - Not Authenticated 
+6.2.2023, 0:04:23 - WARN - Not Authenticated 
+6.2.2023, 0:04:23 - INFO - New connected socket [id: voR5XQw8eOU60QHZAAAx] 
+6.2.2023, 0:04:45 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:04:45 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:04:46 - INFO - New connected socket [id: B8HCeXSeuA5ppRdeAAAz] 
+6.2.2023, 0:04:47 - INFO - New connected socket [id: YqvI3Rh93698gQ3dAAA1] 
+6.2.2023, 0:05:03 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:05:03 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:05:03 - INFO - New connected socket [id: cwnWB7Y2Mj9vtNraAAA3] 
+6.2.2023, 0:05:04 - INFO - New connected socket [id: -gXrmCKWG69dNs9MAAA5] 
+6.2.2023, 0:05:44 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:05:44 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:05:45 - INFO - New connected socket [id: y8Gszviw008ROTMAAAA7] 
+6.2.2023, 0:05:45 - INFO - New connected socket [id: Fn3X5A51jbNGxCNuAAA9] 
+6.2.2023, 0:06:07 - DEBUG - auth.service - login with username: UFC 
+6.2.2023, 0:06:07 - INFO - User login:  | {"id":5,"username":"UFC","fullname":"UFC","email":"ufc@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1674946501/ej21tyskpky14jrcbl1x.png","gender":"","phone":"","bio":"","website":"","followersSum":13,"followingSum":0,"postSum":6,"isDarkMode":false,"storySum":1,"currStoryId":2} | 5f0e54b4dedb6192113a22c38d0d0de4e9d17e0d0fe41b3a4d0599b461fb52f06ba50ffed927893a7647e0742d6101d29700717ad5af9013b1f70a586e2feac8e88b6e58ab15806644df934da957583f3c778a3618eb0ecc5b61073dbd901d54bb 
+6.2.2023, 0:06:15 - INFO - Removing socket.chatId for socket [id: y8Gszviw008ROTMAAAA7] 
+6.2.2023, 0:06:15 - INFO - Setting socket.chatId = 5 for socket [id: y8Gszviw008ROTMAAAA7] 
+6.2.2023, 0:06:15 - INFO - Setting socket.chatId = 5 for socket [id: y8Gszviw008ROTMAAAA7] 
+6.2.2023, 0:06:15 - INFO - Setting socket.chatId = 5 for socket [id: y8Gszviw008ROTMAAAA7] 
+6.2.2023, 0:06:15 - INFO - Removing socket.chatId for socket [id: y8Gszviw008ROTMAAAA7] 
+6.2.2023, 0:06:15 - INFO - Setting socket.chatId = 5 for socket [id: y8Gszviw008ROTMAAAA7] 
+6.2.2023, 0:06:27 - INFO - Emiting event: chat msg-added to chat 5 for socket [id: y8Gszviw008ROTMAAAA7] 
+6.2.2023, 0:06:31 - INFO - Emiting event: chat msg-added to chat 5 for socket [id: y8Gszviw008ROTMAAAA7] 
+6.2.2023, 0:06:36 - INFO - Removing socket.chatId for socket [id: y8Gszviw008ROTMAAAA7] 
+6.2.2023, 0:06:36 - INFO - Removing socket.chatId for socket [id: y8Gszviw008ROTMAAAA7] 
+6.2.2023, 0:14:55 - INFO - Server is running on port: 3030 
+6.2.2023, 0:14:55 - INFO - New connected socket [id: on0NGeVjaFFw8Q75AAAB] 
+6.2.2023, 0:14:56 - INFO - New connected socket [id: 2x0Ef0l29ji25runAAAD] 
+6.2.2023, 0:15:05 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:15:07 - INFO - New connected socket [id: v50wm-c4RX9EvkhhAAAF] 
+6.2.2023, 0:15:25 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:15:26 - INFO - New connected socket [id: g2BEFhXSA400ilP2AAAH] 
+6.2.2023, 0:18:15 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:18:16 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:18:16 - INFO - New connected socket [id: 4t9yJf4gFbXbUAQPAAAJ] 
+6.2.2023, 0:18:17 - INFO - New connected socket [id: WstFfFw68ETwQIzVAAAL] 
+6.2.2023, 0:27:34 - INFO - Server is running on port: 3030 
+6.2.2023, 0:27:35 - INFO - New connected socket [id: G6dOMw9pmCn-P1zrAAAB] 
+6.2.2023, 0:27:35 - INFO - New connected socket [id: meXjZEli-WMVJM8KAAAD] 
+6.2.2023, 0:27:35 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:27:36 - INFO - New connected socket [id: hQOuS1ldFmMGnak-AAAF] 
+6.2.2023, 0:27:54 - INFO - Server is running on port: 3030 
+6.2.2023, 0:27:54 - INFO - New connected socket [id: krEII7k0oe6B3gXkAAAB] 
+6.2.2023, 0:27:54 - INFO - New connected socket [id: lRmwENndu6iKAXDZAAAD] 
+6.2.2023, 0:27:55 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:27:56 - INFO - New connected socket [id: _MoGInxSQuH4ER4bAAAF] 
+6.2.2023, 0:28:56 - INFO - Server is running on port: 3030 
+6.2.2023, 0:28:56 - INFO - New connected socket [id: N2RPeXG_dTA-rrEDAAAB] 
+6.2.2023, 0:28:57 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:28:57 - INFO - New connected socket [id: ArFpG1yATq9ODOf9AAAD] 
+6.2.2023, 0:28:57 - INFO - New connected socket [id: a-ioH-rdse_Pt3tvAAAF] 
+6.2.2023, 0:29:21 - INFO - Server is running on port: 3030 
+6.2.2023, 0:29:21 - INFO - New connected socket [id: eDHargpM0Zr9231qAAAB] 
+6.2.2023, 0:29:22 - INFO - New connected socket [id: DQtLw_QmG_ig7kX6AAAD] 
+6.2.2023, 0:29:22 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:29:23 - INFO - New connected socket [id: 2zJKhshdyu11dvDLAAAF] 
+6.2.2023, 0:30:15 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:30:16 - INFO - New connected socket [id: EAxUUkuk-7G1HoOuAAAH] 
+6.2.2023, 0:30:35 - INFO - Server is running on port: 3030 
+6.2.2023, 0:30:35 - INFO - New connected socket [id: xbZEa0Uwvav3yzQmAAAB] 
+6.2.2023, 0:30:35 - INFO - New connected socket [id: AW1VTrXp6uGZp7uAAAAD] 
+6.2.2023, 0:30:35 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:30:36 - INFO - New connected socket [id: T-gFN72iPEdECxYVAAAF] 
+6.2.2023, 0:30:57 - INFO - Server is running on port: 3030 
+6.2.2023, 0:30:58 - INFO - New connected socket [id: V92WaoVTG32sfZLUAAAB] 
+6.2.2023, 0:30:58 - INFO - New connected socket [id: 1s-SwwrdilioxFt1AAAD] 
+6.2.2023, 0:31:41 - INFO - Server is running on port: 3030 
+6.2.2023, 0:31:42 - INFO - New connected socket [id: PLp2U2vDyJ36nZT7AAAB] 
+6.2.2023, 0:31:42 - INFO - New connected socket [id: V2ybbfm_wzvO8s5kAAAD] 
+6.2.2023, 0:31:48 - INFO - Server is running on port: 3030 
+6.2.2023, 0:31:48 - INFO - New connected socket [id: N5buWG8YBAoCpNJpAAAB] 
+6.2.2023, 0:31:49 - INFO - New connected socket [id: 0UTX7JGjThCuvN1wAAAD] 
+6.2.2023, 0:32:05 - INFO - Server is running on port: 3030 
+6.2.2023, 0:32:05 - INFO - New connected socket [id: 1fiI626csw6VnFeWAAAB] 
+6.2.2023, 0:32:06 - INFO - New connected socket [id: 4NpS94AnqJFsJJfGAAAD] 
+6.2.2023, 0:32:20 - INFO - Server is running on port: 3030 
+6.2.2023, 0:32:20 - INFO - New connected socket [id: QQWVqiZSvhGLHRVNAAAB] 
+6.2.2023, 0:32:21 - INFO - New connected socket [id: 32bsuxzg2QPWJaagAAAD] 
+6.2.2023, 0:32:29 - INFO - Server is running on port: 3030 
+6.2.2023, 0:32:29 - INFO - New connected socket [id: DIKT4gWEdxr8tIPOAAAB] 
+6.2.2023, 0:32:30 - INFO - New connected socket [id: 0Mjp_itz8aKytfsnAAAD] 
+6.2.2023, 0:32:32 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:32:33 - INFO - New connected socket [id: lG0X5fLa8soxNdZ6AAAF] 
+6.2.2023, 0:33:03 - INFO - Server is running on port: 3030 
+6.2.2023, 0:33:04 - INFO - New connected socket [id: LZPRQeNBNVWSliYoAAAB] 
+6.2.2023, 0:33:04 - INFO - New connected socket [id: Cqo8uRazVCn9FfSbAAAD] 
+6.2.2023, 0:33:08 - INFO - Server is running on port: 3030 
+6.2.2023, 0:33:09 - INFO - New connected socket [id: FzYKh2JXUdnh9eNuAAAB] 
+6.2.2023, 0:33:09 - INFO - New connected socket [id: fr37Ii9UXSalVojqAAAD] 
+6.2.2023, 0:33:10 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:33:10 - INFO - New connected socket [id: lNCZu_jFbzyZZwSuAAAF] 
+6.2.2023, 0:34:13 - INFO - Server is running on port: 3030 
+6.2.2023, 0:34:14 - INFO - New connected socket [id: 47EVBja5euNM1Ri9AAAC] 
+6.2.2023, 0:34:14 - INFO - New connected socket [id: flt3gcBmDN4hvJMRAAAD] 
+6.2.2023, 0:34:15 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:34:16 - INFO - New connected socket [id: 7h7JpZJW6FX2GytLAAAF] 
+6.2.2023, 0:34:32 - INFO - Server is running on port: 3030 
+6.2.2023, 0:34:34 - INFO - New connected socket [id: yFXPFRAI1XGwy_knAAAB] 
+6.2.2023, 0:34:34 - INFO - New connected socket [id: YCzKU0hrVpMDGhIyAAAD] 
+6.2.2023, 0:35:41 - INFO - Server is running on port: 3030 
+6.2.2023, 0:35:41 - INFO - New connected socket [id: e9-ieNZThXVsmTHOAAAC] 
+6.2.2023, 0:35:41 - INFO - New connected socket [id: ZZtXjADd545LnOxGAAAD] 
+6.2.2023, 0:35:43 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:35:44 - INFO - New connected socket [id: v08QwAlypMaCwZxKAAAF] 
+6.2.2023, 0:36:09 - INFO - Server is running on port: 3030 
+6.2.2023, 0:36:10 - INFO - New connected socket [id: x3BZ0tKs2l286P60AAAB] 
+6.2.2023, 0:36:11 - INFO - New connected socket [id: S4l6910MtmZxcFgCAAAD] 
+6.2.2023, 0:36:12 - INFO - Server is running on port: 3030 
+6.2.2023, 0:36:12 - INFO - New connected socket [id: R32p7qwzqDgcVWp5AAAB] 
+6.2.2023, 0:36:13 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:36:13 - INFO - New connected socket [id: n4reup9hIWW1VlwNAAAD] 
+6.2.2023, 0:36:14 - INFO - New connected socket [id: zdxxqvmrgsQcu2YGAAAF] 
+6.2.2023, 0:38:34 - INFO - Server is running on port: 3030 
+6.2.2023, 0:38:35 - INFO - New connected socket [id: MyjLnjD7RBIn2Z6mAAAB] 
+6.2.2023, 0:38:35 - INFO - New connected socket [id: DivtrJ-YR3G2Jz0zAAAD] 
+6.2.2023, 0:38:36 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:38:37 - INFO - New connected socket [id: dh17-IHw5W3haKdyAAAF] 
+6.2.2023, 0:38:58 - INFO - Server is running on port: 3030 
+6.2.2023, 0:38:58 - INFO - New connected socket [id: ANOqCB_MyJWCJv4KAAAC] 
+6.2.2023, 0:38:58 - INFO - New connected socket [id: CZlehX3prqck9kSlAAAD] 
+6.2.2023, 0:39:03 - INFO - Server is running on port: 3030 
+6.2.2023, 0:39:04 - INFO - New connected socket [id: UPxHOkE2Aq5rEP82AAAB] 
+6.2.2023, 0:39:04 - INFO - New connected socket [id: 9fxCsC6qqZ9IpMoZAAAD] 
+6.2.2023, 0:39:10 - INFO - Server is running on port: 3030 
+6.2.2023, 0:39:11 - INFO - New connected socket [id: LxboagxSFY3N5iSKAAAB] 
+6.2.2023, 0:39:11 - INFO - New connected socket [id: kIpFzT523uNwymdgAAAD] 
+6.2.2023, 0:39:49 - INFO - Server is running on port: 3030 
+6.2.2023, 0:39:49 - INFO - New connected socket [id: aZY-EMxSNe7_XDnbAAAB] 
+6.2.2023, 0:39:50 - INFO - New connected socket [id: KZt7mU6BgYyr2L-vAAAD] 
+6.2.2023, 0:41:42 - INFO - Server is running on port: 3030 
+6.2.2023, 0:41:42 - INFO - New connected socket [id: 6vx6KDW8wruYstIIAAAB] 
+6.2.2023, 0:41:43 - INFO - New connected socket [id: Q7PcRwCuddM0KCAMAAAD] 
+6.2.2023, 0:45:17 - INFO - Server is running on port: 3030 
+6.2.2023, 0:45:18 - INFO - New connected socket [id: VrO-UfvXtHMEMTLuAAAB] 
+6.2.2023, 0:45:18 - INFO - New connected socket [id: Az1CiCGOIr0eoaNLAAAD] 
+6.2.2023, 0:45:51 - INFO - Server is running on port: 3030 
+6.2.2023, 0:45:51 - INFO - New connected socket [id: 47RWgqKScvzhk-oiAAAB] 
+6.2.2023, 0:45:53 - INFO - New connected socket [id: xtOYvyYEO-MKy4GwAAAD] 
+6.2.2023, 0:54:10 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:54:11 - INFO - New connected socket [id: 2PdZ0JtaEE9SqwudAAAF] 
+6.2.2023, 0:54:11 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:54:12 - INFO - New connected socket [id: 2kwjTGrQjMtCc8pTAAAH] 
+6.2.2023, 0:54:37 - INFO - Server is running on port: 3030 
+6.2.2023, 0:54:37 - INFO - New connected socket [id: q7CoHEaYS8j5fa1xAAAB] 
+6.2.2023, 0:54:37 - INFO - New connected socket [id: H4tozwygFMKiMXxmAAAD] 
+6.2.2023, 0:55:46 - ERROR - Failed to add comment | Failed to commit transaction: ReferenceError: tags is not defined 
+6.2.2023, 0:55:46 - ERROR - cannot insert comment | Failed to commit transaction: ReferenceError: tags is not defined 
+6.2.2023, 0:56:24 - INFO - Server is running on port: 3030 
+6.2.2023, 0:56:25 - INFO - New connected socket [id: WEljCkdTBLRsqjd8AAAB] 
+6.2.2023, 0:56:25 - INFO - New connected socket [id: IcV8FQvfHsH-F2AOAAAD] 
+6.2.2023, 0:56:40 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:56:41 - INFO - New connected socket [id: stCZ7dPTJ5Ve0C8mAAAF] 
+6.2.2023, 0:57:32 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:57:33 - INFO - New connected socket [id: sm2224VHJhM4JhEFAAAH] 
+6.2.2023, 0:58:17 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:58:18 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 0:58:19 - INFO - New connected socket [id: fPKFpGa5H-qGV8XDAAAK] 
+6.2.2023, 0:58:19 - INFO - New connected socket [id: jMcIrZQlE2C1m_HLAAAL] 
+6.2.2023, 1:00:54 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 1:00:55 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 1:00:55 - INFO - New connected socket [id: HBv33RLqjfYcHfLeAAAN] 
+6.2.2023, 1:00:56 - INFO - New connected socket [id: gXo6XYslphW46Gz5AAAP] 
+6.2.2023, 1:01:41 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 1:01:42 - INFO - New connected socket [id: 4ibTkoz7xnI4knd1AAAR] 
+6.2.2023, 1:01:42 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 1:01:43 - INFO - New connected socket [id: u-GVX5Q5Y3rltDtCAAAT] 
+6.2.2023, 1:02:10 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 1:02:11 - INFO - New connected socket [id: w0mlFzU5cKWg3NoBAAAV] 
+6.2.2023, 1:02:11 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 1:02:12 - INFO - New connected socket [id: Hinsb2TmTfUTcS1tAAAX] 
+6.2.2023, 1:08:35 - INFO - Server is running on port: 3030 
+6.2.2023, 1:08:36 - INFO - New connected socket [id: q4ePBntU5c8C9PDvAAAB] 
+6.2.2023, 1:08:37 - INFO - New connected socket [id: YQaVNk5MYkkYvNgNAAAD] 
+6.2.2023, 1:08:43 - DEBUG - auth.service - login with username: user (userId: 12)
+6.2.2023, 1:08:43 - INFO - User login:  | {"id":12,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":1,"followingSum":2,"postSum":1,"isDarkMode":false,"storySum":2,"currStoryId":6} | e3e8b900d62d85c9eac7b2441d24ae80ed6d8bdacf7d2024fd4fd56b534cbcf4e0f9f423e24a0fe1b1582f18fbfe2c279260ee453417017443930f39c8b71af8856cda7e796d08e0adc7ffa385d0f92f765555e7a902e821cbfda4ff6086b5729735 (userId: 12)
+6.2.2023, 1:10:09 - INFO - Server is running on port: 3030 
+6.2.2023, 1:10:10 - INFO - New connected socket [id: j9cW2bGJ-mRFz-EqAAAB] 
+6.2.2023, 1:10:10 - INFO - New connected socket [id: nrw0AsEyyu5kvY7PAAAD] 
+6.2.2023, 1:10:27 - INFO - Server is running on port: 3030 
+6.2.2023, 1:10:28 - INFO - New connected socket [id: SPkr0SfYwfU4QmfMAAAB] 
+6.2.2023, 1:10:29 - INFO - New connected socket [id: Spkte5DKHf-mnzCRAAAD] 
+6.2.2023, 1:11:02 - INFO - Server is running on port: 3030 
+6.2.2023, 1:11:03 - INFO - New connected socket [id: 5jbpFMwlD0TOjZmUAAAB] 
+6.2.2023, 1:11:04 - INFO - New connected socket [id: HWBeMgBqsq8isyJDAAAD] 
+6.2.2023, 1:11:19 - INFO - Server is running on port: 3030 
+6.2.2023, 1:11:19 - INFO - New connected socket [id: CkHBPkJxVqc8hKvFAAAB] 
+6.2.2023, 1:11:19 - INFO - New connected socket [id: VhX5AjM64pnrWelwAAAD] 
+6.2.2023, 1:11:25 - DEBUG - auth.service - login with username: user (userId: 12)
+6.2.2023, 1:11:25 - INFO - User login:  | {"id":12,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":1,"followingSum":2,"postSum":1,"isDarkMode":false,"storySum":2,"currStoryId":6} | 9def5f3bb81ad36fe83a252e4ec4c695e40e87083c0cce977faa476b4d66eede0ff763a9c7896104e94a1409fb33f061f20247edb51d2fdb345829fb7eff54e6495764cc2cede7d4c54dbf49831db69b7cf6787ae41fed401e2ceebe9a49961e8b43 (userId: 12)
+6.2.2023, 1:11:51 - INFO - Server is running on port: 3030 
+6.2.2023, 1:11:51 - INFO - New connected socket [id: hInKVIeO3xcBB-5nAAAB] 
+6.2.2023, 1:11:52 - INFO - New connected socket [id: rPcR8tEZAyDdEqEOAAAD] 
+6.2.2023, 1:12:01 - INFO - Server is running on port: 3030 
+6.2.2023, 1:12:01 - INFO - New connected socket [id: qhvRnoShyvseP6RvAAAB] 
+6.2.2023, 1:12:01 - INFO - New connected socket [id: e45EtzlDOV9oXDRUAAAD] 
+6.2.2023, 1:12:08 - DEBUG - auth.service - login with username: user (userId: 12)
+6.2.2023, 1:12:08 - INFO - User login:  | {"id":12,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":1,"followingSum":2,"postSum":1,"isDarkMode":false,"storySum":2,"currStoryId":6} | 68ddf9d0c66557344aa675935e5565583b4ecb82cff333b157dcfd5acbeff9486c75b1b47e6e32e3bf8c3ddf99397af41a606111d9861bf89eae93044d5052f56cc8afa4dff9097ddd6d97ce8845247d16cb5a8d5ddb42765c9981ba5571c0a740fc (userId: 12)
+6.2.2023, 1:13:52 - INFO - Server is running on port: 3030 
+6.2.2023, 1:13:53 - INFO - New connected socket [id: UJ6lOfXIpbRW8IQfAAAB] 
+6.2.2023, 1:13:53 - INFO - New connected socket [id: wTx9A1gCyMaYoumZAAAD] 
+6.2.2023, 1:14:00 - ERROR - cannot remove user 12 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 12)
+6.2.2023, 1:14:00 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 12)
+6.2.2023, 1:14:22 - INFO - Server is running on port: 3030 
+6.2.2023, 1:14:23 - INFO - New connected socket [id: xAmqHDBINNwfiMyaAAAB] 
+6.2.2023, 1:14:23 - INFO - New connected socket [id: L8Ce5hfd9phdaIUjAAAD] 
+6.2.2023, 1:14:28 - DEBUG - auth.service - login with username: user (userId: 12)
+6.2.2023, 1:14:28 - INFO - User login:  | {"id":12,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":1,"followingSum":2,"postSum":1,"isDarkMode":false,"storySum":2,"currStoryId":6} | 690a3ce9dbb6b6cc57a9c15257eda8eeb2b3b3a94d98e877bef9e2becc314898c2ec04b5fe1c45b0e59bcf29322e33eb5ed2301afb92408291cf4d2bd9a10472c35fbef0ca91e581e829e32ebb8bfdd182f3d81f6d56815143d0da5631f882c20f74 (userId: 12)
+6.2.2023, 1:14:36 - ERROR - cannot remove user 12 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 12)
+6.2.2023, 1:14:36 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 12)
+6.2.2023, 1:15:44 - INFO - Server is running on port: 3030 
+6.2.2023, 1:15:44 - INFO - New connected socket [id: 3M_mLqm4O5LYTac8AAAB] 
+6.2.2023, 1:15:45 - INFO - New connected socket [id: 5fhSMtWj2o_5M9D6AAAD] 
+6.2.2023, 1:15:51 - DEBUG - auth.service - login with username: user (userId: 12)
+6.2.2023, 1:15:51 - INFO - User login:  | {"id":12,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":1,"followingSum":2,"postSum":1,"isDarkMode":false,"storySum":2,"currStoryId":6} | 407f9fadfb4259570642b420bc97055ef140cd12cbe2aa21a44a7e188c54e5ed4ef42e5c6ee70b11f466ab3d76453d93ea3898b7a80ce1e303034a4605077553a9fe185fc2d55bb7933a48c60510e4e04a7c6f2281b92900127f6e7b058e224a34e5 (userId: 12)
+6.2.2023, 1:16:01 - ERROR - cannot remove user 12 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 12)
+6.2.2023, 1:16:01 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 12)
+6.2.2023, 1:16:54 - INFO - Server is running on port: 3030 
+6.2.2023, 1:16:54 - INFO - New connected socket [id: vzR2nXjMX8VROuKLAAAB] 
+6.2.2023, 1:16:55 - INFO - New connected socket [id: 5lntQT0Hrmo9jA8lAAAD] 
+6.2.2023, 1:17:20 - DEBUG - auth.service - login with username: user (userId: 12)
+6.2.2023, 1:17:20 - INFO - User login:  | {"id":12,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":1,"followingSum":2,"postSum":1,"isDarkMode":false,"storySum":2,"currStoryId":6} | c4f61825f08cde02cd32197cd7fb0e12b0fef5cf63fa38e08f25c22fa55a31bc00b76cdf1154450fe11172776bbc6428209003ed22902d3597d1ae1e9bb80bbbead3335f1836d6bbe86d916f87844d21eb4eb141af45c6f7fe107eec3385755187b9 (userId: 12)
+6.2.2023, 1:17:29 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 12)
+6.2.2023, 1:17:29 - ERROR - cannot remove user 12 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 12)
+6.2.2023, 1:18:10 - INFO - Server is running on port: 3030 
+6.2.2023, 1:18:10 - INFO - New connected socket [id: h0Re2cVALWzcb0AqAAAB] 
+6.2.2023, 1:18:10 - INFO - New connected socket [id: G0U-_KJ65BkcSgA0AAAD] 
+6.2.2023, 1:18:15 - DEBUG - auth.service - login with username: user (userId: 12)
+6.2.2023, 1:18:15 - INFO - User login:  | {"id":12,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":1,"followingSum":2,"postSum":1,"isDarkMode":false,"storySum":2,"currStoryId":6} | b3658104bd4796a811b860b17a601ece7898782079e950c7773aa4d311ed4e1fe2048c2764bf1c7a0f41451dd4548663270d670ef480efa145830566af8a5ca564ec0da7b791cbf4815bab10d9f1827cf1caf2f920c9d8e8f9abba1b1baf9388ef41 (userId: 12)
+6.2.2023, 1:18:24 - ERROR - cannot remove user 12 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 12)
+6.2.2023, 1:18:24 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 12)
+6.2.2023, 1:22:35 - INFO - Server is running on port: 3030 
+6.2.2023, 1:22:36 - INFO - New connected socket [id: aMHN-KhVRt1l_wJ6AAAB] 
+6.2.2023, 1:22:36 - INFO - New connected socket [id: LX3ghb8thfZDraDMAAAD] 
+6.2.2023, 1:22:41 - DEBUG - auth.service - login with username: user (userId: 12)
+6.2.2023, 1:22:42 - INFO - User login:  | {"id":12,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":1,"followingSum":2,"postSum":1,"isDarkMode":false,"storySum":2,"currStoryId":6} | 0445a21f2b362ebe1c3c0d98597795b971b00298bee2437a33029951bc1cc54f8f65d08c9e4a420f92c3a64fa27d18e736375b1bcc836665a749f126b75979dfbab3171db49aa7da12b73d086888fe17e2af7d98cbab7399ab77ede411b8d1a13dcf (userId: 12)
+6.2.2023, 1:23:11 - DEBUG - auth.service - login with username: user (userId: 12)
+6.2.2023, 1:23:11 - INFO - User login:  | {"id":12,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":1,"followingSum":2,"postSum":1,"isDarkMode":false,"storySum":2,"currStoryId":6} | f82c28fb1a446777d370213f9a72f2e36e3b9486379fd53fd4a5a759dbcd336953d862a95b77c7f98afbff629d53319306820bd5c04b1c09cd930cd3ade23f192560cee0f6bd3c8cad8a2665eec77b9eb7a48768c0385ac7097d9fbb768d0bf36c20 (userId: 12)
+6.2.2023, 1:24:55 - DEBUG - auth.service - login with username: user (userId: 12)
+6.2.2023, 1:24:55 - INFO - User login:  | {"id":12,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":1,"followingSum":2,"postSum":1,"isDarkMode":false,"storySum":2,"currStoryId":6} | 763a3fe6d5242ae32474534675912a0dd9c3e932b4384d470eeb5c466db6e1503e4649517faa1353d5839b81a23c765ddd057b4413535445ce3bc1344882d8e31044bb7332d9e31aec9ed4e0c86e1e72e6161561cdc3e42d6ca3e4f39bc7409dfe09 (userId: 12)
+6.2.2023, 1:25:26 - INFO - Server is running on port: 3030 
+6.2.2023, 1:25:27 - INFO - New connected socket [id: CveMHnL-3mNsXHYxAAAB] 
+6.2.2023, 1:25:27 - INFO - New connected socket [id: b63OiMUG2tQKVcwtAAAD] 
+6.2.2023, 1:25:31 - DEBUG - auth.service - login with username: user (userId: 12)
+6.2.2023, 1:25:31 - INFO - User login:  | {"id":12,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":1,"followingSum":2,"postSum":1,"isDarkMode":false,"storySum":2,"currStoryId":6} | 7d1664c0259451ff54fc42c9892c71c472f244b4e65b43be9730d30626c927845231dd4471da4e78f94204d9d73f88426234fa730b3200f56bbf95eb207df416dd12ed6e74cef41d143f98559b1bc6bb556611d8b4db149d873c37243e6a64aa9e67 (userId: 12)
+6.2.2023, 1:25:45 - DEBUG - auth.service - login with username: user (userId: 12)
+6.2.2023, 1:25:45 - INFO - User login:  | {"id":12,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":1,"followingSum":2,"postSum":1,"isDarkMode":false,"storySum":2,"currStoryId":6} | 803f3f1724199a08372dcc0561d624452ebefbb17ef42076fc7c9a3b3dd9be49334c504c708dee748737d4b11cc78f6687942de34cf32c50c581d4581491dbd32f45a23539bd7dfd7dfa54a5c575d73e1476c5de37deab6bade9e1f20f1a51a39ea7 (userId: 12)
+6.2.2023, 1:27:23 - INFO - Server is running on port: 3030 
+6.2.2023, 1:27:24 - INFO - New connected socket [id: Ef9DMLB4MAJIpQr_AAAB] 
+6.2.2023, 1:27:24 - INFO - New connected socket [id: OJ9g1tOpD4UR7yjqAAAD] 
+6.2.2023, 1:27:47 - DEBUG - auth.service - login with username: user (userId: 12)
+6.2.2023, 1:27:47 - INFO - User login:  | {"id":12,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":1,"followingSum":2,"postSum":1,"isDarkMode":false,"storySum":2,"currStoryId":6} | 8e0c76aaa693dfe67f7bb1cd8a2f60cbba770542618333946aec24095d7f772eca6d618e02db3b2c6d85d26957adfecce354cac224cb299b87070f90d0ed9a844fe9a5d0ae54a64bef0e6401bab3c992069c8e77ddd6f0201a710f9dd82ccbb29612 (userId: 12)
+6.2.2023, 1:28:29 - INFO - Server is running on port: 3030 
+6.2.2023, 1:28:29 - INFO - New connected socket [id: AD6FN5mO-UrYOAVTAAAB] 
+6.2.2023, 1:28:29 - INFO - New connected socket [id: g7KjEruVVyhicv2ZAAAD] 
+6.2.2023, 1:28:40 - DEBUG - auth.service - login with username: user (userId: 12)
+6.2.2023, 1:28:40 - INFO - User login:  | {"id":12,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":1,"followingSum":2,"postSum":1,"isDarkMode":false,"storySum":2,"currStoryId":6} | 0c5dc6c75d82a81c9cf73a4e2a728aceb6b6734eb6233d4113d815b8426375811376970060f8154f25114f18cc49a8e1d0266a6252fc6cc663d81f5f28f9df22025dc66620c183b83f26f081a29497e484ee72718cfcef5fc270554be6232c91f676 (userId: 12)
+6.2.2023, 1:29:35 - INFO - Server is running on port: 3030 
+6.2.2023, 1:29:36 - INFO - New connected socket [id: dIYgOVf9TpbYFhtRAAAB] 
+6.2.2023, 1:29:36 - INFO - New connected socket [id: KZlGib6AO_7V2GrKAAAD] 
+6.2.2023, 1:33:40 - INFO - Server is running on port: 3030 
+6.2.2023, 1:33:40 - INFO - New connected socket [id: sdKez2ELYrdis8v-AAAB] 
+6.2.2023, 1:33:41 - INFO - New connected socket [id: 0ERhtU_6_Djx1ptbAAAD] 
+6.2.2023, 1:33:47 - ERROR - cannot remove user 12 | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 12)
+6.2.2023, 1:33:47 - ERROR - Failed to delete user | Failed to commit transaction: Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed (userId: 12)
+6.2.2023, 1:34:00 - DEBUG - auth.service - login with username: user (userId: 12)
+6.2.2023, 1:34:00 - INFO - User login:  | {"id":12,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":1,"followingSum":2,"postSum":1,"isDarkMode":false,"storySum":2,"currStoryId":6} | a016170bed360d17a89ef84cb5ad443423b688d0862ce8f7782e88ebfb43d805a9532e9d78f84463fc4add4171ad8e0c296aa4e7675680d3bfe71d9efab8c0b02e7d586de7d93e589f4fe9ca24c541dd0fc828a35095a154efedb9e92b9bdf843a23 (userId: 12)
+6.2.2023, 1:38:05 - INFO - Server is running on port: 3030 
+6.2.2023, 1:38:06 - INFO - New connected socket [id: G9DfKR5uijLhED7zAAAB] 
+6.2.2023, 1:38:06 - INFO - New connected socket [id: 803S6QH6nQHgFxCYAAAD] 
+6.2.2023, 1:38:30 - DEBUG - auth.service - login with username: user (userId: 12)
+6.2.2023, 1:38:30 - INFO - User login:  | {"id":12,"username":"user","fullname":"user","email":"user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":1,"followingSum":2,"postSum":1,"isDarkMode":false,"storySum":2,"currStoryId":6} | 1e61bf1a03ce641dbb5a462d5337d3d76a95ce2ab82041d036d573be2e220f4fa6f51e6c84d8522726898c7c5bd897f69faa7636fd49264e962404405d3f871765a0e5329e267d10046e1f3be4dcb7ae2364f1700d75cc17d54b0351b443d5950a97 (userId: 12)
+6.2.2023, 1:39:09 - INFO - Server is running on port: 3030 
+6.2.2023, 1:39:09 - INFO - New connected socket [id: tG74Nhc6sCCpDlVnAAAB] 
+6.2.2023, 1:39:09 - INFO - New connected socket [id: DWPxnPGYAhG2mXwaAAAD] 
+6.2.2023, 1:39:39 - INFO - Server is running on port: 3030 
+6.2.2023, 1:39:39 - INFO - New connected socket [id: 1HFQsXHf0zU8JwMXAAAB] 
+6.2.2023, 1:39:40 - INFO - New connected socket [id: Pe8BVV4twP3RF7mcAAAD] 
+6.2.2023, 1:40:08 - INFO - Server is running on port: 3030 
+6.2.2023, 1:40:09 - INFO - New connected socket [id: rcAdTnue2l4q_9HNAAAB] 
+6.2.2023, 1:40:09 - INFO - New connected socket [id: rWdH4-MGXYaQULOqAAAD] 
+6.2.2023, 1:40:13 - INFO - Server is running on port: 3030 
+6.2.2023, 1:40:14 - INFO - New connected socket [id: 9pW8e3PWHhr6vFb5AAAB] 
+6.2.2023, 1:40:14 - INFO - New connected socket [id: P0HEph-mFslGLl7hAAAD] 

@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { StorageService } from './storage.service';
 import { Observable, lastValueFrom, firstValueFrom } from 'rxjs';
 import { Injectable, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class AuthService {
   userService = inject(UserService);
   storageService = inject(StorageService);
   communicationService = inject(CommunicationService);
+  router = inject(Router);
 
   baseUrl: '/api' | '//localhost:3030/api' = this.httpService.getBaseUrl();
 
@@ -94,5 +96,6 @@ export class AuthService {
       this.http.post(`${this.baseUrl}/auth/logout`, {}),
     );
     this.storageService.saveToStorage('loggedinUser', null);
+    this.router.navigate(['/login']);
   };
 }

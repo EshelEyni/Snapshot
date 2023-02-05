@@ -70,24 +70,31 @@ async function getById(commentId) {
             comment.by = user[0];
             delete comment.userId;
 
-            const mentionRegex = /@(\w+)/g;
-            let mentions = comment.text.match(mentionRegex);
-            if (mentions) {
-                mentions = mentions.map(mention => {
-                    return mention.slice(1)
-                })
-
-                const users = await db.query(`select id, username from users where username in (${mentions.map(mention => `'${mention}'`).join(',')})`);
-                comment.mentions = users.map(user => {
-                    return { userId: user.id, username: user.username }
-                })
-            }
-
+            comment.mentions = await _getCommentMentions(comment)
             return comment
         })
     } catch (err) {
         logger.error(`while finding comment ${commentId}`, err)
         throw err
+    }
+}
+
+async function _getCommentMentions(comment) {
+    const mentionRegex = /@(\w+)/g;
+    let mentions = comment.text.match(mentionRegex);
+    if (mentions) {
+        mentions = mentions.map(mention => {
+            return mention.slice(1)
+        })
+
+        const users = []
+        for (let i = 0; i < mentions.length; i++) {
+            const u = await db.query(`select id, username from users where username = $username`, { $username: mentions[i] })
+            if (u.length) users.push(u[0])
+        }
+        return users.map(user => {
+            return { userId: user.id, username: user.username }
+        })
     }
 }
 
@@ -170,17 +177,23 @@ async function add(comment) {
             }
 
             const mentionRegex = /@(\w+)/g;
-            const mentions = comment.text.match(mentionRegex);
-            const tags = [];
+            let mentions = comment.text.match(mentionRegex);
             if (mentions) {
-                mentions.forEach((hashtag) => {
-                    const tag = hashtag.substring(1);
-                    tags.push(tag);
-                });
-                const mentionedUsers = await db.query(
-                    `select id from users where username in (${tags.map(tag => `'${tag}'`).join(',')})`
-                );
-                const mentionedUserIds = mentionedUsers.map(user => user.id);
+                mentions = mentions.map(mention => {
+                    return mention.slice(1)
+                })
+
+                const verifiedMentions = []
+                for (let i = 0; i < mentions.length; i++) {
+                    const u = await db.query(`select id, username from users where username = $username`, { $username: mentions[i] })
+                    if (u.length) verifiedMentions.push(u[0])
+                }
+
+                comment.mentions = verifiedMentions.map(user => {
+                    return { userId: user.id, username: user.username }
+                })
+
+                const mentionedUserIds = verifiedMentions.map(user => user.id);
                 mentionedUserIds.forEach(async (mentionedUserId) => {
                     if (mentionedUserId === comment.by.id) return;
                     const noitification = {
@@ -195,7 +208,7 @@ async function add(comment) {
             }
 
 
-            return id
+            return comment
         });
     } catch (err) {
         logger.error('cannot insert comment', err)

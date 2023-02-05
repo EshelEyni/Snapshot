@@ -15,7 +15,7 @@
     <section class="user-info">
         <span class="title" [class.disabled]="isUrlsDisabled" routerLink="{{urlForTitle}}">{{title}}</span>
         <div *ngIf="desc">
-            <p class="desc" routerLink="{{urlForDesc}}">{{desc}}</p>
+            <p class="desc" routerLink="{{urlForDesc}}" [class.disabled]="isUrlsDisabled">{{desc}}</p>
         </div>
     </section>
 </section>

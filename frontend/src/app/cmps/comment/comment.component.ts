@@ -28,6 +28,7 @@ export class CommentComponent implements OnInit {
   isCommentModalShown: boolean = false;
 
   async ngOnInit(): Promise<void> {
+    if(!this.comment) return;
     this.isLongTxt = this.comment.text.length > 100;
     this.isLiked = await this.commentService.checkIsLiked(this.loggedinUser.id, this.comment.id);
     this.isUserComment = this.loggedinUser.id === this.comment.by.id;

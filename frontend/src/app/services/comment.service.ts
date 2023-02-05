@@ -62,21 +62,21 @@ export class CommentService {
     return res;
   };
 
-  public save(comment: Comment): Promise<{ msg: string, id: number } | void> {
+  public save(comment: Comment): Promise<{ savedComment: Comment } | void> {
     return comment.id ? this._update(comment) : this._add(comment);
   };
 
-  private async _update(comment: Comment): Promise<{ msg: string, id: number } | void> {
+  private async _update(comment: Comment): Promise<{ savedComment: Comment } | void> {
     const res = await firstValueFrom(
       this.http.put(`${this.baseUrl}/comment/${comment.id}`, comment)
-    ) as { msg: string, id: number };
+    ) as { savedComment: Comment };
     return res;
   };
 
-  private async _add(comment: Comment): Promise<{ msg: string, id: number } | void> {
+  private async _add(comment: Comment): Promise<{ savedComment: Comment } | void> {
     const res = await firstValueFrom(
       this.http.post(`${this.baseUrl}/comment`, comment)
-    ) as { msg: string, id: number };
+    ) as { savedComment: Comment };
 
     return res;
   };

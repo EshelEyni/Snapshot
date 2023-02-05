@@ -11,4 +11,4 @@ router.delete('/:id', requireAuth, deleteUser)
 router.get('/check-password', requireAuth, checkPassword)
 router.get('/check-username/:username', requireAuth, chekIfUsernameTaken)
 
-module.exports = router 
+module.exports = router  

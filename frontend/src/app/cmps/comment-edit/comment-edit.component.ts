@@ -69,10 +69,10 @@ export class CommentEditComponent implements OnInit, OnDestroy {
     commentToAdd.by = this.userService.getMiniUser(this.loggedinUser);
     commentToAdd.postId = this.post.id;
     const res = await this.commentService.save(commentToAdd);
-    if (res && res.msg === 'Comment added') {
-      commentToAdd.id = res.id;
-      this.commentAdded.emit(commentToAdd);
+    if (res) {
+      this.commentAdded.emit(res.savedComment);
     };
+
     this.post.commentSum++;
     await this.postService.save(this.post);
     const tags = this.tagService.detectTags(commentToAdd.text);

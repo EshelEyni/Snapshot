@@ -74,6 +74,5 @@ export class SideBarOptionsModalComponent implements OnInit {
   onLogout(): void {
     this.store.dispatch(new LoadLoggedInUser(0));
     this.authService.logout();
-    this.router.navigate(['/login']);
   };
 };

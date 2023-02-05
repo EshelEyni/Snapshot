@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, catchError, switchMap, tap } from 'rxjs/operators';
+import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 import { UserAction, SAVE_USER, ADDED_USER, UPDATED_USER, LOAD_USERS, LOADED_USERS, REMOVE_USER, REMOVED_USER, LOAD_USER, LOADED_USER, SET_ERROR, LOAD_LOGGEDIN_USER, LOADED_LOGGEDIN_USER } from './actions/user.actions';
 
@@ -18,7 +19,7 @@ export class AppEffects {
             users,
           })),
           catchError((error) => {
-            console.log('Effect: Caught error ===> Reducer', error)
+            console.log('Effect: Caught error ===> Reducer loadUsers', error);
             return of({
               type: SET_ERROR,
               error: error.toString(),
@@ -38,7 +39,7 @@ export class AppEffects {
             user
           })),
           catchError((error) => {
-            console.log('Effect: Caught error ===> Reducer', error)
+            console.log('Effect: Caught error ===> Reducer', error);
             return of({
               type: SET_ERROR,
               error: error.toString(),
@@ -58,11 +59,18 @@ export class AppEffects {
             user
           })),
           catchError((error) => {
-            console.log('Effect: Caught error ===> Reducer', error)
+            console.log('Effect: Caught error ===> Reducer loadLoggedinUser', error);
+            const loggedinUser = this.userService.getLoggedinUser();
+            if(loggedinUser) {
+              if(loggedinUser.id === action.userId) {
+                console.log('Effect: loggedinUser.id === action.userId');
+               this.authService.logout();
+              };
+            };
             return of({
               type: SET_ERROR,
               error: error.toString(),
-            })
+            });
           })
         )
       ),
@@ -111,6 +119,7 @@ export class AppEffects {
   })
   constructor(
     private actions$: Actions<UserAction>,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService
   ) { }
 }

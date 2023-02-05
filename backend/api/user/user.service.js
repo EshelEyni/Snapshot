@@ -174,90 +174,11 @@ async function getByUsername(username) {
 
 
 async function remove(userId) {
-    console.log('removing user', userId)
     try {
         await db.txn(async () => {
-            await db.exec(
-                `DELETE FROM postImg
-             WHERE postId IN (
-             SELECT id
-             FROM posts
-             WHERE userId = $id
-             )`, { $id: userId })
-
-            await db.exec(
-                `DELETE FROM postsLikedBy
-             WHERE postId IN (
-             SELECT id
-             FROM posts
-             WHERE userId = $id
-            )`, { $id: userId })
-
-            await db.exec(`DELETE FROM postsLikedBy WHERE userId = $id`, { $id: userId })
-
-            await db.exec(`
-            DELETE FROM commentslikedby
-            WHERE commentId IN (
-            SELECT id
-            FROM comments
-            WHERE userId = $id
-            )`, { $id: userId })
-
-            await db.exec(`DELETE FROM comments WHERE userId = $id`, { $id: userId })
-
-            await db.exec(`
-            DELETE FROM savedPosts 
-            WHERE postId IN (
-            SELECT id
-            FROM posts
-            WHERE userId = $id
-            )
-            AND userId = $id`, { $id: userId })
-
-            let tagIds = await db.query(`SELECT tagId FROM postTags 
-            WHERE postId IN (
-            SELECT id
-            FROM posts
-            WHERE userId = $id
-            )`, { $id: userId })
-
-            tagIds = tagIds.map(tag => tag.tagId)
-
-            await db.exec(`DELETE FROM postTags 
-            WHERE postId IN (
-            SELECT id
-            FROM posts
-            WHERE userId = $id
-            )`, { $id: userId })
-
-            for (const tagId of tagIds) {
-                const postsWithTag = await db.query(`SELECT * FROM postTags WHERE tagId = $id`, { $id: tagId })
-                if (!postsWithTag.length) {
-                    await db.exec(`DELETE FROM tags WHERE id = $id`, { $id: tagId })
-                }
-            }
-
-            await db.exec(`DELETE FROM posts WHERE userId = $id`, { $id: userId })
 
 
-            await db.exec(
-                `DELETE FROM storyViews 
-                 WHERE storyId IN (
-                 SELECT id
-                 FROM stories
-                 WHERE userId = $id)`, { $id: userId })
-            await db.exec(`DELETE FROM storyViews WHERE userId = $id`, { $id: userId })
-            await db.exec(`DELETE FROM storyImg WHERE storyId IN (SELECT id FROM stories WHERE userId = $id)`, { $id: userId })
-            await db.exec(`DELETE FROM stories WHERE userId = $id`, { $id: userId })
-
-            await db.exec(`DELETE FROM followedTags WHERE userId = $id`, { $id: userId })
-            await db.exec(`DELETE FROM follow WHERE fromUserId = $id`, { $id: userId })
-            await db.exec(`DELETE FROM follow WHERE toUserId = $id`, { $id: userId })
-            await db.exec(`DELETE FROM notifications WHERE userId = $id`, { $id: userId })
-            await db.exec(`DELETE FROM notifications WHERE byUserId = $id`, { $id: userId })
-
-            await db.exec(`DELETE FROM recentSearches WHERE searcherId = $id`, { $id: userId })
-
+            /***** CHAT *****/
             let chatIds = await db.query(
                 `SELECT id FROM chats 
                 WHERE id IN (
@@ -280,8 +201,103 @@ async function remove(userId) {
                 }
             }
 
-            await db.exec(`DELETE FROM users WHERE id = $id`, { $id: userId })
+            /***** COMMENTS *****/
 
+            await db.exec(`
+            DELETE FROM commentslikedby
+            WHERE commentId IN (
+                SELECT id
+                FROM comments
+                WHERE userId = $id
+                        )`, { $id: userId })
+
+
+            await db.exec(`DELETE FROM commentslikedby WHERE userId = $id`, { $id: userId })
+            await db.exec(`DELETE FROM comments WHERE userId = $id`, { $id: userId })
+
+            /***** FOLLOW *****/
+            await db.exec(`DELETE FROM follow WHERE fromUserId = $id`, { $id: userId })
+            await db.exec(`DELETE FROM follow WHERE toUserId = $id`, { $id: userId })
+
+            /***** NOTIFICATIONS *****/
+            await db.exec(`DELETE FROM notifications WHERE userId = $id`, { $id: userId })
+            await db.exec(`DELETE FROM notifications WHERE byUserId = $id`, { $id: userId })
+
+            /***** POSTS *****/
+            await db.exec(
+                `DELETE FROM postImg
+             WHERE postId IN (
+             SELECT id
+             FROM posts
+             WHERE userId = $id
+             )`, { $id: userId })
+
+            await db.exec(
+                `DELETE FROM postsLikedBy
+             WHERE postId IN (
+             SELECT id
+             FROM posts
+             WHERE userId = $id
+            )`, { $id: userId })
+
+            await db.exec(`DELETE FROM postsLikedBy WHERE userId = $id`, { $id: userId })
+
+            let tagIds = await db.query(`SELECT tagId FROM postTags 
+            WHERE postId IN (
+            SELECT id
+            FROM posts
+            WHERE userId = $id
+            )`, { $id: userId })
+
+            tagIds = tagIds.map(tag => tag.tagId)
+
+            await db.exec(`DELETE FROM postTags 
+            WHERE postId IN (
+            SELECT id
+            FROM posts
+            WHERE userId = $id
+            )`, { $id: userId })
+
+            await db.exec(`DELETE FROM followedTags WHERE userId = $id`, { $id: userId })
+
+            for (const tagId of tagIds) {
+                const postsWithTag = await db.query(`SELECT * FROM postTags WHERE tagId = $id`, { $id: tagId })
+                if (!postsWithTag.length) {
+                    await db.exec(`DELETE FROM followedTags WHERE tagId = $id`, { $id: tagId })
+                    await db.exec(`DELETE FROM tags WHERE id = $id`, { $id: tagId })
+                }
+            }
+
+            await db.exec(`
+            DELETE FROM savedPosts 
+            WHERE postId IN (
+            SELECT id
+            FROM posts
+            WHERE userId = $id
+            )`, { $id: userId })
+
+            await db.exec(`DELETE FROM savedPosts WHERE userId = $id`, { $id: userId })
+
+            await db.exec(`DELETE FROM posts WHERE userId = $id`, { $id: userId })
+
+            /***** RECENT SEARCHES *****/
+            await db.exec(`DELETE FROM recentSearches WHERE searcherId = $id`, { $id: userId })
+
+            /***** STORIES *****/
+            await db.exec(
+                `DELETE FROM storyViews 
+                 WHERE storyId IN (
+                 SELECT id
+                 FROM stories
+                 WHERE userId = $id
+                 )`, { $id: userId })
+
+            await db.exec(`DELETE FROM storyViews WHERE userId = $id`, { $id: userId })
+            await db.exec(`DELETE FROM storyImg WHERE storyId IN (SELECT id FROM stories WHERE userId = $id)`, { $id: userId })
+            await db.exec(`DELETE FROM stories WHERE userId = $id`, { $id: userId })
+
+            /***** USER *****/
+            await db.exec(`DELETE FROM users WHERE id = $id`, { $id: userId })
         })
     } catch (err) {
         logger.error(`cannot remove user ${userId}`, err)

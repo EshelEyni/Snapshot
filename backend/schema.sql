@@ -69,9 +69,11 @@ CREATE TABLE IF NOT EXISTS "commentsLikedBy"(
 );
 
 CREATE TABLE IF NOT EXISTS "follow" (
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "fromUserId" INTEGER NOT NULL,
     "toUserId" INTEGER NOT NULL,
-    PRIMARY KEY("fromUserId", "toUserId") foreign key ("fromUserId") references "users"("id") foreign key ("toUserId") references "users"("id")
+    foreign key ("fromUserId") references "users"("id"),
+    foreign key ("toUserId") references "users"("id")
 );
 
 CREATE TABLE IF NOT EXISTS "recentSearches" (
