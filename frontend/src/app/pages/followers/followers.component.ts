@@ -25,13 +25,8 @@ export class FollowersComponent implements OnInit, OnDestroy {
   userSub!: Subscription;
   users: MiniUser[] = [];
 
-  ngOnInit(): void {
-    this.userSub = this.route.data.subscribe(async data => {
-      const user = data['user'];
-      if (user) {
-        this.users = await this.followService.getFollowers(user.id);
-      };
-    });
+  async ngOnInit(): Promise<void> {
+    this.users = await this.followService.getFollowers();
   };
 
   onGoBack(): void {

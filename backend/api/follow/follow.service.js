@@ -53,13 +53,31 @@ async function add(fromUserId, toUserId) {
     console.log('fromUserId', fromUserId);
     console.log('toUserId', toUserId);
     try {
-        await db.exec(
-            `insert into follow (fromUserId, toUserId) values ($fromUserId, $toUserId)`,
-            {
-                $fromUserId: fromUserId,
-                $toUserId: toUserId
-            }
-        );
+        await db.txn(async () => {
+
+            await db.exec(
+                `insert into follow (fromUserId, toUserId) values ($fromUserId, $toUserId)`,
+                {
+                    $fromUserId: fromUserId,
+                    $toUserId: toUserId
+                }
+            );
+
+            await db.exec(
+                `update users set followersSum = followersSum + 1 where id = $toUserId`,
+                {
+                    $toUserId: toUserId
+                }
+            );
+
+            await db.exec(
+                `update users set followingSum = followingSum + 1 where id = $fromUserId`,
+                {
+                    $fromUserId: fromUserId
+                }
+            );
+
+        });
     } catch (err) {
         logger.error(`cannot add follow`, err)
         throw err
@@ -69,13 +87,30 @@ async function add(fromUserId, toUserId) {
 
 async function remove(fromUserId, toUserId) {
     try {
-        await db.exec(
-            `delete from follow where fromUserId = $fromUserId and toUserId = $toUserId`,
-            {
-                $fromUserId: fromUserId,
-                $toUserId: toUserId
-            }
-        );
+        await db.txn(async () => {
+            await db.exec(
+                `delete from follow where fromUserId = $fromUserId and toUserId = $toUserId`,
+                {
+                    $fromUserId: fromUserId,
+                    $toUserId: toUserId
+                }
+            );
+
+            await db.exec(
+                `update users set followersSum = followersSum - 1 where id = $toUserId`,
+                {
+                    $toUserId: toUserId
+                }
+            );
+
+            await db.exec(
+                `update users set followingSum = followingSum - 1 where id = $fromUserId`,
+                {
+                    $fromUserId: fromUserId
+                }
+            );
+        });
+
     } catch (err) {
         logger.error(`cannot remove follow`, err)
         throw err

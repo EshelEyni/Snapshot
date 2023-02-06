@@ -1028,3 +1028,99 @@
 6.2.2023, 1:40:13 - INFO - Server is running on port: 3030 
 6.2.2023, 1:40:14 - INFO - New connected socket [id: 9pW8e3PWHhr6vFb5AAAB] 
 6.2.2023, 1:40:14 - INFO - New connected socket [id: P0HEph-mFslGLl7hAAAD] 
+6.2.2023, 21:04:46 - INFO - Server is running on port: 3030 
+6.2.2023, 21:06:18 - INFO - New connected socket [id: Zvj1hk6Qc7FHrHNMAAAB] 
+6.2.2023, 21:06:35 - ERROR - while finding user 12 | Failed to commit transaction: user with id #12 was not found 
+6.2.2023, 21:06:35 - DEBUG - auth.service - login with username: tattookate 
+6.2.2023, 21:06:35 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tatto artist","website":"","followersSum":2,"followingSum":40,"postSum":6,"isDarkMode":false,"storySum":1,"currStoryId":null} | 58d4f58fb2ffd8112d2f2f2f2ff3d94d2cb13603d72648f472eeeb236545c2e08713bb7f2526174f5dd1ecd22eb0682e21438aae143157737d340fcb0f6d57c23285c06e40c4c0cd002dcc53e1aab2e0a0d32e9ab3745133409ff19fdeeae504c3 
+6.2.2023, 21:10:59 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 21:11:00 - INFO - New connected socket [id: KYXeXE7L6QrNwhBFAAAD] 
+6.2.2023, 22:07:19 - ERROR - while checking user with 4 password | wrong password (userId: 4)
+6.2.2023, 22:09:08 - ERROR - while checking user with 4 password | wrong password (userId: 4)
+6.2.2023, 22:11:41 - INFO - Server is running on port: 3030 
+6.2.2023, 22:11:42 - INFO - New connected socket [id: A2W3cn96yjOb4NSWAAAB] 
+6.2.2023, 22:11:49 - ERROR - while checking user with 4 password | ReferenceError: bcrypt is not defined (userId: 4)
+6.2.2023, 22:13:48 - INFO - Server is running on port: 3030 
+6.2.2023, 22:13:48 - INFO - New connected socket [id: xIFG9X1jt-7v1SWHAAAB] 
+6.2.2023, 22:15:37 - INFO - Server is running on port: 3030 
+6.2.2023, 22:15:37 - INFO - New connected socket [id: 3RxRtx99-mODetgnAAAB] 
+6.2.2023, 22:15:40 - ERROR - while checking user with 4 password | wrong password (userId: 4)
+6.2.2023, 22:15:52 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 22:15:54 - INFO - New connected socket [id: yxNFzuVfi0prFDmGAAAD] 
+6.2.2023, 22:16:18 - INFO - Server is running on port: 3030 
+6.2.2023, 22:16:19 - INFO - New connected socket [id: Q5-P4SJbxpSsECYTAAAB] 
+6.2.2023, 22:19:32 - INFO - Server is running on port: 3030 
+6.2.2023, 22:19:32 - INFO - New connected socket [id: H1nBR3N9q9nMsg4zAAAB] 
+6.2.2023, 22:20:09 - INFO - Server is running on port: 3030 
+6.2.2023, 22:20:10 - INFO - New connected socket [id: 62ahj-zG24lyxDpwAAAB] 
+6.2.2023, 22:20:47 - INFO - Server is running on port: 3030 
+6.2.2023, 22:20:48 - INFO - New connected socket [id: fSVGlPKsbK7l_EdQAAAB] 
+6.2.2023, 22:20:59 - INFO - Server is running on port: 3030 
+6.2.2023, 22:21:00 - INFO - New connected socket [id: ogg4qxOWWSzxd3xfAAAB] 
+6.2.2023, 22:21:45 - ERROR - cannot update user undefined | Failed to commit transaction: Error: SQLITE_ERROR: near "followersSum": syntax error (userId: 4)
+6.2.2023, 22:21:45 - ERROR - Failed to update user | Failed to commit transaction: Error: SQLITE_ERROR: near "followersSum": syntax error (userId: 4)
+6.2.2023, 22:22:03 - INFO - Server is running on port: 3030 
+6.2.2023, 22:22:04 - INFO - New connected socket [id: jwUxsJJ1PziaLnIKAAAB] 
+6.2.2023, 22:22:06 - ERROR - cannot update user undefined | Failed to commit transaction: Error: SQLITE_ERROR: near "followersSum": syntax error (userId: 4)
+6.2.2023, 22:22:06 - ERROR - Failed to update user | Failed to commit transaction: Error: SQLITE_ERROR: near "followersSum": syntax error (userId: 4)
+6.2.2023, 22:22:31 - INFO - Server is running on port: 3030 
+6.2.2023, 22:22:31 - INFO - New connected socket [id: 9NAlT7RzwuqfgYtJAAAB] 
+6.2.2023, 22:22:52 - INFO - Server is running on port: 3030 
+6.2.2023, 22:22:52 - INFO - New connected socket [id: jxBs5dyXs5hAnF0oAAAB] 
+6.2.2023, 22:27:27 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 22:27:28 - INFO - New connected socket [id: 1cK3HjQ5pcC1s97tAAAD] 
+6.2.2023, 22:27:47 - INFO - Server is running on port: 3030 
+6.2.2023, 22:27:48 - INFO - New connected socket [id: qu9HrYuDZ35vRL1vAAAB] 
+6.2.2023, 22:47:14 - INFO - Server is running on port: 3030 
+6.2.2023, 22:47:15 - INFO - New connected socket [id: ywl1T83LOidaQQ5BAAAB] 
+6.2.2023, 22:47:36 - INFO - Server is running on port: 3030 
+6.2.2023, 22:47:38 - INFO - New connected socket [id: LLIuN1_sZks0bRZRAAAB] 
+6.2.2023, 22:47:44 - INFO - Server is running on port: 3030 
+6.2.2023, 22:47:46 - INFO - New connected socket [id: yKz4FSxUivRB7W9AAAAB] 
+6.2.2023, 22:48:29 - INFO - Server is running on port: 3030 
+6.2.2023, 22:48:30 - INFO - New connected socket [id: 6_-arh6ZYt6MH5QtAAAB] 
+6.2.2023, 22:50:40 - INFO - Server is running on port: 3030 
+6.2.2023, 22:50:41 - INFO - New connected socket [id: NhGIKe6USHxvSsOjAAAB] 
+6.2.2023, 22:50:43 - INFO - Server is running on port: 3030 
+6.2.2023, 22:50:45 - INFO - New connected socket [id: q4A-HCP7KhlSCOl2AAAB] 
+6.2.2023, 22:51:47 - INFO - Server is running on port: 3030 
+6.2.2023, 22:51:49 - INFO - New connected socket [id: fkqZAf_n1jlODGuWAAAB] 
+6.2.2023, 22:53:37 - INFO - Server is running on port: 3030 
+6.2.2023, 22:53:39 - INFO - New connected socket [id: fsLU0V1PRQTaNC8cAAAB] 
+6.2.2023, 22:53:45 - INFO - Server is running on port: 3030 
+6.2.2023, 22:53:46 - INFO - New connected socket [id: vNXzKyEj6QGan5uwAAAB] 
+6.2.2023, 23:05:36 - ERROR - while checking user with 4 password | Wrong Password (userId: 4)
+6.2.2023, 23:05:44 - ERROR - cannot update user 4 | Failed to commit transaction: Error: SQLITE_ERROR: near "WHERE": syntax error (userId: 4)
+6.2.2023, 23:05:44 - ERROR - Failed to update user | Failed to commit transaction: Error: SQLITE_ERROR: near "WHERE": syntax error (userId: 4)
+6.2.2023, 23:05:47 - ERROR - cannot update user 4 | Failed to commit transaction: Error: SQLITE_ERROR: near "WHERE": syntax error (userId: 4)
+6.2.2023, 23:05:47 - ERROR - Failed to update user | Failed to commit transaction: Error: SQLITE_ERROR: near "WHERE": syntax error (userId: 4)
+6.2.2023, 23:05:52 - ERROR - cannot update user 4 | Failed to commit transaction: Error: SQLITE_ERROR: near "WHERE": syntax error (userId: 4)
+6.2.2023, 23:05:52 - ERROR - Failed to update user | Failed to commit transaction: Error: SQLITE_ERROR: near "WHERE": syntax error (userId: 4)
+6.2.2023, 23:05:56 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 23:05:57 - INFO - New connected socket [id: q8fbv6P-2Y8h92w6AAAD] 
+6.2.2023, 23:05:59 - ERROR - cannot update user 4 | Failed to commit transaction: Error: SQLITE_ERROR: near "WHERE": syntax error (userId: 4)
+6.2.2023, 23:05:59 - ERROR - Failed to update user | Failed to commit transaction: Error: SQLITE_ERROR: near "WHERE": syntax error (userId: 4)
+6.2.2023, 23:06:01 - ERROR - Failed to update user | Failed to commit transaction: Error: SQLITE_ERROR: near "WHERE": syntax error (userId: 4)
+6.2.2023, 23:06:01 - ERROR - cannot update user 4 | Failed to commit transaction: Error: SQLITE_ERROR: near "WHERE": syntax error (userId: 4)
+6.2.2023, 23:07:54 - INFO - Server is running on port: 3030 
+6.2.2023, 23:07:54 - INFO - New connected socket [id: jZ4_XNw1oguMdYLoAAAB] 
+6.2.2023, 23:11:34 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 23:11:35 - INFO - New connected socket [id: _eCxMWIaebLCnUnmAAAD] 
+6.2.2023, 23:13:49 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 23:13:50 - INFO - New connected socket [id: lbLmycSSzRA0GxLRAAAF] 
+6.2.2023, 23:13:56 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 23:13:57 - INFO - New connected socket [id: I7wx559duv7UjG2pAAAH] 
+6.2.2023, 23:14:36 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 23:14:36 - INFO - New connected socket [id: xc9Hpwa78Otbsn26AAAJ] 
+6.2.2023, 23:14:43 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 23:14:43 - INFO - New connected socket [id: 5ijgvJgVb1-mLTaDAAAL] 
+6.2.2023, 23:15:22 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 23:15:23 - INFO - New connected socket [id: thsqrLCp2g8eGYYsAAAN] 
+6.2.2023, 23:16:25 - INFO - Server is running on port: 3030 
+6.2.2023, 23:16:30 - INFO - New connected socket [id: 4LiJzvS5n2O8uFqFAAAB] 
+6.2.2023, 23:16:32 - INFO - Server is running on port: 3030 
+6.2.2023, 23:16:32 - INFO - New connected socket [id: XPKSWtl3PE8e-9JxAAAB] 
+6.2.2023, 23:23:31 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 23:23:32 - INFO - New connected socket [id: NzbdLeesQB7cCAnxAAAD] 
+6.2.2023, 23:24:02 - INFO - Socket disconnected [id: undefined] 
+6.2.2023, 23:24:07 - INFO - New connected socket [id: SvyT5_zup0MXDOayAAAF] 

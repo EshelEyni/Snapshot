@@ -107,14 +107,12 @@ export class UserService {
   public async checkPassword(
     newPassword: string,
     password: string,
-    userId: number,
   ): Promise<string> {
     const options = {
       withCredentials: true,
       params: {
         newPassword,
         password,
-        userId,
       },
     }
     const res: { hashedPassword: string } = await lastValueFrom(

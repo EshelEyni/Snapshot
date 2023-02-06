@@ -35,7 +35,7 @@ export class FollowingComponent implements OnInit, OnDestroy {
     this.userSub = this.route.data.subscribe(async data => {
       const user = data['user'];
       if (user) {
-        this.users = await this.followService.getFollowings(user.id);
+        this.users = await this.followService.getFollowings();
         this.tags = await this.tagService.getfollowedTags(user.id);
         if (this.users.length === 0) {
           this.isNoFollowingMsgShown = true;

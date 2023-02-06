@@ -118,7 +118,9 @@ async function remove(storyId) {
             await db.exec(`delete from storyImg where storyId = $id`, { $id: storyId });
             await db.exec(`delete from storyViews where storyId = $id`, { $id: storyId });
             await db.exec(`delete from storiesLikedBy where storyId = $id`, { $id: storyId });
+            await db.exec(`update users set storySum = storySum - 1 where id = (select userId from stories where id = $id)`, { $id: storyId });
             await db.exec(`delete from stories where id = $id`, { $id: storyId });
+
         })
     } catch (err) {
         logger.error(`cannot remove story ${storyId}`, err)
@@ -177,6 +179,8 @@ async function add(story) {
                     $imgUrl: i
                 })
             }
+
+            await db.exec(`update users set storySum = storySum + 1 where id = $id`, { $id: story.by.id })
 
             return id
         });

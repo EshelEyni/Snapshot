@@ -37,8 +37,10 @@ async function addUser(req, res) {
 
 async function updateUser(req, res) {
     try {
+        const loggedinUser = req.loggedinUser
         const userToUpdate = req.body
-        const updatedUser = await userService.update(userToUpdate)
+        if (loggedinUser.id !== userToUpdate.id) return res.status(401).send({ err: 'Unauthorized' })
+        const updatedUser = await userService.update(userToUpdate, loggedinUser)
         res.send(updatedUser)
     } catch (err) {
         logger.error('Failed to update user', err)
@@ -65,7 +67,8 @@ async function deleteUser(req, res) {
 
 async function checkPassword(req, res) {
     try {
-        const { newPassword, password, userId } = req.query;
+        const { newPassword, password } = req.query;
+        const userId = req.loggedinUser.id
         const hashedPassword = await userService.checkPassword(userId, password, newPassword)
         res.send({ hashedPassword })
     } catch (err) {

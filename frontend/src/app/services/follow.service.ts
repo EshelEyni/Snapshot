@@ -18,12 +18,9 @@ export class FollowService {
   baseUrl: '/api' | '//localhost:3030/api' = this.httpService.getBaseUrl()
 
 
-  public async getFollowers(followingId: number): Promise<MiniUser[] | []> {
+  public async getFollowers(): Promise<MiniUser[] | []> {
     const options = {
-      withCredentials: true,
-      headers: {
-        'loginToken': this.cookieService.get('loginToken'),
-      }
+      withCredentials: true
     }
 
     return await lastValueFrom(
@@ -31,12 +28,9 @@ export class FollowService {
     )
   }
 
-  public async getFollowings(followerId: number): Promise<MiniUser[]> {
+  public async getFollowings(): Promise<MiniUser[]> {
     const options = {
       withCredentials: true,
-      headers: {
-        'loginToken': this.cookieService.get('loginToken'),
-      }
     }
 
     return await lastValueFrom(

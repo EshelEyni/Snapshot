@@ -7,7 +7,6 @@ import { faX } from '@fortawesome/free-solid-svg-icons';
   selector: 'followers-modal',
   templateUrl: './followers-modal.component.html',
   styleUrls: ['./followers-modal.component.scss'],
-  inputs: ['user'],
   outputs: ['close']
 })
 
@@ -19,13 +18,13 @@ export class FollowersModalComponent implements OnInit {
   
   faX = faX;
   
-  user!: User;
+  // user!: User;
   users: MiniUser[] = [];
   
   close = new EventEmitter();
   
   async ngOnInit(): Promise<void> {
-    this.users = await this.followService.getFollowers(this.user.id);
+    this.users = await this.followService.getFollowers();
   };
 
   onCloseModal() : void{

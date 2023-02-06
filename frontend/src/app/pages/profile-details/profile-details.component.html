@@ -140,8 +140,6 @@
 <highlights-modal *ngIf="isHighlightsModalShown" [loggedinUser]="loggedinUser"
     (close)="onToggleModal('highlights')"></highlights-modal>
 
-<followers-modal *ngIf="isFollowersModalShown" [user]="user"
-    (close)="onToggleModal('followers')"></followers-modal>
-<following-modal *ngIf="isFollowingModalShown" [user]="user"
-    (close)="onToggleModal('following')"></following-modal>
+<followers-modal *ngIf="isFollowersModalShown" (close)="onToggleModal('followers')"></followers-modal>
+<following-modal *ngIf="isFollowingModalShown" (close)="onToggleModal('following')"></following-modal>
 <div class="main-screen dark-mode" *ngIf="isMainScreenShown" (click)="onToggleModal('main-screen')"></div>

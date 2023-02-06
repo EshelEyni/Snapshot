@@ -198,7 +198,9 @@ async function remove(postId) {
                 await db.exec(`delete from commentsLikedBy where commentId = $id`, { $id: comment.id });
             }
             await db.exec(`delete from comments where postId = $id`, { $id: postId });
+            await db.exec(`update users set postSum = postSum - 1 where id = (select userId from posts where id = $id)`, { $id: postId })
             await db.exec(`delete from posts where id = $id`, { $id: postId })
+
         });
     } catch (err) {
         logger.error(`cannot remove post ${postId}`, err)
@@ -283,6 +285,11 @@ async function add(post) {
                     $tagId: tagId
                 });
             }
+
+            await db.exec(
+                `update users set postSum = postSum + 1 where id = $userId`,
+                { $userId: post.by.id }
+            )
 
             return id;
         });

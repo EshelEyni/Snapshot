@@ -1,5 +1,6 @@
 const logger = require('../../services/logger.service')
 const db = require('../../database')
+const bcrypt = require('bcrypt')
 
 
 async function query(queryParams) {
@@ -319,11 +320,7 @@ async function update(user) {
                  phone = $phone,
                  bio = $bio,
                  website = $website,
-                 followersSum = $followersSum,
-                 followingSum = $followingSum,
-                 postSum = $postSum,
-                 isDarkMode = $isDarkMode,
-                 storySum = $storySum
+                 isDarkMode = $isDarkMode
                  WHERE id = $id`, {
                 $username: user.username,
                 $fullname: user.fullname,
@@ -333,11 +330,7 @@ async function update(user) {
                 $phone: user.phone,
                 $bio: user.bio,
                 $website: user.website,
-                $followersSum: user.followersSum,
-                $followingSum: user.followingSum,
-                $postSum: user.postSum,
                 $isDarkMode: user.isDarkMode ? 1 : 0,
-                $storySum: user.storySum,
                 $id: user.id
             })
 
@@ -354,7 +347,7 @@ async function update(user) {
             return user
         })
     } catch (err) {
-        logger.error(`cannot update user ${user._id}`, err)
+        logger.error(`cannot update user ${user.id}`, err)
         throw err
     }
 }
@@ -406,9 +399,10 @@ async function checkPassword(userId, password, newPassword) {
             throw 'user with id ' + userId + ' was not found';
         }
         const user = users[0];
-        const isMatch = password === user.password;
+        const isMatch = await bcrypt.compare(password, user.password)
+
         if (!isMatch) {
-            throw 'wrong password';
+            throw 'Wrong Password';
         }
         const saltRounds = 10
         const hashedPassword = await bcrypt.hash(newPassword, saltRounds)
@@ -418,7 +412,6 @@ async function checkPassword(userId, password, newPassword) {
         throw err
     }
 }
-
 
 module.exports = {
     query,

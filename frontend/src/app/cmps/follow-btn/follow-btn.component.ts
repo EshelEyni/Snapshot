@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { UserService } from 'src/app/services/user.service';
 import { MiniUser, User } from './../../models/user.model';
 import { Component, OnInit, inject, OnDestroy } from '@angular/core';
-import { SaveUser } from 'src/app/store/actions/user.actions';
+import { LoadedLoggedInUser, LoadedUser } from 'src/app/store/actions/user.actions';
 import { FollowService } from 'src/app/services/follow.service';
 
 @Component({
@@ -55,11 +55,11 @@ export class FollowBtnComponent implements OnInit, OnDestroy {
     if (this.user && !this.tag) {
       await this.followService.toggleFollow(this.isFollowed, this.user);
       this.loggedinUser.followingSum = !this.isFollowed ? this.loggedinUser.followingSum + 1 : this.loggedinUser.followingSum - 1;
-      this.store.dispatch(new SaveUser(this.loggedinUser));
+      this.store.dispatch(new LoadedLoggedInUser(this.loggedinUser));
       const fullUser = await lastValueFrom(this.userService.getById(this.user.id));
       if (!fullUser) return;
       fullUser.followersSum = !this.isFollowed ? fullUser.followersSum + 1 : fullUser.followersSum - 1;
-      this.store.dispatch(new SaveUser(fullUser));
+      this.store.dispatch(new LoadedUser(fullUser));
     };
 
     if (this.tag && !this.user) {

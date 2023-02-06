@@ -104,7 +104,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
     }
 
     if (newPassword) {
-      const hashedPassword = await this.userService.checkPassword(newPassword, password, this.user.id);
+      const hashedPassword = await this.userService.checkPassword(newPassword, password);
       if (!hashedPassword) {
         this.communicationService.userMsgEmitter.emit('Password is incorrect.');
         return;
