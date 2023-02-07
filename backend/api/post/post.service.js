@@ -1,86 +1,28 @@
 const logger = require('../../services/logger.service')
 const db = require('../../database');
+const commentService = require('../comment/comment.service')
 
 async function query(filter) {
     try {
         return await db.txn(async () => {
-            let posts, userIds, followingIds
+            let posts
 
             switch (filter.type) {
+                case 'homepagePosts':
+                    posts = await _getPostsForHomepage(filter)
+                    break;
+                case 'explorePagePosts':
+                   posts = await _getPostsForExplorePage(filter)
+                    break;
                 case 'createdPosts':
-                    if (filter.currPostId) {
-                        posts = await db.query(
-                            `select * from posts where id != $currPostId and userId = $userId order by createdAt desc limit $limit `, {
-                            $limit: filter.limit,
-                            $currPostId: filter.currPostId,
-                            $userId: filter.userId,
-                        });
-                    } else {
-                        posts = await db.query(
-                            `select * from posts where userId = $userId order by createdAt desc limit $limit `, {
-                            $limit: filter.limit,
-                            $userId: filter.userId,
-                        });
-                    }
+                    posts = await _getCreatedPosts(filter)
                     break;
 
                 case 'savedPosts':
-                    posts = await db.query(
-                        `select * from posts where id in (select postId from savedPosts where userId = $userId) order by createdAt desc limit $limit `, {
-                        $limit: filter.limit,
-                        $userId: filter.userId,
-                    });
+                    posts = await _getSavedPosts(filter)
                     break;
-
                 case 'taggedPosts':
-                    const tags = await db.query(`select id from tags where name = $username`, { $username: filter.username });
-                    if (!tags.length) return Promise.resolve([]);
-                    const tagId = tags[0].id;
-                    let taggedPostsIds = await db.query(
-                        `select postId from postTags where tagId = $tagId`, {
-                        $tagId: tagId
-                    });
-                    taggedPostsIds = taggedPostsIds.map(post => post.postId);
-                    posts = await db.query(
-                        `select * from posts where id in (${taggedPostsIds.map(id => `'${id}'`).join(',')}) order by createdAt desc limit $limit `, {
-                        $limit: filter.limit,
-                    });
-                    break;
-
-                case 'homepagePosts':
-                    userIds = [filter.userId]
-                    followingIds = await db.query(`select toUserId from follow where fromUserId = $id`, { $id: filter.userId });
-                    userIds = [...userIds, ...followingIds.map(following => following.toUserId)];
-
-                    if (followingIds.length > 0) {
-                        posts = await db.query(
-                            `select * from posts where userId in (${userIds.map(id => `'${id}'`).join(',')}) order by createdAt desc limit $limit `, {
-                            $limit: filter.limit,
-                        });
-                    } else {
-                        posts = await db.query(
-                            `select * from posts order by likeSum desc limit $limit `, {
-                            $limit: filter.limit,
-                        });
-                    }
-                    break;
-                case 'explorePagePosts':
-                    userIds = [filter.userId]
-                    followingIds = await db.query(`select userId from following where followerId = $id`, { $id: filter.userId });
-                    userIds = [...userIds, ...followingIds.map(following => following.userId)];
-
-                    if (followingIds.length > 0) {
-                        posts = await db.query(
-                            `select * from posts where userId not in (${userIds.map(id => `'${id}'`).join(',')}) order by createdAt desc limit $limit `, {
-                            $limit: filter.limit,
-                        });
-                    } else {
-                        posts = await db.query(
-                            `select * from posts where userId != $userId order by likeSum desc limit $limit `, {
-                            $limit: filter.limit,
-                            $userId: filter.userId,
-                        });
-                    }
+                    posts = await _getTaggedPosts(filter)
                     break;
                 default:
                     break;
@@ -94,39 +36,193 @@ async function query(filter) {
                     post.location = null;
                 }
                 delete post.locationId;
+
                 const images = await db.query(`select * from postImg where postId = $postId order by imgOrder`, { $postId: post.id });
                 post.imgUrls = images.map(img => img.imgUrl);
                 const tags = await db.query(
-                    `select name from tags 
-                        join postTags on tags.id = postTags.tagId 
-                    where postTags.postId = $postId`, {
+                    `SELECT name FROM tags 
+                        JOIN postTags ON tags.id = postTags.tagId 
+                    WHERE postTags.postId = $postId`, {
                     $postId: post.id
                 });
                 post.tags = tags.map(tag => tag.name);
-                // const users = await db.query(`select id, username, fullname, imgUrl from users where id = $id`, { $id: post.userId });
-                const users = await db.query(`
-                SELECT 
-  users.id, 
-  users.username, 
-  users.fullname, 
-  users.imgUrl, 
-  stories.id AS currStoryId, 
-  storyViews.userId AS isStoryViewed
-FROM 
-  users 
-  LEFT JOIN stories ON users.id = stories.userId AND stories.isArchived = 0
-  LEFT JOIN storyViews ON stories.id = storyViews.storyId AND storyViews.userId = $loggedinUserId
-WHERE 
-  users.id = $userId`,{ $userId: post.userId, $loggedinUserId: filter.userId})
+                const users = await db.query(
+                    `SELECT     
+                    users.id, 
+                    users.username, 
+                    users.fullname, 
+                    users.imgUrl, 
+                    stories.id AS currStoryId, 
+                    storyViews.userId AS isStoryViewed
+                    FROM 
+                    users 
+                    LEFT JOIN stories ON users.id = stories.userId AND stories.isArchived = 0
+                    LEFT JOIN storyViews ON stories.id = storyViews.storyId AND storyViews.userId = $loggedinUserId
+                    WHERE 
+                    users.id = $userId`,
+                    { $userId: post.userId, $loggedinUserId: filter.userId })
                 if (users.length === 0) throw new Error('user not found: ' + post.userId);
                 const user = users[0]
                 post.by = user
-                post.by.isStoryViewed = !!user.isStoryViewed 
+                post.by.isStoryViewed = !!user.isStoryViewed
                 delete post.userId
+
+                if (filter.type === 'homepagePosts') {
+                    let comments = await db.query(
+                        `SELECT * FROM comments 
+                        WHERE postId = $postId 
+                        AND userId = $loggedinUserId 
+                        OR userId IN (
+                            SELECT toUserId FROM follow 
+                            WHERE fromUserId = $loggedinUserId
+                        )`, {
+                        $postId: post.id,
+                        $loggedinUserId: filter.userId
+                    });
+
+
+                    for (const comment of comments) {
+                        const user = await db.query(`select id, username, fullname, imgUrl from users where id = $id limit 1`, { $id: comment.userId });
+                        comment.by = user[0];
+                        delete comment.userId;
+                        comment.mentions = await commentService.getCommentMentions(comment)
+                    }
+
+                    post.comments = comments;
+                }
             }
+
             return posts;
         });
+
     } catch (err) {
+        logger.error('cannot find posts', err)
+        throw err
+    }
+}
+
+async function _getCreatedPosts(filter) {
+    try {
+        if (filter.currPostId) {
+            return await db.query(
+                `select * from posts 
+                where id != $currPostId 
+                and userId = $userId 
+                order by createdAt desc 
+                limit $limit `, {
+                $limit: filter.limit,
+                $currPostId: filter.currPostId,
+                $userId: filter.userId,
+            });
+        } else {
+            return await db.query(
+                `select * from posts 
+                where userId = $userId 
+                order by createdAt desc 
+                limit $limit `, {
+                $limit: filter.limit,
+                $userId: filter.userId,
+            });
+        }
+    }
+    catch (err) {
+        logger.error('cannot find posts', err)
+        throw err
+    }
+}
+
+async function _getSavedPosts(filter) {
+    try {
+        return await db.query(
+            `select * from posts where id in (select postId from savedPosts where userId = $userId) order by createdAt desc limit $limit `, {
+            $limit: filter.limit,
+            $userId: filter.userId,
+        });
+    }
+    catch (err) {
+        logger.error('cannot find posts', err)
+        throw err
+    }
+}
+
+async function _getTaggedPosts(filter) {
+    try {
+        return await db.query(`
+        SELECT DISTINCT p.*
+        FROM posts p
+        JOIN postTags pt ON p.id = pt.postId
+        JOIN tags t ON pt.tagId = t.id
+        WHERE t.name = $username
+        ORDER BY p.createdAt DESC
+        LIMIT $limit`, {
+            $username: filter.username,
+            $limit: filter.limit
+        });
+    }
+    catch (err) {
+        logger.error('cannot find posts', err)
+        throw err
+    }
+}
+
+async function _getPostsForHomepage(filter) {
+    try {
+        let posts;
+        posts = await db.query(`
+        SELECT p.*
+        FROM posts p
+        LEFT JOIN follow f ON p.userId = f.toUserId
+        WHERE f.fromUserId = $userId OR p.userId = $userId
+        ORDER BY p.createdAt DESC
+        LIMIT $limit`, {
+            $userId: filter.userId,
+            $limit: filter.limit
+        });
+        if (posts.length === 0) {
+            posts = await db.query(`
+            SELECT * FROM posts
+            ORDER BY likeSum DESC
+            LIMIT $limit`, {
+                $limit: filter.limit
+            });
+        }
+        return posts;
+    }
+    catch (err) {
+        logger.error('cannot find posts', err)
+        throw err
+    }
+}
+
+async function _getPostsForExplorePage(filter) {
+    try {
+        let posts
+
+        posts = await db.query(`
+        SELECT p.*
+        FROM posts p
+        WHERE p.userId != $userId AND p.userId NOT IN (
+            SELECT toUserId FROM follow WHERE fromUserId = $userId
+        )
+        ORDER BY p.createdAt DESC
+        LIMIT $limit`, {
+            $userId: filter.userId,
+            $limit: filter.limit
+        })
+
+        if (posts.length === 0) {
+            console.log('no posts for explore page');
+            posts = await db.query(`
+            SELECT * FROM posts
+            ORDER BY likeSum DESC
+            LIMIT $limit`, {
+                $limit: filter.limit
+            })
+        }
+
+        return posts;
+     }
+    catch (err) {
         logger.error('cannot find posts', err)
         throw err
     }

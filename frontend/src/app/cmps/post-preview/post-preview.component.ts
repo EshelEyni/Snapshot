@@ -21,21 +21,21 @@ export class PostPreviewComponent implements OnInit, OnDestroy {
       .select('userState')
       .pipe(map((x) => x.loggedinUser))
   }
-  
+
   commentService = inject(CommentService);
   userService = inject(UserService);
 
-  type!: 'full-preview' | 'mini-preview'|'chat-post-preview';
+  type!: 'full-preview' | 'mini-preview' | 'chat-post-preview';
 
   faFaceSmile = faFaceSmile;
-  
+
   post!: Post;
   comments!: Comment[];
-  
+
   sub: Subscription | null = null;
   loggedinUser$: Observable<User | null>;
   loggedinUser!: User;
-  
+
   miniPreviewPostDetailsLink: string = '';
 
   isLikeShown: boolean = true;
@@ -52,14 +52,6 @@ export class PostPreviewComponent implements OnInit, OnDestroy {
       if (user) {
         this.loggedinUser = { ...user };
         this.isPostOwnedByUser = this.loggedinUser.id === this.post.by.id;
-
-        this.comments = await this.commentService.loadComments(
-          {
-            postId: this.post.id,
-            userId: this.loggedinUser.id,
-            type: this.type === 'chat-post-preview' ? this.type : 'post-preview'
-          }
-        );
       };
     });
 
@@ -89,7 +81,7 @@ export class PostPreviewComponent implements OnInit, OnDestroy {
   };
 
   onAddComment(comment: Comment): void {
-    this.comments = [comment, ...this.comments];
+    this.post.comments = [comment, ...this.post.comments];
   };
 
   onToggleCommentDisplay(): void {

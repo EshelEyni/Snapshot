@@ -23,7 +23,7 @@
           likes</p>
         <a class="view-all-link" [routerLink]="['_/post/', post.id]" *ngIf="isCommentShown && post.commentSum">View all
           {{post.commentSum}} comments</a>
-        <comment-list *ngIf="isCommentShown && post.commentSum" [comments]="comments" [type]="'post-preview'"
+        <comment-list *ngIf="isCommentShown && post.commentSum" [comments]="post.comments" [type]="'post-preview'"
           [loggedinUser]="loggedinUser"></comment-list>
         <div>
           <p class="date-added" [routerLink]="['/post/', post.id]">

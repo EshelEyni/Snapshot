@@ -49,9 +49,6 @@ export class CommentService {
     return comments;
   };
 
-  public getById(commentId: number): Observable<Comment> {
-    return this.http.get<Comment>(`${this.baseUrl}/comment/${commentId}`);
-  };
 
   public async remove(commentId: number): Promise<{ msg: string } | void> {
     const options = { withCredentials: true }

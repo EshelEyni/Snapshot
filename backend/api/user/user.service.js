@@ -13,10 +13,10 @@ async function query(queryParams) {
             if (searchTerm) {
                 users = await db.query(
                     `SELECT id, username, fullname, imgUrl FROM users 
-                    WHERE username like $searchTerm
-                    or email like $searchTerm 
-                    or bio like $searchTerm
-                    order by username limit 100`,
+                    WHERE username LIKE $searchTerm
+                    OR email LIKE $searchTerm 
+                    OR bio LIKE $searchTerm
+                    ORDER BY username LIMIT 100`,
                     {
                         $searchTerm: queryParams.searchTerm + '%'
                     });
@@ -55,7 +55,7 @@ async function query(queryParams) {
             } else {
                 users = await db.query(
                     `SELECT id, username, fullname, imgUrl FROM users
-                    order by username limit $limit`, {
+                    ORDER BY username LIMIT $limit`, {
                     $limit: limit
                 });
             }
@@ -64,9 +64,9 @@ async function query(queryParams) {
                 const stories = await db.query(
                     `SELECT * FROM stories
                     WHERE userId = $id
-                    and isArchived = 0
-                    order by createdAt asc
-                    limit 1`, { $id: user.id })
+                    AND isArchived = 0
+                    ORDER BY createdAt ASC
+                    LIMIT 1`, { $id: user.id })
 
                 if (!stories.length) {
                     user.currStoryId = null;
@@ -79,7 +79,7 @@ async function query(queryParams) {
             const storyViewPrms = users.map(async user => {
                 if (!user.currStoryId) return user.isStoryViewed = false
                 const storyViews = await db.query(
-                    `SELECT * FROM storyViews WHERE storyId = $storyId and userId = $userId`,
+                    `SELECT * FROM storyViews WHERE storyId = $storyId AND userId = $userId`,
                     { $storyId: user.currStoryId, $userId: userId }
                 )
                 user.isStoryViewed = storyViews.length > 0
@@ -111,9 +111,9 @@ async function getById(userId, isWithPassword) {
             const stories = await db.query(
                 `SELECT * FROM stories 
                     WHERE userId = $id 
-                    and isArchived = 0
-                    order by createdAt asc
-                    limit 1 `, { $id: userId })
+                    AND isArchived = 0
+                    ORDER BY createdAt ASC
+                    LIMIT 1 `, { $id: userId })
 
             if (!stories.length) {
                 user.currStoryId = null;
@@ -125,7 +125,7 @@ async function getById(userId, isWithPassword) {
             const currStoryId = stories[0]
 
             const storyViews = await db.query(
-                `SELECT * FROM storyViews WHERE storyId = $id and userId = $userId`,
+                `SELECT * FROM storyViews WHERE storyId = $id AND userId = $userId`,
                 { $id: currStoryId.id, $userId: userId }
             );
 
@@ -154,9 +154,9 @@ async function getByUsername(username) {
         const stories = await db.query(
             `SELECT * FROM stories 
                 WHERE userId = $id 
-                and isArchived = 0
-                order by createdAt asc
-                limit 1 `, { $id: user.id })
+                AND isArchived = 0
+                ORDER BY createdAt ASC
+                LIMIT 1 `, { $id: user.id })
 
         if (!stories.length) {
             user.currStoryId = null;
@@ -177,7 +177,6 @@ async function getByUsername(username) {
 async function remove(userId) {
     try {
         await db.txn(async () => {
-
 
             /***** CHAT *****/
             let chatIds = await db.query(
@@ -203,7 +202,6 @@ async function remove(userId) {
             }
 
             /***** COMMENTS *****/
-
             await db.exec(`
             DELETE FROM commentslikedby
             WHERE commentId IN (
@@ -211,7 +209,6 @@ async function remove(userId) {
                 FROM comments
                 WHERE userId = $id
                         )`, { $id: userId })
-
 
             await db.exec(`DELETE FROM commentslikedby WHERE userId = $id`, { $id: userId })
             await db.exec(`DELETE FROM comments WHERE userId = $id`, { $id: userId })
@@ -311,7 +308,7 @@ async function update(user) {
         return await db.txn(async () => {
 
             await db.exec(
-                `update users set 
+                `UPDATE users SET 
                  username = $username,
                  fullname = $fullname,
                  email = $email,
@@ -336,7 +333,7 @@ async function update(user) {
 
             if (user.password) {
                 await db.exec(
-                    `update users set 
+                    `UPDATE users SET 
                      password = $password
                      WHERE id = $id`, {
                     $password: user.password,
@@ -356,8 +353,8 @@ async function update(user) {
 async function add(user) {
     try {
         const id = await db.exec(
-            `insert into users (username, fullname, email, password, imgUrl, gender, phone, bio, website, followersSum, followingSum, postSum, isDarkMode, storySum) 
-             values ($username, $fullname, $email, $password, $imgUrl, $gender, $phone, $bio, $website, $followersSum, $followingSum, $postSum, $isDarkMode, $storySum)`,
+            `INSERT INTO users (username, fullname, email, password, imgUrl, gender, phone, bio, website, followersSum, followingSum, postSum, isDarkMode, storySum) 
+             VALUES ($username, $fullname, $email, $password, $imgUrl, $gender, $phone, $bio, $website, $followersSum, $followingSum, $postSum, $isDarkMode, $storySum)`,
             {
                 $username: user.username,
                 $fullname: user.fullname,

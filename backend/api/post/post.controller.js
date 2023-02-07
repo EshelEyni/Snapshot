@@ -3,9 +3,8 @@ const logger = require('../../services/logger.service')
 
 async function getPosts(req, res) {
     const filter = req.query
-    const isFilter = Object.keys(filter).length > 0
     try {
-        const posts = await postService.query(isFilter ? filter : null)
+        const posts = await postService.query(filter)
         res.send(posts)
     } catch (err) {
         logger.error('Failed to get posts', err)

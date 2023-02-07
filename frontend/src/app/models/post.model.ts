@@ -1,3 +1,4 @@
+import { Comment } from './comment.model';
 import { MiniUser } from './user.model'
 
 export interface Post {
@@ -8,6 +9,7 @@ export interface Post {
   isLikeShown: boolean;
   isCommentShown: boolean;
   likeSum: number;
+  comments: Comment[];
   commentSum: number;
   createdAt: Date;
   tags: string[];

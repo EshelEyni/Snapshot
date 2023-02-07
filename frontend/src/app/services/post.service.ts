@@ -126,6 +126,7 @@ export class PostService {
       isLikeShown: true,
       isCommentShown: true,
       likeSum: 0,
+      comments: [],
       commentSum: 0,
       createdAt: new Date(),
       tags: []

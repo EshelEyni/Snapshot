@@ -66,11 +66,11 @@ async function getById(commentId) {
                 return 'comment not found';
             }
             const comment = comments[0];
-            const user = await db.query(`select id, username, fullname, imgUrl from users where id = $id limit 1`, { $id: comments[0].userId });
+            const user = await db.query(`select id, username, fullname, imgUrl from users where id = $id limit 1`, { $id: comment.userId });
             comment.by = user[0];
             delete comment.userId;
 
-            comment.mentions = await _getCommentMentions(comment)
+            comment.mentions = await getCommentMentions(comment)
             return comment
         })
     } catch (err) {
@@ -79,7 +79,7 @@ async function getById(commentId) {
     }
 }
 
-async function _getCommentMentions(comment) {
+async function getCommentMentions(comment) {
     const mentionRegex = /@(\w+)/g;
     let mentions = comment.text.match(mentionRegex);
     if (mentions) {
@@ -219,6 +219,7 @@ async function add(comment) {
 module.exports = {
     query,
     getById,
+    getCommentMentions,
     remove,
     update,
     add
