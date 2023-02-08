@@ -21,9 +21,9 @@
           (toggleModal)="onToggleModal('share-modal')"></post-actions>
         <p class="likes" *ngIf="isLikeShown && post.likeSum" (click)="onToggleModal('like-modal')">{{ post.likeSum }}
           likes</p>
-        <a class="view-all-link" [routerLink]="['_/post/', post.id]" *ngIf="isCommentShown && post.commentSum">View all
-          {{post.commentSum}} comments</a>
-        <comment-list *ngIf="isCommentShown && post.commentSum" [comments]="post.comments" [type]="'post-preview'"
+        <a class="view-all-link" [routerLink]="['_/post/', post.id]" *ngIf="isCommentShown && post.comments.length">View all
+          {{post.comments.length}} comments</a>
+        <comment-list *ngIf="isCommentShown && post.comments.length" [comments]="post.comments" [type]="'post-preview'"
           [loggedinUser]="loggedinUser"></comment-list>
         <div>
           <p class="date-added" [routerLink]="['/post/', post.id]">
@@ -45,7 +45,7 @@
             <svg-icon src="../../../assets/svgs/comment.svg"
               [svgStyle]="{ display: 'flex',color:'white', fill: 'white' ,height: 20,width: 20}"></svg-icon>
           </div>
-          <span>{{ post.commentSum }}</span>
+          <span>{{ post.comments.length }}</span>
         </div>
         <div *ngIf="post.likeSum">
           <div>

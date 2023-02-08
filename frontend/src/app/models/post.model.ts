@@ -9,8 +9,9 @@ export interface Post {
   isLikeShown: boolean;
   isCommentShown: boolean;
   likeSum: number;
+  isLiked: boolean;
+  isSaved: boolean;
   comments: Comment[];
-  commentSum: number;
   createdAt: Date;
   tags: string[];
 };

@@ -65,8 +65,8 @@ export class PostActionsComponent implements OnInit, OnChanges, OnDestroy {
   };
 
   async ngOnChanges(): Promise<void> {
-    this.isLiked = await this.postService.checkIsLiked({ postId: this.post.id, userId: this.loggedinUser.id });
-    this.isSaved = await this.postService.checkIsSaved({ postId: this.post.id, userId: this.loggedinUser.id });
+    this.isLiked = this.post.isLiked;
+    this.isSaved = this.post.isSaved;
     setTimeout(() => {
       this.setIconColor();
     }, 0);

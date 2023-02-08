@@ -87,6 +87,7 @@ export class CommentService {
       createdAt: new Date(),
       isOriginalText: false,
       likeSum: 0,
+      isLiked: false,
     };
   };
 

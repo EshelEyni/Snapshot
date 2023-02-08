@@ -1,6 +1,7 @@
 import { MiniUser } from './user.model';
 
 export interface Comment {
+    isLiked: boolean;
     id: number;
     postId: number;
     by: MiniUser;

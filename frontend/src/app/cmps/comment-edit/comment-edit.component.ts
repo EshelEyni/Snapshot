@@ -73,7 +73,6 @@ export class CommentEditComponent implements OnInit, OnDestroy {
       this.commentAdded.emit(res.savedComment);
     };
 
-    this.post.commentSum++;
     await this.postService.save(this.post);
     const tags = this.tagService.detectTags(commentToAdd.text);
     if (tags.length) tags.forEach(async (tageName) => {

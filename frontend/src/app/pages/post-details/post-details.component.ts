@@ -181,7 +181,6 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
 
   onRemoveComment(commentId: number): void {
     this.comments = this.comments.filter(c => c.id !== commentId);
-    this.post.commentSum--;
     // this.post = { ...this.post };
     this.postService.save(this.post);
   };

@@ -1,22 +1,36 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-const { getLikesForPost,  addLikeToPost, deleteLikeToPost } = require('./post.like.controller')
-const { getLikesForComment,  addLikeToComment, deleteLikeToComment } = require('./comment.like.controller')
-const { getLikesForStory,  addLikeToStory, deleteLikeToStory } = require('./story.like.controller.js')
+const { requireAuth } = require("../../middlewares/requireAuth.middleware");
 
+const {
+  getLikesForPost,
+  addLikeToPost,
+  deleteLikeToPost,
+} = require("./post.like.controller");
 
-router.get('/post', getLikesForPost)
-router.post('/post', addLikeToPost)
-router.delete('/post', deleteLikeToPost)
+const {
+  getLikesForComment,
+  addLikeToComment,
+  deleteLikeToComment,
+} = require("./comment.like.controller");
 
-router.get('/comment', getLikesForComment)
-router.post('/comment', addLikeToComment)
-router.delete('/comment', deleteLikeToComment)
+const {
+  getLikesForStory,
+  addLikeToStory,
+  deleteLikeToStory,
+} = require("./story.like.controller.js");
 
-router.get('/story/:id', getLikesForStory)
-router.post('/story', addLikeToStory)
-router.delete('/story', deleteLikeToStory)
+router.get("/post", requireAuth, getLikesForPost);
+router.post("/post", requireAuth, addLikeToPost);
+router.delete("/post", requireAuth, deleteLikeToPost);
 
+router.get("/comment", requireAuth, getLikesForComment);
+router.post("/comment", requireAuth, addLikeToComment);
+router.delete("/comment", requireAuth, deleteLikeToComment);
 
-module.exports = router
+router.get("/story/:id", requireAuth, getLikesForStory);
+router.post("/story", requireAuth, addLikeToStory);
+router.delete("/story", requireAuth, deleteLikeToStory);
+
+module.exports = router;

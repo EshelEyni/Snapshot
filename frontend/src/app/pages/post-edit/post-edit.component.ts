@@ -127,7 +127,6 @@ export class PostEditComponent implements OnInit, OnDestroy {
     postToSave.by = author;
     postToSave.location = this.location;
     postToSave.tags = this.tagService.detectTags(this.txt);
-    if (this.txt) postToSave.commentSum = 1;
     const postId = await this.postService.save(postToSave);
 
     if (this.txt && typeof postId === 'number') {
