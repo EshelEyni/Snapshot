@@ -38,7 +38,6 @@ export class CommentComponent implements OnInit {
     this.commentService.toggleLike(this.isLiked, { user: this.loggedinUser, comment: this.comment });
     this.isLiked = !this.isLiked;
     this.comment.likeSum = this.isLiked ? this.comment.likeSum + 1 : this.comment.likeSum - 1;
-    this.commentService.save(this.comment);
   };
 
   onToggleCommentModal(): void {

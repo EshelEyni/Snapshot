@@ -166,7 +166,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   };
 
   onAddComment(comment: Comment): void {
-    this.post.comments = [comment, ...this.post.comments]
+    this.post.comments = [...this.post.comments, comment];
   }
 
   onRemoveComment(commentId: number): void {

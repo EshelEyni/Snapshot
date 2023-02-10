@@ -3,163 +3,12 @@ const db = require("../../database");
 const noitificationService = require("../notification/notification.service");
 const tagsService = require("../tag/tag.service");
 
-async function query({ postId, userId, type }) {
-  try {
-    if (type === "post-preview") {
-      let userIds = [userId];
-      const followingIds = await db.query(
-        `select toUserId from follow where fromUserId = $userId`,
-        { $userId: userId }
-      );
-      userIds = userIds.concat(
-        followingIds.map((following) => following.toUserId)
-      );
-      let commentIds = [];
-      for (let i = 0; i < userIds.length; i++) {
-        const currCommentIds = await db.query(
-          `select id from comments where postId = $postId 
-                        and userId = $userId`,
-          {
-            $postId: postId,
-            $userId: userIds[i],
-          }
-        );
-        commentIds = commentIds.concat(currCommentIds);
-      }
-      let comments = commentIds.map((commentId) => {
-        return getById(commentId.id);
-      });
-      comments = await Promise.all(comments);
-      return comments;
-    } else if (type === "post-details") {
-      const commentIds = await db.query(
-        `select id from comments where postId = $postId`,
-        { $postId: postId }
-      );
-      let comments = commentIds.map((commentId) => {
-        return getById(commentId.id);
-      });
-      comments = await Promise.all(comments);
-      return comments;
-    } else if (type === "chat-post-preview") {
-      const commentId = await db.query(
-        `select id from comments where postId = $postId and userId = $userId and isOriginalText = 1 limit 1`,
-        {
-          $postId: postId,
-          $userId: userId,
-        }
-      );
-
-      if (!commentId.length) {
-        return [];
-      } else {
-        const comment = await getById(commentId[0].id);
-        return [comment];
-      }
-    }
-  } catch (err) {
-    logger.error("cannot find comments", err);
-    throw err;
-  }
-}
-
-async function getById(commentId) {
-  try {
-    return await db.txn(async () => {
-      const comments = await db.query(`select * from comments where id = $id`, {
-        $id: commentId,
-      });
-      if (comments.length === 0) {
-        return "comment not found";
-      }
-      const comment = comments[0];
-      const user = await db.query(
-        `select id, username, fullname, imgUrl from users where id = $id limit 1`,
-        { $id: comment.userId }
-      );
-      comment.by = user[0];
-      delete comment.userId;
-
-      comment.mentions = await getCommentMentions(comment);
-      return comment;
-    });
-  } catch (err) {
-    logger.error(`while finding comment ${commentId}`, err);
-    throw err;
-  }
-}
-
-async function remove(loggedinUser, commentId) {
-  try {
-    await db.txn(async () => {
-      await db.exec(
-        `delete from commentsLikedBy where commentId = $id and userId = $loggedinUserId`,
-        {
-          $id: commentId,
-          $loggedinUserId: loggedinUser.id,
-        }
-      );
-
-      const post = await db.query(
-        `select postId from comments where id = $id`,
-        { $id: commentId }
-      );
-
-      await tagsService.remove(post.postId);
-
-      await db.exec(
-        `delete from notifications where entityId = $entityId and byUserId = $loggedinUserId and type = 'comment'`,
-        {
-          $entityId: commentId,
-          $loggedinUserId: loggedinUser.id,
-        }
-      );
-      await db.exec(
-        `delete from comments where id = $id and userId = $loggedinUserId`,
-        {
-          $id: commentId,
-          $loggedinUserId: loggedinUser.id,
-        }
-      );
-    });
-  } catch (err) {
-    logger.error(`cannot remove comment ${commentId}`, err);
-    throw err;
-  }
-}
-
-async function update(comment) {
-  try {
-    await db.exec(
-      `update comments set userId = $userId,
-             postId = $postId,
-             text = $text,
-             createdAt = $createdAt,
-             isOriginalText = $isOriginalText,
-             likeSum = $likeSum where id = $id`,
-      {
-        $userId: comment.by.id,
-        $postId: comment.postId,
-        $text: comment.text,
-        $createdAt: comment.createdAt,
-        $isOriginalText: comment.isOriginalText,
-        $likeSum: comment.likeSum,
-        $id: comment.id,
-      }
-    );
-    return comment;
-  } catch (err) {
-    logger.error(`cannot update comment ${comment._id}`, err);
-    throw err;
-  }
-}
-
 async function add(comment) {
   try {
     return await db.txn(async () => {
       const id = await db.exec(
-        `insert into comments (userId, postId, text, createdAt, isOriginalText, likeSum) 
-             values ($userId, $postId, $text, $createdAt, $isOriginalText, $likeSum)`,
+        `INSERT INTO comments (userId, postId, text, createdAt, isOriginalText, likeSum) 
+             VALUES ($userId, $postId, $text, $createdAt, $isOriginalText, $likeSum)`,
         {
           $userId: comment.by.id,
           $postId: comment.postId,
@@ -169,8 +18,9 @@ async function add(comment) {
           $likeSum: 0,
         }
       );
-
-      const users = await db.query(`select userId from posts where id = $id`, {
+      comment.id = id;
+      
+      const users = await db.query(`SELECT userId FROM posts WHERE id = $id`, {
         $id: comment.postId,
       });
       const userId = users[0].userId;
@@ -203,6 +53,45 @@ async function add(comment) {
   }
 }
 
+async function remove(loggedinUser, commentId) {
+  try {
+    await db.txn(async () => {
+      await db.exec(
+        `DELETE FROM commentsLikedBy WHERE commentId = $id AND userId = $loggedinUserId`,
+        {
+          $id: commentId,
+          $loggedinUserId: loggedinUser.id,
+        }
+      );
+
+      const post = await db.query(
+        `SELECT postId FROM comments WHERE id = $id`,
+        { $id: commentId }
+      );
+
+      await tagsService.remove(post.postId);
+
+      await db.exec(
+        `DELETE FROM notifications WHERE entityId = $entityId AND byUserId = $loggedinUserId AND type = 'comment'`,
+        {
+          $entityId: commentId,
+          $loggedinUserId: loggedinUser.id,
+        }
+      );
+      await db.exec(
+        `DELETE FROM comments WHERE id = $id AND userId = $loggedinUserId`,
+        {
+          $id: commentId,
+          $loggedinUserId: loggedinUser.id,
+        }
+      );
+    });
+  } catch (err) {
+    logger.error(`cannot remove comment ${commentId}`, err);
+    throw err;
+  }
+}
+
 async function getCommentMentions(comment) {
   try {
     const mentionRegex = /@(\w+)/g;
@@ -214,7 +103,7 @@ async function getCommentMentions(comment) {
       const users = [];
       for (let i = 0; i < mentions.length; i++) {
         const u = await db.query(
-          `select id, username from users where username = $username`,
+          `SELECT id, username FROM users WHERE username = $username`,
           { $username: mentions[i] }
         );
         if (u.length) users.push(u[0]);
@@ -253,11 +142,8 @@ async function sendMentionNotifications(comment, commentId) {
 }
 
 module.exports = {
-  query,
-  getById,
-  getCommentMentions,
-  remove,
-  update,
   add,
+  remove,
+  getCommentMentions,
   sendMentionNotifications,
 };

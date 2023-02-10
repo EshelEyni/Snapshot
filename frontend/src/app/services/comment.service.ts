@@ -6,7 +6,7 @@ import { StorageService } from './storage.service';
 import { UserService } from 'src/app/services/user.service';
 import { Comment } from './../models/comment.model';
 import { Injectable, inject } from '@angular/core';
-import { Observable, lastValueFrom, firstValueFrom } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { HttpService } from './http.service';
 
 @Injectable({
@@ -33,25 +33,11 @@ export class CommentService {
     return res;
   }
 
-  public save(comment: Comment): Promise<{ savedComment: Comment } | void> {
-    return comment.id ? this._update(comment) : this._add(comment);
-  }
-
-  private async _update(
-    comment: Comment
-  ): Promise<{ savedComment: Comment } | void> {
-    const res = (await firstValueFrom(
-      this.http.put(`${this.baseUrl}/comment/${comment.id}`, comment)
-    )) as { savedComment: Comment };
-    return res;
-  }
-
-  private async _add(
-    comment: Comment
-  ): Promise<{ savedComment: Comment } | void> {
-    const res = (await firstValueFrom(
-      this.http.post(`${this.baseUrl}/comment`, comment)
-    )) as { savedComment: Comment };
+  public async save(comment: Comment): Promise<Comment | void> {
+    const options = { withCredentials: true };
+    const res = await firstValueFrom(
+      this.http.post<Comment>(`${this.baseUrl}/comment`, comment, options)
+    );
 
     return res;
   }
@@ -83,10 +69,14 @@ export class CommentService {
       );
     } else {
       await firstValueFrom(
-        this.http.post(`${this.baseUrl}/like/comment`, {
-          user: details.user,
-          comment: details.comment,
-        }, options)
+        this.http.post(
+          `${this.baseUrl}/like/comment`,
+          {
+            user: details.user,
+            comment: details.comment,
+          },
+          options
+        )
       );
     }
   }
