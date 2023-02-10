@@ -1,5 +1,9 @@
+import { Post } from "./post.model";
+
 export interface Tag {
     id: number;
     name: string;
-    postIds: string[];
+    postSum:number;
+    isFollowing: boolean;
+    posts?: Post[];
 };

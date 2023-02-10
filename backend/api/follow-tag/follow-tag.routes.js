@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const { requireAuth } = require("../../middlewares/requireAuth.middleware");
-const { getTags, getTag } = require("./tag.controller");
+const { followTag, unFollowTag } = require("./follow-tag.controller.js");
 
-router.get("/", requireAuth, getTags);
-router.get("/:name", requireAuth, getTag);
+router.post("/", requireAuth, followTag);
+router.delete("/:tagId", requireAuth, unFollowTag);
 
 module.exports = router;

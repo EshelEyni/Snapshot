@@ -33,10 +33,11 @@ export class PostService {
   baseUrl: '/api' | '//localhost:3030/api' = this.httpService.getBaseUrl();
 
   public async loadPosts(filterBy: {
-    userId: number;
     type: string;
     limit: number;
+    userId?: number;
     currPostId?: number;
+    tagName?: string;
     username?: string;
   }): Promise<void> {
     let options = { withCredentials: true, params: {} };
@@ -51,26 +52,19 @@ export class PostService {
       options.params = { ...options.params, currPostId: filterBy.currPostId };
     if (filterBy.username)
       options.params = { ...options.params, username: filterBy.username };
+    if (filterBy.tagName)
+      options.params = { ...options.params, tagName: filterBy.tagName };
 
     const posts = await lastValueFrom(
       this.http.get<Post[]>(`${this.baseUrl}/post`, options)
     );
 
     switch (filterBy.type) {
-      case 'homepagePosts':
-        this._posts$.next(posts);
-        break;
       case 'createdPosts':
         if (filterBy.currPostId) this._createdPosts$.next(posts);
         else this._posts$.next(posts);
         break;
-      case 'savedPosts':
-        this._posts$.next(posts);
-        break;
-      case 'taggedPosts':
-        this._posts$.next(posts);
-        break;
-      case 'explorePagePosts':
+      default:
         this._posts$.next(posts);
         break;
     }

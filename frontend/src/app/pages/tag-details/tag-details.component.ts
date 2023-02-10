@@ -34,7 +34,7 @@ export class TagDetailsComponent implements OnInit, OnDestroy {
 
   paramsSubscription!: Subscription;
   tag!: Tag;
-  posts: Post[] = [];
+  posts$!: Observable<Post[]>;
 
   userSub: Subscription | null = null;
   loggedinUser$: Observable<User | null>;
@@ -49,11 +49,16 @@ export class TagDetailsComponent implements OnInit, OnDestroy {
     this.paramsSubscription = this.route.data.subscribe(data => {
       const tag = data['tag'];
       if (tag) {
-        this.tag = tag
-        tag.postIds.forEach(async (postId: number) => {
-          const post = await lastValueFrom(this.postService.getById(postId));
-          this.posts.push({ ...post });
-        });
+        this.tag = { ...tag };
+        this.postService.loadPosts(
+          {
+            type: 'tagDetailsPagePosts',
+            tagName: tag.name,
+            limit: 1000,
+          }
+        );
+
+        this.posts$ = this.postService.posts$;
       };
     });
   };
@@ -65,5 +70,6 @@ export class TagDetailsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.paramsSubscription) this.paramsSubscription.unsubscribe();
     if (this.userSub) this.userSub.unsubscribe();
+    this.postService.clearPosts();
   };
 };

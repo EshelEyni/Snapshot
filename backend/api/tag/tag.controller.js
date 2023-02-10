@@ -3,7 +3,9 @@ const logger = require("../../services/logger.service");
 
 async function getTags(req, res) {
   try {
-    const tags = await tagService.query({ name: req.query.name });
+    const filterBy = req.query;
+    const loggedinUser = req.loggedinUser;
+    const tags = await tagService.query(filterBy, loggedinUser);
     res.send(tags);
   } catch (err) {
     logger.error("Failed to get tags", err);
@@ -13,7 +15,9 @@ async function getTags(req, res) {
 
 async function getTag(req, res) {
   try {
-    const tag = await tagService.getByName(req.params.name);
+    const tagName = req.params.name;
+    const loggedinUser = req.loggedinUser;
+    const tag = await tagService.getByName(tagName, loggedinUser);
     res.send(tag);
   } catch (err) {
     logger.error("Failed to get tag", err);
@@ -21,79 +25,7 @@ async function getTag(req, res) {
   }
 }
 
-async function updateTag(req, res) {
-  try {
-    const tag = req.body;
-    const savedTag = await tagService.update(tag);
-    res.send(savedTag);
-  } catch (err) {
-    logger.error("Failed to update tag", err);
-    res.status(500).send({ err: "Failed to update tag" });
-  }
-}
-
-async function addTag(req, res) {
-  try {
-    const tag = req.body;
-    const id = await tagService.add(tag);
-    res.send({ msg: "Tag added", id });
-  } catch (err) {
-    logger.error("Failed to add tag", err);
-    res.status(500).send({ err: "Failed to add tag" });
-  }
-}
-
-async function getFollowedTags(req, res) {
-  try {
-    const { userId } = req.params;
-    const tags = await tagService.getFollowedTags(userId);
-    res.send(tags);
-  } catch (err) {
-    logger.error("Failed to get followed status", err);
-    res.status(500).send({ err: "Failed to get followed status" });
-  }
-}
-
-async function getFollowedStatus(req, res) {
-  try {
-    const { userId, tagId } = req.params;
-    const tags = await tagService.getFollowedStatus(userId, tagId);
-    res.send(tags);
-  } catch (err) {
-    logger.error("Failed to get followed status", err);
-    res.status(500).send({ err: "Failed to get followed status" });
-  }
-}
-
-async function followTag(req, res) {
-  try {
-    const { userId, tagId } = req.body;
-    const id = await tagService.follow(userId, tagId);
-    res.send({ msg: "Tag followed", id });
-  } catch (err) {
-    logger.error("Failed to follow tag", err);
-    res.status(500).send({ err: "Failed to follow tag" });
-  }
-}
-
-async function unFollowTag(req, res) {
-  try {
-    const { userId, tagId } = req.params;
-    const id = await tagService.unFollow(userId, tagId);
-    res.send({ msg: "Tag unfollowed", id });
-  } catch (err) {
-    logger.error("Failed to unfollow tag", err);
-    res.status(500).send({ err: "Failed to unfollow tag" });
-  }
-}
-
 module.exports = {
   getTags,
   getTag,
-  updateTag,
-  addTag,
-  getFollowedTags,
-  getFollowedStatus,
-  followTag,
-  unFollowTag,
 };

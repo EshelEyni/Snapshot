@@ -1,25 +1,27 @@
-<main class="tag-details">
-    <header class="tag-details-header">
-        <fa-icon [icon]="faChevronLeft" (click)="onGoBack()"></fa-icon>
-        <h1>{{tag.name}}</h1>
-        <div></div>
-    </header>
+<main class="tag-details" *ngIf="posts$ | async as posts">
+  <header class="tag-details-header">
+    <fa-icon [icon]="faChevronLeft" (click)="onGoBack()"></fa-icon>
+    <h1>{{ tag.name }}</h1>
+    <div></div>
+  </header>
 
-    <div class="tag-info">
-        <div class="img-container" *ngIf="posts[0]">
-            <img [src]="posts[0].imgUrls[0]" alt="tag image">
-        </div>
-        <div class="info">
-            <h1>#{{tag.name}}</h1>
-            <p><span>{{tag.postIds.length}}</span> posts</p>
-            <follow-btn [tag]="tag"></follow-btn>
-        </div>
+  <div class="tag-info">
+    <div class="img-container" *ngIf="posts[0]">
+      <img [src]="posts[0].imgUrls[0]" alt="tag image" />
     </div>
+    <div class="info">
+      <h1>#{{ tag.name }}</h1>
+      <p>
+        <span>{{ tag.postSum }}</span> posts
+      </p>
+      <follow-btn [tag]="tag"></follow-btn>
+    </div>
+  </div>
 
-    <div class="tag-details-main-container">
-        <div class="post-list-container" *ngIf="posts.length">
-            <h5>Top posts</h5>
-            <post-list [posts]="posts" [type]="'mini-preview'"></post-list>
-        </div>
+  <div class="tag-details-main-container">
+    <div class="post-list-container">
+      <h5>Top posts</h5>
+      <post-list [posts]="posts" [type]="'mini-preview'"></post-list>
     </div>
+  </div>
 </main>

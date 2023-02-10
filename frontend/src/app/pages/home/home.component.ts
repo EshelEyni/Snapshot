@@ -73,6 +73,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.subLoggedinUser) this.subLoggedinUser.unsubscribe();
     if (this.subUsers) this.subUsers.unsubscribe();
+    this.postService.clearPosts();
   };
 
 };

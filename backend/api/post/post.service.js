@@ -15,10 +15,12 @@ async function query(filter, loggedinUser) {
         case "explorePagePosts":
           posts = await _getPostsForExplorePage(filter);
           break;
+        case "tagDetailsPagePosts":
+          posts = await _getPostsForTagDetailsPage(filter);
+          break;
         case "createdPosts":
           posts = await _getCreatedPosts(filter);
           break;
-
         case "savedPosts":
           posts = await _getSavedPosts(filter);
           break;
@@ -318,7 +320,6 @@ async function _getPostsForExplorePage(filter) {
     );
 
     if (posts.length === 0) {
-      console.log("no posts for explore page");
       posts = await db.query(
         `
             SELECT * FROM posts
@@ -330,6 +331,30 @@ async function _getPostsForExplorePage(filter) {
       );
     }
 
+    return posts;
+  } catch (err) {
+    logger.error("cannot find posts", err);
+    throw err;
+  }
+}
+
+async function _getPostsForTagDetailsPage(filter) {
+  try {
+    const posts = await db.query(
+      ` 
+        SELECT p.*
+        FROM posts p
+        JOIN postTags pt ON p.id = pt.postId
+        JOIN tags t ON pt.tagId = t.id
+        WHERE t.name = $tag
+        ORDER BY p.createdAt DESC
+        LIMIT $limit`,
+      {
+        $tag: filter.tagName,
+        $limit: filter.limit,
+      }
+    );
+    console.log(posts);
     return posts;
   } catch (err) {
     logger.error("cannot find posts", err);

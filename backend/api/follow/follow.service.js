@@ -50,8 +50,6 @@ async function getFollowing(fromUserId, toUserId) {
 }
 
 async function add(fromUserId, toUserId) {
-    console.log('fromUserId', fromUserId);
-    console.log('toUserId', toUserId);
     try {
         await db.txn(async () => {
 

@@ -29,61 +29,48 @@ export class TagService {
 
   baseUrl: '/api' | '//localhost:3030/api' = this.httpService.getBaseUrl();
 
-  public async loadTags(filterBy = { name: '' }): Promise<void> {
-    const tags = await lastValueFrom(this.getTags(filterBy));
-    this._tags$.next(tags);
-  }
-
-  public getTags(filterBy = { name: '' }): Observable<Tag[]> {
-    let options = { params: {} };
-    if (filterBy) {
-      options.params = {
-        name: filterBy.name,
+  public getTags(filter: {
+    type: string;
+    name?: string;
+    userId?: number;
+  }): Observable<Tag[]> {
+    const { type, name, userId } = filter;
+    const options: {
+      withCredentials: boolean;
+      params: {
+        type: string;
+        name?: string;
+        userId?: number;
       };
-    }
+    } = {
+      withCredentials: true,
+      params: {
+        type,
+      },
+    };
+    if (name) options.params = { ...options.params, name: name };
+    if (userId) options.params = { ...options.params, userId: userId };
     return this.http.get<Tag[]>(`${this.baseUrl}/tag`, options);
   }
 
   public getByName(tagName: string): Observable<Tag> {
-    return this.http.get<Tag>(`${this.baseUrl}/tag/${tagName}`);
-  }
-
-  public async getfollowedTags(userId: number): Promise<Tag[]> {
-    const tags = await lastValueFrom(
-      this.http.get<Tag[]>(`${this.baseUrl}/tag/follow/${userId}`)
-    );
-    return tags;
-  }
-
-  public async checkIsFollowing(
-    userId: number,
-    tagId: number
-  ): Promise<boolean> {
-    const isFollowing = (await lastValueFrom(
-      this.http.get(`${this.baseUrl}/tag/follow/${userId}/${tagId}`)
-    )) as boolean;
-    return isFollowing;
+    const options = { withCredentials: true };
+    return this.http.get<Tag>(`${this.baseUrl}/tag/${tagName}`, options);
   }
 
   public async toggleFollow(
     isFollowing: boolean,
-    userId: number,
     tagId: number
-  ): Promise<number | void> {
+  ): Promise<void> {
+    const options = { withCredentials: true };
     if (isFollowing) {
       await firstValueFrom(
-        this.http.delete(`${this.baseUrl}/tag/follow/${userId}/${tagId}`)
+        this.http.delete(`${this.baseUrl}/follow-tag/${tagId}`, options)
       );
     } else {
-      const res = (await firstValueFrom(
-        this.http.post(`${this.baseUrl}/tag/follow`, { userId, tagId })
-      )) as { msg: string; id: number };
-
-      if (res.msg === 'Tag followed') {
-        return res.id;
-      } else {
-        return;
-      }
+      await firstValueFrom(
+        this.http.post(`${this.baseUrl}/follow-tag`, { tagId }, options)
+      );
     }
   }
 }
