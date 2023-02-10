@@ -1,37 +1,61 @@
 <article class="story-preview">
-    <container-element [ngSwitch]="type">
+  <container-element [ngSwitch]="type">
+    <div class="for-home-page" *ngSwitchCase="'home-page'">
+      <user-preview
+        *ngIf="!isLinkToStoryEdit"
+        [user]="story.by"
+        [type]="'home-page-list'"
+      >
+      </user-preview>
+      <user-preview
+        *ngIf="isLinkToStoryEdit"
+        [user]="userService.getMiniUser(loggedinUser)"
+        [type]="'link-to-story-edit'"
+      ></user-preview>
+    </div>
 
-        <div class="for-home-page" *ngSwitchCase="'home-page'">
-            <user-preview *ngIf="!isLinkToStoryEdit" [user]="story.by" [type]="'home-page-list'">
-            </user-preview>
-            <user-preview *ngIf="isLinkToStoryEdit" [user]="userService.getMiniUser(loggedinUser)"
-                [type]="'link-to-story-edit'"></user-preview>
-        </div>
+    <div class="for-profile-details" *ngSwitchCase="'profile-details'">
+      <div
+        class="highlight-img-container"
+        *ngIf="story.highlightCover !== null && story.highlightTitle"
+      >
+        <img
+          [src]="story.imgUrls[story.highlightCover]"
+          alt="story-img"
+          [routerLink]="['/story/', story.id]"
+        />
+      </div>
+      <span [routerLink]="['/story/', story.id]">{{
+        story.highlightTitle
+      }}</span>
+    </div>
 
-        <div class="for-profile-details" *ngSwitchCase="'profile-details'">
-            <div class="highlight-img-container" *ngIf="story.highlightCover !== null && story.highlightTitle">
-                <img [src]="story.imgUrls[story.highlightCover]" alt="story-img" [routerLink]="['/story/',story.id]">
-            </div>
-            <span [routerLink]="['/story/',story.id]">{{story.highlightTitle}}</span>
-        </div>
+    <div
+      class="for-highlghts-story-picker"
+      *ngSwitchCase="'highlight-story-picker'"
+    >
+      <div
+        class="highlight-story-picker-preview-date"
+        *ngIf="hightlightStoryPickerDate"
+      >
+        <span>{{ hightlightStoryPickerDate.day }}</span>
+        <span>{{ hightlightStoryPickerDate.month }}</span>
+        <span>{{ hightlightStoryPickerDate.year }}</span>
+      </div>
+      <div class="img-container">
+        <img [src]="story.imgUrls[0]" alt="story-img" />
+      </div>
+    </div>
 
-        <div class="for-highlghts-story-picker" *ngSwitchCase="'highlight-story-picker'">
-            <div class="highlight-story-picker-preview-date" *ngIf="hightlightStoryPickerDate">
-                <span>{{hightlightStoryPickerDate.day }}</span>
-                <span>{{hightlightStoryPickerDate.month }}</span>
-                <span>{{hightlightStoryPickerDate.year }}</span>
-            </div>
-            <div class="img-container">
-                <img [src]="story.imgUrls[0]" alt="story-img">
-            </div>
-        </div>
-
-
-        <div class="chat-story-container" *ngSwitchCase="'chat-story-preview'" [routerLink]="['/story/',story.id]">
-            <div class="chat-story-img-container">
-                <img class="chat-story-img" [src]="story.imgUrls[0]" alt="story-img">
-                <div class="chat-story-username">{{story.by.username}}</div>
-            </div>
-        </div>
-    </container-element>
+    <div
+      class="chat-story-container"
+      *ngSwitchCase="'chat-story-preview'"
+      [routerLink]="['/story/', story.id]"
+    >
+      <div class="chat-story-img-container">
+        <img class="chat-story-img" [src]="story.imgUrls[0]" alt="story-img" />
+        <div class="chat-story-username">{{ story.by.username }}</div>
+      </div>
+    </div>
+  </container-element>
 </article>

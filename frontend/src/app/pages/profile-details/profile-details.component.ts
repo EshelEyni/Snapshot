@@ -52,7 +52,6 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   isPaginationBtnShown = { left: false, right: false };
   isHighlightsModalShown: boolean = false;
   isMainScreenShown: boolean = false;
-  isStoryViewed: boolean = false;
   isPostEditModalShown: boolean = false;
   isFollowersModalShown: boolean = false;
   isFollowingModalShown: boolean = false;
@@ -82,12 +81,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
           this.loggedinUser = user;
           this.isLoggedinUserProfile = this.user.id === this.loggedinUser.id;
           if (this.user.currStoryId) {
-
-            const story = await lastValueFrom(
-              this.storyService.getById(this.user.currStoryId, 'user-preview'),
-            );
-            this.isStoryViewed = story.viewedBy.some(u => u.id === this.loggedinUser.id);
-            this.userImgClass = this.isStoryViewed ? 'story-viewed' : 'story-not-viewed';
+            this.userImgClass = user.isStoryViewed ? 'story-viewed' : 'story-not-viewed';
           }
           else {
             this.userImgClass = '';

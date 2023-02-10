@@ -49,7 +49,9 @@ async function updatePost(req, res) {
 
 async function deletePost(req, res) {
   try {
-    await postService.remove(req.params.id);
+    const postId = req.params.id;
+    const loggedinUserId = req.loggedinUser.id;
+    await postService.remove(postId, loggedinUserId);
     res.send({ msg: "Post deleted" });
   } catch (err) {
     logger.error("Failed to delete post", err);

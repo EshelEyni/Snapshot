@@ -1,39 +1,61 @@
 <section class="post-edit" *ngIf="!isSaving; else loader">
-    <header class="post-edit-header">
-        <fa-icon [icon]="faChevronLeft" (click)="onGoBack()"></fa-icon>
-        <h1>{{currTitle}}</h1>
-        <div>
-            <h1 class="next-btn" *ngIf="postImgs.length" (click)="onNext()">{{btnTxt}}</h1>
-        </div>
+  <header class="post-edit-header">
+    <fa-icon [icon]="faChevronLeft" (click)="onGoBack()"></fa-icon>
+    <h1>{{ currTitle }}</h1>
+    <div>
+      <h1 class="next-btn" *ngIf="postImgs.length" (click)="onNext()">
+        {{ btnTxt }}
+      </h1>
+    </div>
+  </header>
 
-    </header>
+  <main class="post-edit-main-container">
+    <div
+      class="input-file-container"
+      *ngIf="!postImgs.length; else postImgContainer"
+    >
+      <file-input
+        (uploadedImgUrls)="onSaveFiles($event)"
+        [type]="'draggable'"
+        (isUploading)="onToggleIsUploading()"
+        [class.display-none]="isUploading"
+      >
+      </file-input>
+      <content-loader *ngIf="isUploading"></content-loader>
+    </div>
 
+    <ng-template #postImgContainer>
+      <post-canvas
+        [postImgs]="postImgs"
+        [currSettings]="currEditMode"
+        [currFilter]="currFilter"
+        *ngIf="currEditMode !== 'edit'"
+      ></post-canvas>
+    </ng-template>
 
-    <main class="post-edit-main-container">
-        <div class="input-file-container" *ngIf="!postImgs.length else postImgContainer">
-            <file-input (uploadedImgUrls)="onSaveFiles($event)" [type]="'draggable'"
-                (isUploading)="onToggleIsUploading()" [class.display-none]="isUploading">
-            </file-input>
-            <content-loader *ngIf="isUploading"></content-loader>
-        </div>
-
-        <ng-template #postImgContainer>
-            <post-canvas [postImgs]="postImgs" [currSettings]="currEditMode" [currFilter]="currFilter"
-                *ngIf="currEditMode !=='edit'"></post-canvas>
-        </ng-template>
-
-        <div class="edit-mode-container" *ngIf="currEditMode !=='crop'">
-            <post-filter-picker *ngIf="currEditMode ==='filter'"
-                (filterSelected)="onSetFilter($event)"></post-filter-picker>
-            <post-edit-form *ngIf="currEditMode ==='txt-location'" [txt]="txt" [location]="location"
-                (postChanged)="onChangePost($event)"
-                [loggedinUser]="userService.getMiniUser(loggedinUser)"></post-edit-form>
-        </div>
-    </main>
+    <div class="edit-mode-container" *ngIf="currEditMode !== 'crop'">
+      <post-filter-picker
+        *ngIf="currEditMode === 'filter'"
+        (filterSelected)="onSetFilter($event)"
+      ></post-filter-picker>
+      <post-edit-form
+        *ngIf="currEditMode === 'txt-location'"
+        [txt]="txt"
+        [location]="location"
+        (postChanged)="onChangePost($event)"
+        [loggedinUser]="userService.getMiniUser(loggedinUser)"
+      ></post-edit-form>
+    </div>
+  </main>
 </section>
 
-<canvas #offScreenCanvas width="500" height="500" [style]="{'display':'none'}"></canvas>
+<canvas
+  #offScreenCanvas
+  width="500"
+  height="500"
+  [style]="{ display: 'none' }"
+></canvas>
 
 <ng-template #loader>
-    <content-loader></content-loader>
+  <content-loader></content-loader>
 </ng-template>

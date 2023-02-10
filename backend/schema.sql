@@ -152,9 +152,6 @@ CREATE TABLE IF NOT EXISTS "storyViews" (
     "id" INTEGER NOT NULL UNIQUE,
     "storyId" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
-    "username" TEXT NOT NULL,
-    "fullname" TEXT NOT NULL,
-    "imgUrl" TEXT NOT NULL,
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("storyId") references "stories"("id") foreign key ("userId") references "users"("id")
 );
 

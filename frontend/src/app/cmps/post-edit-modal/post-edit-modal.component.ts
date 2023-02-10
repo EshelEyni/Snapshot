@@ -51,18 +51,7 @@ export class PostEditModalComponent implements OnInit, OnDestroy {
   sub: Subscription | null = null;
   loggedinUser$: Observable<User | null>;
   loggedinUser!: User;
-  postImgs: PostCanvasImg[] = [
-    {
-      url: '',
-      x: 0,
-      y: 0,
-      width: 830,
-      height: 830,
-      aspectRatio: 'Original',
-      zoom: 0,
-      filter: 'normal',
-    },
-  ];
+  postImgs: PostCanvasImg[] = [];
 
   txt: string = '';
   location: Location = {

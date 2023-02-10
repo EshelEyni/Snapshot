@@ -1,18 +1,25 @@
 <main class="story-edit" [class.edit-mode]="storyImgs.length">
-    <header class="story-edit-header">
-        <a class="logo" routerLink="/">
-            <span>Snapshot</span>
-        </a>
-    </header>
+  <header class="story-edit-header">
+    <a class="logo" routerLink="/">
+      <span>Snapshot</span>
+    </a>
+  </header>
 
-    <div class="input-file-container" *ngIf="!storyImgs.length else canvasContainer">
-        <file-input (uploadedImgUrls)="onSetFiles($event)" [type]="'draggable'" (isUploading)="onToggleIsUploading()"
-            [class.display-none]="isUploading">
-        </file-input>
-        <content-loader *ngIf="isUploading"></content-loader>
-    </div>
+  <div
+    class="input-file-container"
+    *ngIf="!storyImgs.length; else canvasContainer"
+  >
+    <file-input
+      (uploadedImgUrls)="onSetFiles($event)"
+      [type]="'draggable'"
+      (isUploading)="onToggleIsUploading()"
+      [class.display-none]="isUploading"
+    >
+    </file-input>
+    <content-loader *ngIf="isUploading"></content-loader>
+  </div>
 
-    <ng-template #canvasContainer>
-        <story-canvas [storyImgs]="storyImgs"></story-canvas>
-    </ng-template>
+  <ng-template #canvasContainer>
+    <story-canvas [storyImgs]="storyImgs"></story-canvas>
+  </ng-template>
 </main>

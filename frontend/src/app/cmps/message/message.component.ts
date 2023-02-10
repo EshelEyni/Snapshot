@@ -42,7 +42,7 @@ export class MessageComponent implements OnInit {
         break;
       case 'story':
         if (this.message.storyId) {
-          this.story = await lastValueFrom(this.storyService.getById(this.message.storyId, 'chat'));
+          // this.story = await lastValueFrom(this.storyService.getById(this.message.storyId, 'chat'));
           this.storyReactionTitle = this.isSenderLoggedinUser
             ? `You sent ${this.story.by.username} story`
             : `${this.message.sender.username} sent ${this.story.by.username} story`;

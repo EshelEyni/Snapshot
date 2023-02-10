@@ -1,44 +1,82 @@
 <div class="canvas">
-    <div class="main-container">
+  <div class="main-container">
+    <div class="canvas-container">
+      <div class="icons-container" *ngIf="isDefaultMode">
+        <fa-icon
+          [icon]="faNoteSticky"
+          (click)="onToggleEdit('sticker')"
+        ></fa-icon>
+        <fa-icon
+          [icon]="faPaintbrush"
+          (click)="onToggleEdit('painter')"
+        ></fa-icon>
+        <fa-icon [icon]="faT" (click)="onToggleEdit('txt')"></fa-icon>
+      </div>
 
-        <div class="canvas-container">
-            <div class="icons-container" *ngIf="isDefaultMode">
-                <fa-icon [icon]="faNoteSticky" (click)="onToggleEdit('sticker')"></fa-icon>
-                <fa-icon [icon]="faPaintbrush" (click)="onToggleEdit('painter')"></fa-icon>
-                <fa-icon [icon]="faT" (click)="onToggleEdit('txt')"></fa-icon>
-            </div>
+      <txt-input
+        *ngIf="this.isEditMode.txt"
+        (close)="onToggleEdit($event)"
+        (addTxt)="onAddTxt($event)"
+        [txtToEdit]="currTxt"
+      >
+      </txt-input>
 
-            <txt-input *ngIf="this.isEditMode.txt" (close)="onToggleEdit($event)" (addTxt)="onAddTxt($event)"
-                [txtToEdit]="currTxt">
-            </txt-input>
+      <sticker-picker
+        *ngIf="this.isEditMode.sticker"
+        (close)="onToggleEdit($event)"
+        (addSticker)="onAddSticker($event)"
+      >
+      </sticker-picker>
 
-            <sticker-picker *ngIf="this.isEditMode.sticker" (close)="onToggleEdit($event)"
-                (addSticker)="onAddSticker($event)"> </sticker-picker>
+      <painter-settings
+        *ngIf="this.isEditMode.painter"
+        (close)="onToggleEdit($event)"
+        (undo)="onUndoStroke()"
+        (strokeChange)="onStrokeChange($event)"
+        [isDrawing]="isDrawing"
+      ></painter-settings>
 
-            <painter-settings *ngIf="this.isEditMode.painter" (close)="onToggleEdit($event)" (undo)="onUndoStroke()"
-                (strokeChange)="onStrokeChange($event)" [isDrawing]="isDrawing"></painter-settings>
+      <canvas #canvas [height]="canvasHeight" [width]="canvasWidth"></canvas>
+      <canvas
+        #offScreenCanvas
+        height="900"
+        width="515"
+        [style]="{ display: 'none' }"
+      ></canvas>
 
-            <canvas #canvas [height]="canvasHeight" [width]="canvasWidth"></canvas>
-            <canvas #offScreenCanvas height="900" width="515" [style]="{'display':'none'}"></canvas>
-
-            <div class="btns-container">
-                <div class="btn-container">
-                    <button class="btn-share clean-btn" (click)="onShareStory()" *ngIf="loggedinUser">
-                        <user-preview [user]="userService.getMiniUser(loggedinUser)"
-                            [type]="'story-edit-page'"></user-preview>
-                    </button>
-                </div>
-                <img-list [imgUrls]="imgUrls" (removeImg)="onRemoveStoryImg($event)"
-                    (uploadedImgUrls)="onAddStoryImg($event)" (imgSelected)="onSetCurrStoryImg($event)"></img-list>
-            </div>
+      <div class="btns-container">
+        <div class="btn-container">
+          <button
+            class="btn-share clean-btn"
+            (click)="onShareStory()"
+            *ngIf="loggedinUser"
+          >
+            <user-preview
+              [user]="userService.getMiniUser(loggedinUser)"
+              [type]="'story-edit-page'"
+            ></user-preview>
+          </button>
         </div>
+        <img-list
+          [imgUrls]="imgUrls"
+          (removeImg)="onRemoveStoryImg($event)"
+          (uploadedImgUrls)="onAddStoryImg($event)"
+          (imgSelected)="onSetCurrStoryImg($event)"
+        ></img-list>
+      </div>
+      <content-loader *ngIf="isSaving"></content-loader>
+    </div>
 
-        <pagination-btns *ngIf="isPaginationBtnShown" [isPaginationBtnShown]="isPaginationBtnShown"
-            (prevItem)="onSetCurrStoryImg($event,true)" (nextItem)="onSetCurrStoryImg($event,true)"
-            [isEditIcon]="true"></pagination-btns>
-    </div>
-    <div class="delete-drag-area" [class.is-visible]="isDeleteAreaShown">
-        <fa-icon [icon]="faTrashCan"></fa-icon>
-        <p>Drop here to delete</p>
-    </div>
+    <pagination-btns
+      *ngIf="isPaginationBtnShown"
+      [isPaginationBtnShown]="isPaginationBtnShown"
+      (prevItem)="onSetCurrStoryImg($event, true)"
+      (nextItem)="onSetCurrStoryImg($event, true)"
+      [isEditIcon]="true"
+    ></pagination-btns>
+  </div>
+  <div class="delete-drag-area" [class.is-visible]="isDeleteAreaShown">
+    <fa-icon [icon]="faTrashCan"></fa-icon>
+    <p>Drop here to delete</p>
+  </div>
 </div>

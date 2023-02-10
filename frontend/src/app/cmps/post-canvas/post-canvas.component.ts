@@ -1,18 +1,25 @@
 import { PostCanvasImg } from './../../models/post.model';
 import { UploadImgService } from './../../services/upload-img.service';
-import { Component, OnInit, ViewChild, ElementRef, HostListener, OnChanges, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  HostListener,
+  OnChanges,
+  inject,
+} from '@angular/core';
 
 @Component({
   selector: 'post-canvas',
   templateUrl: './post-canvas.component.html',
   styleUrls: ['./post-canvas.component.scss'],
-  inputs: ['postImgs', 'currSettings', 'currFilter']
+  inputs: ['postImgs', 'currSettings', 'currFilter'],
 })
 export class PostCanvasComponent implements OnInit, OnChanges {
+  constructor() {}
 
-  constructor() { }
-
-  uploadImgService = inject(UploadImgService)
+  uploadImgService = inject(UploadImgService);
 
   @ViewChild('canvas', { static: true }) canvas!: ElementRef<HTMLCanvasElement>;
   ctx!: CanvasRenderingContext2D;
@@ -35,67 +42,78 @@ export class PostCanvasComponent implements OnInit, OnChanges {
   isMainScreenShown = false;
   isZoomModalShown = false;
   isDragging = false;
-  
+
   ngOnInit(): void {
     const canvas = this.canvas.nativeElement;
     if (canvas.getContext) this.ctx = canvas.getContext('2d')!;
-    this.imgUrls = this.postImgs.map(img => img.url);
+    this.imgUrls = this.postImgs.map((img) => img.url);
     this.currPostImg = this.postImgs[0];
-    this.postImgs.forEach(img => {
+    this.postImgs.forEach((img) => {
       img.height = img.width = this.canvasSize;
-    })
+    });
 
     this.setCanvas();
     this.setPaginationBtns();
-  };
+  }
 
   ngOnChanges(): void {
     if (this.currSettings !== 'crop') {
       const canvas = this.canvas.nativeElement;
       canvas.style.cursor = 'default';
-    };
+    }
     this.setCanvasSize();
     if (this.currPostImg) this.setCanvas();
-  };
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(): void {
     this.setCanvasSize();
     this.setCanvas();
-  };
+  }
 
   setCanvasSize(): void {
     if (window.innerWidth > 1260) return;
     this.canvasSize = window.innerWidth;
-  };
+  }
 
   setCanvas(): void {
     const img = new Image();
     img.src = this.currPostImg.url;
-    img.crossOrigin = "Anonymous";
+    img.crossOrigin = 'Anonymous';
     img.onload = () => {
-      this.ctx.imageSmoothingQuality = "high";
+      this.ctx.imageSmoothingQuality = 'high';
       this.ctx.imageSmoothingEnabled = true;
       this.setFilter();
-      this.ctx.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+      this.ctx.clearRect(
+        0,
+        0,
+        this.canvas.nativeElement.width,
+        this.canvas.nativeElement.height
+      );
       if (this.currSettings === 'txt-location') {
         this.ctx.fillStyle = 'rgba(38, 38, 38)';
-        this.ctx.fillRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+        this.ctx.fillRect(
+          0,
+          0,
+          this.canvas.nativeElement.width,
+          this.canvas.nativeElement.height
+        );
       }
       const { x, y, width, height } = this.currPostImg;
       this.ctx.drawImage(img, x, y, width, height);
     };
-  };
+  }
 
   onSetCurrImg(num: number, isFromPaginationBtn: boolean = false): void {
     if (isFromPaginationBtn) this.currImgIdx += num;
     else this.currImgIdx = num;
     if (this.currImgIdx < 0) this.currImgIdx = 0;
-    if (this.currImgIdx > this.postImgs.length - 1) this.currImgIdx = this.postImgs.length - 1;
+    if (this.currImgIdx > this.postImgs.length - 1)
+      this.currImgIdx = this.postImgs.length - 1;
     this.currPostImg = this.postImgs[this.currImgIdx];
     this.setCanvas();
     this.setPaginationBtns();
-  };
+  }
 
   setFilter(): void {
     this.currPostImg.filter = this.currFilter;
@@ -130,12 +148,12 @@ export class PostCanvasComponent implements OnInit, OnChanges {
       default:
         this.ctx.filter = 'none';
         break;
-    };
-  };
+    }
+  }
 
   onSetAspectRatio(aspectRatio: string): void {
     this.currAspectRatio = aspectRatio;
-    this.postImgs.forEach(img => img.aspectRatio = aspectRatio);
+    this.postImgs.forEach((img) => (img.aspectRatio = aspectRatio));
     const canvas = this.canvas.nativeElement;
     switch (aspectRatio) {
       case 'Original':
@@ -162,7 +180,7 @@ export class PostCanvasComponent implements OnInit, OnChanges {
         break;
     }
     this.setCanvas();
-  };
+  }
 
   async onSetZoom(zoom: number): Promise<void> {
     this.currPostImg.zoom = zoom;
@@ -171,22 +189,29 @@ export class PostCanvasComponent implements OnInit, OnChanges {
 
     const image = new Image();
     image.src = this.currPostImg.url;
-    image.crossOrigin = "Anonymous";
+    image.crossOrigin = 'Anonymous';
     image.onload = () => {
-      ctx.imageSmoothingQuality = "high";
+      ctx.imageSmoothingQuality = 'high';
       ctx.imageSmoothingEnabled = true;
 
-      const width = canvas.width + (this.currPostImg.zoom * (canvas.width / canvas.height))
-      const height = canvas.height + this.currPostImg.zoom
-      const x = canvas.width / 2 - width / 2
-      const y = canvas.height / 2 - height / 2
+      const width =
+        canvas.width + this.currPostImg.zoom * (canvas.width / canvas.height);
+      const height = canvas.height + this.currPostImg.zoom;
+      const x = canvas.width / 2 - width / 2;
+      const y = canvas.height / 2 - height / 2;
 
-      this.postImgs[this.currImgIdx] = { ...this.postImgs[this.currImgIdx], x, y, width, height };
+      this.postImgs[this.currImgIdx] = {
+        ...this.postImgs[this.currImgIdx],
+        x,
+        y,
+        width,
+        height,
+      };
       this.currPostImg = this.postImgs[this.currImgIdx];
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(image, x, y, width, height);
     };
-  };
+  }
 
   @HostListener('mousedown', ['$event']) onMouseDown(e: MouseEvent): void {
     if (this.currSettings !== 'crop') return;
@@ -196,8 +221,8 @@ export class PostCanvasComponent implements OnInit, OnChanges {
     if ((e.target as HTMLElement).tagName === 'CANVAS') {
       this.drawLines();
       this.initialDragPos = { x: e.offsetX, y: e.offsetY };
-    };
-  };
+    }
+  }
 
   @HostListener('touchstart', ['$event']) onTouchStart(e: TouchEvent): void {
     if (this.currSettings !== 'crop') return;
@@ -206,10 +231,12 @@ export class PostCanvasComponent implements OnInit, OnChanges {
     this.isDragging = true;
     if ((e.target as HTMLElement).tagName === 'CANVAS') {
       this.drawLines();
-      this.initialDragPos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-    };
-  };
-
+      this.initialDragPos = {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY,
+      };
+    }
+  }
 
   @HostListener('mousemove', ['$event']) onMouseMove(e: MouseEvent): void {
     if (this.currSettings !== 'crop') return;
@@ -224,8 +251,8 @@ export class PostCanvasComponent implements OnInit, OnChanges {
     if (this.isDragging && isCanvas) {
       canvas.style.cursor = 'grabbing';
       this.drawDraggedImg();
-    };
-  };
+    }
+  }
 
   @HostListener('touchmove', ['$event']) onTouchMove(e: TouchEvent): void {
     if (this.currSettings !== 'crop') return;
@@ -240,8 +267,8 @@ export class PostCanvasComponent implements OnInit, OnChanges {
     if (this.isDragging && isCanvas) {
       canvas.style.cursor = 'grabbing';
       this.drawDraggedImg();
-    };
-  };
+    }
+  }
 
   @HostListener('mouseup', ['$event']) onMouseUp(e: MouseEvent): void {
     if (this.currSettings !== 'crop') return;
@@ -252,8 +279,8 @@ export class PostCanvasComponent implements OnInit, OnChanges {
     if (isCanvas) {
       this.ctx.clearRect(0, 0, canvas.width, canvas.height);
       this.drawDraggedImg(true);
-    };
-  };
+    }
+  }
 
   @HostListener('touchend', ['$event']) onTouchEnd(e: TouchEvent): void {
     if (this.currSettings !== 'crop') return;
@@ -264,8 +291,8 @@ export class PostCanvasComponent implements OnInit, OnChanges {
     if (isCanvas) {
       this.ctx.clearRect(0, 0, canvas.width, canvas.height);
       this.drawDraggedImg(true);
-    };
-  };
+    }
+  }
 
   drawLines(): void {
     const canvas = this.canvas.nativeElement;
@@ -281,39 +308,36 @@ export class PostCanvasComponent implements OnInit, OnChanges {
     this.ctx.moveTo(0, squareSize * 2);
     this.ctx.lineTo(canvas.width, squareSize * 2);
 
-    this.ctx.strokeStyle = "rgba(255,255,255,0.1)";
+    this.ctx.strokeStyle = 'rgba(255,255,255,0.1)';
     this.ctx.lineWidth = 0.5;
     this.ctx.stroke();
-  };
+  }
 
   drawDraggedImg(isDragEnd = false): void {
     const canvas = this.canvas.nativeElement;
     const image = new Image();
     image.src = this.currPostImg.url;
-    image.crossOrigin = "Anonymous";
+    image.crossOrigin = 'Anonymous';
     image.onload = () => {
-
       this.ctx.clearRect(0, 0, canvas.width, canvas.height);
-      this.ctx.imageSmoothingQuality = "high";
+      this.ctx.imageSmoothingQuality = 'high';
       this.ctx.imageSmoothingEnabled = true;
 
       let x, y, width, height;
 
       if (this.currPostImg.zoom) {
-
-        width = canvas.width + (this.currPostImg.zoom * (canvas.width / canvas.height));
+        width =
+          canvas.width + this.currPostImg.zoom * (canvas.width / canvas.height);
         height = canvas.height + this.currPostImg.zoom;
 
         x = this.currPostImg.x + (this.initialDragPos.x - this.dragPos.x) * -1;
         y = this.currPostImg.y + (this.initialDragPos.y - this.dragPos.y) * -1;
-
-      }
-      else {
+      } else {
         width = canvas.width;
         height = canvas.height;
         x = (canvas.width / 2 - this.dragPos.x) * -1;
         y = (canvas.height / 2 - this.dragPos.y) * -1;
-      };
+      }
 
       this.ctx.drawImage(image, x, y, width, height);
 
@@ -321,31 +345,35 @@ export class PostCanvasComponent implements OnInit, OnChanges {
         if (!this.currPostImg.zoom) {
           x = 0;
           y = 0;
-        }
-        else {
+        } else {
           if (x > 0) x = 0;
           if (y > 0) y = 0;
           if (x + width < canvas.width) x = canvas.width - width;
           if (y + height < canvas.height) y = canvas.height - height;
-        };
+        }
 
-        this.postImgs[this.currImgIdx] = { ...this.postImgs[this.currImgIdx], x, y, width, height };
+        this.postImgs[this.currImgIdx] = {
+          ...this.postImgs[this.currImgIdx],
+          x,
+          y,
+          width,
+          height,
+        };
         this.currPostImg = this.postImgs[this.currImgIdx];
         this.ctx.drawImage(image, x, y, width, height);
-      }
-      else {
+      } else {
         this.drawLines();
-      };
+      }
     };
-  };
+  }
 
   onRemoveImg(idx: number): void {
     if (idx === this.currImgIdx) {
       this.currImgIdx--;
       this.onSetCurrImg(this.currImgIdx);
-    };
+    }
     this.postImgs.splice(idx, 1);
-  };
+  }
 
   onAddImg(imgUrls: string[]): void {
     const imgs = imgUrls.map((url) => ({
@@ -361,17 +389,23 @@ export class PostCanvasComponent implements OnInit, OnChanges {
 
     this.postImgs = [...this.postImgs, ...imgs];
     this.currImgIdx = this.postImgs.length - 1;
-    this.ctx.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+    this.ctx.clearRect(
+      0,
+      0,
+      this.canvas.nativeElement.width,
+      this.canvas.nativeElement.height
+    );
     this.onSetCurrImg(this.currImgIdx);
-  };
+  }
 
   setPaginationBtns(): void {
     const currIdx = this.postImgs.indexOf(this.currPostImg);
     if (currIdx === 0) this.isPaginationBtnShown.left = false;
     else this.isPaginationBtnShown.left = true;
-    if (currIdx === this.postImgs.length - 1) this.isPaginationBtnShown.right = false;
+    if (currIdx === this.postImgs.length - 1)
+      this.isPaginationBtnShown.right = false;
     else this.isPaginationBtnShown.right = true;
-  };
+  }
 
   onToggleModal(el: string): void {
     switch (el) {
@@ -382,12 +416,14 @@ export class PostCanvasComponent implements OnInit, OnChanges {
         this.isZoomModalShown = !this.isZoomModalShown;
         break;
       case 'main-screen':
-        if (this.isZoomModalShown) this.isZoomModalShown = !this.isZoomModalShown;
-        if (this.isAspectRatioModalShown) this.isAspectRatioModalShown = !this.isAspectRatioModalShown;
+        if (this.isZoomModalShown)
+          this.isZoomModalShown = !this.isZoomModalShown;
+        if (this.isAspectRatioModalShown)
+          this.isAspectRatioModalShown = !this.isAspectRatioModalShown;
         break;
       default:
         break;
-    };
+    }
     this.isMainScreenShown = !this.isMainScreenShown;
-  };
-};
+  }
+}

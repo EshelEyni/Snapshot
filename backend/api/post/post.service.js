@@ -160,9 +160,20 @@ async function update(post) {
   }
 }
 
-async function remove(postId) {
+async function remove(postId, loggedinUserId) {
   try {
     await db.txn(async () => {
+      const posts = await db.query(`SELECT * FROM posts WHERE id = $id`, {
+        $id: postId,
+      });
+      if (posts.length === 0) {
+        return "post not found";
+      }
+      const post = posts[0];
+      if (post.userId !== loggedinUserId) {
+        return "Unauthorized";
+      }
+
       await db.exec(`DELETE FROM postsLikedBy WHERE postId = $id`, {
         $id: postId,
       });

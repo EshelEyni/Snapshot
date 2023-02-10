@@ -9,18 +9,24 @@ import { Store } from '@ngrx/store';
 @Component({
   selector: 'story-edit',
   templateUrl: './story-edit.component.html',
-  styleUrls: ['./story-edit.component.scss']
+  styleUrls: ['./story-edit.component.scss'],
 })
 export class StoryEditComponent implements OnInit {
-
   constructor() {
-    this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
-  };
+    this.loggedinUser$ = this.store
+      .select('userState')
+      .pipe(map((x) => x.loggedinUser));
+  }
 
   store = inject(Store<State>);
   userService = inject(UserService);
 
-  storyImgs: StoryImg[] = [];
+  storyImgs: StoryImg[] = [
+    {
+      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1675100075/mqfgowfb6xmn5kllvufe.png',
+      items: [],
+    },
+  ];
 
   loggedinUser!: User;
   sub!: Subscription;
@@ -29,18 +35,18 @@ export class StoryEditComponent implements OnInit {
   isUploading: boolean = false;
 
   ngOnInit(): void {
-    this.sub = this.loggedinUser$.subscribe(user => {
+    this.sub = this.loggedinUser$.subscribe((user) => {
       if (user) {
         this.loggedinUser = { ...user };
-      };
+      }
     });
-  };
+  }
 
   onToggleIsUploading(): void {
     this.isUploading = !this.isUploading;
-  };
+  }
 
   onSetFiles(imgUrls: string[]): void {
-    this.storyImgs = imgUrls.map(imgUrl => ({ url: imgUrl, items: [] }));
-  };
-};
+    this.storyImgs = imgUrls.map((imgUrl) => ({ url: imgUrl, items: [] }));
+  }
+}
