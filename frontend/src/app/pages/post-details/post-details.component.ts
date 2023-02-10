@@ -48,7 +48,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   posts$!: Observable<Post[]>;
   postsIds: number[] = [];
 
-  comments!: Comment[];
+  // comments!: Comment[];
 
   classForPost:'post' | 'post for-wide-img' | 'post for-narrow-img' = 'post';
   currIdx: number = 0;
@@ -70,16 +70,6 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
       if (data['post']) {
         this.post = data['post'];
         await this.setPostClassName(this.post.imgUrls[0]);
-
-        if (!this.comments) {
-          this.comments = await this.commentService.loadComments(
-            {
-              postId: this.post.id,
-              userId: null,
-              type: 'post-details'
-            }
-          );
-        };
 
         if (!this.isNested) {
           this.postService.loadPosts(
@@ -176,12 +166,11 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   };
 
   onAddComment(comment: Comment): void {
-    this.comments = [comment, ...this.comments]
+    this.post.comments = [comment, ...this.post.comments]
   }
 
   onRemoveComment(commentId: number): void {
-    this.comments = this.comments.filter(c => c.id !== commentId);
-    // this.post = { ...this.post };
+    this.post.comments = this.post.comments.filter(c => c.id !== commentId);
     this.postService.save(this.post);
   };
 

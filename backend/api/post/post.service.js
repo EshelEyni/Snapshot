@@ -1,6 +1,7 @@
 const logger = require("../../services/logger.service");
 const db = require("../../database");
 const commentService = require("../comment/comment.service");
+const tagsService = require("../tag/tag.service");
 
 async function query(filter, loggedinUser) {
   try {
@@ -32,7 +33,10 @@ async function query(filter, loggedinUser) {
         await _getPostData(post, loggedinUser.id);
 
         if (filter.type === "homepagePosts") {
-          await _getDataForHomePage(post, loggedinUser.id);
+          await _getPostLikeAndBookmark(post, loggedinUser.id);
+          await _getCommentsForHomepagePost(post, loggedinUser.id);
+        } else {
+          await _getCommentForMiniPreview(post);
         }
       }
 
@@ -44,100 +48,92 @@ async function query(filter, loggedinUser) {
   }
 }
 
-async function getById(postId) {
+async function getById(postId, loggedinUserId) {
   try {
-    const posts = await db.query(`select * from posts where id = $id`, {
-      $id: postId,
-    });
-    if (posts.length === 0) {
-      return "post not found";
-    }
-    const post = posts[0];
-    const images = await db.query(
-      `select * from postImg where postId = $postId`,
-      { $postId: postId }
-    );
-    post.imgUrls = images.map((img) => img.imgUrl);
-    const comments = await db.query(
-      `select * from comments where postId = $postId`,
-      { $postId: postId }
-    );
-    post.comments = comments.map((comment) => {
-      return {
-        id: comment.id,
-        userId: comment.userId,
-        postId: comment.postId,
-        commentText: comment.comment_text,
-        commentDate: comment.comment_date,
-      };
-    });
-    const user = await db.query(
-      `select id, username, fullname, imgUrl from users where id = $id`,
-      { $id: post.userId }
-    );
-    post.by = user[0];
-    delete post.userId;
-    if (post.locationId) {
-      post.location = await db.query(`select * from locations where id = $id`, {
-        $id: post.locationId,
+    return db.txn(async () => {
+      const posts = await db.query(`SELECT * FROM posts WHERE id = $id`, {
+        $id: postId,
       });
-    } else {
-      post.location = null;
-    }
-    delete post.locationId;
 
-    const tags = await db.query(
-      `select name from tags
-                join postTags on tags.id = postTags.tagId
-            where postTags.postId = $postId`,
-      {
-        $postId: postId,
+      if (posts.length === 0) {
+        return "post not found";
       }
-    );
 
-    post.tags = tags.map((tag) => tag.name);
+      const post = posts[0];
 
-    return post;
+      await _getPostData(post, loggedinUserId);
+      await _getPostLikeAndBookmark(post, loggedinUserId);
+      await _getCommentsForPostDetailsPage(post, loggedinUserId);
+
+      return post;
+    });
   } catch (err) {
     logger.error(`while finding post ${postId}`, err);
     throw err;
   }
 }
 
-async function remove(postId) {
+async function add(post) {
   try {
-    await db.txn(async () => {
-      await db.exec(`delete from postsLikedBy where postId = $id`, {
-        $id: postId,
-      });
-      await db.exec(`delete from savedPosts where postId = $id`, {
-        $id: postId,
-      });
-      await db.exec(`delete from postTags where postId = $id`, { $id: postId });
-      await db.exec(`delete from postImg where postId = $id`, { $id: postId });
-      /*
-            delete from commentsLikedBy where commentId in (
-                select id from comments where postId = $id
-            )
-            */
-      const comments = await db.query(
-        `select id from comments where postId = $id`,
-        { $id: postId }
+    return await db.txn(async () => {
+      const postId = await db.exec(
+        `INSERT INTO posts (userId, createdAt, isLikeShown, isCommentShown, likeSum, locationId) 
+                 VALUES ($userId, $createdAt, true, true, 0, $locationId)`,
+        {
+          $userId: post.by.id,
+          $createdAt: Date.now(),
+          $locationId: post.location.id === 0 ? null : post.location.id,
+        }
       );
-      for (const comment of comments) {
-        await db.exec(`delete from commentsLikedBy where commentId = $id`, {
-          $id: comment.id,
-        });
+
+      for (const i in post.imgUrls) {
+        await db.exec(
+          `INSERT INTO postImg (postId, imgUrl, imgOrder) VALUES ($postId, $imgUrl, $imgOrder)`,
+          {
+            $postId: postId,
+            $imgUrl: post.imgUrls[i],
+            $imgOrder: i,
+          }
+        );
       }
-      await db.exec(`delete from comments where postId = $id`, { $id: postId });
+
+      if (post.comments.length) {
+        const comment = post.comments[0];
+        comment.postId = postId;
+
+        const commentId = await db.exec(
+          `INSERT INTO comments (userId, postId, text, createdAt, isOriginalText, likeSum) 
+          VALUES ($userId, $postId, $text, $createdAt, $isOriginalText, $likeSum)`,
+          {
+            $userId: comment.by.id,
+            $postId: comment.postId,
+            $text: comment.text,
+            $createdAt: Date.now(),
+            $isOriginalText: comment.isOriginalText,
+            $likeSum: 0,
+          }
+        );
+
+        post.tags = tagsService.detectTags(comment.text);
+        if (post.tags.length) {
+          for (const tag of post.tags) {
+            await tagsService.add(tag, postId);
+          }
+        }
+
+        comment.mentions = await commentService.getCommentMentions(comment);
+        await commentService.sendMentionNotifications(comment, commentId);
+      }
+
       await db.exec(
-        `update users set postSum = postSum - 1 where id = (select userId from posts where id = $id)`,
-        { $id: postId }
+        `UPDATE users SET postSum = postSum + 1 WHERE id = $userId`,
+        { $userId: post.by.id }
       );
-      await db.exec(`delete from posts where id = $id`, { $id: postId });
+
+      return postId;
     });
   } catch (err) {
-    logger.error(`cannot remove post ${postId}`, err);
+    logger.error("cannot insert post", err);
     throw err;
   }
 }
@@ -146,52 +142,14 @@ async function update(post) {
   try {
     await db.txn(async () => {
       await db.exec(
-        `update posts set locationId = $locationId, isLikeShown = $isLikeShown,
-                 isCommentShown = $isCommentShown, likeSum = $likeSum, commentSum = $commentSum where id = $id`,
+        `UPDATE posts SET isLikeShown = $isLikeShown,
+                 isCommentShown = $isCommentShown WHERE id = $id`,
         {
           $id: post.id,
-          $locationId: post.location?.id,
           $isLikeShown: post.isLikeShown,
           $isCommentShown: post.isCommentShown,
-          $likeSum: post.likeSum,
-          $commentSum: post.commentSum,
         }
       );
-      await db.exec(`delete from postImg where postId = $id`, { $id: post.id });
-      for (const i in post.imgUrls) {
-        await db.exec(
-          `insert into postImg (postId, imgUrl, imgOrder) values ($postId, $imgUrl, $imgOrder)`,
-          {
-            $postId: post.id,
-            $imgUrl: post.imgUrls[i],
-            $imgOrder: i,
-          }
-        );
-      }
-      await db.exec(`delete from postTags where postId = $id`, {
-        $id: post.id,
-      });
-      for (const tag of post.tags) {
-        const matches = await db.query(
-          "select id from tags where name = $tag",
-          { $tag: tag }
-        );
-        let tagId = null;
-        if (matches.length == 0) {
-          tagId = await db.exec("insert into tags (name) values ($tag)", {
-            $tag: tag,
-          });
-        } else {
-          tagId = matches[0].id;
-        }
-        await db.exec(
-          `insert into postTags (postId, tagId) values ($postId, $tagId)`,
-          {
-            $postId: post.id,
-            $tagId: tagId,
-          }
-        );
-      }
     });
   } catch (err) {
     logger.error(`cannot update post ${post.id}`, err);
@@ -199,75 +157,38 @@ async function update(post) {
   }
 }
 
-async function add(post) {
+async function remove(postId) {
   try {
-    return await db.txn(async () => {
-      const id = await db.exec(
-        `insert into posts (userId, createdAt, isLikeShown, isCommentShown, likeSum, commentSum, locationId) 
-                 values ($userId, $createdAt, true, true, 0, $commentSum, $locationId)`,
-        {
-          $userId: post.by.id,
-          $createdAt: Date.now(),
-          $locationId: post.location.id === 0 ? null : post.location.id,
-          $commentSum: post.commentSum,
-        }
-      );
-      for (const i in post.imgUrls) {
-        await db.exec(
-          `insert into postImg (postId, imgUrl, imgOrder) values ($postId, $imgUrl, $imgOrder)`,
-          {
-            $postId: id,
-            $imgUrl: post.imgUrls[i],
-            $imgOrder: i,
-          }
-        );
-      }
-      for (const tag of post.tags) {
-        const matches = await db.query(
-          "select id from tags where name = $tag",
-          { $tag: tag }
-        );
-        let tagId = null;
-        if (matches.length == 0) {
-          tagId = await db.exec("insert into tags (name) values ($tag)", {
-            $tag: tag,
-          });
-        } else {
-          tagId = matches[0].id;
-        }
-        await db.exec(
-          `insert into postTags (postId, tagId) values ($postId, $tagId)`,
-          {
-            $postId: id,
-            $tagId: tagId,
-          }
-        );
-      }
+    await db.txn(async () => {
+      await db.exec(`DELETE FROM postsLikedBy WHERE postId = $id`, {
+        $id: postId,
+      });
+      await db.exec(`DELETE FROM savedPosts WHERE postId = $id`, {
+        $id: postId,
+      });
+
+      await tagsService.remove(postId);
+
+      await db.exec(`DELETE FROM postImg WHERE postId = $id`, { $id: postId });
 
       await db.exec(
-        `update users set postSum = postSum + 1 where id = $userId`,
-        { $userId: post.by.id }
+        `DELETE FROM commentsLikedBy WHERE commentId IN (SELECT id FROM comments WHERE postId = $id)`,
+        {
+          $id: postId,
+        }
       );
 
-      return id;
+      await db.exec(`DELETE FROM comments WHERE postId = $id`, { $id: postId });
+
+      await db.exec(
+        `update users set postSum = postSum - 1 WHERE id = (select userId FROM posts WHERE id = $id)`,
+        { $id: postId }
+      );
+
+      await db.exec(`DELETE FROM posts WHERE id = $id`, { $id: postId });
     });
   } catch (err) {
-    logger.error("cannot insert post", err);
-    throw err;
-  }
-}
-
-async function addPostToTag(tagId, postId) {
-  try {
-    await db.exec(
-      `insert into postTags (tagId, postId) values ($tagId, $postId)`,
-      {
-        $tagId: tagId,
-        $postId: postId,
-      }
-    );
-  } catch (err) {
-    logger.error(`cannot add post ${postId} to tag ${tagId}`, err);
+    logger.error(`cannot remove post ${postId}`, err);
     throw err;
   }
 }
@@ -276,8 +197,8 @@ async function _getCreatedPosts(filter) {
   try {
     if (filter.currPostId) {
       return await db.query(
-        `select * from posts 
-                where id != $currPostId 
+        `select * FROM posts 
+                WHERE id != $currPostId 
                 and userId = $userId 
                 order by createdAt desc 
                 limit $limit `,
@@ -289,8 +210,8 @@ async function _getCreatedPosts(filter) {
       );
     } else {
       return await db.query(
-        `select * from posts 
-                where userId = $userId 
+        `select * FROM posts 
+                WHERE userId = $userId 
                 order by createdAt desc 
                 limit $limit `,
         {
@@ -308,7 +229,7 @@ async function _getCreatedPosts(filter) {
 async function _getSavedPosts(filter) {
   try {
     return await db.query(
-      `select * from posts where id in (select postId from savedPosts where userId = $userId) order by createdAt desc limit $limit `,
+      `select * FROM posts WHERE id in (select postId FROM savedPosts WHERE userId = $userId) order by createdAt desc limit $limit `,
       {
         $limit: filter.limit,
         $userId: filter.userId,
@@ -415,28 +336,13 @@ async function _getPostsForExplorePage(filter) {
   }
 }
 
-async function _getPostData(post, userId) {
-  if (post.locationId) {
-    post.location = await db.query(`select * from locations where id = $id`, {
-      $id: post.locationId,
-    });
-  } else {
-    post.location = null;
-  }
-  delete post.locationId;
-
+async function _getPostData(post, loggedinUserId) {
   const images = await db.query(
-    `select * from postImg where postId = $postId order by imgOrder`,
+    `select * FROM postImg WHERE postId = $postId order by imgOrder`,
     { $postId: post.id }
   );
   post.imgUrls = images.map((img) => img.imgUrl);
-  const tags = await db.query(
-    `SELECT name FROM tags 
-    JOIN postTags ON tags.id = postTags.tagId 
-    WHERE postTags.postId = $postId`,
-    { $postId: post.id }
-  );
-  post.tags = tags.map((tag) => tag.name);
+
   const users = await db.query(
     `SELECT     
                   users.id, 
@@ -453,21 +359,39 @@ async function _getPostData(post, userId) {
                   AND storyViews.userId = $loggedinUserId
                   WHERE 
                   users.id = $userId`,
-    { $userId: post.userId, $loggedinUserId: userId }
+    { $userId: post.userId, $loggedinUserId: loggedinUserId }
   );
   if (users.length === 0) throw new Error("user not found: " + post.userId);
   const user = users[0];
   post.by = user;
   post.by.isStoryViewed = !!user.isStoryViewed;
+
   delete post.userId;
+
+  if (post.locationId) {
+    post.location = await db.query(`select * FROM locations WHERE id = $id`, {
+      $id: post.locationId,
+    });
+  } else {
+    post.location = null;
+  }
+  delete post.locationId;
+
+  const tags = await db.query(
+    `SELECT name FROM tags 
+    JOIN postTags ON tags.id = postTags.tagId 
+    WHERE postTags.postId = $postId`,
+    { $postId: post.id }
+  );
+  post.tags = tags.map((tag) => tag.name);
 }
 
-async function _getDataForHomePage(post, userId) {
+async function _getPostLikeAndBookmark(post, loggedinUserId) {
   const isLiked = await db.query(
     `SELECT * FROM postsLikedBy WHERE postId = $postId AND userId = $userId`,
     {
       $postId: post.id,
-      $userId: userId,
+      $userId: loggedinUserId,
     }
   );
   post.isLiked = isLiked.length > 0;
@@ -476,22 +400,34 @@ async function _getDataForHomePage(post, userId) {
     `SELECT * FROM savedPosts WHERE postId = $postId AND userId = $userId`,
     {
       $postId: post.id,
-      $userId: userId,
+      $userId: loggedinUserId,
     }
   );
   post.isSaved = isSaved.length > 0;
+}
 
+async function _getCommentForMiniPreview(post) {
+  post.comments = await db.query(
+    `select id FROM comments WHERE postId = $postId`,
+    {
+      $postId: post.id,
+    }
+  );
+}
+
+async function _getCommentsForHomepagePost(post, loggedinUserId) {
   let comments = await db.query(
     `SELECT * FROM comments 
                     WHERE postId = $postId 
                     AND userId = $loggedinUserId 
-                    OR userId IN (
+                    OR postId = $postId
+                    AND userId IN (
                         SELECT toUserId FROM follow 
                         WHERE fromUserId = $loggedinUserId
                     )`,
     {
       $postId: post.id,
-      $loggedinUserId: userId,
+      $loggedinUserId: loggedinUserId,
     }
   );
 
@@ -507,11 +443,36 @@ async function _getDataForHomePage(post, userId) {
   post.comments = comments;
 }
 
+async function _getCommentsForPostDetailsPage(post, loggedinUserId) {
+  const comments = await db.query(
+    `SELECT * FROM comments WHERE postId = $postId`,
+    { $postId: post.id }
+  );
+
+  for (const comment of comments) {
+    const users = await db.query(
+      `SELECT id, username, fullname, imgUrl FROM users WHERE id = $id`,
+      { $id: comment.userId }
+    );
+    comment.by = users[0];
+    delete comment.userId;
+
+    const likes = await db.query(
+      `SELECT userId FROM commentsLikedBy 
+      WHERE commentId = $commentId
+      AND userId = $userId`,
+      { $commentId: comment.id, $userId: loggedinUserId }
+    );
+    comment.isLiked = likes.length > 0;
+  }
+
+  post.comments = comments;
+}
+
 module.exports = {
   query,
   getById,
   remove,
   update,
   add,
-  addPostToTag,
 };

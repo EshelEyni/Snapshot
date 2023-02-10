@@ -2,14 +2,22 @@ import { User } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
 import { Tag } from './../../models/tag.model';
 import { TagService } from './../../services/tag.service';
-import { Subscription } from 'rxjs'
-import { PostService } from './../../services/post.service'
-import { Post } from './../../models/post.model'
-import { UserService } from './../../services/user.service'
-import { CommentService } from 'src/app/services/comment.service'
-import { Emoji } from '@ctrl/ngx-emoji-mart/ngx-emoji'
-import { Component, OnInit, inject, ViewChild, ElementRef, EventEmitter, OnDestroy } from '@angular/core'
-import { faFaceSmile } from '@fortawesome/free-regular-svg-icons'
+import { Subscription } from 'rxjs';
+import { PostService } from './../../services/post.service';
+import { Post } from './../../models/post.model';
+import { UserService } from './../../services/user.service';
+import { CommentService } from 'src/app/services/comment.service';
+import { Emoji } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import {
+  Component,
+  OnInit,
+  inject,
+  ViewChild,
+  ElementRef,
+  EventEmitter,
+  OnDestroy,
+} from '@angular/core';
+import { faFaceSmile } from '@fortawesome/free-regular-svg-icons';
 import { CommunicationService } from 'src/app/services/communication.service';
 import { Comment } from 'src/app/models/comment.model';
 
@@ -18,12 +26,10 @@ import { Comment } from 'src/app/models/comment.model';
   templateUrl: './comment-edit.component.html',
   styleUrls: ['./comment-edit.component.scss'],
   inputs: ['post', 'isPostDetails', 'loggedinUser'],
-  outputs: ['commentAdded']
+  outputs: ['commentAdded'],
 })
-
 export class CommentEditComponent implements OnInit, OnDestroy {
-
-  constructor() { };
+  constructor() {}
 
   @ViewChild('commentInput', { static: true }) commentInput!: ElementRef;
 
@@ -53,13 +59,13 @@ export class CommentEditComponent implements OnInit, OnDestroy {
       this.sub = this.communicationService.focusEmitter.subscribe(() => {
         this.commentInput.nativeElement.focus();
       });
-    };
-  };
+    }
+  }
 
   onAddEmoji(emoji: Emoji): void {
     if (typeof emoji.emoji !== 'string') this.commentText += emoji.emoji.native;
     else this.commentText += emoji.emoji;
-  };
+  }
 
   async onAddComment(): Promise<void> {
     this.isEmojiPickerShown = false;
@@ -73,22 +79,23 @@ export class CommentEditComponent implements OnInit, OnDestroy {
       this.commentAdded.emit(res.savedComment);
     };
 
-    await this.postService.save(this.post);
-    const tags = this.tagService.detectTags(commentToAdd.text);
-    if (tags.length) tags.forEach(async (tageName) => {
-      const tag = { name: tageName };
-      const id = await this.tagService.save(tag as Tag);
-      if (typeof id === 'number')
-        await this.postService.addPostToTag(id, this.post.id);
-    });
-  };
+    // await this.postService.save(this.post);
+    // const tags = this.tagService.detectTags(commentToAdd.text);
+    // if (tags.length)
+    //   tags.forEach(async (tageName) => {
+    //     const tag = { name: tageName };
+    //     const id = await this.tagService.save(tag as Tag);
+    //     if (typeof id === 'number')
+    //       await this.postService.addPostToTag(id, this.post.id);
+    //   });
+  }
 
   onToggleEmojiPicker(): void {
     this.isEmojiPickerShown = !this.isEmojiPickerShown;
     this.isMainScreen = !this.isMainScreen;
-  };
+  }
 
   ngOnDestroy(): void {
-    this.sub?.unsubscribe();;
-  };
-};
+    this.sub?.unsubscribe();
+  }
+}

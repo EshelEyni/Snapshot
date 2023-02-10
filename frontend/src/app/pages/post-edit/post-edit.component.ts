@@ -1,3 +1,4 @@
+import { LoadedLoggedInUser } from './../../store/actions/user.actions';
 import { TagService } from './../../services/tag.service';
 import { CommentService } from 'src/app/services/comment.service';
 import { PostService } from './../../services/post.service';
@@ -7,25 +8,30 @@ import { State } from './../../store/store';
 import { Store } from '@ngrx/store';
 import { User } from './../../models/user.model';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { Component, OnInit, inject, OnDestroy, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  OnDestroy,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { PostCanvasImg } from 'src/app/models/post.model';
 import { Observable, Subscription, map } from 'rxjs';
 import { Location } from '@angular/common';
-import { Location as postLocation } from 'src/app/models/post.model'
-import { SaveUser } from 'src/app/store/actions/user.actions';
+import { Location as postLocation } from 'src/app/models/post.model';
 
 @Component({
   selector: 'post-edit',
   templateUrl: './post-edit.component.html',
-  styleUrls: ['./post-edit.component.scss']
+  styleUrls: ['./post-edit.component.scss'],
 })
 export class PostEditComponent implements OnInit, OnDestroy {
-
   constructor() {
     this.loggedinUser$ = this.store
       .select('userState')
       .pipe(map((x) => x.loggedinUser));
-  };
+  }
 
   $location = inject(Location);
   store = inject(Store<State>);
@@ -35,13 +41,25 @@ export class PostEditComponent implements OnInit, OnDestroy {
   commentService = inject(CommentService);
   tagService = inject(TagService);
 
-  @ViewChild('offScreenCanvas', { static: true }) offScreenCanvas!: ElementRef<HTMLCanvasElement>;
+  @ViewChild('offScreenCanvas', { static: true })
+  offScreenCanvas!: ElementRef<HTMLCanvasElement>;
   faChevronLeft = faChevronLeft;
 
   sub: Subscription | null = null;
   loggedinUser$: Observable<User | null>;
   loggedinUser!: User;
-  postImgs: PostCanvasImg[] = [];
+  postImgs: PostCanvasImg[] = [
+    {
+      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1675638186/j3jrzzfo5qcvi210i6ba.webp',
+      x: 0,
+      y: 0,
+      width: 830,
+      height: 830,
+      aspectRatio: 'Original',
+      zoom: 0,
+      filter: 'normal',
+    },
+  ];
 
   txt: string = '';
   location: postLocation = {
@@ -60,17 +78,16 @@ export class PostEditComponent implements OnInit, OnDestroy {
   isUploading: boolean = false;
 
   ngOnInit(): void {
-
     this.sub = this.loggedinUser$.subscribe((user) => {
       if (user) {
         this.loggedinUser = { ...user };
-      };
+      }
     });
-  };
+  }
 
   onToggleIsUploading() {
     this.isUploading = !this.isUploading;
-  };
+  }
 
   onSaveFiles(imgUrls: string[]) {
     this.postImgs = imgUrls.map((url) => {
@@ -87,69 +104,71 @@ export class PostEditComponent implements OnInit, OnDestroy {
     });
     this.currEditMode = 'crop';
     this.currTitle = 'crop';
-  };
+  }
 
   onSetFilter(filter: string) {
     this.currFilter = filter;
-  };
+  }
 
   onGoBack() {
     if (this.currEditMode === 'crop') this.$location.back();
     else if (this.currEditMode === 'filter') {
       this.currEditMode = 'crop';
       this.currTitle = 'create new post';
-    }
-    else if (this.currEditMode === 'txt-location') {
+    } else if (this.currEditMode === 'txt-location') {
       this.currEditMode = 'filter';
       this.btnTxt = 'next';
       this.currTitle = 'edit';
-    };
-  };
+    }
+  }
 
   onNext() {
     if (this.currEditMode === 'crop') {
       this.currEditMode = 'filter';
       this.currTitle = 'edit';
-    }
-    else if (this.currEditMode === 'filter') {
+    } else if (this.currEditMode === 'filter') {
       this.currEditMode = 'txt-location';
       this.btnTxt = 'share';
       this.currTitle = 'create new post';
-    }
-    else if (this.currEditMode === 'txt-location') this.savePost();
-  };
+    } else if (this.currEditMode === 'txt-location') this.savePost();
+  }
 
   async savePost() {
     this.isSaving = true;
     const postToSave = this.postService.getEmptyPost();
     const author = this.userService.getMiniUser(this.loggedinUser);
-    await this.postService.convertCanvasImgsToImgUrls(this.offScreenCanvas.nativeElement, this.postImgs, postToSave.imgUrls);
+
+    postToSave.imgUrls = this.postImgs.map((img) => img.url);
+
+    // await this.postService.convertCanvasImgsToImgUrls(
+    //   this.offScreenCanvas.nativeElement,
+    //   this.postImgs,
+    //   postToSave.imgUrls
+    // );
+
     postToSave.by = author;
     postToSave.location = this.location;
-    postToSave.tags = this.tagService.detectTags(this.txt);
-    const postId = await this.postService.save(postToSave);
 
-    if (this.txt && typeof postId === 'number') {
-      this.tagService.detectTags(this.txt);
+    if (this.txt) {
       const commentToAdd = this.commentService.getEmptyComment();
       commentToAdd.text = this.txt;
       commentToAdd.by = author;
-      commentToAdd.postId = postId;
+      commentToAdd.postId = 0;
       commentToAdd.isOriginalText = true;
-      await this.commentService.save(commentToAdd);
-    };
-
+      postToSave.comments = [commentToAdd];
+    }
+    await this.postService.save(postToSave);
     this.loggedinUser.postSum++;
-    this.store.dispatch(new SaveUser(this.loggedinUser));
+    this.store.dispatch(new LoadedLoggedInUser(this.loggedinUser));
     this.$location.back();
-  };
+  }
 
   onChangePost(ev: { txt: string; location: postLocation }) {
     this.txt = ev.txt;
     this.location = ev.location;
-  };
+  }
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
-  };
-};
+  }
+}

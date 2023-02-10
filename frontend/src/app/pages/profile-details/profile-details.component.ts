@@ -201,5 +201,6 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
     this.userSub?.unsubscribe();
     this.queryParamsSubscription.unsubscribe();
     this.postSub?.unsubscribe();
+    this.postService.clearPosts();
   };
 };

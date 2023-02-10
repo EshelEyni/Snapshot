@@ -80,6 +80,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
     this.isUploading = true;
     const img = ev.target.files[0];
     const url = await this.uploadImgService.uploadImg(img);
+    if(!url) return;
     const user = { ...this.user, imgUrl: url };
     this.userImgUrl = url;
     await this.store.dispatch(new SaveUser(user));

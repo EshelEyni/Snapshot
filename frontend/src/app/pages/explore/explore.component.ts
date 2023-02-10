@@ -53,5 +53,6 @@ export class ExploreComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.sub) this.sub.unsubscribe();
     if (this.postSub) this.postSub.unsubscribe();
+    this.postService.clearPosts();
   };
 };

@@ -7,14 +7,12 @@ const {
   updatePost,
   addPost,
   deletePost,
-  addPostToTag,
 } = require("./post.controller");
 
 router.get("/", requireAuth, getPosts);
 router.get("/:id", requireAuth, getPost);
 router.put("/:id", requireAuth, updatePost);
 router.post("/", requireAuth, addPost);
-router.post("/tag", requireAuth, addPostToTag);
 router.delete("/:id", requireAuth, deletePost);
 
 module.exports = router;

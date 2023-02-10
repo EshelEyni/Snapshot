@@ -24,7 +24,6 @@ CREATE TABLE IF NOT EXISTS "posts" (
     "isLikeShown" BOOLEAN NOT NULL,
     "isCommentShown" BOOLEAN NOT NULL,
     "likeSum" INTEGER NOT NULL,
-    "commentSum" INTEGER NOT NULL,
     "locationId" INTEGER NULL,
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("userId") references "users"("id") foreign key("locationId") references "locations"("id")
 );

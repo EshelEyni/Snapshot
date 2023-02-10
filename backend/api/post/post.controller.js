@@ -15,32 +15,13 @@ async function getPosts(req, res) {
 
 async function getPost(req, res) {
   try {
-    const post = await postService.getById(req.params.id);
+    const loggedinUser = req.loggedinUser;
+    const postId = req.params.id;
+    const post = await postService.getById(postId, loggedinUser.id);
     res.send(post);
   } catch (err) {
     logger.error("Failed to get post", err);
     res.status(500).send({ err: "Failed to get post" });
-  }
-}
-
-async function deletePost(req, res) {
-  try {
-    await postService.remove(req.params.id);
-    res.send({ msg: "Post deleted" });
-  } catch (err) {
-    logger.error("Failed to delete post", err);
-    res.status(500).send({ err: "Failed to delete post" });
-  }
-}
-
-async function updatePost(req, res) {
-  try {
-    const post = req.body;
-    const savedPost = await postService.update(post);
-    res.send(savedPost);
-  } catch (err) {
-    logger.error("Failed to update post", err);
-    res.status(500).send({ err: "Failed to update post" });
   }
 }
 
@@ -55,14 +36,24 @@ async function addPost(req, res) {
   }
 }
 
-async function addPostToTag(req, res) {
+async function updatePost(req, res) {
   try {
-    const { postId, tagId } = req.body;
-    const post = await postService.addPostToTag(tagId, postId);
-    res.send(post);
+    const post = req.body;
+    const savedPost = await postService.update(post);
+    res.send(savedPost);
   } catch (err) {
-    logger.error("Failed to add post to tag", err);
-    res.status(500).send({ err: "Failed to add post to tag" });
+    logger.error("Failed to update post", err);
+    res.status(500).send({ err: "Failed to update post" });
+  }
+}
+
+async function deletePost(req, res) {
+  try {
+    await postService.remove(req.params.id);
+    res.send({ msg: "Post deleted" });
+  } catch (err) {
+    logger.error("Failed to delete post", err);
+    res.status(500).send({ err: "Failed to delete post" });
   }
 }
 
@@ -72,5 +63,4 @@ module.exports = {
   deletePost,
   updatePost,
   addPost,
-  addPostToTag,
 };

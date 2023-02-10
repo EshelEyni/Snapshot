@@ -76,6 +76,10 @@ export class PostService {
     }
   }
 
+  public clearPosts(): void {
+    this._posts$.next([]);
+  }
+
   public getById(postId: number): Observable<Post> {
     const options = { withCredentials: true };
     return this.http.get<Post>(`${this.baseUrl}/post/${postId}`, options);
@@ -157,25 +161,6 @@ export class PostService {
     return likes;
   }
 
-  // public async checkIsLiked(filterBy: {
-  //   userId: number;
-  //   postId: number;
-  // }): Promise<boolean> {
-  //   const options = {
-  //     withCredentials: true,
-  //     params: {
-  //       userId: filterBy.userId,
-  //       postId: filterBy.postId,
-  //     },
-  //   };
-
-  //   const isLiked = (await firstValueFrom(
-  //     this.http.get(`${this.baseUrl}/like/post`, options)
-  //   )) as Array<any>;
-  //   if (isLiked.length) return true;
-  //   return false;
-  // }
-
   public async toggleLike(
     isLiked: boolean,
     details: { user: MiniUser; post: Post }
@@ -202,25 +187,6 @@ export class PostService {
     }
   }
 
-  // public async checkIsSaved(filterBy: {
-  //   userId: number;
-  //   postId: number;
-  // }): Promise<boolean> {
-  //   const options = {
-  //     withCredentials: true,
-  //     params: {
-  //       userId: filterBy.userId,
-  //       postId: filterBy.postId,
-  //     },
-  //   };
-
-  //   const isSaved = (await firstValueFrom(
-  //     this.http.get(`${this.baseUrl}/save-post`, options)
-  //   )) as Array<any>;
-  //   if (isSaved.length) return true;
-  //   return false;
-  // }
-
   public async toggleSave(
     isSaved: boolean,
     filterBy: { userId: number; postId: number }
@@ -238,13 +204,6 @@ export class PostService {
         this.http.post(`${this.baseUrl}/save-post`, filterBy, options)
       );
     }
-  }
-
-  public async addPostToTag(tagId: number, postId: number): Promise<void> {
-    const options = { withCredentials: true };
-    await firstValueFrom(
-      this.http.post(`${this.baseUrl}/post/tag/`, { tagId, postId }, options)
-    );
   }
 
   public async convertCanvasImgsToImgUrls(

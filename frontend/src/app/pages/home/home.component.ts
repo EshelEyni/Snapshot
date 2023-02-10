@@ -4,7 +4,7 @@ import { UserService } from './../../services/user.service';
 import { LoadLoggedInUser, LoadUsers } from './../../store/actions/user.actions';
 import { Store } from '@ngrx/store';
 import { Component, OnInit, inject, OnDestroy } from '@angular/core';
-import { Observable, Subscription, map } from 'rxjs';
+import { Observable, Subscription, map, of } from 'rxjs';
 import { Post } from 'src/app/models/post.model';
 import { PostService } from 'src/app/services/post.service';
 

@@ -1654,3 +1654,428 @@
 8.2.2023, 21:10:40 - INFO - New connected socket [id: bGsXx82ujfnVmi9wAAAB] 
 8.2.2023, 21:11:46 - INFO - Server is running on port: 3030 
 8.2.2023, 21:11:47 - INFO - New connected socket [id: dyX29hr5Ipxb0YG0AAAB] 
+8.2.2023, 21:29:02 - INFO - Socket disconnected [id: undefined] 
+8.2.2023, 21:29:03 - INFO - New connected socket [id: AuQtARW7NTNfhQhVAAAD] 
+8.2.2023, 22:12:09 - INFO - Socket disconnected [id: undefined] 
+8.2.2023, 22:49:04 - INFO - New connected socket [id: GxGwyrZSSlX60cU-AAAF] 
+8.2.2023, 22:53:48 - INFO - Server is running on port: 3030 
+8.2.2023, 22:53:49 - INFO - New connected socket [id: Qhd1bISQZYGdeGjKAAAB] 
+9.2.2023, 20:54:36 - INFO - Server is running on port: 3030 
+9.2.2023, 20:57:08 - WARN - Not Authenticated 
+9.2.2023, 20:57:08 - WARN - Not Authenticated 
+9.2.2023, 20:57:08 - INFO - New connected socket [id: BZu7UYneTwnXoMyLAAAB] 
+9.2.2023, 20:57:21 - DEBUG - auth.service - login with username: tattookate 
+9.2.2023, 20:57:21 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tattoo artist","website":"","followersSum":0,"followingSum":3,"postSum":6,"isDarkMode":false,"storySum":1,"currStoryId":null} | e7ef45af8693830b905a98a2f1f54d631c31db050c6d0c8cce56615d09a9d59ded3dc61dca5a190ad14560c14008b24c3daa02dcb3799b2bfc2656c3c0f15c3355ada77de204a8cd03b499c66fd7996faf34b3c66cfe470f388b09742fccf6aad6 
+9.2.2023, 20:57:34 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 20:57:36 - INFO - New connected socket [id: k_HeBvaakCpwaNYvAAAD] 
+9.2.2023, 21:00:49 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:00:51 - INFO - New connected socket [id: w3bclOn0xDdkwqgJAAAF] 
+9.2.2023, 21:02:46 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:02:48 - INFO - New connected socket [id: NmO79c4O0mtjq99MAAAH] 
+9.2.2023, 21:04:41 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:04:42 - INFO - New connected socket [id: gqHNK3qg37p2jh1MAAAJ] 
+9.2.2023, 21:05:50 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:05:53 - INFO - New connected socket [id: oo710wDFBo-JUH5OAAAL] 
+9.2.2023, 21:06:20 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:06:22 - INFO - New connected socket [id: ZsMtUiOA_rXIunxcAAAN] 
+9.2.2023, 21:06:31 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:06:33 - INFO - New connected socket [id: hm6sHNQxF6vBmmrrAAAP] 
+9.2.2023, 21:06:44 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:06:45 - INFO - New connected socket [id: kW653-d9PgRu305gAAAR] 
+9.2.2023, 21:08:17 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:08:18 - INFO - New connected socket [id: YAV-65z-0kNTzx_WAAAT] 
+9.2.2023, 21:08:28 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:08:30 - INFO - New connected socket [id: T8NjK7y8hyUeDCDxAAAV] 
+9.2.2023, 21:09:32 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:09:34 - INFO - New connected socket [id: m-y_fu7-eZpRrDFoAAAX] 
+9.2.2023, 21:10:45 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:10:48 - INFO - New connected socket [id: NJxFuyiOwxyJeo5oAAAZ] 
+9.2.2023, 21:11:27 - ERROR - cannot insert post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.commentSum (userId: 4)
+9.2.2023, 21:11:27 - ERROR - Failed to add post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: posts.commentSum (userId: 4)
+9.2.2023, 21:12:09 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:12:11 - INFO - New connected socket [id: 6cVDIVzND4k95w8RAAAb] 
+9.2.2023, 21:13:27 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:13:29 - INFO - New connected socket [id: GF0uhHHaz8EkcaEFAAAd] 
+9.2.2023, 21:20:08 - INFO - Server is running on port: 3030 
+9.2.2023, 21:20:09 - INFO - New connected socket [id: hBFIhDnuNbbHXoaCAAAB] 
+9.2.2023, 21:20:10 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:20:11 - INFO - New connected socket [id: zkilEAv6QBEqXfsYAAAD] 
+9.2.2023, 21:22:11 - INFO - Server is running on port: 3030 
+9.2.2023, 21:22:12 - INFO - New connected socket [id: EPl35o_JL9EZ2frxAAAB] 
+9.2.2023, 21:29:00 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:29:01 - INFO - New connected socket [id: 6Bi1ft0-sk5ocaY_AAAD] 
+9.2.2023, 21:29:01 - ERROR - while finding post 24 | Error: SQLITE_ERROR: near "WHERE": syntax error (userId: 4)
+9.2.2023, 21:29:01 - ERROR - Failed to get post | Error: SQLITE_ERROR: near "WHERE": syntax error (userId: 4)
+9.2.2023, 21:29:31 - INFO - Server is running on port: 3030 
+9.2.2023, 21:29:32 - INFO - New connected socket [id: G8yKgHes8Hg8L3cOAAAB] 
+9.2.2023, 21:29:32 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:29:32 - INFO - New connected socket [id: orvnJOaE3qzEezo9AAAD] 
+9.2.2023, 21:30:18 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:30:20 - INFO - New connected socket [id: 4J9FAmsDTJw86E-XAAAF] 
+9.2.2023, 21:31:27 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:31:28 - INFO - New connected socket [id: NLFZWfBjAJ-Oe86WAAAH] 
+9.2.2023, 21:31:44 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:31:46 - INFO - New connected socket [id: 9rMj7ZSWSFs-Ea4nAAAJ] 
+9.2.2023, 21:31:57 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:31:59 - INFO - New connected socket [id: Ofg-G9VYQ4dFmIZ4AAAL] 
+9.2.2023, 21:32:18 - ERROR - while finding post 24 | Error: SQLITE_ERROR: near "=": syntax error (userId: 4)
+9.2.2023, 21:32:18 - ERROR - Failed to get post | Error: SQLITE_ERROR: near "=": syntax error (userId: 4)
+9.2.2023, 21:33:13 - INFO - Server is running on port: 3030 
+9.2.2023, 21:33:14 - INFO - New connected socket [id: MUOMyJa9HyMIEd3UAAAB] 
+9.2.2023, 21:34:55 - WARN - Not Authenticated 
+9.2.2023, 21:36:36 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:36:37 - INFO - New connected socket [id: g4I7qwxf7P_exYRtAAAD] 
+9.2.2023, 21:36:51 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:36:52 - INFO - New connected socket [id: MPz6ykLyyD1JfLn0AAAF] 
+9.2.2023, 21:37:39 - INFO - Server is running on port: 3030 
+9.2.2023, 21:37:39 - INFO - New connected socket [id: 2ZSFujOEq3odQAifAAAB] 
+9.2.2023, 21:40:50 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:40:51 - INFO - New connected socket [id: cL9GSFQ4_hpTXaj5AAAD] 
+9.2.2023, 21:41:53 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:41:54 - INFO - New connected socket [id: uAwQbxAU8N48JxkhAAAF] 
+9.2.2023, 21:42:07 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:42:08 - INFO - New connected socket [id: hJu943NAZi6NIjuzAAAH] 
+9.2.2023, 21:47:14 - INFO - Socket disconnected [id: undefined] 
+9.2.2023, 21:47:25 - INFO - Server is running on port: 3030 
+9.2.2023, 21:47:29 - INFO - Server is running on port: 3030 
+9.2.2023, 21:47:45 - INFO - Server is running on port: 3030 
+9.2.2023, 21:48:01 - INFO - Server is running on port: 3030 
+10.2.2023, 11:16:20 - INFO - Server is running on port: 3030 
+10.2.2023, 11:18:03 - WARN - Not Authenticated 
+10.2.2023, 11:18:03 - WARN - Not Authenticated 
+10.2.2023, 11:18:03 - WARN - Not Authenticated 
+10.2.2023, 11:18:03 - INFO - New connected socket [id: PmQ4n0YB0iIknw9oAAAB] 
+10.2.2023, 11:18:13 - DEBUG - auth.service - login with username: tattookate 
+10.2.2023, 11:18:13 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tattoo artist","website":"","followersSum":0,"followingSum":3,"postSum":6,"isDarkMode":false,"storySum":1,"currStoryId":null} | 6ffdd3c07f127c0ffa27e93922d7b3dc935bfd64e557d49ce8ed59c5e8ca7a127e44d19f338865a93bad3d6a99f62d7e34befbbc6cfe9e64306b3b0a544febd65a2cbcbf0b90082544da762e6c8c3fa0c4df3d3042618fee38e81aa658b04a70da 
+10.2.2023, 11:22:45 - INFO - Server is running on port: 3030 
+10.2.2023, 11:22:46 - INFO - New connected socket [id: oni354OlUn_JktaZAAAB] 
+10.2.2023, 11:24:12 - INFO - Server is running on port: 3030 
+10.2.2023, 11:24:12 - INFO - New connected socket [id: cHW3HssZvqCCi5x8AAAB] 
+10.2.2023, 11:24:13 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 11:24:14 - INFO - New connected socket [id: jlgIGKm7MffYmAUcAAAD] 
+10.2.2023, 11:24:38 - INFO - Server is running on port: 3030 
+10.2.2023, 11:24:39 - INFO - New connected socket [id: axF8E5np8DpTpT0NAAAB] 
+10.2.2023, 11:24:39 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 11:24:40 - INFO - New connected socket [id: WhgvUDLlRZmfqE7KAAAD] 
+10.2.2023, 11:24:43 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 11:24:44 - INFO - New connected socket [id: 8q012AKsGRBxDb_6AAAF] 
+10.2.2023, 11:24:50 - INFO - Server is running on port: 3030 
+10.2.2023, 11:24:51 - INFO - New connected socket [id: 5LfAuM8WaYWXB1M1AAAB] 
+10.2.2023, 11:28:11 - INFO - Server is running on port: 3030 
+10.2.2023, 11:28:12 - INFO - New connected socket [id: XNyQfws8Wqbw0t4wAAAB] 
+10.2.2023, 11:28:14 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 11:28:15 - INFO - New connected socket [id: AxfnyWm9x4ubVBRSAAAD] 
+10.2.2023, 11:31:54 - INFO - Server is running on port: 3030 
+10.2.2023, 11:31:55 - INFO - New connected socket [id: 3U4ZLluwNw2NrIQIAAAB] 
+10.2.2023, 11:32:18 - ERROR - Failed to get post | Failed to commit transaction: ReferenceError: userId is not defined (userId: 4)
+10.2.2023, 11:32:44 - INFO - Server is running on port: 3030 
+10.2.2023, 11:32:44 - INFO - New connected socket [id: lWYZl-6cOqkkpti0AAAB] 
+10.2.2023, 11:44:14 - INFO - Server is running on port: 3030 
+10.2.2023, 11:44:14 - INFO - New connected socket [id: bg0U4bPvyespJqZrAAAB] 
+10.2.2023, 11:44:16 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 11:44:17 - INFO - New connected socket [id: T0oBKb0h8MSMLNDdAAAD] 
+10.2.2023, 11:44:58 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 11:44:59 - INFO - New connected socket [id: v0o-JZQq1iIMYsaaAAAF] 
+10.2.2023, 11:46:26 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 11:46:27 - INFO - New connected socket [id: WfQWR3oRscupj504AAAH] 
+10.2.2023, 11:46:56 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 11:46:57 - INFO - New connected socket [id: 4xXF23oTte2xBbmhAAAJ] 
+10.2.2023, 11:47:43 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 11:47:43 - INFO - New connected socket [id: sAI0l4V14lmeYYnmAAAL] 
+10.2.2023, 11:47:53 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 11:47:54 - INFO - New connected socket [id: AP0GUen3yNCg3PaoAAAN] 
+10.2.2023, 11:50:50 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 11:50:51 - INFO - New connected socket [id: OYaHAJIjP_Jd2TxlAAAP] 
+10.2.2023, 11:51:11 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 11:51:12 - INFO - New connected socket [id: HF2vVXI5WVplml4AAAAR] 
+10.2.2023, 11:53:59 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 11:54:00 - INFO - New connected socket [id: TXEwimn4to0UoBQfAAAT] 
+10.2.2023, 11:57:17 - INFO - Server is running on port: 3030 
+10.2.2023, 11:57:18 - INFO - New connected socket [id: Xvqm4e64Jj07556VAAAB] 
+10.2.2023, 11:57:27 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 11:57:28 - INFO - New connected socket [id: v3Syj8fYwN4bOpVkAAAD] 
+10.2.2023, 11:58:50 - INFO - Server is running on port: 3030 
+10.2.2023, 11:58:50 - INFO - New connected socket [id: BYr5p7iIw5g4K-ImAAAB] 
+10.2.2023, 11:58:55 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 11:58:55 - INFO - New connected socket [id: 8nNeIeKIRoU-CcWVAAAD] 
+10.2.2023, 12:00:24 - INFO - Server is running on port: 3030 
+10.2.2023, 12:00:24 - INFO - New connected socket [id: WcUbwJGXa8lboEuMAAAB] 
+10.2.2023, 12:00:26 - INFO - New connected socket [id: J_WijKBHZRGiht9kAAAD] 
+10.2.2023, 12:01:09 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:01:30 - INFO - Server is running on port: 3030 
+10.2.2023, 12:01:30 - INFO - New connected socket [id: sxwTfEkBey1MBfbeAAAB] 
+10.2.2023, 12:01:30 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:01:32 - INFO - New connected socket [id: XWR19NV15yLqPgrUAAAD] 
+10.2.2023, 12:01:33 - ERROR - Failed to get posts | Failed to commit transaction: Error: SQLITE_ERROR: near "userId": syntax error (userId: 4)
+10.2.2023, 12:01:33 - ERROR - cannot find posts | Failed to commit transaction: Error: SQLITE_ERROR: near "userId": syntax error (userId: 4)
+10.2.2023, 12:01:51 - INFO - Server is running on port: 3030 
+10.2.2023, 12:01:52 - INFO - New connected socket [id: L2hm2liga_JdzJggAAAB] 
+10.2.2023, 12:01:54 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:01:54 - INFO - New connected socket [id: CY8VLJ9A6CjaJ0b1AAAD] 
+10.2.2023, 12:02:33 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:02:34 - INFO - New connected socket [id: Vo4we9qKJsY3o512AAAF] 
+10.2.2023, 12:03:35 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:03:36 - INFO - New connected socket [id: iaydgWueid2YJEeiAAAH] 
+10.2.2023, 12:05:28 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:05:29 - INFO - New connected socket [id: xog7PRPKwfd0allvAAAJ] 
+10.2.2023, 12:05:54 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:05:54 - INFO - New connected socket [id: l8EJNviEATdPwzSYAAAL] 
+10.2.2023, 12:07:30 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:07:31 - INFO - New connected socket [id: u7EVPLxFvU-K8asJAAAN] 
+10.2.2023, 12:08:39 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:08:40 - INFO - New connected socket [id: -GTekim6mZwLEXPBAAAP] 
+10.2.2023, 12:09:02 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:09:03 - INFO - New connected socket [id: qRMkRnVlKh4I1S9oAAAR] 
+10.2.2023, 12:09:14 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:09:15 - INFO - New connected socket [id: 86uY9oVrjAvz8pChAAAT] 
+10.2.2023, 12:09:55 - INFO - Server is running on port: 3030 
+10.2.2023, 12:09:55 - INFO - New connected socket [id: TysAYFv9i6iY4CfKAAAB] 
+10.2.2023, 12:11:15 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:11:16 - INFO - New connected socket [id: SFY-xvfHAcuQnda1AAAD] 
+10.2.2023, 12:16:10 - INFO - Server is running on port: 3030 
+10.2.2023, 12:16:11 - INFO - New connected socket [id: 1meJTCIbXQkhX5pJAAAB] 
+10.2.2023, 12:16:14 - ERROR - Failed to get post | Failed to commit transaction: ReferenceError: post is not defined (userId: 4)
+10.2.2023, 12:17:00 - INFO - Server is running on port: 3030 
+10.2.2023, 12:17:01 - INFO - New connected socket [id: lYt39YFyZPqmfLz7AAAB] 
+10.2.2023, 12:17:32 - INFO - Server is running on port: 3030 
+10.2.2023, 12:17:32 - INFO - New connected socket [id: J6nUOlFtyjlztCpsAAAB] 
+10.2.2023, 12:17:33 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:17:34 - INFO - New connected socket [id: OL4LBhDOZgML9FuzAAAD] 
+10.2.2023, 12:19:07 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:19:09 - INFO - New connected socket [id: sPtI-UjpZXQ1osvWAAAF] 
+10.2.2023, 12:20:32 - INFO - Server is running on port: 3030 
+10.2.2023, 12:20:33 - INFO - New connected socket [id: vWLqUxepcCtXRTVHAAAB] 
+10.2.2023, 12:20:34 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:20:35 - INFO - New connected socket [id: B56msGn9V1dPY3F9AAAD] 
+10.2.2023, 12:20:40 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:20:41 - INFO - New connected socket [id: WjXtfqJ6y5nE3H_QAAAF] 
+10.2.2023, 12:21:51 - INFO - Server is running on port: 3030 
+10.2.2023, 12:21:52 - INFO - New connected socket [id: e2-ulWOBTib2WfbvAAAB] 
+10.2.2023, 12:21:56 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:21:57 - INFO - New connected socket [id: krqRi4sg3xnTFc6sAAAD] 
+10.2.2023, 12:22:01 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:22:02 - INFO - New connected socket [id: UE4k0agm0UGvoVB3AAAF] 
+10.2.2023, 12:23:51 - INFO - Server is running on port: 3030 
+10.2.2023, 12:23:52 - INFO - New connected socket [id: rKqrqY1RMslvUulOAAAB] 
+10.2.2023, 12:24:33 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:24:34 - INFO - New connected socket [id: V-5VXFCbI2EWCrlQAAAD] 
+10.2.2023, 12:24:40 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:24:41 - INFO - New connected socket [id: DNDwVz4nnMLnBpP1AAAF] 
+10.2.2023, 12:49:59 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:50:01 - INFO - New connected socket [id: 5ZUsCiptnF2NMyPrAAAH] 
+10.2.2023, 12:50:15 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:50:16 - INFO - New connected socket [id: 8rSrNdHYxly2dWRZAAAJ] 
+10.2.2023, 12:50:48 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:50:49 - INFO - New connected socket [id: F2m-AtFJ6KchC48bAAAL] 
+10.2.2023, 12:53:30 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 12:53:31 - INFO - New connected socket [id: aHVRIZoblJ3Xq-_XAAAN] 
+10.2.2023, 12:55:14 - INFO - Server is running on port: 3030 
+10.2.2023, 12:55:16 - INFO - New connected socket [id: mqM-tmjOTu0R-VFVAAAB] 
+10.2.2023, 12:56:52 - INFO - Server is running on port: 3030 
+10.2.2023, 12:56:52 - INFO - New connected socket [id: df2G8QZsrwxIp6VMAAAB] 
+10.2.2023, 13:00:34 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 13:00:35 - INFO - New connected socket [id: qaco5vKS75CqhMJIAAAD] 
+10.2.2023, 13:00:40 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 13:00:41 - INFO - New connected socket [id: XCpDtmyntJOgw-1FAAAF] 
+10.2.2023, 13:01:24 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 13:01:25 - INFO - New connected socket [id: 7vlFiL81Co2B-GLnAAAH] 
+10.2.2023, 13:01:26 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 13:01:27 - INFO - New connected socket [id: XTaqGwxfYbiekd6WAAAJ] 
+10.2.2023, 13:03:47 - INFO - Server is running on port: 3030 
+10.2.2023, 13:03:47 - INFO - New connected socket [id: y5e4lPt_axXVirhoAAAB] 
+10.2.2023, 13:28:31 - INFO - Server is running on port: 3030 
+10.2.2023, 13:28:31 - INFO - New connected socket [id: k56UrMv9wToxNIQiAAAB] 
+10.2.2023, 13:31:21 - INFO - Server is running on port: 3030 
+10.2.2023, 13:31:22 - INFO - New connected socket [id: m8P5Ursn4uKLKKNaAAAB] 
+10.2.2023, 13:31:39 - INFO - Server is running on port: 3030 
+10.2.2023, 13:31:40 - INFO - New connected socket [id: WntI586CFf2kC15aAAAB] 
+10.2.2023, 13:32:22 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 13:32:25 - INFO - New connected socket [id: 6K8wzeBFJqzBkKvbAAAD] 
+10.2.2023, 13:35:05 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 13:35:06 - INFO - New connected socket [id: -lD-1tn75hjtRWbXAAAF] 
+10.2.2023, 13:35:26 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 13:35:27 - INFO - New connected socket [id: 5gE9MgNzIze9eXQYAAAH] 
+10.2.2023, 13:41:30 - INFO - Server is running on port: 3030 
+10.2.2023, 13:41:31 - INFO - New connected socket [id: 28s_-PqiLkATHEqPAAAB] 
+10.2.2023, 13:41:31 - INFO - Server is running on port: 3030 
+10.2.2023, 13:41:32 - INFO - New connected socket [id: ba8pv-sxZN_7OHm6AAAB] 
+10.2.2023, 13:45:30 - INFO - Server is running on port: 3030 
+10.2.2023, 13:45:30 - INFO - New connected socket [id: 8mzHKCEXVwMiCylfAAAB] 
+10.2.2023, 13:45:47 - INFO - Server is running on port: 3030 
+10.2.2023, 13:45:48 - INFO - New connected socket [id: MV2inYyj8Mqx-BoQAAAB] 
+10.2.2023, 13:46:00 - INFO - Server is running on port: 3030 
+10.2.2023, 13:46:00 - INFO - New connected socket [id: 6wf9S4JmdJrKb4wFAAAB] 
+10.2.2023, 13:48:34 - INFO - Server is running on port: 3030 
+10.2.2023, 13:48:34 - INFO - New connected socket [id: Y9N7GDemO6RfFDppAAAB] 
+10.2.2023, 13:50:44 - INFO - Server is running on port: 3030 
+10.2.2023, 13:50:45 - INFO - New connected socket [id: 4nd3GIEBo0_v5ZxSAAAB] 
+10.2.2023, 14:00:39 - INFO - Server is running on port: 3030 
+10.2.2023, 14:00:40 - INFO - New connected socket [id: PBqic3Ao17VhEqapAAAB] 
+10.2.2023, 14:00:57 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 14:00:58 - INFO - New connected socket [id: xeLExSL8f0IkhS0DAAAD] 
+10.2.2023, 14:01:09 - ERROR - cannot insert post | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'match') (userId: 4)
+10.2.2023, 14:01:09 - ERROR - Failed to add post | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'match') (userId: 4)
+10.2.2023, 14:01:39 - INFO - Server is running on port: 3030 
+10.2.2023, 14:01:39 - INFO - New connected socket [id: _tZbHpIJhWAZQcccAAAB] 
+10.2.2023, 14:02:58 - INFO - Server is running on port: 3030 
+10.2.2023, 14:02:58 - INFO - New connected socket [id: yyrKDQNRC_mLPJhoAAAB] 
+10.2.2023, 14:03:29 - INFO - Server is running on port: 3030 
+10.2.2023, 14:03:29 - INFO - New connected socket [id: AMZhHlfEmCbSBNIsAAAB] 
+10.2.2023, 14:05:35 - INFO - Server is running on port: 3030 
+10.2.2023, 14:05:36 - INFO - New connected socket [id: OnRYnhTBxaNsnhBiAAAB] 
+10.2.2023, 14:05:43 - ERROR - cannot insert post | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'map') (userId: 4)
+10.2.2023, 14:05:43 - ERROR - Failed to add post | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'map') (userId: 4)
+10.2.2023, 14:07:10 - INFO - Server is running on port: 3030 
+10.2.2023, 14:07:11 - INFO - New connected socket [id: 1Ypxgtl_-w8z_6OnAAAB] 
+10.2.2023, 14:07:34 - INFO - Server is running on port: 3030 
+10.2.2023, 14:07:34 - INFO - New connected socket [id: IELcd8MEiZtGxGW2AAAB] 
+10.2.2023, 14:07:45 - ERROR - cannot send mention notifications | TypeError: Cannot read properties of undefined (reading 'map') (userId: 4)
+10.2.2023, 14:07:45 - ERROR - cannot insert post | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'map') (userId: 4)
+10.2.2023, 14:07:45 - ERROR - Failed to add post | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'map') (userId: 4)
+10.2.2023, 14:08:46 - INFO - Server is running on port: 3030 
+10.2.2023, 14:08:47 - INFO - New connected socket [id: 6PYWY5GkP4eMhog2AAAB] 
+10.2.2023, 14:08:48 - INFO - Server is running on port: 3030 
+10.2.2023, 14:08:48 - INFO - New connected socket [id: _2uynLrmtkNlBL6sAAAB] 
+10.2.2023, 14:09:04 - ERROR - cannot insert post | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'length') (userId: 4)
+10.2.2023, 14:09:04 - ERROR - Failed to add post | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'length') (userId: 4)
+10.2.2023, 14:10:23 - INFO - Server is running on port: 3030 
+10.2.2023, 14:10:23 - INFO - New connected socket [id: EGYz37L8lJu1kecZAAAB] 
+10.2.2023, 14:10:48 - INFO - Server is running on port: 3030 
+10.2.2023, 14:10:48 - INFO - New connected socket [id: zSBulZI7vF1-eXjFAAAB] 
+10.2.2023, 14:10:59 - ERROR - cannot send mention notifications | TypeError: Cannot read properties of undefined (reading 'length') (userId: 4)
+10.2.2023, 14:10:59 - ERROR - cannot insert post | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'length') (userId: 4)
+10.2.2023, 14:10:59 - ERROR - Failed to add post | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'length') (userId: 4)
+10.2.2023, 14:12:30 - INFO - Server is running on port: 3030 
+10.2.2023, 14:12:31 - INFO - New connected socket [id: P28FCNP3NUYWz7l7AAAB] 
+10.2.2023, 14:12:40 - ERROR - cannot send mention notifications | TypeError: Cannot read properties of undefined (reading 'length') (userId: 4)
+10.2.2023, 14:12:40 - ERROR - cannot insert post | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'length') (userId: 4)
+10.2.2023, 14:12:40 - ERROR - Failed to add post | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'length') (userId: 4)
+10.2.2023, 14:15:37 - INFO - Server is running on port: 3030 
+10.2.2023, 14:15:38 - INFO - New connected socket [id: mZJ77S_oQhCPF64NAAAB] 
+10.2.2023, 14:15:58 - ERROR - cannot insert post | Failed to commit transaction: ReferenceError: id is not defined (userId: 4)
+10.2.2023, 14:15:58 - ERROR - Failed to add post | Failed to commit transaction: ReferenceError: id is not defined (userId: 4)
+10.2.2023, 14:16:15 - INFO - Server is running on port: 3030 
+10.2.2023, 14:16:15 - INFO - New connected socket [id: pAea5LU5XZ6vYw0MAAAB] 
+10.2.2023, 14:20:28 - INFO - Server is running on port: 3030 
+10.2.2023, 14:20:29 - INFO - New connected socket [id: NNkXdP9QBugRd1AKAAAB] 
+10.2.2023, 14:21:26 - INFO - Server is running on port: 3030 
+10.2.2023, 14:21:27 - INFO - New connected socket [id: M-NrNGPvh6z-ZgKsAAAB] 
+10.2.2023, 14:24:16 - INFO - Server is running on port: 3030 
+10.2.2023, 14:24:17 - INFO - New connected socket [id: vDZuJWBM0Ma0dmKGAAAB] 
+10.2.2023, 14:24:46 - INFO - Server is running on port: 3030 
+10.2.2023, 14:24:46 - INFO - New connected socket [id: XwwSCd0BjFOcGrLVAAAB] 
+10.2.2023, 14:26:08 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 14:26:09 - INFO - New connected socket [id: 32J7EkcHAyHDn_NsAAAD] 
+10.2.2023, 14:26:51 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 14:26:53 - INFO - New connected socket [id: HY0ff5yEsiyNLArAAAAF] 
+10.2.2023, 14:27:06 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 14:27:07 - INFO - New connected socket [id: UG74v8WCvhlCc-nJAAAH] 
+10.2.2023, 14:27:38 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 14:27:39 - INFO - New connected socket [id: ChWNrZPM_GLc16ZVAAAJ] 
+10.2.2023, 14:30:14 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 14:30:16 - INFO - New connected socket [id: kMwMJ0sH2irIz40HAAAL] 
+10.2.2023, 14:30:18 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 14:30:18 - INFO - New connected socket [id: ilEsacqXgNq5SQMMAAAN] 
+10.2.2023, 14:31:04 - INFO - Server is running on port: 3030 
+10.2.2023, 14:31:04 - INFO - New connected socket [id: B_qFfI_Cq1WzConGAAAB] 
+10.2.2023, 14:32:12 - INFO - Server is running on port: 3030 
+10.2.2023, 14:32:13 - INFO - New connected socket [id: pZOnm6VyYYlfQOGOAAAB] 
+10.2.2023, 14:32:17 - INFO - Server is running on port: 3030 
+10.2.2023, 14:32:18 - INFO - New connected socket [id: OWZrFrR-M0eOgaefAAAB] 
+10.2.2023, 14:33:05 - INFO - Server is running on port: 3030 
+10.2.2023, 14:33:05 - INFO - New connected socket [id: ROFIQ4AyA2xuaHFeAAAB] 
+10.2.2023, 14:34:02 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 14:34:03 - INFO - New connected socket [id: PWRL-MOIC5tGNBCaAAAD] 
+10.2.2023, 14:34:08 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 14:34:09 - INFO - New connected socket [id: Wp3dDFMjBnB1VIbDAAAF] 
+10.2.2023, 14:34:41 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 14:34:42 - INFO - New connected socket [id: SDtNss4BqinG32iBAAAH] 
+10.2.2023, 14:35:01 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 14:35:01 - INFO - New connected socket [id: Txaf4_Q5-4xzCanzAAAJ] 
+10.2.2023, 14:35:29 - INFO - Server is running on port: 3030 
+10.2.2023, 14:35:29 - INFO - New connected socket [id: AkkYNVOLSSGqxHaIAAAB] 
+10.2.2023, 14:35:49 - INFO - Server is running on port: 3030 
+10.2.2023, 14:35:50 - INFO - New connected socket [id: Kjh4OOtVZ34Gcll1AAAB] 
+10.2.2023, 14:35:58 - INFO - Server is running on port: 3030 
+10.2.2023, 14:35:58 - INFO - New connected socket [id: JQE1gT_UU9N6_uMeAAAB] 
+10.2.2023, 14:41:09 - INFO - Server is running on port: 3030 
+10.2.2023, 14:41:10 - INFO - New connected socket [id: LRrU7Kj8BDbovbe_AAAB] 
+10.2.2023, 14:48:32 - INFO - Server is running on port: 3030 
+10.2.2023, 14:48:32 - INFO - New connected socket [id: xqrQIhrb9p1z-woWAAAB] 
+10.2.2023, 14:50:22 - INFO - Server is running on port: 3030 
+10.2.2023, 14:50:22 - INFO - New connected socket [id: POMrqE80V724ndvOAAAB] 
+10.2.2023, 14:50:27 - INFO - Server is running on port: 3030 
+10.2.2023, 14:50:27 - INFO - New connected socket [id: CKveiVEoXgIlQXbGAAAB] 
+10.2.2023, 14:52:43 - INFO - Server is running on port: 3030 
+10.2.2023, 14:52:44 - INFO - New connected socket [id: djICdVSYjqmNmlKCAAAB] 
+10.2.2023, 14:57:12 - INFO - Server is running on port: 3030 
+10.2.2023, 14:57:12 - INFO - New connected socket [id: rFtllrWWG-1j2zQtAAAB] 
+10.2.2023, 14:57:24 - INFO - Server is running on port: 3030 
+10.2.2023, 14:57:25 - INFO - New connected socket [id: cYiS16gZby-O0ZzLAAAB] 
+10.2.2023, 14:59:32 - INFO - Server is running on port: 3030 
+10.2.2023, 14:59:33 - INFO - New connected socket [id: JHLzyOvOM7DTSxvyAAAB] 
+10.2.2023, 15:03:11 - INFO - Server is running on port: 3030 
+10.2.2023, 15:03:11 - INFO - New connected socket [id: YpV-VGtI8GnUvQXhAAAB] 
+10.2.2023, 15:03:31 - INFO - Server is running on port: 3030 
+10.2.2023, 15:03:32 - INFO - New connected socket [id: UMCxgGjrq2KLW-b7AAAB] 
+10.2.2023, 15:04:48 - INFO - Server is running on port: 3030 
+10.2.2023, 15:04:49 - INFO - New connected socket [id: lh5NOLmQEF5BwtdnAAAB] 
+10.2.2023, 15:05:21 - ERROR - cannot insert tag undefined | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: tags.name (userId: 4)
+10.2.2023, 15:05:21 - ERROR - cannot insert post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: tags.name (userId: 4)
+10.2.2023, 15:05:21 - ERROR - Failed to add post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: tags.name (userId: 4)
+10.2.2023, 15:05:55 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 15:05:56 - INFO - New connected socket [id: jSK9di4WVNtSzsk_AAAD] 
+10.2.2023, 15:06:30 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 15:06:31 - INFO - New connected socket [id: xey5RAfb62y-gZLbAAAF] 
+10.2.2023, 15:07:35 - INFO - Server is running on port: 3030 
+10.2.2023, 15:07:35 - INFO - New connected socket [id: scsEcz9CcZ_JsfjEAAAB] 
+10.2.2023, 15:07:46 - ERROR - cannot insert tag undefined | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: tags.name (userId: 4)
+10.2.2023, 15:07:46 - ERROR - cannot insert post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: tags.name (userId: 4)
+10.2.2023, 15:07:46 - ERROR - Failed to add post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: tags.name (userId: 4)
+10.2.2023, 15:09:05 - INFO - Server is running on port: 3030 
+10.2.2023, 15:09:06 - INFO - New connected socket [id: eZ7F0bcwIaXAr_uhAAAB] 
+10.2.2023, 15:09:08 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 15:09:09 - INFO - New connected socket [id: 8VJF-Xm6MQ2BZmTLAAAD] 
+10.2.2023, 15:09:18 - ERROR - cannot insert tag undefined | Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: tags.name (userId: 4)
+10.2.2023, 15:09:18 - ERROR - cannot insert post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: tags.name (userId: 4)
+10.2.2023, 15:09:18 - ERROR - Failed to add post | Failed to commit transaction: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: tags.name (userId: 4)
+10.2.2023, 15:10:57 - INFO - Server is running on port: 3030 
+10.2.2023, 15:10:58 - INFO - New connected socket [id: G1NcWvoFVkhnN86zAAAB] 
+10.2.2023, 15:14:57 - INFO - Server is running on port: 3030 
+10.2.2023, 15:14:58 - INFO - New connected socket [id: YWelln27w2KXipthAAAB] 
+10.2.2023, 15:14:59 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 15:15:00 - INFO - New connected socket [id: og5oktUdx_Dyvu4dAAAD] 
+10.2.2023, 15:16:01 - INFO - Server is running on port: 3030 
+10.2.2023, 15:16:02 - INFO - Server is running on port: 3030 
+10.2.2023, 15:16:03 - INFO - New connected socket [id: h3AgqIuAR7RlTVLAAAAB] 
+10.2.2023, 15:16:08 - ERROR - cannot insert comment | Failed to commit transaction: TypeError: text.match is not a function 
+10.2.2023, 15:16:08 - ERROR - Failed to add comment | Failed to commit transaction: TypeError: text.match is not a function 
+10.2.2023, 15:16:52 - INFO - Server is running on port: 3030 
+10.2.2023, 15:16:53 - INFO - New connected socket [id: cdGjeXOovhawfouDAAAB] 
+10.2.2023, 15:19:14 - INFO - Server is running on port: 3030 
+10.2.2023, 15:19:15 - INFO - New connected socket [id: NrrjwFRS5J6z0ndVAAAB] 
+10.2.2023, 15:22:33 - INFO - Server is running on port: 3030 
+10.2.2023, 15:22:33 - INFO - New connected socket [id: Xbwv75eAqmXqYRhAAAAB] 
+10.2.2023, 15:24:35 - INFO - Server is running on port: 3030 
+10.2.2023, 15:24:37 - INFO - New connected socket [id: K3Pq2oHdaGQWd2oBAAAB] 
+10.2.2023, 15:24:56 - INFO - Server is running on port: 3030 
+10.2.2023, 15:24:57 - INFO - New connected socket [id: tOj7Tg2S0PpWXHT-AAAB] 
+10.2.2023, 15:56:01 - INFO - Server is running on port: 3030 
+10.2.2023, 15:56:02 - INFO - New connected socket [id: F_w_F9isr2aANTMIAAAB] 
+10.2.2023, 16:01:34 - INFO - Server is running on port: 3030 
+10.2.2023, 16:01:35 - INFO - New connected socket [id: DyA5Car0NZUn1HaGAAAB] 
+10.2.2023, 16:04:57 - INFO - Server is running on port: 3030 
+10.2.2023, 16:04:59 - INFO - Server is running on port: 3030 
+10.2.2023, 16:04:59 - INFO - New connected socket [id: P9ZGJ9LXs63t50EyAAAB] 
+10.2.2023, 16:05:32 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 16:05:33 - INFO - New connected socket [id: nwavCdVg0lztUTbmAAAD] 
+10.2.2023, 16:05:53 - INFO - Server is running on port: 3030 
+10.2.2023, 16:05:54 - INFO - New connected socket [id: eEHbPay1kDNDFqz8AAAB] 
+10.2.2023, 16:06:05 - INFO - Server is running on port: 3030 
+10.2.2023, 16:06:06 - INFO - New connected socket [id: CBJY0tfGErRyd74nAAAB] 
+10.2.2023, 16:06:06 - INFO - Server is running on port: 3030 
+10.2.2023, 16:06:07 - INFO - New connected socket [id: aP0BwZERYr9riF4CAAAB] 
+10.2.2023, 16:08:00 - INFO - Server is running on port: 3030 
+10.2.2023, 16:08:01 - INFO - New connected socket [id: tzuoRwHyqJuwLzqgAAAB] 
+10.2.2023, 16:09:08 - INFO - Server is running on port: 3030 
+10.2.2023, 16:09:10 - INFO - New connected socket [id: PgJ9eaouaBC2GyHLAAAB] 

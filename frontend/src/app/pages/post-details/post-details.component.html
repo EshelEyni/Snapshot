@@ -24,7 +24,7 @@
     </section>
 
     <div class="comment-list-container">
-      <comment-list *ngIf="post.comments.length; else noComments" [comments]="comments" [loggedinUser]="loggedinUser"
+      <comment-list *ngIf="post.comments.length; else noComments" [comments]="post.comments" [loggedinUser]="loggedinUser"
         [type]="'post-details'"  (commentRemoved)="onRemoveComment($event)"></comment-list>
       <ng-template #noComments>
         <div class="no-comments-msg-container">

@@ -10,12 +10,10 @@ import { Observable, lastValueFrom, firstValueFrom } from 'rxjs';
 import { HttpService } from './http.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class CommentService {
-
-  constructor() { }
+  constructor() {}
 
   userSerivce = inject(UserService);
   storageService = inject(StorageService);
@@ -26,57 +24,37 @@ export class CommentService {
 
   baseUrl = this.httpService.getBaseUrl();
 
-  public async loadComments(
-    filterBy: {
-      postId: number,
-      userId: number | null
-      , type: string
-    }
-  ): Promise<Comment[]> {
-    let options = { params: {} };
-    if (filterBy) {
-      options.params = {
-        postId: filterBy.postId,
-        userId: filterBy.userId,
-        type: filterBy.type,
-      }
-    };
-
-    const comments = await lastValueFrom(
-      this.http.get<Comment[]>(`${this.baseUrl}/comment`, options)
-    );
-
-    return comments;
-  };
-
-
   public async remove(commentId: number): Promise<{ msg: string } | void> {
-    const options = { withCredentials: true }
-    const res = await firstValueFrom(
+    const options = { withCredentials: true };
+    const res = (await firstValueFrom(
       this.http.delete(`${this.baseUrl}/comment/${commentId}`, options)
-    ) as unknown as { msg: string };
+    )) as unknown as { msg: string };
 
     return res;
-  };
+  }
 
   public save(comment: Comment): Promise<{ savedComment: Comment } | void> {
     return comment.id ? this._update(comment) : this._add(comment);
-  };
+  }
 
-  private async _update(comment: Comment): Promise<{ savedComment: Comment } | void> {
-    const res = await firstValueFrom(
+  private async _update(
+    comment: Comment
+  ): Promise<{ savedComment: Comment } | void> {
+    const res = (await firstValueFrom(
       this.http.put(`${this.baseUrl}/comment/${comment.id}`, comment)
-    ) as { savedComment: Comment };
+    )) as { savedComment: Comment };
     return res;
-  };
+  }
 
-  private async _add(comment: Comment): Promise<{ savedComment: Comment } | void> {
-    const res = await firstValueFrom(
+  private async _add(
+    comment: Comment
+  ): Promise<{ savedComment: Comment } | void> {
+    const res = (await firstValueFrom(
       this.http.post(`${this.baseUrl}/comment`, comment)
-    ) as { savedComment: Comment };
+    )) as { savedComment: Comment };
 
     return res;
-  };
+  }
 
   public getEmptyComment(): Comment {
     return {
@@ -89,31 +67,27 @@ export class CommentService {
       likeSum: 0,
       isLiked: false,
     };
-  };
+  }
 
-  public async checkIsLiked(userId: number, commentId: number): Promise<boolean> {
-    const options = { params: { userId, commentId, } };
-
-    const isLiked = await firstValueFrom(
-      this.http.get(`${this.baseUrl}/like/comment`, options),
-    ) as Array<any>;
-
-    return isLiked.length > 0;
-  };
-
-  public async toggleLike(isLiked: boolean, details: { user: MiniUser, comment: Comment }): Promise<void> {
-
+  public async toggleLike(
+    isLiked: boolean,
+    details: { user: MiniUser; comment: Comment }
+  ): Promise<void> {
+    const options = { withCredentials: true };
     if (isLiked) {
       await firstValueFrom(
         this.http.delete(`${this.baseUrl}/like/comment`, {
-          body: { userId: details.user.id, commentId: details.comment.id }
-        }),
+          ...options,
+          body: { userId: details.user.id, commentId: details.comment.id },
+        })
       );
     } else {
       await firstValueFrom(
-        this.http.post(`${this.baseUrl}/like/comment`,
-          { user: details.user, comment: details.comment }),
+        this.http.post(`${this.baseUrl}/like/comment`, {
+          user: details.user,
+          comment: details.comment,
+        }, options)
       );
-    };
-  };
-};
+    }
+  }
+}
