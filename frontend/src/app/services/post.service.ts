@@ -138,42 +138,24 @@ export class PostService {
     };
   }
 
-  public async getUsersWhoLiked(postId: number): Promise<MiniUser[]> {
-    const options = {
-      withCredentials: true,
-      params: {
-        postId,
-      },
-    };
+  public async getUsersWhoLikedPost(postId: number): Promise<MiniUser[]> {
+    const options = { withCredentials: true };
 
     const likes = await firstValueFrom(
-      this.http.get<MiniUser[]>(`${this.baseUrl}/like/post/`, options)
+      this.http.get<MiniUser[]>(`${this.baseUrl}/like/post/${postId}`, options)
     );
     return likes;
   }
 
-  public async toggleLike(
-    isLiked: boolean,
-    details: { user: MiniUser; post: Post }
-  ): Promise<void> {
+  public async toggleLike(isLiked: boolean, post: Post): Promise<void> {
     const options = { withCredentials: true };
     if (isLiked) {
       await firstValueFrom(
-        this.http.delete(`${this.baseUrl}/like/post`, {
-          ...options,
-          body: { postId: details.post.id, userId: details.user.id },
-        })
+        this.http.delete(`${this.baseUrl}/like/post/${post.id}`, options)
       );
     } else {
       await firstValueFrom(
-        this.http.post(
-          `${this.baseUrl}/like/post`,
-          {
-            post: details.post,
-            user: details.user,
-          },
-          options
-        )
+        this.http.post(`${this.baseUrl}/like/post`, post, options)
       );
     }
   }

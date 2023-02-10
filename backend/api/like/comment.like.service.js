@@ -1,103 +1,94 @@
-const logger = require('../../services/logger.service')
-const db = require('../../database');
-const noitificationService = require('../notification/notification.service');
+const logger = require("../../services/logger.service");
+const db = require("../../database");
+const noitificationService = require("../notification/notification.service");
 
-
-async function getLikesForComment(commentId, userId) {
-    try {
-        if (userId) {
-            const like = await db.query(`select * from commentsLikedBy where commentId = $commentId and userId = $userId`, {
-                $commentId: commentId,
-                $userId: userId
-            });
-            return like
-        } else {
-
-            const likes = await db.query(`select * from commentsLikedBy where commentId = $commentId`, {
-                $commentId: commentId
-            });
-
-            likes.forEach(like => {
-                like.id = like.userId
-                delete like.userId
-            })
-
-            return likes
+async function addLikeToComment(comment, loggedinUserId) {
+  try {
+    return await db.txn(async () => {
+      const id = await db.exec(
+        `INSERT INTO commentsLikedBy (commentId, userId ) 
+            VALUES ($commentId, $userId)`,
+        {
+          $commentId: comment.id,
+          $userId: loggedinUserId,
         }
-    } catch (err) {
-        logger.error('cannot find likes', err)
-        throw err
-    }
+      );
+
+      await db.exec(
+        `UPDATE comments SET likeSum = likeSum + 1 WHERE id = $id`,
+        {
+          $id: comment.id,
+        }
+      );
+
+      const posts = await db.query(
+        `SELECT id, userId FROM posts WHERE id = (SELECT postId FROM comments WHERE id = $commentId)`,
+        {
+          $commentId: comment.id,
+        }
+      );
+      const post = posts[0];
+
+      if (comment.by.id !== loggedinUserId) {
+        const noitification = {
+          type: "like-comment",
+          byUserId: loggedinUserId,
+          userId: comment.by.id,
+          entityId: id,
+          postId: post.id,
+        };
+        await noitificationService.add(noitification);
+      }
+
+      return id;
+    });
+  } catch (err) {
+    logger.error("cannot add like", err);
+    throw err;
+  }
 }
 
+async function deleteLikeToComment(commentId, loggedinUserId) {
+  try {
+    await db.txn(async () => {
+      const likes = await db.query(
+        `SELECT id FROM commentsLikedBy WHERE commentId = $commentId AND userId = $userId`,
+        {
+          $commentId: commentId,
+          $userId: loggedinUserId,
+        }
+      );
+      const entityId = likes[0].id;
 
-async function addLikeToComment({ comment, user }) {
-    try {
-        return await db.txn(async () => {
+      await db.exec(
+        `delete FROM commentsLikedBy WHERE commentId = $commentId AND userId = $userId`,
+        {
+          $commentId: commentId,
+          $userId: loggedinUserId,
+        }
+      );
 
-            const id = await db.exec(
-                `insert into commentsLikedBy (commentId, userId, username, fullname, imgUrl ) 
-            values ($commentId, $userId, $username, $fullname, $imgUrl)`, {
-                $commentId: comment.id,
-                $userId: user.id,
-                $username: user.username,
-                $fullname: user.fullname,
-                $imgUrl: user.imgUrl
-            });
+      await db.exec(
+        `UPDATE comments SET likeSum = likeSum - 1 WHERE id = $id`,
+        {
+          $id: commentId,
+        }
+      );
 
-            const posts = await db.query(
-                `select id, userId from posts where id = (select postId from comments where id = $commentId)`, {
-                $commentId: comment.id
-            });
-            const post = posts[0]
-
-            if (comment.by.id !== user.id) {
-                const noitification = {
-                    type: 'like-comment',
-                    byUserId: user.id,
-                    userId: comment.by.id,
-                    entityId: id,
-                    postId: post.id,
-                }
-                await noitificationService.add(noitification)
-            }
-
-            return id
-        })
-    } catch (err) {
-        logger.error('cannot add like', err)
-        throw err
-    }
-}
-
-async function deleteLikeToComment({ commentId, userId }) {
-    try {
-        await db.txn(async () => {
-
-            const entity = await db.query(
-                `select id from commentsLikedBy where commentId = $commentId and userId = $userId`, {
-                $commentId: commentId,
-                $userId: userId
-            });
-            const entityId = entity[0].id
-
-            await db.exec(`delete from commentsLikedBy where commentId = $commentId and userId = $userId`, {
-                $commentId: commentId,
-                $userId: userId
-            });
-
-            await db.exec(`delete from notifications where entityId = $entityId and type = 'like-comment'`, {
-                $entityId: entityId,
-            })
-        })
-    } catch (err) {
-        logger.error('cannot delete like', err)
-        throw err
-    }
+      await db.exec(
+        `delete FROM notifications WHERE entityId = $entityId AND type = 'like-comment'`,
+        {
+          $entityId: entityId,
+        }
+      );
+    });
+  } catch (err) {
+    logger.error("cannot delete like", err);
+    throw err;
+  }
 }
 
 module.exports = {
-    getLikesForComment,
-    addLikeToComment,
-    deleteLikeToComment
-}
+  addLikeToComment,
+  deleteLikeToComment,
+};

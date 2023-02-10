@@ -40,9 +40,6 @@ CREATE TABLE IF NOT EXISTS "postsLikedBy"(
     "id" INTEGER NOT NULL UNIQUE,
     "postId" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
-    "username" TEXT NOT NULL,
-    "fullname" TEXT NOT NULL,
-    "imgUrl" TEXT NOT NULL,
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("postId") references "posts"("id") foreign key ("userId") references "users"("id")
 );
 
@@ -61,9 +58,6 @@ CREATE TABLE IF NOT EXISTS "commentsLikedBy"(
     "id" INTEGER NOT NULL UNIQUE,
     "commentId" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
-    "username" TEXT NOT NULL,
-    "fullname" TEXT NOT NULL,
-    "imgUrl" TEXT NOT NULL,
     PRIMARY KEY("id" AUTOINCREMENT) foreign key ("commentId") references "comments"("id") foreign key ("userId") references "users"("id")
 );
 

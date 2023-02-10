@@ -2,69 +2,50 @@ const logger = require("../../services/logger.service");
 const db = require("../../database");
 const noitificationService = require("../notification/notification.service");
 
-async function getLikesForPost({ postId, userId }) {
+async function getLikesForPost(postId) {
   try {
-    if (userId) {
-      const likes = await db.query(
-        `select * from postsLikedBy where postId = $postId and userId = $userId`,
-        {
-          $postId: postId,
-          $userId: userId,
-        }
-      );
+    const likes = await db.query(
+      `SELECT u.id, u.username, u.fullname, u.imgUrl FROM postsLikedBy l
+       LEFT JOIN users u ON u.id = l.userId
+        WHERE postId = $postId`,
+      {
+        $postId: postId,
+      }
+    );
 
-      //   const likes = await db.query(
-      //     `SELECT id, username, fullname, imgUrl FROM users WHERE id IN (SELECT userId FROM postsLikedBy WHERE postId = $postId)`,
-      //     {
-      //       $postId: postId,
-      //     }
-      //   );
-
-      return likes;
-    } else {
-      const likes = await db.query(
-        `select * from postsLikedBy where postId = $postId`,
-        {
-          $postId: postId,
-        }
-      );
-
-      likes.forEach((like) => {
-        like.id = like.userId;
-        delete like.userId;
-      });
-      return likes;
-    }
+    return likes;
   } catch (err) {
     logger.error("cannot find likes", err);
     throw err;
   }
 }
 
-async function addLikeToPost( post, loggedinUser) {
+async function addLikeToPost(post, loggedinUserId) {
   try {
     return await db.txn(async () => {
       const id = await db.exec(
-        `insert into postsLikedBy (postId, userId) 
-            values ($postId, $userId)`,
+        `INSERT INTO postsLikedBy (postId, userId) 
+            VALUES ($postId, $userId)`,
         {
           $postId: post.id,
-          $userId: loggedinUser.id,
+          $userId: loggedinUserId,
         }
       );
 
-      if (post.by.id !== loggedinUser.id) {
+      await db.exec(`UPDATE posts SET likeSum = likeSum + 1 WHERE id = $postId`, {
+        $postId: post.id,
+      });
+
+      if (post.by.id !== loggedinUserId) {
         const noitification = {
           type: "like-post",
-          byUserId: loggedinUser.id,
+          byUserId: loggedinUserId,
           userId: post.by.id,
           entityId: id,
           postId: post.id,
         };
         await noitificationService.add(noitification);
-      } 
-
-      return id;
+      }
     });
   } catch (err) {
     logger.error("cannot add like", err);
@@ -72,28 +53,32 @@ async function addLikeToPost( post, loggedinUser) {
   }
 }
 
-async function deleteLikeToPost({ postId, userId }) {
+async function deleteLikeToPost(postId, userId) {
   try {
     await db.txn(async () => {
-      const entity = await db.query(
-        `select id from postsLikedBy where postId = $postId and userId = $userId`,
+      const likes = await db.query(
+        `SELECT id FROM postsLikedBy WHERE postId = $postId AND userId = $userId`,
         {
           $postId: postId,
           $userId: userId,
         }
       );
-      const entityId = entity[0].id;
+      const entityId = likes[0].id;
 
       await db.exec(
-        `delete from postsLikedBy where postId = $postId and userId = $userId`,
+        `delete FROM postsLikedBy WHERE postId = $postId AND userId = $userId`,
         {
           $postId: postId,
           $userId: userId,
         }
       );
 
+      await db.exec(`UPDATE posts SET likeSum = likeSum - 1 WHERE id = $postId`, {
+        $postId: postId,
+      });
+
       await db.exec(
-        `delete from notifications where entityId = $entityId and type = 'like-post'`,
+        `delete FROM notifications WHERE entityId = $entityId AND type = 'like-post'`,
         {
           $entityId: entityId,
         }

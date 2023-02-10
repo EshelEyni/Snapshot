@@ -10,27 +10,17 @@ const {
 } = require("./post.like.controller");
 
 const {
-  getLikesForComment,
   addLikeToComment,
   deleteLikeToComment,
 } = require("./comment.like.controller");
 
-const {
-  getLikesForStory,
-  addLikeToStory,
-  deleteLikeToStory,
-} = require("./story.like.controller.js");
 
-router.get("/post", requireAuth, getLikesForPost);
+router.get("/post/:id", requireAuth, getLikesForPost);
 router.post("/post", requireAuth, addLikeToPost);
-router.delete("/post", requireAuth, deleteLikeToPost);
+router.delete("/post/:id", requireAuth, deleteLikeToPost);
 
-router.get("/comment", requireAuth, getLikesForComment);
 router.post("/comment", requireAuth, addLikeToComment);
-router.delete("/comment", requireAuth, deleteLikeToComment);
+router.delete("/comment/:id", requireAuth, deleteLikeToComment);
 
-router.get("/story/:id", requireAuth, getLikesForStory);
-router.post("/story", requireAuth, addLikeToStory);
-router.delete("/story", requireAuth, deleteLikeToStory);
 
 module.exports = router;

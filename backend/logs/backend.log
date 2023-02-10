@@ -2710,3 +2710,108 @@
 11.2.2023, 0:01:56 - INFO - New connected socket [id: ohIP_5RJGNBp-FmtAAAB] 
 11.2.2023, 0:02:11 - INFO - Server is running on port: 3030 
 11.2.2023, 0:02:12 - INFO - New connected socket [id: HpaiSZZOBh9SuKrkAAAB] 
+11.2.2023, 0:44:50 - INFO - Socket disconnected [id: undefined] 
+11.2.2023, 0:44:51 - INFO - New connected socket [id: RDPFHKwdmtpv0wmtAAAD] 
+11.2.2023, 0:45:39 - INFO - Server is running on port: 3030 
+11.2.2023, 0:45:39 - INFO - New connected socket [id: -KQIsEBzIx_22YHcAAAB] 
+11.2.2023, 0:46:10 - INFO - Socket disconnected [id: undefined] 
+11.2.2023, 0:46:11 - INFO - New connected socket [id: 0-c04H8nQdcPWS7zAAAD] 
+11.2.2023, 0:49:12 - INFO - Socket disconnected [id: undefined] 
+11.2.2023, 0:49:13 - INFO - New connected socket [id: wFbN6DGIe_RH0rW1AAAF] 
+11.2.2023, 0:51:05 - INFO - Server is running on port: 3030 
+11.2.2023, 0:51:06 - INFO - New connected socket [id: CZs-WqsaZSxkqOxTAAAB] 
+11.2.2023, 0:51:17 - INFO - Server is running on port: 3030 
+11.2.2023, 0:51:18 - INFO - New connected socket [id: rScIEFnDXAGYqWV5AAAB] 
+11.2.2023, 0:51:27 - INFO - Server is running on port: 3030 
+11.2.2023, 0:51:28 - INFO - New connected socket [id: e2rQ5Pevw4mqSYrFAAAB] 
+11.2.2023, 0:51:34 - INFO - Server is running on port: 3030 
+11.2.2023, 0:51:35 - INFO - New connected socket [id: 3Dmu5wrF_Y4KCtm1AAAB] 
+11.2.2023, 0:51:39 - ERROR - cannot find likes | ReferenceError: userId is not defined (userId: 4)
+11.2.2023, 0:52:44 - INFO - Server is running on port: 3030 
+11.2.2023, 0:52:45 - INFO - New connected socket [id: ZB4BC9w1QGUSOyt6AAAB] 
+11.2.2023, 0:52:48 - ERROR - cannot find likes | ReferenceError: userId is not defined (userId: 4)
+11.2.2023, 0:54:15 - INFO - Server is running on port: 3030 
+11.2.2023, 0:54:15 - INFO - New connected socket [id: W124hWGBGjZ8JMVDAAAB] 
+11.2.2023, 0:54:17 - ERROR - cannot find likes | ReferenceError: userId is not defined (userId: 4)
+11.2.2023, 0:57:20 - INFO - Server is running on port: 3030 
+11.2.2023, 0:57:21 - INFO - New connected socket [id: ybETA61yN1LlLz0GAAAB] 
+11.2.2023, 0:58:14 - INFO - Server is running on port: 3030 
+11.2.2023, 0:58:15 - INFO - New connected socket [id: SWkXvSm9naTCzcWaAAAB] 
+11.2.2023, 0:59:32 - INFO - Server is running on port: 3030 
+11.2.2023, 0:59:32 - INFO - New connected socket [id: kDsIkRgPpjdv7OlKAAAB] 
+11.2.2023, 0:59:40 - INFO - Server is running on port: 3030 
+11.2.2023, 0:59:41 - INFO - New connected socket [id: Npbqk_X4_-lgzUYXAAAB] 
+11.2.2023, 1:03:04 - INFO - Socket disconnected [id: undefined] 
+11.2.2023, 1:03:06 - INFO - New connected socket [id: JDvB_gvA4rk6YVTGAAAD] 
+11.2.2023, 1:04:03 - INFO - Server is running on port: 3030 
+11.2.2023, 1:04:04 - INFO - New connected socket [id: tgn_FzsUi9kudSKsAAAB] 
+11.2.2023, 1:06:41 - INFO - Server is running on port: 3030 
+11.2.2023, 1:06:41 - INFO - New connected socket [id: 7OY-8WIapfSaSODeAAAB] 
+11.2.2023, 1:07:07 - INFO - Server is running on port: 3030 
+11.2.2023, 1:07:08 - INFO - Server is running on port: 3030 
+11.2.2023, 1:07:09 - INFO - New connected socket [id: 4_4Zcg4j-ggYSR7YAAAB] 
+11.2.2023, 1:08:03 - INFO - Server is running on port: 3030 
+11.2.2023, 1:08:04 - INFO - New connected socket [id: Fcai0iN8jQbcYVOlAAAB] 
+11.2.2023, 1:08:29 - INFO - Server is running on port: 3030 
+11.2.2023, 1:08:29 - INFO - New connected socket [id: 7YAZz-Izu3LRdWX-AAAB] 
+11.2.2023, 1:11:26 - INFO - Server is running on port: 3030 
+11.2.2023, 1:11:27 - INFO - New connected socket [id: 54AmoG7VfasrrIybAAAB] 
+11.2.2023, 1:11:30 - INFO - Socket disconnected [id: undefined] 
+11.2.2023, 1:11:32 - INFO - New connected socket [id: kGCnlx766_4ZBvCTAAAD] 
+11.2.2023, 1:11:52 - INFO - Socket disconnected [id: undefined] 
+11.2.2023, 1:11:52 - INFO - New connected socket [id: KvzMIhsZb6aSyPfCAAAF] 
+11.2.2023, 1:11:56 - ERROR - cannot delete like | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') (userId: 4)
+11.2.2023, 1:11:57 - ERROR - cannot add like | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') (userId: 4)
+11.2.2023, 1:11:59 - INFO - Socket disconnected [id: undefined] 
+11.2.2023, 1:12:00 - INFO - New connected socket [id: 1L28uEX6eF3bsI88AAAH] 
+11.2.2023, 1:12:04 - ERROR - cannot delete like | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') (userId: 4)
+11.2.2023, 1:12:41 - INFO - Server is running on port: 3030 
+11.2.2023, 1:12:42 - INFO - New connected socket [id: q-lNuz-uCXSkmmAFAAAB] 
+11.2.2023, 1:12:43 - INFO - Socket disconnected [id: undefined] 
+11.2.2023, 1:12:43 - INFO - New connected socket [id: MUwagzpe5P8fxgkVAAAD] 
+11.2.2023, 1:12:47 - ERROR - cannot delete like | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') (userId: 4)
+11.2.2023, 1:13:44 - INFO - Server is running on port: 3030 
+11.2.2023, 1:13:45 - INFO - New connected socket [id: 3pF2OC_yX1zUGhU-AAAB] 
+11.2.2023, 1:13:46 - INFO - Socket disconnected [id: undefined] 
+11.2.2023, 1:13:47 - INFO - New connected socket [id: qIkPwI-ChSav6gpmAAAD] 
+11.2.2023, 1:13:51 - ERROR - cannot delete like | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') (userId: 4)
+11.2.2023, 1:14:06 - INFO - Server is running on port: 3030 
+11.2.2023, 1:14:07 - INFO - New connected socket [id: XyejnsCXGkfu5k7ZAAAB] 
+11.2.2023, 1:14:08 - INFO - Socket disconnected [id: undefined] 
+11.2.2023, 1:14:09 - INFO - New connected socket [id: fLNxwAahjtW8SkyUAAAD] 
+11.2.2023, 1:14:13 - ERROR - cannot add like | Failed to commit transaction: TypeError: Cannot read properties of undefined (reading 'id') (userId: 4)
+11.2.2023, 1:14:30 - INFO - Server is running on port: 3030 
+11.2.2023, 1:14:31 - INFO - New connected socket [id: E_1vS8fbwMGLIxMYAAAB] 
+11.2.2023, 1:14:38 - INFO - Server is running on port: 3030 
+11.2.2023, 1:14:38 - INFO - New connected socket [id: f2QftOtCYF4fD2EVAAAB] 
+11.2.2023, 1:14:56 - INFO - Server is running on port: 3030 
+11.2.2023, 1:14:56 - INFO - New connected socket [id: OAvngfXcOKJtKkapAAAB] 
+11.2.2023, 1:14:58 - INFO - Socket disconnected [id: undefined] 
+11.2.2023, 1:14:59 - INFO - New connected socket [id: u0mr3x7bYbmmomRYAAAD] 
+11.2.2023, 1:15:04 - INFO - Socket disconnected [id: undefined] 
+11.2.2023, 1:15:05 - INFO - New connected socket [id: GJYBPvH_65eveHQGAAAF] 
+11.2.2023, 1:15:08 - INFO - Socket disconnected [id: undefined] 
+11.2.2023, 1:15:09 - INFO - New connected socket [id: 1ZSIrFTcUxPjc0PyAAAH] 
+11.2.2023, 1:16:53 - INFO - Server is running on port: 3030 
+11.2.2023, 1:16:54 - INFO - New connected socket [id: rzgk2PokvvR-COCUAAAB] 
+11.2.2023, 1:17:01 - INFO - Server is running on port: 3030 
+11.2.2023, 1:17:01 - INFO - New connected socket [id: q78XJYqa1MIrOL0uAAAB] 
+11.2.2023, 1:17:21 - INFO - Server is running on port: 3030 
+11.2.2023, 1:17:21 - INFO - Server is running on port: 3030 
+11.2.2023, 1:17:21 - INFO - New connected socket [id: G9B4xOn4UZparj8XAAAB] 
+11.2.2023, 1:25:21 - INFO - Server is running on port: 3030 
+11.2.2023, 1:25:22 - INFO - New connected socket [id: zKwazboGBj6T18R1AAAB] 
+11.2.2023, 1:25:23 - INFO - Server is running on port: 3030 
+11.2.2023, 1:25:24 - INFO - New connected socket [id: 5boDxyJ3jnmYpGBmAAAB] 
+11.2.2023, 1:27:25 - INFO - Server is running on port: 3030 
+11.2.2023, 1:27:26 - INFO - New connected socket [id: qjZa5Dq6uhOAS8DdAAAB] 
+11.2.2023, 1:28:39 - INFO - Server is running on port: 3030 
+11.2.2023, 1:28:40 - INFO - New connected socket [id: Bw6rz3c4uM09Y7RJAAAB] 
+11.2.2023, 1:29:49 - INFO - Server is running on port: 3030 
+11.2.2023, 1:29:49 - INFO - New connected socket [id: O1KAWlAWpI7U0KIAAAAB] 
+11.2.2023, 1:30:29 - INFO - Server is running on port: 3030 
+11.2.2023, 1:30:30 - INFO - New connected socket [id: bEFecnwB4OvPmoUGAAAB] 
+11.2.2023, 1:30:45 - INFO - Socket disconnected [id: undefined] 
+11.2.2023, 1:30:47 - INFO - New connected socket [id: 52fYBejztfnNfOIZAAAD] 
+11.2.2023, 1:34:13 - INFO - Server is running on port: 3030 
+11.2.2023, 1:34:13 - INFO - New connected socket [id: b85QJotr_mnTgwGKAAAB] 

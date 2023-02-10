@@ -26,7 +26,7 @@ export class LikeModalComponent implements OnInit {
 
 
   async ngOnInit(): Promise<void> {
-    this.users = await this.postService.getUsersWhoLiked(this.post.id);
+    this.users = await this.postService.getUsersWhoLikedPost(this.post.id);
   };
 
   onCloseModal(): void {

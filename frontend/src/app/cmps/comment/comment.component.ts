@@ -8,11 +8,10 @@ import { Comment } from 'src/app/models/comment.model';
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.scss'],
   inputs: ['comment', 'type', 'loggedinUser'],
-  outputs: ['commentRemoved']
+  outputs: ['commentRemoved'],
 })
 export class CommentComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   commentService = inject(CommentService);
   commentRemoved = new EventEmitter<number>();
@@ -23,36 +22,38 @@ export class CommentComponent implements OnInit {
   isExpandTxt: boolean = false;
   isLongTxt!: boolean;
   isLiked: boolean = false;
-  loggedinUser !: User;
+  loggedinUser!: User;
   isUserComment: boolean = false;
   isCommentModalShown: boolean = false;
 
   async ngOnInit(): Promise<void> {
-    if(!this.comment) return;
+    if (!this.comment) return;
     this.isLongTxt = this.comment.text.length > 100;
     this.isLiked = this.comment.isLiked;
     this.isUserComment = this.loggedinUser.id === this.comment.by.id;
-  };
+  }
 
   async onToggleLike(): Promise<void> {
-    this.commentService.toggleLike(this.isLiked, { user: this.loggedinUser, comment: this.comment });
+    this.commentService.toggleLike(this.isLiked, this.comment);
     this.isLiked = !this.isLiked;
-    this.comment.likeSum = this.isLiked ? this.comment.likeSum + 1 : this.comment.likeSum - 1;
-  };
+    this.comment.likeSum = this.isLiked
+      ? this.comment.likeSum + 1
+      : this.comment.likeSum - 1;
+  }
 
   onToggleCommentModal(): void {
     this.isCommentModalShown = !this.isCommentModalShown;
-  };
+  }
 
   async onRemoveComment(): Promise<void> {
     const res = await this.commentService.remove(this.comment.id);
     if (res && res.msg === 'Comment deleted') {
       this.commentRemoved.emit(this.comment.id);
-    };
+    }
     this.onToggleCommentModal();
-  };
+  }
 
   onExpandTxt(): void {
     this.isExpandTxt = true;
-  };
-};
+  }
+}

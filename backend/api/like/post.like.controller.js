@@ -1,13 +1,9 @@
-const logger = require("../../services/logger.service");
 const likeService = require("./post.like.service");
 
 async function getLikesForPost(req, res) {
   try {
-    const loggedinUser = req.loggedinUser;
-    const likes = await likeService.getLikesForPost({
-      postId: req.query.postId,
-      userId: loggedinUser.id,
-    });
+    const postId = req.params.id;
+    const likes = await likeService.getLikesForPost(postId);
     res.send(likes);
   } catch (err) {
     res.status(500).send({ err: "Failed to get likes" });
@@ -16,10 +12,10 @@ async function getLikesForPost(req, res) {
 
 async function addLikeToPost(req, res) {
   try {
-    const { post } = req.body;
-    const loggedinUser = req.loggedinUser;
-    const id = await likeService.addLikeToPost(post, loggedinUser);
-    res.send({ id });
+    const post = req.body;
+    const loggedinUserId = req.loggedinUser.id;
+    await likeService.addLikeToPost(post, loggedinUserId);
+    res.send({ msg: "Added successfully" });
   } catch (err) {
     res.status(500).send({ err: "Failed to add like" });
   }
@@ -27,8 +23,9 @@ async function addLikeToPost(req, res) {
 
 async function deleteLikeToPost(req, res) {
   try {
-    const { postId, userId } = req.body;
-    await likeService.deleteLikeToPost({ postId, userId });
+    const postId = req.params.id;
+    const loggedinUserId = req.loggedinUser.id;
+    await likeService.deleteLikeToPost(postId, loggedinUserId);
     res.send({ msg: "Deleted successfully" });
   } catch (err) {
     res.status(500).send({ err: "Failed to delete like" });

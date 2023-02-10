@@ -55,28 +55,15 @@ export class CommentService {
     };
   }
 
-  public async toggleLike(
-    isLiked: boolean,
-    details: { user: MiniUser; comment: Comment }
-  ): Promise<void> {
+  public async toggleLike(isLiked: boolean, comment: Comment): Promise<void> {
     const options = { withCredentials: true };
     if (isLiked) {
       await firstValueFrom(
-        this.http.delete(`${this.baseUrl}/like/comment`, {
-          ...options,
-          body: { userId: details.user.id, commentId: details.comment.id },
-        })
+        this.http.delete(`${this.baseUrl}/like/comment/${comment.id}`, options)
       );
     } else {
       await firstValueFrom(
-        this.http.post(
-          `${this.baseUrl}/like/comment`,
-          {
-            user: details.user,
-            comment: details.comment,
-          },
-          options
-        )
+        this.http.post(`${this.baseUrl}/like/comment`, comment, options)
       );
     }
   }
