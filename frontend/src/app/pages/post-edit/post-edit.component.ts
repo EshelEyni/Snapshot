@@ -48,18 +48,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
   sub: Subscription | null = null;
   loggedinUser$: Observable<User | null>;
   loggedinUser!: User;
-  postImgs: PostCanvasImg[] = [
-    {
-      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1675638186/j3jrzzfo5qcvi210i6ba.webp',
-      x: 0,
-      y: 0,
-      width: 830,
-      height: 830,
-      aspectRatio: 'Original',
-      zoom: 0,
-      filter: 'normal',
-    },
-  ];
+  postImgs: PostCanvasImg[] = [];
 
   txt: string = '';
   location: postLocation = {
@@ -137,15 +126,11 @@ export class PostEditComponent implements OnInit, OnDestroy {
     this.isSaving = true;
     const postToSave = this.postService.getEmptyPost();
     const author = this.userService.getMiniUser(this.loggedinUser);
-
-    postToSave.imgUrls = this.postImgs.map((img) => img.url);
-
-    // await this.postService.convertCanvasImgsToImgUrls(
-    //   this.offScreenCanvas.nativeElement,
-    //   this.postImgs,
-    //   postToSave.imgUrls
-    // );
-
+    await this.postService.convertCanvasImgsToImgUrls(
+      this.offScreenCanvas.nativeElement,
+      this.postImgs,
+      postToSave.imgUrls
+    );
     postToSave.by = author;
     postToSave.location = this.location;
 

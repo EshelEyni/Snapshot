@@ -24,17 +24,6 @@ async function getUserById(req, res) {
     }
 }
 
-async function addUser(req, res) {
-    try {
-        const currUser = req.body
-        const user = await userService.add(currUser)
-        res.send({ user: user })
-    } catch (err) {
-        logger.error('Failed to add user', err)
-        res.status(500).send({ err: 'Failed to add user' })
-    }
-}
-
 async function updateUser(req, res) {
     try {
         const loggedinUser = req.loggedinUser
@@ -89,7 +78,6 @@ async function chekIfUsernameTaken(req, res) {
 module.exports = {
     queryUsers,
     getUserById,
-    addUser,
     deleteUser,
     updateUser,
     checkPassword,

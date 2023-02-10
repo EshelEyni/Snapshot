@@ -99,7 +99,7 @@ export class PostService {
     }
   }
 
-  public save(post: Post): Promise<number | void> | Observable<Post> {
+  public save(post: Post): Promise<void> | Observable<Post> {
     if (post.id) {
       return this._update(post);
     } else {
@@ -107,19 +107,16 @@ export class PostService {
     }
   }
 
-  private async _add(post: Post): Promise<number | void> {
+  private async _add(post: Post): Promise<void> {
     const options = { withCredentials: true };
     const res = (await firstValueFrom(
       this.http.post(`${this.baseUrl}/post`, post, options)
-    )) as { msg: string; id: number };
+    )) as Post;
 
-    if (res.msg === 'Post added') {
+    if (res) {
       const posts = this._posts$.getValue();
-      post.id = res.id;
-      posts.unshift(post);
+      posts.unshift(res);
       this._posts$.next(posts);
-
-      return res.id;
     }
   }
 
@@ -189,19 +186,21 @@ export class PostService {
 
   public async toggleSave(
     isSaved: boolean,
-    filterBy: { userId: number; postId: number }
+    postId: number,
+    userId: number
   ): Promise<void> {
     const options = { withCredentials: true };
     if (isSaved) {
       await firstValueFrom(
-        this.http.delete(`${this.baseUrl}/save-post`, {
-          ...options,
-          body: filterBy,
-        })
+        this.http.delete(
+          `${this.baseUrl}/save-post/${postId}/${userId}`,
+          options
+        )
       );
     } else {
+      const body = { postId, userId };
       await firstValueFrom(
-        this.http.post(`${this.baseUrl}/save-post`, filterBy, options)
+        this.http.post(`${this.baseUrl}/save-post`, body, options)
       );
     }
   }

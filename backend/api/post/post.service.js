@@ -130,7 +130,8 @@ async function add(post) {
         { $userId: post.by.id }
       );
 
-      return postId;
+      post.id = postId;
+      return post;
     });
   } catch (err) {
     logger.error("cannot insert post", err);
@@ -181,7 +182,7 @@ async function remove(postId) {
       await db.exec(`DELETE FROM comments WHERE postId = $id`, { $id: postId });
 
       await db.exec(
-        `update users set postSum = postSum - 1 WHERE id = (select userId FROM posts WHERE id = $id)`,
+        `update users set postSum = postSum - 1 WHERE id = (SELECT userId FROM posts WHERE id = $id)`,
         { $id: postId }
       );
 
@@ -197,11 +198,11 @@ async function _getCreatedPosts(filter) {
   try {
     if (filter.currPostId) {
       return await db.query(
-        `select * FROM posts 
+        `SELECT * FROM posts 
                 WHERE id != $currPostId 
-                and userId = $userId 
-                order by createdAt desc 
-                limit $limit `,
+                AND userId = $userId 
+                ORDER BY createdAt DESC 
+                LIMIT $limit `,
         {
           $limit: filter.limit,
           $currPostId: filter.currPostId,
@@ -210,10 +211,10 @@ async function _getCreatedPosts(filter) {
       );
     } else {
       return await db.query(
-        `select * FROM posts 
+        `SELECT * FROM posts 
                 WHERE userId = $userId 
-                order by createdAt desc 
-                limit $limit `,
+                ORDER BY createdAt DESC 
+                LIMIT $limit `,
         {
           $limit: filter.limit,
           $userId: filter.userId,
@@ -229,7 +230,7 @@ async function _getCreatedPosts(filter) {
 async function _getSavedPosts(filter) {
   try {
     return await db.query(
-      `select * FROM posts WHERE id in (select postId FROM savedPosts WHERE userId = $userId) order by createdAt desc limit $limit `,
+      `SELECT * FROM posts WHERE id in (SELECT postId FROM savedPosts WHERE userId = $userId) ORDER BY createdAt DESC LIMIT $limit `,
       {
         $limit: filter.limit,
         $userId: filter.userId,
@@ -338,7 +339,7 @@ async function _getPostsForExplorePage(filter) {
 
 async function _getPostData(post, loggedinUserId) {
   const images = await db.query(
-    `select * FROM postImg WHERE postId = $postId order by imgOrder`,
+    `SELECT * FROM postImg WHERE postId = $postId ORDER BY imgOrder`,
     { $postId: post.id }
   );
   post.imgUrls = images.map((img) => img.imgUrl);
@@ -369,7 +370,7 @@ async function _getPostData(post, loggedinUserId) {
   delete post.userId;
 
   if (post.locationId) {
-    post.location = await db.query(`select * FROM locations WHERE id = $id`, {
+    post.location = await db.query(`SELECT * FROM locations WHERE id = $id`, {
       $id: post.locationId,
     });
   } else {
@@ -408,7 +409,7 @@ async function _getPostLikeAndBookmark(post, loggedinUserId) {
 
 async function _getCommentForMiniPreview(post) {
   post.comments = await db.query(
-    `select id FROM comments WHERE postId = $postId`,
+    `SELECT id FROM comments WHERE postId = $postId`,
     {
       $postId: post.id,
     }

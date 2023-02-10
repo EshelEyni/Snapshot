@@ -28,8 +28,8 @@ async function getPost(req, res) {
 async function addPost(req, res) {
   try {
     const post = req.body;
-    const id = await postService.add(post);
-    res.send({ msg: "Post added", id });
+    const savedPost = await postService.add(post);
+    res.send(savedPost);
   } catch (err) {
     logger.error("Failed to add post", err);
     res.status(500).send({ err: "Failed to add post" });

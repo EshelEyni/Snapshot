@@ -77,17 +77,7 @@ export class CommentEditComponent implements OnInit, OnDestroy {
     const res = await this.commentService.save(commentToAdd);
     if (res) {
       this.commentAdded.emit(res.savedComment);
-    };
-
-    // await this.postService.save(this.post);
-    // const tags = this.tagService.detectTags(commentToAdd.text);
-    // if (tags.length)
-    //   tags.forEach(async (tageName) => {
-    //     const tag = { name: tageName };
-    //     const id = await this.tagService.save(tag as Tag);
-    //     if (typeof id === 'number')
-    //       await this.postService.addPostToTag(id, this.post.id);
-    //   });
+    }
   }
 
   onToggleEmojiPicker(): void {

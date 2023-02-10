@@ -2079,3 +2079,69 @@
 10.2.2023, 16:08:01 - INFO - New connected socket [id: tzuoRwHyqJuwLzqgAAAB] 
 10.2.2023, 16:09:08 - INFO - Server is running on port: 3030 
 10.2.2023, 16:09:10 - INFO - New connected socket [id: PgJ9eaouaBC2GyHLAAAB] 
+10.2.2023, 16:13:42 - INFO - Server is running on port: 3030 
+10.2.2023, 16:13:42 - INFO - New connected socket [id: MK8x7SeLZCyCfzIoAAAB] 
+10.2.2023, 16:14:56 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 16:14:57 - INFO - New connected socket [id: Wj2apd1hdXf2GSilAAAD] 
+10.2.2023, 16:16:58 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 16:16:59 - INFO - New connected socket [id: C1DmgjtBTOk2BMZgAAAF] 
+10.2.2023, 16:17:13 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 16:17:14 - INFO - New connected socket [id: isnXYYJsZ9R1OvvSAAAH] 
+10.2.2023, 16:25:31 - INFO - Server is running on port: 3030 
+10.2.2023, 16:25:31 - INFO - New connected socket [id: M8aHJ_l7aWCeipsAAAAB] 
+10.2.2023, 16:25:57 - INFO - Server is running on port: 3030 
+10.2.2023, 16:25:58 - INFO - New connected socket [id: if_8_aYrcjbU61gdAAAB] 
+10.2.2023, 16:27:11 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 16:27:12 - INFO - New connected socket [id: CjTVJ0QAHn8u9aw4AAAD] 
+10.2.2023, 16:27:28 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 16:27:29 - INFO - New connected socket [id: T2f-TnWmsZZ_UUX-AAAF] 
+10.2.2023, 16:27:55 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 16:27:56 - INFO - New connected socket [id: mQwW8MGHeXdSiN06AAAH] 
+10.2.2023, 16:28:20 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 16:28:20 - INFO - New connected socket [id: 8vw_-RvFQTSvRbS5AAAJ] 
+10.2.2023, 16:30:48 - INFO - Server is running on port: 3030 
+10.2.2023, 16:30:49 - INFO - New connected socket [id: m_nZ4C3ifsqialU-AAAB] 
+10.2.2023, 16:35:48 - INFO - Server is running on port: 3030 
+10.2.2023, 16:35:49 - INFO - New connected socket [id: VHSFkfzQlY1n-DHmAAAB] 
+10.2.2023, 16:36:08 - INFO - Server is running on port: 3030 
+10.2.2023, 16:36:09 - INFO - New connected socket [id: 3SzjaL0V64iJpcs4AAAB] 
+10.2.2023, 16:36:41 - INFO - Server is running on port: 3030 
+10.2.2023, 16:36:41 - INFO - New connected socket [id: vgFE-yU8UvHkFSMjAAAB] 
+10.2.2023, 16:36:50 - INFO - Server is running on port: 3030 
+10.2.2023, 16:36:50 - INFO - New connected socket [id: kdAglJz9P9iY5nvMAAAB] 
+10.2.2023, 16:36:57 - INFO - Server is running on port: 3030 
+10.2.2023, 16:36:57 - INFO - New connected socket [id: QgDZvqv_78N-XlkwAAAB] 
+10.2.2023, 16:36:59 - INFO - Server is running on port: 3030 
+10.2.2023, 16:37:00 - INFO - New connected socket [id: G9d91R1sjRSx8e7bAAAB] 
+10.2.2023, 16:44:07 - INFO - Server is running on port: 3030 
+10.2.2023, 16:44:08 - INFO - New connected socket [id: ayRaqTDbb4N3KS6yAAAB] 
+10.2.2023, 16:48:52 - INFO - Server is running on port: 3030 
+10.2.2023, 16:48:54 - INFO - New connected socket [id: x3FtTuymwXjpOkwSAAAB] 
+10.2.2023, 16:49:30 - INFO - Server is running on port: 3030 
+10.2.2023, 16:49:32 - INFO - New connected socket [id: unZJsE3DpvnaXuwoAAAB] 
+10.2.2023, 16:50:38 - INFO - Server is running on port: 3030 
+10.2.2023, 16:50:39 - INFO - New connected socket [id: 3aqC1nCIZtBl0i46AAAB] 
+10.2.2023, 16:51:19 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 16:51:20 - INFO - New connected socket [id: r_04iNcK0sRgtR4uAAAD] 
+10.2.2023, 16:51:24 - ERROR - cannot save post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: savedPosts.userId (userId: 4)
+10.2.2023, 16:51:24 - ERROR - Failed to save post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: savedPosts.userId (userId: 4)
+10.2.2023, 16:52:31 - INFO - Server is running on port: 3030 
+10.2.2023, 16:52:31 - INFO - New connected socket [id: iz85PWrMf5nKyXERAAAB] 
+10.2.2023, 16:52:33 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 16:52:34 - INFO - New connected socket [id: KyJPq--fMLWLRjazAAAD] 
+10.2.2023, 16:52:43 - ERROR - cannot save post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: savedPosts.userId (userId: 4)
+10.2.2023, 16:52:43 - ERROR - Failed to save post | Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: savedPosts.userId (userId: 4)
+10.2.2023, 16:52:57 - INFO - Server is running on port: 3030 
+10.2.2023, 16:52:57 - INFO - New connected socket [id: jb9iJZIeeR7y3bQ8AAAB] 
+10.2.2023, 16:53:01 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 16:53:01 - INFO - New connected socket [id: Yr11XtOVC7Pw9MB-AAAD] 
+10.2.2023, 16:53:05 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 16:53:06 - INFO - New connected socket [id: utcuhNd7U3NTgjuzAAAF] 
+10.2.2023, 16:53:09 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 16:53:10 - INFO - New connected socket [id: -SuvFdBY-WhWPdsbAAAH] 
+10.2.2023, 16:55:08 - INFO - Server is running on port: 3030 
+10.2.2023, 16:55:09 - INFO - New connected socket [id: P4pK7zETJb1ns5l3AAAB] 
+10.2.2023, 16:55:44 - INFO - Server is running on port: 3030 
+10.2.2023, 16:55:45 - INFO - New connected socket [id: jyNCL1_bdJVMEHIJAAAB] 
+10.2.2023, 16:59:31 - INFO - Socket disconnected [id: undefined] 
+10.2.2023, 16:59:32 - INFO - New connected socket [id: 8dgd8JcFepWiQSocAAAD] 
