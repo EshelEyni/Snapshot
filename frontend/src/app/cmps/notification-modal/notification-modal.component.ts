@@ -23,7 +23,7 @@ export class NotificationModalComponent implements OnInit {
   onClose = new EventEmitter();
 
   ngOnInit(): void {
-    this.notificationService.loadNotifications(this.loggedinUser.id);
+    this.notificationService.loadNotifications();
     this.notifications$ = this.notificationService.notifications$;
   };
 

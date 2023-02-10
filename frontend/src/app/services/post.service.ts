@@ -40,7 +40,7 @@ export class PostService {
     tagName?: string;
     username?: string;
   }): Promise<void> {
-    let options = { withCredentials: true, params: {} };
+    const options = { withCredentials: true, params: {} };
 
     options.params = {
       userId: filterBy.userId,

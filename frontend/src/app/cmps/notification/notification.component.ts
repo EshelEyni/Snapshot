@@ -1,5 +1,4 @@
 import { Router } from '@angular/router';
-import { Post } from 'src/app/models/post.model';
 import { User } from 'src/app/models/user.model';
 import { Subscription } from 'rxjs';
 import { Component, OnInit, EventEmitter, inject } from '@angular/core';
@@ -10,18 +9,15 @@ import { Notification } from 'src/app/models/notification.model';
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss'],
   inputs: ['notification'],
-  outputs: ['close']
-
+  outputs: ['close'],
 })
 export class NotificationComponent implements OnInit {
-
-  constructor() { };
+  constructor() {}
 
   router = inject(Router);
 
   sub: Subscription | null = null;
   loggedinUser!: User;
-  post!: Post;
   notification!: Notification;
 
   txt: string = '';
@@ -31,8 +27,6 @@ export class NotificationComponent implements OnInit {
   close = new EventEmitter();
 
   ngOnInit(): void {
-    if (this.notification.post) this.post = this.notification.post;
-
     switch (this.notification.type) {
       case 'like-post':
         this.txt = 'liked your post.';
@@ -55,21 +49,25 @@ export class NotificationComponent implements OnInit {
         this.isPostImgShown = true;
         break;
       case 'message':
-        this.txt = this.notification.msgCount ?
-          `sent you ${this.notification.msgCount} messages.`
+        this.txt = this.notification.msgCount
+          ? `sent you ${this.notification.msgCount} messages.`
           : 'sent you a message.';
         break;
-    };
-  };
+    }
+  }
 
   onClickNotification(): void {
-    if (this.post) this.router.navigate(['/post', this.post.id]);
-    if (this.notification.type === 'message') this.router.navigate(['/inbox/'], { queryParams: { chatId: this.notification.entityId } });
+    if (this.notification.postId)
+      this.router.navigate(['/post', this.notification.postId]);
+    else if (this.notification.type === 'message')
+      this.router.navigate(['/inbox/'], {
+        queryParams: { chatId: this.notification.entityId },
+      });
     else this.router.navigate(['/profile', this.notification.userId]);
     this.close.emit();
-  };
+  }
 
   onClickFollowBtn(e: Event): void {
     e.stopPropagation();
-  };
-};
+  }
+}

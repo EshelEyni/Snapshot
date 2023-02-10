@@ -1,19 +1,23 @@
 <article class="notification" (click)="onClickNotification()">
-    <div class="main-container">
-        <div class="img-container">
-            <img [src]="notification.by.imgUrl" alt="Avatar">
-        </div>
-        <div class="txt-container">
-            <p class="username">{{notification.by.username}}</p>
-            <p>{{txt}}</p>
-            <p class="date">{{notification.createdAt|formattedDate:'short'}}</p>
-        </div>
+  <div class="main-container">
+    <div class="img-container">
+      <img [src]="notification.by.imgUrl" alt="Avatar" />
     </div>
+    <div class="txt-container">
+      <p class="username">{{ notification.by.username }}</p>
+      <p>{{ txt }}</p>
+      <p class="date">{{ notification.createdAt | formattedDate : "short" }}</p>
+    </div>
+  </div>
 
-    <div class="secondary-container">
-        <div class="img-container" *ngIf="isPostImgShown">
-            <img [src]="post.imgUrls[0]" alt="postImg">
-        </div>
-        <follow-btn [user]="notification.by" *ngIf="isFollowedBtnShown" (click)="onClickFollowBtn($event)"></follow-btn>
+  <div class="secondary-container">
+    <div class="img-container" *ngIf="isPostImgShown">
+      <img [src]="notification.postImgUrl" alt="postImg" />
     </div>
+    <follow-btn
+      [user]="notification.by"
+      *ngIf="isFollowedBtnShown"
+      (click)="onClickFollowBtn($event)"
+    ></follow-btn>
+  </div>
 </article>

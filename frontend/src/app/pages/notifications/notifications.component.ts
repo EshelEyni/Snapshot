@@ -35,7 +35,7 @@ export class NotificationsComponent implements OnInit {
     this.sub = this.loggedinUser$.subscribe(user => {
       if (user) {
         this.loggedinUser = { ...user };
-        this.notificationService.loadNotifications(this.loggedinUser.id);
+        this.notificationService.loadNotifications();
         this.notifications$ = this.notificationService.notifications$;
       };
     });
