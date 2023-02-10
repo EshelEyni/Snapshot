@@ -5,22 +5,25 @@ import { Location } from '../models/post.model';
 import { HttpService } from './http.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocationService {
+  constructor() {}
 
-  constructor() { };
-
-  http = inject(HttpClient)
+  http = inject(HttpClient);
   httpService = inject(HttpService);
 
   baseUrl: '/api' | '//localhost:3030/api' = this.httpService.getBaseUrl();
 
-  async getLocations(searchTerm?: string): Promise<Location[]> {
+  async getLocations(searchTerm: string): Promise<Location[]> {
+    const options = { withCredentials: true };
     const locations = await lastValueFrom(
-      this.http.get<Location[]>(`${this.baseUrl}/location?searchTerm=${searchTerm}`)
+      this.http.get<Location[]>(
+        `${this.baseUrl}/location?searchTerm=${searchTerm}`,
+        options
+      )
     );
 
     return locations;
-  };
-};
+  }
+}
