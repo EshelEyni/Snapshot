@@ -88,7 +88,6 @@ export class PostActionsComponent implements OnInit, OnChanges, OnDestroy {
     this.post.likeSum = this.isLiked
       ? this.post.likeSum + 1
       : this.post.likeSum - 1;
-    this.postService.save(this.post);
   }
 
   onToggleSave(): void {

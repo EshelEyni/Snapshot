@@ -34,8 +34,7 @@ async function getMessages(chatId) {
 async function addMessage(message) {
   try {
     return await db.txn(async (txn) => {
-      const { chatId, sender, type, createdAt, text, imgUrl, postId, storyId } =
-        message;
+      const { chatId, sender, type, text, imgUrl, postId, storyId } = message;
       const id = await db.exec(
         `INSERT INTO chatMessages (chatId, userId, type, createdAt, text, imgUrl, postId, storyId) 
             VALUES ($chatId, $userId, $type, $createdAt, $text, $imgUrl, $postId, $storyId )`,
@@ -43,7 +42,7 @@ async function addMessage(message) {
           $chatId: chatId,
           $userId: sender.id,
           $type: type,
-          $createdAt: createdAt,
+          $createdAt: Date.now(),
           $text: text || null,
           $imgUrl: imgUrl || null,
           $postId: postId || null,

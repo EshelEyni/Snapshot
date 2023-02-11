@@ -3,7 +3,13 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.model';
 import { MessageService } from './../../services/message.service';
 import { Story } from './../../models/story.model';
-import { Component, OnInit, EventEmitter, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  EventEmitter,
+  inject,
+  OnChanges,
+} from '@angular/core';
 import {
   faPaperPlane,
   faFaceSmile,
@@ -20,7 +26,7 @@ import { StoryService } from 'src/app/services/story.service';
   inputs: ['isStoryReply', 'story', 'currStoryImgIdx', 'loggedinUser', 'chat'],
   outputs: ['toggleStoryTimer', 'msgSent'],
 })
-export class MsgEditComponent implements OnInit {
+export class MsgEditComponent implements OnInit, OnChanges {
   constructor() {}
 
   chatService = inject(ChatService);
@@ -34,7 +40,9 @@ export class MsgEditComponent implements OnInit {
 
   story!: Story;
   loggedinUser!: User;
+
   chat!: Chat;
+  chatId!: number;
   currStoryImgIdx!: number;
 
   placeHolderStr = '';
@@ -54,13 +62,14 @@ export class MsgEditComponent implements OnInit {
     this.placeHolderStr = this.isStoryReply
       ? `Reply to ${this.story.by.username}...`
       : 'Message...';
+  }
 
+  async ngOnChanges(): Promise<void> {
     if (this.isStoryReply) {
-      this.chat = await this.chatService.loadPersonalChat(
-        this.loggedinUser.id,
-        this.story.by.id
-      );
+      this.chatId = await this.chatService.getPersonalChatId(this.story.by.id);
       this.isLiked = this.story.isLiked;
+    } else {
+      this.chatId = this.chat.id;
     }
   }
 
@@ -106,19 +115,18 @@ export class MsgEditComponent implements OnInit {
     const msg = this.messageService.getEmptyMessage();
     msg.sender = this.userService.getMiniUser(this.loggedinUser);
 
-    if (this.isStoryReply && !this.chat) {
+    if (this.isStoryReply && !this.chatId) {
       const chatToAdd = this.chatService.getEmptyChat(this.loggedinUser, [
         this.story.by,
       ]);
 
       const chatId = await this.chatService.addChat(chatToAdd);
       if (chatId) {
-        chatToAdd.id = chatId;
-        this.chat = chatToAdd;
+        this.chatId = chatId;
       }
     }
 
-    msg.chatId = this.chat.id;
+    msg.chatId = this.chatId;
 
     switch (type) {
       case 'img':

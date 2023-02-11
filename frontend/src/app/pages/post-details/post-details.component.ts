@@ -162,7 +162,6 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     this.postService.toggleLike(false, this.post);
     this.post.likeSum++;
     this.post = { ...this.post };
-    this.postService.save(this.post);
   }
 
   onAddComment(comment: Comment): void {

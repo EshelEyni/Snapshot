@@ -51,7 +51,7 @@ export class ShareModalComponent implements OnInit, OnDestroy {
   async ngOnInit(): Promise<void> {
     this.isChatListShown = this.type === 'post' || this.type === 'story-reply';
 
-    this.chatService.loadChats(this.loggedinUser.id);
+    this.chatService.loadChats();
 
     this.chatSub = this.chats$.subscribe(async chats => {
 

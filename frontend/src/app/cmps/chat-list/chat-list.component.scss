@@ -1,65 +1,63 @@
-@import '../../../assets/styles/setup/functions';
-@import '../../../assets/styles/setup/mixins';
+@import "../../../assets/styles/setup/functions";
+@import "../../../assets/styles/setup/mixins";
 
 .chat-list-container {
-    h1 {
-        font-weight: 500;
-        text-transform: capitalize;
-        color: var(--primary-text-color);
-        padding: rem(10px);
-    }
+  h1 {
+    font-weight: 500;
+    text-transform: capitalize;
+    color: var(--primary-text-color);
+    padding: rem(10px);
+  }
 
-    .default-list {
+  .default-list {
+    position: relative;
+    width: 100%;
+    > * {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+
+      &.active {
+        background-color: var(--input-bg-color);
+      }
+
+      &:not(.active):hover {
+        background-color: var(--primary-bg);
+        cursor: pointer;
+      }
+
+      chat-preview {
         position: relative;
         width: 100%;
+      }
 
-        >* {
-            position: relative;
-            display: flex;
-            align-items: center;
-            width: 100%;
-
-            &.active {
-                background-color: var(--input-bg-color);
-            }
-
-            &:not(.active):hover {
-                background-color: var(--primary-bg);
-                cursor: pointer;
-            }
-
-            chat-preview {
-                position: relative;
-                width: 100%;
-            }
-
-            &.share-modal-mode {
-                chat-preview {
-                    width: 90%;
-                }
-            }
+      &.share-modal-mode {
+        chat-preview {
+          width: 90%;
         }
+      }
     }
+  }
 
-    .search-bar-list {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: rem(10px);
+  .search-bar-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: rem(10px);
 
-        li {
-            display: flex;
-            justify-content: space-between;
-            gap: rem(10px);
-            padding: rem(2px) rem(15px);
-            min-width: rem(100px);
-            border-radius: 35px;
-            background-color: var(--user-search-bg);
+    li {
+      display: flex;
+      justify-content: space-between;
+      gap: rem(10px);
+      padding: rem(2px) rem(15px);
+      min-width: rem(100px);
+      border-radius: 35px;
+      background-color: var(--user-search-bg);
 
-            p {
-                color: var(--primary-button);
-            }
-        }
+      p {
+        color: var(--primary-button);
+      }
     }
-
+  }
 }

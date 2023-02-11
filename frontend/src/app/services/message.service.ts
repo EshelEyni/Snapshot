@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { Message } from '../models/chat.model';
+import { ChatService } from './chat.service';
 import { HttpService } from './http.service';
 import { SocketService } from './socket.service';
 
@@ -19,6 +20,7 @@ export class MessageService {
   http = inject(HttpClient);
   socketService = inject(SocketService);
   httpService = inject(HttpService);
+  chatService = inject(ChatService);
 
   baseUrl: '/api' | '//localhost:3030/api' = this.httpService.getBaseUrl();
 
@@ -41,6 +43,7 @@ export class MessageService {
       messages.push(msg);
       this._messages$.next(messages);
       this.socketService.emit('msg-added', msg);
+      this.chatService.sortChatsByLastMsg(msg.chatId);
     };
   };
 

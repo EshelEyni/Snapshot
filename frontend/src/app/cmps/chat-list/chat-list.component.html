@@ -1,21 +1,36 @@
 <div class="chat-list-container">
-    <h1 *ngIf="type==='share-modal'">suggested</h1>
-    <ul class="default-list" *ngIf="type !=='search-bar-list'; else searchBarList">
-        <li class="chat-list-item" *ngFor="let chat of chats" (click)="onSelectChat(chat)"
-            [class.active]="chat.id===currActiveChatId" [class.share-modal-mode]="type==='share-modal'">
-            <chat-preview [chat]="chat" [loggedinUser]="loggedinUser"></chat-preview>
-            <checkbox [isChecked]="isSelectChat[chat.id]" [type]="'share-modal'" *ngIf="type==='share-modal'">
-            </checkbox>
-        </li>
-    </ul>
+  <h1 *ngIf="type === 'share-modal'">suggested</h1>
+  <ul
+    class="default-list"
+    *ngIf="type !== 'search-bar-list'; else searchBarList"
+  >
+    <li
+      class="chat-list-item"
+      *ngFor="let chat of chats"
+      (click)="onSelectChat(chat)"
+      [class.active]="chat.id === currActiveChatId"
+      [class.share-modal-mode]="type === 'share-modal'"
+    >
+      <chat-preview [chat]="chat" [loggedinUser]="loggedinUser"></chat-preview>
+      <checkbox
+        [isChecked]="isSelectChat[chat.id]"
+        [type]="'share-modal'"
+        *ngIf="type === 'share-modal'"
+      >
+      </checkbox>
+    </li>
+  </ul>
 
-    <ng-template #searchBarList>
-        <ul class="search-bar-list">
-            <li *ngFor="let chat of chats">
-                <p>{{setTitleForSearchBar(chat)}}</p>
-                <svg-icon src="../../../assets/svgs/x.svg" [svgStyle]="{'color':'rgb(0, 149, 246)'}"
-                    (click)="onRemoveChat(chat)"></svg-icon>
-            </li>
-        </ul>
-    </ng-template>
+  <ng-template #searchBarList>
+    <ul class="search-bar-list">
+      <li *ngFor="let chat of chats">
+        <p>{{ setTitleForSearchBar(chat) }}</p>
+        <svg-icon
+          src="../../../assets/svgs/x.svg"
+          [svgStyle]="{ color: 'rgb(0, 149, 246)' }"
+          (click)="onRemoveChat(chat)"
+        ></svg-icon>
+      </li>
+    </ul>
+  </ng-template>
 </div>

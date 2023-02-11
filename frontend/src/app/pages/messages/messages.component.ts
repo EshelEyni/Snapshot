@@ -61,7 +61,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
       )).pipe(
         switchMap(chats => {
           if (!chats.length && this.loggedinUser && !isChatLoaded) {
-            this.chatService.loadChats(this.loggedinUser.id);
+            this.chatService.loadChats();
             isChatLoaded = true;
           };
           return this.route.queryParams;
