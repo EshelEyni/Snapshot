@@ -7,27 +7,26 @@ import { faX } from '@fortawesome/free-solid-svg-icons';
   selector: 'followers-modal',
   templateUrl: './followers-modal.component.html',
   styleUrls: ['./followers-modal.component.scss'],
-  outputs: ['close']
+  inputs: ['userId'],
+  outputs: ['close'],
 })
-
 export class FollowersModalComponent implements OnInit {
-
-  constructor() { };
+  constructor() {}
 
   followService = inject(FollowService);
-  
-  faX = faX;
-  
-  // user!: User;
-  users: MiniUser[] = [];
-  
-  close = new EventEmitter();
-  
-  async ngOnInit(): Promise<void> {
-    this.users = await this.followService.getFollowers();
-  };
 
-  onCloseModal() : void{
+  faX = faX;
+
+  users: MiniUser[] = [];
+  userId!: number;
+
+  close = new EventEmitter();
+
+  async ngOnInit(): Promise<void> {
+    this.users = await this.followService.getFollowers(this.userId);
+  }
+
+  onCloseModal(): void {
     this.close.emit();
-  };
-};
+  }
+}

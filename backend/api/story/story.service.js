@@ -19,11 +19,12 @@ async function query(loggedinUserId, type) {
 
         case "story-details":
           stories = await db.query(
-            `SELECT s.* FROM stories s
-                        LEFT JOIN follow f ON f.toUserId = s.userId
-                        WHERE f.fromUserId = $id 
-                        OR s.userId = $id 
-                        ORDER BY s.createdAt DESC`,
+            `SELECT s.* 
+            FROM stories s
+            LEFT JOIN follow f ON f.toUserId = s.userId
+            WHERE f.fromUserId = $id OR s.userId = $id
+            GROUP BY s.userId
+            ORDER BY MAX(s.createdAt) DESC`,
             { $id: loggedinUserId }
           );
           break;
@@ -57,17 +58,15 @@ async function query(loggedinUserId, type) {
 async function getById(storyId, loggedinUserId) {
   try {
     return await db.txn(async () => {
-      const stories = await db.query(
-        `SELECT * FROM stories WHERE id = $id AND isArchived = 0`,
-        {
-          $id: storyId,
-        }
-      );
+      const stories = await db.query(`SELECT * FROM stories WHERE id = $id`, {
+        $id: storyId,
+      });
 
       if (stories.length === 0) {
         return "story not found";
       }
       const story = stories[0];
+
       return await _getStoryData(story, loggedinUserId);
     });
   } catch (err) {
@@ -80,11 +79,12 @@ async function add(story) {
   try {
     return await db.txn(async () => {
       const id = await db.exec(
-        `INSERT INTO stories (userId, createdAt, isArchived, isSaved,savedAt, highlightTitle, highlightCover) 
-                  VALUES ($userId, $createdAt, $isArchived, $isSaved, $savedAt, $highlightTitle, $highlightCover)`,
+        `INSERT INTO stories (userId, createdAt, isLiked, isArchived, isSaved, savedAt, highlightTitle, highlightCover) 
+                  VALUES ($userId, $createdAt, $isLiked, $isArchived, $isSaved, $savedAt, $highlightTitle, $highlightCover)`,
         {
           $userId: story.by.id,
           $createdAt: Date.now(),
+          $isLiked: false,
           $isArchived: false,
           $isSaved: false,
           $savedAt: null,
@@ -119,6 +119,7 @@ async function update(story) {
   try {
     await db.exec(
       `UPDATE stories SET userId = $userId,
+               isLiked = $isLiked,
                isArchived = $isArchived,
                isSaved = $isSaved,
                savedAt = $savedAt,
@@ -128,6 +129,7 @@ async function update(story) {
       {
         $userId: story.userId,
         $id: story.id,
+        $isLiked: story.isLiked,
         $isArchived: story.isArchived,
         $isSaved: story.isSaved,
         $savedAt: story.isSaved ? Date.now() : null,

@@ -1,12 +1,17 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-const { getSearches, addSearch, deleteSearch,deleteAllUserSearches } = require('./search.controller.js')
+const { requireAuth } = require("../../middlewares/requireAuth.middleware");
+const {
+  getSearches,
+  addSearch,
+  deleteSearch,
+  deleteAllUserSearches,
+} = require("./search.controller.js");
 
-router.get('/:id', getSearches)
-router.post('/', addSearch)
-router.delete('/:id', deleteSearch)
-router.delete('/clear/:userId', deleteAllUserSearches)
+router.get("/", requireAuth, getSearches);
+router.post("/", requireAuth, addSearch);
+router.delete("/single/:id", requireAuth, deleteSearch);
+router.delete("/clear", requireAuth, deleteAllUserSearches);
 
-
-module.exports = router
+module.exports = router;

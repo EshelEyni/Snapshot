@@ -33,7 +33,7 @@ export class FollowingComponent implements OnInit, OnDestroy {
     this.userSub = this.route.data.subscribe(async (data) => {
       const user = data['user'];
       if (user) {
-        this.users = await this.followService.getFollowings();
+        this.users = await this.followService.getFollowings(user.id);
         const filterBy = { type: 'followed', userId: user.id };
         this.tags = await lastValueFrom(this.tagService.getTags(filterBy));
         if (this.users.length === 0) {

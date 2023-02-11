@@ -135,8 +135,24 @@ export class UserService {
   }
 
   public getMiniUser(user: User): MiniUser {
-    const { id, fullname, username, imgUrl, currStoryId, isStoryViewed } = user;
-    return { id, fullname, username, imgUrl, currStoryId, isStoryViewed };
+    const {
+      id,
+      fullname,
+      username,
+      imgUrl,
+      currStoryId,
+      isStoryViewed,
+      isFollowing,
+    } = user;
+    return {
+      id,
+      fullname,
+      username,
+      imgUrl,
+      currStoryId,
+      isStoryViewed,
+      isFollowing,
+    };
   }
 
   public getEmptyMiniUser(): MiniUser {
@@ -147,6 +163,7 @@ export class UserService {
       imgUrl: '',
       currStoryId: 0,
       isStoryViewed: false,
+      isFollowing: false,
     };
   }
 

@@ -63,6 +63,7 @@ export class MessageService {
         imgUrl: '',
         currStoryId: 0,
         isStoryViewed: false,
+        isFollowing: false,
       },
       createdAt: new Date(),
       text: '',

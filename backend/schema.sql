@@ -127,6 +127,7 @@ CREATE TABLE IF NOT EXISTS "stories" (
     "id" INTEGER NOT NULL UNIQUE,
     "userId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP NOT NULL,
+    "isLiked" BOOLEAN NOT NULL,
     "isArchived" BOOLEAN NOT NULL,
     "isSaved" BOOLEAN NOT NULL,
     "savedAt" TIMESTAMP,

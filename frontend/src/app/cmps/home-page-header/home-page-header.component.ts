@@ -10,12 +10,13 @@ import { Component, OnInit, inject, OnDestroy } from '@angular/core';
 @Component({
   selector: 'home-page-header',
   templateUrl: './home-page-header.component.html',
-  styleUrls: ['./home-page-header.component.scss']
+  styleUrls: ['./home-page-header.component.scss'],
 })
 export class HomePageHeaderComponent implements OnInit, OnDestroy {
-
   constructor() {
-    this.loggedinUser$ = this.store.select('userState').pipe(map(x => x.loggedinUser));
+    this.loggedinUser$ = this.store
+      .select('userState')
+      .pipe(map((x) => x.loggedinUser));
   }
 
   userService = inject(UserService);
@@ -33,38 +34,40 @@ export class HomePageHeaderComponent implements OnInit, OnDestroy {
   isRecentSearchShown = true;
   isNoResults = false;
 
-
   ngOnInit(): void {
-    this.sub = this.loggedinUser$.subscribe(async user => {
+    this.sub = this.loggedinUser$.subscribe(async (user) => {
       if (user) {
         this.loggedinUser = { ...user };
-        this.recentSearches = await this.searchService.getRecentSearches(this.loggedinUser.id);
-      };
+        this.recentSearches = await this.searchService.getRecentSearches();
+      }
     });
-  };
+  }
 
-  onSearchFinished(res: { searchResult: { users: User[], tags: Tag[] }, isClearSearch: boolean }): void {
+  onSearchFinished(res: {
+    searchResult: { users: User[]; tags: Tag[] };
+    isClearSearch: boolean;
+  }): void {
     if (res.isClearSearch) {
       this.searchResults = [];
       this.isRecentSearchShown = true;
       this.isNoResults = false;
       return;
-    };
+    }
     const searchResults = res.searchResult;
     this.searchResults = [...searchResults.users, ...searchResults.tags];
     this.isRecentSearchShown = false;
     this.isNoResults = this.searchResults.length === 0;
-  };
+  }
 
   onOpenModal(): void {
     this.isSearchModalShown = true;
-  };
+  }
 
   onCloseModal(): void {
     this.isSearchModalShown = false;
-  };
+  }
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
-  };
-};
+  }
+}

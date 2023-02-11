@@ -10,14 +10,13 @@ import { MiniUser } from 'src/app/models/user.model';
 @Component({
   selector: 'followers',
   templateUrl: './followers.component.html',
-  styleUrls: ['./followers.component.scss']
+  styleUrls: ['./followers.component.scss'],
 })
 export class FollowersComponent implements OnInit, OnDestroy {
-
-  constructor() { };
+  constructor() {}
 
   $location = inject(Location);
-  route = inject(ActivatedRoute)
+  route = inject(ActivatedRoute);
   followService = inject(FollowService);
 
   faChevronLeft = faChevronLeft;
@@ -26,14 +25,19 @@ export class FollowersComponent implements OnInit, OnDestroy {
   users: MiniUser[] = [];
 
   async ngOnInit(): Promise<void> {
-    this.users = await this.followService.getFollowers();
-  };
+    this.userSub = this.route.data.subscribe(async (data) => {
+      const user = data['user'];
+      if (user) {
+        this.users = await this.followService.getFollowers(user.id);
+      }
+    });
+  }
 
   onGoBack(): void {
     this.$location.back();
-  };
+  }
 
   ngOnDestroy(): void {
     this.userSub.unsubscribe();
-  };
-};
+  }
+}

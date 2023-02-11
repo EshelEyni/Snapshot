@@ -365,7 +365,6 @@ async function _getPostsForTagDetailsPage(filter) {
         $limit: filter.limit,
       }
     );
-    console.log(posts);
     return posts;
   } catch (err) {
     logger.error("cannot find posts", err);

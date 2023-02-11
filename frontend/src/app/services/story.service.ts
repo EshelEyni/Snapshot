@@ -114,6 +114,7 @@ export class StoryService {
       createdAt: new Date(),
       isArchived: false,
       isSaved: false,
+      isLiked: false,
       highlightTitle: null,
       highlightCover: null,
     };

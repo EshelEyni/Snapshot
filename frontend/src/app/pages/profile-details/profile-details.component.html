@@ -1,145 +1,235 @@
 <section class="profile-details" *ngIf="user">
-    <profile-details-header [user]="user" [isLoggedinUserProfile]="isLoggedinUserProfile"
-        (openModal)="onToggleModal('options')"> </profile-details-header>
+  <profile-details-header
+    [user]="user"
+    [isLoggedinUserProfile]="isLoggedinUserProfile"
+    (openModal)="onToggleModal('options')"
+  >
+  </profile-details-header>
 
-    <div class="user-details">
-        <div class="img-container" [ngClass]="userImgClass" (click)="onGoToStory()"
-            [class.disabled]="!user.currStoryId">
-            <img [src]="user.imgUrl" alt="Avatar">
-        </div>
-
-        <div class="user-details-action-container">
-            <p class="user-name">{{user.username}}</p>
-            <button class="clean-btn btn-edit" [routerLink]="['/profile-edit/',user.id]"
-                *ngIf="isLoggedinUserProfile">Edit profile</button>
-            <svg-icon src="../../../assets/svgs/settings-icon.svg" class="btn-settings" *ngIf="isLoggedinUserProfile"
-                (click)="onToggleModal('options')"></svg-icon>
-
-            <div class="btns-for-non-logged-in-user" *ngIf="!isLoggedinUserProfile">
-                <follow-btn [user]="user"></follow-btn>
-                <button class="clean-btn btn-msg">Message</button>
-            </div>
-        </div>
-
-        <div class="profile-details-user-info">
-            <h4 class="user-full-name" *ngIf="isLoggedinUserProfile">{{user.fullname}}</h4>
-            <p class="user-bio" [innerText]="user.bio"></p>
-        </div>
-
-        <div class="hightlights-container" *ngIf="user.storySum && isLoggedinUserProfile">
-            <story-list [type]="'profile-details'"></story-list>
-            <div class="btn-highlights-container">
-                <button class="clean-btn btn-highlights" (click)="onToggleModal('highlights')"
-                    *ngIf="isLoggedinUserProfile">
-                    <svg-icon src="../../../assets/svgs/plus.svg" [svgStyle]="{
-                        height:highlightsIconSize,
-                        width:highlightsIconSize,
-                        color:'rgb(199,199,199)',
-                        fill:'rgb(199,199,199)'
-                    }"></svg-icon>
-                </button>
-                <span>new</span>
-            </div>
-        </div>
-
-        <div class="profile-details-user-stats">
-            <p>
-                <span class="stat-num">{{user.postSum}}</span>
-                <span class="stat-name">posts</span>
-            </p>
-            <p (click)="onClickFollowers()">
-                <span class="stat-num">{{user.followersSum}}</span>
-                <span class="stat-name">followers</span>
-            </p>
-            <p (click)="onClickFollowing()">
-                <span class="stat-num">{{user.followingSum}} </span>
-                <span class="stat-name">following</span>
-            </p>
-        </div>
+  <div class="user-details">
+    <div
+      class="img-container"
+      [ngClass]="userImgClass"
+      (click)="onGoToStory()"
+      [class.disabled]="!user.currStoryId"
+    >
+      <img [src]="user.imgUrl" alt="Avatar" />
     </div>
 
-    <section class="profile-details-post-list-container">
-        <section class="post-filter">
-            <div class="btns-container">
-                <button class="clean-btn" [class.active]="filterBy.createdPosts" (click)="onSetFilter('createdPosts')">
-                    <svg-icon src="../../../assets/svgs/posts-rect.svg"
-                        [svgStyle]="{ color: filterBy.createdPosts ? '#262626' : '#8e8e8e',height:postFilterIconSize,width:postFilterIconSize}">
-                    </svg-icon>
-                    <span>posts</span>
-                </button>
-                <button class="clean-btn" [class.active]="filterBy.savedPosts" *ngIf="isLoggedinUserProfile"
-                    (click)="onSetFilter('savedPosts')">
-                    <svg-icon src="../../../assets/svgs/bookmark-outline.svg"
-                        [svgStyle]="{color: filterBy.savedPosts ? '#262626' : '#8e8e8e',height:postFilterIconSize,width:postFilterIconSize}">
-                    </svg-icon>
-                    <span>saved</span>
-                </button>
-                <button class="clean-btn" [class.active]="filterBy.taggedPosts" (click)="onSetFilter('taggedPosts')">
-                    <svg-icon src="../../../assets/svgs/rect-user-tag.svg"
-                        [svgStyle]="{ color: filterBy.taggedPosts ? '#262626' : '#8e8e8e',height:postFilterIconSize,width:postFilterIconSize}">
-                    </svg-icon>
-                    <span>tagged</span>
-                </button>
-            </div>
-        </section>
+    <div class="user-details-action-container">
+      <p class="user-name">{{ user.username }}</p>
+      <button
+        class="clean-btn btn-edit"
+        [routerLink]="['/profile-edit/', user.id]"
+        *ngIf="isLoggedinUserProfile"
+      >
+        Edit profile
+      </button>
+      <svg-icon
+        src="../../../assets/svgs/settings-icon.svg"
+        class="btn-settings"
+        *ngIf="isLoggedinUserProfile"
+        (click)="onToggleModal('options')"
+      ></svg-icon>
 
-        <div>
-            <post-list [posts]="posts" [type]="'mini-preview'" *ngIf="posts.length;else noPostMsg"></post-list>
-            <ng-template #noPostMsg>
-                <div class="no-posts-msg-container">
+      <div class="btns-for-non-logged-in-user" *ngIf="!isLoggedinUserProfile">
+        <follow-btn [user]="user"></follow-btn>
+        <button class="clean-btn btn-msg">Message</button>
+      </div>
+    </div>
 
-                    <div class="no-created-posts-msg" *ngIf="filterBy.createdPosts">
-                        <div class="icon-container">
-                            <fa-icon [icon]="faCamera"></fa-icon>
-                        </div>
-                        <h1 *ngIf="isLoggedinUserProfile">share photos</h1>
-                        <p *ngIf="isLoggedinUserProfile">When you share photos, they will appear on your profile.</p>
-                        <p *ngIf="!isLoggedinUserProfile">no photos.</p>
-                        <button class="clean-btn btn-share-photo" *ngIf="isLoggedinUserProfile"
-                            (click)="onToggleModal('post-edit')">Share your first
-                            photo</button>
-                        <post-edit-modal *ngIf="isPostEditModalShown && isLoggedinUserProfile"
-                            (togglePostEdit)="onToggleModal('post-edit')"></post-edit-modal>
+    <div class="profile-details-user-info">
+      <h4 class="user-full-name" *ngIf="isLoggedinUserProfile">
+        {{ user.fullname }}
+      </h4>
+      <p class="user-bio" [innerText]="user.bio"></p>
+    </div>
 
-                    </div>
-                    <div class="no-saved-posts-msg" *ngIf="filterBy.savedPosts">
-                        <p>Only you can see what you've saved</p>
+    <div
+      class="hightlights-container"
+      *ngIf="user.storySum && isLoggedinUserProfile"
+    >
+      <story-list [type]="'profile-details'"></story-list>
+      <div class="btn-highlights-container">
+        <button
+          class="clean-btn btn-highlights"
+          (click)="onToggleModal('highlights')"
+          *ngIf="isLoggedinUserProfile"
+        >
+          <svg-icon
+            src="../../../assets/svgs/plus.svg"
+            [svgStyle]="{
+              height: highlightsIconSize,
+              width: highlightsIconSize,
+              color: 'rgb(199,199,199)',
+              fill: 'rgb(199,199,199)'
+            }"
+          ></svg-icon>
+        </button>
+        <span>new</span>
+      </div>
+    </div>
 
-                        <div>
-                            <div class="icon-container">
-                                <svg-icon src="../../../assets/svgs/bookmark-outline.svg" [svgStyle]="{
-                                    color:'var(--color-primary)',height:40,width:40
-                                }"></svg-icon>
-                            </div>
-                            <h1>save</h1>
-                            <p>Save photos and videos that you want to see again. No one is notified, and only you can
-                                see
-                                what you've saved.
-                            </p>
-                        </div>
+    <div class="profile-details-user-stats">
+      <p>
+        <span class="stat-num">{{ user.postSum }}</span>
+        <span class="stat-name">posts</span>
+      </p>
+      <p (click)="onClickFollowers()">
+        <span class="stat-num">{{ user.followersSum }}</span>
+        <span class="stat-name">followers</span>
+      </p>
+      <p (click)="onClickFollowing()">
+        <span class="stat-num">{{ user.followingSum }} </span>
+        <span class="stat-name">following</span>
+      </p>
+    </div>
+  </div>
 
-                    </div>
-                    <div class="no-tagged-posts-msg" *ngIf="filterBy.taggedPosts">
-                        <div class="icon-container">
-                            <fa-icon [icon]="faHashtag"></fa-icon>
-                        </div>
-                        <h1 *ngIf="isLoggedinUserProfile">Photos of you </h1>
-                        <p *ngIf="isLoggedinUserProfile">When people tag you in photos, they'll appear here. </p>
-                        <p *ngIf="!isLoggedinUserProfile">no photos.</p>
-                    </div>
-                </div>
-            </ng-template>
-        </div>
+  <section class="profile-details-post-list-container">
+    <section class="post-filter">
+      <div class="btns-container">
+        <button
+          class="clean-btn"
+          [class.active]="filterBy.createdPosts"
+          (click)="onSetFilter('createdPosts')"
+        >
+          <svg-icon
+            src="../../../assets/svgs/posts-rect.svg"
+            [svgStyle]="{
+              color: filterBy.createdPosts ? '#262626' : '#8e8e8e',
+              height: postFilterIconSize,
+              width: postFilterIconSize
+            }"
+          >
+          </svg-icon>
+          <span>posts</span>
+        </button>
+        <button
+          class="clean-btn"
+          [class.active]="filterBy.savedPosts"
+          *ngIf="isLoggedinUserProfile"
+          (click)="onSetFilter('savedPosts')"
+        >
+          <svg-icon
+            src="../../../assets/svgs/bookmark-outline.svg"
+            [svgStyle]="{
+              color: filterBy.savedPosts ? '#262626' : '#8e8e8e',
+              height: postFilterIconSize,
+              width: postFilterIconSize
+            }"
+          >
+          </svg-icon>
+          <span>saved</span>
+        </button>
+        <button
+          class="clean-btn"
+          [class.active]="filterBy.taggedPosts"
+          (click)="onSetFilter('taggedPosts')"
+        >
+          <svg-icon
+            src="../../../assets/svgs/rect-user-tag.svg"
+            [svgStyle]="{
+              color: filterBy.taggedPosts ? '#262626' : '#8e8e8e',
+              height: postFilterIconSize,
+              width: postFilterIconSize
+            }"
+          >
+          </svg-icon>
+          <span>tagged</span>
+        </button>
+      </div>
     </section>
 
+    <div>
+      <post-list
+        [posts]="posts"
+        [type]="'mini-preview'"
+        *ngIf="posts.length; else noPostMsg"
+      ></post-list>
+      <ng-template #noPostMsg>
+        <div class="no-posts-msg-container">
+          <div class="no-created-posts-msg" *ngIf="filterBy.createdPosts">
+            <div class="icon-container">
+              <fa-icon [icon]="faCamera"></fa-icon>
+            </div>
+            <h1 *ngIf="isLoggedinUserProfile">share photos</h1>
+            <p *ngIf="isLoggedinUserProfile">
+              When you share photos, they will appear on your profile.
+            </p>
+            <p *ngIf="!isLoggedinUserProfile">no photos.</p>
+            <button
+              class="clean-btn btn-share-photo"
+              *ngIf="isLoggedinUserProfile"
+              (click)="onToggleModal('post-edit')"
+            >
+              Share your first photo
+            </button>
+            <post-edit-modal
+              *ngIf="isPostEditModalShown && isLoggedinUserProfile"
+              (togglePostEdit)="onToggleModal('post-edit')"
+            ></post-edit-modal>
+          </div>
+          <div class="no-saved-posts-msg" *ngIf="filterBy.savedPosts">
+            <p>Only you can see what you've saved</p>
 
+            <div>
+              <div class="icon-container">
+                <svg-icon
+                  src="../../../assets/svgs/bookmark-outline.svg"
+                  [svgStyle]="{
+                    color: 'var(--color-primary)',
+                    height: 40,
+                    width: 40
+                  }"
+                ></svg-icon>
+              </div>
+              <h1>save</h1>
+              <p>
+                Save photos and videos that you want to see again. No one is
+                notified, and only you can see what you've saved.
+              </p>
+            </div>
+          </div>
+          <div class="no-tagged-posts-msg" *ngIf="filterBy.taggedPosts">
+            <div class="icon-container">
+              <fa-icon [icon]="faHashtag"></fa-icon>
+            </div>
+            <h1 *ngIf="isLoggedinUserProfile">Photos of you</h1>
+            <p *ngIf="isLoggedinUserProfile">
+              When people tag you in photos, they'll appear here.
+            </p>
+            <p *ngIf="!isLoggedinUserProfile">no photos.</p>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </section>
 </section>
-<profile-options-modal *ngIf="isOptionsModalShown && isLoggedinUserProfile" [loggedinUser]="loggedinUser"
-    (close)="onToggleModal('options')"></profile-options-modal>
+<profile-options-modal
+  *ngIf="isOptionsModalShown && isLoggedinUserProfile"
+  [loggedinUser]="loggedinUser"
+  (close)="onToggleModal('options')"
+></profile-options-modal>
 
-<highlights-modal *ngIf="isHighlightsModalShown" [loggedinUser]="loggedinUser"
-    (close)="onToggleModal('highlights')"></highlights-modal>
+<highlights-modal
+  *ngIf="isHighlightsModalShown"
+  [loggedinUser]="loggedinUser"
+  (close)="onToggleModal('highlights')"
+></highlights-modal>
 
-<followers-modal *ngIf="isFollowersModalShown" (close)="onToggleModal('followers')"></followers-modal>
-<following-modal *ngIf="isFollowingModalShown" (close)="onToggleModal('following')"></following-modal>
-<div class="main-screen dark-mode" *ngIf="isMainScreenShown" (click)="onToggleModal('main-screen')"></div>
+<followers-modal
+  *ngIf="isFollowersModalShown"
+  [userId]="user.id"
+  (close)="onToggleModal('followers')"
+></followers-modal>
+<following-modal
+  *ngIf="isFollowingModalShown"
+  [userId]="user.id"
+  (close)="onToggleModal('following')"
+></following-modal>
+<div
+  class="main-screen dark-mode"
+  *ngIf="isMainScreenShown"
+  (click)="onToggleModal('main-screen')"
+></div>

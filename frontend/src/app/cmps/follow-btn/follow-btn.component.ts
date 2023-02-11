@@ -44,10 +44,7 @@ export class FollowBtnComponent implements OnInit, OnDestroy {
       if (user) {
         this.loggedinUser = { ...user };
         if (this.user && !this.tag) {
-          this.isFollowed = await this.followService.checkIsFollowing(
-            this.loggedinUser.id,
-            this.user.id
-          );
+          this.isFollowed = this.user.isFollowing;
         }
         if (this.tag && !this.user) {
           this.isFollowed = this.tag.isFollowing;
@@ -62,21 +59,14 @@ export class FollowBtnComponent implements OnInit, OnDestroy {
       this.loggedinUser.followingSum = !this.isFollowed
         ? this.loggedinUser.followingSum + 1
         : this.loggedinUser.followingSum - 1;
+
       this.store.dispatch(new LoadedLoggedInUser(this.loggedinUser));
-      const fullUser = await lastValueFrom(
-        this.userService.getById(this.user.id)
-      );
-      if (!fullUser) return;
-      fullUser.followersSum = !this.isFollowed
-        ? fullUser.followersSum + 1
-        : fullUser.followersSum - 1;
-      this.store.dispatch(new LoadedUser(fullUser));
     }
 
     if (this.tag && !this.user) {
-      this.tagService.toggleFollow(this.isFollowed, this.tag.id);
-      this.isFollowed = !this.isFollowed;
+      await this.tagService.toggleFollow(this.isFollowed, this.tag.id);
     }
+    this.isFollowed = !this.isFollowed;
   }
 
   ngOnDestroy(): void {

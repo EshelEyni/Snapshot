@@ -2,95 +2,106 @@ const logger = require("../../services/logger.service");
 const db = require("../../database");
 const bcrypt = require("bcrypt");
 
-async function query(queryParams) {
+async function query(filterBy, loggedinUserId) {
   try {
     let users;
-    const { userId, type, limit, searchTerm } = queryParams;
+    const { userId, type, limit, searchTerm } = filterBy;
 
     return await db.txn(async () => {
       if (searchTerm) {
         users = await db.query(
-          `SELECT id, username, fullname, imgUrl FROM users 
-                    WHERE username LIKE $searchTerm
-                    OR email LIKE $searchTerm 
-                    OR bio LIKE $searchTerm
-                    ORDER BY username LIMIT 100`,
+          `SELECT 
+        users.id, 
+        users.username, 
+        users.fullname, 
+        users.imgUrl, 
+        stories.id AS currStoryId, 
+        storyViews.userId AS isStoryViewed 
+      FROM users 
+      LEFT JOIN stories ON stories.userId = users.id AND stories.isArchived = 0 
+      LEFT JOIN storyViews ON storyViews.storyId = stories.id AND storyViews.userId = $loggedinUserId 
+      WHERE users.username LIKE $searchTerm OR users.email LIKE $searchTerm OR users.bio LIKE $searchTerm 
+      ORDER BY username 
+      LIMIT 100`,
           {
-            $searchTerm: "%" + queryParams.searchTerm + "%",
+            $searchTerm: "%" + filterBy.searchTerm + "%",
+            $loggedinUserId: loggedinUserId,
           }
         );
       } else if (type === "suggested") {
         users = await db.query(
           `WITH CTE AS (
-                        SELECT id, username, fullname, imgUrl
+                        SELECT id, username, fullname, imgUrl,
+                        (
+                          SELECT 
+                            COUNT(*) 
+                          FROM follow 
+                          WHERE fromUserId = $loggedinUserId 
+                          AND toUserId = users.id
+                        ) > 0 AS isFollowing
                         FROM users
                         WHERE id IN (
                           SELECT dst.toUserId
                           FROM follow AS src
                             JOIN follow AS dst ON src.toUserId = dst.fromUserId
-                          WHERE src.fromUserId = $userId
+                          WHERE src.fromUserId = $loggedinUserId
                         )
                         AND id NOT IN (
                           SELECT toUserId
-                          FROM follow WHERE fromUserId = $userId
+                          FROM follow WHERE fromUserId = $loggedinUserId
                         )
+                        AND id != $loggedinUserId
                       )
                       SELECT *
                       FROM (
                         SELECT * FROM CTE
                         UNION ALL
-                        SELECT id, username, fullname, imgUrl
+                        SELECT id, username, fullname, imgUrl,
+                        (
+                          SELECT 
+                            COUNT(*) 
+                          FROM follow 
+                          WHERE fromUserId = $loggedinUserId 
+                          AND toUserId = users.id
+                        ) > 0 AS isFollowing
                         FROM users
                         WHERE (SELECT COUNT(*) FROM CTE) = 0
-                        AND id != $userId
+                        AND id != $loggedinUserId
                         ) sub
                       ORDER BY RANDOM() 
                       LIMIT $limit
                     `,
           {
-            $userId: userId,
+            $loggedinUserId: loggedinUserId,
             $limit: limit,
           }
         );
       } else {
         users = await db.query(
-          `SELECT id, username, fullname, imgUrl FROM users
-                    ORDER BY username LIMIT $limit`,
+          `SELECT id,
+          username, 
+          fullname, 
+          imgUrl,
+          stories.id AS currStoryId, 
+          storyViews.userId AS isStoryViewed,
+          (
+            SELECT 
+              COUNT(*) 
+            FROM follow 
+            WHERE fromUserId = $loggedinUserId 
+            AND toUserId = users.id
+          ) > 0 AS isFollowing 
+           FROM users
+           LEFT JOIN stories ON stories.userId = users.id AND stories.isArchived = 0 
+           LEFT JOIN storyViews ON storyViews.storyId = stories.id AND storyViews.userId = $loggedinUserId 
+                    ORDER BY username 
+                    LIMIT $limit`,
           {
-            $limit: limit,
+            $loggedinUserId: loggedinUserId,
+            $limit: limit
           }
         );
       }
-
-      const StoryPrms = users.map(async (user) => {
-        const stories = await db.query(
-          `SELECT * FROM stories
-                    WHERE userId = $id
-                    AND isArchived = 0
-                    ORDER BY createdAt ASC
-                    LIMIT 1`,
-          { $id: user.id }
-        );
-
-        if (!stories.length) {
-          user.currStoryId = null;
-          return user;
-        }
-      });
-
-      await Promise.all(StoryPrms);
-
-      const storyViewPrms = users.map(async (user) => {
-        if (!user.currStoryId) return (user.isStoryViewed = false);
-        const storyViews = await db.query(
-          `SELECT * FROM storyViews WHERE storyId = $storyId AND userId = $userId`,
-          { $storyId: user.currStoryId, $userId: userId }
-        );
-        user.isStoryViewed = storyViews.length > 0;
-        return user;
-      });
-
-      await Promise.all(storyViewPrms);
 
       return users;
     });
@@ -100,7 +111,7 @@ async function query(queryParams) {
   }
 }
 
-async function getById(userId, isWithPassword) {
+async function getById(userId) {
   try {
     return await db.txn(async () => {
       const users = await db.query(`SELECT * FROM users WHERE id = $id`, {
@@ -110,7 +121,6 @@ async function getById(userId, isWithPassword) {
         throw "user with id #" + userId + " was not found";
       }
       const user = users[0];
-      if (!isWithPassword) delete user.password;
       user.isDarkMode = !!user.isDarkMode;
 
       const stories = await db.query(

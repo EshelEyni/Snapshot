@@ -1,124 +1,127 @@
-const logger = require('../../services/logger.service')
-const db = require('../../database');
+const logger = require("../../services/logger.service");
+const db = require("../../database");
 
-async function getFollowings(userId) {
-    try {
-        const followings = await db.query(
-            `select * from follow 
-             JOIN users ON follow.toUserId = users.id
-             where fromUserId = $userId`,
-            { $userId: userId });
+async function getFollowings(userId, loggedinUserId) {
+  try {
+    const followings = await db.query(
+      `SELECT 
+        users.id, 
+        users.username, 
+        users.fullname, 
+        users.imgUrl,
+        (
+            SELECT 
+              COUNT(*) 
+            FROM follow 
+            WHERE fromUserId = $loggedinUserId 
+            AND toUserId = users.id
+          ) > 0 AS isFollowing  
+      FROM follow
+        JOIN users ON follow.toUserId = users.id
+        WHERE follow.fromUserId = $userId`,
+      { $userId: userId, $loggedinUserId: loggedinUserId }
+    );
 
-        return followings
-    } catch (err) {
-        logger.error('cannot find followings', err)
-        throw err
-    }
+    return followings;
+  } catch (err) {
+    logger.error("cannot find followings", err);
+    throw err;
+  }
 }
 
-async function getFollowers(userId) {
-    try {
-        const followers = await db.query(
-            `select * from follow 
+async function getFollowers(userId, loggedinUserId) {
+  try {
+    const followers = await db.query(
+      `SELECT
+      users.id, 
+      users.username, 
+      users.fullname, 
+      users.imgUrl,
+      (
+        SELECT 
+          COUNT(*) 
+        FROM follow 
+        WHERE fromUserId = $loggedinUserId 
+        AND toUserId = users.id
+      ) > 0 AS isFollowing  
+      FROM follow 
              JOIN users ON follow.fromUserId = users.id
-             where toUserId = $userId`,
-            { $userId: userId });
+             WHERE toUserId = $userId`,
+      { $userId: userId, $loggedinUserId: loggedinUserId }
+    );
 
-        return followers
-    } catch (err) {
-        logger.error('cannot find followers', err)
-        throw err
-    }
-}
-
-async function getFollowing(fromUserId, toUserId) {
-    try {
-        const following = await db.query(
-            `select * from follow 
-             JOIN users ON follow.toUserId = users.id
-             where fromUserId = $fromUserId and toUserId = $toUserId`,
-            {
-                $fromUserId: fromUserId,
-                $toUserId: toUserId
-            });
-
-        return following.length > 0 ? true : false
-    } catch (err) {
-        logger.error(`while finding following ${follow}`, err)
-        throw err
-    }
+    return followers;
+  } catch (err) {
+    logger.error("cannot find followers", err);
+    throw err;
+  }
 }
 
 async function add(fromUserId, toUserId) {
-    try {
-        await db.txn(async () => {
+  try {
+    await db.txn(async () => {
+      await db.exec(
+        `INSERT INTO follow (fromUserId, toUserId) VALUES ($fromUserId, $toUserId)`,
+        {
+          $fromUserId: fromUserId,
+          $toUserId: toUserId,
+        }
+      );
 
-            await db.exec(
-                `insert into follow (fromUserId, toUserId) values ($fromUserId, $toUserId)`,
-                {
-                    $fromUserId: fromUserId,
-                    $toUserId: toUserId
-                }
-            );
+      await db.exec(
+        `UPDATE users SET followersSum = followersSum + 1 WHERE id = $toUserId`,
+        {
+          $toUserId: toUserId,
+        }
+      );
 
-            await db.exec(
-                `update users set followersSum = followersSum + 1 where id = $toUserId`,
-                {
-                    $toUserId: toUserId
-                }
-            );
-
-            await db.exec(
-                `update users set followingSum = followingSum + 1 where id = $fromUserId`,
-                {
-                    $fromUserId: fromUserId
-                }
-            );
-
-        });
-    } catch (err) {
-        logger.error(`cannot add follow`, err)
-        throw err
-    }
+      await db.exec(
+        `UPDATE users SET followingSum = followingSum + 1 WHERE id = $fromUserId`,
+        {
+          $fromUserId: fromUserId,
+        }
+      );
+    });
+  } catch (err) {
+    logger.error(`cannot add follow`, err);
+    throw err;
+  }
 }
 
-
 async function remove(fromUserId, toUserId) {
-    try {
-        await db.txn(async () => {
-            await db.exec(
-                `delete from follow where fromUserId = $fromUserId and toUserId = $toUserId`,
-                {
-                    $fromUserId: fromUserId,
-                    $toUserId: toUserId
-                }
-            );
+  try {
+    await db.txn(async () => {
+      await db.exec(
+        `DELETE FROM follow WHERE fromUserId = $fromUserId and toUserId = $toUserId`,
+        {
+          $fromUserId: fromUserId,
+          $toUserId: toUserId,
+        }
+      );
 
-            await db.exec(
-                `update users set followersSum = followersSum - 1 where id = $toUserId`,
-                {
-                    $toUserId: toUserId
-                }
-            );
+      await db.exec(
+        `UPDATE users SET followersSum = followersSum - 1 WHERE id = $toUserId`,
+        {
+          $toUserId: toUserId,
+        }
+      );
 
-            await db.exec(
-                `update users set followingSum = followingSum - 1 where id = $fromUserId`,
-                {
-                    $fromUserId: fromUserId
-                }
-            );
-        });
-
-    } catch (err) {
-        logger.error(`cannot remove follow`, err)
-        throw err
-    }
+      await db.exec(
+        `UPDATE users SET followingSum = followingSum - 1 WHERE id = $fromUserId`,
+        {
+          $fromUserId: fromUserId,
+        }
+      );
+    });
+  } catch (err) {
+    logger.error(`cannot remove follow`, err);
+    throw err;
+  }
 }
 
 module.exports = {
-    getFollowings,
-    getFollowers,
-    getFollowing,
-    add,
-    remove
-}
+  getFollowings,
+  getFollowers,
+  add,
+  remove,
+};

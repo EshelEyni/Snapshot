@@ -2,14 +2,27 @@ const logger = require("../../services/logger.service");
 const db = require("../../database");
 const noitificationService = require("../notification/notification.service");
 
-async function getLikesForPost(postId) {
+async function getLikesForPost(postId,loggedinUserId) {
   try {
     const likes = await db.query(
-      `SELECT u.id, u.username, u.fullname, u.imgUrl FROM postsLikedBy l
-       LEFT JOIN users u ON u.id = l.userId
-        WHERE postId = $postId`,
+      `SELECT 
+      u.id, 
+      u.username, 
+      u.fullname, 
+      u.imgUrl,
+      (
+        SELECT 
+          COUNT(*) 
+        FROM follow 
+        WHERE fromUserId = $loggedinUserId 
+        AND toUserId = u.id
+      ) > 0 AS isFollowing  
+      FROM postsLikedBy l
+      LEFT JOIN users u ON u.id = l.userId
+      WHERE postId = $postId`,
       {
         $postId: postId,
+        $loggedinUserId: loggedinUserId,
       }
     );
 

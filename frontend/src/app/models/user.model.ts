@@ -16,6 +16,7 @@ export interface User {
     currStoryId: number | null;
     isStoryViewed: boolean;
     isDarkMode: boolean;
+    isFollowing: boolean;
 };
 
 export interface MiniUser {
@@ -23,8 +24,9 @@ export interface MiniUser {
     fullname: string;
     username: string;
     imgUrl: string;
-    currStoryId: number | null;
-    isStoryViewed: boolean;
+    isFollowing: boolean;
+    currStoryId?: number | null;
+    isStoryViewed?: boolean;
 };
 
 

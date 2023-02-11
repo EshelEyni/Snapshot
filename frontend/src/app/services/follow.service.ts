@@ -1,73 +1,61 @@
-import { CookieService } from 'ngx-cookie-service';
 import { MiniUser } from './../models/user.model';
-import { firstValueFrom, lastValueFrom } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { HttpService } from './http.service';
 import { Injectable, inject } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FollowService {
+  constructor() {}
+  httpService = inject(HttpService);
+  http = inject(HttpClient);
 
-  constructor() { }
-  httpService = inject(HttpService)
-  http = inject(HttpClient)
-  cookieService = inject(CookieService)
+  baseUrl: '/api' | '//localhost:3030/api' = this.httpService.getBaseUrl();
 
-  baseUrl: '/api' | '//localhost:3030/api' = this.httpService.getBaseUrl()
-
-
-  public async getFollowers(): Promise<MiniUser[] | []> {
-    const options = {
-      withCredentials: true
-    }
-
-    return await lastValueFrom(
-      this.http.get<MiniUser[]>(`${this.baseUrl}/follow/followers`, options),
-    )
-  }
-
-  public async getFollowings(): Promise<MiniUser[]> {
+  public async getFollowings(userId: number): Promise<MiniUser[]> {
     const options = {
       withCredentials: true,
-    }
+    };
 
     return await lastValueFrom(
-      this.http.get<MiniUser[]>(`${this.baseUrl}/follow/followings`, options),
-    )
+      this.http.get<MiniUser[]>(
+        `${this.baseUrl}/follow/followings/${userId}`,
+        options
+      )
+    );
   }
 
-  public async checkIsFollowing(
-    loggedinUserId: number,
-    userToCheckId: number,
-  ): Promise<boolean> {
+  public async getFollowers(userId: number): Promise<MiniUser[] | []> {
     const options = {
       withCredentials: true,
-    }
+    };
 
-    const isFollowing = (await lastValueFrom(
-      this.http.get(`${this.baseUrl}/follow/is-following/${userToCheckId}`, options),
-    )) as boolean
-
-    return isFollowing
+    return await lastValueFrom(
+      this.http.get<MiniUser[]>(
+        `${this.baseUrl}/follow/followers/${userId}`,
+        options
+      )
+    );
   }
 
   public async toggleFollow(
     isFollowing: boolean,
-    user: MiniUser,
+    user: MiniUser
   ): Promise<void> {
-
     const options = {
       withCredentials: true,
-      
-    }
+    };
 
     if (isFollowing) {
-      await lastValueFrom(this.http.delete(`${this.baseUrl}/follow/${user.id}`, options))
-    }
-    else {
-      await lastValueFrom(this.http.post(`${this.baseUrl}/follow/${user.id}`,null, options))
+      await lastValueFrom(
+        this.http.delete(`${this.baseUrl}/follow/${user.id}`, options)
+      );
+    } else {
+      await lastValueFrom(
+        this.http.post(`${this.baseUrl}/follow/${user.id}`, null, options)
+      );
     }
   }
 }

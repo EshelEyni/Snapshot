@@ -1,16 +1,26 @@
 <ul class="search-results-list" *ngIf="!isRecentSearchShown && !isNoResults">
-    <li *ngFor="let res of searchResults">
-        <div *ngIf="res.username; else tag">
-            <user-preview [user]="userService.getMiniUser(res)" [type]="'search-modal'"
-                (click)="onSaveSearch(res)">
-            </user-preview>
-        </div>
-        <ng-template #tag>
-            <tag-preview [tag]="res" [routerLink]="['/tag/',res.name]" (click)="onSaveSearch(res)"></tag-preview>
-        </ng-template>
-    </li>
+  <li *ngFor="let res of searchResults">
+    <div *ngIf="res.username; else tag">
+      <user-preview
+        [user]="userService.getMiniUser(res)"
+        [type]="'search-modal'"
+        (click)="onSaveSearch(res)"
+      >
+      </user-preview>
+    </div>
+    <ng-template #tag>
+      <tag-preview
+        [tag]="res"
+        [routerLink]="['/tag/', res.name]"
+        (click)="onSaveSearch(res)"
+      ></tag-preview>
+    </ng-template>
+  </li>
 </ul>
 
-<div class="no-results-msg-container" *ngIf="isNoResults && !isRecentSearchShown">
-    <p>No results found.</p>
+<div
+  class="no-results-msg-container"
+  *ngIf="isNoResults && !isRecentSearchShown"
+>
+  <p>No results found.</p>
 </div>

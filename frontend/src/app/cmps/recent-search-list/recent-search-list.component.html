@@ -1,28 +1,45 @@
-<div class="recent-searches-container" *ngIf="isRecentSearchShown && !isNoResults">
-    <div class="title-container">
-        <h2>recent</h2>
-        <button class="clear-btn clean-btn" *ngIf="recentSearches.length" (click)="onClearSearches()">Clear
-            all</button>
+<div
+  class="recent-searches-container"
+  *ngIf="isRecentSearchShown && !isNoResults"
+>
+  <div class="title-container">
+    <h2>recent</h2>
+    <button
+      class="clear-btn clean-btn"
+      *ngIf="recentSearches.length"
+      (click)="onClearSearches()"
+    >
+      Clear all
+    </button>
+  </div>
+
+  <ul
+    class="recent-search-list"
+    *ngIf="recentSearches.length; else noRecentRes"
+  >
+    <li *ngFor="let recentSearch of recentSearches">
+      <div *ngIf="recentSearch.item.username; else tagPreview">
+        <user-preview
+          [user]="recentSearch.item"
+          [type]="'search-modal'"
+          (click)="onCloseModal()"
+        ></user-preview>
+      </div>
+      <ng-template #tagPreview>
+        <tag-preview
+          [tag]="recentSearch.item"
+          [routerLink]="['/tag/', recentSearch.item.name]"
+          (click)="onCloseModal()"
+        ></tag-preview>
+      </ng-template>
+
+      <fa-icon [icon]="faX" (click)="onRemoveSearch(recentSearch.id)"></fa-icon>
+    </li>
+  </ul>
+
+  <ng-template #noRecentRes>
+    <div class="no-recent-searches-msg">
+      <p>No recent searches.</p>
     </div>
-
-    <ul class="recent-search-list" *ngIf="recentSearches.length; else noRecentRes">
-        <li *ngFor="let recentSearch of recentSearches">
-            <div *ngIf="recentSearch.username; else tagPreview">
-                <user-preview [user]="recentSearch" [type]="'search-modal'" (click)="onCloseModal()"></user-preview>
-            </div>
-            <ng-template #tagPreview>
-                <tag-preview [tag]="recentSearch" [routerLink]="['/tag/',recentSearch.name]"
-                    (click)="onCloseModal()"></tag-preview>
-            </ng-template>
-
-            <fa-icon [icon]="faX" (click)="onRemoveSearch(recentSearch.id)"></fa-icon>
-        </li>
-    </ul>
-
-    <ng-template #noRecentRes>
-        <div class="no-recent-searches-msg">
-            <p>No recent searches.</p>
-        </div>
-    </ng-template>
-
+  </ng-template>
 </div>

@@ -27,10 +27,8 @@ export class SearchService {
     const users: User[] = await lastValueFrom(
       this.userService.getUsersBySearchTerm(searchTerm)
     );
-    const filterBy = { type: 'search', name: searchTerm}
-    const tags: Tag[] = await lastValueFrom(
-      this.tagService.getTags(filterBy)
-    );
+    const filterBy = { type: 'search', name: searchTerm };
+    const tags: Tag[] = await lastValueFrom(this.tagService.getTags(filterBy));
     return { users: [...users], tags: [...tags] };
   }
 
@@ -41,33 +39,36 @@ export class SearchService {
     );
   }
 
-  public async getRecentSearches(userId: number): Promise<Array<User | Tag>> {
+  public async getRecentSearches(): Promise<Array<User | Tag>> {
+    const options = { withCredentials: true };
     const recentSearches = await lastValueFrom(
-      this.http.get<Array<User | Tag>>(`${this.baseUrl}/search/${userId}`)
+      this.http.get<Array<User | Tag>>(`${this.baseUrl}/search`, options)
     );
     return recentSearches;
   }
 
-  public async saveRecentSearch(
-    userId: number,
-    searchItem: User | Tag
-  ): Promise<void> {
+  public async saveRecentSearch(searchItem: User | Tag): Promise<void> {
+    const options = { withCredentials: true };
+    const body = {
+      itemId: searchItem.id,
+      type: 'username' in searchItem ? 'user' : 'tag',
+    };
     await lastValueFrom(
-      this.http.post(`${this.baseUrl}/search`, {
-        userId,
-        itemId: searchItem.id,
-        type: 'username' in searchItem ? 'user' : 'tag',
-      })
+      this.http.post(`${this.baseUrl}/search`, body, options)
     );
   }
 
   public async removeRecentSearch(searchId: number): Promise<void> {
-    await lastValueFrom(this.http.delete(`${this.baseUrl}/search/${searchId}`));
+    const options = { withCredentials: true };
+    await lastValueFrom(
+      this.http.delete(`${this.baseUrl}/search/single/${searchId}`, options)
+    );
   }
 
-  public async clearRecentSearches(userId: number): Promise<void> {
+  public async clearRecentSearches(): Promise<void> {
+    const options = { withCredentials: true };
     await lastValueFrom(
-      this.http.delete(`${this.baseUrl}/search/clear/${userId}`)
+      this.http.delete(`${this.baseUrl}/search/clear`, options)
     );
   }
 }

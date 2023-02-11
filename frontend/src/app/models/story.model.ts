@@ -7,6 +7,7 @@ export interface Story {
     by: MiniUser;
     isArchived: boolean;
     isSaved: boolean;
+    isLiked: boolean;
     highlightTitle: string | null;
     highlightCover: number | null;
 };

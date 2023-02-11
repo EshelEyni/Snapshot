@@ -3,7 +3,8 @@ const likeService = require("./post.like.service");
 async function getLikesForPost(req, res) {
   try {
     const postId = req.params.id;
-    const likes = await likeService.getLikesForPost(postId);
+    const loggedinUserId = req.loggedinUser.id;
+    const likes = await likeService.getLikesForPost(postId, loggedinUserId);
     res.send(likes);
   } catch (err) {
     res.status(500).send({ err: "Failed to get likes" });
