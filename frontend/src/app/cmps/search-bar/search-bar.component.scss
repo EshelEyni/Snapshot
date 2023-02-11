@@ -30,7 +30,7 @@
                 text-transform: capitalize;
                 letter-spacing: 0.5px;
                 position: absolute;
-                top: 15%;
+                top: 20%;
                 font-weight: 100;
             }
 
@@ -53,7 +53,7 @@
 
         .btn-container {
             position: absolute;
-            right: 0;
+            right: 5px;
             color: var(--input-placeholder-color);
             z-index: 210;
         }
@@ -80,10 +80,9 @@
             border: none;
             border-radius: rem(5px);
             color: var(--primary-color);
-            font-size: rem(14px);
+            font-size: rem(16px);
             letter-spacing: 0.5px;
             padding: 0 rem(16px);
-            background-color: var(--input-bg-color);
 
             &::placeholder {
                 color: var(--input-placeholder-secondary-color);

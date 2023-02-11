@@ -151,7 +151,7 @@ export class MsgEditComponent implements OnInit, OnChanges {
         msg.type = 'story-like';
         msg.text = '';
         msg.imgUrl = this.story.imgUrls[this.currStoryImgIdx];
-        msg.storyId = this.story.id;
+        msg.story = this.story;
         break;
       case 'like':
         msg.type = 'like';

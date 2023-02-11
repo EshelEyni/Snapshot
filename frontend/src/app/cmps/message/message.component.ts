@@ -12,11 +12,10 @@ import { Story } from 'src/app/models/story.model';
   selector: 'message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss'],
-  inputs: ['message', 'loggedinUser']
+  inputs: ['message', 'loggedinUser'],
 })
 export class MessageComponent implements OnInit {
-
-  constructor() { };
+  constructor() {}
 
   postService = inject(PostService);
   storyService = inject(StoryService);
@@ -37,17 +36,16 @@ export class MessageComponent implements OnInit {
 
     switch (this.message.type) {
       case 'post':
-        if (this.message.postId)
-          this.post = await lastValueFrom(this.postService.getById(this.message.postId));
+        if (this.message.post) this.post = this.message.post;
         break;
       case 'story':
-        if (this.message.storyId) {
-          // this.story = await lastValueFrom(this.storyService.getById(this.message.storyId, 'chat'));
+        if (this.message.story) {
+          this.story = this.message.story;
           this.storyReactionTitle = this.isSenderLoggedinUser
             ? `You sent ${this.story.by.username} story`
             : `${this.message.sender.username} sent ${this.story.by.username} story`;
           this.isUserImgShown = false;
-        };
+        }
         break;
       case 'quick-reaction':
         this.storyReactionTitle = this.isSenderLoggedinUser
@@ -68,6 +66,6 @@ export class MessageComponent implements OnInit {
           : `Liked your story`;
         this.isUserImgShown = false;
         break;
-    };
-  };
-};
+    }
+  }
+}

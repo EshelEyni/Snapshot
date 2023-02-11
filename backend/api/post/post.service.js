@@ -32,7 +32,7 @@ async function query(filter, loggedinUser) {
       }
 
       for (const post of posts) {
-        await _getPostData(post, loggedinUser.id);
+        await getPostData(post, loggedinUser.id);
 
         if (filter.type === "homepagePosts") {
           await _getPostLikeAndBookmark(post, loggedinUser.id);
@@ -63,7 +63,7 @@ async function getById(postId, loggedinUserId) {
 
       const post = posts[0];
 
-      await _getPostData(post, loggedinUserId);
+      await getPostData(post, loggedinUserId);
       await _getPostLikeAndBookmark(post, loggedinUserId);
       await _getCommentsForPostDetailsPage(post, loggedinUserId);
 
@@ -372,7 +372,7 @@ async function _getPostsForTagDetailsPage(filter) {
   }
 }
 
-async function _getPostData(post, loggedinUserId) {
+async function getPostData(post, loggedinUserId) {
   const images = await db.query(
     `SELECT * FROM postImg WHERE postId = $postId ORDER BY imgOrder`,
     { $postId: post.id }
@@ -511,4 +511,5 @@ module.exports = {
   remove,
   update,
   add,
+  getPostData,
 };

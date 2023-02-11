@@ -26,7 +26,7 @@
     <ng-template #storyReply>
         <div class="main-screen" (click)="onToggleModal('main-screen')" *ngIf="isMainScreenShown && !text"></div>
         <share-modal *ngIf="isShareModalShown" (close)="onToggleModal('share-modal')" [type]="'story-reply'"
-            [loggedinUser]="loggedinUser" [story]="story"></share-modal>
+            [loggedinUser]="loggedinUser" [story]="story" (storyShared)="msgSent.emit()"></share-modal>
 
         <section class="story-reply">
             <div class="quick-reactions-container" *ngIf="isQuickReactionShown && !text">

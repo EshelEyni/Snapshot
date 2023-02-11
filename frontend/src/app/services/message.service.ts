@@ -7,15 +7,13 @@ import { HttpService } from './http.service';
 import { SocketService } from './socket.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class MessageService {
+  constructor() {}
 
-  constructor() { }
-
-  private _messages$ = new BehaviorSubject<Message[]>([])
-  public messages$ = this._messages$.asObservable()
+  private _messages$ = new BehaviorSubject<Message[]>([]);
+  public messages$ = this._messages$.asObservable();
 
   http = inject(HttpClient);
   socketService = inject(SocketService);
@@ -25,17 +23,19 @@ export class MessageService {
   baseUrl: '/api' | '//localhost:3030/api' = this.httpService.getBaseUrl();
 
   public async loadMessages(chatId: number): Promise<void> {
-    let messages = await firstValueFrom(
-      this.http.get(`${this.baseUrl}/message/chat/${chatId}`)
-    ) as Message[];
+    const options = { withCredentials: true };
+    const messages = (await firstValueFrom(
+      this.http.get(`${this.baseUrl}/message/chat/${chatId}`, options)
+    )) as Message[];
 
     this._messages$.next(messages);
-  };
+  }
 
   public async addMessage(msg: Message): Promise<void> {
-    const res = await firstValueFrom(
-      this.http.post(`${this.baseUrl}/message`, msg)
-    ) as { msg: string, id: number };
+    const options = { withCredentials: true };
+    const res = (await firstValueFrom(
+      this.http.post(`${this.baseUrl}/message`, msg, options)
+    )) as { msg: string; id: number };
 
     if (res.msg === 'Message added') {
       let messages = this._messages$.getValue();
@@ -44,15 +44,14 @@ export class MessageService {
       this._messages$.next(messages);
       this.socketService.emit('msg-added', msg);
       this.chatService.sortChatsByLastMsg(msg.chatId);
-    };
-  };
+    }
+  }
 
   public addMsgFromSocket(msg: Message): void {
     let messages = this._messages$.getValue();
     messages.push(msg);
     this._messages$.next(messages);
-  };
-
+  }
 
   public getEmptyMessage(): Message {
     const newMsg = {
@@ -70,11 +69,11 @@ export class MessageService {
       },
       createdAt: new Date(),
       text: '',
-      postId: 0,
-      storyId: 0,
-      imgUrl: ''
+      post: undefined,
+      story: undefined,
+      imgUrl: '',
     };
 
     return newMsg;
-  };
-};
+  }
+}

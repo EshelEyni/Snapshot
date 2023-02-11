@@ -45,7 +45,7 @@ async function query(loggedinUserId, type) {
       }
 
       for (const story of stories) {
-        await _getStoryData(story, loggedinUserId);
+        await getStoryData(story, loggedinUserId);
       }
       return stories;
     });
@@ -67,7 +67,7 @@ async function getById(storyId, loggedinUserId) {
       }
       const story = stories[0];
 
-      return await _getStoryData(story, loggedinUserId);
+      return await getStoryData(story, loggedinUserId);
     });
   } catch (err) {
     logger.error(`while finding story ${storyId}`, err);
@@ -206,7 +206,7 @@ async function addView(storyId, loggedinUserId) {
   }
 }
 
-async function _getStoryData(story, loggedinUserId) {
+async function getStoryData(story, loggedinUserId) {
   try {
     const images = await db.query(
       `SELECT * FROM storyImg WHERE storyId = $storyId`,
@@ -248,4 +248,5 @@ module.exports = {
   update,
   add,
   addView,
+  getStoryData,
 };

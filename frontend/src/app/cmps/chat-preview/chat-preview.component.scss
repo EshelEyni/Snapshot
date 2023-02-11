@@ -10,8 +10,8 @@
     padding: rem(10px) rem(15px);
 
     .img-container {
-        width: rem(55px);
-        height: rem(55px);
+        width: rem(55px) !important;
+        height: rem(55px) !important;
         border-radius: 50%;
 
         img {

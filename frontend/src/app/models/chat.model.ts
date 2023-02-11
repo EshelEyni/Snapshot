@@ -1,3 +1,5 @@
+import { Post } from './post.model';
+import { Story } from './story.model';
 import { MiniUser } from './user.model';
 
 export interface Chat {
@@ -18,7 +20,7 @@ export interface Message {
     type: string;
     createdAt: Date;
     text?: string;
-    postId?: number;
-    storyId?: number;
+    post?: Post;
+    story?: Story;
     imgUrl?: string;
 };
