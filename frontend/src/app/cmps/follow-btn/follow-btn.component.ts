@@ -43,14 +43,15 @@ export class FollowBtnComponent implements OnInit, OnDestroy {
     this.sub = this.loggedinUser$.subscribe(async (user) => {
       if (user) {
         this.loggedinUser = { ...user };
-        if (this.user && !this.tag) {
-          this.isFollowed = this.user.isFollowing;
-        }
-        if (this.tag && !this.user) {
-          this.isFollowed = this.tag.isFollowing;
-        }
       }
     });
+
+    if (this.user) {
+      this.isFollowed = !!this.user.isFollowing;
+    }
+    if (this.tag) {
+      this.isFollowed = !!this.tag.isFollowing;
+    }
   }
 
   async onToggleFollow(): Promise<void> {

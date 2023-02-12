@@ -3938,3 +3938,78 @@
 11.2.2023, 22:38:08 - INFO - New connected socket [id: KUhzeHWD3CbXuBDaAAAl] 
 11.2.2023, 22:38:23 - INFO - Socket disconnected [id: undefined] 
 11.2.2023, 22:38:24 - INFO - New connected socket [id: t4aeM8_cMW25xi8bAAAn] 
+12.2.2023, 19:46:09 - INFO - Server is running on port: 3030 
+12.2.2023, 19:47:55 - WARN - Not Authenticated 
+12.2.2023, 19:47:55 - WARN - Not Authenticated 
+12.2.2023, 19:47:55 - WARN - Not Authenticated 
+12.2.2023, 19:47:55 - INFO - New connected socket [id: fxHhi6tXwx2KlMctAAAB] 
+12.2.2023, 19:48:02 - DEBUG - auth.service - login with username: tattookate 
+12.2.2023, 19:48:02 - INFO - User login:  | {"id":4,"username":"tattookate","fullname":"tattookate","email":"tatookate@gmail.com","imgUrl":"http://res.cloudinary.com/dng9sfzqt/image/upload/v1675100789/ffr7frqf1edgdkud0rg9.png","gender":"","phone":"","bio":"tattoo artist","website":"","followersSum":1,"followingSum":3,"postSum":6,"isDarkMode":false,"storySum":4,"currStoryId":10} | e035db502563f0fc0df0e2f0f2fe2ac404cc6e119203f53496115e8d77664c8c2ec0f48f324d36cc4aa068dabe0aab7a20e4d5ef76b2850e278d43f1cf916dfe8fdec18c84c0fe32df77b58e2bef86f4dcbb362547fb8866fab6679b438bfeba83 
+12.2.2023, 19:48:15 - ERROR - Failed to get user | Failed to commit transaction: user with id #undefined was not found (userId: 4)
+12.2.2023, 19:48:15 - ERROR - while finding user undefined | Failed to commit transaction: user with id #undefined was not found (userId: 4)
+12.2.2023, 19:49:09 - ERROR - while finding user undefined | Failed to commit transaction: user with id #undefined was not found (userId: 4)
+12.2.2023, 19:49:09 - ERROR - Failed to get user | Failed to commit transaction: user with id #undefined was not found (userId: 4)
+12.2.2023, 19:54:02 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 19:54:04 - INFO - New connected socket [id: YjcOa9Kq7mijtTnYAAAD] 
+12.2.2023, 19:54:29 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 19:54:29 - INFO - New connected socket [id: u68fmogMZCiiXe5rAAAF] 
+12.2.2023, 19:54:35 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 19:54:36 - INFO - New connected socket [id: OZOZ9MXTyY0Ik88SAAAH] 
+12.2.2023, 20:02:26 - INFO - Server is running on port: 3030 
+12.2.2023, 20:02:26 - INFO - New connected socket [id: FXRrbjr-0GtRrnWMAAAB] 
+12.2.2023, 20:08:14 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:08:15 - INFO - New connected socket [id: 1-mdufGNMipCHsaoAAAD] 
+12.2.2023, 20:08:26 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:08:27 - INFO - New connected socket [id: 4MT78H2Cyu7PTKs0AAAF] 
+12.2.2023, 20:08:35 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:08:35 - INFO - New connected socket [id: M4QKbqv2wZw8Pa6kAAAH] 
+12.2.2023, 20:08:53 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:08:55 - INFO - New connected socket [id: p0bsnopeAV19v3NEAAAJ] 
+12.2.2023, 20:16:59 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:17:01 - INFO - New connected socket [id: z7t7zLeScfRu9_iEAAAL] 
+12.2.2023, 20:18:05 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:18:07 - INFO - New connected socket [id: qe7F0Nhv-jBqJVhWAAAN] 
+12.2.2023, 20:18:53 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:18:53 - INFO - New connected socket [id: l_NA1x6Lz7o5emuBAAAP] 
+12.2.2023, 20:20:18 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:20:19 - INFO - New connected socket [id: TXBeYyOe6QgGMyHcAAAR] 
+12.2.2023, 20:20:33 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:20:34 - INFO - New connected socket [id: 7x0a-DjRc3ZXJ8l7AAAT] 
+12.2.2023, 20:20:56 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:20:57 - INFO - New connected socket [id: 4VuO4rAaatmLHfXHAAAV] 
+12.2.2023, 20:23:07 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:23:09 - INFO - New connected socket [id: fs1JMxEh35dyZH8FAAAX] 
+12.2.2023, 20:23:34 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:23:36 - INFO - New connected socket [id: uAmmGCyR0IpLvALfAAAZ] 
+12.2.2023, 20:25:24 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:25:25 - INFO - New connected socket [id: VY7Rg6DuR_ibcyCgAAAb] 
+12.2.2023, 20:28:15 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:28:16 - INFO - New connected socket [id: mdxqlLzj3x83mfLNAAAd] 
+12.2.2023, 20:28:34 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:28:35 - INFO - New connected socket [id: dv_IQIdOP8RA8EaDAAAf] 
+12.2.2023, 20:29:07 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:29:08 - INFO - New connected socket [id: jOQWNiKtFDYHBH16AAAh] 
+12.2.2023, 20:30:06 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:30:08 - INFO - New connected socket [id: Ea91E6XhXc5ihmrFAAAj] 
+12.2.2023, 20:31:00 - DEBUG - auth.service - login with username: user (userId: 4)
+12.2.2023, 20:31:00 - INFO - User login:  | {"id":13,"username":"user","fullname":"user","email":"user@user.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":2,"followingSum":13,"postSum":0,"isDarkMode":false,"storySum":0,"currStoryId":null} | 3816906fdc9dc8c1d4f4652d6ab0fe1944b06fc65be308c72a62d300dadfc4f061cfad8dbf10963b06365ebb73b02cd38e818c931a5c07ca7bbb9d0c9257bee18e7d3bca416e642d3b397d88bc4adfd4c15d4526f3fbf396dbe69d13d7756b47efc2 (userId: 4)
+12.2.2023, 20:31:33 - ERROR - while finding user 13 | Failed to commit transaction: user with id #13 was not found 
+12.2.2023, 20:31:33 - DEBUG - auth.service - signup with username: test-user, fullname: test-user 
+12.2.2023, 20:31:33 - DEBUG - auth.route - new account created: "test-user" 
+12.2.2023, 20:31:33 - DEBUG - auth.service - login with username: test-user 
+12.2.2023, 20:31:33 - INFO - User login:  | {"id":14,"username":"test-user","fullname":"test-user","email":"test-user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"isDarkMode":false,"storySum":0,"currStoryId":null} 
+12.2.2023, 20:31:59 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:32:01 - INFO - New connected socket [id: zLBN2bUKEPHWMrTIAAAl] 
+12.2.2023, 20:32:11 - DEBUG - auth.service - login with username: test-user (userId: 14)
+12.2.2023, 20:32:11 - INFO - User login:  | {"id":14,"username":"test-user","fullname":"test-user","email":"test-user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"isDarkMode":false,"storySum":0,"currStoryId":null} | 2bba68654b347d5c8affed9c845b368ddd710e48bfdafa2ecd44669781ff89e14262c1096b439aa5c414d40580ba8aea9b4e86616e36ff5ab979a28f89ede3a9e46527e71a03dd0ab6dc76ad14ebb6d726710a8795610e99d9c82c8869cd08871f5f (userId: 14)
+12.2.2023, 20:33:04 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:33:05 - INFO - New connected socket [id: qL_BUxZ63_emnCyFAAAn] 
+12.2.2023, 20:33:27 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:33:28 - INFO - New connected socket [id: jQo9tsJD7MCP_njyAAAp] 
+12.2.2023, 20:33:30 - DEBUG - auth.service - login with username: test-user (userId: 14)
+12.2.2023, 20:33:30 - INFO - User login:  | {"id":14,"username":"test-user","fullname":"test-user","email":"test-user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"isDarkMode":false,"storySum":0,"currStoryId":null} | 1ed1eaa25f59ce348e66212733206edb6ebb6d36bc7ce8a982c6716cd88211516a2eeed4fb620115a9bc0f8f5d6efad6426b10e27e2393203077ad606d77f288365ba1f6944ea9c5d022adff554e0b5d5877c087d78f3b68893019e735964a40e2d9 (userId: 14)
+12.2.2023, 20:36:20 - INFO - Server is running on port: 3030 
+12.2.2023, 20:36:21 - INFO - New connected socket [id: qoMwODVKUNb1zddOAAAB] 
+12.2.2023, 20:36:23 - INFO - Server is running on port: 3030 
+12.2.2023, 20:36:25 - INFO - New connected socket [id: FQf00hRWPFbGcVtcAAAB] 
+12.2.2023, 20:38:04 - INFO - Socket disconnected [id: undefined] 

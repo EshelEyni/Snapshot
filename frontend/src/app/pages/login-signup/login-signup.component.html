@@ -1,27 +1,55 @@
 <section class="login-signup-container">
-    <div class="img-bg">
-        <img class="animation-img" [src]="selectedAnimationImg">
-    </div>
-    <section>
-        <section class="login-signup">
-            <h1 class="logo">Snapshot</h1>
-            <form class="form" [formGroup]="form">
-                <input *ngIf="routerUrl === 'signup'" formControlName="email" class="email-input" type="email"
-                    placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-                <input *ngIf="routerUrl === 'signup'" formControlName="fullname" class="fullname-input" type="text"
-                    placeholder="Fullname">
-                <input formControlName="username" class="username-input" type="text" placeholder="Username">
-                <input formControlName="password" class="password-input" type="password" placeholder="Password">
-                <button class="btn-login" [disabled]="form.untouched" (click)="onLogin()">{{btnTxt}}</button>
-            </form>
-        </section>
-        <section class="login-signup-link">
-            <span *ngIf="routerUrl === 'login'">Don't have an account?
-                <a routerLink="/signup">Sign Up</a>
-            </span>
-            <span *ngIf="routerUrl === 'signup'">Already have an account?
-                <a routerLink="/login">Login</a>
-            </span>
-        </section>
+  <div class="img-bg">
+    <img class="animation-img" [src]="selectedAnimationImg" />
+  </div>
+  <section>
+    <section class="login-signup">
+      <h1 class="logo">Snapshot</h1>
+      <form class="form" [formGroup]="form">
+        <input
+          *ngIf="routerUrl === 'signup'"
+          formControlName="email"
+          class="email-input"
+          type="email"
+          placeholder="Email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        />
+        <input
+          *ngIf="routerUrl === 'signup'"
+          formControlName="fullname"
+          class="fullname-input"
+          type="text"
+          placeholder="Fullname"
+        />
+        <input
+          formControlName="username"
+          class="username-input"
+          type="text"
+          placeholder="Username"
+        />
+        <input
+          formControlName="password"
+          class="password-input"
+          type="password"
+          placeholder="Password"
+        />
+        <button
+          class="btn-login"
+          (click)="onLogin()"
+        >
+          {{ btnTxt }}
+        </button>
+      </form>
     </section>
+    <section class="login-signup-link">
+      <span *ngIf="routerUrl === 'login'"
+        >Don't have an account?
+        <a routerLink="/signup">Sign Up</a>
+      </span>
+      <span *ngIf="routerUrl === 'signup'"
+        >Already have an account?
+        <a routerLink="/login">Login</a>
+      </span>
+    </section>
+  </section>
 </section>

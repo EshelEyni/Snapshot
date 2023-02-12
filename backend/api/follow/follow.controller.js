@@ -44,8 +44,7 @@ async function deleteFollow(req, res) {
   const loggedinUserId = req.loggedinUser.id;
   const followingId = req.params.id;
   try {
-    const following = await followService.remove(loggedinUserId, followingId);
-    if (!following) return res.status(404).send({ msg: "Follow not found" });
+    await followService.remove(loggedinUserId, followingId);
     res.send({ msg: "Deleted successfully" });
   } catch (err) {
     logger.error("Failed to delete follow", err);

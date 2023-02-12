@@ -24,33 +24,96 @@ import { FollowersComponent } from './pages/followers/followers.component';
 const routes: Routes = [
   { path: 'login', component: LoginSignupComponent },
   { path: 'signup', component: LoginSignupComponent },
-  { path: 'profile/:id', component: ProfileDetailsComponent, resolve: { user: UserResolver }, canActivate: [AuthGuard] },
-  { path: 'profile-edit/:id', component: ProfileEditComponent, resolve: { user: UserResolver }, canActivate: [AuthGuard] },
-  { path: 'post/:id', component: PostDetailsComponent, resolve: { post: PostResolver }, canActivate: [AuthGuard] },
-  { path: 'tag/:name', component: TagDetailsComponent, resolve: { tag: TagResolver }, canActivate: [AuthGuard] },
-  { path: 'story/:id', component: StoryDetailsComponent, resolve: { story: StoryResolver }, canActivate: [AuthGuard] },
-  { path: 'story-edit', component: StoryEditComponent, canActivate: [AuthGuard] },
   {
-    path: 'explore', component: ExploreComponent, canActivate: [AuthGuard], children: [
-      { path: '_/post/:id', component: PostDetailsComponent, resolve: { post: PostResolver }, data: { isNested: true, isExplorePage: true } },
-    ]
+    path: 'profile/:id',
+    component: ProfileDetailsComponent,
+    resolve: { user: UserResolver },
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'profile-edit/:id',
+    component: ProfileEditComponent,
+    resolve: { user: UserResolver },
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'post/:id',
+    component: PostDetailsComponent,
+    resolve: { post: PostResolver },
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'tag/:name',
+    component: TagDetailsComponent,
+    resolve: { tag: TagResolver },
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'story/:id',
+    component: StoryDetailsComponent,
+    resolve: { story: StoryResolver },
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'story-edit',
+    component: StoryEditComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'explore',
+    component: ExploreComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '_/post/:id',
+        component: PostDetailsComponent,
+        resolve: { post: PostResolver },
+        data: { isNested: true, isExplorePage: true },
+      },
+    ],
   },
   { path: 'inbox', component: MessagesComponent, canActivate: [AuthGuard] },
   {
-    path: '', component: HomeComponent, canActivate: [AuthGuard], children: [
-      { path: '_/post/:id', component: PostDetailsComponent, resolve: { post: PostResolver }, data: { isNested: true } },
-    ]
+    path: '',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '_/post/:id',
+        component: PostDetailsComponent,
+        resolve: { post: PostResolver },
+        data: { isNested: true },
+      },
+    ],
   },
-  { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuard] },
-  { path: 'discover-people', component: DiscoverPeopleComponent, resolve: { user: UserResolver }, canActivate: [AuthGuard] },
-  { path: 'following/:id', component: FollowingComponent, resolve: { user: UserResolver }, canActivate: [AuthGuard] },
-  { path: 'followers/:id', component: FollowersComponent, resolve: { user: UserResolver }, canActivate: [AuthGuard] },
+  {
+    path: 'notifications',
+    component: NotificationsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'discover-people',
+    component: DiscoverPeopleComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'following/:id',
+    component: FollowingComponent,
+    resolve: { user: UserResolver },
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'followers/:id',
+    component: FollowersComponent,
+    resolve: { user: UserResolver },
+    canActivate: [AuthGuard],
+  },
   { path: 'post-edit', component: PostEditComponent, canActivate: [AuthGuard] },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
