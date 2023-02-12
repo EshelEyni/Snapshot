@@ -21,12 +21,7 @@ export class StoryEditComponent implements OnInit {
   store = inject(Store<State>);
   userService = inject(UserService);
 
-  storyImgs: StoryImg[] = [
-    {
-      url: 'https://res.cloudinary.com/dng9sfzqt/image/upload/v1675100075/mqfgowfb6xmn5kllvufe.png',
-      items: [],
-    },
-  ];
+  storyImgs: StoryImg[] = [];
 
   loggedinUser!: User;
   sub!: Subscription;

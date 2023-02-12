@@ -165,9 +165,7 @@ async function remove(storyId, loggedinUserId) {
       await db.exec(`DELETE FROM storyViews WHERE storyId = $id`, {
         $id: storyId,
       });
-      await db.exec(`DELETE FROM storiesLikedBy WHERE storyId = $id`, {
-        $id: storyId,
-      });
+    
       await db.exec(
         `UPDATE users SET storySum = storySum - 1 WHERE id = (SELECT userId FROM stories WHERE id = $id)`,
         { $id: storyId }

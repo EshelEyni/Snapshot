@@ -4013,3 +4013,18 @@
 12.2.2023, 20:36:23 - INFO - Server is running on port: 3030 
 12.2.2023, 20:36:25 - INFO - New connected socket [id: FQf00hRWPFbGcVtcAAAB] 
 12.2.2023, 20:38:04 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:52:01 - INFO - New connected socket [id: dFN9xBj98-R66QqjAAAD] 
+12.2.2023, 20:52:40 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:52:41 - INFO - New connected socket [id: VP1UJyVeR-0G9muWAAAF] 
+12.2.2023, 20:53:13 - ERROR - cannot remove story 11 | Failed to commit transaction: Error: SQLITE_ERROR: no such table: storiesLikedBy (userId: 14)
+12.2.2023, 20:53:13 - ERROR - Failed to delete story | Failed to commit transaction: Error: SQLITE_ERROR: no such table: storiesLikedBy (userId: 14)
+12.2.2023, 20:53:49 - INFO - Server is running on port: 3030 
+12.2.2023, 20:53:49 - INFO - New connected socket [id: Lpo6rk19u-J1Y2kwAAAB] 
+12.2.2023, 20:54:09 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 20:54:10 - INFO - New connected socket [id: d3AlbpQy2e9MMgvHAAAD] 
+12.2.2023, 21:22:34 - INFO - Server is running on port: 3030 
+12.2.2023, 21:22:36 - INFO - New connected socket [id: zcnvvOsx-248yqWKAAAB] 
+12.2.2023, 21:22:37 - INFO - Server is running on port: 3030 
+12.2.2023, 21:22:38 - INFO - New connected socket [id: PIG-l7AmvH9IZgvyAAAB] 
+12.2.2023, 21:22:44 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 21:22:45 - INFO - New connected socket [id: bVfB1DbjeHMuQxmKAAAD] 
