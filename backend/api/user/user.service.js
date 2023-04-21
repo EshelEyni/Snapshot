@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 async function query(filterBy, loggedinUserId) {
   try {
     let users;
-    const { userId, type, limit, searchTerm } = filterBy;
+    const { type, limit, searchTerm } = filterBy;
 
     return await db.txn(async () => {
       if (searchTerm) {
@@ -98,7 +98,7 @@ async function query(filterBy, loggedinUserId) {
                     LIMIT $limit`,
           {
             $loggedinUserId: loggedinUserId,
-            $limit: limit
+            $limit: limit,
           }
         );
       }

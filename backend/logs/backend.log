@@ -4028,3 +4028,39 @@
 12.2.2023, 21:22:38 - INFO - New connected socket [id: PIG-l7AmvH9IZgvyAAAB] 
 12.2.2023, 21:22:44 - INFO - Socket disconnected [id: undefined] 
 12.2.2023, 21:22:45 - INFO - New connected socket [id: bVfB1DbjeHMuQxmKAAAD] 
+12.2.2023, 23:00:09 - INFO - Socket disconnected [id: undefined] 
+12.2.2023, 23:08:02 - INFO - Server is running on port: 3030 
+14.2.2023, 19:41:55 - INFO - Server is running on port: 3030 
+14.2.2023, 19:54:34 - WARN - Not Authenticated 
+14.2.2023, 19:54:34 - WARN - Not Authenticated 
+14.2.2023, 19:54:34 - WARN - Not Authenticated 
+14.2.2023, 19:54:34 - INFO - New connected socket [id: tern9dImd3TGUgEKAAAB] 
+14.2.2023, 19:56:33 - DEBUG - auth.service - login with username: test-user 
+14.2.2023, 19:56:33 - INFO - User login:  | {"id":14,"username":"test-user","fullname":"test-user","email":"test-user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"isDarkMode":false,"storySum":0,"currStoryId":null} | 74b6fddd4e852c0aaa425261d44621e305663a328a95d3c87940938b6eb2a4f1815568ec9d7d1e2366d2b427f3c5ec3baba4471c0842236962fb20f462b8125fadc2dacd9c19b97794fd937cdcfd360d3503cf405386112a7d29b824a7a43d69c6a2 
+14.2.2023, 20:12:20 - INFO - Server is running on port: 3030 
+14.2.2023, 20:12:21 - INFO - New connected socket [id: 7CvLdQ2wTs942oX4AAAB] 
+14.2.2023, 21:26:16 - INFO - Socket disconnected [id: undefined] 
+14.2.2023, 21:37:18 - INFO - Server is running on port: 3030 
+21.4.2023, 21:08:29 - INFO - Server is running on port: 3030 
+21.4.2023, 21:09:19 - WARN - Not Authenticated 
+21.4.2023, 21:09:19 - WARN - Not Authenticated 
+21.4.2023, 21:09:19 - WARN - Not Authenticated 
+21.4.2023, 21:09:19 - INFO - New connected socket [id: yA4vEqWsKn02zYqRAAAB] 
+21.4.2023, 21:09:38 - DEBUG - auth.service - login with username: test-user 
+21.4.2023, 21:09:38 - INFO - User login:  | {"id":14,"username":"test-user","fullname":"test-user","email":"test-user@gmail.com","imgUrl":"https://res.cloudinary.com/dng9sfzqt/image/upload/v1669376872/user_instagram_sd7aep.jpg","gender":"","phone":"","bio":"","website":"","followersSum":0,"followingSum":0,"postSum":0,"isDarkMode":false,"storySum":0,"currStoryId":null} | 96a63f975784100e9b110e0aab322724e9dc74af7b829f4940ebc057a8d388e712239fe85abb6c30f76ea1dee17db82832588215cf18cd5ceea5f0daf7b33d337f43286040d6cc195ddb87b9426bd9fb834a6eb3a23cf0e95cda7f398a653f7fe74a 
+21.4.2023, 21:10:03 - INFO - Socket disconnected [id: undefined] 
+21.4.2023, 21:10:06 - INFO - New connected socket [id: qMAcKlYRldB_pwX5AAAD] 
+21.4.2023, 21:10:15 - INFO - Socket disconnected [id: undefined] 
+21.4.2023, 21:10:15 - INFO - New connected socket [id: _3E9VvawBKhLGhEiAAAF] 
+21.4.2023, 21:10:40 - INFO - Socket disconnected [id: undefined] 
+21.4.2023, 21:10:41 - INFO - New connected socket [id: prhGD3DBwU_O87wWAAAH] 
+21.4.2023, 21:12:15 - INFO - Socket disconnected [id: undefined] 
+21.4.2023, 21:12:17 - INFO - New connected socket [id: Ps3B6j2MXmllp-K6AAAJ] 
+21.4.2023, 21:12:39 - INFO - Socket disconnected [id: undefined] 
+21.4.2023, 21:12:40 - INFO - New connected socket [id: ZKHVhB1mUxtlVr-HAAAL] 
+21.4.2023, 21:12:49 - INFO - Socket disconnected [id: undefined] 
+21.4.2023, 21:12:50 - INFO - New connected socket [id: umutM-NShcap058QAAAN] 
+21.4.2023, 21:13:24 - INFO - Socket disconnected [id: undefined] 
+21.4.2023, 21:13:26 - INFO - New connected socket [id: 2riZ2U-_WE0XcIGlAAAP] 
+21.4.2023, 21:14:57 - INFO - Socket disconnected [id: undefined] 
+21.4.2023, 21:14:58 - INFO - New connected socket [id: Hf7G3S48zY9kVHm3AAAR] 
