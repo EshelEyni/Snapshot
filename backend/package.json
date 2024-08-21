@@ -1,7 +1,8 @@
 {
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon --ignore \"./data\" node server.js"
+    "dev": "nodemon --ignore \"./data\" node server.js",
+    "prod-linux": "NODE_ENV=production exec node server.js"
   },
   "dependencies": {
     "async-mutex": "^0.4.0",
